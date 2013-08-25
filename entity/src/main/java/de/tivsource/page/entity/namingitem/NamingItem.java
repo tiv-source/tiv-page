@@ -1,5 +1,5 @@
 /**
- * 
+ * Paket mit der Hauptkasse und den direkt benötigten Klassen.
  */
 package de.tivsource.page.entity.namingitem;
 
@@ -26,9 +26,10 @@ import org.hibernate.annotations.Parameter;
 import de.tivsource.page.entity.enumeration.Language;
 
 /**
- * 
+ * Die Hauptklasse des Projektes.
+ *
  * @author Marc Michele
- * 
+ *
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -36,9 +37,7 @@ public class NamingItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "UseIdOrGenerate")
-    // @TableGenerator(name = "UseIdOrGenerate", initialValue = 0,
-    // allocationSize = 1)
-    @GenericGenerator(name = "UseIdOrGenerate", strategy = "de.czastka.entity.helper.UseIdOrGenerate", parameters = {
+    @GenericGenerator(name = "UseIdOrGenerate", strategy = "de.tivsource.page.entity.helper.UseIdOrGenerate", parameters = {
 	    @Parameter(name = "initialValue", value = "0"),
 	    @Parameter(name = "allocationSize", value = "1") })
     @Column(name = "item_id")
