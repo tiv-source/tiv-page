@@ -32,6 +32,7 @@
 		<module>dao</module>
 		<module>web-administrator</module>
 		<module>web-user</module>
+		<module>install</module>
 	</modules>
 	
 	<build>
