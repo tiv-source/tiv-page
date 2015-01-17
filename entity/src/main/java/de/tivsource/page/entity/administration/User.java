@@ -68,7 +68,11 @@ public class User {
      * Rollen die zu dem Benutzerobjekt gehören.
      */
     @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @JoinTable(name = "User_Role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(
+            name = "User_Role", 
+            joinColumns = @JoinColumn(name = "user_uuid"), 
+            inverseJoinColumns = @JoinColumn(name = "role_uuid")
+            )
     private List<Role> roles;
 
     /**

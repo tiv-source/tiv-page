@@ -51,51 +51,51 @@ public class Content {
     private Date modified;
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getContent() {
-	return content;
+        return content;
     }
 
     public void setContent(String content) {
-	this.content = content;
+        this.content = content;
     }
 
     public Language getLanguage() {
-	return language;
+        return language;
     }
 
     public void setLanguage(Language language) {
-	this.language = language;
+        this.language = language;
     }
 
     public ContentItem getContentItem() {
-	return contentItem;
+        return contentItem;
     }
 
     public void setContentItem(ContentItem contentItem) {
-	this.contentItem = contentItem;
+        this.contentItem = contentItem;
     }
 
     public Date getCreated() {
-	return created;
+        return created;
     }
 
     public void setCreated(Date created) {
-	this.created = created;
+        this.created = created;
     }
 
     public Date getModified() {
-	return modified;
+        return modified;
     }
 
     public void setModified(Date modified) {
-	this.modified = modified;
+        this.modified = modified;
     }
 
 }// Ende class
