@@ -35,7 +35,7 @@ public interface RoleDaoLocal {
     public void delete(Role role);
 
     /**
-     * Methode zum laden eines Objektes der Klasse ROle anhand des technischen
+     * Methode zum laden eines Objektes der Klasse Role anhand des technischen
      * Names.
      *
      * @param technical - technischer Name des Objektes das geladen werden soll.
