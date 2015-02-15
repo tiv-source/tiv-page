@@ -26,6 +26,11 @@
   </build>
   
   <dependencies>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>entity</artifactId>
+			<version>${project.version}</version>
+		</dependency>
   </dependencies>
 
   <organization>
