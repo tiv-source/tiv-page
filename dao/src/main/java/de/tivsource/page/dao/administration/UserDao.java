@@ -69,7 +69,7 @@ public class UserDao implements UserDaoLocal {
      */
     @Override
     public Integer countAll() {
-        Query query = entityManager.createQuery("Select Count(r) from Role r");
+        Query query = entityManager.createQuery("Select Count(u) from User u");
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
