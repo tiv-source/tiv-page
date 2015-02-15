@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+
+	<persistence-unit name="tivpage.persistence" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:openejb/Resource/tivPage</jta-data-source>
+
+		<class>de.tivsource.page.entity.administration.Role</class>
+		<class>de.tivsource.page.entity.administration.User</class>
+
+		<properties>
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+
+			<!-- As many hibernate properties as you need, some examples: -->
+            <property name="hibernate.show.sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+
+			<!-- Drop and then re-create the database schema (don't do this in production) -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+
+            <property name="hibernate.search.default.directory_provider" value="filesystem" />
+            <property name="hibernate.search.default.indexBase" value="/srv/lucene/indexes" />
+
+		</properties>
+
+	</persistence-unit>
+</persistence>
