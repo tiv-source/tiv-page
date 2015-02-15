@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>tivpage</artifactId>
+		<groupId>de.tivsource.page</groupId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>ear</artifactId>
+	<packaging>ear</packaging>
+	<name>TIV Page Enterprise Archiv</name>
+	<url>http://page.tivsource.de/</url>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>persistence</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>dao</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>entity</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>install</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-user</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-administrator</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+
+		<dependency>
+			<groupId>rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search</artifactId>
+            <version>4.1.1.Final</version>
+        </dependency>
+
+
+
+
+
+
+
+
+
+
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.4</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<displayName>${project.build.finalName}</displayName>
+					<version>6</version>
+					<generateApplicationXml>true</generateApplicationXml>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<initializeInOrder>true</initializeInOrder>
+					<modules>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>install</artifactId>
+							<contextRoot>/install</contextRoot>
+						</webModule>
+						<jarModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>entity</artifactId>
+							<bundleFileName>entity.jar</bundleFileName>
+						</jarModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>tiv-page</finalName>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-ear-plugin
+										</artifactId>
+										<versionRange>
+											[2.7,)
+										</versionRange>
+										<goals>
+											<goal>
+												generate-application-xml
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
