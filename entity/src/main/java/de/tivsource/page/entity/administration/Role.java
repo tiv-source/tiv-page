@@ -1,5 +1,6 @@
 package de.tivsource.page.entity.administration;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import org.hibernate.search.annotations.DocumentId;
  * @since 0.1
  */
 @Entity
-public class Role {
+public class Role implements Principal {
 
     /**
      * UUID der Klasse Role, diese ID ist einmalig über alle Objekte hinweg und
@@ -67,6 +68,11 @@ public class Role {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String getName() {
+        return this.technical;
     }
 
 }// Ende class
