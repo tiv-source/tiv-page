@@ -46,7 +46,7 @@ public class User {
      * heißt es kann nicht zwei verschiedene Benutzer mit der gleichen E-Mail
      * Adresse geben. Diese Adresse wird zur Passwort Wiederherstellung benutzt.
      */
-    @Column(name="username", unique=true)
+    @Column(name="email", unique=true)
     private String email;
 
     /**
