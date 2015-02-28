@@ -17,6 +17,18 @@ import de.tivsource.page.entity.administration.User;
  * @author Marc Michele
  *
  */
+/**
+ * @author Marc Michele
+ *
+ */
+/**
+ * @author Marc Michele
+ *
+ */
+/**
+ * @author Marc Michele
+ *
+ */
 @Stateless
 public class UserDao implements UserDaoLocal {
 
@@ -50,6 +62,17 @@ public class UserDao implements UserDaoLocal {
     @Override
     public void delete(User user) {
         entityManager.remove(entityManager.find(User.class, user.getUuid()));
+    }
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.administration.UserDaoLocal#findByUsername(java.lang.String)
+     */
+    @Override
+    public User findByUsername(String username) {
+        LOGGER_INFO.info("findByUsername(String username) aufgerufen.");
+        Query query = entityManager.createQuery("select u from User u where u.username = ?1");
+        query.setParameter("1", username);
+        return (User)query.getSingleResult();
     }
 
     /* (non-Javadoc)
