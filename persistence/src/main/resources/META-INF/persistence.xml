@@ -10,6 +10,8 @@
 
 		<class>de.tivsource.page.entity.administration.Role</class>
 		<class>de.tivsource.page.entity.administration.User</class>
+		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
+		<class>de.tivsource.page.entity.namingitem.Description</class>
 
 		<properties>
 
