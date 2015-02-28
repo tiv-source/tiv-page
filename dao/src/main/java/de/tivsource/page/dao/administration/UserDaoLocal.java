@@ -35,6 +35,15 @@ public interface UserDaoLocal {
     public void delete(User user);
 
     /**
+     * Methode zum laden eines Objektes der Klasse User anhand der
+     * Benutzernames.
+     * 
+     * @param username - Benutzername des Objektes das geladen werden soll.
+     * @return User - Objekt das den angegebenen Benutzernamen besitzt.
+     */
+    public User findByUsername(String username);
+    
+    /**
      * Methode zum laden einer Liste von User Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzhal der zu ladenen User Objekte.
      *
