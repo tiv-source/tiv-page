@@ -1,5 +1,6 @@
 package de.tivsource.page.entity.administration;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import org.hibernate.search.annotations.DocumentId;
  *
  */
 @Entity
-public class User {
+public class User implements Principal {
 
     /**
      * UUID des Objektes der Klasse User, diese ID ist einmalig über alle
@@ -171,6 +172,11 @@ public class User {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    @Override
+    public String getName() {
+        return this.username;
     }
 
 }// Ende class
