@@ -12,9 +12,10 @@
 	<url>http://page.tivsource.de/</url>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <project.version>0.0.1</project.version>
 		<struts2.version>2.3.20</struts2.version>
 		<struts2.jquery.version>3.3.3</struts2.jquery.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
@@ -33,6 +34,7 @@
 		<module>web-administrator</module>
 		<module>web-user</module>
 		<module>install</module>
+		<module>ear</module>
 	</modules>
 	
 	<build>
@@ -69,6 +71,19 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>apache.nexus</id>
+			<name>ASF Nexus Staging</name>
+			<url>https://repository.apache.org/content/groups/staging/</url>
+		</repository>
+	</repositories>
 
 	<inceptionYear>2012</inceptionYear>
 	<organization>
