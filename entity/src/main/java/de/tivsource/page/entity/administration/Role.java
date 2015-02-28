@@ -12,16 +12,17 @@ import javax.persistence.ManyToMany;
 import org.hibernate.search.annotations.DocumentId;
 
 /**
- * 
- * @author Marc Michele
+ * Die Klasse Role dient dazu das Berechtigungskonzept der Anwendung abzubilden.
  *
+ * @author Marc Michele
+ * @since 0.1
  */
 @Entity
 public class Role {
 
     /**
      * UUID der Klasse Role, diese ID ist einmalig über alle Objekte hinweg und
-     * sollte der bevorzugte weg sein auf bestimmte Objekte zuzugreifen.
+     * sollte der bevorzugte weg sein auf bestimmtes Objekte zuzugreifen.
      */
     @Id
     @DocumentId
@@ -29,7 +30,7 @@ public class Role {
     private String uuid;
 
     /**
-     * Technischer Name der Rolle.
+     * Technischer Name des Objektes der Kasse Role.
      */
     private String technical;
 
