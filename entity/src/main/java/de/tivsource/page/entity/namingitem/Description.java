@@ -5,13 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.TableGenerator;
+
+import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
 
@@ -24,13 +23,14 @@ import de.tivsource.page.entity.enumeration.Language;
 public class Description {
 
     /**
-     * Datenbank-ID des Item-Objektes.
+     * UUID des Objektes der Klasse Description, diese ID ist einmalig über alle
+     * Objekte hinweg und sollte der bevorzugte weg sein auf bestimmte Objekte
+     * zuzugreifen.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "description_generator")
-    @TableGenerator(name = "description_generator", initialValue = 0, allocationSize = 1)
-    @Column(name = "description_id")
-    private Long id;
+    @DocumentId
+    @Column(name = "uuid", unique = true)
+    private String uuid;
 
     private String name;
 
@@ -46,52 +46,52 @@ public class Description {
     @JoinColumn(name = "item_id")
     private NamingItem namingItem;
 
-    public Long getId() {
-	return id;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setId(Long id) {
-	this.id = id;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getDescription() {
-	return description;
+        return description;
     }
 
     public void setDescription(String description) {
-	this.description = description;
+        this.description = description;
     }
 
     public String getKeywords() {
-	return keywords;
+        return keywords;
     }
 
     public void setKeywords(String keywords) {
-	this.keywords = keywords;
+        this.keywords = keywords;
     }
 
     public Language getLanguage() {
-	return language;
+        return language;
     }
 
     public void setLanguage(Language language) {
-	this.language = language;
+        this.language = language;
     }
 
     public NamingItem getNamingItem() {
-	return namingItem;
+        return namingItem;
     }
 
     public void setNamingItem(NamingItem namingItem) {
-	this.namingItem = namingItem;
+        this.namingItem = namingItem;
     }
 
 }// Ende class
