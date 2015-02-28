@@ -19,37 +19,25 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
-			<groupId>de.czastka</groupId>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>dao</artifactId>
 			<version>0.0.1</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>de.czastka</groupId>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
 			<version>0.0.1</version>
-			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	</dependencies>
 
@@ -62,4 +50,16 @@
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
 	<inceptionYear>2012</inceptionYear>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.openejb</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>6.0-6</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 </project>
