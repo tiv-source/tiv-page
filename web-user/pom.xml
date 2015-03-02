@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>web-user</artifactId>
 	<packaging>war</packaging>
-	<name>User package</name>
+	<name>TIV-Page User Web Project</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -57,17 +57,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>de.czastka</groupId>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>dao</artifactId>
 			<version>0.0.1</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>de.czastka</groupId>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
 			<version>0.0.1</version>
-			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
 
