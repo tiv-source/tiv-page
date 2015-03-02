@@ -55,7 +55,6 @@
 			<artifactId>web-administrator</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-			<scope>provided</scope>
 		</dependency>
 
 
@@ -145,6 +144,11 @@
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>install</artifactId>
 							<contextRoot>/install</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-administrator</artifactId>
+							<contextRoot>/admin</contextRoot>
 						</webModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
