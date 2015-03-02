@@ -43,6 +43,8 @@ public interface RoleDaoLocal {
      */
     public Role findByTechnical(String technical);
 
+    public Role findByUuid(String uuid);
+    
     /**
      * Methode zum laden einer Liste von Role Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzhal der zu ladenen Role Objekte.
@@ -52,6 +54,8 @@ public interface RoleDaoLocal {
      * @return List<Role> - Liste von Role Objekten
      */
     public List<Role> findAll(Integer start, Integer max);
+
+    public List<Role> findAll(Integer start, Integer max, String field, String order);
 
     /**
      * Methode die die Anzahl aller Role Objekte die sich in der Datenbank
