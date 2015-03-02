@@ -7,14 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
+
+import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
 
@@ -22,13 +21,14 @@ import de.tivsource.page.entity.enumeration.Language;
 public class Content {
 
     /**
-     * Datenbank-ID des Item-Objektes.
+     * UUID des Objektes der Klasse Content, diese ID ist einmalig über alle
+     * Objekte hinweg und sollte der bevorzugte weg sein auf bestimmte Objekte
+     * zuzugreifen.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "content_generator")
-    @TableGenerator(name = "content_generator", initialValue = 0, allocationSize = 1)
-    @Column(name = "content_id")
-    private Long id;
+    @DocumentId
+    @Column(name = "uuid", unique = true)
+    private String uuid;
 
     @Lob
     private String content;
@@ -37,7 +37,7 @@ public class Content {
     private Language language;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_uuid")
     private ContentItem contentItem;
 
     /**
@@ -50,12 +50,12 @@ public class Content {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
-    public Long getId() {
-        return id;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getContent() {
