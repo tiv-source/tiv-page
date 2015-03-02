@@ -42,7 +42,9 @@ public interface UserDaoLocal {
      * @return User - Objekt das den angegebenen Benutzernamen besitzt.
      */
     public User findByUsername(String username);
-    
+
+    public User findByUuid(String uuid);
+
     /**
      * Methode zum laden einer Liste von User Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzhal der zu ladenen User Objekte.
@@ -52,6 +54,8 @@ public interface UserDaoLocal {
      * @return List<User> - Liste von User Objekten
      */
     public List<User> findAll(Integer start, Integer max);
+
+    public List<User> findAll(Integer start, Integer max, String field, String order);
 
     /**
      * Methode die die Anzahl aller User Objekte die sich in der Datenbank
