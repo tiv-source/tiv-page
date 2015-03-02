@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions 
+ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+ "tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="blankSuccess" template="/WEB-INF/tiles/active/skeletal/blank_success.jsp"/>
+	<definition name="blankError" template="/WEB-INF/tiles/active/skeletal/blank_error.jsp"/>
+
+	<!-- Haupttemplate -->
+	<definition name="managementTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+
+	<definition name="index" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+	<definition name="logout" template="/WEB-INF/tiles/active/view/logout.jsp" />
+
+    <!-- Templates für Page Klasse -->
+	<definition name="page" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/page/list.jsp" />
+	</definition>
+
+	<definition name="pageAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/page/add_form.jsp" />
+	</definition>
+
+	<definition name="pageEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/page/edit_form.jsp" />
+	</definition>
+
+	<definition name="pageDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/page/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für User Klasse -->
+	<definition name="user"           extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/list.jsp" />
+	</definition>
+
+	<definition name="userAddForm"    extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/add_form.jsp" />
+	</definition>
+
+	<definition name="userEditForm"   extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/edit_form.jsp" />
+	</definition>
+
+	<definition name="userDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/delete_form.jsp" />
+	</definition>
+
+    <!-- Templates für Role Klasse -->
+	<definition name="role" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/list.jsp" />
+	</definition>
+
+	<definition name="roleAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/add_form.jsp" />
+	</definition>
+
+	<definition name="roleEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/edit_form.jsp" />
+	</definition>
+
+	<definition name="roleDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/delete_form.jsp" />
+	</definition>
+
+	
+
+    <!-- Templates für Backend Klasse -->
+	<definition name="backend" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/backend/list.jsp" />
+	</definition>
+
+	<definition name="backendAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/backend/add_form.jsp" />
+	</definition>
+
+	<definition name="backendEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/backend/edit_form.jsp" />
+	</definition>
+
+	<definition name="backendDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/backend/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für CheckHelo Klasse -->
+	<definition name="checkhelo" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelo/list.jsp" />
+	</definition>
+
+	<definition name="checkheloAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/checkhelo/add_form.jsp" />
+	</definition>
+
+	<definition name="checkheloEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelo/edit_form.jsp" />
+	</definition>
+
+	<definition name="checkheloDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/checkhelo/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für CheckHeloBlacklist Klasse -->
+	<definition name="checkheloblacklist" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkheloblacklist/list.jsp" />
+	</definition>
+
+	<definition name="checkheloblacklistAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkheloblacklist/add_form.jsp" />
+	</definition>
+
+	<definition name="checkheloblacklistEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkheloblacklist/edit_form.jsp" />
+	</definition>
+
+	<definition name="checkheloblacklistDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkheloblacklist/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für CheckHeloBlacklist Klasse -->
+	<definition name="checkhelotracking" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelotracking/list.jsp" />
+	</definition>
+
+
+    <!-- Templates für CheckHeloWhitelist Klasse -->
+	<definition name="checkhelowhitelist" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelowhitelist/list.jsp" />
+	</definition>
+
+	<definition name="checkhelowhitelistAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelowhitelist/add_form.jsp" />
+	</definition>
+
+	<definition name="checkhelowhitelistEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelowhitelist/edit_form.jsp" />
+	</definition>
+
+	<definition name="checkhelowhitelistDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkhelowhitelist/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für CheckSpf Klasse -->
+	<definition name="checkspf" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkspf/list.jsp" />
+	</definition>
+
+	<definition name="checkspfAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/checkspf/add_form.jsp" />
+	</definition>
+
+	<definition name="checkspfEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/checkspf/edit_form.jsp" />
+	</definition>
+
+	<definition name="checkspfDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/checkspf/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für Customer Klasse -->
+	<definition name="customer" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/customer/list.jsp" />
+	</definition>
+
+
+    <!-- Templates für GreyListing Klasse -->
+	<definition name="greylisting" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/greylisting/list.jsp" />
+	</definition>
+
+	<definition name="greylistingAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/greylisting/add_form.jsp" />
+	</definition>
+
+	<definition name="greylistingEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/greylisting/edit_form.jsp" />
+	</definition>
+
+	<definition name="greylistingDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/greylisting/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für GreyListingAutoBlacklist Klasse -->
+	<definition name="greylistingautoblacklist" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/greylistingautoblacklist/list.jsp" />
+	</definition>
+
+
+
+
+    <!-- Templates für GreyListingWhitelist Klasse -->
+	<definition name="greylistingwhitelist" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/greylistingwhitelist/list.jsp" />
+	</definition>
+
+	<definition name="greylistingwhitelistAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/greylistingwhitelist/add_form.jsp" />
+	</definition>
+
+	<definition name="greylistingwhitelistEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/greylistingwhitelist/edit_form.jsp" />
+	</definition>
+
+	<definition name="greylistingwhitelistDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/greylistingwhitelist/delete_form.jsp" />
+	</definition>
+
+
+
+    <!-- Templates für Frontend Klasse -->
+	<definition name="frontend" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/frontend/list.jsp" />
+	</definition>
+
+	<definition name="frontendAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/frontend/add_form.jsp" />
+	</definition>
+
+	<definition name="frontendDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/frontend/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für SenderAccess Klasse -->
+	<definition name="senderaccess" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/senderaccess/list.jsp" />
+	</definition>
+
+	<definition name="senderaccessAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/senderaccess/add_form.jsp" />
+	</definition>
+
+	<definition name="senderaccessEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/senderaccess/edit_form.jsp" />
+	</definition>
+
+	<definition name="senderaccessDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/senderaccess/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Virtual -->
+	<definition name="virtual" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/virtual/list.jsp" />
+	</definition>
+
+	<definition name="virtualAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/virtual/add_form.jsp" />
+	</definition>
+
+	<definition name="virtualEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/virtual/edit_form.jsp" />
+	</definition>
+
+	<definition name="virtualDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/virtual/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für MailAccount Klasse -->
+	<definition name="mailaccount" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/mailaccount/list.jsp" />
+	</definition>
+
+	<definition name="mailaccountAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/mailaccount/add_form.jsp" />
+	</definition>
+
+	<definition name="mailaccountEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/mailaccount/edit_form.jsp" />
+	</definition>
+
+	<definition name="mailaccountDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/mailaccount/delete_form.jsp" />
+	</definition>
+
+
+	
+	<!-- Maildomain -->
+	<definition name="maildomain" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/maildomain/list.jsp" />
+	</definition>
+
+	<definition name="maildomainAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/maildomain/add_form.jsp" />
+	</definition>
+
+	<definition name="maildomainEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/maildomain/edit_form.jsp" />
+	</definition>
+
+	<definition name="maildomainDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/maildomain/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für Policy Klasse -->
+	<definition name="policy" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policy/list.jsp" />
+	</definition>
+
+	<definition name="policyAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policy/add_form.jsp" />
+	</definition>
+
+	<definition name="policyEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policy/edit_form.jsp" />
+	</definition>
+
+	<definition name="policyDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policy/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für PolicyMember Klasse -->
+	<definition name="policymember" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policymember/list.jsp" />
+	</definition>
+
+	<definition name="policymemberAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policymember/add_form.jsp" />
+	</definition>
+
+	<definition name="policymemberEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policymember/edit_form.jsp" />
+	</definition>
+
+	<definition name="policymemberDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policymember/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für PolicyGroup Klasse -->
+	<definition name="policygroup" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroup/list.jsp" />
+	</definition>
+
+	<definition name="policygroupAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroup/add_form.jsp" />
+	</definition>
+
+	<definition name="policygroupEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroup/edit_form.jsp" />
+	</definition>
+
+	<definition name="policygroupDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroup/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für PolicyGroupMember Klasse -->
+	<definition name="policygroupmember" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroupmember/list.jsp" />
+	</definition>
+
+	<definition name="policygroupmemberAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroupmember/add_form.jsp" />
+	</definition>
+
+	<definition name="policygroupmemberEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroupmember/edit_form.jsp" />
+	</definition>
+
+	<definition name="policygroupmemberDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/policygroupmember/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für Quota Klasse -->
+	<definition name="quota" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quota/list.jsp" />
+	</definition>
+
+	<definition name="quotaAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quota/add_form.jsp" />
+	</definition>
+
+	<definition name="quotaEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quota/edit_form.jsp" />
+	</definition>
+
+	<definition name="quotaDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quota/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates für QuotaLimit Klasse -->
+	<definition name="quotalimit" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quotalimit/list.jsp" />
+	</definition>
+
+	<definition name="quotalimitAddForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quotalimit/add_form.jsp" />
+	</definition>
+
+	<definition name="quotalimitEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quotalimit/edit_form.jsp" />
+	</definition>
+
+	<definition name="quotalimitDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/quotalimit/delete_form.jsp" />
+	</definition>
+
+
+	<definition name="role" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/role/list.jsp" />
+	</definition>
+
+	<definition name="user" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/user/list.jsp" />
+	</definition>
+
+</tiles-definitions>
