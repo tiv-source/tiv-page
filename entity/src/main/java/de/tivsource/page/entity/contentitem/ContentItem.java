@@ -25,39 +25,39 @@ public class ContentItem extends NamingItem {
     private Map<Language, Content> contentMap;
 
     public Map<Language, Content> getContentMap() {
-	return contentMap;
+        return contentMap;
     }
 
     public void setContentMap(Map<Language, Content> contentMap) {
-	this.contentMap = contentMap;
+        this.contentMap = contentMap;
     }
 
     public String getContent(String language) {
-	String result = contentMap.get(Language.DE).getContent();
-	String tmpResult = contentMap.get(Language.DE).getContent();
-	try {
-	    tmpResult = contentMap
-		    .get(Language.valueOf(language.toUpperCase())).getContent();
-	} catch (IllegalArgumentException e) {
-	    return result;
-	} catch (NullPointerException e) {
-	    return result;
-	}
-	return tmpResult;
+        String result = contentMap.get(Language.DE).getContent();
+        String tmpResult = contentMap.get(Language.DE).getContent();
+        try {
+            tmpResult = contentMap
+                    .get(Language.valueOf(language.toUpperCase())).getContent();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
     }
 
     public String getContent(Language language) {
-	String result = contentMap.get(Language.DE).getContent();
-	String tmpResult = contentMap.get(Language.DE).getContent();
+        String result = contentMap.get(Language.DE).getContent();
+        String tmpResult = contentMap.get(Language.DE).getContent();
 
-	try {
-	    tmpResult = contentMap.get(language).getContent();
-	} catch (IllegalArgumentException e) {
-	    return result;
-	} catch (NullPointerException e) {
-	    return result;
-	}
-	return tmpResult;
+        try {
+            tmpResult = contentMap.get(language).getContent();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
     }
 
 }// Ende class
