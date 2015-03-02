@@ -43,7 +43,7 @@ public class Description {
     private Language language;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_uuid")
     private NamingItem namingItem;
 
     public String getUuid() {
