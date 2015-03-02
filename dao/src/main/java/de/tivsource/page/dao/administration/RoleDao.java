@@ -62,6 +62,11 @@ public class RoleDao implements RoleDaoLocal {
         return (Role)query.getSingleResult();
     }
 
+    @Override
+    public Role findByUuid(String uuid) {
+        return entityManager.find(Role.class, uuid);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.administration.RoleDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
      */
@@ -69,6 +74,18 @@ public class RoleDao implements RoleDaoLocal {
     @SuppressWarnings("unchecked")
     public List<Role> findAll(Integer start, Integer max) {
         Query query = entityManager.createQuery("from Role r");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Role> findAll(Integer start, Integer max, String field,
+            String order) {
+        String queryString = "select r from Role r order by ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();
