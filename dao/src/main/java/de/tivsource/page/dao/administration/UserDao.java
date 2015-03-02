@@ -17,18 +17,6 @@ import de.tivsource.page.entity.administration.User;
  * @author Marc Michele
  *
  */
-/**
- * @author Marc Michele
- *
- */
-/**
- * @author Marc Michele
- *
- */
-/**
- * @author Marc Michele
- *
- */
 @Stateless
 public class UserDao implements UserDaoLocal {
 
@@ -75,6 +63,11 @@ public class UserDao implements UserDaoLocal {
         return (User)query.getSingleResult();
     }
 
+    @Override
+    public User findByUuid(String uuid) {
+        return entityManager.find(User.class, uuid);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.administration.UserDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
      */
@@ -82,6 +75,18 @@ public class UserDao implements UserDaoLocal {
     @SuppressWarnings("unchecked")
     public List<User> findAll(Integer start, Integer max) {
         Query query = entityManager.createQuery("from User u");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> findAll(Integer start, Integer max, String field,
+            String order) {
+        String queryString = "select u from User u order by ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();
