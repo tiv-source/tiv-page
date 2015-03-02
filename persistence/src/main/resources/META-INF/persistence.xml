@@ -12,6 +12,9 @@
 		<class>de.tivsource.page.entity.administration.User</class>
 		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
 		<class>de.tivsource.page.entity.namingitem.Description</class>
+		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
+		<class>de.tivsource.page.entity.contentitem.Content</class>
+		<class>de.tivsource.page.entity.page.Page</class>
 
 		<properties>
 
