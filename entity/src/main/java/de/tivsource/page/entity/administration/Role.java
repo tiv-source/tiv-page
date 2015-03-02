@@ -40,7 +40,7 @@ public class Role implements Principal {
      */
     @ManyToMany(
             cascade = { CascadeType.PERSIST }, 
-            fetch = FetchType.LAZY, 
+            fetch = FetchType.EAGER, 
             mappedBy = "roles", 
             targetEntity = User.class
             )
