@@ -68,7 +68,7 @@ public class User implements Principal {
     /**
      * Rollen die zu dem Benutzerobjekt gehören.
      */
-    @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Role.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "User_Role", 
             joinColumns = @JoinColumn(name = "user_uuid"), 
@@ -174,6 +174,10 @@ public class User implements Principal {
         this.ip = ip;
     }
 
+    /**
+     * Methode die von der JAAS Implementation genutzt wird, es wird der
+     * Benutzername des Objektes zugeliefert.
+     */
     @Override
     public String getName() {
         return this.username;
