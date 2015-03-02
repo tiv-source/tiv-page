@@ -1,0 +1,63 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+
+ <display-name>Chaos Administrator Application</display-name>
+ <context-param>
+  <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+  <param-value>/WEB-INF/tiles.xml</param-value>
+ </context-param>
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+ <filter-mapping>
+  <filter-name>struts2</filter-name>
+  <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ <listener>
+  <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+ </listener>
+ <welcome-file-list>
+  <welcome-file>index.jsp</welcome-file>
+ </welcome-file-list>
+ <security-constraint>
+  <display-name>Security Constraint für den Pfad "/chaos-administrator/*"</display-name>
+  <web-resource-collection>
+   <web-resource-name>administration</web-resource-name>
+   <url-pattern>/*</url-pattern>
+   <http-method>GET</http-method>
+   <http-method>POST</http-method>
+   <http-method>PUT</http-method>
+   <http-method>DELETE</http-method>
+   <http-method>OPTIONS</http-method>
+   <http-method>HEAD</http-method>
+   <http-method>TRACE</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+   <description>Benutzer mit der Rolle Administrator dürfen auf diese Seite zugreifen</description>
+   <role-name>administrator</role-name>
+  </auth-constraint>
+ </security-constraint>
+ <login-config>
+  <auth-method>FORM</auth-method>
+  <realm-name>SQLLoginApp</realm-name>
+  <form-login-config>
+   <form-login-page>/login.jsp</form-login-page>
+   <form-error-page>/error.jsp</form-error-page>
+  </form-login-config>
+ </login-config>
+ <!-- 
+ Security Rollen 
+ -->
+ <security-role>
+  <description>Czastka Administrator</description>
+  <role-name>administrator</role-name>
+ </security-role>
+
+ <error-page>
+ 	<error-code>403</error-code>
+ 	<location>/notInRole.jsp</location>
+ </error-page>
+</web-app>
