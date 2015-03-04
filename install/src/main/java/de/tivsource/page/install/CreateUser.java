@@ -78,17 +78,19 @@ public class CreateUser {
         user.setRoles(roles);
 
     	// Füge Erstellungsdatum hinzu.
-    	user.setAdded(convertDateString(items[7]));
+    	user.setCreated(convertDateString(items[7]));
     	user.setModified(convertDateString(items[8]));
 
     	// Setze IP auf localhost.
     	user.setIp(items[9]);
 
+    	user.setModifiedBy(items[10]);
+
     	return user;
     }// Ende convert(String line)
 
     /**
-     * Methode zum Konvertieren eines Strings des Formates "01.01.1970 23:59:59" in ein Date-Object. 
+     * Methode zum Konvertieren eines Strings des Formates "1970-12-01 23:59:59" in ein Date-Object. 
      * @param dateString
      * @return
      */
