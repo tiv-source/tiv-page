@@ -81,7 +81,7 @@ public class User implements Principal {
      * gespeichert wurde.
      */
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date added;
+    private Date created;
 
     /**
      * Datum an dem das Objekt das letzte mal geändert wurde.
@@ -90,7 +90,13 @@ public class User implements Principal {
     private Date modified;
 
     /**
-     * Ip-Adresse von der der Benutzer das letzte mal angemeldet war.
+     * Feld in dem gespeichert ist welche Benutzer (Username) das Objekt als
+     * letztes verändert hat.
+     */
+    private String modifiedBy;
+
+    /**
+     * Ip-Adresse von der das Objekt das letzte mal geändert wurde.
      */
     private String ip;
 
@@ -150,12 +156,12 @@ public class User implements Principal {
         this.roles = roles;
     }
 
-    public Date getAdded() {
-        return added;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setAdded(Date added) {
-        this.added = added;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public Date getModified() {
@@ -172,6 +178,14 @@ public class User implements Principal {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 
     /**
