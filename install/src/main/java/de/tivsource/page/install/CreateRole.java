@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
@@ -49,8 +52,26 @@ public class CreateRole {
         Role role = new Role();
         role.setUuid(items[0]);
         role.setTechnical(items[1]);
-        
+        role.setCreated(convertDateString(items[2]));
+        role.setModified(convertDateString(items[3]));
+        role.setModifiedBy(items[4]);
+        role.setIp(items[5]);
+
         return role;
     }
-    
+
+    /**
+     * Methode zum Konvertieren eines Strings des Formates "1970-12-01 23:59:59" in ein Date-Object. 
+     * @param dateString
+     * @return
+     */
+    private Date convertDateString(String dateString) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            return simpleDateFormat.parse(dateString);
+        } catch (ParseException e) {
+            return new Date();
+        }
+    }
+
 }// Ende class
