@@ -1,6 +1,7 @@
 package de.tivsource.page.entity.administration;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
 
 import org.hibernate.search.annotations.DocumentId;
 
@@ -46,6 +48,30 @@ public class Role implements Principal {
             )
     private List<User> users;
 
+    /**
+     * Erfassungsdatum, Datum/Zeit an dem das Objekt in die Datenbank
+     * gespeichert wurde.
+     */
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date created;
+
+    /**
+     * Datum an dem das Objekt das letzte mal geändert wurde.
+     */
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date modified;
+
+    /**
+     * Feld in dem gespeichert ist welche Benutzer (Username) das Objekt als
+     * letztes verändert hat.
+     */
+    private String modifiedBy;
+
+    /**
+     * Ip-Adresse von der das Objekt das letzte mal geändert wurde.
+     */
+    private String ip;
+
     public String getUuid() {
         return uuid;
     }
@@ -68,6 +94,38 @@ public class Role implements Principal {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     @Override
