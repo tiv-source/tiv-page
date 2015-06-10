@@ -95,6 +95,13 @@ public class PageDao implements PageDaoLocal {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Page> findAllTopNavigation() {
+        Query query = entityManager.createQuery("from Page p where p.topNavigation = 'Y'");
+        return query.getResultList();
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.page.PageDaoLocal#countAll()
      */
