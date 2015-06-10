@@ -60,4 +60,13 @@ public class ContentItem extends NamingItem {
         return tmpResult;
     }
 
+    public Content getContentObject(Language language) {
+        Content result = contentMap.get(Language.DE);
+        Content tmpResult = contentMap.get(Language.DE);
+        if(tmpResult == null) {
+            return result;
+        }
+        return tmpResult;
+    }
+
 }// Ende class
