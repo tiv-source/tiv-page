@@ -59,6 +59,10 @@ public class NamingItem {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
+    private String modifiedBy;
+
+    private String ip;
+
     public String getUuid() {
         return uuid;
     }
@@ -97,6 +101,22 @@ public class NamingItem {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     /**
@@ -168,6 +188,15 @@ public class NamingItem {
         return tmpResult;
     }
 
+    public Description getDescriptionObject(Language language) {
+        Description result = descriptionMap.get(Language.DE);
+        Description tmpResult = descriptionMap.get(Language.DE);
+        if(tmpResult == null) {
+            return result;
+        }
+        return tmpResult;
+    }
+    
     public String getShortDescription(String language) {
         String result = descriptionMap.get(Language.DE).getDescription();
         String tmpResult = descriptionMap.get(Language.DE).getDescription();
