@@ -36,6 +36,7 @@
 		<module>install</module>
 		<module>ear</module>
 		<module>struts2-ejb3plugin</module>
+		<module>restore</module>
 	</modules>
 	
 	<build>
