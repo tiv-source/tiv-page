@@ -26,6 +26,18 @@ public class Page extends ContentItem {
 	@org.hibernate.annotations.Type(type = "yes_no")
 	private Boolean special;
 
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean topNavigation;
+
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean navigation;
+
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean bottomNavigation;
+
 	public String getTechnical() {
 		return technical;
 	}
@@ -41,5 +53,29 @@ public class Page extends ContentItem {
 	public void setSpecial(Boolean special) {
 		this.special = special;
 	}
+
+    public Boolean getTopNavigation() {
+        return topNavigation;
+    }
+
+    public void setTopNavigation(Boolean topNavigation) {
+        this.topNavigation = topNavigation;
+    }
+
+    public Boolean getNavigation() {
+        return navigation;
+    }
+
+    public void setNavigation(Boolean navigation) {
+        this.navigation = navigation;
+    }
+
+    public Boolean getBottomNavigation() {
+        return bottomNavigation;
+    }
+
+    public void setBottomNavigation(Boolean bottomNavigation) {
+        this.bottomNavigation = bottomNavigation;
+    }
 
 }// Ende class
