@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.dao.administration;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import de.tivsource.page.entity.administration.Role;
+import de.tivsource.page.entity.administration.User;
 
 /**
  * @author Marc Michele
@@ -49,6 +51,13 @@ public class RoleDao implements RoleDaoLocal {
      */
     @Override
     public void delete(Role role) {
+        Role dbRole = entityManager.find(Role.class, role.getUuid());
+        Iterator<User> userIterator = dbRole.getUsers().iterator();
+        while(userIterator.hasNext()) {
+            User next = userIterator.next();
+            next.setRoles(null);
+            entityManager.merge(next);
+        }
         entityManager.remove(entityManager.find(Role.class, role.getUuid()));
     }
 
