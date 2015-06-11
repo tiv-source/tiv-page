@@ -14,31 +14,6 @@
 	<url>http://page.tivsource.de/</url>
 
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-web-6.0</artifactId>
-				<version>3.0.0.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-parent</artifactId>
-				<version>7.1.1.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.seam</groupId>
-				<artifactId>seam-bom</artifactId>
-				<version>3.1.0.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 
 	<repositories>
@@ -54,27 +29,33 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+			<version>4.10</version>
 		</dependency>
 
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>dao</artifactId>
-			<version>0.0.1</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
-			<version>0.0.1</version>
+			<version>${project.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>struts2-ejb3plugin</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 			<version>${struts2.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 
@@ -83,14 +64,12 @@
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-tiles-plugin</artifactId>
 			<version>${struts2.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-convention-plugin</artifactId>
 			<version>${struts2.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -152,11 +131,13 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<scope>provided</scope>
+			<version>1.2.16</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<scope>provided</scope>
+			<version>4.0.4.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
@@ -175,11 +156,6 @@
 
 
 
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
