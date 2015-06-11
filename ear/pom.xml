@@ -39,6 +39,11 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>restore</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>install</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
@@ -48,7 +53,6 @@
 			<artifactId>web-user</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
@@ -112,6 +116,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.4</version>
 		</dependency>
+
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -150,10 +155,20 @@
 							<artifactId>web-administrator</artifactId>
 							<contextRoot>/admin</contextRoot>
 						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-user</artifactId>
+							<contextRoot>/public</contextRoot>
+						</webModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>entity</artifactId>
 							<bundleFileName>entity.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>restore</artifactId>
+							<bundleFileName>restore.jar</bundleFileName>
 						</jarModule>
 					</modules>
 				</configuration>
