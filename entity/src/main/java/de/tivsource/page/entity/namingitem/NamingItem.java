@@ -191,7 +191,11 @@ public class NamingItem {
     public Description getDescriptionObject(Language language) {
         Description result = descriptionMap.get(Language.DE);
         Description tmpResult = descriptionMap.get(Language.DE);
-        if(tmpResult == null) {
+        try {
+            tmpResult = descriptionMap.get(language);
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
             return result;
         }
         return tmpResult;
