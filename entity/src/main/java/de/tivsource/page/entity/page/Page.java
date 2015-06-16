@@ -30,15 +30,21 @@ public class Page extends ContentItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean topNavigation;
 
+    private Integer topNavigationOrder = 100;
+
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean navigation;
+
+    private Integer navigationOrder = 100;
 
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean bottomNavigation;
 
-	public String getTechnical() {
+    private Integer bottomNavigationOrder = 100;
+
+    public String getTechnical() {
 		return technical;
 	}
 
@@ -62,6 +68,14 @@ public class Page extends ContentItem {
         this.topNavigation = topNavigation;
     }
 
+    public Integer getTopNavigationOrder() {
+        return topNavigationOrder;
+    }
+
+    public void setTopNavigationOrder(Integer topNavigationOrder) {
+        this.topNavigationOrder = topNavigationOrder;
+    }
+
     public Boolean getNavigation() {
         return navigation;
     }
@@ -70,12 +84,28 @@ public class Page extends ContentItem {
         this.navigation = navigation;
     }
 
+    public Integer getNavigationOrder() {
+        return navigationOrder;
+    }
+
+    public void setNavigationOrder(Integer navigationOrder) {
+        this.navigationOrder = navigationOrder;
+    }
+
     public Boolean getBottomNavigation() {
         return bottomNavigation;
     }
 
     public void setBottomNavigation(Boolean bottomNavigation) {
         this.bottomNavigation = bottomNavigation;
+    }
+
+    public Integer getBottomNavigationOrder() {
+        return bottomNavigationOrder;
+    }
+
+    public void setBottomNavigationOrder(Integer bottomNavigationOrder) {
+        this.bottomNavigationOrder = bottomNavigationOrder;
     }
 
 }// Ende class
