@@ -33,22 +33,26 @@ public class CreateUser {
 
     public void generate() {
     	InputStream inputStream = CreateUser.class.getClassLoader().getResourceAsStream("csv/user.csv");
-    	BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-    	try {
-    		String line = null;
-    		while ((line = in.readLine()) != null) {
-    			if (!line.startsWith("[Format Definition]")) {
-    				User user = convert(line);
-    				userDaoLocal.merge(user);
-    			}
-            }
-    	} catch (IOException e) {
-    		e.printStackTrace();
-    	} catch (NoSuchAlgorithmException e) {
-    		e.printStackTrace();
-    	}
+    	generate(inputStream);
     }// Ende generate()
 
+    public void generate(InputStream inputStream) {
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            String line = null;
+            while ((line = in.readLine()) != null) {
+                if (!line.startsWith("[Format Definition]")) {
+                    User user = convert(line);
+                    userDaoLocal.merge(user);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private User convert(String line) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
         // uuid|username|email|firstname|lastname|password|roles|added|modified|ip|
