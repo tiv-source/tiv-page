@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions 
+ PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+ "tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<!-- Haupttemplate -->
+	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+
+	<definition name="index" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+
+</tiles-definitions>
