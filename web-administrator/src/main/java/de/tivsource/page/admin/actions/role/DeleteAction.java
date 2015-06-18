@@ -1,7 +1,9 @@
 package de.tivsource.page.admin.actions.role;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -21,9 +23,9 @@ public class DeleteAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = -3899799655003992292L;
+    private static final long serialVersionUID = 3535865629424875588L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
@@ -54,9 +56,16 @@ public class DeleteAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
+
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
     	if(role != null) {
     	    Role dbRole = roleDaoLocal.findByUuid(role.getUuid());
+    	    dbRole.setModified(new Date());
+    	    dbRole.setModifiedBy(remoteUser);
+    	    dbRole.setIp(remoteAddress);
+    	    roleDaoLocal.merge(dbRole);
     	    roleDaoLocal.delete(dbRole);
             return SUCCESS;
     	}
