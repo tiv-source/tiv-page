@@ -35,6 +35,14 @@ public interface PageDaoLocal {
     public void delete(Page page);
 
     /**
+     * Metholde um zu überprüfen ob der angegebene UrlName zu einer Seite (Page) gehört.
+     * 
+     * @param urlName - Der UrlName der überprüft werden soll.
+     * @return Boolean - true wenn es eine Seite (Page) ist.
+     */
+    public Boolean isPageUrl(String urlName);
+    
+    /**
      * Methode zum laden eines Objektes der Klasse Page anhand der
      * Benutzernames.
      * 
