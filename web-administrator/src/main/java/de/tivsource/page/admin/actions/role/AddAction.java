@@ -1,9 +1,11 @@
 package de.tivsource.page.admin.actions.role;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -25,9 +27,9 @@ public class AddAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = -2470356424347699870L;
+    private static final long serialVersionUID = 3206549364257116831L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
@@ -60,9 +62,17 @@ public class AddAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
+
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
     	if(role != null) {
     	    role.setUuid(UUID.randomUUID().toString());
+    	    role.setCreated(new Date());
+    	    role.setModified(new Date());
+    	    role.setModifiedBy(remoteUser);
+    	    role.setIp(remoteAddress);
+
     	    roleDaoLocal.merge(role);
             return SUCCESS;
     	}
