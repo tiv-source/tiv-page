@@ -112,14 +112,14 @@ public class PageDao implements PageDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Page> findAllNavigation() {
-        Query query = entityManager.createQuery("from Page p where p.navigation = 'Y' order by p.navigationOrder desc");
+        Query query = entityManager.createQuery("from Page p where p.navigation = 'Y' order by p.navigationOrder asc");
         return query.getResultList();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Page> findAllBottomNavigation() {
-        Query query = entityManager.createQuery("from Page p where p.bottomNavigation = 'Y' order by p.bottomNavigationOrder desc");
+        Query query = entityManager.createQuery("from Page p where p.bottomNavigation = 'Y' order by p.bottomNavigationOrder asc");
         return query.getResultList();
     }
 
