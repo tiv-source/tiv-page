@@ -18,9 +18,9 @@ public class IndexAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = 2134111727766295415L;
+    private static final long serialVersionUID = -7743458745750148236L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
