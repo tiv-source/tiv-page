@@ -21,9 +21,9 @@ public class FormAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = 7303549694077697578L;
+    private static final long serialVersionUID = -4373324222455911836L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
@@ -35,6 +35,8 @@ public class FormAction extends EmptyAction {
 
 	private String uncheckPage;
 
+	private String lang;
+
 	public Page getPage() {
         return page;
     }
@@ -43,7 +45,15 @@ public class FormAction extends EmptyAction {
         this.uncheckPage = uncheckPage;
     }
 
-	@Override
+	public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    @Override
     @Actions({
         @Action(
         		value = "editForm", 
