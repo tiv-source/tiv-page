@@ -1,7 +1,9 @@
 package de.tivsource.page.admin.actions.page;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -18,10 +20,10 @@ import de.tivsource.page.entity.page.Page;
  */
 public class DeleteAction extends EmptyAction {
 
-	/**
-	 * Serial Version UID.
-	 */
-	private static final long serialVersionUID = -3899799655003992292L;
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = 1007882449894584851L;
 
 	/**
 	 * Statischer Logger der Klasse.
@@ -54,9 +56,16 @@ public class DeleteAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
+
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
     	if(page != null) {
     		Page dbPage = pageDaoLocal.findByUuid(page.getUuid());
+    		dbPage.setModified(new Date());
+    		dbPage.setModifiedBy(remoteUser);
+    		dbPage.setIp(remoteAddress);
+    		pageDaoLocal.merge(dbPage);
     		pageDaoLocal.delete(dbPage);
             return SUCCESS;
     	}
