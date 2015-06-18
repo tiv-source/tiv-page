@@ -23,12 +23,15 @@ import de.tivsource.page.entity.administration.Role;
 @ParentPackage(value = "administratorJson")
 public class JsonAction extends ActionSupport {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5654549639176582755L;
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -3504755537954818215L;
 
-	private static final Logger logger = Logger.getLogger("INFO");
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger logger = Logger.getLogger("INFO");
 	
 	@InjectEJB(name="RoleDao")
     private RoleDaoLocal roleDaoLocal;
