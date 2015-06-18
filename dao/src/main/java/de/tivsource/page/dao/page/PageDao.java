@@ -102,24 +102,31 @@ public class PageDao implements PageDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#findAllTopNavigation()
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Page> findAllTopNavigation() {
-        Query query = entityManager.createQuery("from Page p where p.topNavigation = 'Y' order by p.topNavigationOrder desc");
+        Query query = entityManager.createQuery(
+                "from Page p where p.topNavigation = 'Y' "
+                + "and p.visible = 'Y' "
+                + "order by p.topNavigationOrder desc"
+                );
         return query.getResultList();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Page> findAllNavigation() {
-        Query query = entityManager.createQuery("from Page p where p.navigation = 'Y' order by p.navigationOrder asc");
+        Query query = entityManager.createQuery("from Page p where p.navigation = 'Y' and p.visible = 'Y' order by p.navigationOrder asc");
         return query.getResultList();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Page> findAllBottomNavigation() {
-        Query query = entityManager.createQuery("from Page p where p.bottomNavigation = 'Y' order by p.bottomNavigationOrder asc");
+        Query query = entityManager.createQuery("from Page p where p.bottomNavigation = 'Y' and p.visible = 'Y' order by p.bottomNavigationOrder asc");
         return query.getResultList();
     }
 
