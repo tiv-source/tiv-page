@@ -69,6 +69,8 @@ public interface PageDaoLocal {
 
     public List<Page> findAllNavigation();
 
+    public List<Page> findAllBottomNavigation();
+
     /**
      * Methode die die Anzahl aller Page Objekte die sich in der Datenbank
      * befinden zurück liefert.
