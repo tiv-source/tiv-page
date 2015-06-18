@@ -26,9 +26,9 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = -3724053170074452917L;
+    private static final long serialVersionUID = -7504444800754220704L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
