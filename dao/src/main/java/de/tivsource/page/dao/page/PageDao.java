@@ -52,6 +52,13 @@ public class PageDao implements PageDaoLocal {
         entityManager.remove(entityManager.find(Page.class, page.getUuid()));
     }
 
+    @Override
+    public Boolean isPageUrl(String urlName) {
+        Query query = entityManager.createQuery("select p from Page p where p.technical = ?1 and p.visible = 'Y' order by p.uuid asc");
+        query.setParameter("1", urlName);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.page.PageDaoLocal#findByTechnical(java.lang.String)
      */
