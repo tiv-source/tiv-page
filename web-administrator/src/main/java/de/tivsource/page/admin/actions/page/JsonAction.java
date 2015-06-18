@@ -23,12 +23,12 @@ import de.tivsource.page.entity.page.Page;
 @ParentPackage(value = "administratorJson")
 public class JsonAction extends ActionSupport {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5654549639176582755L;
+    /**
+     * Serial Version UID.
+     */
+    private static final long serialVersionUID = -1054161515297319240L;
 
-	private static final Logger logger = Logger.getLogger("INFO");
+    private static final Logger logger = Logger.getLogger("INFO");
 	
 	@InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
