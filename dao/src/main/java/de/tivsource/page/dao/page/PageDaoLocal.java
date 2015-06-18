@@ -55,7 +55,7 @@ public interface PageDaoLocal {
 
     /**
      * Methode zum laden einer Liste von Page Objekten, es muss dabei ein
-     * Startwert angegeben werden und die Anzhal der zu ladenen Page Objekte.
+     * Startwert angegeben werden und die Anzahl der zu ladenen Page Objekte.
      *
      * @param start - Startwert ab der die Liste beginnen soll
      * @param max - Maximale Anzahl an Objekten die die Liste enthalten soll
@@ -63,6 +63,17 @@ public interface PageDaoLocal {
      */
     public List<Page> findAll(Integer start, Integer max);
 
+    /**
+     * Methode zu laden einer Liste von Page Objekten, es muss dabei ein
+     * Startwert, die Anzahl der zu ladenen Objekte, das Feld nach dem sortiert
+     * werden soll und die sortier Richtung angegeben werden.
+     * 
+     * @param start
+     * @param max
+     * @param field
+     * @param order
+     * @return
+     */
     public List<Page> findAll(Integer start, Integer max, String field, String order);
 
     public List<Page> findAllTopNavigation();
