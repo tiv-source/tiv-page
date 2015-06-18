@@ -24,9 +24,9 @@ public class FormAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = 7303549694077697578L;
+    private static final long serialVersionUID = -770085522386553425L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
