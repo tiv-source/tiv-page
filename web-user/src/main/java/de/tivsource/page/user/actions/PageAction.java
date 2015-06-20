@@ -38,9 +38,6 @@ public class PageAction extends EmptyAction {
     @Actions({
         @Action(value = "*/*", results = {
             @Result(name = "success", type = "tiles", location = "page"),
-            @Result(name = "error", type = "redirectAction", location = "index.html") }),
-        @Action(value = "*", results = {
-            @Result(name = "success", type = "tiles", location = "projectView"),
             @Result(name = "error", type = "redirectAction", location = "index.html") })
     })
     public String execute() throws Exception {
