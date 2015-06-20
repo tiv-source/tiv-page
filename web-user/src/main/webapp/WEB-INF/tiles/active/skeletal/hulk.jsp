@@ -34,12 +34,12 @@
     <!-- Topnav Anfang -->
     <div class="topnav">
       <struts:iterator value="topNavigation" status="topNavigationStatus">
-      <struts:url var="topnavlink" action="index" namespace="/%{technical}"/>
-      <struts:a href="%{topnavlink}">
-        <div class="topnavitem">
-          <struts:property value="getName(getText('language'))" />
-        </div>
-      </struts:a>
+        <struts:url var="topnavlink" action="index" namespace="/%{technical}"/>
+        <struts:a href="%{topnavlink}">
+          <div class="topnavitem">
+            <struts:property value="getName(getText('language'))" />
+          </div>
+        </struts:a>
       </struts:iterator>
     </div>
     <!-- Topnav Ende -->
@@ -55,9 +55,12 @@
   <!-- Navigation Anfang -->
   <div class="nav">
       <struts:iterator value="navigation" status="navigationStatus">
-        <div class="navitem">
-          <struts:property value="getName(getText('language'))" />
-        </div>
+        <struts:url var="navlink" action="index" namespace="/%{technical}"/>
+        <struts:a href="%{navlink}">
+          <div class="navitem">
+            <struts:property value="getName(getText('language'))" />
+          </div>
+        </struts:a>
       </struts:iterator>
   </div>
   <!-- Navigation Ende -->
@@ -69,10 +72,21 @@
     </div>
   </div>
   <!-- Content Ende -->
+
+  <!-- Bottomnav Anfang -->
+  <div class="bottomnav">
+    <struts:iterator value="bottomNavigation" status="bottomNavigationStatus">
+    <struts:url var="bottomnavlink" action="index" namespace="/%{technical}"/>
+      <struts:a href="%{bottomnavlink}">
+        <div class="bottomnavitem">
+          <struts:property value="getName(getText('language'))" />
+        </div>
+      </struts:a>
+    </struts:iterator>
+  </div>
+  <!-- Bottomnav Ende -->
+
 </div>
-
-
-
 
 </body>
 </html>
