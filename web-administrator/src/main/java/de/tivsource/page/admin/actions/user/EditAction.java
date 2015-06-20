@@ -1,8 +1,10 @@
 package de.tivsource.page.admin.actions.user;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -24,9 +26,9 @@ public class EditAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = 2569545967755018736L;
+    private static final long serialVersionUID = -1279279278140940652L;
 
-	/**
+    /**
 	 * Statischer Logger der Klasse.
 	 */
 	private static final Logger LOGGER = Logger.getLogger("INFO");
@@ -60,7 +62,10 @@ public class EditAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
+
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
     	if(user != null) {
     		LOGGER.info(user.getUsername());
     		User dbUser = userDaoLocal.findByUuid(user.getUuid());
@@ -71,6 +76,9 @@ public class EditAction extends EmptyAction {
     		dbUser.setPassword(user.getPassword());
     		dbUser.setRoles(user.getRoles());
     		dbUser.setUsername(user.getUsername());
+    		dbUser.setIp(remoteAddress);
+    		dbUser.setModified(new Date());
+    		dbUser.setModifiedBy(remoteUser);
 
     		userDaoLocal.merge(dbUser);
             return SUCCESS;
