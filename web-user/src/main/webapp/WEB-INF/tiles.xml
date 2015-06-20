@@ -14,5 +14,8 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
 	</definition>
 
+	<definition name="page" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/page.jsp" />
+	</definition>
 
 </tiles-definitions>
