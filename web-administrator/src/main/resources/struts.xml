@@ -24,6 +24,10 @@
 	
 	<constant name="struts.convention.default.parent.package" value="administrator" />
 
+    <constant name="struts.ckeditor.allowUploads" value="true" /> <!-- default is false -->
+    <constant name="struts.ckeditor.allowedFileExtensions" value="jpg,jpeg,png" />
+    <constant name="struts.ckeditor.uploadFolder" value="/uploads" />
+
     <!-- Normale Actions -->
 	<package name="administrator" extends="convention-default">
 		<result-types>
