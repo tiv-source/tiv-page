@@ -19,9 +19,6 @@ function formatEditLink(cellvalue, options, rowObject) {
           <struts:a href="%{pageAddUrl}">Add Page</struts:a>
         </div>
 
-        
-        
-        
         <sjg:grid
           id="gridedittable"
           caption="Page"
@@ -36,19 +33,167 @@ function formatEditLink(cellvalue, options, rowObject) {
           navigatorDelete="false"
           gridModel="gridModel"
           rowList="5,10,15,20"
-          rowNum="15"
+          rowNum="20"
           editinline="false"
           viewrecords="true"
         >
-    	
-    	  <sjg:gridColumn name="uuid"        index="uuid"        title="UUID"        width="250" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="descriptionMap.DE.name" index="descriptionMap.DE.name" title="Name" width="250" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="left" />
-    	  <sjg:gridColumn name="technical"   index="technical"   title="Technical"   width="250" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  
-    	  <sjg:gridColumn name="special"        index="special"        title="Special"        width="100" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="visible"    index="visible"    title="Visible"    width="70"  editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="created"     index="created"     title="Created"     width="200" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="uuid"        index="editbar"     title="Actions"     width="145" editable="false" sortable="false" hidden="false" search="false" resizable="false" align="right" formatter="formatEditLink" />    	
+    	  <sjg:gridColumn 
+    	    name="uuid" 
+    	    index="uuid" 
+    	    title="UUID" 
+    	    width="280" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="descriptionMap.DE.name" 
+    	    index="descriptionMap.DE.name" 
+    	    title="Name" 
+    	    width="280" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="technical" 
+    	    index="technical" 
+    	    title="Technical" 
+    	    width="280" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="topNavigation" 
+    	    index="topNavigation" 
+    	    title="Top" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="topNavigationOrder" 
+    	    index="topNavigationOrder" 
+    	    title="Top Order" 
+    	    width="80" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="navigation" 
+    	    index="navigation" 
+    	    title="Normal" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="navigationOrder" 
+    	    index="navigationOrder" 
+    	    title="Normal Order" 
+    	    width="90" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="bottomNavigation" 
+    	    index="bottomNavigation" 
+    	    title="Bottom" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="bottomNavigationOrder" 
+    	    index="bottomNavigationOrder" 
+    	    title="Bottom Order" 
+    	    width="90" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="special" 
+    	    index="special" 
+    	    title="Special" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="visible" 
+    	    index="visible" 
+    	    title="Visible" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="created" 
+    	    index="created" 
+    	    title="Created" 
+    	    width="170" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="uuid" 
+    	    index="editbar" 
+    	    title="Actions" 
+    	    width="135" 
+    	    editable="false" 
+    	    sortable="false" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="right" 
+    	    formatter="formatEditLink" 
+    	  />    	
         </sjg:grid>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
