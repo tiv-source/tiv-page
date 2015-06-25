@@ -49,6 +49,57 @@
               </div>
 
               <div class="field">
+                <struts:checkbox
+                    key="page.topNavigation"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <sj:textfield 
+                    key="page.topNavigationOrder"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="page.navigation"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <sj:textfield 
+                    key="page.navigationOrder"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="page.bottomNavigation"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <sj:textfield 
+                    key="page.bottomNavigationOrder"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.DE.name"
                     parentTheme="xhtml"
@@ -81,7 +132,8 @@
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true"
+					uploads="true" 
+					uploadHref="/admin/page/upload.html" 
 					onFocusTopics="focusRichtext"
 					onBlurTopics="blurRichtext"
 					onChangeTopics="highlightRichtext"
@@ -89,6 +141,11 @@
 					cssStyle="padding-left:202px;"
 				/>
               </div>
+
+              <struts:hidden key="page.descriptionMap.EN.name" value="No English content available."/>
+              <struts:hidden key="page.descriptionMap.EN.description" value="No English content available."/>
+              <struts:hidden key="page.descriptionMap.EN.keywords" value="No English content available."/>
+              <struts:hidden key="page.contentMap.EN.content" value="No English content available."/>
 
             </fieldset>
 
