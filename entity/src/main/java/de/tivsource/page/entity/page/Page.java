@@ -44,6 +44,13 @@ public class Page extends ContentItem {
 
     private Integer bottomNavigationOrder = 100;
 
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean responsiveNavigation;
+
+    private Integer responsiveNavigationOrder = 100;
+    
+    
     public String getTechnical() {
 		return technical;
 	}
@@ -106,6 +113,22 @@ public class Page extends ContentItem {
 
     public void setBottomNavigationOrder(Integer bottomNavigationOrder) {
         this.bottomNavigationOrder = bottomNavigationOrder;
+    }
+
+    public Boolean getResponsiveNavigation() {
+        return responsiveNavigation;
+    }
+
+    public void setResponsiveNavigation(Boolean responsiveNavigation) {
+        this.responsiveNavigation = responsiveNavigation;
+    }
+
+    public Integer getResponsiveNavigationOrder() {
+        return responsiveNavigationOrder;
+    }
+
+    public void setResponsiveNavigationOrder(Integer responsiveNavigationOrder) {
+        this.responsiveNavigationOrder = responsiveNavigationOrder;
     }
 
 }// Ende class
