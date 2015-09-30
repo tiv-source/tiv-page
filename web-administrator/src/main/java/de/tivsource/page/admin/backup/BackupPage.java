@@ -40,7 +40,7 @@ public class BackupPage {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|ip|technical|special|topNavigation|topNavigationOrder|navigation|navigationOrder|bottomNavigation|bottomNavigationOrder|");
+    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|ip|technical|special|topNavigation|topNavigationOrder|navigation|navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|");
 
     	Iterator<Page> pageIterator = pageDaoLocal.findAll(0, max).iterator();
     	while(pageIterator.hasNext()) {
@@ -159,6 +159,12 @@ public class BackupPage {
         nextString.append("|");
 
         nextString.append(next.getBottomNavigationOrder().toString());
+        nextString.append("|");
+
+        nextString.append(next.getResponsiveNavigation().toString());
+        nextString.append("|");
+
+        nextString.append(next.getResponsiveNavigationOrder().toString());
         nextString.append("|");
 
 		return nextString.toString();
