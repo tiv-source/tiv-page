@@ -130,6 +130,13 @@ public class PageDao implements PageDaoLocal {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Page> findAllResponsiveNavigation() {
+        Query query = entityManager.createQuery("from Page p where p.responsiveNavigation = 'Y' and p.visible = 'Y' order by p.responsiveNavigationOrder asc");
+        return query.getResultList();
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.page.PageDaoLocal#countAll()
      */
