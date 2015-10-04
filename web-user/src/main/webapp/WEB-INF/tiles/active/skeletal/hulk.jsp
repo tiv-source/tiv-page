@@ -6,9 +6,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TIV Page</title>
   <link href="/public/css/main_style.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="tp_logo_001/tp_logo_016.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/public/icons/tiv_page_favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="shortcut icon" href="/public/icons/tiv_page_favicon.png" type="image/png" />
+
 </head>
 <body>
 
@@ -31,11 +34,18 @@
   <ul id="top_navi">
     <struts:iterator value="topNavigation" status="topNavigationStatus">
       <struts:url var="topnavlink" action="index" namespace="/%{technical}"/>
-      <li>
-        <struts:a href="%{topnavlink}">
-          <struts:property value="getName(getText('language'))" />
-        </struts:a>
-      </li>
+        <struts:if test="page.technical == technical">
+          <li class="activlinkdrei">
+            <struts:property value="getName(getText('language'))" />
+          </li>
+        </struts:if>
+        <struts:else>
+          <li>
+            <struts:a href="%{topnavlink}">
+              <struts:property value="getName(getText('language'))" />
+            </struts:a>
+          </li>
+        </struts:else>
     </struts:iterator>
   </ul>
   <!-- Topnav Ende -->
@@ -43,40 +53,50 @@
 
   <!-- Header Anfang -->
   <div id="logo">
-    <h1><a id="oben">TIV Page</a></h1>
+    <img src="/public/images/tiv_page_logo.png" alt="TIV-Page-Logo">
   </div>
   <!-- Header Ende -->			
 		
-   <div id="subm">   
-   	<ul id="navi_subm">
-			<li class="lfloat">
-			  <span class="icon">
-			    <img src="bilder/menu-icon_olive_klein.svg" alt="menu">
-			  </span>
-			    <a href="index.html"><br>&nbsp;&nbsp;&nbsp;Home</a>
-		      <ul class="submenue">
-              <struts:iterator value="responsiveNavigation" status="responsiveNavigationStatus">
-                <struts:url var="responsivenavlink" action="index" namespace="/%{technical}"/>
-                <li>
-                  <struts:a href="%{responsivenavlink}">
-                    <struts:property value="getName(getText('language'))" />
-                  </struts:a>
-                </li>
-              </struts:iterator>
-		      </ul>		
-			</li>		
-   	</ul>
+   <div id="subm">
+     <label for="checkbox">
+       <span class="fl"><struts:property value="page.getName(getText('language'))" /></span><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
+     </label>
+     <input id="checkbox"  type="checkbox" />
+     <ul class="submenue">
+       <struts:iterator value="responsiveNavigation" status="responsiveNavigationStatus">
+         <struts:url var="responsivenavlink" action="index" namespace="/%{technical}"/>
+         <struts:if test="page.technical == technical">
+           <li class="activlinkzwei">
+             <struts:property value="getName(getText('language'))" />
+           </li>
+         </struts:if>
+         <struts:else>
+           <li>
+             <struts:a href="%{responsivenavlink}">
+               <struts:property value="getName(getText('language'))" />
+             </struts:a>
+           </li>
+         </struts:else>
+       </struts:iterator>
+     </ul>		
    </div>     
 
   <!-- Navigation Anfang -->
   <ul id="main_navi">
       <struts:iterator value="navigation" status="navigationStatus">
         <struts:url var="navlink" action="index" namespace="/%{technical}"/>
-        <li>
-          <struts:a href="%{navlink}">
-            <struts:property value="getName(getText('language'))" />
-          </struts:a>
-        </li>
+          <struts:if test="page.technical == technical">
+            <li class="activlink">
+              <struts:property value="getName(getText('language'))" />
+            </li>
+          </struts:if>
+          <struts:else>
+            <li>
+              <struts:a href="%{navlink}">
+                <struts:property value="getName(getText('language'))" />
+              </struts:a>
+            </li>
+          </struts:else>
       </struts:iterator>
   </ul>
   <!-- Navigation Ende -->
@@ -88,14 +108,21 @@
   <!-- Content Ende -->
 
   <!-- Bottomnav Anfang -->
-  <ul id="sub_navi">
+  <ul id="bottom_navi">
   <struts:iterator value="bottomNavigation" status="bottomNavigationStatus">
     <struts:url var="bottomnavlink" action="index" namespace="/%{technical}"/>
+    <struts:if test="page.technical == technical">
+      <li class="activlinkdrei">
+        <struts:property value="getName(getText('language'))" />
+      </li>
+    </struts:if>
+    <struts:else>
       <li>
         <struts:a href="%{bottomnavlink}">
           <struts:property value="getName(getText('language'))" />
         </struts:a>
       </li>
+    </struts:else>
   </struts:iterator>
   </ul>
   <!-- Bottomnav Ende -->

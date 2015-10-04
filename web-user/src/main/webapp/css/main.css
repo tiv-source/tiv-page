@@ -1,3 +1,7 @@
+body {
+	overflow-y: scroll;
+}
+
 .top {
 	height: 20px;
 	width:100%;
