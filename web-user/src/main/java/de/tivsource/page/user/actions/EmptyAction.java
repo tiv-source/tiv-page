@@ -116,6 +116,10 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
         return pageDaoLocal.findAllBottomNavigation();
     }
 
+    public List<Page> getResponsiveNavigation() {
+        return pageDaoLocal.findAllResponsiveNavigation();
+    }
+
 	/**
 	 * Methode die die aktuelle Sprache aus dem Context holt.
 	 */
