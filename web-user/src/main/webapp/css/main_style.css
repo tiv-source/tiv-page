@@ -1,10 +1,14 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
 *{
 	margin:0;
 	padding:0;
 }
+
+
 
 body {
 	font-family:Georgia, Arial, futura, Helvetica, sans-serif;
@@ -28,7 +32,7 @@ h3 {
 }
 
 h4 {
-	padding: 10px 15px;
+	padding:10px 15px;
 	font-size: 20px;
 	color: #343333;
 }
@@ -36,7 +40,7 @@ h4 {
 
 p {
 	padding: 3px 15px;
-	font-style: normal;
+	font-style: normal;	
 }
 
 strong {
@@ -59,6 +63,8 @@ hr {
 	color: #cdcdcd;
 }
 
+
+
 #container {
 	position: relative;
 	width:90%;
@@ -79,13 +85,13 @@ hr {
 	z-index: 1;
 }
 
-ul#flaggen{
+ul#flags{
 	float: left;
 	height:40px;
 	padding-left:5px;
 }
 
-ul#flaggen li{
+ul#flags li {
 	float: left;
 	margin: 10px 2px;
 	padding: 5px;
@@ -170,6 +176,11 @@ ul#main_navi li a:hover {
 	color:#ff2a2a;
 }
 
+ul#main_navi li.activlink1 {
+	padding: 15px;
+	color:#ff2a2a;
+}
+
 /*bottom-navigation*/
 ul#bottom_navi {
 	position: relative;
@@ -193,29 +204,28 @@ ul#bottom_navi li a:hover{
 	color:#ff2a2a;
 }
 
+/*top_navi + bottom_navi*/
+
+li.activlink3 {
+	color:#ff2a2a;
+}ul#bottom_navi li
+
+
 /*sub-navi bei mobilen (engen) Formaten*/
 
-div#subm {
+div#mobile_navi {
 	position: relative;
 	z-index: 5;
 }
 
-label {
+div#mobile_navi label {
 	display: none;
 	height: 40px;
 	border-bottom: 1px solid #333333;
 	background-color:rgba(128,128,0,0.7);
 }
 
-#checkbox {
-	opacity: 0;
-}
-
-#checkbox:checked + ul.submenue {
-	display: none;
-}
-
-label img {
+div#mobile_navi label img {
 	position: absolute;
 	right: 30px;
 	width: 30px;
@@ -227,10 +237,62 @@ label img {
 	float: left;
 	margin-left: 20px;
 	margin-top: 10px;
-	font-size: 16px;
 	font-weight: bold;
-	color: #333333;
+	color: #1a1a1a;
 }
+
+#checkbox {
+	opacity: 0;
+}
+
+#checkbox:checked + ul.mobile_sub {
+	display: none;
+}
+
+div#mobile_navi ul.mobile_sub {
+	display:none;
+	position: absolute;
+	width: 97.95%;
+	margin-top: -22px;
+	margin-bottom: 20px;
+	border-top: 1px solid #333333;
+	background-color:rgba(255,255,255,1);
+	z-index: 9;
+}
+
+div#mobile_navi ul.mobile_sub li {
+	border-bottom: 1px solid #333333;
+	background-color:rgba(128,128,0,0.2);
+}
+
+div#mobile_navi ul.mobile_sub li a {
+	height:28px;
+	padding-top: 12px;
+	text-indent: 20px;
+	font-size:14px;
+	font-weight: bold;
+	color:#333333;
+	background-color:rgba(128,128,0,0.6);
+}
+
+div#mobile_navi ul.mobile_sub li a:hover {
+	color:#800080;
+	background-color:rgba(128,128,0,0.3);
+}
+
+ul.mobile_sub li.activlink2 {
+	height: 28px;
+	text-indent: 20px;
+	padding-top: 12px;
+	font-weight: bold;
+	color:#800080;
+	background-color:#333333;
+}
+
+
+/*etc*/
+
+/*Impressum*/
 
 .fl1 {
 	clear: both;
@@ -245,79 +307,27 @@ label img {
 	padding-top: 30px;
 }
 
-.mb {
+p.distance_bottom {
 	margin-bottom: 20px;
 }
-
-div#subm ul.submenue {
-	display:none;
-	position: absolute;
-	width: 100%;
-	margin-top: -22px;
-	margin-bottom: 20px;
-	border-top: 1px solid #333333;
-	background-color:rgba(255,255,255,1);
-	z-index: 9;
-}
-
-div#subm ul.submenue li {
-	border-bottom: 1px solid #333333;
-	background-color:rgba(128,128,0,0.2);
-}
-
-div#subm ul.submenue li a {
-	height:28px;
-	padding-top: 12px;
-	text-indent: 20px;
-	font-size:14px;
-	font-weight: bold;
-	color:#1a1a1a;
-	background-color:rgba(128,128,0,0.6);
-}
-
-div#subm ul.submenue li a:hover {
-	color:#800080;
-	background-color:rgba(128,128,0,0.3);
-}
-
-.activlink {
-	padding: 15px;
-	color: #ff2a2a;
-}
-
-.activlinkzwei {
-	height: 28px;
-	text-indent: 20px;
-	padding-top: 12px;
-	font-size: 16px;
-	font-weight: bold;
-	color:#800080;
-	background-color:#333333;
-}
-
-.activlinkdrei {
-	color:#ff2a2a;
-}
-
 
 /*Partner*/
 
-div#partnerbild {
+div#picture1 {
 	width:90%;
 	height:auto;
 	margin:3%;
 	margin-top:20px;
-
 }
 
-div#partnerbild img {
+div#picture1 img {
 	float: left;
 	margin: 15px ;
 	height: auto;
 	width: 45%;
 }
 
-div#partnerbild img {
+div#picture1 img {
 	float: right;
 	margin: 15px ;
 	height: auto;
@@ -328,20 +338,20 @@ div#partnerbild img {
 
 
 
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 768px) {
 	
 	#container {
 		width:96%;
 		margin:1%;
 		margin-top: 5px;
-		padding: 0.1px 1%;
+		padding: 0.1% 1%;
 	}
 		
-	label {
+	div#mobile_navi label {
 		display:block;
 	}
 	
-	#checkbox:checked + ul.submenue {
+	#checkbox:checked + ul.mobile_sub {
 		display: block;
 	}
 
@@ -357,15 +367,11 @@ div#partnerbild img {
 		display: none;
 	}
 	
-	div#subm ul{
-		display: none;
-	}
-	
-	div#partnerbild {
-	width:98%;
-	height:auto;
-	margin:1%;
-	margin-top:20px;
+	div#picture1 {
+		width:98%;
+		height:auto;
+		margin:1%;
+		margin-top:20px;
 	}
 	
 }
@@ -373,29 +379,12 @@ div#partnerbild img {
 
 @media only screen and (max-width: 680px) {
 	
-	div#partnerbild img {
-		float: left;
+	div#picture1 img {
+		float: right;
 		margin: 2%;
 		height: auto;
 		width: 96%;
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
