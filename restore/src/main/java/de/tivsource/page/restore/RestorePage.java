@@ -105,7 +105,7 @@ public class RestorePage {
         page.setBottomNavigation(items[28].equals("true") ? true : false);
         page.setBottomNavigationOrder(Integer.parseInt(items[29]));
         page.setResponsiveNavigation(items[30].equals("true") ? true : false);
-        page.setBottomNavigationOrder(Integer.parseInt(items[31]));
+        page.setResponsiveNavigationOrder(Integer.parseInt(items[31]));
 
         return page;
     }
