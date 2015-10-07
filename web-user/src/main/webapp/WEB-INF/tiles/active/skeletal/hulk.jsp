@@ -24,7 +24,7 @@
   <struts:url id="localeEN">
     <struts:param name="request_locale" >en</struts:param>
   </struts:url>
-  <ul id="flaggen">
+  <ul id="flags">
     <li><struts:a href="%{localeDE}"><img src="/public/icons/flags-germany.png" alt="Deutsch" title="Deutsch"></struts:a></li>
     <li><struts:a href="%{localeEN}"><img src="/public/icons/flags-united_kingdom.png" alt="English" title="English"></struts:a></li>
   </ul>
@@ -35,7 +35,7 @@
     <struts:iterator value="topNavigation" status="topNavigationStatus">
       <struts:url var="topnavlink" action="index" namespace="/%{technical}"/>
         <struts:if test="page.technical == technical">
-          <li class="activlinkdrei">
+          <li class="activlink3">
             <struts:property value="getName(getText('language'))" />
           </li>
         </struts:if>
@@ -57,16 +57,16 @@
   </div>
   <!-- Header Ende -->			
 		
-   <div id="subm">
+   <div id="mobile_navi">
      <label for="checkbox">
        <span class="fl"><struts:property value="page.getName(getText('language'))" /></span><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
      </label>
      <input id="checkbox"  type="checkbox" />
-     <ul class="submenue">
+     <ul class="mobile_sub">
        <struts:iterator value="responsiveNavigation" status="responsiveNavigationStatus">
          <struts:url var="responsivenavlink" action="index" namespace="/%{technical}"/>
          <struts:if test="page.technical == technical">
-           <li class="activlinkzwei">
+           <li class="activlink2">
              <struts:property value="getName(getText('language'))" />
            </li>
          </struts:if>
@@ -86,7 +86,7 @@
       <struts:iterator value="navigation" status="navigationStatus">
         <struts:url var="navlink" action="index" namespace="/%{technical}"/>
           <struts:if test="page.technical == technical">
-            <li class="activlink">
+            <li class="activlink1">
               <struts:property value="getName(getText('language'))" />
             </li>
           </struts:if>
@@ -112,7 +112,7 @@
   <struts:iterator value="bottomNavigation" status="bottomNavigationStatus">
     <struts:url var="bottomnavlink" action="index" namespace="/%{technical}"/>
     <struts:if test="page.technical == technical">
-      <li class="activlinkdrei">
+      <li class="activlink3">
         <struts:property value="getName(getText('language'))" />
       </li>
     </struts:if>
