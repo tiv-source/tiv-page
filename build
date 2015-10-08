@@ -3,14 +3,13 @@
 HOMEDIR=/home/marc
 TOMEE=apache-tomee-plus-1.7.2
 
-
-echo "Fahren Tomee runter"
-~/Server/$TOMEE/bin/shutdown.sh
-
 echo "Setze Maven PATH"
 export PATH=$HOMEDIR/Maven/apache-maven-3.3.3/bin:$PATH
 
 echo $PATH
+
+echo "Fahren Tomee runter"
+~/Server/$TOMEE/bin/shutdown.sh
 
 echo "Starte Maven Clean"
 mvn clean
