@@ -73,6 +73,7 @@ public class PageAction extends EmptyAction {
          return ERROR;
     }// Ende execute()
 
+    @Override
     public Page getPage() {
         return page;
     }
