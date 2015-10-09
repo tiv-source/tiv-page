@@ -83,4 +83,13 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/restore/restore.jsp" />
 	</definition>
 
+    <!-- Templates für Files view -->
+	<definition name="files" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/files/list.jsp" />
+	</definition>
+
+	<definition name="filesDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/files/delete_form.jsp" />
+	</definition>
+
 </tiles-definitions>
