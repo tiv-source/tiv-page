@@ -30,8 +30,9 @@
     
   <script type="text/javascript" src="/admin/jquery/bluebox.js"></script>
   
-  <link rel="icon" type="image/png" href="https://admin.czastka.de/SITESTUFF/kc01.png" />
-  <link rel="shortcut icon" href="https://admin.czastka.de/SITESTUFF/kc01.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="/admin/icons/tiv_page_favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="shortcut icon" href="/admin/icons/tiv_page_favicon.png" type="image/png" />
+  <title>TIV-Page Administration</title>
 
 
 </head>
@@ -39,7 +40,7 @@
 <div class="container">
   <div class="header">
     <div style="width:475px; float:left;">
-      <img src="/admin/images/logo_white_ohne.png" style="width:200px; padding-left: 11px;"/>
+      <img src="/admin/images/tp_logo_003_c.png" style="width:280px; padding-left: 50px; padding-top: 21px;"/>
     </div>
     <div style="width:475px; float:right;">
       <div style="padding-top:3px; padding-right:28px; text-align:right;">
