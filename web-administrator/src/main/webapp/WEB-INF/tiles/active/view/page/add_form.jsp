@@ -100,6 +100,23 @@
               </div>
 
               <div class="field">
+                <struts:checkbox
+                    key="page.responsiveNavigation"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <sj:textfield 
+                    key="page.responsiveNavigationOrder"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.DE.name"
                     parentTheme="xhtml"

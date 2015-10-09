@@ -133,6 +133,26 @@
                 />
               </div>
 
+              <div class="field">
+                <struts:checkbox
+                    key="page.responsiveNavigation"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <sj:spinner
+                    key="page.responsiveNavigationOrder"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                />
+              </div>
+
             <struts:if test="lang=='EN'">
               <struts:hidden key="lang"/>
               
