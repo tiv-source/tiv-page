@@ -53,7 +53,10 @@
 
   <!-- Header Anfang -->
   <div id="logo">
-    <img src="/public/images/tiv_page_logo.png" alt="TIV-Page-Logo">
+    <struts:url id="homeUrl" action="index" namespace="/" />
+    <struts:a href="%{homeUrl}">
+      <img src="/public/images/tiv_page_logo.png" alt="TIV-Page-Logo">
+    </struts:a>
   </div>
   <!-- Header Ende -->			
 		
