@@ -15,6 +15,7 @@
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.page.Page</class>
+		<class>de.tivsource.page.entity.property.Property</class>
 
 		<properties>
 
