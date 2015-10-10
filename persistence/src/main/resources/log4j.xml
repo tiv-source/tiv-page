@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="file" class="org.apache.log4j.RollingFileAppender">
+        <param name="maxFileSize" value="2100KB" />
+        <param name="maxBackupIndex" value="21" />
+        <param name="File" value="logs/tiv-page.log" />
+        <param name="threshold" value="debug"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%t] %c:%L %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="de.nethold">
+        <level value="trace" />
+    </logger>
+
+    <logger name="com.opensymphony.xwork2.util.OgnlUtil">
+        <level value="warn" />
+    </logger>
+
+    <logger name="com.opensymphony">
+        <level value="warn" />
+    </logger>
+    
+    <logger name="freemarker">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.apache.struts2">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.apache.tiles">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.apache.commons">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.hibernate">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.hibernate.SQL">
+        <level value="warn" />
+    </logger>
+
+    <logger name="com.mchange">
+        <level value="warn" />
+    </logger>
+
+    <logger name="org.apache.struts2.convention">
+        <level value="warn" />
+    </logger>
+
+    <logger name="de.tivsource">
+        <level value="debug" />
+    </logger>
+
+    <root>
+        <priority value="debug" />
+        <appender-ref ref="file" />
+    </root>
+
+</log4j:configuration>
