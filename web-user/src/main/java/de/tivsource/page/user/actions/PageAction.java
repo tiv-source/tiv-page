@@ -1,8 +1,8 @@
 package de.tivsource.page.user.actions;
 
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -15,14 +15,14 @@ import de.tivsource.page.entity.page.Page;
 public class PageAction extends EmptyAction {
 
     /**
-	 * 
-	 */
+     * Serial Version UID.
+     */
     private static final long serialVersionUID = 6236431708460575442L;
 
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger("INFO");
+    private static final Logger LOGGER = Logger.getLogger(PageAction.class);
 
     @InjectEJB(name = "PageDao")
     private PageDaoLocal pageDaoLocal;
