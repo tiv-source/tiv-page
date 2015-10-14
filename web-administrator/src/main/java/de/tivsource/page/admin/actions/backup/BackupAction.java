@@ -11,11 +11,11 @@ import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
-
 import de.tivsource.page.admin.backup.BackupZipFile;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
+import de.tivsource.page.dao.property.PropertyDaoLocal;
 
 /**
  * 
@@ -43,7 +43,9 @@ public class BackupAction extends EmptyAction {
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;
 
-	
+    @InjectEJB(name="PropertyDao")
+    private PropertyDaoLocal propertyDaoLocal;
+
 	private InputStream fileStream;
 
 	@Override
@@ -62,6 +64,7 @@ public class BackupAction extends EmptyAction {
     	BackupZipFile.setPageDaoLocal(pageDaoLocal);
     	BackupZipFile.setRoleDaoLocal(roleDaoLocal);
     	BackupZipFile.setUserDaoLocal(userDaoLocal);
+    	BackupZipFile.setPropertyDaoLocal(propertyDaoLocal);
     	File backupFile = BackupZipFile.getZipFile();
     	fileStream = new FileInputStream(backupFile);
     	backupFile.delete();
