@@ -92,8 +92,7 @@ public class PageDao implements PageDaoLocal {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<Page> findAll(Integer start, Integer max, String field,
-            String order) {
+    public List<Page> findAll(Integer start, Integer max, String field, String order) {
         String queryString = "select p from Page p order by ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
