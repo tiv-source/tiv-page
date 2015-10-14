@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE tiles-definitions 
- PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
- "tiles-config_2_0.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
 <tiles-definitions>
-	<definition name="blankSuccess" template="/WEB-INF/tiles/active/skeletal/blank_success.jsp"/>
-	<definition name="blankError" template="/WEB-INF/tiles/active/skeletal/blank_error.jsp"/>
 
 	<!-- Haupttemplate -->
 	<definition name="managementTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
@@ -22,7 +21,7 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/backup.jsp" />
 	</definition>
 
-    <!-- Templates für Page Klasse -->
+    <!-- Templates fÃ¼r Page Klasse -->
 	<definition name="page" extends="managementTemplate">
 		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/page/list.jsp" />
 	</definition>
@@ -40,7 +39,7 @@
 	</definition>
 
 
-    <!-- Templates für User Klasse -->
+    <!-- Templates fÃ¼r User Klasse -->
 	<definition name="user"           extends="managementTemplate">
 		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/list.jsp" />
 	</definition>
@@ -57,7 +56,8 @@
 		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/delete_form.jsp" />
 	</definition>
 
-    <!-- Templates für Role Klasse -->
+
+    <!-- Templates fÃ¼r Role Klasse -->
 	<definition name="role" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/list.jsp" />
 	</definition>
@@ -74,7 +74,26 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/delete_form.jsp" />
 	</definition>
 
-    <!-- Templates für Restore -->
+
+    <!-- Templates fÃ¼r Property Klasse -->
+	<definition name="property" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/property/list.jsp" />
+	</definition>
+
+	<definition name="propertyAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/property/add_form.jsp" />
+	</definition>
+
+	<definition name="propertyEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/property/edit_form.jsp" />
+	</definition>
+
+	<definition name="propertyDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/property/delete_form.jsp" />
+	</definition>
+
+
+    <!-- Templates fÃ¼r Restore -->
 	<definition name="restoreForm" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/restore/form.jsp" />
 	</definition>
@@ -83,7 +102,7 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/restore/restore.jsp" />
 	</definition>
 
-    <!-- Templates für Files view -->
+    <!-- Templates fÃ¼r Files view -->
 	<definition name="files" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/files/list.jsp" />
 	</definition>
