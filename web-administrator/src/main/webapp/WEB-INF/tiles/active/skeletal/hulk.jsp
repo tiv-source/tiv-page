@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="/admin/css/navigation.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="/admin/css/screen.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="/admin/css/forms.css" media="screen" />
-  <link rel="stylesheet" type="text/css" href="/admin/css/ui.all.css" media="screen" />
+
   <link rel="stylesheet" type="text/css" href="/admin/css/jquery.custom.css" media="screen" />
 
   <link rel="stylesheet" type="text/css" href="/admin/chosen/chosen.css" media="screen" />
