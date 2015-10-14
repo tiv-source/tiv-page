@@ -25,8 +25,8 @@
     <struts:param name="request_locale" >en</struts:param>
   </struts:url>
   <ul id="flags">
-    <li><struts:a href="%{localeDE}"><img src="/public/icons/flags-germany.png" alt="Deutsch" title="Deutsch"></struts:a></li>
-    <li><struts:a href="%{localeEN}"><img src="/public/icons/flags-united_kingdom.png" alt="English" title="English"></struts:a></li>
+    <li><struts:a href="%{localeDE}"><img src="/public/icons/flag-germany.png" alt="Deutsch" title="Deutsch"></struts:a></li>
+    <li><struts:a href="%{localeEN}"><img src="/public/icons/flag-united_kingdom.png" alt="English" title="English"></struts:a></li>
   </ul>
   <!-- Language Ende -->
 
