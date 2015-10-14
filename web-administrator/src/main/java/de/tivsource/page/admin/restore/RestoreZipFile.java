@@ -17,7 +17,9 @@ import java.util.zip.ZipInputStream;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
+import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.restore.RestorePage;
+import de.tivsource.page.restore.RestoreProperty;
 import de.tivsource.page.restore.RestoreRole;
 import de.tivsource.page.restore.RestoreUser;
 
@@ -38,16 +40,19 @@ public class RestoreZipFile {
 
     private PageDaoLocal pageDaoLocal;
 
+    private PropertyDaoLocal propertyDaoLocal;
+
     private Map<String, InputStream> streams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> pageStreams = new HashMap<String, InputStream>();
 
     public RestoreZipFile(UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
-            PageDaoLocal pageDaoLocal) {
+            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal) {
         super();
         this.userDaoLocal = userDaoLocal;
         this.roleDaoLocal = roleDaoLocal;
         this.pageDaoLocal = pageDaoLocal;
+        this.propertyDaoLocal = propertyDaoLocal;
     }
 
     public void restoreZip(File file) throws IOException {
@@ -75,7 +80,10 @@ public class RestoreZipFile {
 
         // Stelle Seiten wieder her
         restorePage();
-        
+
+        // Stelle Properties wieder her
+        restoreProperty();
+
         // Schließe Datei
         zipFile.close();
 
@@ -101,5 +109,11 @@ public class RestoreZipFile {
         RestorePage restorePage = new RestorePage(pageDaoLocal, pageStreams);
         restorePage.generate();
     }
-    
+
+    private void restoreProperty() {
+        LOGGER.info("restoreProperty() aufgerufen.");
+        RestoreProperty restoreProperty = new RestoreProperty(propertyDaoLocal);
+        restoreProperty.generate(streams.get("property.csv"));
+    }
+
 }// Ende class
