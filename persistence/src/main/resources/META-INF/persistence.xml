@@ -10,10 +10,14 @@
 
 		<class>de.tivsource.page.entity.administration.Role</class>
 		<class>de.tivsource.page.entity.administration.User</class>
-		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
-		<class>de.tivsource.page.entity.namingitem.Description</class>
-		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.contentitem.Content</class>
+		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
+		<class>de.tivsource.page.entity.event.Event</class>
+		<class>de.tivsource.page.entity.location.Location</class>
+		<class>de.tivsource.page.entity.location.OpeningHour</class>
+		<class>de.tivsource.page.entity.namingitem.Description</class>
+		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
+		<class>de.tivsource.page.entity.news.News</class>
 		<class>de.tivsource.page.entity.page.Page</class>
 		<class>de.tivsource.page.entity.property.Property</class>
 
