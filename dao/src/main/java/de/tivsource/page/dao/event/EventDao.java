@@ -21,8 +21,14 @@ import de.tivsource.page.entity.event.Event;
 @Stateless
 public class EventDao implements EventDaoLocal {
 
+    /*
+     * Statischer Logger der Klasse.
+     */
     private static final Logger LOGGER = Logger.getLogger(EventDao.class);
 
+    /*
+     * EntityManager der Dao Klasse.
+     */
     @PersistenceContext
     private EntityManager entityManager;
 

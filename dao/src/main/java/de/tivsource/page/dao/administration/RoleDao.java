@@ -23,8 +23,14 @@ import de.tivsource.page.entity.administration.User;
 @Stateless
 public class RoleDao implements RoleDaoLocal {
 
+    /*
+     * Statischer Logger der Klasse.
+     */
     private static final Logger LOGGER = Logger.getLogger(RoleDao.class);
 
+    /*
+     * EntityManager der Dao Klasse.
+     */
     @PersistenceContext
     private EntityManager entityManager;
 

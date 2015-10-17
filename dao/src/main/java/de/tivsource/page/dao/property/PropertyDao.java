@@ -21,8 +21,14 @@ import de.tivsource.page.entity.property.Property;
 @Stateless
 public class PropertyDao implements PropertyDaoLocal {
 
+    /*
+     * Statischer Logger der Klasse.
+     */
     private static final Logger LOGGER = Logger.getLogger(PropertyDao.class);
 
+    /*
+     * EntityManager der Dao Klasse.
+     */
     @PersistenceContext
     private EntityManager entityManager;
 

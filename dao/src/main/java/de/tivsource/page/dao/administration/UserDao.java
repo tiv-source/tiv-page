@@ -26,6 +26,9 @@ public class UserDao implements UserDaoLocal {
      */
     private static final Logger LOGGER = Logger.getLogger(UserDao.class);
 
+    /*
+     * EntityManager der Dao Klasse.
+     */
     @PersistenceContext
     private EntityManager entityManager;
 
