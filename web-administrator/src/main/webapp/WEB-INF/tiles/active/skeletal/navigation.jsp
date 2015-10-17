@@ -5,9 +5,11 @@
 <struts:url var="homeUrl"              action="index" namespace="/" />
 
 <struts:url var="pageUrl"              action="index" namespace="/page" />
+<struts:url var="eventUrl"             action="index" namespace="/event" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
 <struts:url var="roleUrl"              action="index" namespace="/role" />
+<struts:url var="propertyUrl"          action="index" namespace="/property" />
 
 <struts:url var="backupUrl"            action="index" namespace="/backup" />
 <struts:url var="restoreUrl"           action="index" namespace="/restore" />
@@ -36,6 +38,12 @@
                     <span>Page</span>
                   </struts:a>
                 </li>
+                <li>
+                  <struts:a href="%{eventUrl}" title="Liste mit den Events" cssClass="navItem navEvent">
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_page.png);">&nbsp;</span>
+                    <span>Event</span>
+                  </struts:a>
+                </li>
               </ul>
             </div>
           </div>
@@ -55,6 +63,13 @@
                     <span>System Role</span>
                   </struts:a >
                 </li>
+                <li>
+                  <struts:a href="%{propertyUrl}" title="System Properties" cssClass="navItem navSystemProperties">
+                    <span class="navIcon system properties" style="background-image: url(/admin/buttons/tiv_page_button_properties.png);">&nbsp;</span>
+                    <span>Properties</span>
+                  </struts:a >
+                </li>
+
               </ul>
             </div>
           </div>
