@@ -4,13 +4,15 @@
 package de.tivsource.page.dao.page;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
+
+import de.tivsource.page.dao.administration.UserDao;
 import de.tivsource.page.entity.page.Page;
 
 /**
@@ -20,9 +22,14 @@ import de.tivsource.page.entity.page.Page;
 @Stateless
 public class PageDao implements PageDaoLocal {
 
-    private static final Logger LOGGER_INFO = Logger.getLogger("INFO");
-    private static final Logger LOGGER_TRACE = Logger.getLogger("TRACE");
+    /*
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(UserDao.class);
 
+    /*
+     * EntityManager der Dao Klasse.
+     */
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -31,7 +38,7 @@ public class PageDao implements PageDaoLocal {
      */
     @Override
     public void save(Page page) {
-        LOGGER_INFO.info("save(Page page) aufgerufen");
+        LOGGER.info("save(Page page) aufgerufen");
         entityManager.persist(page);
     }
 
@@ -40,7 +47,7 @@ public class PageDao implements PageDaoLocal {
      */
     @Override
     public void merge(Page page) {
-        LOGGER_TRACE.info("merge(Page page) aufgerufen");
+        LOGGER.info("merge(Page page) aufgerufen");
         entityManager.merge(page);
     }
 
@@ -64,7 +71,7 @@ public class PageDao implements PageDaoLocal {
      */
     @Override
     public Page findByTechnical(String technical) {
-        LOGGER_INFO.info("findByTechnical(String technical) aufgerufen.");
+        LOGGER.info("findByTechnical(String technical) aufgerufen.");
         Query query = entityManager.createQuery("select p from Page p where p.technical = ?1");
         query.setParameter("1", technical);
         return (Page)query.getSingleResult();

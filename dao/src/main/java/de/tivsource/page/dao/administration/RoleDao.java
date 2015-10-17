@@ -5,12 +5,13 @@ package de.tivsource.page.dao.administration;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.apache.log4j.Logger;
 
 import de.tivsource.page.entity.administration.Role;
 import de.tivsource.page.entity.administration.User;
@@ -22,8 +23,7 @@ import de.tivsource.page.entity.administration.User;
 @Stateless
 public class RoleDao implements RoleDaoLocal {
 
-    private static final Logger LOGGER_INFO = Logger.getLogger("INFO");
-    private static final Logger LOGGER_TRACE = Logger.getLogger("TRACE");
+    private static final Logger LOGGER = Logger.getLogger(RoleDao.class);
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -33,7 +33,7 @@ public class RoleDao implements RoleDaoLocal {
      */
     @Override
     public void save(Role role) {
-        LOGGER_INFO.info("save(Role role) aufgerufen");
+        LOGGER.info("save(Role role) aufgerufen");
         entityManager.persist(role);
     }
 
@@ -42,7 +42,7 @@ public class RoleDao implements RoleDaoLocal {
      */
     @Override
     public void merge(Role role) {
-        LOGGER_TRACE.info("merge(Role role) aufgerufen");
+        LOGGER.info("merge(Role role) aufgerufen");
         entityManager.merge(role);
     }
 

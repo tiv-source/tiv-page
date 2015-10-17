@@ -4,12 +4,13 @@
 package de.tivsource.page.dao.administration;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.apache.log4j.Logger;
 
 import de.tivsource.page.entity.administration.User;
 
@@ -20,8 +21,10 @@ import de.tivsource.page.entity.administration.User;
 @Stateless
 public class UserDao implements UserDaoLocal {
 
-    private static final Logger LOGGER_INFO = Logger.getLogger("INFO");
-    private static final Logger LOGGER_TRACE = Logger.getLogger("TRACE");
+    /*
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(UserDao.class);
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -31,7 +34,7 @@ public class UserDao implements UserDaoLocal {
      */
     @Override
     public void save(User user) {
-        LOGGER_INFO.info("save(User user) aufgerufen");
+        LOGGER.info("save(User user) aufgerufen");
         entityManager.persist(user);
     }
 
@@ -40,7 +43,7 @@ public class UserDao implements UserDaoLocal {
      */
     @Override
     public void merge(User user) {
-        LOGGER_TRACE.info("merge(User user) aufgerufen");
+        LOGGER.info("merge(User user) aufgerufen");
         entityManager.merge(user);
     }
 
@@ -57,7 +60,7 @@ public class UserDao implements UserDaoLocal {
      */
     @Override
     public User findByUsername(String username) {
-        LOGGER_INFO.info("findByUsername(String username) aufgerufen.");
+        LOGGER.info("findByUsername(String username) aufgerufen.");
         Query query = entityManager.createQuery("select u from User u where u.username = ?1");
         query.setParameter("1", username);
         return (User)query.getSingleResult();
