@@ -39,6 +39,24 @@
 	</definition>
 
 
+    <!-- Templates für Page Klasse -->
+	<definition name="event" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/event/list.jsp" />
+	</definition>
+
+	<definition name="eventAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/add_form.jsp" />
+	</definition>
+
+	<definition name="eventEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/event/edit_form.jsp" />
+	</definition>
+
+	<definition name="eventDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/delete_form.jsp" />
+	</definition>
+
+
     <!-- Templates für User Klasse -->
 	<definition name="user"           extends="managementTemplate">
 		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/user/list.jsp" />
