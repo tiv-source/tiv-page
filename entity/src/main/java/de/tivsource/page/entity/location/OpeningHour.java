@@ -1,5 +1,7 @@
 package de.tivsource.page.entity.location;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -36,9 +38,17 @@ public class OpeningHour implements Comparable<OpeningHour> {
 	private Weekday weekday;
 
 	@Embedded
+	@AttributeOverrides({
+	  @AttributeOverride(name="hour", column=@Column(name="open_hour")),
+	  @AttributeOverride(name="minute", column=@Column(name="open_minute"))
+	})
 	private HourMinute open;
 
 	@Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="hour", column=@Column(name="close_hour")),
+        @AttributeOverride(name="minute", column=@Column(name="close_minute"))
+      })
 	private HourMinute close;
 
     @ManyToOne(fetch = FetchType.LAZY)
