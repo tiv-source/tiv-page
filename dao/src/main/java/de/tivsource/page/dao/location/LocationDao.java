@@ -5,6 +5,7 @@ package de.tivsource.page.dao.location;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,6 +18,7 @@ import de.tivsource.page.entity.location.Location;
  * @author Marc Michele
  *
  */
+@Stateless
 public class LocationDao implements LocationDaoLocal {
 
     /*
