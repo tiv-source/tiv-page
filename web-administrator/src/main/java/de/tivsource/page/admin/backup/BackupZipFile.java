@@ -14,6 +14,7 @@ import java.util.zip.ZipOutputStream;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 
@@ -30,6 +31,8 @@ public class BackupZipFile {
     private static RoleDaoLocal roleDaoLocal;
 
     private static PropertyDaoLocal propertyDaoLocal;
+    
+    private static LocationDaoLocal locationDaoLocal;
 
     private static byte[] buffer = new byte[1024];
 
@@ -47,6 +50,10 @@ public class BackupZipFile {
 
     public static void setPropertyDaoLocal(PropertyDaoLocal propertyDaoLocal) {
         BackupZipFile.propertyDaoLocal = propertyDaoLocal;
+    }
+
+    public static void setLocationDaoLocal(LocationDaoLocal locationDaoLocal) {
+        BackupZipFile.locationDaoLocal = locationDaoLocal;
     }
 
     public static File getZipFile() throws IOException {
@@ -80,7 +87,12 @@ public class BackupZipFile {
         BackupProperty.setPropertyDaoLocal(propertyDaoLocal);
         addData(BackupProperty.getBackupFile(), outZipFile, "property.csv");
 
-        
+        /*
+         * Backup Location
+         */
+        BackupLocation.setLocationDaoLocal(locationDaoLocal);
+        addData(BackupLocation.getBackupFile(), outZipFile, "location.csv");
+
         // Schließe die Zip-Datei.
         outZipFile.close();
 
