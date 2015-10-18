@@ -39,7 +39,7 @@ public class ContactAction extends EmptyAction {
         @Action(
         		value = "index", 
         		results = {
-        		  @Result(name = "success", type="tiles", location = "contact"),
+        		  @Result(name = "success", type="tiles", location = "contactForm"),
         		  @Result(name = "error", type = "redirectAction", location = "index.html", params={"namespace", "/"})
         		}
         )

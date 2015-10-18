@@ -19,8 +19,8 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/page.jsp" />
 	</definition>
 
-	<definition name="contact" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/contact.jsp" />
+	<definition name="contactForm" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/contact_form.jsp" />
 	</definition>
 
 </tiles-definitions>
