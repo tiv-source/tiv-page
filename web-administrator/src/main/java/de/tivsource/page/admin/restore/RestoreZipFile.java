@@ -9,15 +9,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.restore.RestoreLocation;
 import de.tivsource.page.restore.RestorePage;
 import de.tivsource.page.restore.RestoreProperty;
 import de.tivsource.page.restore.RestoreRole;
@@ -32,7 +35,7 @@ public class RestoreZipFile {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger("INFO");
+    private static final Logger LOGGER = Logger.getLogger(RestoreZipFile.class);
 
     private UserDaoLocal userDaoLocal;
 
@@ -42,17 +45,20 @@ public class RestoreZipFile {
 
     private PropertyDaoLocal propertyDaoLocal;
 
+    private LocationDaoLocal locationDaoLocal;
+
     private Map<String, InputStream> streams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> pageStreams = new HashMap<String, InputStream>();
 
     public RestoreZipFile(UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
-            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal) {
+            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal, LocationDaoLocal locationDaoLocal) {
         super();
         this.userDaoLocal = userDaoLocal;
         this.roleDaoLocal = roleDaoLocal;
         this.pageDaoLocal = pageDaoLocal;
         this.propertyDaoLocal = propertyDaoLocal;
+        this.locationDaoLocal = locationDaoLocal;
     }
 
     public void restoreZip(File file) throws IOException {
@@ -84,12 +90,16 @@ public class RestoreZipFile {
         // Stelle Properties wieder her
         restoreProperty();
 
+        // Stelle Location wieder her
+        restoreLocation();
+
         // Schließe Datei
         zipFile.close();
 
         // Schließe Datei Stream
         zipInputStream.close();
 
+        
     }// Ende restoreZip(File file)
 
     private void restoreUser() {
@@ -114,6 +124,12 @@ public class RestoreZipFile {
         LOGGER.info("restoreProperty() aufgerufen.");
         RestoreProperty restoreProperty = new RestoreProperty(propertyDaoLocal);
         restoreProperty.generate(streams.get("property.csv"));
+    }
+
+    private void restoreLocation() {
+        LOGGER.info("restoreLocation() aufgerufen.");
+        RestoreLocation restoreLocation = new RestoreLocation(locationDaoLocal);
+        restoreLocation.generate(streams.get("location.csv"));
     }
 
 }// Ende class
