@@ -32,6 +32,15 @@
               </div>
 
               <div class="field">
+                <struts:checkbox
+                    key="location.events"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
                 <sj:textfield 
                     key="location.descriptionMap.DE.name"
                     parentTheme="xhtml"

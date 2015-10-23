@@ -11,7 +11,7 @@
   <struts:param name="location" value="location.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-<struts:url var="openingHoursUrl" namespace="/location" action="openingForm">
+<struts:url var="locationOverviewUrl" namespace="/location" action="overview">
   <struts:param name="location" value="location.uuid" />
 </struts:url>
 
@@ -20,21 +20,21 @@
         <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{englishUrl}">
-              <img src="/admin/icons/flag-united_kingdom.png" style="float: left; width: 28px;"/> 
+              <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
             </struts:a>
           </div>
 
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{germanUrl}">
-              <img src="/admin/icons/flag-germany.png" style="float: left; width: 28px;"/> 
+              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
             </struts:a>
           </div>
 
           <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{openingHoursUrl}">
-              <img src="/admin/icons/flag-germany.png" style="float: left; width: 28px;"/> 
+            <struts:a href="%{locationOverviewUrl}">
+              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">&Ouml;ffnungszeiten</p>
             </struts:a>
           </div>
@@ -61,6 +61,15 @@
               <div class="field">
                 <struts:checkbox
                     key="location.visible"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="location.events"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
 					labelposition="left"

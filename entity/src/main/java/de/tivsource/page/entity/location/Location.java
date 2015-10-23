@@ -5,6 +5,7 @@ package de.tivsource.page.entity.location;
 
 import java.util.SortedSet;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -32,6 +33,15 @@ public class Location extends NamingItem {
     @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @Sort(type=SortType.NATURAL)
     private SortedSet<OpeningHour> openingHours;
+
+    /**
+     * Wenn in der Filiale Veranstaltungen stattfinden können, dann true wenn
+     * nicht dann false (Achtung die Location taucht nur im Eventformular auf
+     * wenn true).
+     */
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean events;
 
     /**
      * Longitude der Location.
@@ -65,6 +75,14 @@ public class Location extends NamingItem {
 
     public void setOpeningHours(SortedSet<OpeningHour> openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public Boolean getEvents() {
+        return events;
+    }
+
+    public void setEvents(Boolean events) {
+        this.events = events;
     }
 
     public String getLongitude() {
