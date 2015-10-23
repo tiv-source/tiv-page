@@ -65,7 +65,7 @@ public class HourMinute implements Comparable<HourMinute> {
             return false;
         }
         // Wenn es sich nicht um die gleich Klasse handelt.
-        if (!(obj instanceof OpeningHour)) {
+        if (!(obj instanceof HourMinute)) {
             return false;
         }
         // Objekt Casting
@@ -86,4 +86,9 @@ public class HourMinute implements Comparable<HourMinute> {
         return hash;
     }
 
+    @Override
+    public String toString() {
+        return this.hour.toString() + ":" + this.minute.toString();
+    }
+    
 }// End class
