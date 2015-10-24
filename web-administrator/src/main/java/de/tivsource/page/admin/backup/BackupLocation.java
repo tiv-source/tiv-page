@@ -8,12 +8,19 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.SortedSet;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
 
 public class BackupLocation {
+
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(BackupLocation.class);
 
 	private static final int MAX = 1500;
 	
@@ -147,6 +154,8 @@ public class BackupLocation {
 
 	private static String convertOpeningHours(SortedSet<OpeningHour> openingHours) {
 
+	    LOGGER.info("Anzahl der OpeningHours im SortedSet: " + openingHours.size());
+	    
 	    StringBuffer hourString = new StringBuffer();
 
 	    Iterator<OpeningHour> iterator = openingHours.iterator();
