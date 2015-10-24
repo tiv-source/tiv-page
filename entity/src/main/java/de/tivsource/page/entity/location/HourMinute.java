@@ -88,7 +88,9 @@ public class HourMinute implements Comparable<HourMinute> {
 
     @Override
     public String toString() {
-        return this.hour.toString() + ":" + this.minute.toString();
+        String hourString = hour < 10 ? "0" + hour : hour.toString();
+        String minuteString = minute < 10 ? "0" + minute : minute.toString();
+        return hourString + ":" + minuteString;
     }
     
 }// End class
