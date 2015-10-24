@@ -110,19 +110,19 @@ public class OpeningHour implements Comparable<OpeningHour> {
 			return -1;
 		}
 		// Wenn die Öffnungzeiten vor den des Objektes liegen.
-		if(open.compareTo(open) < 0) {
+		if(open.compareTo(o.getOpen()) < 0) {
 			return -1;
 		}
 		// Wenn die Öffnungzeiten nach den des Objektes liegen.
-		if(open.compareTo(open) > 0) {
+		if(open.compareTo(o.getOpen()) > 0) {
 			return 1;
 		}
 		// Wenn die Schließzeiten vor den des Objektes liegen.
-		if(close.compareTo(close) < 0) {
+		if(close.compareTo(o.getClose()) < 0) {
 			return -1;
 		}
 		// Wenn die Schließzeiten nach den des Objektes liegen.
-		if(close.compareTo(close) > 0) {
+		if(close.compareTo(o.getClose()) > 0) {
 			return 1;
 		}
 		return 0;
@@ -144,16 +144,9 @@ public class OpeningHour implements Comparable<OpeningHour> {
 		}
 		// Objekt Casting
 		OpeningHour other = (OpeningHour) obj;
-		// Wenn der Inhalt Identisch ist dann ist das Objekt gleich.
-		if (this.weekday.equals(other.weekday) &&
-				this.open.equals(other.open) &&
-				this.close.equals(other.close)){
+		// Wenn die UUID Identisch ist dann ist das Objekt gleich.
+		if (this.uuid.equals(other.uuid)){
 			return true;
-		}
-		if((this.weekday == null && other.weekday != null) ||
-				(this.open == null && other.open != null) ||
-				(this.close == null && other.close != null)){
-			return false;
 		}
 		return false;
 	}
