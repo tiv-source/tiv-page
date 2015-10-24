@@ -12,7 +12,6 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
-import de.tivsource.page.dao.administration.UserDao;
 import de.tivsource.page.entity.page.Page;
 
 /**
@@ -25,7 +24,7 @@ public class PageDao implements PageDaoLocal {
     /*
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(UserDao.class);
+    private static final Logger LOGGER = Logger.getLogger(PageDao.class);
 
     /*
      * EntityManager der Dao Klasse.
