@@ -39,7 +39,7 @@
 	</definition>
 
 
-    <!-- Templates für Page Klasse -->
+    <!-- Templates für Event Klasse -->
 	<definition name="event" extends="managementTemplate">
 		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/event/list.jsp" />
 	</definition>
@@ -55,6 +55,30 @@
 	<definition name="eventDeleteForm" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/delete_form.jsp" />
 	</definition>
+
+
+    <!-- Templates für Location Klasse -->
+	<definition name="location" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/location/list.jsp" />
+	</definition>
+
+	<definition name="locationAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/add_form.jsp" />
+	</definition>
+
+	<definition name="locationEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/location/edit_form.jsp" />
+	</definition>
+
+	<definition name="locationDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/delete_form.jsp" />
+	</definition>
+
+	<definition name="locationOverview" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/location_overview.jsp" />
+	</definition>
+
+
 
 
     <!-- Templates für User Klasse -->
