@@ -11,7 +11,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.entity.administration.Role;
@@ -22,7 +23,10 @@ import de.tivsource.page.entity.administration.Role;
  */
 public class RestoreRole {
 
-    private static final Logger LOGGER = Logger.getLogger("INFO");
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(RestoreRole.class);
 
     private RoleDaoLocal roleDaoLocal;
 

@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Iterator;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
@@ -19,7 +20,10 @@ import de.tivsource.page.entity.property.Property;
  */
 public class RestoreProperty {
 
-    private static final Logger LOGGER = Logger.getLogger("INFO");
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(RestoreProperty.class);
 
     private PropertyDaoLocal propertyDaoLocal;
 
