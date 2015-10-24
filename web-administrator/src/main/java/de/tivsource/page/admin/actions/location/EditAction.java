@@ -102,6 +102,7 @@ public class EditAction extends EmptyAction {
     		dbLocation.getContactDetails().setMobile(location.getContactDetails().getMobile());
     		dbLocation.getContactDetails().setTelephone(location.getContactDetails().getTelephone());
 
+    		dbLocation.setEvents(location.getEvents());
     		dbLocation.setLatitude(location.getLatitude());
     		dbLocation.setLongitude(location.getLongitude());
 
