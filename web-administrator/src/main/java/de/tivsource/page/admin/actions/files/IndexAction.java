@@ -1,7 +1,6 @@
 package de.tivsource.page.admin.actions.files;
 
-import java.util.logging.Logger;
-
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -23,7 +22,7 @@ public class IndexAction extends EmptyAction {
     /**
 	 * Statischer Logger der Klasse.
 	 */
-	private static final Logger LOGGER = Logger.getLogger("INFO");
+    private static final Logger LOGGER = Logger.getLogger(IndexAction.class);
 
 	@Override
     @Actions({

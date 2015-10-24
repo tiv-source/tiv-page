@@ -8,7 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -19,7 +20,7 @@ public class BackupPage {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger("INFO");
+    private static final Logger LOGGER = Logger.getLogger(BackupPage.class);
 
 	private static PageDaoLocal pageDaoLocal;
 

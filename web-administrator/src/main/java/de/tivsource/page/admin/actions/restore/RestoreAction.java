@@ -1,8 +1,8 @@
 package de.tivsource.page.admin.actions.restore;
 
 import java.io.File;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -29,9 +29,9 @@ public class RestoreAction extends EmptyAction {
     private static final long serialVersionUID = -4275472563540907020L;
 
     /**
-	 * Statischer Logger der Klasse.
-	 */
-	private static final Logger LOGGER = Logger.getLogger("INFO");
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(RestoreAction.class);
 
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;

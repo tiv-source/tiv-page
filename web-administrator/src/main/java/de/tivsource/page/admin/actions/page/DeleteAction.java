@@ -1,8 +1,8 @@
 package de.tivsource.page.admin.actions.page;
 
 import java.util.Date;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -25,10 +25,10 @@ public class DeleteAction extends EmptyAction {
      */
     private static final long serialVersionUID = 1007882449894584851L;
 
-	/**
-	 * Statischer Logger der Klasse.
-	 */
-	private static final Logger LOGGER = Logger.getLogger("INFO");
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(DeleteAction.class);
 
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;

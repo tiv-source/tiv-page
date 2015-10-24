@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -21,11 +21,14 @@ import com.opensymphony.xwork2.ActionSupport;
 public class JsonAction extends ActionSupport {
 
     /**
-     * 
+     * Serial Version UID.
      */
     private static final long serialVersionUID = 3264469345260180786L;
 
-    private static final Logger logger = Logger.getLogger("INFO");
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(JsonAction.class);
 
     private File folder = new File("/srv/www/htdocs/uploads");
 
@@ -54,9 +57,9 @@ public class JsonAction extends ActionSupport {
     }
 
     public String getJSON() {
-        logger.info("Page " + getPage() + " Rows " + getRows()
+        LOGGER.info("Page " + getPage() + " Rows " + getRows()
                 + " Sorting Order " + getSord() + " Index Row :" + getSidx());
-        logger.info("Build new List");
+        LOGGER.info("Build new List");
 
         /*
         for (int i = 0; i < rawFileArray.length; i++) {
@@ -76,12 +79,12 @@ public class JsonAction extends ActionSupport {
 
         setGridModel(fileList);
 
-        logger.info("Rows:" + rows);
-        logger.info("Page:" + page);
-        logger.info("Total:" + total);
-        logger.info("Record:" + record);
-        logger.info("Sord:" + sord);
-        logger.info("Sidx:" + sidx);
+        LOGGER.info("Rows:" + rows);
+        LOGGER.info("Page:" + page);
+        LOGGER.info("Total:" + total);
+        LOGGER.info("Record:" + record);
+        LOGGER.info("Sord:" + sord);
+        LOGGER.info("Sidx:" + sidx);
         
         return execute();
     }

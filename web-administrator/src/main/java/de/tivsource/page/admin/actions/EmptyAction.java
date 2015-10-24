@@ -1,11 +1,11 @@
 package de.tivsource.page.admin.actions;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -31,7 +31,7 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
     /**
 	 * Statischer Logger der Klasse.
 	 */
-	private static final Logger LOGGER = Logger.getLogger("INFO");
+    private static final Logger LOGGER = Logger.getLogger(EmptyAction.class);
 
 	/**
 	 * Servlet-Request der die Post und Get Daten der Session enthält.
