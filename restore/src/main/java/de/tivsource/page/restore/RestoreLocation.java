@@ -169,7 +169,7 @@ public class RestoreLocation {
 
         LOGGER.info("Inhalt InputString: " + input);
         LOGGER.info("Länge des csvOpeningHours Arrays: " + csvOpeningHours.length);
-        if(csvOpeningHours.length > 1) {
+        if(input.length() > 0) {
             // Laufe durch das Array und füge die Tags der Tag-Liste hinzu.
             for (int i = 0; i < csvOpeningHours.length; i++) {
                 // Zerlege CSV-String.
