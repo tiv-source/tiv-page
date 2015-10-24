@@ -34,7 +34,7 @@
 
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{locationOverviewUrl}">
-              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
+              <img src="/admin/icons/80x60_clock.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">&Ouml;ffnungszeiten</p>
             </struts:a>
           </div>
