@@ -25,7 +25,7 @@
 
               <div class="field">
                 <sj:textfield 
-                    key="property.key"
+                    key="property.value"
                     labelposition="left"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
