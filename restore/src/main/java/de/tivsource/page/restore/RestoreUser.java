@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.entity.administration.Role;
@@ -26,6 +28,11 @@ import de.tivsource.page.entity.administration.User;
  *
  */
 public class RestoreUser {
+
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(RestoreUser.class);
 
     private UserDaoLocal userDaoLocal;
 
@@ -38,6 +45,7 @@ public class RestoreUser {
     }
 
     public void generate(InputStream inputStream) {
+        LOGGER.info("generate(InputStream inputStream) aufgerufen.");
         cleanup();
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
         try {

@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.entity.contentitem.Content;
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -28,6 +30,11 @@ import de.tivsource.page.entity.page.Page;
  */
 public class RestorePage {
 
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(RestorePage.class);
+    
     private PageDaoLocal pageDaoLocal;
 
     private Map<String, InputStream> streams;
@@ -44,6 +51,7 @@ public class RestorePage {
      * @throws ParseException 
      */
     public void generate() {
+        LOGGER.info("generate() aufgerufen.");
         cleanup();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(streams.get("page.csv")));
