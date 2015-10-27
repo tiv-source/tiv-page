@@ -30,7 +30,7 @@ public class Location extends NamingItem {
     @Embedded
     private ContactDetails contactDetails;
 
-    @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval=true)
     @Sort(type=SortType.NATURAL)
     private SortedSet<OpeningHour> openingHours;
 
