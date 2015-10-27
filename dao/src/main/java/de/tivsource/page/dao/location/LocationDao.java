@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.dao.location;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -13,6 +14,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.location.OpeningHour;
 
 /**
  * @author Marc Michele
@@ -99,6 +101,24 @@ public class LocationDao implements LocationDaoLocal {
     public Integer countAll() {
         Query query = entityManager.createQuery("Select Count(l) from Location l");
         return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public void removeOpeningHour(Integer index, String location) {
+
+        Location dbLocation = entityManager.find(Location.class, location);
+        
+        List<OpeningHour> openingHours = new ArrayList<OpeningHour>(dbLocation.getOpeningHours());
+        LOGGER.info("Anzahl der OpeningHours in der Liste: " + openingHours.size());
+
+        OpeningHour openingHour = openingHours.get(index);
+        dbLocation.getOpeningHours().remove(openingHour);
+
+        LOGGER.info("Anzahl der OpeningHours im Set: " + dbLocation.getOpeningHours().size());
+
+        entityManager.merge(dbLocation);
+        entityManager.remove(openingHour);
+
     }
 
 }// Ende class

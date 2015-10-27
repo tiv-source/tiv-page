@@ -56,4 +56,7 @@ public interface LocationDaoLocal {
      */
     public Integer countAll();
 
+    public void removeOpeningHour(Integer index, String location);
+
+
 }// Ende interface
