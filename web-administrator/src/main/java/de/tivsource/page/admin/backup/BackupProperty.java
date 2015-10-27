@@ -6,10 +6,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
 
 public class BackupProperty {
+
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(BackupProperty.class);
 
 	private static final int MAX = 1500;
 	
@@ -20,6 +27,7 @@ public class BackupProperty {
     }
 
     public static File getBackupFile() throws IOException {
+        LOGGER.info("getBackupFile() aufgerufen.");
 
 		// Datei Kram
 		File backupFile = new File("/tmp/property.csv");

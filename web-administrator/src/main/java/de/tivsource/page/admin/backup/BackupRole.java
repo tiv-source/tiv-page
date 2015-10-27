@@ -7,10 +7,17 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.entity.administration.Role;
 
 public class BackupRole {
+
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(BackupRole.class);
 
 	private static final int MAX = 1500;
 	
@@ -21,6 +28,7 @@ public class BackupRole {
 	}
 
 	public static File getBackupFile() throws IOException {
+	    LOGGER.info("getBackupFile() aufgerufen.");
 
 		// Datei Kram
 		File backupFile = new File("/tmp/role.csv");

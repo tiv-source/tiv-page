@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
@@ -23,6 +25,11 @@ import de.tivsource.page.dao.property.PropertyDaoLocal;
  *
  */
 public class BackupZipFile {
+
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(BackupZipFile.class);
 
     private static PageDaoLocal pageDaoLocal;
 
@@ -57,6 +64,7 @@ public class BackupZipFile {
     }
 
     public static File getZipFile() throws IOException {
+        LOGGER.info("getZipFile() aufgerufen.");
 
         // Zip-Datei erstellen und Stream bereitstellen.
         File zipFile = File.createTempFile("complete_tivpage", "zip");

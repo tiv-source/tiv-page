@@ -8,11 +8,18 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.entity.administration.Role;
 import de.tivsource.page.entity.administration.User;
 
 public class BackupUser {
+
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(BackupUser.class);
 
 	private static final int MAX = 1500;
 	
@@ -23,6 +30,7 @@ public class BackupUser {
 	}
 
 	public static File getBackupFile() throws IOException {
+	    LOGGER.info("getBackupFile() aufgerufen.");
 
 		// Datei Kram
 		File backupFile = new File("/tmp/user.csv");

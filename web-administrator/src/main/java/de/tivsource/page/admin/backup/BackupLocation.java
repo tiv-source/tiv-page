@@ -31,7 +31,7 @@ public class BackupLocation {
     }
 
     public static File getBackupFile() throws IOException {
-
+        LOGGER.info("getBackupFile() aufgerufen.");
 		// Datei Kram
 		File backupFile = new File("/tmp/location.csv");
     	FileWriter backupFileWriter = new FileWriter(backupFile);
