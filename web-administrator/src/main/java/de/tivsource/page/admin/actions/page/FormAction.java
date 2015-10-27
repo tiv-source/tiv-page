@@ -1,7 +1,6 @@
 package de.tivsource.page.admin.actions.page;
 
-import java.util.logging.Logger;
-
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -24,9 +23,9 @@ public class FormAction extends EmptyAction {
     private static final long serialVersionUID = -4373324222455911836L;
 
     /**
-	 * Statischer Logger der Klasse.
-	 */
-	private static final Logger LOGGER = Logger.getLogger("INFO");
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(FormAction.class);
 
 	@InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;

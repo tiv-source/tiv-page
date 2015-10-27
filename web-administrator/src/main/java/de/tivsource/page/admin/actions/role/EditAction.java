@@ -2,8 +2,8 @@ package de.tivsource.page.admin.actions.role;
 
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -29,9 +29,9 @@ public class EditAction extends EmptyAction {
     private static final long serialVersionUID = -2871395607908117378L;
 
     /**
-	 * Statischer Logger der Klasse.
-	 */
-	private static final Logger LOGGER = Logger.getLogger("INFO");
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = Logger.getLogger(EditAction.class);
 
 	@InjectEJB(name="RoleDao")
     private RoleDaoLocal roleDaoLocal;

@@ -4,8 +4,8 @@
 package de.tivsource.page.admin.actions.role;
 
 import java.util.List;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.entity.administration.Role;
+
 /**
  * @author Marc Michele
  * 
@@ -31,7 +32,7 @@ public class JsonAction extends ActionSupport {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger logger = Logger.getLogger("INFO");
+    private static final Logger LOGGER = Logger.getLogger(JsonAction.class);
 	
 	@InjectEJB(name="RoleDao")
     private RoleDaoLocal roleDaoLocal;
@@ -58,9 +59,9 @@ public class JsonAction extends ActionSupport {
 
 	public String getJSON() {
 
-		logger.info("Page " + getPage() + " Rows " + getRows()
+	    LOGGER.info("Page " + getPage() + " Rows " + getRows()
 				+ " Sorting Order " + getSord() + " Index Row :" + getSidx());
-		logger.info("Build new List");
+	    LOGGER.info("Build new List");
 
 		/*
 		 * Setze die Anzahl aller Objekte in der Datenbank.
@@ -81,7 +82,7 @@ public class JsonAction extends ActionSupport {
 		 * Sortieren aufsteigen
 		 */
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
-			logger.info("Sortieren nach asc");
+		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
 				roleList = this.roleDaoLocal.findAll(from, getRows(), "r.uuid", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
@@ -90,7 +91,7 @@ public class JsonAction extends ActionSupport {
 				roleList = this.roleDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
-			logger.info("Sortieren nach desc");
+		    LOGGER.info("Sortieren nach desc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
 				roleList = this.roleDaoLocal.findAll(from, getRows(), "r.uuid", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
@@ -103,12 +104,12 @@ public class JsonAction extends ActionSupport {
 		setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
 		setGridModel(roleList);
 
-		logger.info("Rows:" + rows);
-		logger.info("Page:" + page);
-		logger.info("Total:" + total);
-		logger.info("Record:" + record);
-		logger.info("Sord:" + sord);
-		logger.info("Sidx:" + sidx);
+		LOGGER.info("Rows:" + rows);
+		LOGGER.info("Page:" + page);
+		LOGGER.info("Total:" + total);
+		LOGGER.info("Record:" + record);
+		LOGGER.info("Sord:" + sord);
+		LOGGER.info("Sidx:" + sidx);
 		
 		return execute();
 	}
