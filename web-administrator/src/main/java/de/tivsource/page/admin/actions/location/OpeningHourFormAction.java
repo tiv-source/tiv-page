@@ -2,6 +2,7 @@ package de.tivsource.page.admin.actions.location;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
+import de.tivsource.page.enumeration.Weekday;
 
 /**
  * 
@@ -60,10 +62,6 @@ public class OpeningHourFormAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "openingHourAddForm", 
-        		results = { @Result(name = "success", type="tiles", location = "openingHourAddForm") }
-        ),
-        @Action(
         		value = "openingHourDeleteForm", 
         		results = { @Result(name = "success", type="tiles", location = "openingHourDeleteForm") }
         )
@@ -78,6 +76,10 @@ public class OpeningHourFormAction extends EmptyAction {
     public OpeningHour getOpeningHour() {
         List<OpeningHour> openingHours = new ArrayList<OpeningHour>(location.getOpeningHours());
         return openingHours.get(openingHoursIndex);
+    }
+
+    public List<Weekday> getWeekdays() {
+        return Arrays.asList(Weekday.values());
     }
 
 	private void loadPageParameter() {
