@@ -22,7 +22,7 @@ import de.tivsource.page.enumeration.Weekday;
  * @author Marc Michele
  *
  */
-public class OpeningHourFormAction extends EmptyAction {
+public class OpeningHourDeleteFormAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
@@ -32,7 +32,7 @@ public class OpeningHourFormAction extends EmptyAction {
     /**
 	 * Statischer Logger der Klasse.
 	 */
-    private static final Logger LOGGER = Logger.getLogger(OpeningHourFormAction.class);
+    private static final Logger LOGGER = Logger.getLogger(OpeningHourDeleteFormAction.class);
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
