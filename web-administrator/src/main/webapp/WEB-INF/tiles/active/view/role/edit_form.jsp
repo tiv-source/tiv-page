@@ -27,7 +27,7 @@
                 <sj:textfield 
                     key="role.technical"
                     labelposition="left"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
                 />
               </div>

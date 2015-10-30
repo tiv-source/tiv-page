@@ -1,12 +1,20 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-    <struts:form action="sent">
-      <struts:textfield key="contactForm.firstname" cssStyle="width:415px; resize:none;" />
-      <struts:textfield  key="contactForm.lastname" cssStyle="width:415px; resize:none;" />
-      <struts:textfield key="contactForm.mail" cssStyle="width:415px; resize:none;" />
-      <struts:textfield key="contactForm.telephone" cssStyle="width:415px; resize:none;"/>
-      <struts:textfield key="contactForm.fax" cssStyle="width:415px; resize:none;"/>
-      <struts:textarea key="contactForm.message" cssStyle="width:415px; height:400px; resize:none;"/>
+    <struts:form
+          cssClass="form" 
+          action="sent" 
+          namespace="/contact" 
+          tooltipIconPath="/images/info.png" 
+          javascriptTooltip="true" 
+          tooltipDelay="500"
+          theme="css_xhtml"
+    >
+      <struts:textfield key="contactForm.firstname"  />
+      <struts:textfield key="contactForm.lastname"  />
+      <struts:textfield key="contactForm.mail"  />
+      <struts:textfield key="contactForm.telephone" />
+      <struts:textfield key="contactForm.fax" />
+      <struts:textarea key="contactForm.message" />
       <struts:submit/>
     </struts:form>

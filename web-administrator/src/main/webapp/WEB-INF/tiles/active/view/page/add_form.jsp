@@ -18,6 +18,7 @@
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
+                  theme="css_xhtml"
           >
 
             <fieldset class="fieldset">
@@ -25,7 +26,7 @@
               <div class="field">
                 <sj:textfield 
                     key="page.technical"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -58,10 +59,13 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <sj:spinner
                     key="page.topNavigationOrder"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em; width:827px;"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
 
@@ -75,10 +79,13 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <sj:spinner
                     key="page.navigationOrder"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em; width:827px;"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
 
@@ -92,10 +99,13 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <sj:spinner
                     key="page.bottomNavigationOrder"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em; width:827px;"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
 
@@ -109,17 +119,20 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <sj:spinner
                     key="page.responsiveNavigationOrder"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em; width:827px;"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
 
               <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.DE.name"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -129,14 +142,14 @@
                     key="page.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                 ></sj:textarea>	  
               </div>
 
               <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.DE.keywords"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>

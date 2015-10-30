@@ -27,7 +27,7 @@
                 <sj:textfield 
                     key="user.username"
                     labelposition="left"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
                 />
               </div>
@@ -36,7 +36,7 @@
                 <sj:textfield 
                     key="user.email"
                     labelposition="left"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
                 />
               </div>
@@ -45,7 +45,7 @@
                 <sj:textfield 
                     key="user.firstname"
                     labelposition="left"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
                 />
               </div>
@@ -54,7 +54,7 @@
                 <sj:textfield 
                     key="user.lastname"
                     labelposition="left"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
                 />
               </div>

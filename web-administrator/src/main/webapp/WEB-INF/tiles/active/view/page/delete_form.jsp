@@ -18,6 +18,7 @@
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
+                  theme="css_xhtml"
           >
             <struts:hidden key="page.uuid"/>
 

@@ -17,17 +17,17 @@
         <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{englishUrl}">
-              <img src="https://admin.czastka.de/icon/flags/png/24x16/flags-united_kingdom.png" style="float: left; width: 28px;"/> 
+              <img src="/admin/icons/flag-united_kingdom.png" style="float: left; width: 28px;"/>
               <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
             </struts:a>
           </div>
 
-          <div style="padding:0px; margin:5px; height:20px;">
+          <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{germanUrl}">
-              <img src="https://admin.czastka.de/icon/flags/png/24x16/flags-germany.png" style="float: left; width: 28px;"/> 
+              <img src="/admin/icons/flag-germany.png" style="float: left; width: 28px;"/>
               <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
             </struts:a>
-          </div> 
+          </div>
         </div>
 
         <div id="usermanager_update_header" class="update usermanager module_header">
@@ -42,6 +42,7 @@
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
+                  theme="css_xhtml"
           >
             <struts:hidden key="page.uuid"/>
 
@@ -50,7 +51,7 @@
               <div class="field">
                 <sj:textfield 
                     key="page.technical"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -88,7 +89,7 @@
                     min="0"
                     max="200"
                     step="1"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
@@ -108,7 +109,7 @@
                     min="0"
                     max="200"
                     step="1"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
@@ -128,7 +129,7 @@
                     min="0"
                     max="200"
                     step="1"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
@@ -148,7 +149,7 @@
                     min="0"
                     max="200"
                     step="1"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
                 />
               </div>
@@ -159,7 +160,7 @@
               <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.EN.name"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -169,14 +170,14 @@
                     key="page.descriptionMap.EN.description" 
                     cols="115" 
                     rows="8" 
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                 ></sj:textarea>	  
               </div>
 
               <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.EN.keywords"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -205,7 +206,7 @@
               <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.DE.name"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -215,14 +216,14 @@
                     key="page.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                 ></sj:textarea>	  
               </div>
 
               <div class="field">
                 <sj:textfield 
                     key="page.descriptionMap.DE.keywords"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
