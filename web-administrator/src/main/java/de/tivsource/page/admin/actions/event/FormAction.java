@@ -1,5 +1,7 @@
 package de.tivsource.page.admin.actions.event;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -8,7 +10,9 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.event.Event;
+import de.tivsource.page.entity.location.Location;
 
 /**
  * 
@@ -29,6 +33,9 @@ public class FormAction extends EmptyAction {
 
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
+
+    @InjectEJB(name="LocationDao")
+    private LocationDaoLocal locationDaoLocal;
 
     private Event event;
 
@@ -62,6 +69,10 @@ public class FormAction extends EmptyAction {
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
+
+	public List<Location> getLocationList() {
+	    return locationDaoLocal.findAll(0, locationDaoLocal.countAll());
+	}
 
 	private void loadPageParameter() {
 		if( uncheckEvent != null && uncheckEvent != "" && uncheckEvent.length() > 0) {
