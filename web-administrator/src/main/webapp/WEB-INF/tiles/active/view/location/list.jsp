@@ -8,7 +8,17 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/location/editForm.html?location="+ cellvalue +"'>edit</a> | <a href='/admin/location/deleteForm.html?location="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/location/overview.html?locationUuid="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/clock.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/location/editForm.html?location="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/location/deleteForm.html?location="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/cross.png'/></a>";
+}
+</script>
+
+<script type="text/javascript">
+function formatTrueFalse(cellvalue, options, rowObject) {
+  if (cellvalue) {
+    return "<img src='/admin/icons/16x16/accept.png'/>";  
+  } else {
+    return "<img src='/admin/icons/16x16/delete.png'/>";
+  }
 }
 </script>
 
@@ -108,6 +118,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="created" 
@@ -124,7 +135,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="uuid" 
     	    index="editbar" 
-    	    title="Actions" 
+    	    title="" 
     	    width="70" 
     	    editable="false" 
     	    sortable="false" 
