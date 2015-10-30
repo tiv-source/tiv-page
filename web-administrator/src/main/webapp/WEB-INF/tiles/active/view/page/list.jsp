@@ -8,7 +8,17 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/page/editForm.html?page="+ cellvalue +"'>edit</a> | <a href='/admin/page/deleteForm.html?page="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/page/editForm.html?page="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/page/deleteForm.html?page="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/cross.png'/></a>";
+}
+</script>
+
+<script type="text/javascript">
+function formatTrueFalse(cellvalue, options, rowObject) {
+  if (cellvalue) {
+    return "<img src='/admin/icons/16x16/accept.png'/>";  
+  } else {
+    return "<img src='/admin/icons/16x16/delete.png'/>";
+  }
 }
 </script>
 
@@ -84,11 +94,12 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="topNavigationOrder" 
     	    index="topNavigationOrder" 
-    	    title="Top Order" 
+    	    title="TOrder" 
     	    width="80" 
     	    editable="false" 
     	    sortable="true" 
@@ -108,11 +119,12 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="navigationOrder" 
     	    index="navigationOrder" 
-    	    title="Normal Order" 
+    	    title="NOrder" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
@@ -132,11 +144,12 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="bottomNavigationOrder" 
     	    index="bottomNavigationOrder" 
-    	    title="Bottom Order" 
+    	    title="BOrder" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
@@ -156,6 +169,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="visible" 
@@ -168,6 +182,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="created" 
@@ -184,7 +199,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="uuid" 
     	    index="editbar" 
-    	    title="Actions" 
+    	    title="" 
     	    width="70" 
     	    editable="false" 
     	    sortable="false" 
