@@ -108,7 +108,7 @@ public class RestoreLocation {
         location.setModified(convertDateString(items[23]));
         location.setModifiedBy(items[24]);
         location.setIp(items[25]);
-        location.setEvents(items[26].equals("true") ? true : false);
+        location.setEvent(items[26].equals("true") ? true : false);
 
         return location;
     }// Ende convert(String line)

@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.entity.location;
 
+import java.util.List;
 import java.util.SortedSet;
 
 import javax.persistence.Basic;
@@ -10,11 +11,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Sort;
 import org.hibernate.annotations.SortType;
 
+import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.namingitem.NamingItem;
 
 /**
@@ -41,7 +46,15 @@ public class Location extends NamingItem {
      */
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
-    private Boolean events;
+    private Boolean event;
+
+    @ManyToMany(targetEntity = Event.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "Location_Event", 
+            joinColumns = @JoinColumn(name = "location_uuid"), 
+            inverseJoinColumns = @JoinColumn(name = "event_uuid")
+            )
+    private List<Event> events;
 
     /**
      * Longitude der Location.
@@ -77,11 +90,19 @@ public class Location extends NamingItem {
         this.openingHours = openingHours;
     }
 
-    public Boolean getEvents() {
+    public Boolean getEvent() {
+        return event;
+    }
+
+    public void setEvent(Boolean event) {
+        this.event = event;
+    }
+
+    public List<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(Boolean events) {
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
 

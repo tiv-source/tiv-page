@@ -33,7 +33,7 @@
 
               <div class="field">
                 <struts:checkbox
-                    key="location.events"
+                    key="location.event"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
 					labelposition="left"
@@ -43,7 +43,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.descriptionMap.DE.name"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -53,14 +53,14 @@
                     key="location.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                 ></sj:textarea>	  
               </div>
 
               <div class="field">
                 <sj:textfield 
                     key="location.descriptionMap.DE.keywords"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -74,7 +74,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.address.street"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -82,7 +82,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.address.zip"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -90,7 +90,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.address.city"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -98,7 +98,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.address.country"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -108,7 +108,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.contactDetails.mobile"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -116,7 +116,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.contactDetails.telephone"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -124,7 +124,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.contactDetails.fax"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -132,7 +132,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.contactDetails.email"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -140,7 +140,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.contactDetails.homepage"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -150,7 +150,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.longitude"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -158,7 +158,7 @@
               <div class="field">
                 <sj:textfield 
                     key="location.latitude"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>

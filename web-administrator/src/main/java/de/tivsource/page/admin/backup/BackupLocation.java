@@ -146,7 +146,7 @@ public class BackupLocation {
         nextString.append(next.getIp());
         nextString.append("|");
 
-        nextString.append(next.getEvents().toString());
+        nextString.append(next.getEvent().toString());
         nextString.append("|");
 
 		return nextString.toString();
