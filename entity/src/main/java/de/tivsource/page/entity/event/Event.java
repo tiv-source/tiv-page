@@ -14,8 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 import de.tivsource.page.entity.location.Location;
@@ -47,7 +47,7 @@ public class Event extends NamingItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean reservation;
 
-    @ManyToMany(targetEntity = Reservation.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Reservation.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "Event_Reservation", 
             joinColumns = @JoinColumn(name = "event_uuid"), 

@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Sort;
@@ -48,7 +47,7 @@ public class Location extends NamingItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean event;
 
-    @ManyToMany(targetEntity = Event.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Event.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(
             name = "Location_Event", 
             joinColumns = @JoinColumn(name = "location_uuid"), 
