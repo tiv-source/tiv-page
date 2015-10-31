@@ -20,6 +20,7 @@
 		<class>de.tivsource.page.entity.news.News</class>
 		<class>de.tivsource.page.entity.page.Page</class>
 		<class>de.tivsource.page.entity.property.Property</class>
+		<class>de.tivsource.page.entity.reservation.Reservation</class>
 
 		<properties>
 
