@@ -48,6 +48,8 @@ public interface LocationDaoLocal {
 
     public List<Location> findAll(Integer start, Integer max, String field, String order);
 
+    public List<Location> findAllEventLocation();
+    
     /**
      * Methode die die Anzahl aller Location Objekte die sich in der Datenbank
      * befinden zurück liefert.

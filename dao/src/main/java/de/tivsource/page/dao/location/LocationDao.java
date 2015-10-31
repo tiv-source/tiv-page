@@ -94,6 +94,14 @@ public class LocationDao implements LocationDaoLocal {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Location> findAllEventLocation() {
+        String queryString = "select l from Location l where l.event = 'Y' order by l.uuid";
+        Query query = entityManager.createQuery(queryString);
+        return query.getResultList();
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.location.LocationDaoLocal#countAll()
      */
