@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TIV Page</title>
   <link href="/public/css/main_style.css" rel="stylesheet" type="text/css">
+  <link href="/public/css/tiv_page.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/public/icons/tiv_page_favicon.ico" type="image/vnd.microsoft.icon" />
   <link rel="shortcut icon" href="/public/icons/tiv_page_favicon.png" type="image/png" />
 
@@ -105,7 +106,7 @@
   <!-- Navigation Ende -->
 
   <!-- Content Anfang -->
-  <div  id=content> 
+  <div id=content> 
     <tiles:insertAttribute name="content" />
   </div>
   <!-- Content Ende -->
