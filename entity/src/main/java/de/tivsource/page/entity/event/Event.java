@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -32,8 +31,10 @@ public class Event extends NamingItem {
     private BigDecimal price;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    @Column(name="event_date")
-    private Date date;
+    private Date beginning;
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date ending;
 
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
@@ -63,12 +64,20 @@ public class Event extends NamingItem {
         this.price = price;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getBeginning() {
+        return beginning;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBeginning(Date beginning) {
+        this.beginning = beginning;
+    }
+
+    public Date getEnding() {
+        return ending;
+    }
+
+    public void setEnding(Date ending) {
+        this.ending = ending;
     }
 
     public Boolean getSupper() {
@@ -77,6 +86,14 @@ public class Event extends NamingItem {
 
     public void setSupper(Boolean supper) {
         this.supper = supper;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Boolean getReservation() {
