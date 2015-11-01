@@ -1,0 +1,352 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Features*/
+div#features {
+	margin-bottom: 30px;
+}
+
+div#features h5, p {
+	clear: both;
+}
+
+div#features img {
+	float: left;
+	height: auto;
+	width: 31.3%;
+	margin: 1%;
+	margin-top:20px;
+}
+
+div#features img.distance {
+	margin-bottom: 40px;
+}
+
+/*Partner*/
+#partners p {
+	clear: both;
+	margin-left:250px;
+}
+
+.partner {
+	position: relative;
+	min-height: 100px;
+	margin-bottom: 70px;
+}
+
+.partner img {
+	position: absolute;
+	width: 200px;
+	padding: 15px;
+	padding-left: 0px;
+}
+
+/*Locations*/
+div.locations {
+	min-height: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 20px;
+	padding-bottom:20px;
+}
+
+div.locations.color1 {
+	background-color: #cdcdcd;
+}
+
+div.locations.color2 {
+	background-color:#dcdcdc;
+}
+
+div.locations h5 {
+	margin-top: 0px;
+}
+
+div.locations hr {
+	opacity: 0;
+}
+
+div.location {
+	float: left;
+	height: 250px;
+	width:25%;
+}
+
+div.contacts {
+	float: left;
+	height: 250px;
+	width:25%;
+}
+
+div.contacts  img {
+	height:25px;
+	width: auto;
+	margin-right: 15px;
+}
+
+div.open {
+	float: left;
+	height: 250px;
+	width:25%;
+}
+
+div.open table {
+	float: right;
+	padding-top:8px;
+	padding-right:30px;
+}
+
+div.open th {
+	padding-bottom: 7px;
+	font-size: 13px;	
+	color: #343333;
+}
+
+div.open tr,td {
+	padding:5px;
+}
+
+div.open td {
+	width:80px;
+}
+
+div#map {
+	float: left;
+	height: 230px;
+	width:25%;
+	padding-top:10px;
+}
+
+div#map img {
+	float:left;
+	height: 200px;
+	width:96%;
+	padding:2%;
+	border: 2px solid #a9a9a9;
+	background-color: #ffffff;
+	z-index: 9;
+}
+
+/*Impressum*/
+div#impressum {
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+div#impressum  img {
+	height:25px;
+	width: auto;
+	margin-right: 15px;
+}
+
+/*Contact*/
+form {
+	min-height:800px;
+	margin-bottom: 40px;
+}
+
+form h6 {
+	margin-bottom: 20px;
+}
+form div.wwlbl {
+	height: 5px;
+	width: 300px;
+	margin-top: 10px;
+	margin-left: 15px;
+}
+
+form div.wwctrl input {
+	height: 13px;
+	width:310px;
+	margin-left:10px;
+	margin-bottom:15px; 
+	padding:2px;
+}
+
+div textarea {
+	min-height: 300px;
+	width:90%;
+	margin-left:10px; 
+	margin-bottom:30px;
+}
+
+button {
+	height:30px;
+	width: 210px;
+	margin-left:15px;
+	margin-bottom:20px;; 
+	padding:2px;
+
+}
+
+
+@media only screen and (max-width: 1400px) {
+	
+	/*Features*/
+	div#features img {
+		width: 48%;
+		margin: 1%;
+	}
+	
+		/*Locations*/
+	div.location {
+		height: 250px;
+		width: 50%;
+		margin-bottom:40px;
+	}
+
+	div.contacts {
+		height: 250px;
+		width: 50%;
+	}
+
+	div.open {
+		height: 250px;
+		width: 50%;
+	}
+	
+	div.open table {
+		float: left;
+		padding-left: 15px;
+	}
+	
+	div#map {
+		height: 230px;
+		width: 48%;
+		margin-bottom:40px;
+		padding-top:20px;
+		padding-left: 1%;
+		padding-right:1%;
+	}	
+	
+	div#map img {
+		width: 70%;	
+	}
+}
+
+@media only screen and (max-width: 768px) {
+			
+	/*Contact*/
+	div textarea {
+		width:95%;
+	}
+	
+	/*Impressum*/	
+	div#impressum_pic {
+		margin-left: -10;
+	}
+}
+
+
+@media only screen and (max-width: 580px) {
+	
+	/*Features*/
+	div#features img {
+		width: 98%;
+		margin:1%;
+	}
+	
+	/*Partner*/
+	#partners p {
+		clear: both;
+		float: left;
+		margin-left: 2px;
+	}
+
+	.partner img {
+		float: left;
+		margin-top: -10px;
+		margin-left: 2px;
+	}	
+	
+	.distance_top1 {
+		margin-top: 70px;
+	}
+		
+	/*Locations*/
+	div.location {
+		height:auto;
+		width:100%;
+	}
+
+	div.contacts {
+		height:auto;
+		width:100%;
+	}
+
+	div.open {
+		height:auto;
+		width:100%;
+		margin-bottom: 40px;
+	}
+	
+	div#map {
+		height: 230px;
+		width:100%;
+		padding-top:20px;
+		padding-right:0px;
+		padding-left: 0px;
+	}
+
+	div#map img {
+		height: 200px;
+		width:auto;
+		padding-left: 1%;
+		padding-right: 1%;
+		border:1%;
+	}
+		
+	
+	/*Contact*/	
+	form div.wwctrl input {
+		width:85%;
+	}
+	
+	/*Impressum*/	
+	div#impressum_pic {
+		margin-left: -10;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	
+	/*Locations*/
+
+	div#map img {
+		height: 200px;
+		width:97%;
+		padding-left: 1%;
+		padding-right: 1%;
+		border:1%;
+	}
+	
+	/*Contact*/	
+	form div.wwlbl {
+		margin-left: 5px;
+	}
+
+	form div.wwctrl input {
+		width:95%;
+		margin-left:0px;
+	}
+
+	div textarea {
+		width:95%;
+		margin-left:0px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
