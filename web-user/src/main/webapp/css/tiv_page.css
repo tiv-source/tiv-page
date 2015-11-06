@@ -43,11 +43,10 @@ div#features img.distance {
 
 /*Locations*/
 div.locations {
-	min-height: 300px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom:20px;
 	padding-top: 20px;
-	padding-bottom:20px;
 }
 
 div.locations.color1 {
@@ -58,8 +57,13 @@ div.locations.color2 {
 	background-color:#dcdcdc;
 }
 
+div.locations h4 {
+	color: #343333;
+}
+
 div.locations h5 {
 	margin-top: 0px;
+	padding-left: 0px;
 }
 
 div.locations hr {
@@ -68,63 +72,72 @@ div.locations hr {
 
 div.location {
 	float: left;
-	height: 250px;
-	width:25%;
+	height: 260px;
+	width:300px;
+	margin-bottom: 20px;
 }
 
-div.contacts {
+div#map {
 	float: left;
-	height: 250px;
-	width:25%;
+	height: 245px;
+	width: 230px;
+	margin-bottom: 20px;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 55px;
 }
 
-div.contacts  img {
-	height:25px;
-	width: auto;
-	margin-right: 15px;
+div#map img {
+	float:left;
+	padding:5px;
+	border: 2px solid #a9a9a9;
+	background-color: #ffffff;
+	z-index: 9;
 }
 
 div.open {
 	float: left;
 	height: 250px;
-	width:25%;
-}
-
-div.open table {
-	float: right;
-	padding-top:8px;
-	padding-right:30px;
+	width:285px;
+	margin-bottom: 20px;
+	padding-top:10px;
+	padding-left: 15px;
 }
 
 div.open th {
 	padding-bottom: 7px;
-	font-size: 13px;	
+	font-size: 14px;	
 	color: #343333;
 }
 
 div.open tr,td {
 	padding:5px;
+	padding-left: 0px;
 }
 
-div.open td {
-	width:80px;
-}
-
-div#map {
+div.contacts {
 	float: left;
-	height: 230px;
-	width:25%;
+	height: 250px;
+	width:270px;
+	margin-bottom: 20px;
 	padding-top:10px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
-div#map img {
-	float:left;
-	height: 200px;
-	width:96%;
-	padding:2%;
-	border: 2px solid #a9a9a9;
-	background-color: #ffffff;
-	z-index: 9;
+div.contacts th {
+	padding-bottom: 7px;
+	font-size: 14px;	
+	color: #343333;
+}
+
+div.contacts td {
+	padding:2px 0px;
+}
+
+div.contacts img {
+	height:25px;
+	width:25px;
 }
 
 /*Impressum*/
@@ -188,43 +201,78 @@ button {
 		margin: 1%;
 	}
 	
-		/*Locations*/
+	/*Locations*/
 	div.location {
-		height: 250px;
-		width: 50%;
-		margin-bottom:40px;
-	}
-
-	div.contacts {
-		height: 250px;
-		width: 50%;
-	}
-
-	div.open {
-		height: 250px;
-		width: 50%;
-	}
-	
-	div.open table {
-		float: left;
-		padding-left: 15px;
+		width:280px;
 	}
 	
 	div#map {
-		height: 230px;
-		width: 48%;
-		margin-bottom:40px;
-		padding-top:20px;
-		padding-left: 1%;
-		padding-right:1%;
-	}	
-	
-	div#map img {
-		width: 70%;	
+		width: 230px;
+		padding-left: 15px;
+		padding-right: 35px;
 	}
+	
+	div.open {	
+		width:255px;
+	}
+	
+	div.contacts {	
+		width:250px;
+	}
+
+}
+
+@media only screen and (max-width:1000px) {
+
+	/*Locations*/
+	div.location {
+		width:300px;
+	}
+	
+	div#map {
+		width: 270px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	div#map img {
+		height: 220px;
+		width: 250px;
+	}
+	
+	div.open {	
+		width:285px;
+		padding-left: 15px;
+	}
+
+	
+	div.contacts {
+		width:270px;
+	}
+
 }
 
 @media only screen and (max-width: 768px) {
+	
+	/*Locations*/
+	div.location {
+		width:280px;
+	}
+	
+	div#map {
+		width: 265px;
+		padding-left: 10px;
+		padding-right: 5px;
+	}
+	
+	div.open {	
+		width:265px;
+	}
+
+	
+	div.contacts {
+		width:250px;
+	}
 			
 	/*Contact*/
 	div textarea {
@@ -237,6 +285,42 @@ button {
 	}
 }
 
+@media only screen and (max-width: 618px) {
+	
+	/*Locations*/
+	div.location {
+		height:150px;
+		width:300px;
+	}
+	
+	div#map {
+		width: 285px;
+	}
+	
+	div#map img {
+		height: 220px;
+		width: 260px;
+	}
+	
+	div.open {	
+		width:285px;
+	}
+
+	
+	div.contacts {
+		width:270px;
+	}
+			
+	/*Contact*/
+	div textarea {
+		width:95%;
+	}
+	
+	/*Impressum*/	
+	div#impressum_pic {
+		margin-left: -10;
+	}
+}
 
 @media only screen and (max-width: 580px) {
 	
@@ -263,40 +347,6 @@ button {
 		margin-top: 70px;
 	}
 		
-	/*Locations*/
-	div.location {
-		height:auto;
-		width:100%;
-	}
-
-	div.contacts {
-		height:auto;
-		width:100%;
-	}
-
-	div.open {
-		height:auto;
-		width:100%;
-		margin-bottom: 40px;
-	}
-	
-	div#map {
-		height: 230px;
-		width:100%;
-		padding-top:20px;
-		padding-right:0px;
-		padding-left: 0px;
-	}
-
-	div#map img {
-		height: 200px;
-		width:auto;
-		padding-left: 1%;
-		padding-right: 1%;
-		border:1%;
-	}
-		
-	
 	/*Contact*/	
 	form div.wwctrl input {
 		width:85%;
@@ -310,15 +360,35 @@ button {
 
 @media only screen and (max-width: 320px) {
 	
+			
 	/*Locations*/
+	div.location {
+		width:260px;
+	}
+	
+	div#map {
+		clear: both;
+		width: 260px;
+		padding: 0px;
+	}
 
 	div#map img {
-		height: 200px;
-		width:97%;
-		padding-left: 1%;
-		padding-right: 1%;
-		border:1%;
+		width: 250px;
 	}
+	
+	div.open {
+		clear: both;	
+		width:245px;
+	}
+
+	
+	div.contacts {
+		clear: both;
+		width:230px;
+	}
+
+
+	
 	
 	/*Contact*/	
 	form div.wwlbl {

@@ -233,12 +233,12 @@ li.activlink3 {
 div#mobile_navi {
 	position: relative;
 	z-index: 5;
+	margin-bottom:20px;
 }
 
 div#mobile_navi label {
 	display: none;
 	height: 40px;
-	border-bottom: 1px solid #333333;
 	background-color:rgba(128,128,0,0.7);
 }
 
@@ -280,6 +280,10 @@ div#mobile_navi ul.mobile_sub {
 div#mobile_navi ul.mobile_sub li {
 	border-bottom: 1px solid #333333;
 	background-color:rgba(128,128,0,0.2);
+}
+
+.bordertop {
+	border-top: 1px solid #333333;
 }
 
 div#mobile_navi ul.mobile_sub li a {
