@@ -36,9 +36,8 @@ public class Event extends NamingItem {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date ending;
 
-    @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
-    private Boolean supper;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date deadline;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "location_uuid")
@@ -80,12 +79,12 @@ public class Event extends NamingItem {
         this.ending = ending;
     }
 
-    public Boolean getSupper() {
-        return supper;
+    public Date getDeadline() {
+        return deadline;
     }
 
-    public void setSupper(Boolean supper) {
-        this.supper = supper;
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 
     public Location getLocation() {
