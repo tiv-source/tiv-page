@@ -49,7 +49,9 @@ public interface LocationDaoLocal {
     public List<Location> findAll(Integer start, Integer max, String field, String order);
 
     public List<Location> findAllEventLocation();
-    
+
+    public List<Location> findAllVisible(Integer start, Integer max);
+
     /**
      * Methode die die Anzahl aller Location Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -57,6 +59,8 @@ public interface LocationDaoLocal {
      * @return Integer - Anzahl der Location Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllVisible();
 
     public void removeOpeningHour(Integer index, String location);
 

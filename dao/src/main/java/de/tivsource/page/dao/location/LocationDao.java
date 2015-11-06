@@ -102,12 +102,27 @@ public class LocationDao implements LocationDaoLocal {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Location> findAllVisible(Integer start, Integer max) {
+        Query query = entityManager.createQuery("from Location l where l.visible = 'Y'");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.location.LocationDaoLocal#countAll()
      */
     @Override
     public Integer countAll() {
         Query query = entityManager.createQuery("Select Count(l) from Location l");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public Integer countAllVisible() {
+        Query query = entityManager.createQuery("Select Count(l) from Location l where l.visible = 'Y'");
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
