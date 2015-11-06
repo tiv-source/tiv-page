@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -41,6 +42,8 @@ public class BackupZipFile {
     
     private static LocationDaoLocal locationDaoLocal;
 
+    private static EventDaoLocal eventDaoLocal;
+
     private static byte[] buffer = new byte[1024];
 
     public static void setPageDaoLocal(PageDaoLocal pageDaoLocal) {
@@ -61,6 +64,10 @@ public class BackupZipFile {
 
     public static void setLocationDaoLocal(LocationDaoLocal locationDaoLocal) {
         BackupZipFile.locationDaoLocal = locationDaoLocal;
+    }
+
+    public static void setEventDaoLocal(EventDaoLocal eventDaoLocal) {
+        BackupZipFile.eventDaoLocal = eventDaoLocal;
     }
 
     public static File getZipFile() throws IOException {
@@ -100,6 +107,12 @@ public class BackupZipFile {
          */
         BackupLocation.setLocationDaoLocal(locationDaoLocal);
         addData(BackupLocation.getBackupFile(), outZipFile, "location.csv");
+
+        /*
+         * Backup Event
+         */
+        BackupEvent.setEventDaoLocal(eventDaoLocal);;
+        addData(BackupEvent.getBackupFile(), outZipFile, "event.csv");
 
         // Schließe die Zip-Datei.
         outZipFile.close();
