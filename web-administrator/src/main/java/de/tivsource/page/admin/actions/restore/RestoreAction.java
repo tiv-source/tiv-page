@@ -12,6 +12,7 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.restore.RestoreZipFile;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -48,6 +49,9 @@ public class RestoreAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
+    @InjectEJB(name="EventDao")
+    private EventDaoLocal eventDaoLocal;
+
     private File restoreFile;
 
     public void setRestoreFile(File restoreFile) {
@@ -64,7 +68,9 @@ public class RestoreAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-    	RestoreZipFile restoreZipFile = new RestoreZipFile(userDaoLocal, roleDaoLocal, pageDaoLocal, propertyDaoLocal, locationDaoLocal);
+        RestoreZipFile restoreZipFile = new RestoreZipFile(userDaoLocal,
+                roleDaoLocal, pageDaoLocal, propertyDaoLocal, locationDaoLocal,
+                eventDaoLocal);
     	restoreZipFile.restoreZip(restoreFile);
 
     	return SUCCESS;

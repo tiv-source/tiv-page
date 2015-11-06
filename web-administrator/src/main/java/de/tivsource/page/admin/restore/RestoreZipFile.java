@@ -17,9 +17,11 @@ import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.restore.RestoreEvent;
 import de.tivsource.page.restore.RestoreLocation;
 import de.tivsource.page.restore.RestorePage;
 import de.tivsource.page.restore.RestoreProperty;
@@ -47,18 +49,21 @@ public class RestoreZipFile {
 
     private LocationDaoLocal locationDaoLocal;
 
+    private EventDaoLocal eventDaoLocal;
+    
     private Map<String, InputStream> streams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> pageStreams = new HashMap<String, InputStream>();
 
     public RestoreZipFile(UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
-            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal, LocationDaoLocal locationDaoLocal) {
+            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal, LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal) {
         super();
         this.userDaoLocal = userDaoLocal;
         this.roleDaoLocal = roleDaoLocal;
         this.pageDaoLocal = pageDaoLocal;
         this.propertyDaoLocal = propertyDaoLocal;
         this.locationDaoLocal = locationDaoLocal;
+        this.eventDaoLocal = eventDaoLocal;
     }
 
     public void restoreZip(File file) throws IOException {
@@ -92,6 +97,9 @@ public class RestoreZipFile {
 
         // Stelle Location wieder her
         restoreLocation();
+
+        // Stelle Event wieder her
+        restoreEvent();
 
         // Schließe Datei
         zipFile.close();
@@ -130,6 +138,12 @@ public class RestoreZipFile {
         LOGGER.info("restoreLocation() aufgerufen.");
         RestoreLocation restoreLocation = new RestoreLocation(locationDaoLocal);
         restoreLocation.generate(streams.get("location.csv"));
+    }
+
+    private void restoreEvent() {
+        LOGGER.info("restoreEvent() aufgerufen.");
+        RestoreEvent eventLocation = new RestoreEvent(locationDaoLocal, eventDaoLocal);
+        eventLocation.generate(streams.get("event.csv"));
     }
 
 }// Ende class
