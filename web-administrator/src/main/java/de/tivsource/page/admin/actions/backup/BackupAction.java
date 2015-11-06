@@ -59,11 +59,11 @@ public class BackupAction extends EmptyAction {
 	@Override
     @Actions({
         @Action(
-        		value = "backup", 
+        		value = "database", 
         		results = { @Result(
         				           name = "success", 
         				           type="stream", 
-        				           params={"contentType", "text/plain", "inputName", "fileStream", "contentDisposition", "attachment;filename=tivpage.zip"}
+        				           params={"contentType", "text/plain", "inputName", "fileStream", "contentDisposition", "attachment;filename=tiv_page_database.zip"}
         				           ) }
         )
     })
