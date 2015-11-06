@@ -12,7 +12,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -47,12 +46,7 @@ public class Event extends NamingItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean reservation;
 
-    @OneToMany(targetEntity = Reservation.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Event_Reservation", 
-            joinColumns = @JoinColumn(name = "event_uuid"), 
-            inverseJoinColumns = @JoinColumn(name = "reservation_uuid")
-            )
+    @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Reservation> reservations;
 
     public BigDecimal getPrice() {
