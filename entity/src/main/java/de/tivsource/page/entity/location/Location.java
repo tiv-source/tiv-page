@@ -11,8 +11,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Sort;
@@ -47,12 +45,7 @@ public class Location extends NamingItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean event;
 
-    @OneToMany(targetEntity = Event.class, cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Location_Event", 
-            joinColumns = @JoinColumn(name = "location_uuid"), 
-            inverseJoinColumns = @JoinColumn(name = "event_uuid")
-            )
+    @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Event> events;
 
     /**
