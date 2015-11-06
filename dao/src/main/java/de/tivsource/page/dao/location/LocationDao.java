@@ -68,6 +68,13 @@ public class LocationDao implements LocationDaoLocal {
         return entityManager.find(Location.class, uuid);
     }
 
+    @Override
+    public Location findByUuidWidthEvents(String uuid) {
+        Location location = entityManager.find(Location.class, uuid);
+        LOGGER.debug("Größe der Eventliste: " + location.getEvents().size());
+        return location;
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.location.LocationDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
      */

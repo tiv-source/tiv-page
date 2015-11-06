@@ -36,6 +36,8 @@ public interface LocationDaoLocal {
 
     public Location findByUuid(String uuid);
 
+    public Location findByUuidWidthEvents(String uuid);
+
     /**
      * Methode zum laden einer Liste von Location Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzhal der zu ladenen Location Objekte.
