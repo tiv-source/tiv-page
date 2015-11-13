@@ -13,17 +13,20 @@
         </div>						
 
         <div id="map">
-          <img src="http://staticmap.openstreetmap.de/staticmap.php?center=<struts:property value="latitude" />,<struts:property value="longitude" />&zoom=18&size=280x200&maptype=mapnik&markers=<struts:property value="latitude" />,<struts:property value="longitude" />,lightblue" />
+          <img src="http://staticmap.openstreetmap.de/staticmap.php?center=<struts:property value="latitude" />,<struts:property value="longitude" />&zoom=18&size=250x230&maptype=mapnik&markers=<struts:property value="latitude" />,<struts:property value="longitude" />,lightblue" />
         </div>
         
         <div class="open">
+          <h5>Öffnungszeiten:</h5>
+
           <table>
-            <tr>
-              <th>Öffnungszeiten:</th>
-            </tr>
+            <colgroup>
+              <col width="110">
+              <col width="">
+            </colgroup>
             <struts:iterator value="openingHours" status="openingHoursStatus">
             <tr>
-              <td><struts:property value="weekday" />:</td>
+              <td><struts:property value="getText(weekday)" />:</td>
               <td><struts:property value="open" />-<struts:property value="close" /></td>
             </tr>
             </struts:iterator>
@@ -32,12 +35,36 @@
         
         <div class="contacts">
           <h5>Kontakt:</h5>
-          <p><img src="/public/icons/telephone.png" alt="Telefon" align="absmiddle"><struts:property value="contactDetails.telephone" /></p>
-          <p><img src="/public/icons/mobile.png" alt="Mobil" align="absmiddle"><struts:property value="contactDetails.mobile" /></p>
-          <p><img src="/public/icons/printer.png" alt="Fax" align="absmiddle"><struts:property value="contactDetails.fax" /></p>
-          <p><img src="/public/icons/email.png" alt="E-Mail" align="absmiddle"><struts:property value="contactDetails.email" /></p>
-          <p><img src="/public/icons/world.png" alt="Website" align="absmiddle"><struts:property value="contactDetails.homepage" /></p>
+
+          <table>
+            <colgroup>
+              <col width="35">
+              <col width="">
+            </colgroup>
+
+            <tr>
+              <td><img src="/public/icons/telephone.png" alt="Telefon" align="absmiddle"></td>
+              <td><struts:property value="contactDetails.telephone" /></td>
+            </tr>
+            <tr>
+              <td><img src="/public/icons/mobile.png" alt="Mobil" align="absmiddle"></td>
+              <td><struts:property value="contactDetails.mobile" /></td>
+            </tr>
+            <tr>
+              <td><img src="/public/icons/printer.png" alt="Fax" align="absmiddle"></td>
+              <td><struts:property value="contactDetails.fax" /></td>
+            </tr>
+            <tr>
+              <td><img src="/public/icons/email.png" alt="E-Mail" align="absmiddle"></td>
+              <td><struts:property value="contactDetails.email" /></td>
+            </tr>
+            <tr>
+              <td><img src="/public/icons/world.png" alt="Website" align="absmiddle"></td>
+              <td><struts:property value="contactDetails.homepage" /></td>
+            </tr>
+          </table>
         </div>
+        <hr>
       </div>
     </struts:iterator>
 
