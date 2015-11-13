@@ -51,7 +51,7 @@
               <td><struts:property value="contactDetails.mobile" /></td>
             </tr>
             <tr>
-              <td><img src="/public/icons/printer.png" alt="Fax" align="absmiddle"></td>
+              <td><img src="/public/icons/fax.png" alt="Fax" align="absmiddle"></td>
               <td><struts:property value="contactDetails.fax" /></td>
             </tr>
             <tr>
