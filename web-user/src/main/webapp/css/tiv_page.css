@@ -72,19 +72,21 @@ div.locations hr {
 
 div.location {
 	float: left;
-	height: 260px;
+	min-height: 260px;
 	width:300px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 div#map {
 	float: left;
 	height: 245px;
 	width: 230px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	padding-top: 15px;
 	padding-left: 15px;
 	padding-right: 55px;
+	padding-bottom: 10px;
 }
 
 div#map img {
@@ -97,11 +99,12 @@ div#map img {
 
 div.open {
 	float: left;
-	height: 250px;
-	width:285px;
-	margin-bottom: 20px;
+	min-height: 250px;
+	width:270px;
+	margin-bottom:10px;
 	padding-top:10px;
-	padding-left: 15px;
+	padding-left: 30px;
+	padding-bottom: 10px;
 }
 
 div.open th {
@@ -117,12 +120,13 @@ div.open tr,td {
 
 div.contacts {
 	float: left;
-	height: 250px;
+	min-height: 250px;
 	width:270px;
-	margin-bottom: 20px;
+	margin-bottom:10px;
 	padding-top:10px;
 	padding-left: 15px;
 	padding-right: 15px;
+	padding-bottom: 10px;
 }
 
 div.contacts th {
@@ -152,8 +156,15 @@ div#impressum  img {
 	margin-right: 15px;
 }
 
-/*Contact*/
+/*Contact und Reservation*/
+
+.formular {
+	padding-top: 15px;
+	background-color: #dcdcdc;
+}
+
 form {
+	position: relative;
 	min-height:800px;
 	margin-bottom: 40px;
 }
@@ -161,6 +172,7 @@ form {
 form h6 {
 	margin-bottom: 20px;
 }
+
 form div.wwlbl {
 	height: 5px;
 	width: 300px;
@@ -192,37 +204,205 @@ button {
 
 }
 
+/*Reservation*/
 
-@media only screen and (max-width: 1400px) {
-	
-	/*Features*/
-	div#features img {
-		width: 48%;
-		margin: 1%;
-	}
+#wwgrp_check_title-female{
+	margin-top:40px;
+	margin-bottom:40px;
+}
+
+#wwgrp_check_title-female input {
+	position: absolute;
+	margin-top: -6px;
+	margin-left: 70px;
+}
+
+#wwgrp_check_title-male{
+	margin-bottom:40px;
+}
+
+#wwgrp_check_title-male input {
+	position: absolute;
+	margin-top: -6px;
+	margin-left: 70px;
+}
+
+.dates { 
+	padding-left: 15px;
+}
+
+.dates select { 
+	height: 30px;
+	width: 70px;
+}
+
+
+@media only screen and (max-width: 1700px) {
 	
 	/*Locations*/
 	div.location {
-		width:280px;
+		width:270px;
 	}
 	
 	div#map {
+		width: 220px;
+	}
+
+	div#map img {
+		height: 220px;
 		width: 230px;
-		padding-left: 15px;
-		padding-right: 35px;
 	}
 	
 	div.open {	
-		width:255px;
+		width:245px;
 	}
 	
 	div.contacts {	
-		width:250px;
+		width:240px;
 	}
 
 }
 
-@media only screen and (max-width:1000px) {
+@media only screen and (max-width: 1600px) {
+	
+	/*Locations*/
+	div.location {
+		width:260px;
+	}
+	
+	div#map {
+		width: 230px;
+	}
+	
+	div.open {	
+		width:230px;
+	}
+	
+	div.contacts {	
+		width:230px;
+	}
+
+}
+
+@media only screen and (max-width: 1500px) {
+	
+	/*Locations*/
+	div.location {
+		width:240px;
+	}
+	
+	div#map {
+		width: 210px;
+	}
+	
+	div.open {	
+		width:230px;
+	}
+	
+	div.contacts {	
+		width:230px;
+	}
+
+}
+
+@media only screen and (max-width: 1450px) {
+	
+	/*Locations*/
+	div.location {
+		width:220px;
+	}
+	
+	div#map {
+		width: 200px;
+	}
+	
+	div.open {	
+		width:225px;
+	}
+	
+	div.contacts {	
+		width:220px;
+	}
+
+}
+
+@media only screen and (max-width: 1400px) {
+	
+	/*Locations*/
+	div.location {
+		width:200px;
+	}
+	
+	div#map {
+		width: 190px;
+	}
+
+	div#map img {
+		width: 220px;
+	}
+	
+	div.open {	
+		width:215px;
+	}
+	
+	div.contacts {	
+		width:210px;
+	}
+
+}
+
+@media only screen and (max-width: 1320px) {
+	
+	/*Locations*/
+	div.location {
+		width:190px;
+	}
+	
+	div#map {
+		width: 180px;
+	}
+	
+	div.open {	
+		width:215px;
+	}
+	
+	div.contacts {	
+		width:210px;
+	}
+
+}
+
+@media only screen and (max-width: 1290px) {
+	
+	/*Locations*/
+	div.location {
+		width:330px;
+	}
+	
+	div#map {
+		width: 280px;
+	}
+
+	div#map img {
+		height: 220px;
+		width: 270px;
+	}
+	
+	div.open {	
+	clear: both;
+	float: left;
+	width:310px;
+	padding-left:20px;
+	}
+	
+	div.contacts {	
+		width:320px;
+	}
+
+}
+
+
+@media only screen and (max-width:820px) {
 
 	/*Locations*/
 	div.location {
@@ -230,24 +410,16 @@ button {
 	}
 	
 	div#map {
-		width: 270px;
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-
-	div#map img {
-		height: 220px;
-		width: 250px;
+		width: 260px;
 	}
 	
 	div.open {	
-		width:285px;
-		padding-left: 15px;
+		width:280px;
 	}
 
 	
 	div.contacts {
-		width:270px;
+		width:300px;
 	}
 
 }
@@ -255,24 +427,7 @@ button {
 @media only screen and (max-width: 768px) {
 	
 	/*Locations*/
-	div.location {
-		width:280px;
-	}
-	
-	div#map {
-		width: 265px;
-		padding-left: 10px;
-		padding-right: 5px;
-	}
-	
-	div.open {	
-		width:265px;
-	}
 
-	
-	div.contacts {
-		width:250px;
-	}
 			
 	/*Contact*/
 	div textarea {
@@ -285,16 +440,16 @@ button {
 	}
 }
 
-@media only screen and (max-width: 618px) {
+
+@media only screen and (max-width: 700px) {
 	
 	/*Locations*/
 	div.location {
-		height:150px;
 		width:300px;
 	}
 	
 	div#map {
-		width: 285px;
+		width: 230px;
 	}
 	
 	div#map img {
@@ -303,12 +458,91 @@ button {
 	}
 	
 	div.open {	
-		width:285px;
+		width:280px;
 	}
 
 	
 	div.contacts {
 		width:270px;
+	}
+	
+}
+
+@media only screen and (max-width: 660px) {
+	
+	/*Locations*/
+	div.location {
+		width:270px;
+	}
+	
+	div#map {
+		width: 220px;
+	}
+	
+	div#map img {
+		height: 220px;
+		width: 260px;
+	}
+	
+	div.open {	
+		width:250px;
+	}
+	
+	div.contacts {
+		width:260px;
+	}
+	
+}
+
+@media only screen and (max-width: 640px) {
+	
+	/*Locations*/
+	div.location {
+		width:270px;
+	}
+	
+	div#map {
+		width: 200px;
+	}
+	
+	div#map img {
+		height: 220px;
+		width: 220px;
+	}
+	
+	div.open {	
+		width:250px;
+	}
+
+	
+	div.contacts {
+		width:240px;
+	}
+}
+
+@media only screen and (max-width: 618px) {
+	
+	/*Locations*/
+	div.location {
+		width:250px;
+	}
+	
+	div#map {
+		width: 200px;
+	}
+	
+	div#map img {
+		height: 220px;
+		width: 220px;
+	}
+	
+	div.open {	
+		width:230px;
+	}
+
+	
+	div.contacts {
+		width:240px;
 	}
 			
 	/*Contact*/
@@ -346,6 +580,33 @@ button {
 	.distance_top1 {
 		margin-top: 70px;
 	}
+	
+	/*Locations*/
+	div.location {
+		min-height:150px;
+		width:400px;
+		margin-bottom: 5px;
+	}
+	
+	div#map {
+		width:330px;
+		margin-bottom: 5px;
+	}
+	
+	div#map img {
+		height: 220px;
+		width:300px;
+	}
+	
+	div.open {
+		width:380px;
+		margin-bottom: 5px;
+	}
+	
+	div.contacts {
+		width:370px;
+		margin-bottom: 5px;
+	}
 		
 	/*Contact*/	
 	form div.wwctrl input {
@@ -358,8 +619,32 @@ button {
 	}
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 450px) {
+			
+	/*Locations*/
+	div.location {
+		width:280px;
+	}
 	
+	div#map {
+		clear: both;
+		width: 270px;
+	}
+
+	div#map img {
+		width: 220px;
+	}
+	
+	div.open {
+		width:260px;
+	}
+	
+	div.contacts {
+		width:250px;
+	}…
+}
+
+@media only screen and (max-width: 320px) {
 			
 	/*Locations*/
 	div.location {
@@ -368,28 +653,17 @@ button {
 	
 	div#map {
 		clear: both;
-		width: 260px;
-		padding: 0px;
-	}
-
-	div#map img {
 		width: 250px;
 	}
 	
 	div.open {
-		clear: both;	
-		width:245px;
+		width:240px;
 	}
-
 	
 	div.contacts {
-		clear: both;
 		width:230px;
 	}
 
-
-	
-	
 	/*Contact*/	
 	form div.wwlbl {
 		margin-left: 5px;
