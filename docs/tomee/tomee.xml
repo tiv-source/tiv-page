@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+   <Deployments dir="apps/" />
+
+   <Resource id="tivPage" type="DataSource">
+    JdbcDriver  com.mysql.jdbc.Driver
+    JdbcUrl jdbc:mysql://IP-ADRESSE:3306/tivpage?autoReconnect=true
+    UserName USERNAME
+    Password PASSWORD
+    validationQuery = SELECT 1
+    JtaManaged true
+   </Resource>
+
+</tomee>
