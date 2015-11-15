@@ -27,4 +27,8 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location.jsp" />
 	</definition>
 
+	<definition name="reservation" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation.jsp" />
+	</definition>
+
 </tiles-definitions>
