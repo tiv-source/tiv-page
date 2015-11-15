@@ -34,6 +34,7 @@ div#features img.distance {
 	margin-bottom: 70px;
 }
 
+
 .partner img {
 	position: absolute;
 	width: 200px;
@@ -87,6 +88,7 @@ div#map {
 	padding-left: 15px;
 	padding-right: 55px;
 	padding-bottom: 10px;
+
 }
 
 div#map img {
@@ -126,6 +128,7 @@ div.contacts {
 	padding-top:10px;
 	padding-left: 15px;
 	padding-right: 15px;
+
 	padding-bottom: 10px;
 }
 
@@ -144,19 +147,8 @@ div.contacts img {
 	width:25px;
 }
 
-/*Impressum*/
-div#impressum {
-	margin-top: 10px;
-	margin-bottom: 15px;
-}
-
-div#impressum  img {
-	height:25px;
-	width: auto;
-	margin-right: 15px;
-}
-
 /*Contact und Reservation*/
+
 
 .formular {
 	padding-top: 15px;
@@ -167,6 +159,7 @@ form {
 	position: relative;
 	min-height:800px;
 	margin-bottom: 40px;
+
 }
 
 form h6 {
@@ -204,6 +197,7 @@ button {
 
 }
 
+
 /*Reservation*/
 
 #wwgrp_check_title-female{
@@ -219,6 +213,7 @@ button {
 
 #wwgrp_check_title-male{
 	margin-bottom:40px;
+
 }
 
 #wwgrp_check_title-male input {
@@ -249,7 +244,6 @@ button {
 	}
 
 	div#map img {
-		height: 220px;
 		width: 230px;
 	}
 	
@@ -257,6 +251,7 @@ button {
 		width:245px;
 	}
 	
+
 	div.contacts {	
 		width:240px;
 	}
@@ -317,6 +312,7 @@ button {
 	}
 	
 	div.open {	
+
 		width:225px;
 	}
 	
@@ -335,6 +331,7 @@ button {
 	
 	div#map {
 		width: 190px;
+		padding-right:45px;
 	}
 
 	div#map img {
@@ -378,14 +375,15 @@ button {
 	div.location {
 		width:330px;
 	}
+
 	
 	div#map {
 		width: 280px;
+		padding-right:15px;
 	}
 
 	div#map img {
-		height: 220px;
-		width: 270px;
+		width: 250px;
 	}
 	
 	div.open {	
@@ -415,9 +413,9 @@ button {
 	
 	div.open {	
 		width:280px;
+
 	}
 
-	
 	div.contacts {
 		width:300px;
 	}
@@ -425,19 +423,12 @@ button {
 }
 
 @media only screen and (max-width: 768px) {
-	
-	/*Locations*/
-
-			
+		
 	/*Contact*/
 	div textarea {
 		width:95%;
 	}
-	
-	/*Impressum*/	
-	div#impressum_pic {
-		margin-left: -10;
-	}
+
 }
 
 
@@ -448,13 +439,9 @@ button {
 		width:300px;
 	}
 	
+	
 	div#map {
 		width: 230px;
-	}
-	
-	div#map img {
-		height: 220px;
-		width: 260px;
 	}
 	
 	div.open {	
@@ -467,21 +454,18 @@ button {
 	}
 	
 }
+	
 
 @media only screen and (max-width: 660px) {
-	
+		
 	/*Locations*/
 	div.location {
 		width:270px;
+	
 	}
 	
 	div#map {
 		width: 220px;
-	}
-	
-	div#map img {
-		height: 220px;
-		width: 260px;
 	}
 	
 	div.open {	
@@ -506,7 +490,6 @@ button {
 	}
 	
 	div#map img {
-		height: 220px;
 		width: 220px;
 	}
 	
@@ -530,12 +513,6 @@ button {
 	div#map {
 		width: 200px;
 	}
-	
-	div#map img {
-		height: 220px;
-		width: 220px;
-	}
-	
 	div.open {	
 		width:230px;
 	}
@@ -547,43 +524,16 @@ button {
 			
 	/*Contact*/
 	div textarea {
-		width:95%;
-	}
-	
-	/*Impressum*/	
-	div#impressum_pic {
-		margin-left: -10;
+		width:90%;
 	}
 }
 
 @media only screen and (max-width: 580px) {
-	
-	/*Features*/
-	div#features img {
-		width: 98%;
-		margin:1%;
-	}
-	
-	/*Partner*/
-	#partners p {
-		clear: both;
-		float: left;
-		margin-left: 2px;
-	}
 
-	.partner img {
-		float: left;
-		margin-top: -10px;
-		margin-left: 2px;
-	}	
-	
-	.distance_top1 {
-		margin-top: 70px;
-	}
 	
 	/*Locations*/
 	div.location {
-		min-height:150px;
+		min-height:100px;
 		width:400px;
 		margin-bottom: 5px;
 	}
@@ -594,8 +544,7 @@ button {
 	}
 	
 	div#map img {
-		height: 220px;
-		width:300px;
+		width:250px;
 	}
 	
 	div.open {
@@ -612,11 +561,6 @@ button {
 	form div.wwctrl input {
 		width:85%;
 	}
-	
-	/*Impressum*/	
-	div#impressum_pic {
-		margin-left: -10;
-	}
 }
 
 @media only screen and (max-width: 450px) {
@@ -628,11 +572,13 @@ button {
 	
 	div#map {
 		clear: both;
-		width: 270px;
+		height: auto;
+		width:90%;
+		margin-right:2.5%;
 	}
 
 	div#map img {
-		width: 220px;
+		width:80%;
 	}
 	
 	div.open {
@@ -650,10 +596,9 @@ button {
 	div.location {
 		width:260px;
 	}
-	
-	div#map {
-		clear: both;
-		width: 250px;
+
+	div#map img {
+		width:90%;
 	}
 	
 	div.open {
