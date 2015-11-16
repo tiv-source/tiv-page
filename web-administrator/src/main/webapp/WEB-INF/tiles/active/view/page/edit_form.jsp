@@ -17,14 +17,14 @@
         <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{englishUrl}">
-              <img src="/admin/icons/flag-united_kingdom.png" style="float: left; width: 28px;"/>
+              <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/>
               <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
             </struts:a>
           </div>
 
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{germanUrl}">
-              <img src="/admin/icons/flag-germany.png" style="float: left; width: 28px;"/>
+              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/>
               <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
             </struts:a>
           </div>
