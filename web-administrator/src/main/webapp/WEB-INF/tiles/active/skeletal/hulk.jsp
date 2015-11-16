@@ -40,7 +40,7 @@
 <div class="container">
   <div class="header">
     <div style="width:475px; float:left;">
-      <img src="/admin/images/tp_logo_003_c.png" style="width:280px; padding-left: 50px; padding-top: 21px;"/>
+      <img src="/admin/images/tiv_page_logo_admin.png" style="width:280px; padding-left: 50px; padding-top: 21px;"/>
     </div>
     <div style="width:475px; float:right;">
       <div style="padding-top:3px; padding-right:28px; text-align:right;">
