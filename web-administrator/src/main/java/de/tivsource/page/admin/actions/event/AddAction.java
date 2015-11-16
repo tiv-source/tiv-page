@@ -12,6 +12,7 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 
@@ -31,6 +32,9 @@ public class AddAction extends EmptyAction {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(AddAction.class);
+
+    @InjectEJB(name="LocationDao")
+    private LocationDaoLocal locationDaoLocal;
 
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
@@ -68,6 +72,9 @@ public class AddAction extends EmptyAction {
     	    event.setCreated(new Date());
     	    event.setModifiedBy(remoteUser);
     	    event.setIp(remoteAddress);
+
+    	    // Füge Event in die Location ein
+    	    event.getLocation().getEvents().add(event);
 
 
     	    event.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
