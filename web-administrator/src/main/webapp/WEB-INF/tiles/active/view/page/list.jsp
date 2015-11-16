@@ -48,18 +48,6 @@ function formatTrueFalse(cellvalue, options, rowObject) {
           viewrecords="true"
         >
     	  <sjg:gridColumn 
-    	    name="uuid" 
-    	    index="uuid" 
-    	    title="UUID" 
-    	    width="280" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="descriptionMap.DE.name" 
     	    title="Name" 
@@ -150,6 +138,31 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="bottomNavigationOrder" 
     	    index="bottomNavigationOrder" 
     	    title="BOrder" 
+    	    width="90" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="responsiveNavigation" 
+    	    index="responsiveNavigation" 
+    	    title="Responsive" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	    formatter="formatTrueFalse"
+    	  />
+    	  <sjg:gridColumn 
+    	    name="responsiveNavigationOrder" 
+    	    index="responsiveNavigationOrder" 
+    	    title="ROrder" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
