@@ -5,6 +5,7 @@
 <struts:url var="homeUrl"              action="index" namespace="/" />
 
 <struts:url var="pageUrl"              action="index" namespace="/page" />
+<struts:url var="locationUrl"          action="index" namespace="/location" />
 <struts:url var="eventUrl"             action="index" namespace="/event" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
@@ -36,6 +37,12 @@
                   <struts:a href="%{pageUrl}" title="Liste mit den Seiten" cssClass="navItem navPage">
                     <span class="navIcon page" style="background-image: url(/admin/buttons/tiv_page_button_page.png);">&nbsp;</span>
                     <span>Page</span>
+                  </struts:a>
+                </li>
+                <li>
+                  <struts:a href="%{locationUrl}" title="Liste mit den Locations" cssClass="navItem navLocation">
+                    <span class="navIcon location" style="background-image: url(/admin/buttons/tiv_page_button_page.png);">&nbsp;</span>
+                    <span>Location</span>
                   </struts:a>
                 </li>
                 <li>
