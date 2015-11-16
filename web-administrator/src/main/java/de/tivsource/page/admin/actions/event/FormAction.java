@@ -71,7 +71,7 @@ public class FormAction extends EmptyAction {
     }// Ende execute()
 
 	public List<Location> getLocationList() {
-	    return locationDaoLocal.findAll(0, locationDaoLocal.countAll());
+	    return locationDaoLocal.findAllEventLocation();
 	}
 
 	private void loadPageParameter() {
