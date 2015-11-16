@@ -57,6 +57,7 @@
 	</definition>
 
 
+
     <!-- Templates für Location Klasse -->
 	<definition name="location" extends="managementTemplate">
 		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/location/list.jsp" />
@@ -78,6 +79,13 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/location_overview.jsp" />
 	</definition>
 
+	<definition name="openingHourAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/opening_hour_add_form.jsp" />
+	</definition>
+
+	<definition name="openingHourDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/opening_hour_delete_form.jsp" />
+	</definition>
 
 
 
