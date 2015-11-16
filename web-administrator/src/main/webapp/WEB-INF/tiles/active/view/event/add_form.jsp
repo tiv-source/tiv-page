@@ -21,11 +21,86 @@
           >
 
             <fieldset class="fieldset">
+            
+              <div class="field">
+                <sj:datepicker
+                    key="event.beginning"
+                    changeMonth="true"
+                    changeYear="true"
+                    displayFormat="dd.mm.yy"
+                    timepicker="true"
+                    timepickerFormat="hh:mm"
+                    style="width:100px;"
+                    parentTheme="css_xhtml"
+                />
+              </div>
+
+              <div class="field">
+                <sj:datepicker
+                    key="event.ending"
+                    changeMonth="true"
+                    changeYear="true"
+                    displayFormat="dd.mm.yy"
+                    timepicker="true"
+                    timepickerFormat="hh:mm"
+                    style="width:100px;"
+                    parentTheme="css_xhtml"
+                />
+              </div>
+              
+              <div class="field">
+                <sj:datepicker
+                    key="event.deadline"
+                    changeMonth="true"
+                    changeYear="true"
+                    displayFormat="dd.mm.yy"
+                    timepicker="true"
+                    timepickerFormat="hh:mm"
+                    style="width:100px;"
+                    parentTheme="css_xhtml"
+                />
+              </div>
+
+              <div class="field">
+                <sj:spinner
+                    key="event.price"
+                    min="0.00"
+                    step="0.01"
+                    numberFormat="C"
+                    mouseWheel="true"
+                    parentTheme="css_xhtml"
+                />
+              </div>
+
+              <div class="field">
+                <sj:autocompleter
+					key="event.location"
+					list="locationList"
+					listValue="%{getName(getText('language'))}"
+					listKey="uuid"
+					selectBox="true"
+					selectBoxIcon="true"
+					onChangeTopics="autocompleteChange"
+					onFocusTopics="autocompleteFocus"
+					onSelectTopics="autocompleteSelect"
+					parentTheme="css_xhtml"
+					cssStyle="padding: 0.3em; height:14px;"
+					/>
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="event.reservation"
+                    parentTheme="css_xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
 
               <div class="field">
                 <struts:checkbox
                     key="event.visible"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
 					labelposition="left"
                 />
@@ -34,7 +109,7 @@
               <div class="field">
                 <sj:textfield 
                     key="event.descriptionMap.DE.name"
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
@@ -44,14 +119,14 @@
                     key="event.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                 ></sj:textarea>	  
               </div>
 
               <div class="field">
                 <sj:textfield 
                     key="event.descriptionMap.DE.keywords"  
-                    parentTheme="xhtml"
+                    parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
