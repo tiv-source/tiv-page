@@ -57,6 +57,14 @@
                 </struts:iterator>
 
               </table>
+              
+              <struts:url var="openingHourAddUrl" action="openingHourAddForm" namespace="/location">
+                <struts:param name="locationUuid" value="#myLocation" />
+              </struts:url>
+              <struts:a href="%{openingHourAddUrl}">
+                hinzufügen
+              </struts:a>
+
 
 
 
