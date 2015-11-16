@@ -73,7 +73,7 @@ public class IndexAction extends EmptyAction {
     }// Ende getPage()
 
     public List<Location> getList() {
-        return locationDaoLocal.findAll(0, locationDaoLocal.countAll());
+        return locationDaoLocal.findAllVisible(0, locationDaoLocal.countAllVisible());
     }
 
 }// Ende class
