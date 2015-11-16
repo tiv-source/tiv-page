@@ -99,7 +99,11 @@ public class JsonAction extends ActionSupport {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.bottomNavigation", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("bottomNavigationOrder")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.bottomNavigationOrder", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("special")) {
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("responsiveNavigation")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.responsiveNavigation", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("responsiveNavigationOrder")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.responsiveNavigationOrder", "asc");
+            }else if (getSidx() != null && getSidx().equalsIgnoreCase("special")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.special", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.visible", "asc");
@@ -130,6 +134,10 @@ public class JsonAction extends ActionSupport {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.bottomNavigation", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("bottomNavigationOrder")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.bottomNavigationOrder", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("responsiveNavigation")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.responsiveNavigation", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("responsiveNavigationOrder")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.responsiveNavigationOrder", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("special")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.special", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
