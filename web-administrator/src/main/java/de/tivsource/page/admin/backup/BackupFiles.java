@@ -34,12 +34,10 @@ public class BackupFiles {
 
         File folder = new File("/srv/www/htdocs/uploads/");
         File[] listOfFiles = folder.listFiles();
-        
+        LOGGER.debug("Anzahl der Dateien: " + listOfFiles.length);
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                /*
-                 * Add File to Zipfile
-                 */
+                LOGGER.debug("Füge die Datei " + listOfFiles[i].getName() + " zur Zip-Datei hinzu.");
                 addData(listOfFiles[i], outZipFile, listOfFiles[i].getName());
             } 
         }
@@ -66,7 +64,6 @@ public class BackupFiles {
 
         zipOutputStream.closeEntry();
         fileInputStream.close();
-        file.delete();
     }
 
     
