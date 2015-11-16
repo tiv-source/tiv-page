@@ -57,7 +57,7 @@ public class EditAction extends EmptyAction {
     	if(event != null) {
     		LOGGER.info("UUID des Events: " + event.getUuid());
     		Event dbEvent = eventDaoLocal.findByUuid(event.getUuid());
-    		dbEvent.setDate(event.getDate());
+    		dbEvent.setBeginning(event.getBeginning());
     		eventDaoLocal.merge(dbEvent);
             return SUCCESS;
     	}
