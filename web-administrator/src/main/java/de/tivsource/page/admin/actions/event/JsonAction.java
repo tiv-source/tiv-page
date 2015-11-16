@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
@@ -46,12 +45,12 @@ public class JsonAction extends ActionSupport {
 	private String sidx;
 
 	@Override
-    @Actions({
-        @Action(
-        		value = "table", 
-        		results = { @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.users"}) }
+    @Action(
+            value = "table",
+            results = {
+                @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.reservations, gridModel.*.events"})
+            }
         )
-    })
 	public String execute() {
 		return SUCCESS;
 	}
