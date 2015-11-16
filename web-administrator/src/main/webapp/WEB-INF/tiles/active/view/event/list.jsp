@@ -12,6 +12,15 @@ function formatEditLink(cellvalue, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatTrueFalse(cellvalue, options, rowObject) {
+  if (cellvalue) {
+    return "<img src='/admin/icons/16x16/accept.png'/>";  
+  } else {
+    return "<img src='/admin/icons/16x16/delete.png'/>";
+  }
+}
+</script>
 
       <!--  Start MAIN -->
       <div class="main">
@@ -38,18 +47,6 @@ function formatEditLink(cellvalue, options, rowObject) {
           viewrecords="true"
         >
     	  <sjg:gridColumn 
-    	    name="uuid" 
-    	    index="uuid" 
-    	    title="UUID" 
-    	    width="280" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="descriptionMap.DE.name" 
     	    title="Name" 
@@ -62,6 +59,67 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    align="left" 
     	  />
     	  <sjg:gridColumn 
+    	    name="location.descriptionMap.DE.name" 
+    	    index="location.descriptionMap.DE.name" 
+    	    title="Location" 
+    	    width="280" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="beginning" 
+    	    index="beginning" 
+    	    title="Beginning" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="ending" 
+    	    index="ending" 
+    	    title="Ending" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="deadline" 
+    	    index="deadline" 
+    	    title="Deadline" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="reservation" 
+    	    index="reservation" 
+    	    title="Reservation" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	    formatter="formatTrueFalse"
+    	  />
+    	  <sjg:gridColumn 
     	    name="visible" 
     	    index="visible" 
     	    title="Visible" 
@@ -72,18 +130,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="created" 
-    	    index="created" 
-    	    title="Created" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="uuid" 
