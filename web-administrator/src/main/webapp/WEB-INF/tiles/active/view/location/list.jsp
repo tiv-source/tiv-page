@@ -48,18 +48,6 @@ function formatTrueFalse(cellvalue, options, rowObject) {
           viewrecords="true"
         >
     	  <sjg:gridColumn 
-    	    name="uuid" 
-    	    index="uuid" 
-    	    title="UUID" 
-    	    width="280" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="descriptionMap.DE.name" 
     	    title="Name" 
@@ -70,6 +58,18 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="address.zip" 
+    	    index="address.zip" 
+    	    title="PLZ" 
+    	    width="210" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="right" 
     	  />
     	  <sjg:gridColumn 
     	    name="address.city" 
@@ -106,6 +106,19 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="event" 
+    	    index="event" 
+    	    title="Event" 
+    	    width="70" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="visible" 
