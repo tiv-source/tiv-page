@@ -49,6 +49,17 @@ public interface EventDaoLocal {
     public List<Event> findAll(Integer start, Integer max, String field, String order);
 
     /**
+     * Methode zum laden einer Liste von Event Objekten die zu einer bestimmten
+     * Location gehören.
+     * 
+     * @param uuid - Uuid der Location
+     * @param start - Startwert der Liste
+     * @param max - Maximal Anzahl an Objekten in der Liste
+     * @return List<Event> - Liste mit den Event Objekten
+     */
+    public List<Event> findAll(String uuid, Integer start, Integer max);
+
+    /**
      * Methode die die Anzahl aller Event Objekte die sich in der Datenbank
      * befinden zurück liefert.
      *
