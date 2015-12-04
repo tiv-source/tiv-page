@@ -72,7 +72,7 @@ public class EventDao implements EventDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Event e");
+        Query query = entityManager.createQuery("from Event e order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();
@@ -89,6 +89,16 @@ public class EventDao implements EventDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        return query.getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Event> findAll(String uuid, Integer start, Integer max) {
+        Query query = entityManager.createQuery("from Event e where e.location.uuid = ?1 and e.visible = 'Y' order by e.beginning asc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", uuid);
         return query.getResultList();
     }
 
