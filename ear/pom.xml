@@ -103,7 +103,6 @@
 
 
 
-
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
@@ -111,11 +110,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.4</version>
-		</dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
