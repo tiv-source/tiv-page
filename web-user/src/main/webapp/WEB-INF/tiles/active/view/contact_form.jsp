@@ -1,6 +1,8 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
+    <struts:property escape="false" value="page.getContent(getText('language'))" />
+
     <struts:form
           cssClass="form" 
           action="sent" 
@@ -10,11 +12,11 @@
           tooltipDelay="500"
           theme="css_xhtml"
     >
-      <struts:textfield key="contactForm.firstname"  />
-      <struts:textfield key="contactForm.lastname"  />
-      <struts:textfield key="contactForm.mail"  />
-      <struts:textfield key="contactForm.telephone" />
-      <struts:textfield key="contactForm.fax" />
-      <struts:textarea key="contactForm.message" />
+      <struts:textfield key="message.firstname"  />
+      <struts:textfield key="message.lastname"  />
+      <struts:textfield key="message.mail"  />
+      <struts:textfield key="message.telephone" />
+      <struts:textfield key="message.fax" />
+      <struts:textarea key="message.content" />
       <struts:submit/>
     </struts:form>
