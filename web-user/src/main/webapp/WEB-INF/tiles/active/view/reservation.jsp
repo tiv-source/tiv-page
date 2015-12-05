@@ -4,7 +4,9 @@
 
     <struts:property escape="false" value="page.getContent(getText('language'))" />
     
-    <struts:iterator value="list" status="locationStatus">
+  <struts:iterator value="list" status="locationStatus">
+    <struts:url var="locationLink" action="index" namespace="/reservation/%{uuid}"/>
+    <struts:a href="%{locationLink}">
       <div class="locations <struts:if test="#locationStatus.odd == true ">color1</struts:if><struts:else>color2</struts:else>">
         <div class="location">
           <h4><struts:property value="getName(getText('language'))" /></h4>
@@ -66,7 +68,8 @@
         </div>
         <hr>
       </div>
-    </struts:iterator>
+    </struts:a>
+  </struts:iterator>
 
 
 
