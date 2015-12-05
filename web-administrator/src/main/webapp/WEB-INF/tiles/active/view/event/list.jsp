@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/event/editForm.html?event="+ cellvalue +"'>edit</a> | <a href='/admin/event/deleteForm.html?event="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/event/editForm.html?event="+ cellvalue +"'>edit</a> | <a href='/admin/event/copyForm.html?event="+ cellvalue +"'>copy</a> | <a href='/admin/event/deleteForm.html?event="+ cellvalue +"'>delete</a>";
 }
 </script>
 
@@ -19,6 +19,14 @@ function formatTrueFalse(cellvalue, options, rowObject) {
   } else {
     return "<img src='/admin/icons/16x16/delete.png'/>";
   }
+}
+</script>
+
+<script type="text/javascript">
+function formatIsoDate(celldate, options, rowObject) {
+  var newDate = new Date();
+  newDate.setTime(Date.parse(celldate));
+  return newDate.toLocaleFormat('%H:%M - %d.%m.%Y');
 }
 </script>
 
@@ -71,6 +79,18 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    align="left" 
     	  />
     	  <sjg:gridColumn 
+    	    name="price" 
+    	    index="price" 
+    	    title="Preis" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	  />
+    	  <sjg:gridColumn 
     	    name="beginning" 
     	    index="beginning" 
     	    title="Beginning" 
@@ -81,6 +101,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatIsoDate"
     	  />
     	  <sjg:gridColumn 
     	    name="ending" 
@@ -92,7 +113,8 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    hidden="false" 
     	    search="false" 
     	    resizable="false" 
-    	    align="center" 
+    	    align="center"
+    	    formatter="formatIsoDate" 
     	  />
     	  <sjg:gridColumn 
     	    name="deadline" 
@@ -104,7 +126,8 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    hidden="false" 
     	    search="false" 
     	    resizable="false" 
-    	    align="center" 
+    	    align="center"
+    	    formatter="formatIsoDate" 
     	  />
     	  <sjg:gridColumn 
     	    name="reservation" 
@@ -136,7 +159,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="uuid" 
     	    index="editbar" 
     	    title="Actions" 
-    	    width="70" 
+    	    width="100" 
     	    editable="false" 
     	    sortable="false" 
     	    hidden="false" 
