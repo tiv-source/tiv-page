@@ -66,12 +66,14 @@ ul li a {
 img {
 	height:auto;
 	width: 100%;
+	border:none;
 }
 
 a {
 	display:block;
 	text-decoration:none;
 	outline: none;
+	border:none;
 }
 
 hr {
@@ -133,6 +135,11 @@ ul#flags{
 	float: left;
 	height:40px;
 	padding-left:5px;
+}
+
+ul#flags img {
+	height: 14px;
+	width: 16px;
 }
 
 ul#flags li {
@@ -262,6 +269,7 @@ div#mobile_navi label img {
 	position: fixed;
 	top: 10px;
 	opacity: 0;
+	display: none;
 }
 
 #checkbox:checked + ul.mobile_sub {
