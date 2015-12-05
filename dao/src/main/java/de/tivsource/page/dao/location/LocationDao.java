@@ -60,6 +60,13 @@ public class LocationDao implements LocationDaoLocal {
         entityManager.remove(entityManager.find(Location.class, location.getUuid()));
     }
 
+    @Override
+    public Boolean isEventLocation(String uuid) {
+        Query query = entityManager.createQuery("select l from Location l where l.uuid = ?1 and l.visible = 'Y' and l.event = 'Y' order by l.uuid asc");
+        query.setParameter("1", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.location.LocationDaoLocal#findByUuid(java.lang.String)
      */
