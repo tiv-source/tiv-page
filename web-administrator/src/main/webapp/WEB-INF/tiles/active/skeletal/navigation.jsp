@@ -36,19 +36,19 @@
                 <li>
                   <struts:a href="%{pageUrl}" title="Liste mit den Seiten" cssClass="navItem navPage">
                     <span class="navIcon page" style="background-image: url(/admin/buttons/tiv_page_button_page.png);">&nbsp;</span>
-                    <span>Page</span>
+                    <span><struts:text name="navigation.pages"/></span>
                   </struts:a>
                 </li>
                 <li>
                   <struts:a href="%{locationUrl}" title="Liste mit den Locations" cssClass="navItem navLocation">
-                    <span class="navIcon location" style="background-image: url(/admin/buttons/tiv_page_button_page.png);">&nbsp;</span>
-                    <span>Location</span>
+                    <span class="navIcon location" style="background-image: url(/admin/buttons/tiv_page_button_location.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.locations"/></span>
                   </struts:a>
                 </li>
                 <li>
                   <struts:a href="%{eventUrl}" title="Liste mit den Events" cssClass="navItem navEvent">
-                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_page.png);">&nbsp;</span>
-                    <span>Event</span>
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_event.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.events"/></span>
                   </struts:a>
                 </li>
               </ul>
