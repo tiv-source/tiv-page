@@ -233,7 +233,7 @@ input.input.submit.small_green_button
 button.small_red_button,
 a.small_red_button,
 input.input.submit.small_red_button{
-	width: 35px;
+	width: 66px;
 	line-height: 1.4;
 	height: 21px;
     background-image:url(/admin/images/buttonSmallBackRed.png);
