@@ -1,6 +1,7 @@
 package de.tivsource.page.admin.actions.event;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -15,6 +16,7 @@ import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
+import de.tivsource.page.entity.location.Location;
 
 /**
  * 
@@ -33,11 +35,11 @@ public class AddAction extends EmptyAction {
      */
     private static final Logger LOGGER = Logger.getLogger(AddAction.class);
 
-    @InjectEJB(name="LocationDao")
-    private LocationDaoLocal locationDaoLocal;
-
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
+
+    @InjectEJB(name="LocationDao")
+    private LocationDaoLocal locationDaoLocal;
 
     private Event event;
 
@@ -94,5 +96,9 @@ public class AddAction extends EmptyAction {
     	
     	
     }// Ende execute()
+
+    public List<Location> getLocationList() {
+        return locationDaoLocal.findAllEventLocation();
+    }
 
 }// Ende class
