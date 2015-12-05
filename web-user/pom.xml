@@ -76,7 +76,6 @@
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-config-browser-plugin</artifactId>
 			<version>${struts2.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -153,6 +152,7 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
+
 
 
 
