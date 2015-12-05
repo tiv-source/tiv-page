@@ -34,6 +34,8 @@ public class ContactAction extends EmptyAction {
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
+    private Page page;
+
     @Override
     @Actions({
         @Action(
@@ -50,7 +52,9 @@ public class ContactAction extends EmptyAction {
     	// Hole Action Locale
     	this.getLanguageFromActionContext();
 
-    	boolean contactPageEnabled = propertyDaoLocal.findByKey("contact.page.enabled").getValue().equals("true") ? true : false;
+    	this.page = pageDaoLocal.findByTechnical("contact");
+    	
+    	Boolean contactPageEnabled = propertyDaoLocal.findByKey("contact.page.enabled").getValue().equals("true") ? true : false;
 
     	if(contactPageEnabled) {
             LOGGER.info("Pfad zur temp.xml Klasse: " + this.getClass().getClassLoader().getResource("/temp.xml"));
@@ -61,8 +65,9 @@ public class ContactAction extends EmptyAction {
 
     }// Ende execute()
 
+    @Override
     public Page getPage() {
-    	return pageDaoLocal.findByTechnical("contact");
+    	return this.page;
     }// Ende getPage()
 
 }// Ende class
