@@ -41,6 +41,8 @@ public class FormAction extends EmptyAction {
 
     private String uncheckEvent;
 
+    private String lang;
+
     public Event getEvent() {
         return event;
     }
@@ -49,6 +51,14 @@ public class FormAction extends EmptyAction {
         this.uncheckEvent = uncheckEvent;
     }
 
+	public String getLang() {
+	    return lang;
+	}
+
+	public void setLang(String lang) {
+	    this.lang = lang;
+	}
+	
 	@Override
     @Actions({
         @Action(
@@ -58,6 +68,10 @@ public class FormAction extends EmptyAction {
         @Action(
         		value = "addForm", 
         		results = { @Result(name = "success", type="tiles", location = "eventAddForm") }
+        ),
+        @Action(
+                value = "copyForm", 
+                results = { @Result(name = "success", type="tiles", location = "eventCopyForm") }
         ),
         @Action(
         		value = "deleteForm", 
