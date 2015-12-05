@@ -22,16 +22,25 @@ function formatTrueFalse(cellvalue, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatIsoDate(celldate, options, rowObject) {
+  var newDate = new Date();
+  newDate.setTime(Date.parse(celldate));
+  return newDate.toLocaleFormat('%H:%M:%S - %d.%m.%Y');
+}
+</script>
 
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{pageAddUrl}">Add Page</struts:a>
+          <struts:a href="%{pageAddUrl}">
+            <struts:text name="page.add"/>
+          </struts:a>
         </div>
 
         <sjg:grid
           id="gridedittable"
-          caption="Page"
+          caption="%{getText('pages')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -51,7 +60,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="descriptionMap.DE.name" 
     	    index="descriptionMap.DE.name" 
     	    title="Name" 
-    	    width="280" 
+    	    width="310" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -63,7 +72,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="technical" 
     	    index="technical" 
     	    title="Technical" 
-    	    width="160" 
+    	    width="210" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -150,7 +159,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="responsiveNavigation" 
     	    index="responsiveNavigation" 
     	    title="Responsive" 
-    	    width="70" 
+    	    width="90" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -208,6 +217,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatIsoDate"
     	  />
     	  <sjg:gridColumn 
     	    name="uuid" 
