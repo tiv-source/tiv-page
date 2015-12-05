@@ -52,6 +52,10 @@
 		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/event/edit_form.jsp" />
 	</definition>
 
+	<definition name="eventCopyForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/event/copy_form.jsp" />
+	</definition>
+
 	<definition name="eventDeleteForm" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/delete_form.jsp" />
 	</definition>
