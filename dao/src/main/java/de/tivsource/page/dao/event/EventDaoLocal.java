@@ -34,6 +34,8 @@ public interface EventDaoLocal {
      */
     public void delete(Event event);
 
+    public Boolean isEvent(String uuid);
+
     public Event findByUuid(String uuid);
 
     /**
