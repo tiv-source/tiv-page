@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -12,11 +14,13 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.message.Message;
@@ -43,6 +47,9 @@ public class SentAction extends EmptyAction {
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
+    @InjectEJB(name="MessageDao")
+    private MessageDaoLocal messageDaoLocal;
+    
 	private Message message;
 
 	public Message getMessage() {
@@ -69,7 +76,14 @@ public class SentAction extends EmptyAction {
     	this.getLanguageFromActionContext();
     	// Sende Mail
     	sendMail();
-
+    	
+    	// Speichere Message Objekt
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+        message.setCreated(new Date());
+        message.setIp(remoteAddress);
+        message.setUuid(UUID.randomUUID().toString());
+        messageDaoLocal.merge(message);
+        
 		return SUCCESS;
 	}
 
