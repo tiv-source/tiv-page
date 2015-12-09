@@ -165,4 +165,11 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/files/delete_form.jsp" />
 	</definition>
 
+
+
+    <!-- Templates für Message Klasse -->
+	<definition name="message" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/message/list.jsp" />
+	</definition>
+
 </tiles-definitions>
