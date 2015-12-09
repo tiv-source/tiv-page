@@ -7,6 +7,7 @@
 <struts:url var="pageUrl"              action="index" namespace="/page" />
 <struts:url var="locationUrl"          action="index" namespace="/location" />
 <struts:url var="eventUrl"             action="index" namespace="/event" />
+<struts:url var="messageUrl"           action="index" namespace="/message" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
 <struts:url var="roleUrl"              action="index" namespace="/role" />
@@ -49,6 +50,12 @@
                   <struts:a href="%{eventUrl}" title="Liste mit den Events" cssClass="navItem navEvent">
                     <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_event.png);">&nbsp;</span>
                     <span><struts:text name="navigation.events"/></span>
+                  </struts:a>
+                </li>
+                <li>
+                  <struts:a href="%{messageUrl}" title="Liste mit den Nachrichten" cssClass="navItem navEvent">
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_event.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.messages"/></span>
                   </struts:a>
                 </li>
               </ul>
