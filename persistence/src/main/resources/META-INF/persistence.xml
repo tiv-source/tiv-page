@@ -15,6 +15,7 @@
 		<class>de.tivsource.page.entity.event.Event</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
+		<class>de.tivsource.page.entity.message.Message</class>
 		<class>de.tivsource.page.entity.namingitem.Description</class>
 		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
 		<class>de.tivsource.page.entity.news.News</class>
