@@ -26,12 +26,14 @@ function formatTrueFalse(cellvalue, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{locationAddUrl}">Add Location</struts:a>
+          <struts:a href="%{locationAddUrl}">
+            <struts:text name="location.add"/>
+          </struts:a>
         </div>
 
         <sjg:grid
           id="gridedittable"
-          caption="Location"
+          caption="%{getText('locations')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -51,7 +53,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="descriptionMap.DE.name" 
     	    index="descriptionMap.DE.name" 
     	    title="Name" 
-    	    width="280" 
+    	    width="320" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 

@@ -7,7 +7,7 @@
       <div class="main">
         <div class="sub_menu"></div>
         <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2>Add Location</h2>
+          <h2><struts:text name="location.add"/></h2>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -173,14 +173,18 @@
                   id="submit_confirm__Save" 
                   name="submit" 
                   value="save" 
-                  class="save small_green_button button">Save</button>
+                  class="save small_green_button button">
+                    <struts:text name="form.save"/>
+              </button>
 
               <struts:a 
                   id="submit_deny__Close" 
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/location">Close</struts:a>
+                  namespace="/location">
+                    <struts:text name="form.abort"/>
+              </struts:a>
             </div>
           </struts:form>
 
