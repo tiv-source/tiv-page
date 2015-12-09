@@ -35,6 +35,12 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation_location.jsp" />
 	</definition>
 
+	<definition name="event" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event.jsp" />
+	</definition>
 
+	<definition name="eventDeadline" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
+	</definition>
 
 </tiles-definitions>
