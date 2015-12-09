@@ -8,8 +8,6 @@
 	padding:0;
 }
 
-
-
 body {
 	font-family:Georgia, Arial, futura, Helvetica, sans-serif;
 	font-size:15px;
@@ -47,13 +45,12 @@ h6 {
 	font-size: 15px;
 }
 
-
 p {
 	padding: 3px 15px;
 	font-style: normal;
 	text-align: left;	
+	color: #0a0a0a;
 }
-
 
 ul {
 	list-style:none;
@@ -318,6 +315,19 @@ ul.mobile_sub li.activlink2 {
 	background-color:#333333;
 }
 
+.distance_bottom {
+	margin-bottom: 20px;
+}
+
+
+@media only screen and (max-width: 1500px) {
+	
+	#container {
+		width:80%;
+	}
+	
+}
+
 
 @media only screen and (max-width: 1200px) {
 	
@@ -382,6 +392,10 @@ ul.mobile_sub li.activlink2 {
 
 @media only screen and (max-width: 320px) {
 	
+	#container {
+		width:300px;
+	}
+	
 	table img {
 		height:auto;
 		width:100px;
@@ -389,6 +403,7 @@ ul.mobile_sub li.activlink2 {
 
 }
 
+}
 
 
 
