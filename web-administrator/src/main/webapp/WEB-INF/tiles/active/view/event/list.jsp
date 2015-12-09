@@ -33,7 +33,9 @@ function formatIsoDate(celldate, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{eventAddUrl}">Add Event</struts:a>
+          <struts:a href="%{eventAddUrl}">
+            <struts:text name="event.add"/>
+          </struts:a>
         </div>
 
         <sjg:grid
