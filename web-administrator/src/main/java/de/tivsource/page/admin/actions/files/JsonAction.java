@@ -76,8 +76,11 @@ public class JsonAction extends ActionSupport {
         
         
         setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
+        
+        Integer from = page*rows-rows;
+        Integer to =  page * rows < record ? page*rows : record;
 
-        setGridModel(fileList);
+        setGridModel(fileList.subList(from , to));
 
         LOGGER.info("Rows:" + rows);
         LOGGER.info("Page:" + page);
