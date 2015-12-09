@@ -58,6 +58,13 @@ public class EventDao implements EventDaoLocal {
         entityManager.remove(entityManager.find(Event.class, event.getUuid()));
     }
 
+    @Override
+    public Boolean isEvent(String uuid) {
+        Query query = entityManager.createQuery("select e from Event e where e.uuid = ?1 and e.visible = 'Y' and e.reservation = 'Y' order by e.uuid asc");
+        query.setParameter("1", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.event.EventDaoLocal#findByUuid(java.lang.String)
      */
