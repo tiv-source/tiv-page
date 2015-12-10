@@ -72,7 +72,7 @@ public class RestoreEvent {
         // uuid|
         // uuid(de)|name(de)|description(de)|keywords(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|
-        // visible|created|modified|modifiedBy|ip|price|beginning|ending|deadline|location|reservation|
+        // visible|created|modified|modifiedBy|ip|price|beginning|ending|deadline|location|reservation|picture|
 
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
@@ -107,6 +107,8 @@ public class RestoreEvent {
         event.setLocation(location);
         
         event.setReservation(items[19].equals("true") ? true : false);
+        event.setPicture(items[20]);
+        
 
         return event;
     }// Ende convert(String line)

@@ -21,7 +21,14 @@
           >
 
             <fieldset class="fieldset">
-            
+
+              <div class="field">
+                <struts:file key="picture" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="disabledValue" />
+                </struts:file>
+              </div>
+
               <div class="field">
                 <sj:datepicker
                     key="event.beginning"
