@@ -18,9 +18,17 @@
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
+                  enctype="multipart/form-data"
           >
 
             <fieldset class="fieldset">
+
+              <div class="field">
+                <struts:file key="picture" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="disabledValue" />
+                </struts:file>
+              </div>
 
               <div class="field">
                 <struts:checkbox

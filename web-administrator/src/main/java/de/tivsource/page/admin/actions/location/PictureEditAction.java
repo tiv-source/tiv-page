@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
@@ -17,7 +16,6 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
 
 /**
@@ -25,17 +23,17 @@ import de.tivsource.page.entity.location.Location;
  * @author Marc Michele
  *
  */
-public class AddAction extends EmptyAction {
+public class PictureEditAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
 	 */
-    private static final long serialVersionUID = 7586573485098206790L;
+    private static final long serialVersionUID = 840057440703403778L;
 
     /**
 	 * Statischer Logger der Klasse.
 	 */
-    private static final Logger LOGGER = Logger.getLogger(AddAction.class);
+    private static final Logger LOGGER = Logger.getLogger(PictureEditAction.class);
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
@@ -44,7 +42,7 @@ public class AddAction extends EmptyAction {
 
     private File picture;
 
-	public Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
@@ -59,11 +57,11 @@ public class AddAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "add", 
+        		value = "picture", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "locationAddForm"),
-        				@Result(name = "error", type="tiles", location = "locationAddError")
+        				@Result(name = "input",   type = "tiles", location = "locationPictureForm"),
+        				@Result(name = "error",   type = "tiles", location = "pictureEditError")
         				}
         )
     })
@@ -74,33 +72,28 @@ public class AddAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(location != null) {
-    	    location.setUuid(UUID.randomUUID().toString());
-    	    location.setModified(new Date());
-    	    location.setCreated(new Date());
-    	    location.setModifiedBy(remoteUser);
-    	    location.setIp(remoteAddress);
-    	    
-    	    location.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
-    	    location.getDescriptionMap().get(Language.DE).setNamingItem(location);
-    	    location.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
-            
-            location.getDescriptionMap().get(Language.EN).setDescription(location.getDescriptionMap().get(Language.DE).getDescription());
-            location.getDescriptionMap().get(Language.EN).setKeywords(location.getDescriptionMap().get(Language.DE).getKeywords());
-            location.getDescriptionMap().get(Language.EN).setLanguage(Language.EN);
-            location.getDescriptionMap().get(Language.EN).setName(location.getDescriptionMap().get(Language.DE).getName());
-            location.getDescriptionMap().get(Language.EN).setNamingItem(location);
-            location.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
+    		LOGGER.info(location.getUuid());
+    		Location dbLocation = locationDaoLocal.findByUuid(location.getUuid());
 
+    		dbLocation.setModified(new Date());
+    		dbLocation.setModifiedBy(remoteUser);
+    		dbLocation.setIp(remoteAddress);
 
+    		
+    		
             // Pfad in dem die Bild Datei gespeichert wird.
             String uploadPath = "/srv/www/htdocs/uploads/";
 
+            // Lösche das alte Bild
+            File oldPicture = new File(uploadPath + dbLocation.getPicture());
+            if (oldPicture.exists()) {
+                oldPicture.delete();
+            }
+            
             // Name der Bild Datei die erstellt werden soll. 
             String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."
                 + picture.getName() + new Date() + "Noch ein bischen.")
                 + ".png";
-            
-            
 
             File fullPictureFileToCreate = new File(uploadPath, pictureSaveName);
             // Wenn die Datei noch nicht existiert wird Sie erstellt.
@@ -108,9 +101,11 @@ public class AddAction extends EmptyAction {
                 savePictureFile(picture, fullPictureFileToCreate);
             }
 
-            location.setPicture(pictureSaveName);
-            
-    		locationDaoLocal.merge(location);
+            dbLocation.setPicture(pictureSaveName);
+    		
+    		
+    		
+    		locationDaoLocal.merge(dbLocation);
             return SUCCESS;
     	}
     	else {
