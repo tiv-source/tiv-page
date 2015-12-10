@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/event/editForm.html?event="+ cellvalue +"'>edit</a> | <a href='/admin/event/copyForm.html?event="+ cellvalue +"'>copy</a> | <a href='/admin/event/deleteForm.html?event="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/event/editForm.html?event="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/event/copyForm.html?event="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/copy.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/event/deleteForm.html?event="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/cross.png'/></a>";
 }
 </script>
 
@@ -160,7 +160,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="uuid" 
     	    index="editbar" 
-    	    title="Actions" 
+    	    title="" 
     	    width="100" 
     	    editable="false" 
     	    sortable="false" 
