@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
@@ -56,6 +57,7 @@ public class Reservation {
     @Column(name="reservation_time")
     private Date time;
 
+    @Lob
     private String wishes;
 
     @ManyToOne(fetch = FetchType.EAGER)
