@@ -46,6 +46,8 @@ public class Event extends NamingItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean reservation;
 
+    private String picture;
+    
     @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Reservation> reservations;
 
@@ -95,6 +97,14 @@ public class Event extends NamingItem {
 
     public void setReservation(Boolean reservation) {
         this.reservation = reservation;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public List<Reservation> getReservations() {
