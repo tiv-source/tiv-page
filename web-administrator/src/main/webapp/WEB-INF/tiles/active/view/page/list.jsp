@@ -59,7 +59,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="descriptionMap.DE.name" 
-    	    title="Name" 
+    	    title="%{getText('descriptionMap.DE.name')}" 
     	    width="310" 
     	    editable="false" 
     	    sortable="true" 
@@ -71,8 +71,8 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="technical" 
     	    index="technical" 
-    	    title="Technical" 
-    	    width="210" 
+    	    title="%{getText('technical')}" 
+    	    width="220" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -83,7 +83,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="topNavigation" 
     	    index="topNavigation" 
-    	    title="Top" 
+    	    title="%{getText('topNavigation')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -96,7 +96,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="topNavigationOrder" 
     	    index="topNavigationOrder" 
-    	    title="TOrder" 
+    	    title="%{getText('topNavigationOrder')}" 
     	    width="80" 
     	    editable="false" 
     	    sortable="true" 
@@ -108,7 +108,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="navigation" 
     	    index="navigation" 
-    	    title="Normal" 
+    	    title="%{getText('navigation')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -121,7 +121,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="navigationOrder" 
     	    index="navigationOrder" 
-    	    title="NOrder" 
+    	    title="%{getText('navigationOrder')}" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
@@ -133,7 +133,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="bottomNavigation" 
     	    index="bottomNavigation" 
-    	    title="Bottom" 
+    	    title="%{getText('bottomNavigation')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -146,7 +146,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="bottomNavigationOrder" 
     	    index="bottomNavigationOrder" 
-    	    title="BOrder" 
+    	    title="%{getText('bottomNavigationOrder')}" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
@@ -158,7 +158,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="responsiveNavigation" 
     	    index="responsiveNavigation" 
-    	    title="Responsive" 
+    	    title="%{getText('responsiveNavigation')}" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
@@ -171,7 +171,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="responsiveNavigationOrder" 
     	    index="responsiveNavigationOrder" 
-    	    title="ROrder" 
+    	    title="%{getText('responsiveNavigationOrder')}" 
     	    width="90" 
     	    editable="false" 
     	    sortable="true" 
@@ -183,7 +183,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="special" 
     	    index="special" 
-    	    title="Special" 
+    	    title="%{getText('special')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -196,7 +196,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="visible" 
     	    index="visible" 
-    	    title="Visible" 
+    	    title="%{getText('visible')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -209,7 +209,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="created" 
     	    index="created" 
-    	    title="Created" 
+    	    title="%{getText('created')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
