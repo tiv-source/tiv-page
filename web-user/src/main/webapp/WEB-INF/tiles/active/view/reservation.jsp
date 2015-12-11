@@ -16,7 +16,7 @@
         </div>
         
         <div class="impression">
-          <img src="bilder/composition_15c.png" alt="Bild 1" title="Bild 1">
+          <img src="/uploads/<struts:property value="picture" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
         </div>
         <hr>
       </div>
