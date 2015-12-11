@@ -18,5 +18,6 @@
       <struts:textfield key="message.telephone" />
       <struts:textfield key="message.fax" />
       <struts:textarea key="message.content" />
-      <struts:submit/>
+      <struts:submit type="button" value="Absenden" />
+      <struts:reset type="button" value="Löschen" />
     </struts:form>
