@@ -5,15 +5,11 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Temporal;
 
 import org.hibernate.search.annotations.DocumentId;
-
-import de.tivsource.page.enumeration.GenderType;
 
 /**
  * 
