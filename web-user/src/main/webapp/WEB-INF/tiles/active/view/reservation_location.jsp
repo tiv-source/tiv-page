@@ -1,7 +1,10 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-    <struts:property escape="false" value="page.getContent(getText('language'))" />
+    <div>
+      <img alt="" src="/uploads/<struts:property value="location.picture" />" style="width: 100%;" />
+    </div>
+    <h1><struts:property value="location.getName(getText('language'))" /></h1>
 
     <struts:iterator value="events" status="eventsStatus">
       <struts:url var="eventLink" action="index" namespace="/event/%{uuid}"/>
