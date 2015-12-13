@@ -41,8 +41,8 @@ function formatEditLink(cellvalue, options, rowObject) {
           viewrecords="true"
         >
     	  <sjg:gridColumn
-    	      name="genderType"
-    	      index="genderType"
+    	      name="gender"
+    	      index="gender"
     	      title="Geschlecht"
     	      width="270"
     	      editable="false"
