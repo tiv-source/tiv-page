@@ -213,6 +213,8 @@ div textarea {
 }
 
 button {
+	clear: both;
+	float: left;
 	height:30px;
 	width: 210px;
 	margin-left:15px;
@@ -221,38 +223,118 @@ button {
 
 }
 
+form hr {
+	clear: both;
+	opacity: 0;
+}
+
+/*Contact*/
+#wwctrl_sent_message_gender {
+	margin-top:40px;
+	margin-left: 15px;
+	margin-bottom:40px;
+}
+
+#wwctrl_sent_message_gender label {
+	clear: both;
+	float: left;
+	height: 20px;
+	width: 40px;
+	margin-bottom: 10px;	
+	
+}
+
+#wwctrl_sent_message_gender input {
+	clear: both;
+	float: left;
+	height: 10px;
+	width: 10px;
+	margin-top: -32px;
+	margin-left:70px;
+}
+
+#wwlbl_sent_message_firstname {
+	padding-top: 20px;
+}
+
+.wwlbl {
+	clear: both;
+}
 
 /*Event*/
-
-#wwgrp_check_title-female{
+#wwctrl_reserve_reservation_gender {
 	margin-top:40px;
+	margin-left: 15px;
 	margin-bottom:40px;
 }
 
-#wwgrp_check_title-female input {
-	position: absolute;
-	margin-top: -6px;
-	margin-left: 70px;
+#wwctrl_reserve_reservation_gender label {
+	clear: both;
+	float: left;
+	height: 20px;
+	width: 40px;
+	margin-bottom: 10px;	
 }
 
-#wwgrp_check_title-male{
-	margin-bottom:40px;
-
+#wwctrl_reserve_reservation_gender input {
+	clear: both;
+	float: left;
+	height: 10px;
+	width: 10px;
+	margin-top: -32px;
+	margin-left:70px;
 }
 
-#wwgrp_check_title-male input {
-	position: absolute;
-	margin-top: -6px;
-	margin-left: 70px;
+#wwlbl_reserve_reservation_firstname {
+	padding-top: 20px;
 }
 
-.dates { 
+.wwlbl {
+	clear: both;
+}
+
+#wwctrl_reserve_reservation_quantity { 
 	padding-left: 15px;
 }
 
-.dates select { 
+#wwctrl_reserve_reservation_quantity select { 
 	height: 30px;
 	width: 70px;
+}
+
+#wwctrl_reserve_reservation_time { 
+	padding-left: 15px;
+}
+
+#wwctrl_reserve_reservation_time select { 
+	height: 30px;
+	width: 70px;
+}
+
+/*errormessage*/
+
+form div.wwerr {
+    height: 5px;
+    margin-left: 15px;
+    margin-top: 10px;
+	margin-bottom:15px;
+    width: 300px;
+    color: #ff0000;
+}
+
+#wwerr_sent_message_firstname .errorMessage {
+	clear: both;
+}
+
+/*event_end*/
+.event_end h6 {
+	height: 20px;
+	margin:15px auto;
+	padding: 10px auto;
+	font-size: 20px;
+	color: #ff0000;
+	border:5px solid #cdcdcd;
+	background-color: #dcdcdc;
 }
 
 /*colors*/
