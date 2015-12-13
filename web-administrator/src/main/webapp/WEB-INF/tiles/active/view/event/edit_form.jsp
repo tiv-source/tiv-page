@@ -25,7 +25,7 @@
             </struts:a>
           </div>
 
-          <div style="padding:0px; margin:5px; height:20px;">
+          <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{germanUrl}">
               <img src="https://admin.czastka.de/icon/flags/png/24x16/flags-germany.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
@@ -34,7 +34,7 @@
 
           <div style="padding:0px; margin:5px; height:24px;">
             <struts:a href="%{eventPictureUrl}">
-              <img src="/admin/icons/80x60_clock.png" style="float: left; width: 28px;"/> 
+              <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
             </struts:a>
           </div>
