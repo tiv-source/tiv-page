@@ -52,6 +52,8 @@ public class SentAction extends EmptyAction {
     
 	private Message message;
 
+	private Page page;
+
 	public Message getMessage() {
         return message;
     }
@@ -74,6 +76,7 @@ public class SentAction extends EmptyAction {
 
         // Hole Action Locale
     	this.getLanguageFromActionContext();
+
     	// Sende Mail
     	sendMail();
     	
@@ -89,11 +92,10 @@ public class SentAction extends EmptyAction {
 
     @Override
     public Page getPage() {
-        LOGGER.info("Action Errors: " + this.getFieldErrors().size());
-        if(this.getFieldErrors().size() > 0) {
-            return pageDaoLocal.findByTechnical("contact");
+        if(page == null) {
+            setUpPage();
         }
-        return pageDaoLocal.findByTechnical("sent");
+        return page;
     }// Ende getPage()
 
 	private void sendMail() {
@@ -124,6 +126,7 @@ public class SentAction extends EmptyAction {
             
             EmailSender sendIt = new EmailSender();
             String[] argu = {
+                    message.getGender() ? "Frau" : "Herr",
             		message.getFirstname(), 
             		message.getLastname(), 
             		message.getMail(), 
@@ -174,5 +177,14 @@ public class SentAction extends EmptyAction {
         
         return props;
     } // Ende getProperties()
+
+    private void setUpPage() {
+        LOGGER.info("Action Errors: " + this.getFieldErrors().size());
+        if(this.getFieldErrors().size() > 0) {
+            page = pageDaoLocal.findByTechnical("contact");
+        } else {
+            page = pageDaoLocal.findByTechnical("sent");
+        }
+    }
     
 }// Ende class
