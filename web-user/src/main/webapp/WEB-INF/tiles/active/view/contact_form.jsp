@@ -12,6 +12,7 @@
           tooltipDelay="500"
           theme="css_xhtml"
     >
+      <struts:radio     key="message.gender" list="#{true:'Frau',false:'Herr'}" />
       <struts:textfield key="message.firstname"  />
       <struts:textfield key="message.lastname"  />
       <struts:textfield key="message.mail"  />
