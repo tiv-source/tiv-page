@@ -14,7 +14,9 @@ import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
+import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
 
@@ -49,7 +51,13 @@ public class LocationAction extends EmptyAction {
 
     private List<Event> events;
 
+    private Location location;
+    
     private Page page;
+
+    public Location getLocation() {
+        return location;
+    }
 
     @Override
     @Actions({
@@ -74,6 +82,9 @@ public class LocationAction extends EmptyAction {
         locationUuid = locationUuid.replaceAll("/reservation/", "");
             
         LOGGER.info("LocationUuid: " + locationUuid);
+        
+        // Setze Daten in ein Page Objekt
+        setUpPage();
 
         
         /*
@@ -110,4 +121,11 @@ public class LocationAction extends EmptyAction {
         }
     }
 
+    private void setUpPage() {
+        location = locationDaoLocal.findByUuid(locationUuid);
+        page = new Page();
+        page.setTechnical(location.getName(Language.DE));
+        page.setDescriptionMap(location.getDescriptionMap());
+    }
+    
 }// Ende class
