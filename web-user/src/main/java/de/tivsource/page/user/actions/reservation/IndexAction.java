@@ -41,6 +41,8 @@ public class IndexAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
+    private Page page;
+
     @Override
     @Actions({
         @Action(
@@ -57,10 +59,11 @@ public class IndexAction extends EmptyAction {
     	// Hole Action Locale
     	this.getLanguageFromActionContext();
 
-    	boolean contactPageEnabled = propertyDaoLocal.findByKey("location.page.enabled").getValue().equals("true") ? true : false;
+    	page = pageDaoLocal.findByTechnical("reservation");
+
+    	boolean contactPageEnabled = propertyDaoLocal.findByKey("reservation.page.enabled").getValue().equals("true") ? true : false;
 
     	if(contactPageEnabled) {
-            LOGGER.info("Pfad zur temp.xml Klasse: " + this.getClass().getClassLoader().getResource("/temp.xml"));
             return SUCCESS;
     	} else {
     	    return ERROR;
@@ -69,7 +72,7 @@ public class IndexAction extends EmptyAction {
     }// Ende execute()
 
     public Page getPage() {
-    	return pageDaoLocal.findByTechnical("reservation");
+    	return page;
     }// Ende getPage()
 
     public List<Location> getList() {
