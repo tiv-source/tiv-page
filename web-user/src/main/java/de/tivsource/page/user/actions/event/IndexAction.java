@@ -1,6 +1,9 @@
 package de.tivsource.page.user.actions.event;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -13,6 +16,7 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -48,6 +52,44 @@ public class IndexAction extends EmptyAction {
     private Page page;
 
     @Override
+    public Page getPage() {
+        return page;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public List<Date> getTimes() {
+        List<Date> times = new ArrayList<Date>();
+
+        // Anfangs Punkt der Zeitreihe
+        Calendar calendarStart = Calendar.getInstance();
+        calendarStart.setTime(event.getBeginning());
+        times.add(calendarStart.getTime());
+                
+        // Endpunkt der Zeitreihe 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(event.getEnding());
+        calendar.add(Calendar.MINUTE, -30);
+        Date end = calendar.getTime();
+
+        // Datum mit dem gerechnet wird
+        Date time = event.getBeginning();
+        while (time.before(end)) {
+            Calendar calendarTime = Calendar.getInstance();
+            calendarTime.setTime(time);
+            calendarTime.add(Calendar.MINUTE, 15);
+            time = calendarTime.getTime();
+            times.add(time);
+        }
+        
+        
+
+        return times;
+    }
+    
+    @Override
     @Actions({
         @Action(value = "*/index", results = {
             @Result(name = "success", type = "tiles", location = "event"),
@@ -77,6 +119,8 @@ public class IndexAction extends EmptyAction {
         if (isValid(eventUuid) && eventDaoLocal.isEvent(eventUuid)) {
             LOGGER.info("gültige Event Uuid.");
             event = eventDaoLocal.findByUuid(eventUuid);
+            // Setze Daten in ein Page Objekt.
+            setUpPage();
             Date now = new Date();
             if(event.getDeadline().after(now)) {
                 return SUCCESS;
@@ -94,14 +138,7 @@ public class IndexAction extends EmptyAction {
          return ERROR;
     }// Ende execute()
 
-    @Override
-    public Page getPage() {
-        return page;
-    }
 
-    public Event getEvent() {
-        return event;
-    }
 
     private Boolean isValid(String input) {
         if (Pattern.matches("[abcdef0-9-]*", input)) {
@@ -111,4 +148,10 @@ public class IndexAction extends EmptyAction {
         }
     }
 
+    private void setUpPage() {
+        page = new Page();
+        page.setTechnical(event.getName(Language.DE));
+        page.setDescriptionMap(event.getDescriptionMap());
+    }
+    
 }// Ende class
