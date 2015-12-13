@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.dao.event;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -102,10 +103,11 @@ public class EventDao implements EventDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(String uuid, Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Event e where e.location.uuid = ?1 and e.visible = 'Y' order by e.beginning asc");
+        Query query = entityManager.createQuery("from Event e where e.location.uuid = ?1 and e.visible = 'Y' and e.beginning > ?2 order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("1", uuid);
+        query.setParameter("2", new Date());
         return query.getResultList();
     }
 
