@@ -2,6 +2,7 @@ package de.tivsource.page.entity.message;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,8 +36,9 @@ public class Message {
 	/**
 	 * Geschlecht des Kontaktes.
 	 */
-    @Enumerated(EnumType.STRING)
-	private GenderType genderType;
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean gender;
 
 	/**
 	 * Vorname des Kontakes.
@@ -73,15 +75,15 @@ public class Message {
         this.uuid = uuid;
     }
 
-    public GenderType getGenderType() {
-		return genderType;
-	}
+	public Boolean getGender() {
+        return gender;
+    }
 
-	public void setGenderType(GenderType genderType) {
-		this.genderType = genderType;
-	}
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
 
-	public String getFirstname() {
+    public String getFirstname() {
 		return firstname;
 	}
 
