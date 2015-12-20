@@ -19,12 +19,16 @@ import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.restore.RestoreEvent;
 import de.tivsource.page.restore.RestoreLocation;
+import de.tivsource.page.restore.RestoreMessage;
 import de.tivsource.page.restore.RestorePage;
 import de.tivsource.page.restore.RestoreProperty;
+import de.tivsource.page.restore.RestoreReservation;
 import de.tivsource.page.restore.RestoreRole;
 import de.tivsource.page.restore.RestoreUser;
 
@@ -50,13 +54,24 @@ public class RestoreZipFile {
     private LocationDaoLocal locationDaoLocal;
 
     private EventDaoLocal eventDaoLocal;
-    
+
+    private MessageDaoLocal messageDaoLocal;
+
+    private ReservationDaoLocal reservationDaoLocal;
+
     private Map<String, InputStream> streams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> pageStreams = new HashMap<String, InputStream>();
 
+    private Map<String, InputStream> messageStreams = new HashMap<String, InputStream>();
+
+    private Map<String, InputStream> reservationStreams = new HashMap<String, InputStream>();
+
     public RestoreZipFile(UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
-            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal, LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal) {
+            PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal,
+            LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal,
+            MessageDaoLocal messageDaoLocal,
+            ReservationDaoLocal reservationDaoLocal) {
         super();
         this.userDaoLocal = userDaoLocal;
         this.roleDaoLocal = roleDaoLocal;
@@ -64,6 +79,8 @@ public class RestoreZipFile {
         this.propertyDaoLocal = propertyDaoLocal;
         this.locationDaoLocal = locationDaoLocal;
         this.eventDaoLocal = eventDaoLocal;
+        this.messageDaoLocal = messageDaoLocal;
+        this.reservationDaoLocal = reservationDaoLocal;
     }
 
     public void restoreZip(File file) throws IOException {
@@ -78,6 +95,10 @@ public class RestoreZipFile {
             String fileName = zipEntry.getName();
             if(fileName.startsWith("page")) {
                 pageStreams.put(fileName, zipFile.getInputStream(zipEntry));
+            } else if(fileName.startsWith("message")) {
+                messageStreams.put(fileName, zipFile.getInputStream(zipEntry));
+            } else if(fileName.startsWith("reservation")) {
+                reservationStreams.put(fileName, zipFile.getInputStream(zipEntry));
             } else {
                 streams.put(fileName, zipFile.getInputStream(zipEntry));
             }
@@ -100,6 +121,12 @@ public class RestoreZipFile {
 
         // Stelle Event wieder her
         restoreEvent();
+
+        // Stelle Message wieder her
+        restoreMessage();
+
+        // Stelle Reservation wieder her
+        restoreReservation();
 
         // Schließe Datei
         zipFile.close();
@@ -146,4 +173,17 @@ public class RestoreZipFile {
         eventLocation.generate(streams.get("event.csv"));
     }
 
+    private void restoreMessage() {
+        LOGGER.info("restoreMessage() aufgerufen.");
+        RestoreMessage restoreMessage = new RestoreMessage(messageDaoLocal, messageStreams);
+        restoreMessage.generate();
+    }
+
+    private void restoreReservation() {
+        LOGGER.info("restoreReservation() aufgerufen.");
+        RestoreReservation restoreReservation = new RestoreReservation(reservationDaoLocal, eventDaoLocal, reservationStreams);
+        restoreReservation.generate();
+    }
+
+    
 }// Ende class
