@@ -18,8 +18,10 @@ import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 
 /**
  * @author Marc Michele
@@ -43,6 +45,10 @@ public class BackupZipFile {
     private static LocationDaoLocal locationDaoLocal;
 
     private static EventDaoLocal eventDaoLocal;
+
+    private static MessageDaoLocal messageDaoLocal;
+
+    private static ReservationDaoLocal reservationDaoLocal;
 
     private static byte[] buffer = new byte[1024];
 
@@ -68,6 +74,14 @@ public class BackupZipFile {
 
     public static void setEventDaoLocal(EventDaoLocal eventDaoLocal) {
         BackupZipFile.eventDaoLocal = eventDaoLocal;
+    }
+
+    public static void setMessageDaoLocal(MessageDaoLocal messageDaoLocal) {
+        BackupZipFile.messageDaoLocal = messageDaoLocal;
+    }
+
+    public static void setReservationDaoLocal(ReservationDaoLocal reservationDaoLocal) {
+        BackupZipFile.reservationDaoLocal = reservationDaoLocal;
     }
 
     public static File getZipFile() throws IOException {
@@ -113,6 +127,21 @@ public class BackupZipFile {
          */
         BackupEvent.setEventDaoLocal(eventDaoLocal);;
         addData(BackupEvent.getBackupFile(), outZipFile, "event.csv");
+
+        /*
+         * Backup Message
+         */
+        BackupMessage.setMessageDaoLocal(messageDaoLocal);
+        BackupMessage backupMessage = new BackupMessage();
+        addMultiData(backupMessage.getBackupFiles(), outZipFile);
+
+        /*
+         * Backup Reservation
+         */
+        BackupReservation.setReservationDaoLocal(reservationDaoLocal);
+        BackupReservation backupReservation = new BackupReservation();
+        addMultiData(backupReservation.getBackupFiles(), outZipFile);
+
 
         // Schließe die Zip-Datei.
         outZipFile.close();
