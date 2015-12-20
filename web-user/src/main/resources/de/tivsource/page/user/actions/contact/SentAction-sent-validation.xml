@@ -3,15 +3,33 @@
         "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 
 <validators>
+  <field name="message.gender">
+    <field-validator type="required" short-circuit="true">
+      <message key="message.validation.gender"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[([t][r][u][e])|([f][a][l][s][e])]]></param>
+      <message key="message.validation.gender.input" />
+    </field-validator>
+  </field>
+
   <field name="message.firstname">
     <field-validator type="requiredstring" short-circuit="true">
       <message key="message.validation.firstname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-Z\- ]*$</param>
+      <message key="message.validation.letter" />
     </field-validator>
   </field>
 
   <field name="message.lastname">
     <field-validator type="requiredstring" short-circuit="true">
       <message key="message.validation.lastname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-Z\- ]*$</param>
+      <message key="message.validation.letter" />
     </field-validator>
   </field>
 
