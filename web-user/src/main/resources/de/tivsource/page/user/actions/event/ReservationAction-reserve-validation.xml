@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+  <field name="reservation.gender">
+    <field-validator type="required" short-circuit="true">
+      <message key="reservation.validation.gender"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[([t][r][u][e])|([f][a][l][s][e])]]></param>
+      <message key="reservation.validation.gender.input" />
+    </field-validator>
+  </field>
+  
+  <field name="reservation.firstname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="reservation.validation.firstname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-Z\- ]*$</param>
+      <message key="message.validation.letter" />
+    </field-validator>
+  </field>
+
+  <field name="reservation.lastname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="reservation.validation.lastname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-Z\- ]*$</param>
+      <message key="message.validation.letter" />
+    </field-validator>
+  </field>
+
+  <field name="reservation.email">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="reservation.validation.email" />
+    </field-validator>
+    <field-validator type="email">
+      <message key="reservation.validation.email.valid" />
+    </field-validator>
+  </field>
+
+  <field name="reservation.wishes">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="reservation.validation.wishes" />
+    </field-validator>
+  </field>
+  
+  
+</validators>
