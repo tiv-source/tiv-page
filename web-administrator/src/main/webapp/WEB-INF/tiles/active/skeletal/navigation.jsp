@@ -54,7 +54,7 @@
                 </li>
                 <li>
                   <struts:a href="%{messageUrl}" title="Liste mit den Nachrichten" cssClass="navItem navEvent">
-                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_event.png);">&nbsp;</span>
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_message.png);">&nbsp;</span>
                     <span><struts:text name="navigation.messages"/></span>
                   </struts:a>
                 </li>
