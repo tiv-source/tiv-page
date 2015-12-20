@@ -213,7 +213,6 @@ div textarea {
 }
 
 button {
-	clear: both;
 	float: left;
 	height:30px;
 	width: 210px;
@@ -229,32 +228,24 @@ form hr {
 }
 
 /*Contact*/
-#wwctrl_sent_message_gender {
-	margin-top:40px;
-	margin-left: 15px;
-	margin-bottom:40px;
+#wwlbl_sent_message_gender {
+	height:30px;
+	margin-top:5px;
 }
 
-#wwctrl_sent_message_gender label {
-	clear: both;
-	float: left;
+#wwgrp_sent_message_gender label {
 	height: 20px;
 	width: 40px;
-	margin-bottom: 10px;	
 	
 }
 
-#wwctrl_sent_message_gender input {
-	clear: both;
-	float: left;
-	height: 10px;
-	width: 10px;
-	margin-top: -32px;
-	margin-left:70px;
+#wwgrp_sent_message_gender input {
+	height:10px;
+	width:10px;
+	margin-right:10px;
 }
 
 #wwlbl_sent_message_firstname {
-	padding-top: 20px;
 }
 
 .wwlbl {
@@ -263,30 +254,24 @@ form hr {
 
 /*Event*/
 #wwctrl_reserve_reservation_gender {
-	margin-top:40px;
-	margin-left: 15px;
-	margin-bottom:40px;
+	height:30px;
+	margin-top:5px;
+
 }
 
 #wwctrl_reserve_reservation_gender label {
-	clear: both;
-	float: left;
 	height: 20px;
 	width: 40px;
-	margin-bottom: 10px;	
 }
 
 #wwctrl_reserve_reservation_gender input {
-	clear: both;
-	float: left;
-	height: 10px;
-	width: 10px;
-	margin-top: -32px;
-	margin-left:70px;
+	height:10px;
+	width:10px;
+	margin-right:10px;
 }
 
 #wwlbl_reserve_reservation_firstname {
-	padding-top: 20px;
+
 }
 
 .wwlbl {
@@ -300,10 +285,12 @@ form hr {
 #wwctrl_reserve_reservation_quantity select { 
 	height: 30px;
 	width: 70px;
+	margin-bottom:5px;
 }
 
 #wwctrl_reserve_reservation_time { 
 	padding-left: 15px;
+	margin-bottom:25px;
 }
 
 #wwctrl_reserve_reservation_time select { 
@@ -620,6 +607,10 @@ form div.wwerr {
 		margin-right:35px;
 	}
 	
+	button {
+	width:180px;
+	}
+	
 }
 	
 
@@ -668,6 +659,10 @@ form div.wwerr {
 	div.contacts {
 		width:240px;
 	}
+	
+	button {
+	width:160px;
+	}
 }
 
 @media only screen and (max-width: 618px) {
@@ -691,6 +686,10 @@ form div.wwerr {
 	/*Contact*/
 	div textarea {
 		width:90%;
+	}
+	
+	button {
+	width:200px;
 	}
 }
 
@@ -726,6 +725,11 @@ form div.wwerr {
 	/*Contact*/	
 	form div.wwctrl input {
 		width:85%;
+	}
+	
+	button {
+		height:35px;
+		width:210px;
 	}
 }
 
