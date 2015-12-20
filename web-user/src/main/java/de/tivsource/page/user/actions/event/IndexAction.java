@@ -83,8 +83,6 @@ public class IndexAction extends EmptyAction {
             time = calendarTime.getTime();
             times.add(time);
         }
-        
-        
 
         return times;
     }
@@ -93,8 +91,8 @@ public class IndexAction extends EmptyAction {
     @Actions({
         @Action(value = "*/index", results = {
             @Result(name = "success", type = "tiles", location = "event"),
-            @Result(name = "input", type = "tiles", location = "eventDeadline"),
-            @Result(name = "error", type = "redirectAction", location = "index.html", params={"namespace", "/"}) 
+            @Result(name = "input",   type = "tiles", location = "eventDeadline"),
+            @Result(name = "error",   type = "redirectAction", location = "index.html", params={"namespace", "/"})
         })
     })
     public String execute() throws Exception {
