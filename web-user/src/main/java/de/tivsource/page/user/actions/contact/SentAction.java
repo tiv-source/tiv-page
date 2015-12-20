@@ -132,7 +132,8 @@ public class SentAction extends EmptyAction {
             		message.getMail(), 
             		message.getTelephone(),
             		message.getFax(),
-            		message.getContent()
+            		message.getContent(),
+            		message.getContent().replace("\n", "<br/>")
             		};
             sendIt.send("Zur Zeit nicht genutzt", (EmailTemplate)notification, argu, session);
 		} catch (AddressException e) {
