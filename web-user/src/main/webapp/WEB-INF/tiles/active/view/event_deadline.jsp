@@ -1,11 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-    
-
-		<h4>Die Deadline für ... ist abgelaufen</h4>    
-        <h4><struts:property value="event.getName(getText('language'))" /></h4>
-        <p><struts:property value="event.price" /></p>
-        <p><struts:property value="event.beginning" /></p>
-        <p><struts:property value="event.ending" /></p>
-        <p><struts:property value="event.deadline" /></p>
+    <div>
+      <img alt="" src="/uploads/<struts:property value="event.picture" />" style="width: 100%;" />
+    </div>
+    <h1><struts:property value="event.getName(getText('language'))" /> im <struts:property value="event.location.getName(getText('language'))" /></h1>
+    <p>Eine Online Reservierung ist für diesen Termin leider nicht mehr möglich.</p>
+    <p>Um dennoch einen Tisch zu reservieren rufen Sie bitte folgende Nummer an: <struts:property value="event.location.contactDetails.telephone" /></p>
