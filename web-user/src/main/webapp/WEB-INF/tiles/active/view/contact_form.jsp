@@ -12,13 +12,35 @@
           tooltipDelay="500"
           theme="css_xhtml"
     >
-      <struts:radio     key="message.gender" list="#{true:'Frau',false:'Herr'}" />
-      <struts:textfield key="message.firstname"  />
-      <struts:textfield key="message.lastname"  />
-      <struts:textfield key="message.mail"  />
-      <struts:textfield key="message.telephone" />
-      <struts:textfield key="message.fax" />
-      <struts:textarea key="message.content" />
+      <fieldset class="fieldset">
+        <div class="field">
+          <struts:radio     key="message.gender" list="#{true:'Frau',false:'Herr'}" />
+        </div>
+
+        <div class="field">        
+          <struts:textfield key="message.firstname"  />
+        </div>
+
+        <div class="field">
+          <struts:textfield key="message.lastname"  />
+        </div>
+
+        <div class="field">
+          <struts:textfield key="message.mail"  />
+        </div>
+
+        <div class="field">
+          <struts:textfield key="message.telephone" />
+        </div>
+
+        <div class="field">
+          <struts:textfield key="message.fax" />
+        </div>
+
+        <div class="field">
+          <struts:textarea key="message.content" />
+        </div>
+      </fieldset>
       <struts:submit type="button" value="Absenden" />
       <struts:reset type="button" value="Löschen" />
     </struts:form>
