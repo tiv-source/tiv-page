@@ -68,6 +68,11 @@ public class Reservation {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean confirmed;
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date created;
+
+    private String ip;
+
     public String getUuid() {
         return uuid;
     }
@@ -154,6 +159,22 @@ public class Reservation {
 
     public void setConfirmed(Boolean confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
 }// Ende class
