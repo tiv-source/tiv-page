@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
@@ -54,8 +55,7 @@ public class ReservationDao implements ReservationDaoLocal {
      */
     @Override
     public void delete(Reservation reservation) {
-        // TODO Auto-generated method stub
-
+        entityManager.remove(entityManager.find(Reservation.class, reservation.getUuid()));
     }
 
     /* (non-Javadoc)
@@ -63,27 +63,34 @@ public class ReservationDao implements ReservationDaoLocal {
      */
     @Override
     public Reservation findByUuid(String uuid) {
-        // TODO Auto-generated method stub
-        return null;
+        return entityManager.find(Reservation.class, uuid);
     }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<Reservation> findAll(Integer start, Integer max) {
-        // TODO Auto-generated method stub
-        return null;
+        Query query = entityManager.createQuery("from Reservation r");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
     }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<Reservation> findAll(Integer start, Integer max, String field,
             String order) {
-        // TODO Auto-generated method stub
-        return null;
+        String queryString = "select r from Reservation r order by ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
     }
 
     /* (non-Javadoc)
@@ -91,8 +98,8 @@ public class ReservationDao implements ReservationDaoLocal {
      */
     @Override
     public Integer countAll() {
-        // TODO Auto-generated method stub
-        return null;
+        Query query = entityManager.createQuery("Select Count(r) from Reservation r");
+        return Integer.parseInt(query.getSingleResult().toString());
     }
 
-}
+}// Ende class
