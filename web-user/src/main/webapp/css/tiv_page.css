@@ -42,6 +42,12 @@ div#features img.distance {
 	padding-left: 0px;
 }
 
+/*Impressum*/
+
+div #impressum img {
+	vertical-align: middle;
+}
+
 /*Locations*/
 div.locations {
 	margin-left: auto;
@@ -176,14 +182,15 @@ div.impression img {
 /*Contact und Event*/
 .formular {
 	padding-top: 15px;
-	background-color: #dcdcdc;
 }
 
 form {
 	position: relative;
 	min-height:800px;
 	margin-bottom: 40px;
-
+	padding-top: 15px;
+	background-color: #dcdcdc;
+	border:2px solid #cdcdcd;
 }
 
 form h6 {
@@ -191,6 +198,7 @@ form h6 {
 }
 
 form div.wwlbl {
+	clear: both;
 	height: 5px;
 	width: 300px;
 	margin-top: 10px;
@@ -231,6 +239,7 @@ form hr {
 #wwlbl_sent_message_gender {
 	height:30px;
 	margin-top:5px;
+	margin-bottom: -5px;
 }
 
 #wwgrp_sent_message_gender label {
@@ -248,9 +257,6 @@ form hr {
 #wwlbl_sent_message_firstname {
 }
 
-.wwlbl {
-	clear: both;
-}
 
 /*Event*/
 #wwctrl_reserve_reservation_gender {
@@ -268,14 +274,7 @@ form hr {
 	height:10px;
 	width:10px;
 	margin-right:10px;
-}
-
-#wwlbl_reserve_reservation_firstname {
-
-}
-
-.wwlbl {
-	clear: both;
+}margin-bottom: 100px;
 }
 
 #wwctrl_reserve_reservation_quantity { 
