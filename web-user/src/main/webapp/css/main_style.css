@@ -18,31 +18,43 @@ body {
 h1 {
 	clear: both;
 	padding:15px;
+	font-size: 36px;
+	font-weight: bold;
+	color:#1a1a1a;
 }
 
 h2 {
 	padding:10px 15px;
+	font-size: 30px;
+	font-weight: bold;
 }
 
 h3 {
 	padding:10px 15px;
+	font-size: 27px;
+	font-weight: bold;
 }
 
 h4 {
 	padding:10px 15px;
 	font-size: 20px;
-	color: #343333;
+	font-size: 23px;
+	font-weight: bold;
+	color: #333333;
 }
 
 h5 {
 	margin-top: 30px;	
 	padding:10px 15px;
-	color: #343333;
+	font-size: 16px;
+	font-weight: bold;
+	color: #333333;
 }
 
 h6 {
 	padding:20px 15px;
 	font-size: 15px;
+	font-weight: bold;
 }
 
 p {
@@ -81,7 +93,7 @@ hr {
 
 
 strong {
-	color: #333333;
+	color:#333333;
 }
 
 b {
