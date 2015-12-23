@@ -8,7 +8,12 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/page/editForm.html?page="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/page/deleteForm.html?page="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/cross.png'/></a>";
+  return "<a href='/admin/page/editForm.html?page="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/page/deleteForm.html?page="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
 
@@ -17,7 +22,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
   if (cellvalue) {
     return "<img src='/admin/icons/16x16/accept.png'/>";  
   } else {
-    return "<img src='/admin/icons/16x16/delete.png'/>";
+    return "<img src='/admin/icons/16x16/oneway.png'/>";
   }
 }
 </script>
