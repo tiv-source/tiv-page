@@ -8,7 +8,12 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/role/editForm.html?role="+ cellvalue +"'>edit</a> | <a href='/admin/role/deleteForm.html?role="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/role/editForm.html?role="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/role/deleteForm.html?role="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
 
@@ -18,8 +23,6 @@ function formatEditLink(cellvalue, options, rowObject) {
         <div class="sub_menu">
           <struts:a href="%{roleAddUrl}">Add Role</struts:a>
         </div>
-
-        
         
         
         <sjg:grid
