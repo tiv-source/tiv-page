@@ -8,10 +8,14 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/property/editForm.html?property="+ cellvalue +"'>edit</a> | <a href='/admin/property/deleteForm.html?property="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/property/editForm.html?property="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/property/deleteForm.html?property="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
-
 
       <!--  Start MAIN -->
       <div class="main">
@@ -40,10 +44,32 @@ function formatEditLink(cellvalue, options, rowObject) {
           editinline="false"
           viewrecords="true"
         >
-    	
-    	  <sjg:gridColumn name="key"        index="key"        title="Key"        width="400" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
+    	  <sjg:gridColumn 
+    	      name="key"
+    	      index="key"
+    	      title="Key"
+    	      width="500"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
     	  <sjg:gridColumn name="value"   index="value"   title="Value"   width="730" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="left" />
-    	  <sjg:gridColumn name="key"        index="editbar"     title="Actions"     width="155" editable="false" sortable="false" hidden="false" search="false" resizable="false" align="right" formatter="formatEditLink" />    	
+    	  <sjg:gridColumn
+    	      name="key"
+    	      index="editbar"
+    	      title=""
+    	      width="210"
+    	      editable="false"
+    	      sortable="false"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="right"
+    	      formatter="formatEditLink"
+    	  />    	
         </sjg:grid>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
