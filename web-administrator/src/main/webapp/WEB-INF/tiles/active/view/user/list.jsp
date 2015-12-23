@@ -8,10 +8,14 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/user/editForm.html?user="+ cellvalue +"'>edit</a> | <a href='/admin/user/deleteForm.html?user="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/user/editForm.html?user="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/user/deleteForm.html?user="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
-
 
       <!--  Start MAIN -->
       <div class="main">
