@@ -67,7 +67,8 @@
 
       <struts:submit type="button" value="Reservieren" />
       <struts:reset type="button" value="Löschen" />
-
+      
+      <hr>
     </struts:form>
   
     
