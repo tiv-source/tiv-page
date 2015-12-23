@@ -8,7 +8,12 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/location/overview.html?locationUuid="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/clock.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/location/editForm.html?location="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/location/deleteForm.html?location="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/cross.png'/></a>";
+  return "<a href='/admin/location/overview.html?locationUuid="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/clock.png'/></a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/location/editForm.html?location="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/location/deleteForm.html?location="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/></a>";
 }
 </script>
 
@@ -17,7 +22,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
   if (cellvalue) {
     return "<img src='/admin/icons/16x16/accept.png'/>";  
   } else {
-    return "<img src='/admin/icons/16x16/delete.png'/>";
+    return "<img src='/admin/icons/16x16/oneway.png'/>";
   }
 }
 </script>
@@ -65,7 +70,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="address.zip" 
     	    index="address.zip" 
     	    title="PLZ" 
-    	    width="70" 
+    	    width="45" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -113,7 +118,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="contactDetails.fax" 
     	    index="contactDetails.fax" 
     	    title="Fax" 
-    	    width="140" 
+    	    width="170" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -125,7 +130,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="contactDetails.mobile" 
     	    index="contactDetails.mobile" 
     	    title="Mobile" 
-    	    width="140" 
+    	    width="175" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
