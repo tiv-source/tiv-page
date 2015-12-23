@@ -8,7 +8,18 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/event/editForm.html?event="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/event/copyForm.html?event="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/copy.png'/></a>&nbsp;&nbsp;&nbsp;<a href='/admin/event/deleteForm.html?event="+ cellvalue +"' style='border-style: none;'><img src='/admin/icons/16x16/cross.png'/></a>";
+  return "<a href='/admin/reservation/index.html?event="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/view.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/event/editForm.html?event="+ cellvalue + "' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/event/copyForm.html?event="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/copy.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/event/deleteForm.html?event="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
 
@@ -17,7 +28,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
   if (cellvalue) {
     return "<img src='/admin/icons/16x16/accept.png'/>";  
   } else {
-    return "<img src='/admin/icons/16x16/delete.png'/>";
+    return "<img src='/admin/icons/16x16/oneway.png'/>";
   }
 }
 </script>
@@ -72,7 +83,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="location.descriptionMap.DE.name" 
     	    index="location.descriptionMap.DE.name" 
     	    title="Location" 
-    	    width="280" 
+    	    width="300" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -96,7 +107,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="beginning" 
     	    index="beginning" 
     	    title="Beginning" 
-    	    width="140" 
+    	    width="160" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -109,7 +120,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="ending" 
     	    index="ending" 
     	    title="Ending" 
-    	    width="140" 
+    	    width="160" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -122,7 +133,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="deadline" 
     	    index="deadline" 
     	    title="Deadline" 
-    	    width="140" 
+    	    width="160" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -135,7 +146,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="reservation" 
     	    index="reservation" 
     	    title="Reservation" 
-    	    width="70" 
+    	    width="100" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -161,7 +172,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="uuid" 
     	    index="editbar" 
     	    title="" 
-    	    width="100" 
+    	    width="140" 
     	    editable="false" 
     	    sortable="false" 
     	    hidden="false" 
