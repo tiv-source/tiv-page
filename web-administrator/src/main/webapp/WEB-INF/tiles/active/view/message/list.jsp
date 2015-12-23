@@ -8,7 +8,12 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/user/editForm.html?user="+ cellvalue +"'>edit</a> | <a href='/admin/user/deleteForm.html?user="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/message/editForm.html?message="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/view.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/message/deleteForm.html?message="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
 
@@ -29,6 +34,7 @@ function formatIsoDate(celldate, options, rowObject) {
   return newDate.toLocaleFormat('%H:%M:%S - %d.%m.%Y');
 }
 </script>
+
 
       <!--  Start MAIN -->
       <div class="main">
