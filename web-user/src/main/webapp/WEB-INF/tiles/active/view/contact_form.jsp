@@ -43,4 +43,5 @@
       </fieldset>
       <struts:submit type="button" value="Absenden" />
       <struts:reset type="button" value="Löschen" />
+      <hr>
     </struts:form>
