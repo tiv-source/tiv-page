@@ -45,12 +45,79 @@ function formatEditLink(cellvalue, options, rowObject) {
           viewrecords="true"
         >
     	
-    	  <sjg:gridColumn name="uuid"              index="uuid"             title="UUID"              width="270" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="username"          index="username"         title="Username"          width="190" editable="false" sortable="false" hidden="false" search="false" resizable="false" align="left" />
-    	  <sjg:gridColumn name="firstname"         index="firstname"        title="Firstname"         width="200" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="left" />
-    	  <sjg:gridColumn name="lastname"          index="lastname"         title="Lastname"          width="250" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="email"             index="email"            title="EMail"             width="250" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="uuid"              index="editbar"          title="Actions"           width="110" editable="false" sortable="false" hidden="false" search="false" resizable="false" align="right" formatter="formatEditLink" />    	
+    	  <sjg:gridColumn 
+    	      name="uuid"
+    	      index="uuid"
+    	      title="UUID"
+    	      width="350"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="username"
+    	      index="username"
+    	      title="Username"
+    	      width="210"
+    	      editable="false"
+    	      sortable="false"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="left"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="firstname"
+    	      index="firstname"
+    	      title="Firstname"
+    	      width="210"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="left"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="lastname"
+    	      index="lastname"
+    	      title="Lastname"
+    	      width="280"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="email"
+    	      index="email"
+    	      title="EMail"
+    	      width="280"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="uuid"
+    	      index="editbar"
+    	      title=""
+    	      width="240"
+    	      editable="false"
+    	      sortable="false"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="right"
+    	      formatter="formatEditLink"
+    	  />    	
         </sjg:grid>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
