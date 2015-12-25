@@ -48,7 +48,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      name="key"
     	      index="key"
     	      title="Key"
-    	      width="500"
+    	      width="560"
     	      editable="false"
     	      sortable="true"
     	      hidden="false"
@@ -56,7 +56,18 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      resizable="false"
     	      align="center"
     	  />
-    	  <sjg:gridColumn name="value"   index="value"   title="Value"   width="730" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="left" />
+    	  <sjg:gridColumn
+    	    name="value"
+    	    index="value"
+    	    title="Value"
+    	    width="815"
+    	    editable="false"
+    	    sortable="true"
+    	    hidden="false"
+    	    search="false"
+    	    resizable="false"
+    	    align="left"
+    	  />
     	  <sjg:gridColumn
     	      name="key"
     	      index="editbar"
