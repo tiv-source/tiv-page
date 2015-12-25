@@ -44,9 +44,43 @@ function formatEditLink(cellvalue, options, rowObject) {
           viewrecords="true"
         >
     	
-    	  <sjg:gridColumn name="uuid"        index="uuid"        title="UUID"        width="400" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="technical"   index="technical"   title="Technical"   width="730" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="left" />
-    	  <sjg:gridColumn name="uuid"        index="editbar"     title="Actions"     width="155" editable="false" sortable="false" hidden="false" search="false" resizable="false" align="right" formatter="formatEditLink" />    	
+    	  <sjg:gridColumn
+    	      name="uuid"
+    	      index="uuid"
+    	      title="UUID"
+    	      width="490"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
+    	  <sjg:gridColumn
+    	      name="technical"
+    	      index="technical"
+    	      title="Technical"
+    	      width="770"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="left"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="uuid"
+    	      index="editbar"
+    	      title=""
+    	      width="330"
+    	      editable="false"
+    	      sortable="false"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="right"
+    	      formatter="formatEditLink"
+    	  />    	
         </sjg:grid>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
