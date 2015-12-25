@@ -57,7 +57,7 @@ public class ContactAction extends EmptyAction {
     	Boolean contactPageEnabled = propertyDaoLocal.findByKey("contact.page.enabled").getValue().equals("true") ? true : false;
 
     	if(contactPageEnabled) {
-            LOGGER.info("Pfad zur temp.xml Klasse: " + this.getClass().getClassLoader().getResource("/temp.xml"));
+            LOGGER.info("Pfad zur temp.xml Klasse: " + this.getClass().getClassLoader().getResource("/template_mail.xml"));
             return SUCCESS;
     	} else {
     	    return ERROR;

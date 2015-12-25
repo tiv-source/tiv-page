@@ -113,7 +113,7 @@ public class SentAction extends EmptyAction {
 		InputStream template;
 		try {
 
-			URL templatePath = this.getClass().getClassLoader().getResource("temp.xml");
+			URL templatePath = this.getClass().getClassLoader().getResource("template_mail.xml");
 			LOGGER.info("Pfad zur template Datei: " + templatePath);
             template = templatePath.openStream();
             LOGGER.info("Template eingelesen");
