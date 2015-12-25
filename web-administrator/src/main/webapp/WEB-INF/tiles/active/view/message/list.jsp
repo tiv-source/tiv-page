@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/message/editForm.html?message="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/message/view.html?message="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/view.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
          "<a href='/admin/message/deleteForm.html?message="+ cellvalue +"' style='border-style: none;'>" + 
@@ -109,15 +109,60 @@ function formatIsoDate(celldate, options, rowObject) {
     	      resizable="false"
     	      align="left"
     	  />
-    	  <sjg:gridColumn name="fax"          index="fax"         title="Fax"          width="190" editable="false" sortable="false" hidden="false" search="false" resizable="false" align="left" />
-    	  <sjg:gridColumn name="mail"             index="mail"            title="Mail"             width="250" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
-    	  <sjg:gridColumn name="created"             index="created"            title="Created"             width="140" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" formatter="formatIsoDate" />
-    	  <sjg:gridColumn name="ip"             index="ip"            title="IP"             width="140" editable="false" sortable="true"  hidden="false" search="false" resizable="false" align="center" />
+    	  <sjg:gridColumn
+    	      name="fax"
+    	      index="fax"
+    	      title="Fax"
+    	      width="190"
+    	      editable="false"
+    	      sortable="false"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="left"
+    	  />
+    	  <sjg:gridColumn
+    	      name="mail"
+    	      index="mail"
+    	      title="Mail"
+    	      width="250"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="created"
+    	      index="created"
+    	      title="Created"
+    	      width="140"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	      formatter="formatIsoDate"
+    	  />
+    	  <sjg:gridColumn 
+    	      name="ip"
+    	      index="ip"
+    	      title="IP"
+    	      width="140"
+    	      editable="false"
+    	      sortable="true"
+    	      hidden="false"
+    	      search="false"
+    	      resizable="false"
+    	      align="center"
+    	  />
     	  <sjg:gridColumn
     	      name="uuid"
     	      index="editbar"
     	      title="Actions"
-    	      width="110"
+    	      width="115"
     	      editable="false"
     	      sortable="false"
     	      hidden="false"
