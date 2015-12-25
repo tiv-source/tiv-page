@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.reservation.Reservation;
 
 /**
@@ -47,6 +48,10 @@ public interface ReservationDaoLocal {
     public List<Reservation> findAll(Integer start, Integer max);
 
     public List<Reservation> findAll(Integer start, Integer max, String field, String order);
+
+    public List<Reservation> findAll(Event event, Integer start, Integer max);
+
+    public List<Reservation> findAll(Event event, Integer start, Integer max, String field, String order);
 
     /**
      * Methode die die Anzahl aller Reservation Objekte die sich in der Datenbank
