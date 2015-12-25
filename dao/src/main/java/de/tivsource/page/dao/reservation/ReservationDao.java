@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.reservation.Reservation;
 
 /**
@@ -93,6 +94,35 @@ public class ReservationDao implements ReservationDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Reservation> findAll(Event event, Integer start, Integer max) {
+        Query query = entityManager.createQuery("from Reservation r where r.event = ?1");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", event);
+        return query.getResultList();
+    }
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Reservation> findAll(Event event, Integer start, Integer max, String field,
+            String order) {
+        String queryString = "select r from Reservation r where r.event = ?1 order by ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", event);
+        return query.getResultList();
+    }
+    
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#countAll()
      */
