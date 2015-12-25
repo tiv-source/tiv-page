@@ -118,7 +118,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    name="contactDetails.fax" 
     	    index="contactDetails.fax" 
     	    title="Fax" 
-    	    width="170" 
+    	    width="165" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
