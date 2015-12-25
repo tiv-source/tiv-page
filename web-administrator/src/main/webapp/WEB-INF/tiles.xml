@@ -119,6 +119,13 @@
 	</definition>
 
 
+    <!-- Templates für Reservation Klasse -->
+	<definition name="reservation" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/list.jsp" />
+	</definition>
+
+
+
     <!-- Templates für Role Klasse -->
 	<definition name="role" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/role/list.jsp" />
@@ -179,5 +186,11 @@
 	<definition name="message" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/message/list.jsp" />
 	</definition>
+
+	<definition name="messageView" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/message/view.jsp" />
+	</definition>
+
+
 
 </tiles-definitions>
