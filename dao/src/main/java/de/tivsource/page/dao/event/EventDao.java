@@ -120,4 +120,12 @@ public class EventDao implements EventDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    @Override
+    public Integer countAll(String uuid) {
+        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = ?1 and e.visible = 'Y' and e.beginning > ?2");
+        query.setParameter("1", uuid);
+        query.setParameter("2", new Date());
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
 }// Ende class

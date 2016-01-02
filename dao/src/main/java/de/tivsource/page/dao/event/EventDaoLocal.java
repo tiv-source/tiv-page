@@ -69,4 +69,13 @@ public interface EventDaoLocal {
      */
     public Integer countAll();
 
+    /**
+     * Methode die die Anzahl aller Event Objekte die zu einer bestimmten
+     * Location gehören zurück liefert.
+     *
+     * @return Integer - Anzahl der Event Objekte die zu der Location gehören.
+     *         
+     */
+    public Integer countAll(String uuid);
+
 }// Ende interface
