@@ -170,9 +170,6 @@ public class EmailTemplate {
         digester.addCallMethod("email/bcc", "addBcc", 0);
         System.out.println("Digester gesetzt 1");
         try {
-        	//File templateFile = new File("/home/marc/Server/apache-tomee-plus-1.5.2/apps/czastka/web-user-0.0.1/WEB-INF/classes/temp.xml");
-        	//System.out.println("Size: " + templateFile.getFreeSpace());
-        	//InputStream aStream2 = new FileInputStream(templateFile);
         	System.out.println(aStream.available());
             return digester.parse(aStream);
         } catch (IOException e) {
@@ -185,4 +182,4 @@ public class EmailTemplate {
             return null;
         }
     }
-}
+}// Ende class
