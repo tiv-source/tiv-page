@@ -97,24 +97,31 @@ public class AddAction extends EmptyAction {
     	    event.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
     	    event.getDescriptionMap().get(Language.EN).setNamingItem(event);
     	    event.getDescriptionMap().get(Language.EN).setLanguage(Language.EN);
+    	    event.getDescriptionMap().get(Language.EN).setName(event.getDescriptionMap().get(Language.DE).getName());
+    	    event.getDescriptionMap().get(Language.EN).setDescription(event.getDescriptionMap().get(Language.DE).getDescription());
+    	    event.getDescriptionMap().get(Language.EN).setKeywords(event.getDescriptionMap().get(Language.DE).getKeywords());
 
+    	    
+    	    if(picture != null) {
 
-            // Pfad in dem die Bild Datei gespeichert wird.
-            String uploadPath = "/srv/www/htdocs/uploads/";
+                // Pfad in dem die Bild Datei gespeichert wird.
+                String uploadPath = "/srv/www/htdocs/uploads/";
 
-            // Name der Bild Datei die erstellt werden soll. 
-            String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."
-                + picture.getName() + new Date() + "Noch ein bischen.")
-                + ".png";
+                // Name der Bild Datei die erstellt werden soll. 
+                String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."
+                    + picture.getName() + new Date() + "Noch ein bischen.")
+                    + ".png";
 
+                File fullPictureFileToCreate = new File(uploadPath, pictureSaveName);
+                // Wenn die Datei noch nicht existiert wird Sie erstellt.
+                if (!fullPictureFileToCreate.exists()) {
+                    savePictureFile(picture, fullPictureFileToCreate);
+                }
 
-            File fullPictureFileToCreate = new File(uploadPath, pictureSaveName);
-            // Wenn die Datei noch nicht existiert wird Sie erstellt.
-            if (!fullPictureFileToCreate.exists()) {
-                savePictureFile(picture, fullPictureFileToCreate);
-            }
+                event.setPicture(pictureSaveName);
 
-            event.setPicture(pictureSaveName);
+    	    }
+
 
 
     	    eventDaoLocal.merge(event);
