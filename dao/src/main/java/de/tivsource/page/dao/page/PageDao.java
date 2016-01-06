@@ -99,7 +99,7 @@ public class PageDao implements PageDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Page> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "select p from Page p order by ";
+        String queryString = "SELECT DISTINCT p FROM Page p JOIN p.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
