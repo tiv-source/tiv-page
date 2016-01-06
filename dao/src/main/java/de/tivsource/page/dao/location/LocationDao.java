@@ -100,7 +100,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "select l from Location l order by ";
+        String queryString = "SELECT DISTINCT l FROM Location l JOIN l.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
