@@ -83,65 +83,57 @@ public class JsonAction extends ActionSupport {
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.technical", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("topNavigation")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.topNavigation", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("topNavigationOrder")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.topNavigationOrder", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("navigation")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.navigation", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("navigationOrder")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.navigationOrder", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("bottomNavigation")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.bottomNavigation", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("bottomNavigationOrder")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.bottomNavigationOrder", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("special")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.special", "asc");
+				pageList = this.locationDaoLocal.findAll(from, getRows(), "l.uuid", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "dm.name", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("zip")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.address.zip", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("city")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.address.city", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("country")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.address.country", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("telephone")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.contactDetails.telephone", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("fax")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.contactDetails.fax", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("mobile")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.contactDetails.mobile", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("event")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.event", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.visible", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.modified", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.created", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.visible", "asc");
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.visible", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
+				pageList = this.locationDaoLocal.findAll(from, getRows(), "l.created", "asc");
 			} else {
 				pageList = this.locationDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.technical", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("topNavigation")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.topNavigation", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("topNavigationOrder")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.topNavigationOrder", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("navigation")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.navigation", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("navigationOrder")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.navigationOrder", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("bottomNavigation")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.bottomNavigation", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("bottomNavigationOrder")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.bottomNavigationOrder", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("special")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.special", "desc");
+            if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.uuid", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "dm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("zip")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.address.zip", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("city")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.address.city", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("country")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.address.country", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("telephone")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.contactDetails.telephone", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("fax")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.contactDetails.fax", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("mobile")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.contactDetails.mobile", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("event")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.event", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                pageList = this.locationDaoLocal.findAll(from, getRows(), "p.visible", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.modified", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.created", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				pageList = this.locationDaoLocal.findAll(from, getRows(), "p.visible", "desc");
-			} else {
-				pageList = this.locationDaoLocal.findAll(from, getRows());
-			}
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.visible", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
+                pageList = this.locationDaoLocal.findAll(from, getRows(), "l.created", "desc");
+            } else {
+                pageList = this.locationDaoLocal.findAll(from, getRows());
+            }
 		}
 
 		setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
