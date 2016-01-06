@@ -81,22 +81,46 @@ public class JsonAction extends ActionSupport {
 		 */
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				eventList = this.eventDaoLocal.findAll(from, getRows(), "r.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-				eventList = this.eventDaoLocal.findAll(from, getRows(), "r.technical", "asc");
-			} else {
+			if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
+				eventList = this.eventDaoLocal.findAll(from, getRows(), "dm.name", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("location")) {
+				eventList = this.eventDaoLocal.findAll(from, getRows(), "edm.name", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("price")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.price", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("beginning")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.beginning", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("ending")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.ending", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("deadline")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.deadline", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("reservation")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.reservation", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.visible", "asc");
+            } else {
 				eventList = this.eventDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				eventList = this.eventDaoLocal.findAll(from, getRows(), "r.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-				eventList = this.eventDaoLocal.findAll(from, getRows(), "r.technical", "desc");
-			} else {
-				eventList = this.eventDaoLocal.findAll(from, getRows());
-			}
+            if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "dm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("location")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "edm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("price")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.price", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("beginning")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.beginning", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("ending")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.ending", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("deadline")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.deadline", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("reservation")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.reservation", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.visible", "desc");
+            } else {
+                eventList = this.eventDaoLocal.findAll(from, getRows());
+            }
 		}
 
 		setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
