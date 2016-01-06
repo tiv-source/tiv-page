@@ -191,6 +191,8 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/message/view.jsp" />
 	</definition>
 
-
+	<definition name="messageDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/message/delete_form.jsp" />
+	</definition>
 
 </tiles-definitions>
