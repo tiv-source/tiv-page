@@ -56,7 +56,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
         >
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
-    	    index="descriptionMap.DE.name" 
+    	    index="name" 
     	    title="Name" 
     	    width="320" 
     	    editable="false" 
@@ -68,7 +68,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="address.zip" 
-    	    index="address.zip" 
+    	    index="zip" 
     	    title="PLZ" 
     	    width="45" 
     	    editable="false" 
@@ -80,7 +80,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="address.city" 
-    	    index="address.city" 
+    	    index="city" 
     	    title="Stadt" 
     	    width="140" 
     	    editable="false" 
@@ -92,7 +92,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="address.country" 
-    	    index="address.country" 
+    	    index="country" 
     	    title="Land" 
     	    width="140" 
     	    editable="false" 
@@ -104,7 +104,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="contactDetails.telephone" 
-    	    index="contactDetails.telephone" 
+    	    index="telephone" 
     	    title="Telefon" 
     	    width="210" 
     	    editable="false" 
@@ -116,7 +116,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="contactDetails.fax" 
-    	    index="contactDetails.fax" 
+    	    index="fax" 
     	    title="Fax" 
     	    width="165" 
     	    editable="false" 
@@ -128,7 +128,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="contactDetails.mobile" 
-    	    index="contactDetails.mobile" 
+    	    index="mobile" 
     	    title="Mobile" 
     	    width="175" 
     	    editable="false" 
