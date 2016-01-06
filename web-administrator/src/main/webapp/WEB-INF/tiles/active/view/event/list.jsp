@@ -69,7 +69,7 @@ function formatIsoDate(celldate, options, rowObject) {
         >
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
-    	    index="descriptionMap.DE.name" 
+    	    index="name" 
     	    title="Name" 
     	    width="320" 
     	    editable="false" 
@@ -81,7 +81,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  />
     	  <sjg:gridColumn 
     	    name="location.descriptionMap.DE.name" 
-    	    index="location.descriptionMap.DE.name" 
+    	    index="location" 
     	    title="Location" 
     	    width="300" 
     	    editable="false" 
