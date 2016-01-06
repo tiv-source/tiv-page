@@ -19,7 +19,7 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
           >
-
+            <struts:hidden key="event.picture"/>
             <fieldset class="fieldset">
             
               <div class="field">
