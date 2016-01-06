@@ -92,7 +92,7 @@ public class EventDao implements EventDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "select e from Event e order by ";
+        String queryString = "SELECT DISTINCT e FROM Event e JOIN e.descriptionMap dm JOIN e.location.descriptionMap edm WHERE dm.language = 'DE' AND edm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
