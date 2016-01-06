@@ -85,7 +85,9 @@ public class JsonAction extends ActionSupport {
 		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "dm.name", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.technical", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("topNavigation")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.topNavigation", "asc");
@@ -120,7 +122,9 @@ public class JsonAction extends ActionSupport {
 		    LOGGER.info("Sortieren nach desc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "dm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.technical", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("topNavigation")) {
                 pageList = this.pageDaoLocal.findAll(from, getRows(), "p.topNavigation", "desc");
