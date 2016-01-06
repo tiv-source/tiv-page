@@ -63,7 +63,7 @@ function formatIsoDate(celldate, options, rowObject) {
         >
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
-    	    index="descriptionMap.DE.name" 
+    	    index="name" 
     	    title="%{getText('descriptionMap.DE.name')}" 
     	    width="310" 
     	    editable="false" 
