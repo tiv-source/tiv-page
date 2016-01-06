@@ -58,6 +58,8 @@ public class ViewAction extends EmptyAction {
 	private void loadPageParameter() {
 		if( uncheckMessage != null && uncheckMessage != "" && uncheckMessage.length() > 0) {
 		    message = messageDaoLocal.findByUuid(uncheckMessage);
+		    message.setContent((message.getContent().replace("\n", "<br/>")));
+		    
 		}
 	}// Ende loadPageParameter()
 
