@@ -53,8 +53,11 @@ public class IndexAction extends EmptyAction {
 
     @Override
     public Page getPage() {
+        if(page == null) {
+            setUpPage();
+        }
         return page;
-    }
+    }// Ende getPage()
 
     public Event getEvent() {
         return event;
