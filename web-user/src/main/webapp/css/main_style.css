@@ -94,6 +94,13 @@ hr {
 
 strong {
 	color:#333333;
+	font-weight: bold;
+}
+
+span {
+	color: red;
+	font-size: 16px;
+	font-weight:bolder;
 }
 
 b {

@@ -237,15 +237,13 @@ form hr {
 
 /*Contact*/
 #wwlbl_sent_message_gender {
-	height:30px;
 	margin-top:5px;
-	margin-bottom: -5px;
+	margin-bottom:2px;
 }
 
 #wwgrp_sent_message_gender label {
 	height: 20px;
 	width: 40px;
-	
 }
 
 #wwgrp_sent_message_gender input {
@@ -259,37 +257,36 @@ form hr {
 
 
 /*Event*/
-#wwctrl_reserve_reservation_gender {
-	height:30px;
+#wwlbl_reserve_reservation_gender {
 	margin-top:5px;
+	margin-bottom:2px;
 
 }
 
-#wwctrl_reserve_reservation_gender label {
+#wwgrp_reserve_reservation_gender label {
 	height: 20px;
 	width: 40px;
 }
 
-#wwctrl_reserve_reservation_gender input {
+#wwgrp_reserve_reservation_gender input {
 	height:10px;
 	width:10px;
 	margin-right:10px;
-    margin-bottom: 100px;
 }
 
-#wwctrl_reserve_reservation_quantity { 
+#wwctrl_reserve_reservation_quantity {
 	padding-left: 15px;
 }
 
 #wwctrl_reserve_reservation_quantity select { 
 	height: 30px;
 	width: 70px;
-	margin-bottom:5px;
+	margin-bottom:13px;
 }
 
-#wwctrl_reserve_reservation_time { 
+#wwctrl_reserve_reservation_time {
+	margin-bottom:25px; 
 	padding-left: 15px;
-	margin-bottom:25px;
 }
 
 #wwctrl_reserve_reservation_time select { 
