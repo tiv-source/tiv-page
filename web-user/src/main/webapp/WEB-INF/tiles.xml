@@ -39,6 +39,10 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event.jsp" />
 	</definition>
 
+	<definition name="eventSuccess" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_success.jsp" />
+	</definition>
+
 	<definition name="eventDeadline" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
 	</definition>
