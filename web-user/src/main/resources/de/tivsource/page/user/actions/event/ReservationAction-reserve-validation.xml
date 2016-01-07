@@ -42,9 +42,13 @@
     </field-validator>
   </field>
 
-  <field name="reservation.wishes">
+  <field name="reservation.telephone">
     <field-validator type="requiredstring" short-circuit="true">
-      <message key="reservation.validation.wishes" />
+      <message key="reservation.validation.telephone" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[0-9\+\- ]*$</param>
+      <message key="message.validation.telephone.valid" />
     </field-validator>
   </field>
   
