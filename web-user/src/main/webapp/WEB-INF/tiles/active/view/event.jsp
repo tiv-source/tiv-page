@@ -4,8 +4,8 @@
     <div>
       <img alt="" src="/uploads/<struts:property value="event.picture" />" style="width: 100%;" />
     </div>
-    <h1><struts:property value="event.getName(getText('language'))" /> im <struts:property value="event.location.getName(getText('language'))" /></h1>
-
+    <h1>Reservierung</h1>
+    <h6><struts:property value="event.getName(getText('language'))" /> im <struts:property value="event.location.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" /></h6>
 
     <struts:form
           cssClass="form" 
