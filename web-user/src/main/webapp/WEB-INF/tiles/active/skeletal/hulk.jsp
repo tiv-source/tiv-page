@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TIV Page</title>
+  <title>TIV Page - <struts:property value="page.getName(getText('language'))" /></title>
   <link href="/public/css/reset.css" rel="stylesheet" type="text/css">
   <link href="/public/css/main_style.css" rel="stylesheet" type="text/css">
   <link href="/public/css/tiv_page.css" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@
 		
    <div id="mobile_navi">
      <label for="checkbox">
-       <span class="fl"><struts:property value="page.getName(getText('language'))" /></span><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
+       <p class="ellipsis"><struts:property value="page.getName(getText('language'))" /></p><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
      </label>
      <input id="checkbox"  type="checkbox" />
      <ul class="mobile_sub">
