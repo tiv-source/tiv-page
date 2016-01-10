@@ -22,6 +22,26 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>antlr</artifactId>
+					<groupId>antlr</groupId>
+				</exclusion>
+			</exclusions>
+			<version>4.0.1.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>provided</scope>
+			<version>4.0.1.Final</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<scope>provided</scope>
@@ -35,6 +55,7 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
 			</exclusions>
+			<version>1.0.1.Final</version>
 		</dependency>
 
 		<dependency>
@@ -51,6 +72,7 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
 			</exclusions>
+			<version>4.0.1.Final</version>
 		</dependency>
 
 		<dependency>
@@ -67,6 +89,7 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
 			</exclusions>
+			<version>4.2.0.Final</version>
 		</dependency>
 
 		<dependency>
@@ -99,6 +122,7 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
 			</exclusions>
+			<version>4.0.1.Final</version>
 		</dependency>
 
 		<dependency>
@@ -143,16 +167,12 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
 			</exclusions>
+			<version>4.0.0.CR1</version>
 		</dependency>
 
 
 
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.twitter4j</groupId>
@@ -178,6 +198,7 @@
                     <artifactId>dom4j</artifactId>
                 </exclusion>
 			</exclusions>
+			<version>1.2.16</version>
 		</dependency>
 
 
@@ -188,58 +209,39 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<scope>provided</scope>
+			<version>1.4.4</version>
 		</dependency>
+
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<scope>provided</scope>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>1.8.10</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>antlr</artifactId>
-					<groupId>antlr</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+
+<dependency>
+  <groupId>org.apache.odftoolkit</groupId>
+  <artifactId>simple-odf</artifactId>
+  <version>0.8.1-incubating</version>
+  <exclusions>
+  	<exclusion>
+  		<artifactId>tools</artifactId>
+  		<groupId>com.sun</groupId>
+  	</exclusion>
+  </exclusions>
+</dependency>
+
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-web-6.0</artifactId>
-				<version>3.0.0.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.as</groupId>
-				<artifactId>jboss-as-parent</artifactId>
-				<version>7.1.1.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.seam</groupId>
-				<artifactId>seam-bom</artifactId>
-				<version>3.1.0.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>
@@ -265,6 +267,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
 	<organization>
 		<name>T.I.V. Consulting GmbH</name>
 		<url>http://www.tiv-consulting.de/</url>
