@@ -124,6 +124,21 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/list.jsp" />
 	</definition>
 
+	<definition name="reservationAddForm"    extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/reservation/add_form.jsp" />
+	</definition>
+
+	<definition name="reservationEditForm"   extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/reservation/edit_form.jsp" />
+	</definition>
+
+	<definition name="reservationDeleteForm" extends="managementTemplate">
+		<put-attribute name="content"       value="/WEB-INF/tiles/active/view/reservation/delete_form.jsp" />
+	</definition>
+
+	<definition name="reservationView" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/view.jsp" />
+	</definition>
 
 
     <!-- Templates für Role Klasse -->
