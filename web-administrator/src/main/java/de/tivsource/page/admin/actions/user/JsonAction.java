@@ -87,12 +87,12 @@ public class JsonAction extends ActionSupport {
 				pageList = this.userDaoLocal.findAll(from, getRows(), "u.uuid", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("username")) {
 				pageList = this.userDaoLocal.findAll(from, getRows(), "u.username", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-				pageList = this.userDaoLocal.findAll(from, getRows(), "u.modified", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				pageList = this.userDaoLocal.findAll(from, getRows(), "u.created", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				pageList = this.userDaoLocal.findAll(from, getRows(), "u.visible", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("firstname")) {
+				pageList = this.userDaoLocal.findAll(from, getRows(), "u.firstname", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("lastname")) {
+				pageList = this.userDaoLocal.findAll(from, getRows(), "u.lastname", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("email")) {
+				pageList = this.userDaoLocal.findAll(from, getRows(), "u.email", "asc");
 			} else {
 				pageList = this.userDaoLocal.findAll(from, getRows());
 			}
@@ -102,12 +102,12 @@ public class JsonAction extends ActionSupport {
 				pageList = this.userDaoLocal.findAll(from, getRows(), "u.uuid", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("username")) {
 				pageList = this.userDaoLocal.findAll(from, getRows(), "u.username", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-				pageList = this.userDaoLocal.findAll(from, getRows(), "u.modified", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				pageList = this.userDaoLocal.findAll(from, getRows(), "u.created", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				pageList = this.userDaoLocal.findAll(from, getRows(), "u.visible", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("firstname")) {
+				pageList = this.userDaoLocal.findAll(from, getRows(), "u.firstname", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("lastname")) {
+				pageList = this.userDaoLocal.findAll(from, getRows(), "u.lastname", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("email")) {
+				pageList = this.userDaoLocal.findAll(from, getRows(), "u.email", "desc");
 			} else {
 				pageList = this.userDaoLocal.findAll(from, getRows());
 			}
