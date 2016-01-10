@@ -82,19 +82,19 @@ public class JsonAction extends ActionSupport {
 		 */
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "r.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "r.technical", "asc");
+			if (getSidx() != null && getSidx().equalsIgnoreCase("key")) {
+				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.key", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("value")) {
+				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.value", "asc");
 			} else {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "r.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "r.technical", "desc");
+			if (getSidx() != null && getSidx().equalsIgnoreCase("key")) {
+				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.key", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("value")) {
+				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.value", "desc");
 			} else {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows());
 			}
