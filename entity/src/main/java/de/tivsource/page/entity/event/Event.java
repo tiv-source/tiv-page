@@ -42,11 +42,11 @@ public class Event extends NamingItem {
     @JoinColumn(name = "location_uuid")
     private Location location;
 
+    private String picture;
+
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean reservation;
-
-    private String picture;
     
     @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Reservation> reservations;
@@ -91,20 +91,20 @@ public class Event extends NamingItem {
         this.location = location;
     }
 
-    public Boolean getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Boolean reservation) {
-        this.reservation = reservation;
-    }
-
     public String getPicture() {
         return picture;
     }
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public Boolean getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Boolean reservation) {
+        this.reservation = reservation;
     }
 
     public List<Reservation> getReservations() {
