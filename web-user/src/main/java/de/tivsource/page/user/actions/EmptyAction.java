@@ -18,7 +18,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
+import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.page.Page;
 
 /**
@@ -47,9 +50,18 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 
 	private Map<String, Object> session;
 
+    @InjectEJB(name="PropertyDao")
+    private PropertyDaoLocal propertyDaoLocal;
+	
     @InjectEJB(name="PageDao")
 	private PageDaoLocal pageDaoLocal;
 
+    @InjectEJB(name="EventDao")
+    private EventDaoLocal eventDaoLocal;
+
+    private Event left;
+    private Event right;
+    
 	/**
 	 * Attribut das die ausgelesene Sprache enthält.
 	 */
@@ -122,6 +134,24 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 
     public Page getPage() {
         return pageDaoLocal.findByTechnical("home");
+    }
+
+    public String getProperty(String key) {
+        return propertyDaoLocal.findByKey(key).getValue();
+    }
+
+    public Event getLeftLocation() {
+        if(left == null) {
+            left = eventDaoLocal.findAll(propertyDaoLocal.findByKey("home.location.left").getValue(), 0, 1).get(0);
+        }
+        return left;
+    }
+
+    public Event getRightLocation() {
+        if(right == null) {
+            right = eventDaoLocal.findAll(propertyDaoLocal.findByKey("home.location.right").getValue(), 0, 1).get(0);
+        }
+        return right;
     }
 
 	/**
