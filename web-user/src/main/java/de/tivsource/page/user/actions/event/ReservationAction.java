@@ -165,12 +165,19 @@ public class ReservationAction extends EmptyAction {
         if(event == null) {
             event = eventDaoLocal.findByUuid(reservation.getEvent().getUuid());
         }
-        page = new Page();
-        page.setTechnical(event.getName(Language.DE));
-        page.setDescriptionMap(event.getDescriptionMap());
-        page.getDescriptionMap().get(Language.DE).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.DE) + " - " + page.getDescriptionMap().get(Language.DE).getName());
-        // TODO: Hier müsste das noch lokalisiert werden
-        page.getDescriptionMap().get(Language.EN).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.EN) + " - " + page.getDescriptionMap().get(Language.EN).getName());
+        LOGGER.info("Action Errors: " + this.getFieldErrors().size());
+        if(this.getFieldErrors().size() > 0) {
+            page = new Page();
+            page.setTechnical(event.getName(Language.DE));
+            page.setDescriptionMap(event.getDescriptionMap());
+        } else {
+            page = new Page();
+            page.setTechnical(event.getName(Language.DE));
+            page.setDescriptionMap(event.getDescriptionMap());
+            page.getDescriptionMap().get(Language.DE).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.DE) + " - " + page.getDescriptionMap().get(Language.DE).getName());
+            // TODO: Hier müsste das noch lokalisiert werden
+            page.getDescriptionMap().get(Language.EN).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.EN) + " - " + page.getDescriptionMap().get(Language.EN).getName());
+        }
     }
 
     private void setUpEvent() {
