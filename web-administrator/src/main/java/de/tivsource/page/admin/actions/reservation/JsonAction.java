@@ -78,7 +78,7 @@ public class JsonAction extends ActionSupport {
 		/*
 		 * Setze die Anzahl aller Objekte in der Datenbank.
 		 */
-		setRecord(this.reservationDaoLocal.countAll());
+		setRecord(this.reservationDaoLocal.countAll(event));
 
 		int to = (getRows() * getPage());
 		int from = to - getRows();
