@@ -7,7 +7,7 @@
       <div class="main">
         <div class="sub_menu"></div>
         <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2>Delete Location OpeningHour</h2>
+          <h2><struts:text name="openingHour.delete"/></h2>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -30,18 +30,18 @@
               </div>
 
               <div class="field">
-                <label for="openingHour.weeday" class="label">Wochentag:</label>
-                <struts:property value="openingHour.weekday"/>
+                <label for="openingHour.weeday" class="label"><struts:text name="openingHour.weekday"/></label>
+                <struts:property value="getText(openingHour.weekday)" />:
               </div>
 
               <div class="field">
-                <label for="openingHour.open" class="label">Von:</label>
-                <struts:property value="openingHour.open"/>
+                <label for="openingHour.open" class="label"><struts:text name="openingHour.open"/></label>
+                <struts:property value="openingHour.open"/> <struts:text name="clock"/>
               </div>
 
               <div class="field">
-                <label for="openingHour.close" class="label">Bis:</label>
-                <struts:property value="openingHour.close"/>
+                <label for="openingHour.close" class="label"><struts:text name="openingHour.close"/></label>
+                <struts:property value="openingHour.close"/> <struts:text name="clock"/>
               </div>
 
             </fieldset>
@@ -51,13 +51,17 @@
                   id="submit_confirm__Save" 
                   name="submit" 
                   value="save" 
-                  class="save small_green_button button">Löschen</button>
+                  class="save small_green_button button">
+                    <struts:text name="form.delete"/>
+              </button>
               <struts:a 
                   id="submit_deny__Close" 
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/location">Abbrechen</struts:a>
+                  namespace="/location">
+                    <struts:text name="form.abort"/>
+              </struts:a>
             </div>
 
           </struts:form>
