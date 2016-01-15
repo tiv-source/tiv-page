@@ -18,6 +18,7 @@ import org.hibernate.annotations.SortType;
 
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.namingitem.NamingItem;
+import de.tivsource.page.entity.vacancy.Vacancy;
 
 /**
  * @author Marc Michele
@@ -47,6 +48,9 @@ public class Location extends NamingItem {
 
     @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Event> events;
+
+    @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
+    private List<Vacancy> vacancies;
 
     /**
      * Longitude der Location.
@@ -98,6 +102,14 @@ public class Location extends NamingItem {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public List<Vacancy> getVacancies() {
+        return vacancies;
+    }
+
+    public void setVacancies(List<Vacancy> vacancies) {
+        this.vacancies = vacancies;
     }
 
     public String getLongitude() {
