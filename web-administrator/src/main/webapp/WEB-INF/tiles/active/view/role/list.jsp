@@ -21,13 +21,15 @@ function formatEditLink(cellvalue, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{roleAddUrl}">Add Role</struts:a>
+          <struts:a href="%{roleAddUrl}">
+            <struts:text name="role.add"/>
+          </struts:a>
         </div>
         
         
         <sjg:grid
           id="gridedittable"
-          caption="Role"
+          caption="%{getText('roles')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -47,7 +49,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn
     	      name="uuid"
     	      index="uuid"
-    	      title="UUID"
+    	      title="%{getText('role.uuid')}"
     	      width="490"
     	      editable="false"
     	      sortable="true"
@@ -59,7 +61,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn
     	      name="technical"
     	      index="technical"
-    	      title="Technical"
+    	      title="%{getText('role.technical')}"
     	      width="770"
     	      editable="false"
     	      sortable="true"
