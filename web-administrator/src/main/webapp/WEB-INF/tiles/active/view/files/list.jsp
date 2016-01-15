@@ -14,7 +14,9 @@ function formatViewLink(cellvalue, options, rowObject) {
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/files/deleteForm.html?file="+ cellvalue +"'>delete</a>";
+  return "<a href='/admin/files/deleteForm.html?file="+ cellvalue +"' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "</a>";
 }
 </script>
 
@@ -22,12 +24,11 @@ function formatEditLink(cellvalue, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{pageAddUrl}">Add File</struts:a>
         </div>
 
         <sjg:grid
           id="gridedittable"
-          caption="Files"
+          caption="%{getText('files')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -45,9 +46,9 @@ function formatEditLink(cellvalue, options, rowObject) {
         >
     	  <sjg:gridColumn 
     	    name="name" 
-    	    index="view" 
-    	    title="Bild" 
-    	    width="555" 
+    	    index="picture" 
+    	    title="%{getText('picture')}" 
+    	    width="650" 
     	    editable="false" 
     	    sortable="false" 
     	    hidden="false" 
@@ -59,8 +60,8 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="name" 
     	    index="name" 
-    	    title="Name" 
-    	    width="600" 
+    	    title="%{getText('name')}" 
+    	    width="650" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -72,7 +73,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	    name="name" 
     	    index="editbar" 
     	    title="" 
-    	    width="300" 
+    	    width="285" 
     	    editable="false" 
     	    sortable="false" 
     	    hidden="false" 
