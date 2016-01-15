@@ -3,7 +3,13 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
-<struts:url var="userAddUrl" action="addForm" namespace="/reservation" />
+<struts:url var="getListUrl" action="list" namespace="/reservation">
+  <struts:param name="event" value="event.uuid"/>
+</struts:url>
+
+<struts:url var="addReservationUrl" action="addForm" namespace="/reservation">
+  <struts:param name="event" value="event.uuid"/>
+</struts:url>
 
 <struts:url id="remoteurl"   action="table"   namespace="/reservation">
   <struts:param name="event" value="event.uuid"/>
@@ -11,10 +17,13 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/message/view.html?message="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/reservation/view.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/view.png'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" +
+         "<a href='/admin/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/message/deleteForm.html?message="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/delete.png'/>" + 
          "</a>";
 }
@@ -49,7 +58,12 @@ function formatIsoTime(celldate, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          
+          <struts:a href="%{addReservationUrl}">
+            <struts:text name="reservation.add"/>
+          </struts:a>
+          <struts:a href="%{getListUrl}">
+            <struts:text name="reservation.list"/>
+          </struts:a>
         </div>
         
         <sjg:grid
@@ -123,7 +137,7 @@ function formatIsoTime(celldate, options, rowObject) {
     	      name="email"
     	      index="email"
     	      title="Mail"
-    	      width="250"
+    	      width="270"
     	      editable="false"
     	      sortable="true"
     	      hidden="false"
