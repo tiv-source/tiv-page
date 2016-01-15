@@ -27,6 +27,13 @@ function formatTrueFalse(cellvalue, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatIsoDate(celldate, options, rowObject) {
+  var newDate = new Date();
+  newDate.setTime(Date.parse(celldate));
+  return newDate.toLocaleFormat('%H:%M:%S - %d.%m.%Y');
+}
+</script>
 
       <!--  Start MAIN -->
       <div class="main">
@@ -57,7 +64,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="name" 
-    	    title="Name" 
+    	    title="%{getText('location.descriptionMap.DE.name')}" 
     	    width="320" 
     	    editable="false" 
     	    sortable="true" 
@@ -69,7 +76,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="address.zip" 
     	    index="zip" 
-    	    title="PLZ" 
+    	    title="%{getText('location.address.zip')}" 
     	    width="45" 
     	    editable="false" 
     	    sortable="true" 
@@ -81,7 +88,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="address.city" 
     	    index="city" 
-    	    title="Stadt" 
+    	    title="%{getText('location.address.city')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
@@ -93,7 +100,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="address.country" 
     	    index="country" 
-    	    title="Land" 
+    	    title="%{getText('location.address.country')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
@@ -105,7 +112,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="contactDetails.telephone" 
     	    index="telephone" 
-    	    title="Telefon" 
+    	    title="%{getText('location.contactDetails.telephone')}" 
     	    width="210" 
     	    editable="false" 
     	    sortable="true" 
@@ -117,7 +124,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="contactDetails.fax" 
     	    index="fax" 
-    	    title="Fax" 
+    	    title="%{getText('location.contactDetails.fax')}" 
     	    width="165" 
     	    editable="false" 
     	    sortable="true" 
@@ -129,7 +136,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="contactDetails.mobile" 
     	    index="mobile" 
-    	    title="Mobile" 
+    	    title="%{getText('location.contactDetails.mobile')}" 
     	    width="175" 
     	    editable="false" 
     	    sortable="true" 
@@ -141,7 +148,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="event" 
     	    index="event" 
-    	    title="Event" 
+    	    title="%{getText('location.event')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -154,7 +161,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="visible" 
     	    index="visible" 
-    	    title="Visible" 
+    	    title="%{getText('visible')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
@@ -167,7 +174,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="created" 
     	    index="created" 
-    	    title="Created" 
+    	    title="%{getText('created')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
@@ -175,6 +182,7 @@ function formatTrueFalse(cellvalue, options, rowObject) {
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
+    	    formatter="formatIsoDate"
     	  />
     	  <sjg:gridColumn 
     	    name="uuid" 
