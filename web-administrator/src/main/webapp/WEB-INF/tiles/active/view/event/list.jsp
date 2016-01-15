@@ -51,7 +51,7 @@ function formatIsoDate(celldate, options, rowObject) {
 
         <sjg:grid
           id="gridedittable"
-          caption="Event"
+          caption="%{getText('events')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -70,7 +70,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="name" 
-    	    title="Name" 
+    	    title="%{getText('event.descriptionMap.DE.name')}" 
     	    width="320" 
     	    editable="false" 
     	    sortable="true" 
@@ -82,7 +82,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="location.descriptionMap.DE.name" 
     	    index="location" 
-    	    title="Location" 
+    	    title="%{getText('event.location.descriptionMap.DE.name')}" 
     	    width="300" 
     	    editable="false" 
     	    sortable="true" 
@@ -94,7 +94,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="price" 
     	    index="price" 
-    	    title="Preis" 
+    	    title="%{getText('event.price')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
@@ -106,7 +106,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="beginning" 
     	    index="beginning" 
-    	    title="Beginning" 
+    	    title="%{getText('event.beginning')}" 
     	    width="160" 
     	    editable="false" 
     	    sortable="true" 
@@ -119,7 +119,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="ending" 
     	    index="ending" 
-    	    title="Ending" 
+    	    title="%{getText('event.ending')}" 
     	    width="160" 
     	    editable="false" 
     	    sortable="true" 
@@ -132,7 +132,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="deadline" 
     	    index="deadline" 
-    	    title="Deadline" 
+    	    title="%{getText('event.deadline')}" 
     	    width="160" 
     	    editable="false" 
     	    sortable="true" 
@@ -145,7 +145,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="reservation" 
     	    index="reservation" 
-    	    title="Reservation" 
+    	    title="%{getText('event.reservation')}" 
     	    width="100" 
     	    editable="false" 
     	    sortable="true" 
@@ -158,7 +158,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="visible" 
     	    index="visible" 
-    	    title="Visible" 
+    	    title="%{getText('visible')}" 
     	    width="70" 
     	    editable="false" 
     	    sortable="true" 
