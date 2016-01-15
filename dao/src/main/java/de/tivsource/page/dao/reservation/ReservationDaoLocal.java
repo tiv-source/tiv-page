@@ -61,4 +61,6 @@ public interface ReservationDaoLocal {
      */
     public Integer countAll();
 
+    public Integer countAll(Event event);
+
 }// Ende interface

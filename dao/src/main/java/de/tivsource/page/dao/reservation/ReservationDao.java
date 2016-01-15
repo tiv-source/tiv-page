@@ -132,4 +132,11 @@ public class ReservationDao implements ReservationDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    @Override
+    public Integer countAll(Event event) {
+        Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.event = ?1");
+        query.setParameter("1", event);
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
 }// Ende class
