@@ -20,7 +20,9 @@ function formatEditLink(cellvalue, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{userAddUrl}">Add User</struts:a>
+          <struts:a href="%{userAddUrl}">
+            <struts:text name="user.add"/>
+          </struts:a>
         </div>
 
         
@@ -28,7 +30,7 @@ function formatEditLink(cellvalue, options, rowObject) {
         
         <sjg:grid
           id="gridedittable"
-          caption="User"
+          caption="%{getText('users')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -48,7 +50,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="uuid"
     	      index="uuid"
-    	      title="UUID"
+    	      title="%{getText('user.uuid')}"
     	      width="350"
     	      editable="false"
     	      sortable="true"
@@ -60,10 +62,10 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="username"
     	      index="username"
-    	      title="Username"
+    	      title="%{getText('user.username')}"
     	      width="210"
     	      editable="false"
-    	      sortable="false"
+    	      sortable="true"
     	      hidden="false"
     	      search="false"
     	      resizable="false"
@@ -72,7 +74,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="firstname"
     	      index="firstname"
-    	      title="Firstname"
+    	      title="%{getText('user.firstname')}"
     	      width="210"
     	      editable="false"
     	      sortable="true"
@@ -84,7 +86,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="lastname"
     	      index="lastname"
-    	      title="Lastname"
+    	      title="%{getText('user.lastname')}"
     	      width="280"
     	      editable="false"
     	      sortable="true"
@@ -96,7 +98,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="email"
     	      index="email"
-    	      title="EMail"
+    	      title="%{getText('user.email')}"
     	      width="280"
     	      editable="false"
     	      sortable="true"
