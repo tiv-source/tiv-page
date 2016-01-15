@@ -27,18 +27,18 @@
               
               <table>
                 <tr>
-                  <td>Wochentag</td>
-                  <td>von</td>
-                  <td>bis</td>
+                  <td style="width:140px;"><b>Wochentag</b></td>
+                  <td style="width:77px;"><b>von</b></td>
+                  <td style="width:77px;"><b>bis</b></td>
                   <td></td>
                 </tr>
 
                 <struts:set var="myLocation" value="location.uuid" />
                 <struts:iterator value="location.openingHours" status="openingHoursStatus">
                 <tr>
-                  <td><struts:property value="weekday" /></td>
-                  <td><struts:property value="open" /></td>
-                  <td><struts:property value="close" /></td>
+                  <td><struts:property value="getText(weekday)" /></td>
+                  <td><struts:property value="open" /> Uhr</td>
+                  <td><struts:property value="close" /> Uhr</td>
                   <td>
                     <struts:url id="openingHourDeleteURL" action="openingHourDeleteForm" namespace="/location">
                       <struts:param name="openingHours" value="#openingHoursStatus.index" />
