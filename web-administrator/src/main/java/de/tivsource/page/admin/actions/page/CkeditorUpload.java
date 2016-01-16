@@ -49,9 +49,9 @@ public class CkeditorUpload extends ActionSupport {
 
     if (LOG.isDebugEnabled())
     {
-      LOG.debug("Upload is allowed : " + this.allowUploads);
-      LOG.debug("Allowed File Extensions : " + this.allowedFileExtensions);
-      LOG.debug("Upload Folder : " + this.uploadFolder);
+      LOG.debug("Upload is allowed : [#0]", this.allowUploads);
+      LOG.debug("Allowed File Extensions : [#0]", this.allowedFileExtensions);
+      LOG.debug("Upload Folder : [#0]", this.uploadFolder);
     }
 
     if (!allowUploads)
@@ -81,10 +81,10 @@ public class CkeditorUpload extends ActionSupport {
 
     if (LOG.isDebugEnabled())
     {
-      LOG.debug("Upload Content Type : " + this.uploadContentType);
-      LOG.debug("Upload File Name : " + uploadFileName);
-      LOG.debug("Upload File Extension : " + uploadFileExtension);
-      LOG.debug("File Extension is allowed : " + isAllowed);
+      LOG.debug("Upload Content Type : [#0]", this.uploadContentType);
+      LOG.debug("Upload File Name : [#0]", uploadFileName);
+      LOG.debug("Upload File Extension : [#0]", uploadFileExtension);
+      LOG.debug("File Extension is allowed : [#0]", isAllowed);
     }
 
     if (!isAllowed)
