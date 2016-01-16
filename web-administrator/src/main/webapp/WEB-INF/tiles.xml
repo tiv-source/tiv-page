@@ -210,4 +210,27 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/message/delete_form.jsp" />
 	</definition>
 
+
+
+
+    <!-- Templates für Vacancy Klasse -->
+	<definition name="vacancy" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy/list.jsp" />
+	</definition>
+
+	<definition name="vacancyAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy/add_form.jsp" />
+	</definition>
+
+	<definition name="vacancyEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy/edit_form.jsp" />
+	</definition>
+
+	<definition name="vacancyDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy/delete_form.jsp" />
+	</definition>
+
+
+
+
 </tiles-definitions>
