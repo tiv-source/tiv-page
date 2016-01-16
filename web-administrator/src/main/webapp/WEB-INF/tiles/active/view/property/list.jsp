@@ -53,7 +53,8 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      hidden="false"
     	      search="false"
     	      resizable="false"
-    	      align="center"
+    	      align="left" 
+    	      cssStyle="text-indent: 10px;"
     	  />
     	  <sjg:gridColumn
     	    name="value"
