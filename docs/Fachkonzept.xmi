@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2016-01-21T21:40:08" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
+<XMI verified="false" xmi.version="1.2" timestamp="2016-01-22T00:13:11" xmlns:UML="http://schema.omg.org/spec/UML/1.3">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -216,6 +216,9 @@
        <UML:Classifier.feature>
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="eEIlXD0k6zVp" type="n8L7brZBB7ai" name="key"/>
         <UML:Attribute visibility="private" isSpecification="false" xmi.id="dNzWxGAaiZEC" type="n8L7brZBB7ai" name="value"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="aPNriq1fpCYj" type="z0abZZWH0AoP" name="modified"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="BXESu8d4meZB" type="n8L7brZBB7ai" name="modifiedBy"/>
+        <UML:Attribute visibility="private" isSpecification="false" xmi.id="gdlf4c9e0WUi" type="n8L7brZBB7ai" name="modifiedAddress"/>
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class visibility="public" isSpecification="false" namespace="Logical View" isAbstract="false" isLeaf="false" isRoot="false" xmi.id="H0ClCciW59I8" name="Location">
@@ -404,7 +407,7 @@
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-797,7826538085938" showattsigs="601" showstereotype="1" y="-662,6373291015625" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="WPrt0AyfqlQ6" width="292" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="LqTkkpQkxXAe" showscope="1" height="172" showopsigs="601"/>
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1465,156860351562" showattsigs="601" showstereotype="1" y="-909,5758666992188" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="EY9EXckEw4Mq" width="228" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="Js5P1ihezEi7" showscope="1" height="142" showopsigs="601"/>
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1716,725463867188" showattsigs="601" showstereotype="1" y="-932,1632690429688" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="hyid12Rg4DtJ" width="147" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="tbispRx2x6EU" showscope="1" height="217" showopsigs="601"/>
-         <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-302,7551574707031" showattsigs="601" showstereotype="1" y="-413,629638671875" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="dUQfTx6qJu1u" width="103" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="Fv1ljgsAtcIg" showscope="1" height="52" showopsigs="601"/>
+         <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-302,7551574707031" showattsigs="601" showstereotype="1" y="-413,629638671875" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="dUQfTx6qJu1u" width="171" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="Fv1ljgsAtcIg" showscope="1" height="91" showopsigs="601"/>
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1460,168579101562" showattsigs="601" showstereotype="1" y="-666,5078125" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="tDzKjTaM4iCn" width="291" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="H0ClCciW59I8" showscope="1" height="157" showopsigs="601"/>
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1263,00341796875" showattsigs="601" showstereotype="1" y="-280,1330261230469" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="zgfz3z67fR5l" width="117" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="HIni2sVJ8K18" showscope="1" height="82" showopsigs="601"/>
          <classwidget linecolor="none" usesdiagramfillcolor="0" linewidth="0" showoperations="1" textcolor="#000000" usesdiagramusefillcolor="0" showpubliconly="0" showpackage="1" x="-1722,903930664062" showattsigs="601" showstereotype="1" y="-640,2463989257812" showattributes="1" font="Sans Serif,9,-1,0,50,0,0,0,0,0" localid="X63fQ4mQkPNl" width="138" isinstance="0" usefillcolor="1" fillcolor="#ffff00" xmi.id="WgcJfTwukhdk" showscope="1" height="97" showopsigs="601"/>
@@ -618,7 +621,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="bOPuk3p9BN0F" uniqueid="Cg1WP46ZzRtW" documentation=""/>
+  <docsettings viewid="bOPuk3p9BN0F" uniqueid="gdlf4c9e0WUi" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="802" id="Use Case View"/>
@@ -812,6 +815,9 @@
      </listitem>
      <listitem open="1" type="813" id="Fv1ljgsAtcIg">
       <listitem open="0" type="814" id="eEIlXD0k6zVp"/>
+      <listitem open="0" type="814" id="aPNriq1fpCYj"/>
+      <listitem open="0" type="814" id="gdlf4c9e0WUi"/>
+      <listitem open="0" type="814" id="BXESu8d4meZB"/>
       <listitem open="0" type="814" id="dNzWxGAaiZEC"/>
      </listitem>
      <listitem open="1" type="813" id="tbispRx2x6EU">
