@@ -35,7 +35,7 @@ public class BackupProperty {
     	BufferedWriter backupFileWriterOut = new BufferedWriter(backupFileWriter);
 
     	// Format Definition 
-    	backupFileWriterOut.write("[Format Definition] => key|value||");
+    	backupFileWriterOut.write("[Format Definition] => key|value|modified|modifiedBy|modifiedAddress|");
 
     	Iterator<Property> typeIterator = propertyDaoLocal.findAll(0, MAX).iterator();
     	while(typeIterator.hasNext()) {
@@ -60,6 +60,15 @@ public class BackupProperty {
 
 		nextString.append(next.getValue());
 		nextString.append("|");
+
+        nextString.append(next.getModified());
+        nextString.append("|");
+
+        nextString.append(next.getModifiedBy());
+        nextString.append("|");
+
+        nextString.append(next.getModifiedAddress());
+        nextString.append("|");
 
 		return nextString.toString();
 	}
