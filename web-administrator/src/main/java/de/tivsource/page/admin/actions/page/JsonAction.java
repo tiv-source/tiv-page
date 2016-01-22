@@ -115,7 +115,11 @@ public class JsonAction extends ActionSupport {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.created", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.visible", "asc");
-			} else {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.modified", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.modifiedBy", "asc");
+            } else {
 				pageList = this.pageDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
@@ -152,7 +156,11 @@ public class JsonAction extends ActionSupport {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.created", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
 				pageList = this.pageDaoLocal.findAll(from, getRows(), "p.visible", "desc");
-			} else {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.modified", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                pageList = this.pageDaoLocal.findAll(from, getRows(), "p.modifiedBy", "desc");
+            } else {
 				pageList = this.pageDaoLocal.findAll(from, getRows());
 			}
 		}
