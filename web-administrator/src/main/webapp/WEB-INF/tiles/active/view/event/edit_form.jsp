@@ -215,7 +215,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/page">
+                  namespace="/event">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
