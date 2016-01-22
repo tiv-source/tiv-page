@@ -97,6 +97,10 @@ public class JsonAction extends ActionSupport {
                 eventList = this.eventDaoLocal.findAll(from, getRows(), "e.reservation", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
                 eventList = this.eventDaoLocal.findAll(from, getRows(), "e.visible", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modified", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modifiedBy", "asc");
             } else {
 				eventList = this.eventDaoLocal.findAll(from, getRows());
 			}
@@ -118,6 +122,10 @@ public class JsonAction extends ActionSupport {
                 eventList = this.eventDaoLocal.findAll(from, getRows(), "e.reservation", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
                 eventList = this.eventDaoLocal.findAll(from, getRows(), "e.visible", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modified", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modifiedBy", "desc");
             } else {
                 eventList = this.eventDaoLocal.findAll(from, getRows());
             }
