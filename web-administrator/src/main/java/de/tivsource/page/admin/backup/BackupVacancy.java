@@ -88,7 +88,7 @@ public class BackupVacancy {
         nextString.append(next.getContentObject(Language.DE).getUuid());
         nextString.append("|");
 
-		nextString.append("page_" + next.getUuid() + "_DE.txt");
+		nextString.append("vacancy_" + next.getUuid() + "_DE.txt");
 		nextString.append("|");
 
         nextString.append(simpleDateFormat.format(next.getContentObject(Language.DE).getCreated()));
@@ -112,7 +112,7 @@ public class BackupVacancy {
         nextString.append(next.getContentObject(Language.EN).getUuid());
         nextString.append("|");
 
-        nextString.append("page_" + next.getUuid() + "_EN.txt");
+        nextString.append("vacancy_" + next.getUuid() + "_EN.txt");
         nextString.append("|");
 
 
