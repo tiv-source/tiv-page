@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
@@ -51,6 +52,8 @@ public class BackupProperty {
 
 	private static String convertToCsvLine(Property next) {
 
+	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 		// uuid|technical|created|modified|modifiedBy|ip|
 
 		StringBuffer nextString = new StringBuffer();
@@ -61,7 +64,7 @@ public class BackupProperty {
 		nextString.append(next.getValue());
 		nextString.append("|");
 
-        nextString.append(next.getModified());
+        nextString.append(simpleDateFormat.format(next.getModified()));
         nextString.append("|");
 
         nextString.append(next.getModifiedBy());
