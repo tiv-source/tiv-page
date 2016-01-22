@@ -3,7 +3,6 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
-<struts:url var="userAddUrl" action="addForm" namespace="/message" />
 <struts:url id="remoteurl"   action="table"   namespace="/message"/>
 
 <script type="text/javascript">
@@ -44,7 +43,7 @@ function formatIsoDate(celldate, options, rowObject) {
         
         <sjg:grid
           id="gridedittable"
-          caption="Message"
+          caption="%{getText('messages')}"
           dataType="json"
           href="%{remoteurl}"
           pager="true"
@@ -63,7 +62,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn
     	      name="gender"
     	      index="gender"
-    	      title="Geschlecht"
+    	      title="%{getText('message.gender')}"
     	      width="110"
     	      editable="false"
     	      sortable="true"
@@ -76,7 +75,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn
     	      name="firstname"
     	      index="firstname"
-    	      title="Firstname"
+    	      title="%{getText('message.firstname')}"
     	      width="210"
     	      editable="false"
     	      sortable="true"
@@ -88,7 +87,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn
     	      name="lastname"
     	      index="lastname"
-    	      title="Lastname"
+    	      title="%{getText('message.lastname')}"
     	      width="210"
     	      editable="false"
     	      sortable="true"
@@ -100,10 +99,10 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn
     	      name="telephone"
     	      index="telephone"
-    	      title="Telephone"
+    	      title="%{getText('message.telephone')}"
     	      width="190"
     	      editable="false"
-    	      sortable="false"
+    	      sortable="true"
     	      hidden="false"
     	      search="false"
     	      resizable="false"
@@ -112,10 +111,10 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn
     	      name="fax"
     	      index="fax"
-    	      title="Fax"
+    	      title="%{getText('message.fax')}"
     	      width="190"
     	      editable="false"
-    	      sortable="false"
+    	      sortable="true"
     	      hidden="false"
     	      search="false"
     	      resizable="false"
@@ -123,8 +122,8 @@ function formatIsoDate(celldate, options, rowObject) {
     	  />
     	  <sjg:gridColumn
     	      name="mail"
-    	      index="mail"
-    	      title="Mail"
+    	      index="email"
+    	      title="%{getText('message.email')}"
     	      width="250"
     	      editable="false"
     	      sortable="true"
@@ -136,7 +135,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="created"
     	      index="created"
-    	      title="Created"
+    	      title="%{getText('created')}"
     	      width="140"
     	      editable="false"
     	      sortable="true"
@@ -149,7 +148,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	      name="ip"
     	      index="ip"
-    	      title="IP"
+    	      title="%{getText('message.ip')}"
     	      width="140"
     	      editable="false"
     	      sortable="true"
@@ -161,7 +160,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn
     	      name="uuid"
     	      index="editbar"
-    	      title="Actions"
+    	      title=""
     	      width="115"
     	      editable="false"
     	      sortable="false"
