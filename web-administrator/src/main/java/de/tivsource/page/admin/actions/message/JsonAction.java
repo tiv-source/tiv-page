@@ -83,31 +83,43 @@ public class JsonAction extends ActionSupport {
 		 */
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("username")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.username", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.modified", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.created", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.visible", "asc");
+			if (getSidx() != null && getSidx().equalsIgnoreCase("gender")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.gender", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("firstname")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.firstname", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("lastname")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.lastname", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("telephone")) {
+                pageList = this.messageDaoLocal.findAll(from, getRows(), "m.telephone", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("fax")) {
+                pageList = this.messageDaoLocal.findAll(from, getRows(), "m.fax", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("email")) {
+                pageList = this.messageDaoLocal.findAll(from, getRows(), "m.mail", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.created", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("ip")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.ip", "asc");
 			} else {
 				pageList = this.messageDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("username")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.username", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.modified", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.created", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				pageList = this.messageDaoLocal.findAll(from, getRows(), "u.visible", "desc");
+			if (getSidx() != null && getSidx().equalsIgnoreCase("gender")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.gender", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("firstname")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.firstname", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("lastname")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.lastname", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("telephone")) {
+                pageList = this.messageDaoLocal.findAll(from, getRows(), "m.telephone", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("fax")) {
+                pageList = this.messageDaoLocal.findAll(from, getRows(), "m.fax", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("email")) {
+                pageList = this.messageDaoLocal.findAll(from, getRows(), "m.mail", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.created", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("ip")) {
+				pageList = this.messageDaoLocal.findAll(from, getRows(), "m.ip", "desc");
 			} else {
 				pageList = this.messageDaoLocal.findAll(from, getRows());
 			}
