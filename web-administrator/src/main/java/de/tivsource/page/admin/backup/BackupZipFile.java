@@ -22,6 +22,7 @@ import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
+import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 
 /**
  * @author Marc Michele
@@ -49,6 +50,8 @@ public class BackupZipFile {
     private static MessageDaoLocal messageDaoLocal;
 
     private static ReservationDaoLocal reservationDaoLocal;
+
+    private static VacancyDaoLocal vacancyDaoLocal;
 
     private static byte[] buffer = new byte[1024];
 
@@ -82,6 +85,10 @@ public class BackupZipFile {
 
     public static void setReservationDaoLocal(ReservationDaoLocal reservationDaoLocal) {
         BackupZipFile.reservationDaoLocal = reservationDaoLocal;
+    }
+
+    public static void setVacancyDaoLocal(VacancyDaoLocal vacancyDaoLocal) {
+        BackupZipFile.vacancyDaoLocal = vacancyDaoLocal;
     }
 
     public static File getZipFile() throws IOException {
@@ -142,6 +149,12 @@ public class BackupZipFile {
         BackupReservation backupReservation = new BackupReservation();
         addMultiData(backupReservation.getBackupFiles(), outZipFile);
 
+        /*
+         * Backup Vacancy
+         */
+        BackupVacancy.setVacancyDaoLocal(vacancyDaoLocal);
+        BackupVacancy backupVacancy = new BackupVacancy();
+        addMultiData(backupVacancy.getBackupFiles(), outZipFile);
 
         // Schließe die Zip-Datei.
         outZipFile.close();
