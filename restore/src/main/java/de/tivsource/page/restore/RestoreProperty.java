@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
@@ -57,6 +58,10 @@ public class RestoreProperty {
         Property property = new Property();
         property.setKey(items[0]);
         property.setValue(items[1]);
+        property.setModified(new Date());
+        property.setModifiedBy("Initial");
+        property.setModifiedAddress("localhost");
+        
 
         return property;
     }
