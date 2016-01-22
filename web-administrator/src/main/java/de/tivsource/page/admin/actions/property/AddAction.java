@@ -1,6 +1,9 @@
 package de.tivsource.page.admin.actions.property;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -54,7 +57,13 @@ public class AddAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
     	if(property != null) {
+    	    property.setModified(new Date());
+    	    property.setModifiedBy(remoteUser);
+    	    property.setModifiedAddress(remoteAddress);
     	    propertyDaoLocal.merge(property);
             return SUCCESS;
     	}
