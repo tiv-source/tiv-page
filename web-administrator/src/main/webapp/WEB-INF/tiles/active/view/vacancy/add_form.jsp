@@ -49,6 +49,26 @@
               </div>
 
               <div class="field">
+                <sj:datepicker
+                    key="vacancy.beginning"
+                    changeMonth="true"
+                    changeYear="true"
+                    displayFormat="dd.mm.yy"
+                    timepicker="false"
+                    style="width:100px;"
+                    parentTheme="css_xhtml"
+                />
+              </div>
+
+              <div class="field">
+                <sj:textfield 
+                    key="vacancy.workingTime"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
                 <sj:textfield 
                     key="vacancy.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
