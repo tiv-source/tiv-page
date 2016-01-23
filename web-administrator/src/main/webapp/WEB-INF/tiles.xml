@@ -231,6 +231,10 @@
 	</definition>
 
 
+    <!-- Templates für Gallery Klasse -->
+	<definition name="gallery" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/list.jsp" />
+	</definition>
 
 
 </tiles-definitions>
