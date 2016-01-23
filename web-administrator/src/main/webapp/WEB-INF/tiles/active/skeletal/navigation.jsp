@@ -9,6 +9,7 @@
 <struts:url var="eventUrl"             action="index" namespace="/event" />
 <struts:url var="messageUrl"           action="index" namespace="/message" />
 <struts:url var="vacancyUrl"           action="index" namespace="/vacancy" />
+<struts:url var="galleryUrl"           action="index" namespace="/gallery" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
 <struts:url var="roleUrl"              action="index" namespace="/role" />
@@ -63,6 +64,12 @@
                   <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}" cssClass="navItem navEvent">
                     <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_vacancy.png);">&nbsp;</span>
                     <span><struts:text name="navigation.vacancies"/></span>
+                  </struts:a>
+                </li>
+                <li>
+                  <struts:a href="%{galleryUrl}" title="%{getText('navigation.galleries')}" cssClass="navItem navEvent">
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_vacancy.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.galleries"/></span>
                   </struts:a>
                 </li>
               </ul>
