@@ -24,13 +24,17 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <label for="location.descriptionMap.DE.name" class="label">Name:</label>
+                <label for="location.descriptionMap.DE.name" class="label">
+                  <struts:text name="location.descriptionMap.DE.name"/>
+                </label>
                 <struts:hidden id="location.descriptionMap.DE.name" key="location.descriptionMap.DE.name"/>
                 <struts:property value="location.descriptionMap.DE.name"/>
               </div>
 
               <div class="field">
-                <label for="picture" class="label">Aktuelles Picture:</label>
+                <label for="picture" class="label">
+                  <struts:text name="location.picture"/>:
+                </label>
                 <img src="/uploads/<struts:property value="location.picture"/>" />
               </div>
 
