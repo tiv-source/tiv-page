@@ -14,6 +14,7 @@
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.event.Event</class>
+		<class>de.tivsource.page.entity.gallery.Gallery</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
 		<class>de.tivsource.page.entity.message.Message</class>
@@ -21,6 +22,9 @@
 		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
 		<class>de.tivsource.page.entity.news.News</class>
 		<class>de.tivsource.page.entity.page.Page</class>
+		<class>de.tivsource.page.entity.picture.Picture</class>
+		<class>de.tivsource.page.entity.picture.PictureDescription</class>
+		<class>de.tivsource.page.entity.picture.PictureUrl</class>
 		<class>de.tivsource.page.entity.property.Property</class>
 		<class>de.tivsource.page.entity.reservation.Reservation</class>
 		<class>de.tivsource.page.entity.vacancy.Vacancy</class>
