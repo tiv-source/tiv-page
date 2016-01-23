@@ -65,7 +65,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="descriptionMap.DE.name" 
     	    index="name" 
     	    title="%{getText('vacancy.descriptionMap.DE.name')}" 
-    	    width="650" 
+    	    width="450" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -77,7 +77,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="location.descriptionMap.DE.name" 
     	    index="location" 
     	    title="%{getText('vacancy.location.descriptionMap.DE.name')}" 
-    	    width="635" 
+    	    width="525" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -99,9 +99,9 @@ function formatIsoDate(celldate, options, rowObject) {
     	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
-    	    name="created" 
-    	    index="created" 
-    	    title="%{getText('created')}" 
+    	    name="modified" 
+    	    index="modified" 
+    	    title="%{getText('modified')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
@@ -110,6 +110,18 @@ function formatIsoDate(celldate, options, rowObject) {
     	    resizable="false" 
     	    align="center" 
     	    formatter="formatIsoDate"
+    	  />
+    	  <sjg:gridColumn 
+    	    name="modifiedBy" 
+    	    index="modifiedBy" 
+    	    title="%{getText('modifiedBy')}" 
+    	    width="300" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
     	  />
     	  <sjg:gridColumn 
     	    name="uuid" 
