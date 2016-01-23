@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -55,16 +57,30 @@ public class RestoreProperty {
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
 
+        // key|value|modified|modifiedBy|modifiedAddress|
         Property property = new Property();
         property.setKey(items[0]);
         property.setValue(items[1]);
-        property.setModified(new Date());
-        property.setModifiedBy("Initial");
-        property.setModifiedAddress("localhost");
-        
+        property.setModified(convertDateString(items[2]));
+        property.setModifiedBy(items[3]);
+        property.setModifiedAddress(items[4]);
 
         return property;
     }
+
+    /**
+     * Methode zum Konvertieren eines Strings des Formates "1970-12-01 23:59:59" in ein Date-Object. 
+     * @param dateString
+     * @return
+     */
+    private Date convertDateString(String dateString) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            return simpleDateFormat.parse(dateString);
+        } catch (ParseException e) {
+            return new Date();
+        }
+    }// Ende convertDateString(String dateString)
 
     private void cleanup() {
         if(propertyDaoLocal.countAll() > 0) {
