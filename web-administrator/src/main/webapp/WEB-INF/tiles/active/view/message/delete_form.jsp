@@ -25,52 +25,72 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <label for="message.gender" class="label">Geschlecht:</label>
+                <label for="message.gender" class="label">
+                  <struts:text name="message.gender"/>:
+                </label>
                 <struts:if test="message.gender">
-                  Frau
+                  <struts:text name="female"/>
                 </struts:if>
                 <struts:else>
-                  Herr
+                  <struts:text name="male"/>
                 </struts:else>
               </div>
 
               <div class="field">
-                <label for="message.firstname" class="label">Vorname:</label>
+                <label for="message.firstname" class="label">
+                  <struts:text name="message.firstname"/>:
+                </label>
                 <struts:property value="message.firstname"/>
               </div>
 
               <div class="field">
-                <label for="message.lastname" class="label">Nachname:</label>
+                <label for="message.lastname" class="label">
+                  <struts:text name="message.lastname"/>:
+                </label>
                 <struts:property value="message.lastname"/>
               </div>
 
               <div class="field">
-                <label for="message.mail" class="label">Mail:</label>
+                <label for="message.mail" class="label">
+                  <struts:text name="message.email"/>:
+                </label>
                 <struts:property value="message.mail"/>
               </div>
 
               <div class="field">
-                <label for="message.telephone" class="label">Telefon:</label>
+                <label for="message.telephone" class="label">
+                  <struts:text name="message.telephone"/>:
+                </label>
                 <struts:property value="message.telephone"/>
               </div>
 
               <div class="field">
-                <label for="message.fax" class="label">Fax:</label>
+                <label for="message.fax" class="label">
+                  <struts:text name="message.fax"/>:
+                </label>
                 <struts:property value="message.fax"/>
               </div>
 
               <div class="field">
-                <label for="message.content" class="label">Inhalt:</label>
-                <div style="padding-left: 200px;"><struts:property value="message.content" escape="false" /></div>
+                <label for="message.content" class="label">
+                  <struts:text name="message.content"/>:
+                </label>
+                <div style="padding-left: 200px;">
+                  <struts:property value="message.content" escape="false" />
+                </div>
               </div>
 
               <div class="field">
-                <label for="message.created" class="label">Erstellt am:</label>
+                <label for="message.created" class="label">
+                  <struts:text name="message.created"/>:
+                </label>
                 <struts:property value="message.created"/>
               </div>
 
               <div class="field">
-                <label for="message.ip" class="label">IP-Adresse:</label>
+                <label for="message.ip" class="label">
+                  <struts:text name="message.ip"/>:
+                </label>
                 <struts:property value="message.ip"/>
               </div>
 
