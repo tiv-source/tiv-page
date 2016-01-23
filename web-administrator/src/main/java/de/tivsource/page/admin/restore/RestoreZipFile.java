@@ -23,6 +23,7 @@ import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
+import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.restore.RestoreEvent;
 import de.tivsource.page.restore.RestoreLocation;
 import de.tivsource.page.restore.RestoreMessage;
@@ -31,6 +32,7 @@ import de.tivsource.page.restore.RestoreProperty;
 import de.tivsource.page.restore.RestoreReservation;
 import de.tivsource.page.restore.RestoreRole;
 import de.tivsource.page.restore.RestoreUser;
+import de.tivsource.page.restore.RestoreVacancy;
 
 /**
  * @author Marc Michele
@@ -59,6 +61,8 @@ public class RestoreZipFile {
 
     private ReservationDaoLocal reservationDaoLocal;
 
+    private VacancyDaoLocal vacancyDaoLocal;
+
     private Map<String, InputStream> streams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> pageStreams = new HashMap<String, InputStream>();
@@ -67,11 +71,14 @@ public class RestoreZipFile {
 
     private Map<String, InputStream> reservationStreams = new HashMap<String, InputStream>();
 
+    private Map<String, InputStream> vacancyStreams = new HashMap<String, InputStream>();
+
     public RestoreZipFile(UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
             PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal,
             LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal,
             MessageDaoLocal messageDaoLocal,
-            ReservationDaoLocal reservationDaoLocal) {
+            ReservationDaoLocal reservationDaoLocal,
+            VacancyDaoLocal vacancyDaoLocal) {
         super();
         this.userDaoLocal = userDaoLocal;
         this.roleDaoLocal = roleDaoLocal;
@@ -81,6 +88,7 @@ public class RestoreZipFile {
         this.eventDaoLocal = eventDaoLocal;
         this.messageDaoLocal = messageDaoLocal;
         this.reservationDaoLocal = reservationDaoLocal;
+        this.vacancyDaoLocal = vacancyDaoLocal;
     }
 
     public void restoreZip(File file) throws IOException {
@@ -99,6 +107,8 @@ public class RestoreZipFile {
                 messageStreams.put(fileName, zipFile.getInputStream(zipEntry));
             } else if(fileName.startsWith("reservation")) {
                 reservationStreams.put(fileName, zipFile.getInputStream(zipEntry));
+            } else if(fileName.startsWith("vacancy")) {
+                vacancyStreams.put(fileName, zipFile.getInputStream(zipEntry));
             } else {
                 streams.put(fileName, zipFile.getInputStream(zipEntry));
             }
@@ -127,6 +137,9 @@ public class RestoreZipFile {
 
         // Stelle Reservation wieder her
         restoreReservation();
+
+        // Stelle Vacancy wieder her
+        restoreVacancy();
 
         // Schließe Datei
         zipFile.close();
@@ -185,5 +198,10 @@ public class RestoreZipFile {
         restoreReservation.generate();
     }
 
-    
+    private void restoreVacancy() {
+        LOGGER.info("restoreVacancy() aufgerufen.");
+        RestoreVacancy vacancyReservation = new RestoreVacancy(vacancyDaoLocal, locationDaoLocal, vacancyStreams);
+        vacancyReservation.generate();
+    }
+
 }// Ende class
