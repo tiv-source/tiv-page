@@ -18,6 +18,7 @@ import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
+import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 
 /**
  * 
@@ -60,6 +61,9 @@ public class RestoreAction extends EmptyAction {
     @InjectEJB(name="ReservationDao")
     private ReservationDaoLocal reservationDaoLocal;
 
+    @InjectEJB(name="VacancyDao")
+    private VacancyDaoLocal vacancyDaoLocal;
+
     private File restoreFile;
 
     public void setRestoreFile(File restoreFile) {
@@ -78,7 +82,7 @@ public class RestoreAction extends EmptyAction {
 
         RestoreZipFile restoreZipFile = new RestoreZipFile(userDaoLocal,
                 roleDaoLocal, pageDaoLocal, propertyDaoLocal, locationDaoLocal,
-                eventDaoLocal, messageDaoLocal, reservationDaoLocal);
+                eventDaoLocal, messageDaoLocal, reservationDaoLocal, vacancyDaoLocal);
     	restoreZipFile.restoreZip(restoreFile);
 
     	return SUCCESS;
