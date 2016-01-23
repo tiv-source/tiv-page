@@ -7,7 +7,7 @@
       <div class="main">
         <div class="sub_menu"></div>
         <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2>Location Opening</h2>
+          <h2><struts:text name="location.openingHours" /></h2>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -27,9 +27,9 @@
               
               <table>
                 <tr>
-                  <td style="width:140px;"><b>Wochentag</b></td>
-                  <td style="width:77px;"><b>von</b></td>
-                  <td style="width:77px;"><b>bis</b></td>
+                  <td style="width:140px;"><b><struts:text name="weekday" /></b></td>
+                  <td style="width:77px;"><b><struts:text name="from" /></b></td>
+                  <td style="width:77px;"><b><struts:text name="to" /></b></td>
                   <td></td>
                 </tr>
 
@@ -37,8 +37,14 @@
                 <struts:iterator value="location.openingHours" status="openingHoursStatus">
                 <tr>
                   <td><struts:property value="getText(weekday)" /></td>
-                  <td><struts:property value="open" /> Uhr</td>
-                  <td><struts:property value="close" /> Uhr</td>
+                  <td>
+                    <struts:property value="open" /> 
+                    <struts:text name="clock" />
+                  </td>
+                  <td>
+                    <struts:property value="close" /> 
+                    <struts:text name="clock" />
+                  </td>
                   <td>
                     <struts:url id="openingHourDeleteURL" action="openingHourDeleteForm" namespace="/location">
                       <struts:param name="openingHours" value="#openingHoursStatus.index" />
@@ -48,9 +54,8 @@
                         id="submit_deny__Close"
                         name="submitClose"
                         cssClass="cancel small_red_button button"
-                        href="%{openingHourDeleteURL}"
-                    >
-                        l&ouml;schen
+                        href="%{openingHourDeleteURL}">
+                          <struts:text name="form.delete"/>
                     </struts:a>
                   </td>
                 </tr>
@@ -62,7 +67,7 @@
                 <struts:param name="locationUuid" value="#myLocation" />
               </struts:url>
               <struts:a href="%{openingHourAddUrl}">
-                hinzufügen
+                <struts:text name="add"/>
               </struts:a>
 
 
@@ -76,7 +81,9 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/location">Zur&uuml;ck</struts:a>
+                  namespace="/location">
+                    <struts:text name="form.abort"/>
+              </struts:a>
             </div>
           
         </div>
