@@ -67,6 +67,26 @@
                 />
               </div>
 
+              <div class="field">
+                <sj:datepicker
+                    key="vacancy.beginning"
+                    changeMonth="true"
+                    changeYear="true"
+                    displayFormat="dd.mm.yy"
+                    timepicker="false"
+                    style="width:100px;"
+                    parentTheme="css_xhtml"
+                />
+              </div>
+
+              <div class="field">
+                <sj:textfield 
+                    key="vacancy.workingTime"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
             <struts:if test="lang=='EN'">
               <struts:hidden key="lang"/>
               
@@ -94,6 +114,25 @@
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
+
+              <div class="field">
+                <sjr:ckeditor
+                    id="editor"
+                    key="vacancy.contentMap.EN.content" 
+					rows="10" 
+					cols="80" 
+					width="840"
+					height="250"
+					uploads="true" 
+					uploadHref="/admin/page/upload.html" 
+					onFocusTopics="focusRichtext"
+					onBlurTopics="blurRichtext"
+					onChangeTopics="highlightRichtext"
+					escape="false"
+					cssStyle="padding-left:202px;"
+				/>
+              </div>
+
             </struts:if>
             
             <struts:else>
@@ -122,6 +161,24 @@
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
+              </div>
+
+              <div class="field">
+                <sjr:ckeditor
+                    id="editor"
+                    key="vacancy.contentMap.DE.content" 
+					rows="10" 
+					cols="80" 
+					width="840"
+					height="250"
+					uploads="true" 
+					uploadHref="/admin/page/upload.html" 
+					onFocusTopics="focusRichtext"
+					onBlurTopics="blurRichtext"
+					onChangeTopics="highlightRichtext"
+					escape="false"
+					cssStyle="padding-left:202px;"
+				/>
               </div>
             </struts:else>
 
