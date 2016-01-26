@@ -74,7 +74,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      name="uuid"
     	      index="editbar"
     	      title=""
-    	      width="330"
+    	      width="325"
     	      editable="false"
     	      sortable="false"
     	      hidden="false"
