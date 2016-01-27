@@ -63,7 +63,7 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Boolean isGallery(String uuid) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = ?1 and g.visible = 'Y' order by e.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = ?1 and g.visible = 'Y' order by g.uuid asc");
         query.setParameter("1", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
