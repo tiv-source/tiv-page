@@ -62,6 +62,8 @@ public class Picture {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean visible;
 
+    private Integer orderNumber;
+    
     @ManyToOne(targetEntity = Gallery.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "gallery_uuid")
     private Gallery gallery;
@@ -106,6 +108,14 @@ public class Picture {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public Integer getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(Integer orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 
 	public Gallery getGallery() {
