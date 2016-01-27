@@ -15,6 +15,7 @@ import de.tivsource.page.admin.backup.BackupZipFile;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -38,6 +39,9 @@ public class BackupDatabaseAction extends EmptyAction {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(BackupDatabaseAction.class);
+
+	@InjectEJB(name="GalleryDao")
+    private GalleryDaoLocal galleryDaoLocal;
 
 	@InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
@@ -81,6 +85,7 @@ public class BackupDatabaseAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
+    	BackupZipFile.setGalleryDaoLocal(galleryDaoLocal);
     	BackupZipFile.setPageDaoLocal(pageDaoLocal);
     	BackupZipFile.setRoleDaoLocal(roleDaoLocal);
     	BackupZipFile.setUserDaoLocal(userDaoLocal);
