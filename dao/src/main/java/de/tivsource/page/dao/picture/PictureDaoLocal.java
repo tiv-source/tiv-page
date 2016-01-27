@@ -1,0 +1,61 @@
+/**
+ * 
+ */
+package de.tivsource.page.dao.picture;
+
+import java.util.List;
+
+import javax.ejb.Local;
+
+import de.tivsource.page.entity.picture.Picture;
+
+/**
+ * @author Marc Michele
+ *
+ */
+@Local
+public interface PictureDaoLocal {
+
+    /**
+     * Methode zum speichern eines Objektes der Klasse Picture.
+     * @param picture - Picture Objekt das gespeichert werden soll
+     */
+    public void save(Picture picture);
+
+    /**
+     * Methode zum verändern eines Objektes der Klasse Picture.
+     * @param picture - Picture Objekt das verändert werden soll
+     */
+    public void merge(Picture picture);
+
+    /**
+     * Methode zum löschen eines Objektes der Klasse Picture.
+     * @param picture - zu löschendes Picture Objekt
+     */
+    public void delete(Picture picture);
+
+    public Boolean isPicture(String uuid);
+
+    public Picture findByUuid(String uuid);
+
+    /**
+     * Methode zum laden einer Liste von Picture Objekten, es muss dabei ein
+     * Startwert angegeben werden und die Anzhal der zu ladenen Picture Objekte.
+     *
+     * @param start - Startwert ab der die Liste beginnen soll
+     * @param max - Maximale Anzahl an Objekten die die Liste enthalten soll
+     * @return List<Picture> - Liste von Picture Objekten
+     */
+    public List<Picture> findAll(Integer start, Integer max);
+
+    public List<Picture> findAll(Integer start, Integer max, String field, String order);
+
+    /**
+     * Methode die die Anzahl aller Picture Objekte die sich in der Datenbank
+     * befinden zurück liefert.
+     *
+     * @return Integer - Anzahl der Picture Objekte die sich in der Datenbank befinden.
+     */
+    public Integer countAll();
+
+}// Ende interface
