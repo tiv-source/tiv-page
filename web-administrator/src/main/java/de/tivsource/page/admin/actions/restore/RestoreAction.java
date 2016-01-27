@@ -13,6 +13,7 @@ import de.tivsource.page.admin.restore.RestoreZipFile;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -36,6 +37,9 @@ public class RestoreAction extends EmptyAction {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(RestoreAction.class);
+
+    @InjectEJB(name="GalleryDao")
+    private GalleryDaoLocal galleryDaoLocal;
 
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;
@@ -80,7 +84,7 @@ public class RestoreAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-        RestoreZipFile restoreZipFile = new RestoreZipFile(userDaoLocal,
+        RestoreZipFile restoreZipFile = new RestoreZipFile(galleryDaoLocal, userDaoLocal,
                 roleDaoLocal, pageDaoLocal, propertyDaoLocal, locationDaoLocal,
                 eventDaoLocal, messageDaoLocal, reservationDaoLocal, vacancyDaoLocal);
     	restoreZipFile.restoreZip(restoreFile);
