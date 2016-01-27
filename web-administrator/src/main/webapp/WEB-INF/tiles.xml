@@ -236,5 +236,35 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/list.jsp" />
 	</definition>
 
+	<definition name="galleryAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/add_form.jsp" />
+	</definition>
+
+	<definition name="galleryEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/edit_form.jsp" />
+	</definition>
+
+	<definition name="galleryDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/delete_form.jsp" />
+	</definition>
+
+
+
+    <!-- Templates für Picture Klasse -->
+	<definition name="picture" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/list.jsp" />
+	</definition>
+
+	<definition name="pictureAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/add_form.jsp" />
+	</definition>
+
+	<definition name="pictureEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/edit_form.jsp" />
+	</definition>
+
+	<definition name="pictureDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/delete_form.jsp" />
+	</definition>
 
 </tiles-definitions>
