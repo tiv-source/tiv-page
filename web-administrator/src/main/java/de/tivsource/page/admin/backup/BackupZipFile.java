@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -34,6 +35,8 @@ public class BackupZipFile {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(BackupZipFile.class);
+
+    private static GalleryDaoLocal galleryDaoLocal;
 
     private static PageDaoLocal pageDaoLocal;
 
@@ -55,7 +58,11 @@ public class BackupZipFile {
 
     private static byte[] buffer = new byte[1024];
 
-    public static void setPageDaoLocal(PageDaoLocal pageDaoLocal) {
+    public static void setGalleryDaoLocal(GalleryDaoLocal galleryDaoLocal) {
+		BackupZipFile.galleryDaoLocal = galleryDaoLocal;
+	}
+
+	public static void setPageDaoLocal(PageDaoLocal pageDaoLocal) {
         BackupZipFile.pageDaoLocal = pageDaoLocal;
     }
 
@@ -97,6 +104,12 @@ public class BackupZipFile {
         // Zip-Datei erstellen und Stream bereitstellen.
         File zipFile = File.createTempFile("complete_tivpage", "zip");
         ZipOutputStream outZipFile = new ZipOutputStream(new FileOutputStream(zipFile));
+
+        /*
+         * Backup Gallery
+         */
+        BackupGallery.setGalleryDaoLocal(galleryDaoLocal);;
+        addData(BackupGallery.getBackupFile(), outZipFile, "gallery.csv");
 
         /*
          * Backup Page
