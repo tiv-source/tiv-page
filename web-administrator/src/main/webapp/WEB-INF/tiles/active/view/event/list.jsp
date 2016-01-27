@@ -83,7 +83,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="location.descriptionMap.DE.name" 
     	    index="location" 
     	    title="%{getText('event.location.descriptionMap.DE.name')}" 
-    	    width="210" 
+    	    width="200" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
