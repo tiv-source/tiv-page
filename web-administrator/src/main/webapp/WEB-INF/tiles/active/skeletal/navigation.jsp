@@ -68,7 +68,7 @@
                 </li>
                 <li>
                   <struts:a href="%{galleryUrl}" title="%{getText('navigation.galleries')}" cssClass="navItem navEvent">
-                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_vacancy.png);">&nbsp;</span>
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_gallery.png);">&nbsp;</span>
                     <span><struts:text name="navigation.galleries"/></span>
                   </struts:a>
                 </li>
