@@ -21,6 +21,7 @@ import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
@@ -37,6 +38,8 @@ public class BackupZipFile {
     private static final Logger LOGGER = Logger.getLogger(BackupZipFile.class);
 
     private static GalleryDaoLocal galleryDaoLocal;
+
+    private static PictureDaoLocal pictureDaoLocal;
 
     private static PageDaoLocal pageDaoLocal;
 
@@ -60,6 +63,10 @@ public class BackupZipFile {
 
     public static void setGalleryDaoLocal(GalleryDaoLocal galleryDaoLocal) {
 		BackupZipFile.galleryDaoLocal = galleryDaoLocal;
+	}
+
+	public static void setPictureDaoLocal(PictureDaoLocal pictureDaoLocal) {
+		BackupZipFile.pictureDaoLocal = pictureDaoLocal;
 	}
 
 	public static void setPageDaoLocal(PageDaoLocal pageDaoLocal) {
@@ -110,6 +117,12 @@ public class BackupZipFile {
          */
         BackupGallery.setGalleryDaoLocal(galleryDaoLocal);;
         addData(BackupGallery.getBackupFile(), outZipFile, "gallery.csv");
+
+        /*
+         * Backup Picture
+         */
+        BackupPicture.setPictureDaoLocal(pictureDaoLocal);
+        addData(BackupPicture.getBackupFile(), outZipFile, "picture.csv");
 
         /*
          * Backup Page
