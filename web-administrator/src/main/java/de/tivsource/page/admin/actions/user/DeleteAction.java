@@ -63,7 +63,7 @@ public class DeleteAction extends EmptyAction {
     	if(user != null) {
     		User dbUser = userDaoLocal.findByUuid(user.getUuid());
             
-    		dbUser.setIp(remoteAddress);
+    		dbUser.setModifiedAddress(remoteAddress);
             dbUser.setModified(new Date());
             dbUser.setModifiedBy(remoteUser);
             dbUser.setRoles(null);

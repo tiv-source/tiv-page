@@ -86,7 +86,7 @@ public class BackupUser {
 		nextString.append(simpleDateFormat.format(next.getModified()));
 		nextString.append("|");
 
-		nextString.append(next.getIp());
+		nextString.append(next.getModifiedAddress());
 		nextString.append("|");
 
         nextString.append(next.getModifiedBy());

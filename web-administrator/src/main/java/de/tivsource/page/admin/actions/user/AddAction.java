@@ -71,7 +71,7 @@ public class AddAction extends EmptyAction {
     	    user.setUuid(UUID.randomUUID().toString());
     	    user.setModified(new Date());
     	    user.setCreated(new Date());
-    	    user.setIp(remoteAddress);
+    	    user.setModifiedAddress(remoteAddress);
     	    user.setModifiedBy(remoteUser);
 
     	    userDaoLocal.merge(user);

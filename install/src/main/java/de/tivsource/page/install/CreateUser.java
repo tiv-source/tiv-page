@@ -86,7 +86,7 @@ public class CreateUser {
     	user.setModified(convertDateString(items[8]));
 
     	// Setze IP auf localhost.
-    	user.setIp(items[9]);
+    	user.setModifiedAddress(items[9]);
 
     	user.setModifiedBy(items[10]);
 

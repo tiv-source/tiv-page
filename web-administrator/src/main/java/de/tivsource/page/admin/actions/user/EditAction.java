@@ -76,7 +76,7 @@ public class EditAction extends EmptyAction {
     		dbUser.setPassword(user.getPassword());
     		dbUser.setRoles(user.getRoles());
     		dbUser.setUsername(user.getUsername());
-    		dbUser.setIp(remoteAddress);
+    		dbUser.setModifiedAddress(remoteAddress);
     		dbUser.setModified(new Date());
     		dbUser.setModifiedBy(remoteUser);
 

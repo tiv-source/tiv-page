@@ -17,6 +17,18 @@ function formatEditLink(cellvalue, options, rowObject) {
 }
 </script>
 
+
+<script type="text/javascript">
+function formatIsoDate(celldate, options, rowObject) {
+  var newDate = new Date();
+  newDate.setTime(Date.parse(celldate));
+  return newDate.toLocaleFormat('%H:%M - %d.%m.%Y');
+}
+</script>
+
+
+
+
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
@@ -25,9 +37,6 @@ function formatEditLink(cellvalue, options, rowObject) {
           </struts:a>
         </div>
 
-        
-        
-        
         <sjg:grid
           id="gridedittable"
           caption="%{getText('users')}"
@@ -51,7 +60,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      name="uuid"
     	      index="uuid"
     	      title="%{getText('user.uuid')}"
-    	      width="350"
+    	      width="210"
     	      editable="false"
     	      sortable="true"
     	      hidden="false"
@@ -87,7 +96,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      name="lastname"
     	      index="lastname"
     	      title="%{getText('user.lastname')}"
-    	      width="280"
+    	      width="210"
     	      editable="false"
     	      sortable="true"
     	      hidden="false"
@@ -99,7 +108,7 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      name="email"
     	      index="email"
     	      title="%{getText('user.email')}"
-    	      width="280"
+    	      width="210"
     	      editable="false"
     	      sortable="true"
     	      hidden="false"
@@ -108,10 +117,47 @@ function formatEditLink(cellvalue, options, rowObject) {
     	      align="center"
     	  />
     	  <sjg:gridColumn 
+    	    name="modified" 
+    	    index="modified" 
+    	    title="%{getText('modified')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	    formatter="formatIsoDate"
+    	  />
+    	  <sjg:gridColumn 
+    	    name="modifiedBy" 
+    	    index="modifiedBy" 
+    	    title="%{getText('modifiedBy')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="modifiedAddress" 
+    	    index="modifiedAddress" 
+    	    title="%{getText('modifiedAddress')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
     	      name="uuid"
     	      index="editbar"
     	      title=""
-    	      width="240"
+    	      width="85"
     	      editable="false"
     	      sortable="false"
     	      hidden="false"
