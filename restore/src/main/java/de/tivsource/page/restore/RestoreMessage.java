@@ -79,7 +79,7 @@ public class RestoreMessage {
         message.setFax(items[6]);
         message.setContent(createContent(items[7]));
         message.setCreated(convertDateString(items[8]));
-        message.setIp(items[9]);
+        message.setCreatedAddress(items[9]);
         
         return message;
     }

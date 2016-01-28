@@ -79,10 +79,10 @@
               </div>
 
               <div class="field">
-                <label for="message.ip" class="label">
-                  <struts:text name="message.ip"/>:
+                <label for="message.createdAddress" class="label">
+                  <struts:text name="message.createdAddress"/>:
                 </label>
-                <struts:property value="message.ip"/>
+                <struts:property value="message.createdAddress"/>
               </div>
 
             </fieldset>

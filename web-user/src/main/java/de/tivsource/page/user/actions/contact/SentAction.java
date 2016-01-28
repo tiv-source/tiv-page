@@ -83,7 +83,7 @@ public class SentAction extends EmptyAction {
     	// Speichere Message Objekt
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
         message.setCreated(new Date());
-        message.setIp(remoteAddress);
+        message.setCreatedAddress(remoteAddress);
         message.setUuid(UUID.randomUUID().toString());
         messageDaoLocal.merge(message);
         
