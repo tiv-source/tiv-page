@@ -8,10 +8,10 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/gallery/editForm.html?page="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/gallery/editForm.html?gallery="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/pencil.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/gallery/deleteForm.html?page="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/gallery/deleteForm.html?gallery="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/delete.png'/>" + 
          "</a>";
 }
@@ -64,8 +64,8 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="name" 
-    	    title="%{getText('descriptionMap.DE.name')}" 
-    	    width="210" 
+    	    title="%{getText('gallery.descriptionMap.DE.name')}" 
+    	    width="370" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -76,8 +76,8 @@ function formatIsoDate(celldate, options, rowObject) {
     	  <sjg:gridColumn 
     	    name="technical" 
     	    index="technical" 
-    	    title="%{getText('technical')}" 
-    	    width="180" 
+    	    title="%{getText('gallery.technical')}" 
+    	    width="280" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -86,117 +86,16 @@ function formatIsoDate(celldate, options, rowObject) {
     	    align="center" 
     	  />
     	  <sjg:gridColumn 
-    	    name="topNavigation" 
-    	    index="topNavigation" 
-    	    title="%{getText('topNavigation')}" 
-    	    width="70" 
+    	    name="orderNumber" 
+    	    index="orderNumber" 
+    	    title="%{getText('gallery.orderNumber')}" 
+    	    width="210" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
     	    search="false" 
     	    resizable="false" 
     	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="topNavigationOrder" 
-    	    index="topNavigationOrder" 
-    	    title="%{getText('topNavigationOrder')}" 
-    	    width="80" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="navigation" 
-    	    index="navigation" 
-    	    title="%{getText('navigation')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="navigationOrder" 
-    	    index="navigationOrder" 
-    	    title="%{getText('navigationOrder')}" 
-    	    width="90" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="bottomNavigation" 
-    	    index="bottomNavigation" 
-    	    title="%{getText('bottomNavigation')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="bottomNavigationOrder" 
-    	    index="bottomNavigationOrder" 
-    	    title="%{getText('bottomNavigationOrder')}" 
-    	    width="90" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="responsiveNavigation" 
-    	    index="responsiveNavigation" 
-    	    title="%{getText('responsiveNavigation')}" 
-    	    width="90" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="responsiveNavigationOrder" 
-    	    index="responsiveNavigationOrder" 
-    	    title="%{getText('responsiveNavigationOrder')}" 
-    	    width="90" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="special" 
-    	    index="special" 
-    	    title="%{getText('special')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
     	    name="visible" 
@@ -210,6 +109,19 @@ function formatIsoDate(celldate, options, rowObject) {
     	    resizable="false" 
     	    align="center" 
     	    formatter="formatTrueFalse"
+    	  />
+    	  <sjg:gridColumn 
+    	    name="created" 
+    	    index="created" 
+    	    title="%{getText('created')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	    formatter="formatIsoDate"
     	  />
     	  <sjg:gridColumn 
     	    name="modified" 
@@ -228,6 +140,18 @@ function formatIsoDate(celldate, options, rowObject) {
     	    name="modifiedBy" 
     	    index="modifiedBy" 
     	    title="%{getText('modifiedBy')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	  />
+    	  <sjg:gridColumn 
+    	    name="ip" 
+    	    index="ip" 
+    	    title="%{getText('ip')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 
