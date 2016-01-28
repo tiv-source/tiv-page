@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -25,6 +26,7 @@ import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.restore.RestoreEvent;
+import de.tivsource.page.restore.RestoreGallery;
 import de.tivsource.page.restore.RestoreLocation;
 import de.tivsource.page.restore.RestoreMessage;
 import de.tivsource.page.restore.RestorePage;
@@ -44,6 +46,8 @@ public class RestoreZipFile {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(RestoreZipFile.class);
+
+    private GalleryDaoLocal galleryDaoLocal;
 
     private UserDaoLocal userDaoLocal;
 
@@ -73,13 +77,14 @@ public class RestoreZipFile {
 
     private Map<String, InputStream> vacancyStreams = new HashMap<String, InputStream>();
 
-    public RestoreZipFile(UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
+    public RestoreZipFile(GalleryDaoLocal galleryDaoLocal, UserDaoLocal userDaoLocal, RoleDaoLocal roleDaoLocal,
             PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal,
             LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal,
             MessageDaoLocal messageDaoLocal,
             ReservationDaoLocal reservationDaoLocal,
             VacancyDaoLocal vacancyDaoLocal) {
         super();
+        this.galleryDaoLocal = galleryDaoLocal;
         this.userDaoLocal = userDaoLocal;
         this.roleDaoLocal = roleDaoLocal;
         this.pageDaoLocal = pageDaoLocal;
@@ -114,6 +119,9 @@ public class RestoreZipFile {
             }
         }// Ende while
 
+        // Stelle Galerien wieder her
+        restoreGallery();
+
         // Stelle Rollen wieder her
         restoreRole();
 
@@ -147,8 +155,13 @@ public class RestoreZipFile {
         // Schließe Datei Stream
         zipInputStream.close();
 
-        
     }// Ende restoreZip(File file)
+
+    private void restoreGallery() {
+        LOGGER.info("restoreGallery() aufgerufen.");
+        RestoreGallery restoreGallery = new RestoreGallery(galleryDaoLocal);
+        restoreGallery.generate(streams.get("gallery.csv"));
+    }
 
     private void restoreUser() {
         LOGGER.info("restoreUser() aufgerufen.");
