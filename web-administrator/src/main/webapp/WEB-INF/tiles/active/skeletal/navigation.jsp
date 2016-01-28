@@ -10,6 +10,7 @@
 <struts:url var="messageUrl"           action="index" namespace="/message" />
 <struts:url var="vacancyUrl"           action="index" namespace="/vacancy" />
 <struts:url var="galleryUrl"           action="index" namespace="/gallery" />
+<struts:url var="pictureUrl"           action="index" namespace="/picture" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
 <struts:url var="roleUrl"              action="index" namespace="/role" />
@@ -70,6 +71,12 @@
                   <struts:a href="%{galleryUrl}" title="%{getText('navigation.galleries')}" cssClass="navItem navEvent">
                     <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_gallery.png);">&nbsp;</span>
                     <span><struts:text name="navigation.galleries"/></span>
+                  </struts:a>
+                </li>
+                <li>
+                  <struts:a href="%{pictureUrl}" title="%{getText('navigation.pictures')}" cssClass="navItem navEvent">
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_picture.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.pictures"/></span>
                   </struts:a>
                 </li>
               </ul>
