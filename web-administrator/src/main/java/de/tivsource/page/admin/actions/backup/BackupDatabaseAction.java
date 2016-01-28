@@ -19,6 +19,7 @@ import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
@@ -42,6 +43,9 @@ public class BackupDatabaseAction extends EmptyAction {
 
 	@InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
+
+	@InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
 
 	@InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
@@ -86,6 +90,7 @@ public class BackupDatabaseAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
     	BackupZipFile.setGalleryDaoLocal(galleryDaoLocal);
+    	BackupZipFile.setPictureDaoLocal(pictureDaoLocal);
     	BackupZipFile.setPageDaoLocal(pageDaoLocal);
     	BackupZipFile.setRoleDaoLocal(roleDaoLocal);
     	BackupZipFile.setUserDaoLocal(userDaoLocal);
