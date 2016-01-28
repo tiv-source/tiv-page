@@ -72,7 +72,7 @@ public class AddAction extends EmptyAction {
     	    role.setCreated(new Date());
     	    role.setModified(new Date());
     	    role.setModifiedBy(remoteUser);
-    	    role.setIp(remoteAddress);
+    	    role.setModifiedAddress(remoteAddress);
 
     	    roleDaoLocal.merge(role);
             return SUCCESS;

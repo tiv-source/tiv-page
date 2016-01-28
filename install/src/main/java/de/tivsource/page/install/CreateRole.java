@@ -55,7 +55,7 @@ public class CreateRole {
         role.setCreated(convertDateString(items[2]));
         role.setModified(convertDateString(items[3]));
         role.setModifiedBy(items[4]);
-        role.setIp(items[5]);
+        role.setModifiedAddress(items[5]);
 
         return role;
     }

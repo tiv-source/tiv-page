@@ -72,7 +72,7 @@ public class EditAction extends EmptyAction {
     		dbRole.setTechnical(role.getTechnical());
     		dbRole.setModified(new Date());
     		dbRole.setModifiedBy(remoteUser);
-    		dbRole.setIp(remoteAddress);
+    		dbRole.setModifiedAddress(remoteAddress);
     		roleDaoLocal.merge(dbRole);
             return SUCCESS;
     	}

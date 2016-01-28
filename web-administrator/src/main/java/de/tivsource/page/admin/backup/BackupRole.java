@@ -72,7 +72,7 @@ public class BackupRole {
 		nextString.append(next.getModifiedBy());
 		nextString.append("|");
 
-		nextString.append(next.getIp());
+		nextString.append(next.getModifiedAddress());
 		nextString.append("|");
 
 		return nextString.toString();

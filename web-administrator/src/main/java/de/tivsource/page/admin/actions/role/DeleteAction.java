@@ -64,7 +64,7 @@ public class DeleteAction extends EmptyAction {
     	    Role dbRole = roleDaoLocal.findByUuid(role.getUuid());
     	    dbRole.setModified(new Date());
     	    dbRole.setModifiedBy(remoteUser);
-    	    dbRole.setIp(remoteAddress);
+    	    dbRole.setModifiedAddress(remoteAddress);
     	    roleDaoLocal.merge(dbRole);
     	    roleDaoLocal.delete(dbRole);
             return SUCCESS;

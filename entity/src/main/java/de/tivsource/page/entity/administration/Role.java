@@ -70,7 +70,7 @@ public class Role implements Principal {
     /**
      * Ip-Adresse von der das Objekt das letzte mal geändert wurde.
      */
-    private String ip;
+    private String modifiedAddress;
 
     public String getUuid() {
         return uuid;
@@ -120,12 +120,12 @@ public class Role implements Principal {
         this.modifiedBy = modifiedBy;
     }
 
-    public String getIp() {
-        return ip;
+    public String getModifiedAddress() {
+        return modifiedAddress;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setModifiedAddress(String modifiedAddress) {
+        this.modifiedAddress = modifiedAddress;
     }
 
     @Override
