@@ -158,6 +158,28 @@ public class Picture {
 		this.modifiedAddress = modifiedAddress;
 	}
 
+	/**
+     * Methode die den Namen des aktuellen Objektes zurück liefert, es muss dazu
+     * die gewünschte Sprache als String übergeben werden (e.g. de/en/fr(etc.).
+     * 
+     * @param language
+     *            - String der den 2 Buchstaben-Code der Sprache enthält.
+     * @return String - Der Name des aktuellen Objektes als String.
+     */
+    public String getName(String language) {
+        String result = descriptionMap.get(Language.DE).getName();
+        String tmpResult = descriptionMap.get(Language.DE).getName();
+        try {
+            tmpResult = descriptionMap.get(
+                    Language.valueOf(language.toUpperCase())).getName();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+
 	public String getPictureUrl(String urlType) {
         StringBuilder sb = new StringBuilder("/");
         sb.append("pictures");
