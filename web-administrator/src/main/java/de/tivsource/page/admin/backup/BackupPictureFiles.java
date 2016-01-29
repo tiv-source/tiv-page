@@ -33,14 +33,14 @@ public class BackupPictureFiles {
         ZipOutputStream outZipFile = new ZipOutputStream(new FileOutputStream(zipFile));
 
         String picturePath = "/srv/www/htdocs/pictures/";
-        String picturePathFULL = "/srv/www/htdocs/pictures/FULL/";
-        String picturePathLARGE = "/srv/www/htdocs/pictures/LARGE/";
-        String picturePathNORMAL = "/srv/www/htdocs/pictures/NORMAL/";
-        String picturePathTHUMBNAIL = "/srv/www/htdocs/pictures/THUMBNAIL/";
+        String picturePathFULL = picturePath + "FULL/";
+        String picturePathLARGE = picturePath + "LARGE/";
+        String picturePathNORMAL = picturePath + "NORMAL/";
+        String picturePathTHUMBNAIL = picturePath + "THUMBNAIL/";
 
-        outZipFile.putNextEntry(new ZipEntry(picturePath));
+        outZipFile.putNextEntry(new ZipEntry("pictures/"));
 
-        outZipFile.putNextEntry(new ZipEntry(picturePathFULL));
+        outZipFile.putNextEntry(new ZipEntry("pictures/FULL/"));
         File folderFULL = new File(picturePathFULL);
         File[] listOfFilesFULL = folderFULL.listFiles();
         LOGGER.debug("Anzahl der Dateien: " + listOfFilesFULL.length);
@@ -51,7 +51,7 @@ public class BackupPictureFiles {
         	}
         }
 
-        outZipFile.putNextEntry(new ZipEntry(picturePathLARGE));
+        outZipFile.putNextEntry(new ZipEntry("pictures/LARGE/"));
         File folderLARGE = new File(picturePathLARGE);
         File[] listOfFilesLARGE = folderLARGE.listFiles();
         LOGGER.debug("Anzahl der Dateien: " + listOfFilesLARGE.length);
@@ -62,7 +62,7 @@ public class BackupPictureFiles {
         	}
         }
         
-        outZipFile.putNextEntry(new ZipEntry(picturePathNORMAL));
+        outZipFile.putNextEntry(new ZipEntry("pictures/NORMAL/"));
         File folderNORMAL = new File(picturePathNORMAL);
         File[] listOfFilesNORMAL = folderNORMAL.listFiles();
         LOGGER.debug("Anzahl der Dateien: " + listOfFilesNORMAL.length);
@@ -73,7 +73,7 @@ public class BackupPictureFiles {
         	}
         }
 
-        outZipFile.putNextEntry(new ZipEntry(picturePathTHUMBNAIL));
+        outZipFile.putNextEntry(new ZipEntry("pictures/THUMBNAIL/"));
         File folderTHUMBNAIL = new File(picturePathTHUMBNAIL);
         File[] listOfFilesTHUMBNAIL = folderTHUMBNAIL.listFiles();
         LOGGER.debug("Anzahl der Dateien: " + listOfFilesTHUMBNAIL.length);
