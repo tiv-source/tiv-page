@@ -40,9 +40,9 @@ public class AddAction extends EmptyAction {
 	/**
 	 * Serial Version UID.
 	 */
-    private static final long serialVersionUID = 7464881886808879895L;
+	private static final long serialVersionUID = -5152279376430754651L;
 
-    /**
+	/**
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = Logger.getLogger(AddAction.class);
