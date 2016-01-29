@@ -62,8 +62,6 @@ public class Location extends NamingItem {
      */
     private String latitude;
 
-    private String picture;
-
     public Address getAddress() {
         return address;
     }
@@ -126,14 +124,6 @@ public class Location extends NamingItem {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
     }
 
 }// Ende class
