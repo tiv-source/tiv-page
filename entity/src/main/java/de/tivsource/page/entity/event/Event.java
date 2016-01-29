@@ -42,8 +42,6 @@ public class Event extends NamingItem {
     @JoinColumn(name = "location_uuid")
     private Location location;
 
-    private String picture;
-
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean reservation;
@@ -89,14 +87,6 @@ public class Event extends NamingItem {
 
     public void setLocation(Location location) {
         this.location = location;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
     }
 
     public Boolean getReservation() {
