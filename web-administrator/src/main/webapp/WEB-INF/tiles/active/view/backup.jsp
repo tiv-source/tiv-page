@@ -38,6 +38,18 @@
                   namespace="/backup">hier klicken</struts:a>
             </td>
           </tr>
+          <tr>
+            <td>Bild Backup</td>
+            <td>
+                <struts:a 
+                  id="submit_deny__Close" 
+                  name="submitClose" 
+                  cssClass="cancel small_red_button button"
+                  cssStyle="width: 100px; color: #ffffff !important; text-align: center;" 
+                  action="pictures" 
+                  namespace="/backup">hier klicken</struts:a>
+            </td>
+          </tr>
         </table>
         </div>
 
