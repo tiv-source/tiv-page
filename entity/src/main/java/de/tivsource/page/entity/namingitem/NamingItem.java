@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -21,6 +23,7 @@ import javax.persistence.Temporal;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
+import de.tivsource.page.entity.picture.Picture;
 
 /**
  * Die Hauptklasse des Projektes.
@@ -63,6 +66,10 @@ public class NamingItem {
 
     private String modifiedAddress;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "picture_uuid")
+    private Picture picture;
+    
     public String getUuid() {
         return uuid;
     }
@@ -119,7 +126,15 @@ public class NamingItem {
         this.modifiedAddress = modifiedAddress;
     }
 
-    /**
+    public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
+	/**
      * Methode die den Namen des aktuellen Objektes zurück liefert, es muss dazu
      * die gewünschte Sprache als String übergeben werden (e.g. de/en/fr(etc.).
      * 
