@@ -107,7 +107,8 @@ public class RestoreEvent {
         event.setLocation(location);
         
         event.setReservation(items[19].equals("true") ? true : false);
-        event.setPicture(items[20]);
+        // TODO: Bild wiederherstellen
+        // event.setPicture(items[20]);
         
 
         return event;
