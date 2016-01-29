@@ -76,6 +76,14 @@ public class PictureDao implements PictureDaoLocal {
 		return entityManager.find(Picture.class, uuid);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Picture> findAll(String uuid) {
+        Query query = entityManager.createQuery("from Picture p where p.gallery.uuid = ?1 order by p.orderNumber asc");
+        query.setParameter("1", uuid);
+        return query.getResultList();
+	}
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.picture.PictureDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
 	 */

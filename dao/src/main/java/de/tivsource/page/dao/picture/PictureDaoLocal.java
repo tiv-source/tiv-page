@@ -39,6 +39,17 @@ public interface PictureDaoLocal {
     public Picture findByUuid(String uuid);
 
     /**
+	 * Methode die alle Picture Objekt zurückliefert die zu der angegebenen
+	 * Galler uuid gehören.
+	 * 
+	 * @param uuid - UUID des Gallery Objektes zu dem die Picture Objekte gehören
+	 *            sollen.
+	 * @return List<Picture> - Liste mit den Picture Objekten die zu dem Gallery
+	 *         Obejket gehören von dem die angegebenen UUID stammt
+	 */
+    public List<Picture> findAll(String uuid);
+
+    /**
      * Methode zum laden einer Liste von Picture Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzhal der zu ladenen Picture Objekte.
      *
