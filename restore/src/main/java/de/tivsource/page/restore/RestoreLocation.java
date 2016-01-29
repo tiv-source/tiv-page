@@ -109,7 +109,8 @@ public class RestoreLocation {
         location.setModifiedBy(items[24]);
         location.setModifiedAddress(items[25]);
         location.setEvent(items[26].equals("true") ? true : false);
-        location.setPicture(items[27]);
+        // TODO: Bild wiederherstellen
+        // location.setPicture(items[27]);
 
         return location;
     }// Ende convert(String line)
