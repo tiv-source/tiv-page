@@ -102,7 +102,7 @@ public class BackupGallery {
         nextString.append(next.getModifiedBy());
         nextString.append("|");
 
-        nextString.append(next.getIp());
+        nextString.append(next.getModifiedAddress());
         nextString.append("|");
 
         nextString.append("Not Jet");

@@ -89,7 +89,7 @@ public class EditAction extends EmptyAction {
     		dbLocation.setModified(new Date());
     		dbLocation.setVisible(location.getVisible());
     		dbLocation.setModifiedBy(remoteUser);
-    		dbLocation.setIp(remoteAddress);
+    		dbLocation.setModifiedAddress(remoteAddress);
 
     		dbLocation.getAddress().setCity(location.getAddress().getCity());
     		dbLocation.getAddress().setCountry(location.getAddress().getCountry());

@@ -84,7 +84,7 @@ public class AddAction extends EmptyAction {
     	    event.setModified(new Date());
     	    event.setCreated(new Date());
     	    event.setModifiedBy(remoteUser);
-    	    event.setIp(remoteAddress);
+    	    event.setModifiedAddress(remoteAddress);
 
     	    // Füge Event in die Location ein
     	    event.getLocation().getEvents().add(event);

@@ -95,7 +95,7 @@ public class EditAction extends EmptyAction {
     		dbEvent.setBeginning(event.getBeginning());
     		dbEvent.setDeadline(event.getDeadline());
     		dbEvent.setEnding(event.getEnding());
-    		dbEvent.setIp(remoteAddress);
+    		dbEvent.setModifiedAddress(remoteAddress);
     		dbEvent.setLocation(locationDaoLocal.findByUuidWidthEvents(event.getLocation().getUuid()));
     		dbEvent.setModified(new Date());
     		dbEvent.setModifiedBy(remoteUser);

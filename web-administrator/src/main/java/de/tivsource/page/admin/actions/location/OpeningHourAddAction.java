@@ -75,7 +75,7 @@ public class OpeningHourAddAction extends EmptyAction {
             location = dbLocation;
             dbLocation.setModified(new Date());
             dbLocation.setModifiedBy(remoteUser);
-            dbLocation.setIp(remoteAddress);
+            dbLocation.setModifiedAddress(remoteAddress);
 
             openingHour.setUuid(UUID.randomUUID().toString());
             openingHour.setLocation(dbLocation);

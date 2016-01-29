@@ -77,7 +77,7 @@ public class PictureEditAction extends EmptyAction {
 
     		dbEvent.setModified(new Date());
     		dbEvent.setModifiedBy(remoteUser);
-    		dbEvent.setIp(remoteAddress);
+    		dbEvent.setModifiedAddress(remoteAddress);
 
     		
     		

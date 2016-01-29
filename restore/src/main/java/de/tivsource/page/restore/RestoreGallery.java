@@ -90,7 +90,7 @@ public class RestoreGallery {
         gallery.setCreated(convertDateString(items[10]));
         gallery.setModified(convertDateString(items[11]));
         gallery.setModifiedBy(items[12]);
-        gallery.setIp(items[13]);
+        gallery.setModifiedAddress(items[13]);
 
         // TODO: Picture
 

@@ -149,9 +149,9 @@ function formatIsoDate(celldate, options, rowObject) {
     	    align="left" 
     	  />
     	  <sjg:gridColumn 
-    	    name="ip" 
-    	    index="ip" 
-    	    title="%{getText('ip')}" 
+    	    name="modifiedAddress" 
+    	    index="modifiedAddress" 
+    	    title="%{getText('modifiedAddress')}" 
     	    width="140" 
     	    editable="false" 
     	    sortable="true" 

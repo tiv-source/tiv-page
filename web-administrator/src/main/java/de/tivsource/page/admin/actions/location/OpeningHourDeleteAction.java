@@ -76,7 +76,7 @@ public class OpeningHourDeleteAction extends EmptyAction {
             Location dbLocation = locationDaoLocal.findByUuid(location.getUuid());
             dbLocation.setModified(new Date());
             dbLocation.setModifiedBy(remoteUser);
-            dbLocation.setIp(remoteAddress);
+            dbLocation.setModifiedAddress(remoteAddress);
             locationDaoLocal.merge(dbLocation);
 
             locationDaoLocal.removeOpeningHour(openingHoursIndex, location.getUuid());

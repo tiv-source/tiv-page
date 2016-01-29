@@ -103,7 +103,7 @@ public class RestorePage {
         page.setCreated(convertDateString(items[18]));
         page.setModified(convertDateString(items[19]));
         page.setModifiedBy(items[20]);
-        page.setIp(items[21]);
+        page.setModifiedAddress(items[21]);
         page.setTechnical(items[22]);
         page.setSpecial(items[23].equals("true") ? true : false);
         page.setTopNavigation(items[24].equals("true") ? true : false);

@@ -107,7 +107,7 @@ public class RestoreLocation {
         location.setCreated(convertDateString(items[22]));
         location.setModified(convertDateString(items[23]));
         location.setModifiedBy(items[24]);
-        location.setIp(items[25]);
+        location.setModifiedAddress(items[25]);
         location.setEvent(items[26].equals("true") ? true : false);
         location.setPicture(items[27]);
 

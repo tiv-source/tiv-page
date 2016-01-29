@@ -95,7 +95,7 @@ public class RestoreEvent {
         event.setCreated(convertDateString(items[10]));
         event.setModified(convertDateString(items[11]));
         event.setModifiedBy(items[12]);
-        event.setIp(items[13]);
+        event.setModifiedAddress(items[13]);
         
         event.setPrice(new BigDecimal(items[14]));
         event.setBeginning(convertDateString(items[15]));

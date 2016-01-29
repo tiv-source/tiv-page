@@ -78,7 +78,7 @@ public class AddAction extends EmptyAction {
     	    location.setModified(new Date());
     	    location.setCreated(new Date());
     	    location.setModifiedBy(remoteUser);
-    	    location.setIp(remoteAddress);
+    	    location.setModifiedAddress(remoteAddress);
     	    
     	    location.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
     	    location.getDescriptionMap().get(Language.DE).setNamingItem(location);

@@ -67,7 +67,7 @@ public class AddAction extends EmptyAction {
     	    page.setModified(new Date());
     	    page.setCreated(new Date());
     	    page.setModifiedBy(remoteUser);
-    	    page.setIp(remoteAddress);
+    	    page.setModifiedAddress(remoteAddress);
 
 
     	    page.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());

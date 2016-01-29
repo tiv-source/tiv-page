@@ -107,7 +107,7 @@ public class RestoreVacancy {
         vacancy.setCreated(convertDateString(items[18]));
         vacancy.setModified(convertDateString(items[19]));
         vacancy.setModifiedBy(items[20]);
-        vacancy.setIp(items[21]);
+        vacancy.setModifiedAddress(items[21]);
         vacancy.setTechnical(items[22]);
         vacancy.setBeginning(convertDateString(items[23]));
         vacancy.setWorkingTime(items[24]);

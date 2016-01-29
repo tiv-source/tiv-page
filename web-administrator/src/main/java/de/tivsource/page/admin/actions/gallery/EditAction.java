@@ -87,7 +87,7 @@ public class EditAction extends EmptyAction {
             }
     		
     		
-    		dbGallery.setIp(remoteAddress);
+    		dbGallery.setModifiedAddress(remoteAddress);
     		dbGallery.setModified(new Date());
     		dbGallery.setModifiedBy(remoteUser);
     		dbGallery.setVisible(gallery.getVisible());

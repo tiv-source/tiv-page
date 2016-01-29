@@ -41,7 +41,7 @@ public class BackupVacancy {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|ip|technical|beginning|workingTime|location|");
+    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|technical|beginning|workingTime|location|");
 
     	Iterator<Vacancy> vacancyIterator = vacancyDaoLocal.findAll(0, max).iterator();
     	while(vacancyIterator.hasNext()) {
@@ -66,7 +66,7 @@ public class BackupVacancy {
 		// uuid|
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-	    // visible|created|modified|modifiedBy|ip|technical|beginning|workingTime|location|
+	    // visible|created|modified|modifiedBy|modifiedAddress|technical|beginning|workingTime|location|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -135,7 +135,7 @@ public class BackupVacancy {
 		nextString.append(next.getModifiedBy());
 		nextString.append("|");
 
-		nextString.append(next.getIp());
+		nextString.append(next.getModifiedAddress());
 		nextString.append("|");
 
         nextString.append(next.getTechnical());

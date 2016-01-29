@@ -92,7 +92,7 @@ public class EditAction extends EmptyAction {
                 dbVacancy.getDescriptionMap().get(Language.DE).setName(vacancy.getName(Language.DE));
             }
     		
-    		dbVacancy.setIp(remoteAddress);
+    		dbVacancy.setModifiedAddress(remoteAddress);
     		dbVacancy.setLocation(locationDaoLocal.findByUuidWidthEvents(vacancy.getLocation().getUuid()));
     		dbVacancy.setModified(new Date());
     		dbVacancy.setModifiedBy(remoteUser);

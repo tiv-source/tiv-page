@@ -108,7 +108,7 @@ public class EditAction extends EmptyAction {
     		dbPage.setTopNavigationOrder(page.getTopNavigationOrder());
     		dbPage.setVisible(page.getVisible());
     		dbPage.setModifiedBy(remoteUser);
-    		dbPage.setIp(remoteAddress);
+    		dbPage.setModifiedAddress(remoteAddress);
 
     		pageDaoLocal.merge(dbPage);
             return SUCCESS;

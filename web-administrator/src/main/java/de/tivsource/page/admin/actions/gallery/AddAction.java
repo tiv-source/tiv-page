@@ -67,7 +67,7 @@ public class AddAction extends EmptyAction {
     	    gallery.setModified(new Date());
     	    gallery.setCreated(new Date());
     	    gallery.setModifiedBy(remoteUser);
-    	    gallery.setIp(remoteAddress);
+    	    gallery.setModifiedAddress(remoteAddress);
 
     	    gallery.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    gallery.getDescriptionMap().get(Language.DE).setNamingItem(gallery);

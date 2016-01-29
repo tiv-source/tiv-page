@@ -83,7 +83,7 @@ public class AddAction extends EmptyAction {
     	    vacancy.setModified(new Date());
     	    vacancy.setCreated(new Date());
     	    vacancy.setModifiedBy(remoteUser);
-    	    vacancy.setIp(remoteAddress);
+    	    vacancy.setModifiedAddress(remoteAddress);
 
 
     	    vacancy.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());

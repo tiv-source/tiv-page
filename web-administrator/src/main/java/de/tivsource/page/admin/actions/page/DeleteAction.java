@@ -64,7 +64,7 @@ public class DeleteAction extends EmptyAction {
     		Page dbPage = pageDaoLocal.findByUuid(page.getUuid());
     		dbPage.setModified(new Date());
     		dbPage.setModifiedBy(remoteUser);
-    		dbPage.setIp(remoteAddress);
+    		dbPage.setModifiedAddress(remoteAddress);
     		pageDaoLocal.merge(dbPage);
     		pageDaoLocal.delete(dbPage);
             return SUCCESS;
