@@ -118,7 +118,7 @@ function formatIsoDate(celldate, options, rowObject) {
     	      name="uuid"
     	      index="editbar"
     	      title=""
-    	      width="305"
+    	      width="310"
     	      editable="false"
     	      sortable="false"
     	      hidden="false"
