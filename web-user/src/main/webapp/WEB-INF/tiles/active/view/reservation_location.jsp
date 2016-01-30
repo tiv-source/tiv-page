@@ -2,8 +2,9 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
     <div>
-      <img alt="" src="/uploads/<struts:property value="location.picture" />" style="width: 100%;" />
+      <img alt="" src="/pictures/FULL/<struts:property value="location.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
+
     <h1><struts:property value="location.getName(getText('language'))" /></h1>
 
     <struts:iterator value="events" status="eventsStatus">
@@ -19,7 +20,7 @@
           </div>
         
           <div class="impression">
-            <img src="/uploads/<struts:property value="picture" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+            <img src="/pictures/FULL/<struts:property value="picture.pictureUrls.FULL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
           </div>
         
           <hr>

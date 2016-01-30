@@ -11,7 +11,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
     <div>
-      <img alt="" src="<struts:property value="getProperty('home.picture')" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
 
     <div id="social_net1">
@@ -46,7 +46,7 @@
             <p>Online Reservierung möglich bis zum <struts:date name="leftLocation.deadline" format="dd.MM.yyyy" /> um <struts:date name="leftLocation.deadline" format="HH:mm" /> Uhr</p>
           
             <div class="pic">
-              <img src="/uploads/<struts:property value="leftLocation.picture" />" alt="<struts:property value="leftLocation.getName(getText('language'))" />" title="<struts:property value="leftLocation.getName(getText('language'))" />">
+              <img src="/pictures/FULL/<struts:property value="leftLocation.picture.pictureUrls.FULL.url" />" alt="<struts:property value="leftLocation.getName(getText('language'))" />" title="<struts:property value="leftLocation.getName(getText('language'))" />">
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@
             <p>von <struts:date name="rightLocation.beginning" format="HH:mm" /> Uhr bis <struts:date name="rightLocation.ending" format="HH:mm" /> Uhr</p>
             <p>Online Reservierung möglich bis zum <struts:date name="rightLocation.deadline" format="dd.MM.yyyy" /> um <struts:date name="rightLocation.deadline" format="HH:mm" /> Uhr</p>
             <div class="pic">
-              <img src="/uploads/<struts:property value="rightLocation.picture" />" alt="<struts:property value="rightLocation.getName(getText('language'))" />" title="<struts:property value="rightLocation.getName(getText('language'))" />">
+              <img src="/pictures/FULL/<struts:property value="rightLocation.picture.pictureUrls.FULL.url" />" alt="<struts:property value="rightLocation.getName(getText('language'))" />" title="<struts:property value="rightLocation.getName(getText('language'))" />">
             </div>
           </div>
         </div>
