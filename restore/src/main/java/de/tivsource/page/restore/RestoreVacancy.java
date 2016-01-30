@@ -17,6 +17,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.contentitem.Content;
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -40,13 +41,16 @@ public class RestoreVacancy {
 
     private LocationDaoLocal locationDaoLocal;
 
+    private PictureDaoLocal pictureDaoLocal;
+
     private Map<String, InputStream> streams;
 
-    public RestoreVacancy(VacancyDaoLocal vacancyDaoLocal, LocationDaoLocal locationDaoLocal,
+    public RestoreVacancy(VacancyDaoLocal vacancyDaoLocal, LocationDaoLocal locationDaoLocal, PictureDaoLocal pictureDaoLocal,
             Map<String, InputStream> streams) {
         super();
         this.vacancyDaoLocal = vacancyDaoLocal;
         this.locationDaoLocal = locationDaoLocal;
+        this.pictureDaoLocal = pictureDaoLocal;
         this.streams = streams;
     }
 
@@ -79,7 +83,7 @@ public class RestoreVacancy {
         // uuid|
         // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-        // visible|created|modified|modifiedBy|ip|technical|beginning|workingTime|location|
+        // visible|created|modified|modifiedBy|ip|technical|beginning|workingTime|location|picture|
 
         Vacancy vacancy = new Vacancy();
 
@@ -112,7 +116,7 @@ public class RestoreVacancy {
         vacancy.setBeginning(convertDateString(items[23]));
         vacancy.setWorkingTime(items[24]);
         vacancy.setLocation(locationDaoLocal.findByUuid(items[25]));
-
+        vacancy.setPicture(pictureDaoLocal.findByUuid(items[26]));
 
         return vacancy;
     }
