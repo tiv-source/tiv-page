@@ -105,7 +105,7 @@ public class BackupGallery {
         nextString.append(next.getModifiedAddress());
         nextString.append("|");
 
-        nextString.append("Not Jet");
+        nextString.append(next.getPicture().getUuid());
         nextString.append("|");
 
         
