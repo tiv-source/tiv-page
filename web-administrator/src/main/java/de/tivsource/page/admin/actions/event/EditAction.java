@@ -13,9 +13,11 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -39,6 +41,9 @@ public class EditAction extends EmptyAction {
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
+
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
 
     private Event event;
 
@@ -102,7 +107,7 @@ public class EditAction extends EmptyAction {
     		dbEvent.setPrice(event.getPrice());
     		dbEvent.setReservation(event.getReservation());
     		dbEvent.setVisible(event.getVisible());
-    		
+    		dbEvent.setPicture(event.getPicture());
     		
     		eventDaoLocal.merge(dbEvent);
             return SUCCESS;
@@ -116,5 +121,10 @@ public class EditAction extends EmptyAction {
     public List<Location> getLocationList() {
         return locationDaoLocal.findAllEventLocation();
     }
+
+	public List<Picture> getPictureList() {
+		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
+		return pictureDaoLocal.findAll("81e889ed-3195-4390-bf96-80477300c313");
+	}
 
 }// Ende class
