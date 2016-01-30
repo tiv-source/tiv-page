@@ -19,6 +19,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.namingitem.Description;
@@ -37,9 +38,14 @@ public class RestoreGallery {
 
     private GalleryDaoLocal galleryDaoLocal;
 
-    public RestoreGallery(GalleryDaoLocal galleryDaoLocal) {
+    private PictureDaoLocal pictureDaoLocal;
+
+    private Map<String, String> pictures = new HashMap<String, String>(); 
+    
+    public RestoreGallery(GalleryDaoLocal galleryDaoLocal, PictureDaoLocal pictureDaoLocal) {
         super();
         this.galleryDaoLocal = galleryDaoLocal;
+        this.pictureDaoLocal = pictureDaoLocal;
     }
 
     public void generate(InputStream inputStream) {
@@ -61,6 +67,15 @@ public class RestoreGallery {
         }
     }
 
+    public void generateOverviewPictures() {
+    	LOGGER.debug("generateOverviewPictures() aufgerufen");
+    	Iterator<String> galleryUuids = pictures.keySet().iterator();
+    	while (galleryUuids.hasNext()) {
+    		String next = galleryUuids.next();
+    		convertPictures(next, pictures.get(next));
+        }
+    }
+    
     private Gallery convert(String line) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
 		// uuid|
@@ -92,13 +107,22 @@ public class RestoreGallery {
         gallery.setModifiedBy(items[12]);
         gallery.setModifiedAddress(items[13]);
 
-        // TODO: Picture
+        pictures.put(items[0], items[14]);
 
         gallery.setTechnical(items[15]);
         gallery.setOrderNumber(Integer.parseInt(items[16]));
 
+
+        
         return gallery;
     }// Ende convert(String line)
+
+    private void convertPictures(String galleryUuid, String pictureUuid) {
+    	LOGGER.debug("convertPictures(String gallery, String picture) aufgerufen");
+        Gallery gallery = galleryDaoLocal.findByUuid(galleryUuid);
+        gallery.setPicture(pictureDaoLocal.findByUuid(pictureUuid));
+        galleryDaoLocal.merge(gallery);
+    }
 
     /**
      * Methode zum Konvertieren eines Strings des Formates "1970-12-01 23:59:59" in ein Date-Object. 
