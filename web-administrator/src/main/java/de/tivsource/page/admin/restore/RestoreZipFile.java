@@ -127,9 +127,6 @@ public class RestoreZipFile {
         // Stelle Galerien wieder her
         restoreGallery();
 
-        // Stelle Bilder wieder her
-        restorePicture();
-
         // Stelle Rollen wieder her
         restoreRole();
 
@@ -167,8 +164,13 @@ public class RestoreZipFile {
 
     private void restoreGallery() {
         LOGGER.info("restoreGallery() aufgerufen.");
-        RestoreGallery restoreGallery = new RestoreGallery(galleryDaoLocal);
+        RestoreGallery restoreGallery = new RestoreGallery(galleryDaoLocal, pictureDaoLocal);
         restoreGallery.generate(streams.get("gallery.csv"));
+
+        // Stelle Bilder wieder her
+        restorePicture();
+
+        restoreGallery.generateOverviewPictures();
     }
 
     private void restorePicture() {
@@ -191,7 +193,7 @@ public class RestoreZipFile {
 
     private void restorePage() {
         LOGGER.info("restorePage() aufgerufen.");
-        RestorePage restorePage = new RestorePage(pageDaoLocal, pageStreams);
+        RestorePage restorePage = new RestorePage(pageDaoLocal, pictureDaoLocal, pageStreams);
         restorePage.generate();
     }
 
@@ -203,13 +205,13 @@ public class RestoreZipFile {
 
     private void restoreLocation() {
         LOGGER.info("restoreLocation() aufgerufen.");
-        RestoreLocation restoreLocation = new RestoreLocation(locationDaoLocal);
+        RestoreLocation restoreLocation = new RestoreLocation(locationDaoLocal, pictureDaoLocal);
         restoreLocation.generate(streams.get("location.csv"));
     }
 
     private void restoreEvent() {
         LOGGER.info("restoreEvent() aufgerufen.");
-        RestoreEvent eventLocation = new RestoreEvent(locationDaoLocal, eventDaoLocal);
+        RestoreEvent eventLocation = new RestoreEvent(locationDaoLocal, eventDaoLocal, pictureDaoLocal);
         eventLocation.generate(streams.get("event.csv"));
     }
 
@@ -227,7 +229,7 @@ public class RestoreZipFile {
 
     private void restoreVacancy() {
         LOGGER.info("restoreVacancy() aufgerufen.");
-        RestoreVacancy vacancyReservation = new RestoreVacancy(vacancyDaoLocal, locationDaoLocal, vacancyStreams);
+        RestoreVacancy vacancyReservation = new RestoreVacancy(vacancyDaoLocal, locationDaoLocal, pictureDaoLocal, vacancyStreams);
         vacancyReservation.generate();
     }
 
