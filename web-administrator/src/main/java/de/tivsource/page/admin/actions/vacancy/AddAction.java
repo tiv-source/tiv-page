@@ -13,9 +13,11 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.vacancy.Vacancy;
 
 /**
@@ -40,6 +42,9 @@ public class AddAction extends EmptyAction {
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
+
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
 
     private Vacancy vacancy;
 
@@ -127,5 +132,10 @@ public class AddAction extends EmptyAction {
         // TODO: Anzahl der Objkte anpassen
         return locationDaoLocal.findAll(0, locationDaoLocal.countAll());
     }// Ende getLocationList()
+
+	public List<Picture> getPictureList() {
+		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
+		return pictureDaoLocal.findAll("41c1471b-6511-4e98-a1ab-fe13e7a906ed");
+	}
 
 }// Ende class
