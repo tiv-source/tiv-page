@@ -1,6 +1,8 @@
 package de.tivsource.page.admin.actions.location;
 
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -9,7 +11,9 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -30,6 +34,9 @@ public class FormAction extends EmptyAction {
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
+
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
 
 	private Location location;
 
@@ -78,6 +85,11 @@ public class FormAction extends EmptyAction {
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
+
+	public List<Picture> getPictureList() {
+		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
+		return pictureDaoLocal.findAll("d8a2d89f-cda4-4c64-9e51-18592e88bbc6");
+	}
 
 	private void loadPageParameter() {
 
