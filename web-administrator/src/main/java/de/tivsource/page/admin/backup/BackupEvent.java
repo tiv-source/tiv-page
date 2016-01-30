@@ -57,7 +57,7 @@ public class BackupEvent {
 		// uuid|
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
-	    // visible|created|modified|modifiedBy|modifiedAddress|price|beginning|ending|deadline|location|reservation|
+	    // visible|created|modified|modifiedBy|modifiedAddress|price|beginning|ending|deadline|location|reservation|picture|
 	    
 		StringBuffer nextString = new StringBuffer();
 
@@ -125,7 +125,7 @@ public class BackupEvent {
         nextString.append(next.getReservation().toString());
         nextString.append("|");
 
-        nextString.append(next.getPicture());
+        nextString.append(next.getPicture().getUuid());
         nextString.append("|");
 
 		return nextString.toString();
