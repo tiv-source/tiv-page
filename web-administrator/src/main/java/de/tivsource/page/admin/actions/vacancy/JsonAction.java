@@ -51,7 +51,7 @@ public class JsonAction extends ActionSupport {
         @Action(
         		value = "table", 
         		results = {
-        		        @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.events, gridModel.*.vacancies, gridModel.*.applications"})
+        		        @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.events, gridModel.*.vacancies, gridModel.*.applications, gridModel.*.picture"})
         		}
         )
     })
