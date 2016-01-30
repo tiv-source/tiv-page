@@ -1,14 +1,9 @@
 package de.tivsource.page.admin.actions.event;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
@@ -19,9 +14,11 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -46,9 +43,10 @@ public class AddAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
+    
     private Event event;
-
-    private File picture;
 
     public Event getEvent() {
         return event;
@@ -56,10 +54,6 @@ public class AddAction extends EmptyAction {
 
     public void setEvent(Event event) {
         this.event = event;
-    }
-
-    public void setPicture(File picture) {
-        this.picture = picture;
     }
 
     @Override
@@ -101,7 +95,7 @@ public class AddAction extends EmptyAction {
     	    event.getDescriptionMap().get(Language.EN).setDescription(event.getDescriptionMap().get(Language.DE).getDescription());
     	    event.getDescriptionMap().get(Language.EN).setKeywords(event.getDescriptionMap().get(Language.DE).getKeywords());
 
-    	    
+    	    /*
     	    if(picture != null) {
 
                 // Pfad in dem die Bild Datei gespeichert wird.
@@ -121,6 +115,8 @@ public class AddAction extends EmptyAction {
                 event.setPicture(pictureSaveName);
 
     	    }
+    	    */
+
 
 
 
@@ -138,15 +134,9 @@ public class AddAction extends EmptyAction {
         return locationDaoLocal.findAllEventLocation();
     }
 
-    private static void savePictureFile(File source, File destination) throws Exception {
-        byte[] buffer = new byte[(int) source.length()];
-        InputStream in = new FileInputStream(source);
-        in.read(buffer);
-        FileOutputStream fileOutStream = new FileOutputStream(destination);
-        fileOutStream.write(buffer);
-        fileOutStream.flush();
-        fileOutStream.close();
-        in.close();
-    }
+	public List<Picture> getPictureList() {
+		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
+		return pictureDaoLocal.findAll("81e889ed-3195-4390-bf96-80477300c313");
+	}
 
 }// Ende class
