@@ -17,6 +17,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.page.PageDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.contentitem.Content;
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.enumeration.Language;
@@ -37,12 +38,15 @@ public class RestorePage {
     
     private PageDaoLocal pageDaoLocal;
 
+    private PictureDaoLocal pictureDaoLocal;
+
     private Map<String, InputStream> streams;
 
-    public RestorePage(PageDaoLocal pageDaoLocal,
+    public RestorePage(PageDaoLocal pageDaoLocal, PictureDaoLocal pictureDaoLocal,
             Map<String, InputStream> streams) {
         super();
         this.pageDaoLocal = pageDaoLocal;
+        this.pictureDaoLocal = pictureDaoLocal;
         this.streams = streams;
     }
 
@@ -72,10 +76,12 @@ public class RestorePage {
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
 
-        // uuid|
-        // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
-        // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-        // visible|created|modified|modifiedBy|ip|technical|special|
+		// uuid|
+	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
+	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
+	    // visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|
+	    // navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|
+
 
         Page page = new Page();
 
@@ -114,7 +120,8 @@ public class RestorePage {
         page.setBottomNavigationOrder(Integer.parseInt(items[29]));
         page.setResponsiveNavigation(items[30].equals("true") ? true : false);
         page.setResponsiveNavigationOrder(Integer.parseInt(items[31]));
-
+        page.setPicture(pictureDaoLocal.findByUuid(items[32]));
+        
         return page;
     }
 
