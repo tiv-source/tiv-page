@@ -22,6 +22,7 @@ import java.util.UUID;
 import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Address;
 import de.tivsource.page.entity.location.ContactDetails;
@@ -45,9 +46,12 @@ public class RestoreLocation {
 
     private LocationDaoLocal locationDaoLocal;
 
-    public RestoreLocation(LocationDaoLocal locationDaoLocal) {
+    private PictureDaoLocal pictureDaoLocal;
+
+    public RestoreLocation(LocationDaoLocal locationDaoLocal, PictureDaoLocal pictureDaoLocal) {
         super();
         this.locationDaoLocal = locationDaoLocal;
+        this.pictureDaoLocal = pictureDaoLocal;
     }
 
     public void generate(InputStream inputStream) {
@@ -76,7 +80,7 @@ public class RestoreLocation {
         // uuid(de)|name(de)|description(de)|keywords(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|
         // openingHours|
-        // latitude|longitude|visible|created|modified|modifiedBy|ip|events|
+        // latitude|longitude|visible|created|modified|modifiedBy|ip|events|picture|
 
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
@@ -109,8 +113,7 @@ public class RestoreLocation {
         location.setModifiedBy(items[24]);
         location.setModifiedAddress(items[25]);
         location.setEvent(items[26].equals("true") ? true : false);
-        // TODO: Bild wiederherstellen
-        // location.setPicture(items[27]);
+        location.setPicture(pictureDaoLocal.findByUuid(items[27]));
 
         return location;
     }// Ende convert(String line)
