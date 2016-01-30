@@ -1,5 +1,7 @@
 package de.tivsource.page.admin.actions.gallery;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -8,7 +10,9 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -29,6 +33,9 @@ public class FormAction extends EmptyAction {
 
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
+
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
 
     private Gallery gallery;
 
@@ -72,6 +79,11 @@ public class FormAction extends EmptyAction {
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
+
+	public List<Picture> getPictureList() {
+		// TODO: Check ob gallery gesetzt wurde
+		return pictureDaoLocal.findAll(gallery.getUuid());
+	}
 
 	private void loadPageParameter() {
 		if( uncheckGallery != null && uncheckGallery != "" && uncheckGallery.length() > 0) {
