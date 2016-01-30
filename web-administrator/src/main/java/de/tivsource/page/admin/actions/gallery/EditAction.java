@@ -1,6 +1,7 @@
 package de.tivsource.page.admin.actions.gallery;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -11,8 +12,10 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -33,6 +36,9 @@ public class EditAction extends EmptyAction {
 
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
+
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
 
     private Gallery gallery;
 
@@ -93,7 +99,7 @@ public class EditAction extends EmptyAction {
     		dbGallery.setVisible(gallery.getVisible());
     		dbGallery.setOrderNumber(gallery.getOrderNumber());
     		dbGallery.setTechnical(gallery.getTechnical());
-    		
+    		dbGallery.setPicture(gallery.getPicture());
     		
     		galleryDaoLocal.merge(dbGallery);
             return SUCCESS;
@@ -103,5 +109,10 @@ public class EditAction extends EmptyAction {
     	}
 
     }// Ende execute()
+
+	public List<Picture> getPictureList() {
+		// TODO: Check ob gallery gesetzt wurde
+		return pictureDaoLocal.findAll(gallery.getUuid());
+	}
 
 }// Ende class
