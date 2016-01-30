@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
@@ -42,10 +43,13 @@ public class RestoreEvent {
 
     private EventDaoLocal eventDaoLocal;
 
-    public RestoreEvent(LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal) {
+    private PictureDaoLocal pictureDaoLocal;
+
+    public RestoreEvent(LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal, PictureDaoLocal pictureDaoLocal) {
         super();
         this.locationDaoLocal = locationDaoLocal;
         this.eventDaoLocal = eventDaoLocal;
+        this.pictureDaoLocal = pictureDaoLocal;
     }
 
     public void generate(InputStream inputStream) {
@@ -107,9 +111,7 @@ public class RestoreEvent {
         event.setLocation(location);
         
         event.setReservation(items[19].equals("true") ? true : false);
-        // TODO: Bild wiederherstellen
-        // event.setPicture(items[20]);
-        
+        event.setPicture(pictureDaoLocal.findByUuid(items[20]));
 
         return event;
     }// Ende convert(String line)
