@@ -48,6 +48,27 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:hidden id="vacancy_picture" name="vacancy.picture" value="vacancy.picture.uuid" />
+                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
+                <struts:select
+                    key="vacancy.picture"
+                    listValue="pictureUrls.THUMBNAIL.url"
+                    listKey="uuid"
+                    multiple="false"
+                    value="vacancy.picture.{uuid}"
+                    list="pictureList" 
+                    theme="tivpage"
+                />
+                <script type="text/javascript">
+                $('#edit_vacancy_picture').tivselect({
+                    onSelected: function(data){
+                    	$("#vacancy_picture").val(data.selectedData.value);
+                    }   
+                });
+                </script>
+              </div>
+
+              <div class="field">
                 <struts:select
                     key="vacancy.location"
                     listValue="%{getName(getText('language'))}"
