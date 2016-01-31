@@ -24,10 +24,24 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:file key="picture" parentTheme="xhtml" labelposition="left">
-                  <struts:param name="required" value="true" />
-                  <struts:param name="disabled" value="disabledValue" />
-                </struts:file>
+                <struts:hidden id="location_picture" name="location.picture" value="location.picture.uuid" />
+                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
+                <struts:select
+                    key="location.picture"
+                    listValue="pictureUrls.THUMBNAIL.url"
+                    listKey="uuid"
+                    multiple="false"
+                    value="location.picture.{uuid}"
+                    list="pictureList" 
+                    theme="tivpage"
+                />
+                <script type="text/javascript">
+                $('#add_location_picture').tivselect({
+                    onSelected: function(data){
+                    	$("#location_picture").val(data.selectedData.value);
+                    }   
+                });
+                </script>
               </div>
 
               <div class="field">
