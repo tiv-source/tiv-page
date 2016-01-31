@@ -49,6 +49,27 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:hidden id="page_picture" name="page.picture" value="page.picture.uuid" />
+                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
+                <struts:select
+                    key="page.picture"
+                    listValue="pictureUrls.THUMBNAIL.url"
+                    listKey="uuid"
+                    multiple="false"
+                    value="page.picture.{uuid}"
+                    list="pictureList" 
+                    theme="tivpage"
+                />
+                <script type="text/javascript">
+                $('#edit_page_picture').tivselect({
+                    onSelected: function(data){
+                    	$("#page_picture").val(data.selectedData.value);
+                    }   
+                });
+                </script>
+              </div>
+
+              <div class="field">
                 <sj:textfield 
                     key="page.technical"
                     parentTheme="css_xhtml"
