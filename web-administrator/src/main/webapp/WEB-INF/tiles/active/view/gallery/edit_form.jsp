@@ -48,6 +48,26 @@
 
             <fieldset class="fieldset">
 
+              <div class="field">
+                <struts:hidden id="gallery_picture" name="gallery.picture" value="gallery.picture.uuid" />
+                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
+                <struts:select
+                    key="gallery.picture"
+                    listValue="pictureUrls.THUMBNAIL.url"
+                    listKey="uuid"
+                    multiple="false"
+                    value="gallery.picture.{uuid}"
+                    list="pictureList" 
+                    theme="tivpage"
+                />
+                <script type="text/javascript">
+                $('#edit_gallery_picture').tivselect({
+                    onSelected: function(data){
+                    	$("#gallery_picture").val(data.selectedData.value);
+                    }   
+                });
+                </script>
+              </div>
 
               <div class="field">
                 <sj:textfield 
