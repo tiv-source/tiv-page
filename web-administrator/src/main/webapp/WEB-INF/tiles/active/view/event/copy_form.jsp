@@ -19,9 +19,30 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
           >
-            <struts:hidden key="event.picture"/>
+
             <fieldset class="fieldset">
-            
+
+              <div class="field">
+                <struts:hidden id="event_picture" name="event.picture" value="event.picture.uuid" />
+                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
+                <struts:select
+                    key="event.picture"
+                    listValue="pictureUrls.THUMBNAIL.url"
+                    listKey="uuid"
+                    multiple="false"
+                    value="event.picture.{uuid}"
+                    list="pictureList" 
+                    theme="tivpage"
+                />
+                <script type="text/javascript">
+                $('#add_event_picture').tivselect({
+                    onSelected: function(data){
+                    	$("#event_picture").val(data.selectedData.value);
+                    }   
+                });
+                </script>
+              </div>
+
               <div class="field">
                 <sj:datepicker
                     key="event.beginning"
