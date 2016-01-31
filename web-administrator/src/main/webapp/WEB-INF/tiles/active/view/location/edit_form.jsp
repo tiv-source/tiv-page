@@ -71,6 +71,27 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:hidden id="location_picture" name="location.picture" value="location.picture.uuid" />
+                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
+                <struts:select
+                    key="location.picture"
+                    listValue="pictureUrls.THUMBNAIL.url"
+                    listKey="uuid"
+                    multiple="false"
+                    value="location.picture.{uuid}"
+                    list="pictureList" 
+                    theme="tivpage"
+                />
+                <script type="text/javascript">
+                $('#edit_location_picture').tivselect({
+                    onSelected: function(data){
+                    	$("#location_picture").val(data.selectedData.value);
+                    }   
+                });
+                </script>
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="location.visible"
                     parentTheme="xhtml"
