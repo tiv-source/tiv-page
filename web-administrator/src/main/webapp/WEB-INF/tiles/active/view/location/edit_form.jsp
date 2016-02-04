@@ -14,9 +14,6 @@
 <struts:url var="locationOverviewUrl" namespace="/location" action="overview">
   <struts:param name="locationUuid" value="location.uuid" />
 </struts:url>
-<struts:url var="locationPictureUrl" namespace="/location" action="pictureForm">
-  <struts:param name="location" value="location.uuid" />
-</struts:url>
 
 
       <!--  Start MAIN -->
@@ -40,13 +37,6 @@
             <struts:a href="%{locationOverviewUrl}">
               <img src="/admin/icons/80x60_clock.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">&Ouml;ffnungszeiten</p>
-            </struts:a>
-          </div>
-
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{locationPictureUrl}">
-              <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
-              <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
             </struts:a>
           </div>
 
