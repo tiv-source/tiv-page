@@ -11,9 +11,7 @@
   <struts:param name="event" value="event.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-<struts:url var="eventPictureUrl" namespace="/event" action="pictureForm">
-  <struts:param name="event" value="event.uuid" />
-</struts:url>
+
 
       <!--  Start MAIN -->
       <div class="main">
@@ -29,13 +27,6 @@
             <struts:a href="%{germanUrl}">
               <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
-            </struts:a>
-          </div>
-
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{eventPictureUrl}">
-              <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
-              <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
             </struts:a>
           </div>
         </div>
