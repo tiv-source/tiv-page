@@ -146,7 +146,7 @@ public class ReservationAction extends EmptyAction {
             String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
             reservation.setUuid(UUID.randomUUID().toString());
             reservation.setConfirmed(false);
-            reservation.setIp(remoteAddress);
+            reservation.setCreatedAddress(remoteAddress);
             reservation.setCreated(new Date());
             reservationDaoLocal.merge(reservation);
             

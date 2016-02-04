@@ -86,7 +86,7 @@ public class RestoreReservation {
         reservation.setEvent(eventDaoLocal.findByUuid(items[9]));
         reservation.setConfirmed(items[10].equals("true") ? true : false);
         reservation.setCreated(convertDateString(items[11]));
-        reservation.setIp(items[12]);
+        reservation.setCreatedAddress(items[12]);
         
         return reservation;
     }

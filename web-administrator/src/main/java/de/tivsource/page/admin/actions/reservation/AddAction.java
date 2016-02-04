@@ -78,7 +78,7 @@ public class AddAction extends EmptyAction {
     	    redirect = "index.html?event=" + reservation.getEvent().getUuid();
     	    reservation.setUuid(UUID.randomUUID().toString());
     	    reservation.setCreated(new Date());
-    	    reservation.setIp(remoteAddress);
+    	    reservation.setCreatedAddress(remoteAddress);
     	    reservation.setConfirmed(false);
     	    reservationDaoLocal.merge(reservation);
             return SUCCESS;

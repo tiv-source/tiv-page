@@ -101,7 +101,7 @@ public class BackupReservation {
 		nextString.append(simpleDateFormat.format(next.getCreated()));
 		nextString.append("|");
 
-		nextString.append(next.getIp());
+		nextString.append(next.getCreatedAddress());
 		nextString.append("|");
 
 		return nextString.toString();

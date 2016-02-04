@@ -71,7 +71,7 @@ public class Reservation {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    private String ip;
+    private String createdAddress;
 
     public String getUuid() {
         return uuid;
@@ -169,12 +169,12 @@ public class Reservation {
         this.created = created;
     }
 
-    public String getIp() {
-        return ip;
+    public String getCreatedAddress() {
+        return createdAddress;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setCreatedAddress(String createdAddress) {
+        this.createdAddress = createdAddress;
     }
 
 }// Ende class
