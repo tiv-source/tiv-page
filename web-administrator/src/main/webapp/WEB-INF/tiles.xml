@@ -60,10 +60,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/delete_form.jsp" />
 	</definition>
 
-	<definition name="eventPictureForm" extends="managementTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/picture_form.jsp" />
-	</definition>
-
 
 
     <!-- Templates für Location Klasse -->
@@ -81,10 +77,6 @@
 
 	<definition name="locationDeleteForm" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/delete_form.jsp" />
-	</definition>
-
-	<definition name="locationPictureForm" extends="managementTemplate">
-		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/location/picture_form.jsp" />
 	</definition>
 
 	<definition name="locationOverview" extends="managementTemplate">
