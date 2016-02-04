@@ -8,6 +8,7 @@
 	<!-- Haupttemplate -->
 	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/content.jsp" />
 	</definition>
 
 
@@ -41,6 +42,7 @@
 
 	<definition name="eventSuccess" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_success.jsp" />
+		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/event_success.jsp" />
 	</definition>
 
 	<definition name="eventDeadline" extends="userTemplate">
