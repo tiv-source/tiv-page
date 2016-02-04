@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href="/admin/css/navigation.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="/admin/css/screen.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="/admin/css/forms.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/admin/css/tiv-select.css" media="screen" />
 
   <link rel="stylesheet" type="text/css" href="/admin/css/jquery.custom.css" media="screen" />
 
