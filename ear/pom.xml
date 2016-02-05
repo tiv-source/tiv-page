@@ -60,7 +60,12 @@
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
-
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-reservation</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
 
 
 
@@ -154,6 +159,11 @@
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>web-administrator</artifactId>
 							<contextRoot>/admin</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-reservation</artifactId>
+							<contextRoot>/reservation</contextRoot>
 						</webModule>
 						<webModule>
 							<groupId>de.tivsource.page</groupId>
