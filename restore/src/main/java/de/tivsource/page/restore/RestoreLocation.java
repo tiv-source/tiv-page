@@ -23,9 +23,9 @@ import org.apache.log4j.Logger;
 
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
+import de.tivsource.page.entity.embeddable.Address;
+import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.enumeration.Language;
-import de.tivsource.page.entity.location.Address;
-import de.tivsource.page.entity.location.ContactDetails;
 import de.tivsource.page.entity.location.HourMinute;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
