@@ -68,6 +68,13 @@ public class GalleryDao implements GalleryDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+	@Override
+	public Boolean hasReferences(String uuid) {
+        Query query = entityManager.createQuery("select p from Picture p where p.gallery.uuid = ?1 order by p.uuid asc");
+        query.setParameter("1", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+	}
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findByUuid(java.lang.String)
 	 */
