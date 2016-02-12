@@ -47,23 +47,29 @@ public class DeleteAction extends EmptyAction {
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
         				@Result(name = "input", type="tiles", location = "galleryDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "galleryDeleteError")
+        				@Result(name = "error", type="tiles", location = "galleryDeleteError"),
+        				@Result(name = "references", type="tiles", location = "galleryReferences")
         				}
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-    	if(gallery != null) {
-    		Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
-    	    galleryDaoLocal.delete(dbGallery);
-            return SUCCESS;
+
+        if(gallery != null) {
+            if(!galleryDaoLocal.hasReferences(gallery.getUuid())) {
+                Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
+                galleryDaoLocal.delete(dbGallery);
+                return SUCCESS;
+            }
+            else {
+            	return "references";
+            }
     	}
-    	else {
+        else {
     		return ERROR;
     	}
-    	
-    	
+
     }// Ende execute()
 	
 }// Ende class
