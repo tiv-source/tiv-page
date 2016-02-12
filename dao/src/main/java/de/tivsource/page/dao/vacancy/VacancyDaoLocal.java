@@ -34,6 +34,8 @@ public interface VacancyDaoLocal {
      */
     public void delete(Vacancy vacancy);
 
+    public Boolean isVacancy(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Vacancy, anhand der UUID des
      * Objektes.
