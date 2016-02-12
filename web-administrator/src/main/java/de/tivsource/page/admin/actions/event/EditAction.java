@@ -108,7 +108,8 @@ public class EditAction extends EmptyAction {
     		dbEvent.setReservation(event.getReservation());
     		dbEvent.setVisible(event.getVisible());
     		dbEvent.setPicture(event.getPicture());
-    		
+    		dbEvent.setPiwikGoal(event.getPiwikGoal());
+
     		eventDaoLocal.merge(dbEvent);
             return SUCCESS;
     	}
