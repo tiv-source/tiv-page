@@ -33,12 +33,13 @@
 		<module>dao</module>
 		<module>web-administrator</module>
 		<module>web-user</module>
+		<module>web-reservation</module>
 		<module>install</module>
 		<module>ear</module>
 		<module>struts2-ejb3plugin</module>
 		<module>restore</module>
 	</modules>
-	
+
 	<build>
 		<plugins>
 			<plugin>
