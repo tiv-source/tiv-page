@@ -55,6 +55,7 @@ public class PictureDao implements PictureDaoLocal {
 	 */
 	@Override
 	public void delete(Picture picture) {
+		// Lösche das Bild aus der Datenbank
 		entityManager.remove(entityManager.find(Picture.class, picture.getUuid()));
 	}
 
@@ -64,6 +65,13 @@ public class PictureDao implements PictureDaoLocal {
 	@Override
 	public Boolean isPicture(String uuid) {
         Query query = entityManager.createQuery("select p from Picture p where p.uuid = ?1 and p.visible = 'Y' order by p.uuid asc");
+        query.setParameter("1", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+	}
+
+	@Override
+	public Boolean hasReferences(String uuid) {
+        Query query = entityManager.createQuery("select n from NamingItem n where n.picture.uuid = ?1 order by n.uuid asc");
         query.setParameter("1", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
