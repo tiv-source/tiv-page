@@ -54,18 +54,23 @@ public class DeleteAction extends EmptyAction {
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
         				@Result(name = "input", type="tiles", location = "pictureDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "pictureDeleteError")
+        				@Result(name = "error", type="tiles", location = "pictureDeleteError"),
+        				@Result(name = "references", type="tiles", location = "pictureReferences")
         				}
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-    	if(picture != null) {
-    		Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
-    		deletePictures(dbPicture.getPictureUrls());
-    	    pictureDaoLocal.delete(dbPicture);
-            return SUCCESS;
+        if(picture != null) {
+            if(!pictureDaoLocal.hasReferences(picture.getUuid())) {
+                Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
+                deletePictures(dbPicture.getPictureUrls());
+                pictureDaoLocal.delete(dbPicture);
+                return SUCCESS;
+            } else {
+            	return "references";
+            }
     	}
     	else {
     		return ERROR;
