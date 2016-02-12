@@ -36,6 +36,8 @@ public interface PictureDaoLocal {
 
     public Boolean isPicture(String uuid);
 
+    public Boolean hasReferences(String uuid);
+
     public Picture findByUuid(String uuid);
 
     /**
