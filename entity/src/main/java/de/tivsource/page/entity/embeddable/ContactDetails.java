@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.entity.location;
+package de.tivsource.page.entity.embeddable;
 
 import javax.persistence.Embeddable;
 
