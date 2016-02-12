@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Sort;
 import org.hibernate.annotations.SortType;
 
+import de.tivsource.page.entity.embeddable.Address;
+import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.namingitem.NamingItem;
 import de.tivsource.page.entity.vacancy.Vacancy;
