@@ -105,6 +105,17 @@
               </div>
 
               <div class="field">
+                <sj:spinner
+                    key="event.piwikGoal"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                />
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="event.reservation"
                     parentTheme="css_xhtml"
