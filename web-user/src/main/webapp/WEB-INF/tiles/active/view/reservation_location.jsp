@@ -27,6 +27,38 @@
         </div>
       </struts:a>
 
+<!-- Microdata Anfang -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "FoodEvent",
+  "name": "<struts:property value="getName(getText('language'))" /> - <struts:property value="location.getName(getText('language'))" />",
+  "startDate" : "<struts:date name="beginning" format="yyyy-MM-dd" />T<struts:date name="beginning" format="HH:mm" />",
+  "location" : {
+    "@type" : "Place",
+    "name" : "<struts:property value="location.getName(getText('language'))" />",
+    "address" : {
+      "@type" : "PostalAddress",
+      "name" : "<struts:property value="location.getName(getText('language'))" />",
+      "addressCountry" : "DE",
+      "addressLocality" : "<struts:property value="location.address.city" />",
+      "addressRegion" : "NRW",
+      "postalCode" : "<struts:property value="location.address.zip" />",
+      "streetAddress" : "<struts:property value="location.address.street" />"
+    }
+  },
+  "offers" : {
+    "@type" : "Offer",
+    "price" : "<struts:property value="price" />",
+    "priceCurrency" : "EUR",
+    "url" : "<struts:text name="server.base.url" /><struts:property value="%{eventLink}" />"
+  }    
+}
+
+
+</script>
+<!-- Microdata Ende -->
+
     </struts:iterator>
 
     <struts:if test="previous != null">
