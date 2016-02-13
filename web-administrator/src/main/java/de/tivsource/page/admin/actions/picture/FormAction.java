@@ -72,6 +72,10 @@ public class FormAction extends EmptyAction {
         @Action(
         		value = "deleteForm", 
         		results = { @Result(name = "success", type="tiles", location = "pictureDeleteForm") }
+        ),
+        @Action(
+                value = "pictureForm", 
+                results = { @Result(name = "success", type="tiles", location = "pictureForm") }
         )
     })
     public String execute() throws Exception {
