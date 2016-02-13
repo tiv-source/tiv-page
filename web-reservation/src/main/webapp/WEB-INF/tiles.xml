@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Haupttemplate -->
+	<definition name="managementTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+	<definition name="index" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+	<definition name="reservationCreateForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/create_form.jsp" />
+	</definition>	
+
+	<definition name="logout" template="/WEB-INF/tiles/active/view/logout.jsp" />
+
+</tiles-definitions>
