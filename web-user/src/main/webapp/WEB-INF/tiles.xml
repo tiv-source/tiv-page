@@ -48,5 +48,17 @@
 	<definition name="eventDeadline" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
 	</definition>
+	
+	<definition name="vacancy" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy.jsp" />
+	</definition>
+
+	<definition name="vacancyDetail" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy_detail.jsp" />
+	</definition>
+
+	<definition name="vacancyForm" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy_form.jsp" />
+	</definition>
 
 </tiles-definitions>
