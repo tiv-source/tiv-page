@@ -240,6 +240,10 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/delete_form.jsp" />
 	</definition>
 
+	<definition name="galleryReferences" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery/references.jsp" />
+	</definition>
+
 
 
     <!-- Templates für Picture Klasse -->
@@ -257,6 +261,14 @@
 
 	<definition name="pictureDeleteForm" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/delete_form.jsp" />
+	</definition>
+
+	<definition name="pictureReferences" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/references.jsp" />
+	</definition>
+
+	<definition name="pictureForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/picture_form.jsp" />
 	</definition>
 
 </tiles-definitions>
