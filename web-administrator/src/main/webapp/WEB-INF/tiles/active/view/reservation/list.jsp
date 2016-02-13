@@ -171,9 +171,9 @@ function formatIsoTime(celldate, options, rowObject) {
     	      formatter="formatIsoTime"
     	  />
     	  <sjg:gridColumn 
-    	      name="ip"
-    	      index="ip"
-    	      title="IP"
+    	      name="createdAddress"
+    	      index="createdAddress"
+    	      title="createdAddress"
     	      width="140"
     	      editable="false"
     	      sortable="true"
