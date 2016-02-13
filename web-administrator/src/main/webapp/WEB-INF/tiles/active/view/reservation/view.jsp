@@ -80,8 +80,8 @@
               </div>
 
               <div class="field">
-                <label for="reservation.ip" class="label">IP-Adresse:</label>
-                <struts:property value="reservation.ip"/>
+                <label for="reservation.createdAddress" class="label">IP-Adresse:</label>
+                <struts:property value="reservation.createdAddress"/>
               </div>
 
 
