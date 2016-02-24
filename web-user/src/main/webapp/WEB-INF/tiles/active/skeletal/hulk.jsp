@@ -5,9 +5,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TIV Page - <struts:property value="page.getName(getText('language'))" /></title>
+
+  <tiles:insertAttribute name="meta" />
+
   <link href="/public/css/reset.css" rel="stylesheet" type="text/css">
   <link href="/public/css/main_style.css" rel="stylesheet" type="text/css">
   <link href="/public/css/tiv_page.css" rel="stylesheet" type="text/css">
