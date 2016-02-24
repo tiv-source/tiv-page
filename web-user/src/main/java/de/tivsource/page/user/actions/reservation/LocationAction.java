@@ -214,10 +214,12 @@ public class LocationAction extends EmptyAction implements Pagination {
             previous = null;
             next = (2 <= maxPages) ? 2 : null;
             from = 0;
+            current = pagination;
         } else {
             previous = pagination -1;
             next = (pagination + 1 <= maxPages) ? pagination + 1 : null;
             from = (pagination - 1) * TO;
+            current = pagination;
         }
     }// Ende calculate()
 
