@@ -5,12 +5,15 @@
 
 <tiles-definitions>
 
+    <!-- Sitemaptemplate -->
+	<definition name="sitemapTemplate" template="/WEB-INF/tiles/active/skeletal/sitemap.jsp" />
+
 	<!-- Haupttemplate -->
 	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/content.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/content.jsp" />
 		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/content.jsp" />
 	</definition>
-
 
 	<definition name="index" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
@@ -33,19 +36,23 @@
 	</definition>
 
 	<definition name="reservationLocation" extends="userTemplate">
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/reservation_location.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation_location.jsp" />
 	</definition>
 
 	<definition name="event" extends="userTemplate">
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/event.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event.jsp" />
 	</definition>
 
 	<definition name="eventSuccess" extends="userTemplate">
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/event.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_success.jsp" />
 		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/event_success.jsp" />
 	</definition>
 
 	<definition name="eventDeadline" extends="userTemplate">
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/event.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
 	</definition>
 	
