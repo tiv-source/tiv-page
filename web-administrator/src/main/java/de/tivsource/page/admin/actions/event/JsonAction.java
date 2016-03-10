@@ -64,7 +64,7 @@ public class JsonAction extends ActionSupport {
 		/*
 		 * Setze die Anzahl aller Objekte in der Datenbank.
 		 */
-		setRecord(this.eventDaoLocal.countAll());
+		setRecord(this.eventDaoLocal.countAllActive());
 
 		int to = (getRows() * getPage());
 		int from = to - getRows();
@@ -82,52 +82,52 @@ public class JsonAction extends ActionSupport {
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-				eventList = this.eventDaoLocal.findAll(from, getRows(), "dm.name", "asc");
+				eventList = this.eventDaoLocal.findAllActive(from, getRows(), "dm.name", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("location")) {
-				eventList = this.eventDaoLocal.findAll(from, getRows(), "edm.name", "asc");
+				eventList = this.eventDaoLocal.findAllActive(from, getRows(), "edm.name", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("price")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.price", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.price", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("beginning")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.beginning", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.beginning", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("ending")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.ending", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.ending", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("deadline")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.deadline", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.deadline", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("reservation")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.reservation", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.reservation", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.visible", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.visible", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modified", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.modified", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modifiedBy", "asc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.modifiedBy", "asc");
             } else {
-				eventList = this.eventDaoLocal.findAll(from, getRows());
+				eventList = this.eventDaoLocal.findAllActive(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
             if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "dm.name", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "dm.name", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("location")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "edm.name", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "edm.name", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("price")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.price", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.price", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("beginning")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.beginning", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.beginning", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("ending")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.ending", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.ending", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("deadline")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.deadline", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.deadline", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("reservation")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.reservation", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.reservation", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.visible", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.visible", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modified", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.modified", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                eventList = this.eventDaoLocal.findAll(from, getRows(), "e.modifiedBy", "desc");
+                eventList = this.eventDaoLocal.findAllActive(from, getRows(), "e.modifiedBy", "desc");
             } else {
-                eventList = this.eventDaoLocal.findAll(from, getRows());
+                eventList = this.eventDaoLocal.findAllActive(from, getRows());
             }
 		}
 
