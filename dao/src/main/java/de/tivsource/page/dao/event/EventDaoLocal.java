@@ -40,7 +40,7 @@ public interface EventDaoLocal {
 
     /**
      * Methode zum laden einer Liste von Event Objekten, es muss dabei ein
-     * Startwert angegeben werden und die Anzhal der zu ladenen Event Objekte.
+     * Startwert angegeben werden und die Anzahl der zu ladenen Event Objekte.
      *
      * @param start - Startwert ab der die Liste beginnen soll
      * @param max - Maximale Anzahl an Objekten die die Liste enthalten soll
@@ -49,6 +49,19 @@ public interface EventDaoLocal {
     public List<Event> findAll(Integer start, Integer max);
 
     public List<Event> findAll(Integer start, Integer max, String field, String order);
+
+    /**
+	 * Methode die eine Liste von Event Objekten zurück liefert, die noch aktiv
+	 * sind, dass heisst die noch nicht beendet wurden, es muss dabei ein
+     * Startwert angegeben werden und die Anzahl der zu ladenen Event Objekte.
+     *
+	 * @param start
+	 * @param max
+	 * @return
+	 */
+    public List<Event> findAllActive(Integer start, Integer max);
+
+    public List<Event> findAllActive(Integer start, Integer max, String field, String order);
 
     /**
      * Methode zum laden einer Liste von Event Objekten die zu einer bestimmten
@@ -68,6 +81,8 @@ public interface EventDaoLocal {
      * @return Integer - Anzahl der Event Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllActive();
 
     /**
      * Methode die die Anzahl aller Event Objekte die zu einer bestimmten
