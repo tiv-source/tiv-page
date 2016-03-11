@@ -112,8 +112,7 @@ public class ReservationDao implements ReservationDaoLocal {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<Reservation> findAll(Event event, Integer start, Integer max, String field,
-            String order) {
+    public List<Reservation> findAll(Event event, Integer start, Integer max, String field, String order) {
         String queryString = "select r from Reservation r where r.event = ?1 order by ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
@@ -122,7 +121,29 @@ public class ReservationDao implements ReservationDaoLocal {
         query.setParameter("1", event);
         return query.getResultList();
     }
-    
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Reservation> confirmationQueue(Integer start, Integer max) {
+        Query query = entityManager.createQuery("from Reservation r where r.confirmed = ?1");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", false);
+        return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Reservation> confirmationQueue(Integer start, Integer max, String field, String order) {
+        String queryString = "select r from Reservation r where r.confirmed = ?1 order by ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", false);
+        return query.getResultList();
+	}
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#countAll()
      */
@@ -138,5 +159,12 @@ public class ReservationDao implements ReservationDaoLocal {
         query.setParameter("1", event);
         return Integer.parseInt(query.getSingleResult().toString());
     }
+
+	@Override
+	public Integer countConfirmationQueue() {
+        Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.confirmed = ?1");
+        query.setParameter("1", false);
+        return Integer.parseInt(query.getSingleResult().toString());
+	}
 
 }// Ende class
