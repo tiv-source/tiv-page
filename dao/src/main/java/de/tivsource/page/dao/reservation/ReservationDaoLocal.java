@@ -53,6 +53,10 @@ public interface ReservationDaoLocal {
 
     public List<Reservation> findAll(Event event, Integer start, Integer max, String field, String order);
 
+    public List<Reservation> confirmationQueue(Integer start, Integer max);
+
+    public List<Reservation> confirmationQueue(Integer start, Integer max, String field, String order);
+
     /**
      * Methode die die Anzahl aller Reservation Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -62,5 +66,7 @@ public interface ReservationDaoLocal {
     public Integer countAll();
 
     public Integer countAll(Event event);
+
+    public Integer countConfirmationQueue();
 
 }// Ende interface
