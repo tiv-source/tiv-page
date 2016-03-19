@@ -70,7 +70,9 @@ public class RestoreReservation {
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
 
-        // uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|ip|
+        // uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|
+        // confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|
+        // modified|modifiedAddress|modifiedBy|
 
         Reservation reservation = new Reservation();
 
@@ -88,6 +90,14 @@ public class RestoreReservation {
         reservation.setCreated(convertDateString(items[11]));
         reservation.setCreatedAddress(items[12]);
         
+        reservation.setConfirmedAddress(items[13]);
+        reservation.setConfirmedDate(items[14].length() > 0 ? convertDateString(items[14]) : null);
+        reservation.setConfirmedBy(items[15]);
+
+        reservation.setModified(convertDateString(items[16]));
+        reservation.setModifiedAddress(items[17]);
+        reservation.setModifiedBy(items[18]);
+
         return reservation;
     }
 

@@ -68,10 +68,24 @@ public class Reservation {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean confirmed;
 
+    private String confirmedAddress;
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date confirmedDate;
+
+    private String confirmedBy;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
     private String createdAddress;
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date modified;
+
+    private String modifiedBy;
+
+    private String modifiedAddress;
 
     public String getUuid() {
         return uuid;
@@ -161,7 +175,31 @@ public class Reservation {
         this.confirmed = confirmed;
     }
 
-    public Date getCreated() {
+    public String getConfirmedAddress() {
+		return confirmedAddress;
+	}
+
+	public void setConfirmedAddress(String confirmedAddress) {
+		this.confirmedAddress = confirmedAddress;
+	}
+
+	public Date getConfirmedDate() {
+		return confirmedDate;
+	}
+
+	public void setConfirmedDate(Date confirmedDate) {
+		this.confirmedDate = confirmedDate;
+	}
+
+	public String getConfirmedBy() {
+		return confirmedBy;
+	}
+
+	public void setConfirmedBy(String confirmedBy) {
+		this.confirmedBy = confirmedBy;
+	}
+
+	public Date getCreated() {
         return created;
     }
 
@@ -176,5 +214,29 @@ public class Reservation {
     public void setCreatedAddress(String createdAddress) {
         this.createdAddress = createdAddress;
     }
+
+	public Date getModified() {
+		return modified;
+	}
+
+	public void setModified(Date modified) {
+		this.modified = modified;
+	}
+
+	public String getModifiedBy() {
+		return modifiedBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+
+	public String getModifiedAddress() {
+		return modifiedAddress;
+	}
+
+	public void setModifiedAddress(String modifiedAddress) {
+		this.modifiedAddress = modifiedAddress;
+	}
 
 }// Ende class

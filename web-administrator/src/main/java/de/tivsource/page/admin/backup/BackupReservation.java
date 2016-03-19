@@ -40,7 +40,7 @@ public class BackupReservation {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|ip|");
+    	bufferedWriter.write("[Format Definition] => uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|modified|modifiedAddress|modifiedBy|");
 
     	Iterator<Reservation> reservationIterator = reservationDaoLocal.findAll(0, max).iterator();
     	while(reservationIterator.hasNext()) {
@@ -61,7 +61,7 @@ public class BackupReservation {
 	    LOGGER.info("convertToCsvLine(Page next) aufgerufen.");
 
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		// uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|ip|
+		// uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|modified|modifiedAddress|modifiedBy|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -103,6 +103,24 @@ public class BackupReservation {
 
 		nextString.append(next.getCreatedAddress());
 		nextString.append("|");
+
+		nextString.append(next.getConfirmedAddress() != null ? next.getConfirmedAddress() : "");
+		nextString.append("|");
+
+		nextString.append(next.getConfirmedDate() != null ? simpleDateFormat.format(next.getConfirmedDate()) : "");
+		nextString.append("|");
+
+		nextString.append(next.getConfirmedBy() != null ? next.getConfirmedBy() : "");
+		nextString.append("|");
+
+		nextString.append(simpleDateFormat.format(next.getModified()));
+		nextString.append("|");
+
+        nextString.append(next.getModifiedAddress());
+        nextString.append("|");
+
+        nextString.append(next.getModifiedBy());
+        nextString.append("|");
 
 		return nextString.toString();
 	}

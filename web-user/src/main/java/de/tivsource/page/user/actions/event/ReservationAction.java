@@ -148,8 +148,11 @@ public class ReservationAction extends EmptyAction {
             reservation.setConfirmed(false);
             reservation.setCreatedAddress(remoteAddress);
             reservation.setCreated(new Date());
+            reservation.setModified(new Date());
+            reservation.setModifiedAddress(remoteAddress);
+            reservation.setModifiedBy(reservation.getFirstname() + " " + reservation.getLastname());
             reservationDaoLocal.merge(reservation);
-            
+
             sendMail();
 
             return SUCCESS;
