@@ -11,7 +11,8 @@
 <struts:url var="vacancyUrl"           action="index" namespace="/vacancy" />
 <struts:url var="galleryUrl"           action="index" namespace="/gallery" />
 <struts:url var="pictureUrl"           action="index" namespace="/picture" />
-<struts:url var="queueUrl"           action="queue" namespace="/reservation" />
+<struts:url var="queueUrl"             action="queue" namespace="/reservation" />
+<struts:url var="newsUrl"              action="index" namespace="/news" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
 <struts:url var="roleUrl"              action="index" namespace="/role" />
@@ -29,6 +30,7 @@
             <div class="wrapper">
               <ul id="navCategories">
                 <li id="category_public"     >Public</li>
+                <li id="category_statistics" >Statistics</li>
                 <li id="category_maintenance">Maintenance</li>
                 <li id="category_system"     >System</li>
               </ul>
@@ -84,6 +86,25 @@
                   <struts:a href="%{queueUrl}" title="%{getText('navigation.reservation')}" cssClass="navItem navReservation">
                     <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_reservation.png);">&nbsp;</span>
                     <span><struts:text name="navigation.reservation"/></span>
+                  </struts:a>
+                </li>
+                <li>
+                  <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}" cssClass="navItem navNews">
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_reservation.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.news"/></span>
+                  </struts:a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="navGroupStatistics" class="navGroup">
+            <div class="wrapper">
+              <ul>
+                <li>
+                  <struts:a href="%{backupUrl}" title="%{getText('navigation.backup')}" cssClass="navItem navAccessControl">
+                    <span class="navIcon backup" style="background-image: url(/admin/buttons/tiv_page_button_backup.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.backup"/></span>
                   </struts:a>
                 </li>
               </ul>
