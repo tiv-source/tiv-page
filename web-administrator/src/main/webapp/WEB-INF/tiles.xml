@@ -132,6 +132,13 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/view.jsp" />
 	</definition>
 
+	<definition name="reservationQueue" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/queue.jsp" />
+	</definition>
+
+	<definition name="reservationConfirmForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/confirm_form.jsp" />
+	</definition>
 
     <!-- Templates für Role Klasse -->
 	<definition name="role" extends="managementTemplate">
