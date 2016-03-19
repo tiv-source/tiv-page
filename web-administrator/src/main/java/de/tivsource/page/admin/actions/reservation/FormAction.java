@@ -74,6 +74,10 @@ public class FormAction extends EmptyAction {
         @Action(
                 value = "view", 
                 results = { @Result(name = "success", type="tiles", location = "reservationView") }
+        ),
+        @Action(
+                value = "confirmForm", 
+                results = { @Result(name = "success", type="tiles", location = "reservationConfirmForm") }
         )
     })
     public String execute() throws Exception {
