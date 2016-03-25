@@ -9,25 +9,31 @@
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TIV-Page Administration</title>
-  <sjm:head jqueryui="false" jquerytheme="redmond" compressed="true"/>
+  <title>TIV-Page Reservierung</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
   
 
 </head>
 <body>
-  <sjm:div role="page" id="textfieldpage">
-    <sjm:div role="header">
-      <h1>Examples for Textfield Tag</h1>
-      
-    </sjm:div>
+  <div data-role="page">
+  
+  
+    <div data-role="header" data-position="fixed" data-fullscreen="false">
+      <tiles:insertAttribute name="header" />
+    </div>
 
-    <sjm:div role="content">
+    <div data-role="main" class="ui-content">
       <tiles:insertAttribute name="content" />
-    </sjm:div>
+    </div>
 
-    <sjm:div role="footer">
+    <div data-role="footer" data-position="fixed" data-fullscreen="false">
+     <tiles:insertAttribute name="footer" />
+    </div>
 
-    </sjm:div>
-  </sjm:div>
+  </div>
 </body>
 </html>
