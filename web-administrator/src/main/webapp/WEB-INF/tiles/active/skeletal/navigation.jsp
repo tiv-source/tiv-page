@@ -90,7 +90,7 @@
                 </li>
                 <li>
                   <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}" cssClass="navItem navNews">
-                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_reservation.png);">&nbsp;</span>
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_news.png);">&nbsp;</span>
                     <span><struts:text name="navigation.news"/></span>
                   </struts:a>
                 </li>
