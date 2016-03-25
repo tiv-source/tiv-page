@@ -278,4 +278,22 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture/picture_form.jsp" />
 	</definition>
 
+
+    <!-- Templates für News Klasse -->
+	<definition name="news" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/news/list.jsp" />
+	</definition>
+
+	<definition name="newsAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news/add_form.jsp" />
+	</definition>
+
+	<definition name="newsEditForm" extends="managementTemplate">
+		<put-attribute name="content"    value="/WEB-INF/tiles/active/view/news/edit_form.jsp" />
+	</definition>
+
+	<definition name="newsDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news/delete_form.jsp" />
+	</definition>
+
 </tiles-definitions>
