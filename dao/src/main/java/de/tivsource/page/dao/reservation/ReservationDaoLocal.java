@@ -69,4 +69,11 @@ public interface ReservationDaoLocal {
 
     public Integer countConfirmationQueue();
 
+    /**
+     * 
+     * @param uuid - UUID des Event Objektes für die die Anzahl ermittelt werden soll.
+     * @return Integer - Anzahl der Personen die für dieses Event reserviert haben. 
+     */
+    public Integer countQuantity(String uuid);
+
 }// Ende interface
