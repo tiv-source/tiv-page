@@ -114,15 +114,9 @@ public class RestoreEvent {
         event.setReservation(items[19].equals("true") ? true : false);
         event.setPicture(pictureDaoLocal.findByUuid(items[20]));
         
-        // TODO: Restore pikiGoal
         event.setPiwikGoal(Integer.parseInt(items[21]));
-        //event.setPiwikGoal(1);
-
-        // TODO: Restore maxReservations
-        event.setMaxReservations(100);
-
-        // TODO: Restore maxPersons
-        event.setMaxPersons(150);
+        event.setMaxReservations(Integer.parseInt(items[22]));
+        event.setMaxPersons(Integer.parseInt(items[23]));
 
         return event;
     }// Ende convert(String line)
