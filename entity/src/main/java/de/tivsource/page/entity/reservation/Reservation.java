@@ -8,6 +8,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,6 +20,7 @@ import javax.persistence.Temporal;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.event.Event;
+import de.tivsource.page.enumeration.Origin;
 
 /**
  * @author Marc Michele
@@ -87,6 +90,9 @@ public class Reservation {
 
     private String modifiedAddress;
 
+    @Enumerated(EnumType.STRING)
+    private Origin origin;
+    
     public String getUuid() {
         return uuid;
     }
@@ -237,6 +243,14 @@ public class Reservation {
 
 	public void setModifiedAddress(String modifiedAddress) {
 		this.modifiedAddress = modifiedAddress;
+	}
+
+	public Origin getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Origin origin) {
+		this.origin = origin;
 	}
 
 }// Ende class

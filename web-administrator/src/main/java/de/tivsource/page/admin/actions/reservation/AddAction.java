@@ -17,6 +17,7 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.reservation.Reservation;
+import de.tivsource.page.enumeration.Origin;
 
 /**
  * 
@@ -80,6 +81,12 @@ public class AddAction extends EmptyAction {
     	    reservation.setCreated(new Date());
     	    reservation.setCreatedAddress(remoteAddress);
     	    reservation.setConfirmed(false);
+            reservation.setModified(new Date());
+            reservation.setModifiedAddress(remoteAddress);
+            reservation.setModifiedBy(remoteUser);
+            reservation.setOrigin(Origin.WEBSITE);
+            reservationDaoLocal.merge(reservation);
+
     	    reservationDaoLocal.merge(reservation);
             return SUCCESS;
     	}

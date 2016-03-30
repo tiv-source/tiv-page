@@ -32,6 +32,7 @@ import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.reservation.Reservation;
+import de.tivsource.page.enumeration.Origin;
 import de.tivsource.page.helper.EmailSender;
 import de.tivsource.page.helper.EmailTemplate;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -151,6 +152,7 @@ public class ReservationAction extends EmptyAction {
             reservation.setModified(new Date());
             reservation.setModifiedAddress(remoteAddress);
             reservation.setModifiedBy(reservation.getFirstname() + " " + reservation.getLastname());
+            reservation.setOrigin(Origin.WEBSITE);
             reservationDaoLocal.merge(reservation);
 
             sendMail();

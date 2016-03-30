@@ -40,7 +40,7 @@ public class BackupReservation {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|modified|modifiedAddress|modifiedBy|");
+    	bufferedWriter.write("[Format Definition] => uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|modified|modifiedAddress|modifiedBy|origin|");
 
     	Iterator<Reservation> reservationIterator = reservationDaoLocal.findAll(0, max).iterator();
     	while(reservationIterator.hasNext()) {
@@ -61,7 +61,7 @@ public class BackupReservation {
 	    LOGGER.info("convertToCsvLine(Page next) aufgerufen.");
 
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		// uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|modified|modifiedAddress|modifiedBy|
+		// uuid|gender|firstname|lastname|email|telephone|quantity|time|wishes|event|confirmed|created|createdAddress|confirmedAddress|confirmedDate|confirmedBy|modified|modifiedAddress|modifiedBy|origin|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -120,6 +120,9 @@ public class BackupReservation {
         nextString.append("|");
 
         nextString.append(next.getModifiedBy());
+        nextString.append("|");
+
+        nextString.append(next.getOrigin().toString());
         nextString.append("|");
 
 		return nextString.toString();

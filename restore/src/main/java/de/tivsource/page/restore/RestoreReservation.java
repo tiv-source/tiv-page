@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.reservation.Reservation;
+import de.tivsource.page.enumeration.Origin;
 
 /**
  * @author Marc Michele
@@ -97,6 +98,9 @@ public class RestoreReservation {
         reservation.setModified(convertDateString(items[16]));
         reservation.setModifiedAddress(items[17]);
         reservation.setModifiedBy(items[18]);
+
+        // TODO: Restore from file
+        reservation.setOrigin(Origin.WEBSITE);
 
         return reservation;
     }
