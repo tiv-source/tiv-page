@@ -77,7 +77,7 @@ public class RestoreEvent {
         // uuid(de)|name(de)|description(de)|keywords(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|
         // visible|created|modified|modifiedBy|modifiedAddress|
-    	// price|beginning|ending|deadline|location|reservation|picture|piwikGoal|
+    	// price|beginning|ending|deadline|location|reservation|picture|piwikGoal|maxReservations|maxPersons|
 
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
@@ -117,6 +117,12 @@ public class RestoreEvent {
         // TODO: Restore pikiGoal
         event.setPiwikGoal(Integer.parseInt(items[21]));
         //event.setPiwikGoal(1);
+
+        // TODO: Restore maxReservations
+        event.setMaxReservations(100);
+
+        // TODO: Restore maxPersons
+        event.setMaxReservations(150);
 
         return event;
     }// Ende convert(String line)

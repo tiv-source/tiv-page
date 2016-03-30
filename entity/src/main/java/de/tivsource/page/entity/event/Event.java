@@ -49,6 +49,10 @@ public class Event extends NamingItem {
     @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Reservation> reservations;
 
+    private Integer maxReservations;
+
+    private Integer maxPersons;
+    
     private Integer piwikGoal;
     
     public BigDecimal getPrice() {
@@ -113,6 +117,22 @@ public class Event extends NamingItem {
 
 	public void setPiwikGoal(Integer piwikGoal) {
 		this.piwikGoal = piwikGoal;
+	}
+
+	public Integer getMaxReservations() {
+		return maxReservations;
+	}
+
+	public void setMaxReservations(Integer maxReservations) {
+		this.maxReservations = maxReservations;
+	}
+
+	public Integer getMaxPersons() {
+		return maxPersons;
+	}
+
+	public void setMaxPersons(Integer maxPersons) {
+		this.maxPersons = maxPersons;
 	}
 
 }// Ende class
