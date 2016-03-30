@@ -122,7 +122,7 @@ public class RestoreEvent {
         event.setMaxReservations(100);
 
         // TODO: Restore maxPersons
-        event.setMaxReservations(150);
+        event.setMaxPersons(150);
 
         return event;
     }// Ende convert(String line)
