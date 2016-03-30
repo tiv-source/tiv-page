@@ -99,8 +99,7 @@ public class RestoreReservation {
         reservation.setModifiedAddress(items[17]);
         reservation.setModifiedBy(items[18]);
 
-        // TODO: Restore from file
-        reservation.setOrigin(Origin.WEBSITE);
+        reservation.setOrigin(Origin.valueOf(items[19]));
 
         return reservation;
     }
