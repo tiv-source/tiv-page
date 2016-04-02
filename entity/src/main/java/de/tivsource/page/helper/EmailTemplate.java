@@ -153,11 +153,11 @@ public class EmailTemplate {
     }
 
     public static Object getEmailTemplate(InputStream aStream) {
-    	System.out.println("getEmailTemplate(InputStream aStream) aufgerufen");
+    	LOGGER.info("getEmailTemplate(InputStream aStream) aufgerufen");
     	Digester digester = new Digester();
         digester.setValidating(false);
         digester.setUseContextClassLoader(true);
-        System.out.println("Digester gesetzt 0");
+        LOGGER.info("Digester gesetzt 0");
 
         digester.addObjectCreate("email", EmailTemplate.class);
 
@@ -168,9 +168,9 @@ public class EmailTemplate {
         digester.addCallMethod("email/to", "addTo", 0);
         digester.addCallMethod("email/cc", "addCc", 0);
         digester.addCallMethod("email/bcc", "addBcc", 0);
-        System.out.println("Digester gesetzt 1");
+        LOGGER.info("Digester gesetzt 1");
         try {
-        	System.out.println(aStream.available());
+        	LOGGER.info(aStream.available());
             return digester.parse(aStream);
         } catch (IOException e) {
             LOGGER.info("Error: IOException");
