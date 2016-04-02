@@ -91,12 +91,15 @@ public class CreateReservationPDF {
     private PDXObjectImage adImage;
     private float adScale = 0.443f;
 
-    public CreateReservationPDF(File file, Reservation reservation, File logoFile, File adFile) throws IOException, COSVisitorException {
+    private File fontFile;
+    
+    public CreateReservationPDF(File file, Reservation reservation, File logoFile, File adFile, File fontFile) throws IOException, COSVisitorException {
 		super();
 		this.file = file;
 		this.reservation = reservation;
 		this.logoFile = logoFile;
 		this.adFile = adFile;
+		this.fontFile = fontFile;
     	init();
     	generate();
     	close();
@@ -110,7 +113,7 @@ public class CreateReservationPDF {
         // Füge die Seite zum Dokument hinzu
         pdDocument.addPage(pdPage);
         // Erstelle Font Objekt
-        pdFont = PDTrueTypeFont.loadTTF(pdDocument, "bankgothicltbt.ttf");
+        pdFont = PDTrueTypeFont.loadTTF(pdDocument, fontFile);
 
         // Erstelle Barcode Bild
         pdfBarcodeFile = new File("/tmp/" + reservation.getUuid() + ".png");
@@ -180,7 +183,7 @@ public class CreateReservationPDF {
 
 	private void generateRectangle() throws IOException {
 		pdPageContentStream.setLineWidth(2f);
-    	pdPageContentStream.setStrokingColor(Color.ORANGE);
+    	pdPageContentStream.setStrokingColor(new Color(239,128,21));
     	pdPageContentStream.drawLine(20, 822, 576, 822);
     	pdPageContentStream.drawLine(20, 120, 20, 822);
     	pdPageContentStream.drawLine(20, 120, 576, 120);
@@ -193,7 +196,7 @@ public class CreateReservationPDF {
 		float text_width;
 		
 		pdPageContentStream.setLineWidth(2f);
-    	pdPageContentStream.setStrokingColor(Color.ORANGE);
+    	pdPageContentStream.setStrokingColor(new Color(239,128,21));
     	pdPageContentStream.drawLine(325, 130, 325, 440);
 
 		pdPageContentStream.setNonStrokingColor(Color.BLACK);
@@ -334,7 +337,7 @@ public class CreateReservationPDF {
     	pdPageContentStream.endText();
 
     	
-    	pdPageContentStream.setNonStrokingColor(Color.ORANGE);
+    	pdPageContentStream.setNonStrokingColor(new Color(239,128,21));
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 25 );
     	pdPageContentStream.moveTextPositionByAmount( 40, 650 );
