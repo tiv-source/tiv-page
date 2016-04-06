@@ -84,7 +84,7 @@ public class AddAction extends EmptyAction {
             reservation.setModified(new Date());
             reservation.setModifiedAddress(remoteAddress);
             reservation.setModifiedBy(remoteUser);
-            reservation.setOrigin(Origin.WEBSITE);
+            reservation.setOrigin(Origin.TELEPHONE);
             reservationDaoLocal.merge(reservation);
 
     	    reservationDaoLocal.merge(reservation);
