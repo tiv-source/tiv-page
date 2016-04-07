@@ -10,13 +10,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TIV-Page Reservierung</title>
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-</head>
-<body>
-  
-
+  <link rel="stylesheet" href="/reservation/jquery/jquery.mobile-1.4.5.min.css">
+  <script src="/reservation/jquery/jquery-1.11.3.min.js"></script>
+  <script src="/reservation/jquery/jquery.mobile-1.4.5.min.js"></script>
+  <style type="text/css">
+    .field label {
+      display: block;
+      float: left;
+      margin: 0;
+      width: 154px;
+      font-weight: bold;
+    }
+    .field {
+      min-height: 42px;
+    }
+  </style>
 </head>
 <body>
   <div data-role="page">
@@ -33,7 +41,11 @@
     <div data-role="footer" data-position="fixed" data-fullscreen="false">
      <tiles:insertAttribute name="footer" />
     </div>
-
   </div>
+  <script type="text/javascript">
+  $(document).bind("mobileinit", function(){
+    $.mobile.page.prototype.options.domCache = false;
+  });
+  </script>
 </body>
 </html>
