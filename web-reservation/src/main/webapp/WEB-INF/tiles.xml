@@ -7,11 +7,67 @@
 
 	<!-- Haupttemplate -->
 	<definition name="managementTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/content.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/content.jsp" />
 	</definition>
 
 	<definition name="index" extends="managementTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+	</definition>
+
+	<definition name="location" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/location/overview.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location/overview.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/location/overview.jsp" />
+	</definition>
+
+	<definition name="list_create" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/event/list_create.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/list_create.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/event/list_create.jsp" />
+	</definition>
+
+	<definition name="list_edit" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/event/list_edit.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/list_edit.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/event/list_edit.jsp" />
+	</definition>
+
+	<definition name="list_view" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/event/list_view.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event/list_view.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/event/list_view.jsp" />
+	</definition>
+
+
+	<definition name="reservation_list_view" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/reservation/list_view.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/list_view.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/reservation/list_view.jsp" />
+	</definition>
+
+	<definition name="reservation_view" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/reservation/view.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/view.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/reservation/view.jsp" />
+	</definition>
+	
+	<definition name="reservation_list_edit" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/reservation/list_edit.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/list_edit.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/reservation/list_edit.jsp" />
+	</definition>
+
+	<definition name="reservation_edit_form" extends="managementTemplate">
+	    <put-attribute name="header"  value="/WEB-INF/tiles/active/header/reservation/edit_form.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/edit_form.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/tiles/active/footer/reservation/edit_form.jsp" />
+	</definition>	
+
+
+	<definition name="reservation" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation/list.jsp" />
 	</definition>
 
 	<definition name="reservationCreateForm" extends="managementTemplate">
