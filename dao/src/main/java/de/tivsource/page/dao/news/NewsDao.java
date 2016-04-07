@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
@@ -45,8 +46,8 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public void merge(News news) {
-		// TODO Auto-generated method stub
-
+        LOGGER.info("merge(News news) aufgerufen");
+        entityManager.merge(news);
 	}
 
 	/* (non-Javadoc)
@@ -54,17 +55,17 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public void delete(News news) {
-		// TODO Auto-generated method stub
-
+		entityManager.remove(entityManager.find(News.class, news.getUuid()));
 	}
 
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.news.NewsDaoLocal#isNewsUrl(java.lang.String)
 	 */
 	@Override
-	public Boolean isNewsUrl(String urlName) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean isNewsUrl(String uuid) {
+        Query query = entityManager.createQuery("select n from News n where n.uuid = ?1 and p.visible = 'Y' order by p.uuid asc");
+        query.setParameter("1", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
 	}
 
 	/* (non-Javadoc)
@@ -72,27 +73,33 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public News findByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(News.class, uuid);
 	}
 
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.news.NewsDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<News> findAll(Integer start, Integer max) {
-		// TODO Auto-generated method stub
-		return null;
+        Query query = entityManager.createQuery("from News n");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
 	}
 
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.news.NewsDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> findAll(Integer start, Integer max, String field,
-			String order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<News> findAll(Integer start, Integer max, String field, String order) {
+        String queryString = "SELECT DISTINCT n FROM News n JOIN n.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
 	}
 
 	/* (non-Javadoc)
@@ -100,8 +107,8 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public Integer countAll() {
-		// TODO Auto-generated method stub
-		return null;
+        Query query = entityManager.createQuery("Select Count(n) from News n");
+        return Integer.parseInt(query.getSingleResult().toString());
 	}
 
 }// Ende class
