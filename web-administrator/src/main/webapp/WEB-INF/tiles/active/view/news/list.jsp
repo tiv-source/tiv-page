@@ -8,10 +8,10 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/news/editForm.html?page="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/news/editForm.html?news="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/pencil.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/news/deleteForm.html?page="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/news/deleteForm.html?news="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/delete.png'/>" + 
          "</a>";
 }
