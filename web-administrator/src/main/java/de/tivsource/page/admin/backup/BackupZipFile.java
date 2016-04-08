@@ -20,6 +20,7 @@ import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
+import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -54,6 +55,8 @@ public class BackupZipFile {
     private static EventDaoLocal eventDaoLocal;
 
     private static MessageDaoLocal messageDaoLocal;
+
+    private static NewsDaoLocal newsDaoLocal;
 
     private static ReservationDaoLocal reservationDaoLocal;
 
@@ -97,7 +100,11 @@ public class BackupZipFile {
         BackupZipFile.messageDaoLocal = messageDaoLocal;
     }
 
-    public static void setReservationDaoLocal(ReservationDaoLocal reservationDaoLocal) {
+    public static void setNewsDaoLocal(NewsDaoLocal newsDaoLocal) {
+		BackupZipFile.newsDaoLocal = newsDaoLocal;
+	}
+
+	public static void setReservationDaoLocal(ReservationDaoLocal reservationDaoLocal) {
         BackupZipFile.reservationDaoLocal = reservationDaoLocal;
     }
 
@@ -167,6 +174,13 @@ public class BackupZipFile {
         BackupMessage.setMessageDaoLocal(messageDaoLocal);
         BackupMessage backupMessage = new BackupMessage();
         addMultiData(backupMessage.getBackupFiles(), outZipFile);
+
+        /*
+         * Backup News
+         */
+        BackupNews.setNewsDaoLocal(newsDaoLocal);
+        BackupNews backupNews = new BackupNews();
+        addMultiData(backupNews.getBackupFiles(), outZipFile);
 
         /*
          * Backup Reservation
