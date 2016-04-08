@@ -35,6 +35,13 @@ function formatIsoDate(celldate, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatPicture(cellvalue, options, rowObject) {
+	return "<img src='/pictures/THUMBNAIL/" + cellvalue + "'/>";  
+}
+</script>
+
+
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
@@ -62,10 +69,23 @@ function formatIsoDate(celldate, options, rowObject) {
           viewrecords="true"
         >
     	  <sjg:gridColumn 
+    	    name="picture.pictureUrls.THUMBNAIL.url" 
+    	    index="picture" 
+    	    title="%{getText('picture')}" 
+    	    width="350" 
+    	    editable="false" 
+    	    sortable="false" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	    formatter="formatPicture" 
+    	  />
+    	  <sjg:gridColumn 
     	    name="descriptionMap.DE.name" 
     	    index="name" 
     	    title="%{getText('descriptionMap.DE.name')}" 
-    	    width="210" 
+    	    width="350" 
     	    editable="false" 
     	    sortable="true" 
     	    hidden="false" 
@@ -99,6 +119,19 @@ function formatIsoDate(celldate, options, rowObject) {
     	    formatter="formatTrueFalse"
     	  />
     	  <sjg:gridColumn 
+    	    name="created" 
+    	    index="created" 
+    	    title="%{getText('created')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="center" 
+    	    formatter="formatIsoDate"
+    	  />
+    	  <sjg:gridColumn 
     	    name="modified" 
     	    index="modified" 
     	    title="%{getText('modified')}" 
@@ -123,6 +156,20 @@ function formatIsoDate(celldate, options, rowObject) {
     	    resizable="false" 
     	    align="left" 
     	  />
+    	  <sjg:gridColumn 
+    	    name="modifiedAddress" 
+    	    index="modifiedAddress" 
+    	    title="%{getText('modifiedAddress')}" 
+    	    width="140" 
+    	    editable="false" 
+    	    sortable="true" 
+    	    hidden="false" 
+    	    search="false" 
+    	    resizable="false" 
+    	    align="left" 
+    	  />
+
+
     	  <sjg:gridColumn 
     	    name="uuid" 
     	    index="editbar" 
