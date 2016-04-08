@@ -218,7 +218,7 @@ public class ReservationAction extends EmptyAction {
             LOGGER.info("Template eingelesen");
 
             // Get session
-            Session session = Session.getDefaultInstance(getProperties(), auth);
+            Session session = Session.getInstance(getProperties(), auth);
             session.setDebug(true);
             
             EmailSender sendIt = new EmailSender();
