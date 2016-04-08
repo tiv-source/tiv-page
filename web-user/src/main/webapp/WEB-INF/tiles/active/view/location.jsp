@@ -17,7 +17,9 @@
         </div>						
 
         <div id="map">
-          <img src="http://staticmap.openstreetmap.de/staticmap.php?center=<struts:property value="latitude" />,<struts:property value="longitude" />&zoom=18&size=250x230&maptype=mapnik&markers=<struts:property value="latitude" />,<struts:property value="longitude" />,lightblue" />
+          <a href="http://www.openstreetmap.org/?mlat=<struts:property value="latitude" />&mlon=<struts:property value="longitude" />#map=19/<struts:property value="latitude" />/<struts:property value="longitude" />">
+            <img src="/osmcache/<struts:property value="uuid" />.png" />
+          </a>
         </div>
         
         <div class="open">
