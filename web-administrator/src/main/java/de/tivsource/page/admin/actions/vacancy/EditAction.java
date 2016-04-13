@@ -87,16 +87,27 @@ public class EditAction extends EmptyAction {
     		Vacancy dbVacancy = vacancyDaoLocal.findByUuid(vacancy.getUuid());
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
+            	vacancy.getContentMap().put(Language.DE, dbVacancy.getContentObject(Language.DE));
+            	dbVacancy.getContentMap().get(Language.EN).setContent(vacancy.getContent(Language.EN));
+            	dbVacancy.getContentMap().get(Language.EN).setModified(new Date());
+
                 vacancy.getDescriptionMap().put(Language.DE, dbVacancy.getDescriptionObject(Language.DE));
                 dbVacancy.getDescriptionMap().get(Language.EN).setDescription(vacancy.getDescription(Language.EN));
                 dbVacancy.getDescriptionMap().get(Language.EN).setKeywords(vacancy.getKeywords(Language.EN));
                 dbVacancy.getDescriptionMap().get(Language.EN).setName(vacancy.getName(Language.EN));
             } else {
+            	dbVacancy.getContentMap().get(Language.DE).setContent(vacancy.getContent(Language.DE));
+                dbVacancy.getContentMap().get(Language.DE).setModified(new Date());
+
                 dbVacancy.getDescriptionMap().get(Language.DE).setDescription(vacancy.getDescription(Language.DE));
                 dbVacancy.getDescriptionMap().get(Language.DE).setKeywords(vacancy.getKeywords(Language.DE));;
                 dbVacancy.getDescriptionMap().get(Language.DE).setName(vacancy.getName(Language.DE));
             }
-    		
+
+            dbVacancy.setBeginning(vacancy.getBeginning());
+            dbVacancy.setWorkingTime(vacancy.getWorkingTime());
+            dbVacancy.setTechnical(vacancy.getTechnical());
+
     		dbVacancy.setModifiedAddress(remoteAddress);
     		dbVacancy.setLocation(locationDaoLocal.findByUuidWidthEvents(vacancy.getLocation().getUuid()));
     		dbVacancy.setModified(new Date());
