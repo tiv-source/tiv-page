@@ -21,6 +21,7 @@ import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
+import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -30,6 +31,7 @@ import de.tivsource.page.restore.RestoreEvent;
 import de.tivsource.page.restore.RestoreGallery;
 import de.tivsource.page.restore.RestoreLocation;
 import de.tivsource.page.restore.RestoreMessage;
+import de.tivsource.page.restore.RestoreNews;
 import de.tivsource.page.restore.RestorePage;
 import de.tivsource.page.restore.RestorePicture;
 import de.tivsource.page.restore.RestoreProperty;
@@ -67,6 +69,8 @@ public class RestoreZipFile {
 
     private MessageDaoLocal messageDaoLocal;
 
+    private NewsDaoLocal newsDaoLocal;
+
     private ReservationDaoLocal reservationDaoLocal;
 
     private VacancyDaoLocal vacancyDaoLocal;
@@ -77,6 +81,8 @@ public class RestoreZipFile {
 
     private Map<String, InputStream> messageStreams = new HashMap<String, InputStream>();
 
+    private Map<String, InputStream> newsStreams = new HashMap<String, InputStream>();
+    
     private Map<String, InputStream> reservationStreams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> vacancyStreams = new HashMap<String, InputStream>();
@@ -85,6 +91,7 @@ public class RestoreZipFile {
             PageDaoLocal pageDaoLocal, PropertyDaoLocal propertyDaoLocal,
             LocationDaoLocal locationDaoLocal, EventDaoLocal eventDaoLocal,
             MessageDaoLocal messageDaoLocal,
+            NewsDaoLocal newsDaoLocal,
             ReservationDaoLocal reservationDaoLocal,
             VacancyDaoLocal vacancyDaoLocal) {
         super();
@@ -97,6 +104,7 @@ public class RestoreZipFile {
         this.locationDaoLocal = locationDaoLocal;
         this.eventDaoLocal = eventDaoLocal;
         this.messageDaoLocal = messageDaoLocal;
+        this.newsDaoLocal = newsDaoLocal;
         this.reservationDaoLocal = reservationDaoLocal;
         this.vacancyDaoLocal = vacancyDaoLocal;
     }
@@ -115,6 +123,8 @@ public class RestoreZipFile {
                 pageStreams.put(fileName, zipFile.getInputStream(zipEntry));
             } else if(fileName.startsWith("message")) {
                 messageStreams.put(fileName, zipFile.getInputStream(zipEntry));
+            } else if(fileName.startsWith("news")) {
+                newsStreams.put(fileName, zipFile.getInputStream(zipEntry));
             } else if(fileName.startsWith("reservation")) {
                 reservationStreams.put(fileName, zipFile.getInputStream(zipEntry));
             } else if(fileName.startsWith("vacancy")) {
@@ -148,6 +158,9 @@ public class RestoreZipFile {
         // Stelle Message wieder her
         restoreMessage();
 
+        // Stelle News wieder her
+        restoreNews();
+        
         // Stelle Reservation wieder her
         restoreReservation();
 
@@ -219,6 +232,12 @@ public class RestoreZipFile {
         LOGGER.info("restoreMessage() aufgerufen.");
         RestoreMessage restoreMessage = new RestoreMessage(messageDaoLocal, messageStreams);
         restoreMessage.generate();
+    }
+
+    private void restoreNews() {
+        LOGGER.info("restoreNews() aufgerufen.");
+        RestoreNews restoreNews = new RestoreNews(newsDaoLocal, pictureDaoLocal, newsStreams);
+        restoreNews.generate();
     }
 
     private void restoreReservation() {
