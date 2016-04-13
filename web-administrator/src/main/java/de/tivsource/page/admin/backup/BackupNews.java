@@ -86,7 +86,7 @@ public class BackupNews {
         nextString.append(next.getContentObject(Language.DE).getUuid());
         nextString.append("|");
 
-		nextString.append("page_" + next.getUuid() + "_DE.txt");
+		nextString.append("news_" + next.getUuid() + "_DE.txt");
 		nextString.append("|");
 
         nextString.append(simpleDateFormat.format(next.getContentObject(Language.DE).getCreated()));
@@ -110,7 +110,7 @@ public class BackupNews {
         nextString.append(next.getContentObject(Language.EN).getUuid());
         nextString.append("|");
 
-        nextString.append("page_" + next.getUuid() + "_EN.txt");
+        nextString.append("news_" + next.getUuid() + "_EN.txt");
         nextString.append("|");
 
 
