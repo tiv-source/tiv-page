@@ -85,14 +85,16 @@ public class EditAction extends EmptyAction {
             dbReservation.setTelephone(reservation.getTelephone());
             dbReservation.setTime(reservation.getTime());
             dbReservation.setWishes(reservation.getWishes());
+            dbReservation.setModified(new Date());
+            dbReservation.setModifiedAddress(remoteAddress);
+            dbReservation.setModifiedBy(remoteUser);
     	    reservationDaoLocal.merge(dbReservation);
             return SUCCESS;
     	}
     	else {
     		return ERROR;
     	}
-    	
-    	
+
     }// Ende execute()
 
     public List<Date> getTimes() {
