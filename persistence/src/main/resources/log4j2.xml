@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+	<Appenders>
+
+		<RollingFile name="NormalAppender" fileName="logs/tiv-page.log"
+			filePattern="logs/tiv-page-%d{MM-dd-yyyy}.log.gz" append="true">
+			<PatternLayout pattern="%d{ISO8601} %-5p [%t] %c:%L %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="2 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="AuthAppender" fileName="logs/tiv-page-auth.log"
+			filePattern="logs/tiv-page-auth-%d{MM-dd-yyyy}.log.gz" append="true">
+			<PatternLayout pattern="%d{ISO8601} %-5p [%t] %c:%L %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="2 MB" />
+			</Policies>
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+
+		<Logger name="de.nethold" level="trace">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="com.opensymphony.xwork2.util.OgnlUtil" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="com.opensymphony" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="freemarker" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.apache.struts2" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.apache.tiles" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.apache.commons" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.hibernate" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.hibernate.SQL" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="com.mchange" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.apache.struts2.convention" level="warn">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="de.tivsource" level="debug">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.apache.struts2.json.JSONWriter" level="error">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="AuthLogger" level="info">
+			<AppenderRef ref="AuthAppender" />
+		</Logger>
+
+		<Root level="debug">
+			<AppenderRef ref="NormalAppender" />
+		</Root>
+
+	</Loggers>
+
+</Configuration>

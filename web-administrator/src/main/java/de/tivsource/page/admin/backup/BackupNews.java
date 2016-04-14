@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -20,7 +21,7 @@ public class BackupNews {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(BackupNews.class);
+    private static final Logger LOGGER = LogManager.getLogger(BackupNews.class);
 
 	private static NewsDaoLocal newsDaoLocal;
 

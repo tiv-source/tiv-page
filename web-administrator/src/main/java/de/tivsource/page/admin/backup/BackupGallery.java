@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -18,7 +19,7 @@ public class BackupGallery {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(BackupGallery.class);
+    private static final Logger LOGGER = LogManager.getLogger(BackupGallery.class);
 
 	private static GalleryDaoLocal galleryDaoLocal;
 

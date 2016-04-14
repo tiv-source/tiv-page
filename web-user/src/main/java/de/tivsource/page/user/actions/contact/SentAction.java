@@ -13,7 +13,8 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.AddressException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -39,7 +40,7 @@ public class SentAction extends EmptyAction {
     /**
 	 * Statischer Logger der Klasse.
 	 */
-    private static final Logger LOGGER = Logger.getLogger(SentAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(SentAction.class);
 
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;

@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.NoResultException;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -19,6 +20,9 @@ import javax.security.auth.callback.PasswordCallback;
 import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.entity.administration.Role;
@@ -30,6 +34,8 @@ import de.tivsource.page.entity.administration.User;
  */
 public class AdminLoginModule implements LoginModule {
 
+	private static final Logger LOGGER = LogManager.getLogger("AuthLogger");
+	
 	private CallbackHandler handler;
 	private Subject subject;
 	private User userPrincipal;
@@ -70,22 +76,28 @@ public class AdminLoginModule implements LoginModule {
 	    	  if(dbUser != null &&
 	    	     name.equals(dbUser.getName()) && 
 	    	     password.equals(dbUser.getPassword())) {
-	  	        userPrincipal = dbUser;
-		        return true;
+	    		  LOGGER.info("Auth-User: " + dbUser.getUsername());
+	    		  userPrincipal = dbUser;
+	    		  return true;
 	    	  }// Ende if
 
 	      }// Ende if
-
+	      
 	      // If credentials are NOT OK we throw a LoginException
 	      throw new LoginException("Authentication failed");
 
-	    } catch (IOException e) {
-	      throw new LoginException(e.getMessage());
 	    } catch (UnsupportedCallbackException e) {
 	      throw new LoginException(e.getMessage());
 	    } catch (NamingException e) {
 	      throw new LoginException(e.getMessage());
-		}
+		} catch (NoResultException e) {
+			LOGGER.info("Login failed");
+			LOGGER.info("Auth-User: " + ((NameCallback) callbacks[0]).getName());
+			LOGGER.info("Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()));
+			return false;			
+		} catch (IOException e) {
+			throw new LoginException(e.getMessage());
+		} 
 	}
 
 	@Override

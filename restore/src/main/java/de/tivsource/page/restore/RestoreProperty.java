@@ -12,7 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
@@ -26,7 +27,7 @@ public class RestoreProperty {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(RestoreProperty.class);
+    private static final Logger LOGGER = LogManager.getLogger(RestoreProperty.class);
 
     private PropertyDaoLocal propertyDaoLocal;
 

@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Marc Michele
@@ -21,7 +22,7 @@ public class BackupPictureFiles {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(BackupPictureFiles.class);
+    private static final Logger LOGGER = LogManager.getLogger(BackupPictureFiles.class);
 
     private static byte[] buffer = new byte[1024];
 

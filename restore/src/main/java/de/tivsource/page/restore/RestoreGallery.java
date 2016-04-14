@@ -16,7 +16,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
@@ -34,7 +35,7 @@ public class RestoreGallery {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(RestoreGallery.class);
+    private static final Logger LOGGER = LogManager.getLogger(RestoreGallery.class);
 
     private GalleryDaoLocal galleryDaoLocal;
 

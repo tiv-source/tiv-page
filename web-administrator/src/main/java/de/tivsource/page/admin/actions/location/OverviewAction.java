@@ -1,7 +1,8 @@
 package de.tivsource.page.admin.actions.location;
 
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -26,7 +27,7 @@ public class OverviewAction extends EmptyAction {
     /**
 	 * Statischer Logger der Klasse.
 	 */
-    private static final Logger LOGGER = Logger.getLogger(OverviewAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(OverviewAction.class);
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;

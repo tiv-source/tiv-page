@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
@@ -17,7 +18,7 @@ public class BackupProperty {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(BackupProperty.class);
+    private static final Logger LOGGER = LogManager.getLogger(BackupProperty.class);
 
 	private static final int MAX = 1500;
 	

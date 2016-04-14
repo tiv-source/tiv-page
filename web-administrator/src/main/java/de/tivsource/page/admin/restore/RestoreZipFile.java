@@ -13,7 +13,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
@@ -49,7 +50,7 @@ public class RestoreZipFile {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(RestoreZipFile.class);
+    private static final Logger LOGGER = LogManager.getLogger(RestoreZipFile.class);
 
     private GalleryDaoLocal galleryDaoLocal;
 

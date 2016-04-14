@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
@@ -34,7 +35,7 @@ public class RestoreNews {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(RestoreNews.class);
+    private static final Logger LOGGER = LogManager.getLogger(RestoreNews.class);
     
     private NewsDaoLocal newsDaoLocal;
 

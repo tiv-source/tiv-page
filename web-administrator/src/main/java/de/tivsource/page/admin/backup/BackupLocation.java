@@ -8,7 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.SortedSet;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -20,7 +21,7 @@ public class BackupLocation {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(BackupLocation.class);
+    private static final Logger LOGGER = LogManager.getLogger(BackupLocation.class);
 
 	private static final int MAX = 1500;
 	

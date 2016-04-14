@@ -8,7 +8,8 @@ import java.util.Iterator;
 import javax.mail.internet.InternetAddress;
 
 import org.apache.commons.digester.Digester;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 /**
@@ -22,7 +23,7 @@ public class EmailTemplate {
      * Statischer Logger der Klasse EmailTemplate, zur Zeit gibt es Meldungen
      * vom Type TRACE und DEBUG.
      */
-    private static final Logger LOGGER = Logger.getLogger(EmailTemplate.class);
+    private static final Logger LOGGER = LogManager.getLogger(EmailTemplate.class);
 
     private String subject;
     private String body;

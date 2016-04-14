@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -32,7 +33,7 @@ public class OpeningHourDeleteFormAction extends EmptyAction {
     /**
 	 * Statischer Logger der Klasse.
 	 */
-    private static final Logger LOGGER = Logger.getLogger(OpeningHourDeleteFormAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(OpeningHourDeleteFormAction.class);
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;

@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -27,7 +28,7 @@ public class BackupPictureFilesAction extends EmptyAction {
 	/**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(BackupPictureFilesAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(BackupPictureFilesAction.class);
 
 	private InputStream fileStream;
 

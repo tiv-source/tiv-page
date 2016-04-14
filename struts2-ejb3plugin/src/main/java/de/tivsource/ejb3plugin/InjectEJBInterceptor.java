@@ -13,7 +13,8 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -40,7 +41,7 @@ public class InjectEJBInterceptor extends AbstractInterceptor implements
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(InjectEJBInterceptor.class);
+    private static final Logger LOGGER = LogManager.getLogger(InjectEJBInterceptor.class);
 
 	/**
 	 * Einfacher Cache.

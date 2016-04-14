@@ -13,7 +13,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
@@ -29,7 +30,7 @@ public class RestoreReservation {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(RestoreReservation.class);
+    private static final Logger LOGGER = LogManager.getLogger(RestoreReservation.class);
     
     private ReservationDaoLocal reservationDaoLocal;
 

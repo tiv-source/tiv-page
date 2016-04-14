@@ -8,7 +8,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.util.StrutsTypeConverter;
 
 import com.opensymphony.xwork2.conversion.TypeConversionException;
@@ -22,7 +23,7 @@ public class TimeConverter extends StrutsTypeConverter {
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(TimeConverter.class);
+    private static final Logger LOGGER = LogManager.getLogger(TimeConverter.class);
 
 	/* (non-Javadoc)
 	 * @see org.apache.struts2.util.StrutsTypeConverter#convertFromString(java.util.Map, java.lang.String[], java.lang.Class)

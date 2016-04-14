@@ -11,7 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.event.Event;
 
@@ -25,7 +26,7 @@ public class EventDao implements EventDaoLocal {
     /*
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = Logger.getLogger(EventDao.class);
+    private static final Logger LOGGER = LogManager.getLogger(EventDao.class);
 
     /*
      * EntityManager der Dao Klasse.
