@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -65,9 +66,13 @@ public class UserDao implements UserDaoLocal {
     @Override
     public User findByUsername(String username) {
         LOGGER.info("findByUsername(String username) aufgerufen.");
-        Query query = entityManager.createQuery("select u from User u where u.username = ?1");
-        query.setParameter("1", username);
-        return (User)query.getSingleResult();
+        try {
+            Query query = entityManager.createQuery("select u from User u where u.username = ?1");
+            query.setParameter("1", username);
+            return (User)query.getSingleResult();
+        } catch(NoResultException e) {
+        	return null;
+        }
     }
 
     @Override
