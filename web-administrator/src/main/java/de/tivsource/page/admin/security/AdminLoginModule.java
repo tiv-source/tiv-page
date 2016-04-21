@@ -27,6 +27,7 @@ import org.apache.logging.log4j.Logger;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.entity.administration.Role;
 import de.tivsource.page.entity.administration.User;
+import de.tivsource.page.valve.security.RemoteAddressThreadLocal;
 
 /**
  * @author Marc Michele
@@ -59,7 +60,7 @@ public class AdminLoginModule implements LoginModule {
 	      handler.handle(callbacks);
 	      String name = ((NameCallback) callbacks[0]).getName();
 	      String password = String.valueOf(((PasswordCallback) callbacks[1]).getPassword());
-
+	      
 	      // Überprüfen ob der Name und
 	      // das Passwort gesetzt wurden
 	      if (name != null &&
@@ -71,33 +72,61 @@ public class AdminLoginModule implements LoginModule {
 	    	  // Versuche benutzer mit dem Namen aus der Datenbank zu holen.
 	    	  User dbUser = userDaoLocal.findByUsername(name);
 
+	    	  
 	    	  // Überprüfen ob ein Benutzer gefunden wurde
 	    	  // und ob die Daten stimmen.
 	    	  if(dbUser != null &&
 	    	     name.equals(dbUser.getName()) && 
 	    	     password.equals(dbUser.getPassword())) {
-	    		  LOGGER.info("Auth-User: " + dbUser.getUsername());
+	    		  LOGGER.info("Login ok - "
+	    		  		+ "Auth-User: " + dbUser.getUsername()
+	    		  		+ " - "
+	    		  		+ "IP-Adresse: " + RemoteAddressThreadLocal.getKey()
+	    		  );
 	    		  userPrincipal = dbUser;
 	    		  return true;
 	    	  }// Ende if
 
 	      }// Ende if
 	      
+	      
+	      LOGGER.info("Login failed - "
+	      		+ "Auth-User: " + ((NameCallback) callbacks[0]).getName() + " - "
+	      		+ "Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()) + " - "
+	      		+ "IP-Adresse: " + RemoteAddressThreadLocal.getKey()
+	      );
+
 	      // If credentials are NOT OK we throw a LoginException
 	      throw new LoginException("Authentication failed");
-
 	    } catch (UnsupportedCallbackException e) {
-	      throw new LoginException(e.getMessage());
+		      LOGGER.info("Login failed - "
+			      		+ "Auth-User: " + ((NameCallback) callbacks[0]).getName() + " - "
+			      		+ "Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()) + " - "
+			      		+ "IP-Adresse: " + RemoteAddressThreadLocal.getKey()
+		      );
+			throw new LoginException("Authentication failed (UnsupportedCallbackException)");			
 	    } catch (NamingException e) {
-	      throw new LoginException(e.getMessage());
+		      LOGGER.info("Login failed - "
+			      		+ "Auth-User: " + ((NameCallback) callbacks[0]).getName() + " - "
+			      		+ "Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()) + " - "
+			      		+ "IP-Adresse: " + RemoteAddressThreadLocal.getKey()
+		      );
+			throw new LoginException("Authentication failed (LoginException)");			
 		} catch (NoResultException e) {
-			LOGGER.info("Login failed");
-			LOGGER.info("Auth-User: " + ((NameCallback) callbacks[0]).getName());
-			LOGGER.info("Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()));
-			return false;			
+		      LOGGER.info("Login failed - "
+			      		+ "Auth-User: " + ((NameCallback) callbacks[0]).getName() + " - "
+			      		+ "Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()) + " - "
+			      		+ "IP-Adresse: " + RemoteAddressThreadLocal.getKey()
+		      );
+			throw new LoginException("Authentication failed (NoResultException)");			
 		} catch (IOException e) {
-			throw new LoginException(e.getMessage());
-		} 
+		      LOGGER.info("Login failed - "
+			      		+ "Auth-User: " + ((NameCallback) callbacks[0]).getName() + " - "
+			      		+ "Auth-Password: " + String.valueOf(((PasswordCallback) callbacks[1]).getPassword()) + " - "
+			      		+ "IP-Adresse: " + RemoteAddressThreadLocal.getKey()
+		      );
+			throw new LoginException("Authentication failed (IOException)");
+		}
 	}
 
 	@Override

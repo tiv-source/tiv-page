@@ -59,7 +59,12 @@
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>valve</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>struts2-ejb3plugin</artifactId>
@@ -190,6 +195,7 @@
 			<version>1.4</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -202,6 +208,8 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+
+
 
 	</dependencies>
 

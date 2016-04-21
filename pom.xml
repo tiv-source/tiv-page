@@ -39,6 +39,7 @@
 		<module>struts2-ejb3plugin</module>
 		<module>restore</module>
 		<module>mail-reservation</module>
+		<module>valve</module>
 	</modules>
 
 	<build>
