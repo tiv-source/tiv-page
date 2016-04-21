@@ -64,7 +64,7 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public Boolean isNewsUrl(String uuid) {
-        Query query = entityManager.createQuery("select n from News n where n.uuid = ?1 and p.visible = 'Y' order by p.uuid asc");
+        Query query = entityManager.createQuery("select n from News n where n.uuid = ?1 and n.visible = 'Y' order by n.uuid asc");
         query.setParameter("1", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
