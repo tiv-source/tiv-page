@@ -4,7 +4,7 @@
 	<Appenders>
 
 		<RollingFile name="NormalAppender" fileName="logs/tiv-page.log"
-			filePattern="logs/tiv-page-%d{MM-dd-yyyy}.log.gz" append="true">
+			filePattern="logs/tiv-page-%d{yyyy-MM-dd}.log.gz" append="true">
 			<PatternLayout pattern="%d{ISO8601} %-5p [%t] %c:%L %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
@@ -13,7 +13,7 @@
 		</RollingFile>
 
 		<RollingFile name="AuthAppender" fileName="logs/tiv-page-auth.log"
-			filePattern="logs/tiv-page-auth-%d{MM-dd-yyyy}.log.gz" append="true">
+			filePattern="logs/tiv-page-auth-%d{yyyy-MM-dd}.log.gz" append="true">
 			<PatternLayout pattern="%d{ISO8601} %-5p [%t] %c:%L %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
@@ -66,10 +66,6 @@
 		</Logger>
 
 		<Logger name="org.apache.struts2.convention" level="warn">
-			<AppenderRef ref="NormalAppender" />
-		</Logger>
-
-		<Logger name="de.tivsource" level="debug">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
