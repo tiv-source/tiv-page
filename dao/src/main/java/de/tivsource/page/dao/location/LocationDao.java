@@ -61,6 +61,13 @@ public class LocationDao implements LocationDaoLocal {
         entityManager.remove(entityManager.find(Location.class, location.getUuid()));
     }
 
+	@Override
+	public Boolean isLocation(String uuid) {
+        Query query = entityManager.createQuery("select l from Location l where l.uuid = ?1 and l.visible = 'Y' order by l.uuid asc");
+        query.setParameter("1", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+	}
+
     @Override
     public Boolean isEventLocation(String uuid) {
         Query query = entityManager.createQuery("select l from Location l where l.uuid = ?1 and l.visible = 'Y' and l.event = 'Y' order by l.uuid asc");
@@ -89,7 +96,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAll(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Location l");
+        Query query = entityManager.createQuery("SELECT l FROM Location l");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();
@@ -120,7 +127,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Location l where l.visible = 'Y'");
+        Query query = entityManager.createQuery("from Location l where l.visible = 'Y' ORDER BY l.order ASC");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();
@@ -158,5 +165,7 @@ public class LocationDao implements LocationDaoLocal {
         entityManager.remove(openingHour);
 
     }
+
+
 
 }// Ende class

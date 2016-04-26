@@ -35,6 +35,14 @@ public interface LocationDaoLocal {
     public void delete(Location location);
 
     /**
+     * Metholde um zu überprüfen ob die angegebene Uuid zu einer Location gehört.
+     * 
+     * @param uuid - Die Uuid die überprüft werden soll.
+     * @return Boolean - true wenn es eine Location ist.
+     */
+    public Boolean isLocation(String uuid);
+
+    /**
      * Metholde um zu überprüfen ob die angegebene Uuid zu einer Location mit Reservierung gehört.
      * 
      * @param uuid - Die Uuid die überprüft werden soll.
