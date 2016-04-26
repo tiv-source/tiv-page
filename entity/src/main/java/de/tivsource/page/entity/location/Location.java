@@ -8,6 +8,7 @@ import java.util.SortedSet;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,6 +65,9 @@ public class Location extends NamingItem {
      */
     private String latitude;
 
+    @Column(name="orderNumber")
+    private Integer order = 1;
+    
     public Address getAddress() {
         return address;
     }
@@ -127,5 +131,13 @@ public class Location extends NamingItem {
     public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
 
 }// Ende class
