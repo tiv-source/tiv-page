@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.reservation.Reservation;
+
 /**
  * @author Marc Michele
  * 
