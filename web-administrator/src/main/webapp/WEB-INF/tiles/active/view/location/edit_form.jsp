@@ -99,6 +99,17 @@
                 />
               </div>
 
+              <div class="field">
+                <sj:spinner
+                    key="location.order"
+                    min="0"
+                    max="200"
+                    step="1"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                />
+              </div>
+
             <struts:if test="lang=='EN'">
               <struts:hidden key="lang"/>
               

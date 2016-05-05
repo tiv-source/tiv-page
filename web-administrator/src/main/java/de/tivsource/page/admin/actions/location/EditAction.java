@@ -113,6 +113,7 @@ public class EditAction extends EmptyAction {
     		dbLocation.setLatitude(location.getLatitude());
     		dbLocation.setLongitude(location.getLongitude());
     		dbLocation.setPicture(location.getPicture());
+    		dbLocation.setOrder(location.getOrder());
 
     		locationDaoLocal.merge(dbLocation);
             return SUCCESS;
