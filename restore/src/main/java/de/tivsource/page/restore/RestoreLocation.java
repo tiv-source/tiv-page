@@ -81,7 +81,7 @@ public class RestoreLocation {
         // uuid(de)|name(de)|description(de)|keywords(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|
         // openingHours|
-        // latitude|longitude|visible|created|modified|modifiedBy|ip|events|picture|
+        // latitude|longitude|visible|created|modified|modifiedBy|ip|events|picture|order|
 
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
@@ -115,6 +115,9 @@ public class RestoreLocation {
         location.setModifiedAddress(items[25]);
         location.setEvent(items[26].equals("true") ? true : false);
         location.setPicture(pictureDaoLocal.findByUuid(items[27]));
+
+        // TODO: attribute from csv
+        location.setOrder(1);
 
         return location;
     }// Ende convert(String line)
