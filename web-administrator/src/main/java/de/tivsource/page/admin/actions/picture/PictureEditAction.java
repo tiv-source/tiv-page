@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +46,16 @@ public class PictureEditAction extends EmptyAction {
 	 * Statischer Logger der Klasse.
 	 */
     private static final Logger LOGGER = LogManager.getLogger(PictureEditAction.class);
+
+    /**
+     * Pfad zu den Verzeichnissen der Bild Dateien
+     */
+    private static final String picturePath = "/srv/www/htdocs/pictures/";
+
+    /**
+     * Pfad in dem die hochgeladene orginal Bild Datei gespeichert wird.
+     */
+    private static final String uploadPath = picturePath + "FULL/";
 
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
@@ -81,7 +94,7 @@ public class PictureEditAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(picture != null) {
-    		LOGGER.info(picture.getUuid());
+    		LOGGER.info("UUID des Bildes: " + picture.getUuid());
     		Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
 
     		dbPicture.setModified(new Date());
@@ -89,18 +102,14 @@ public class PictureEditAction extends EmptyAction {
     		dbPicture.setModifiedAddress(remoteAddress);
 
     	    if(file != null) {
-
     	    	// Lösche die alten Bilder
     	    	deletePictures(dbPicture.getPictureUrls());
-
-    	    	// Pfad in dem die Bild Datei gespeichert wird.
-    	    	String generatePath = "/srv/www/htdocs/pictures/";
-                String uploadPath = generatePath + "FULL/";
 
                 // Name der Bild Datei die erstellt werden soll. 
                 String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."
                     + file.getName() + new Date() + "Noch ein bischen.")
                     + ".png";
+                LOGGER.info("Variable pictureSaveName: " + pictureSaveName);
 
                 File fullPictureFileToCreate = new File(uploadPath, pictureSaveName);
                 // Wenn die Datei noch nicht existiert wird Sie erstellt.
@@ -108,17 +117,18 @@ public class PictureEditAction extends EmptyAction {
                     savePictureFile(file, fullPictureFileToCreate);
                 }
 
-            	createNormal(uploadPath + pictureSaveName, generatePath
+            	createNormal(uploadPath + pictureSaveName, picturePath
             		+ "NORMAL/" + pictureSaveName);
-            	createThumbnail(uploadPath + pictureSaveName, generatePath
+            	createThumbnail(uploadPath + pictureSaveName, picturePath
             		+ "THUMBNAIL/" + pictureSaveName);
-            	createLarge(uploadPath + pictureSaveName, generatePath
+            	createLarge(uploadPath + pictureSaveName, picturePath
             		+ "LARGE/" + pictureSaveName);
 
             	// Setzte die Urls in das Bild.
             	dbPicture.setPictureUrls(generatePictureUrls(pictureSaveName, picture));
     	    }
 
+    	    LOGGER.info("PictureUrl (FULL): " + dbPicture.getPictureUrls().get(UrlType.FULL).getUrl());
             pictureDaoLocal.merge(dbPicture);
             return SUCCESS;
     	}
@@ -197,6 +207,8 @@ public class PictureEditAction extends EmptyAction {
     }
 
     private static Map<UrlType, PictureUrl> generatePictureUrls(String pictureName, Picture pictureObject) {
+    	LOGGER.debug("generatePictureUrls(String pictureName, Picture pictureObject) aufgerufen.");
+    	LOGGER.info("Variable pictureName: " + pictureName);
 
         Map<UrlType, PictureUrl> pictureUrls = new HashMap<UrlType, PictureUrl>();
         PictureUrl normalPictureUrl = new PictureUrl();
@@ -232,7 +244,6 @@ public class PictureEditAction extends EmptyAction {
     }
 
     private static void deletePictures(Map<UrlType, PictureUrl> pictureUrls) throws IOException {
-    	String picturePath = "/srv/www/htdocs/pictures/";
     	String pathFULL = picturePath + "FULL/" + pictureUrls.get(UrlType.FULL).getUrl();
     	deleteFile(pathFULL);
     	String pathLARGE = picturePath + "LARGE/" + pictureUrls.get(UrlType.LARGE).getUrl();
@@ -241,25 +252,18 @@ public class PictureEditAction extends EmptyAction {
     	deleteFile(pathNORMAL);
     	String pathTHUMBNAIL = picturePath + "THUMBNAIL/" + pictureUrls.get(UrlType.THUMBNAIL).getUrl();
     	deleteFile(pathTHUMBNAIL);
-    }
+    }// Ende deletePictures(Map<UrlType, PictureUrl> pictureUrls)
 
     private static void deleteFile(String source) throws IOException {
-        String s = null;
-
-        Process p = Runtime.getRuntime().exec(
-                "/bin/rm " + source
-                );
-
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
+    	Path filePath = Paths.get(source);
+		if (Files.exists(filePath) && !Files.isDirectory(filePath)
+				&& Files.isRegularFile(filePath)) {
+			// Lösche die Datei
+        	Files.delete(filePath);
+        	LOGGER.info("Datei: "+ source +" erfolgreich gelöscht");
+        } else {
+        	LOGGER.info("Konnte die Datei: "+ source +" nicht löschen.");
         }
-
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }
-    }
+    }// Ende deleteFile(String source)
 
 }// Ende class
