@@ -72,7 +72,7 @@ function formatPicture(cellvalue, options, rowObject) {
     	    name="picture.pictureUrls.THUMBNAIL.url" 
     	    index="picture" 
     	    title="%{getText('picture')}" 
-    	    width="350" 
+    	    width="330" 
     	    editable="false" 
     	    sortable="false" 
     	    hidden="false" 
