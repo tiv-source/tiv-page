@@ -20,7 +20,7 @@
                   tooltipDelay="500"
                   theme="css_xhtml"
           >
-            <struts:hidden key="page.uuid"/>
+            <struts:hidden key="news.uuid"/>
 
             <fieldset class="fieldset">
 
