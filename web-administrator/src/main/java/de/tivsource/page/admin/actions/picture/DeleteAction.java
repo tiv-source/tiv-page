@@ -1,8 +1,9 @@
 package de.tivsource.page.admin.actions.picture;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -93,22 +94,15 @@ public class DeleteAction extends EmptyAction {
     }
 
     private static void deleteFile(String source) throws IOException {
-        String s = null;
-
-        Process p = Runtime.getRuntime().exec(
-                "/bin/rm " + source
-                );
-
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
+    	Path filePath = Paths.get(source);
+		if (Files.exists(filePath) && !Files.isDirectory(filePath)
+				&& Files.isRegularFile(filePath)) {
+			// Lösche die Datei
+        	Files.delete(filePath);
+        	LOGGER.info("Datei: "+ source +" erfolgreich gelöscht");
+        } else {
+        	LOGGER.info("Konnte die Datei: "+ source +" nicht löschen.");
         }
-
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }
-    }
+    }// Ende deleteFile(String source)
 
 }// Ende class
