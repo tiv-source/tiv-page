@@ -105,7 +105,7 @@ public class IndexAction extends EmptyAction implements Pagination {
         this.calculate();
         
         // TODO: neue Methode die das Datum und das Attribute visible berücksichtigt 
-        gallery = galleryDaoLocal.findAll(from, TO);
+        gallery = galleryDaoLocal.findAllVisible(from, TO);
         return SUCCESS;
         
     }// Ende execute()
@@ -145,7 +145,7 @@ public class IndexAction extends EmptyAction implements Pagination {
 
     private void getDBCount() {
         LOGGER.debug("getDBCount() aufgerufen.");
-        dbQuantity = galleryDaoLocal.countAll();
+        dbQuantity = galleryDaoLocal.countAllVisible();
         LOGGER.debug("DbQuantity: " + dbQuantity);
         // Berechne die Maximal mögliche Seitenzahl
         maxPages = (dbQuantity % TO == 0) ? (dbQuantity / TO) : (dbQuantity / TO) + 1;
