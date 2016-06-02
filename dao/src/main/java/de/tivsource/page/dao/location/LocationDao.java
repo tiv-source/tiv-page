@@ -119,7 +119,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllEventLocation() {
-        String queryString = "select l from Location l where l.event = 'Y' order by l.uuid";
+        String queryString = "select l from Location l where l.event = 'Y' order by l.order";
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
     }
