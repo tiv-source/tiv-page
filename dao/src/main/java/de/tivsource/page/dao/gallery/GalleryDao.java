@@ -70,6 +70,13 @@ public class GalleryDao implements GalleryDaoLocal {
 	}
 
 	@Override
+	public Boolean isGalleryTechnical(String technical) {
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = ?1 and g.visible = 'Y' order by g.uuid asc");
+        query.setParameter("1", technical);
+        return (query.getResultList().size() > 0 ? true : false);
+	}
+
+	@Override
 	public Boolean hasReferences(String uuid) {
         Query query = entityManager.createQuery("select p from Picture p where p.gallery.uuid = ?1 order by p.uuid asc");
         query.setParameter("1", uuid);
@@ -82,6 +89,13 @@ public class GalleryDao implements GalleryDaoLocal {
 	@Override
 	public Gallery findByUuid(String uuid) {
 		return entityManager.find(Gallery.class, uuid);
+	}
+
+	@Override
+	public Gallery findByTechnical(String technical) {
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = ?1 and g.visible = 'Y' order by g.uuid asc");
+        query.setParameter("1", technical);
+		return (Gallery) query.getSingleResult();
 	}
 
 	/* (non-Javadoc)
@@ -110,12 +124,29 @@ public class GalleryDao implements GalleryDaoLocal {
         return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Gallery> findAllVisible(Integer start, Integer max) {
+        Query query = entityManager.createQuery("from Gallery g where g.visible = ?1 order by g.orderNumber asc");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", true);
+        return query.getResultList();
+	}
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#countAll()
 	 */
 	@Override
 	public Integer countAll() {
         Query query = entityManager.createQuery("Select Count(g) from Gallery g");
+        return Integer.parseInt(query.getSingleResult().toString());
+	}
+
+	@Override
+	public Integer countAllVisible() {
+        Query query = entityManager.createQuery("Select Count(g) from Gallery g where g.visible = ?1");
+        query.setParameter("1", true);
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
