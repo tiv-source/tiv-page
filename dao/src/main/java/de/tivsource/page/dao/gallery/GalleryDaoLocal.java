@@ -36,9 +36,13 @@ public interface GalleryDaoLocal {
 
     public Boolean isGallery(String uuid);
 
+    public Boolean isGalleryTechnical(String technical);
+    
     public Boolean hasReferences(String uuid);
 
     public Gallery findByUuid(String uuid);
+
+    public Gallery findByTechnical(String technical);
 
     /**
      * Methode zum laden einer Liste von Gallery Objekten, es muss dabei ein
@@ -52,6 +56,8 @@ public interface GalleryDaoLocal {
 
     public List<Gallery> findAll(Integer start, Integer max, String field, String order);
 
+    public List<Gallery> findAllVisible(Integer start, Integer max);
+    
     /**
      * Methode die die Anzahl aller Gallery Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -59,5 +65,7 @@ public interface GalleryDaoLocal {
      * @return Integer - Anzahl der Gallery Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllVisible();
 
 }// Ende interface
