@@ -116,8 +116,7 @@ public class RestoreLocation {
         location.setEvent(items[26].equals("true") ? true : false);
         location.setPicture(pictureDaoLocal.findByUuid(items[27]));
 
-        // TODO: attribute from csv
-        location.setOrder(1);
+        location.setOrder(Integer.parseInt(items[28]));
 
         return location;
     }// Ende convert(String line)
