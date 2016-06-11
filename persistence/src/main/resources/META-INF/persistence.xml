@@ -18,6 +18,7 @@
 		<class>de.tivsource.page.entity.gallery.Gallery</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
+		<class>de.tivsource.page.entity.manual.Manual</class>
 		<class>de.tivsource.page.entity.message.Message</class>
 		<class>de.tivsource.page.entity.namingitem.Description</class>
 		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
