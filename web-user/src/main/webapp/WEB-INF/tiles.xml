@@ -7,6 +7,8 @@
 
     <!-- Sitemaptemplate -->
 	<definition name="sitemapTemplate" template="/WEB-INF/tiles/active/skeletal/sitemap.jsp" />
+    <definition name="sitemapManual"   template="/WEB-INF/tiles/active/skeletal/sitemap_manual.jsp" />
+
 
 	<!-- Haupttemplate -->
 	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
@@ -32,6 +34,7 @@
 	</definition>
 
 	<definition name="locationView" extends="userTemplate">
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/location_view.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location_view.jsp" />
 	</definition>
 
@@ -78,6 +81,10 @@
 
 	<definition name="news" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news.jsp" />
+	</definition>
+
+	<definition name="galleryList" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery_list.jsp" />
 	</definition>
 
 </tiles-definitions>
