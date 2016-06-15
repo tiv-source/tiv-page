@@ -190,6 +190,7 @@
 					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
+					customConfig="/admin/js/ckeditor.config.js"
 				/>
               </div>
 
