@@ -18,6 +18,7 @@ import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.manual.ManualDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -79,6 +80,9 @@ public class BackupDatabaseAction extends EmptyAction {
     @InjectEJB(name="VacancyDao")
     private VacancyDaoLocal vacancyDaoLocal;
 
+    @InjectEJB(name="ManualDao")
+    private ManualDaoLocal manualDaoLocal;
+
 	private InputStream fileStream;
 
 	@Override
@@ -106,6 +110,7 @@ public class BackupDatabaseAction extends EmptyAction {
     	BackupZipFile.setNewsDaoLocal(newsDaoLocal);
     	BackupZipFile.setReservationDaoLocal(reservationDaoLocal);
     	BackupZipFile.setVacancyDaoLocal(vacancyDaoLocal);
+    	BackupZipFile.setManualDaoLocal(manualDaoLocal);
     	File backupFile = BackupZipFile.getZipFile();
     	fileStream = new FileInputStream(backupFile);
     	backupFile.delete();

@@ -20,6 +20,7 @@ import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
+import de.tivsource.page.dao.manual.ManualDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -63,6 +64,8 @@ public class BackupZipFile {
 
     private static VacancyDaoLocal vacancyDaoLocal;
 
+    private static ManualDaoLocal manualDaoLocal;
+    
     private static byte[] buffer = new byte[1024];
 
     public static void setGalleryDaoLocal(GalleryDaoLocal galleryDaoLocal) {
@@ -113,7 +116,11 @@ public class BackupZipFile {
         BackupZipFile.vacancyDaoLocal = vacancyDaoLocal;
     }
 
-    public static File getZipFile() throws IOException {
+    public static void setManualDaoLocal(ManualDaoLocal manualDaoLocal) {
+		BackupZipFile.manualDaoLocal = manualDaoLocal;
+	}
+
+	public static File getZipFile() throws IOException {
         LOGGER.info("getZipFile() aufgerufen.");
 
         // Zip-Datei erstellen und Stream bereitstellen.
@@ -197,6 +204,13 @@ public class BackupZipFile {
         BackupVacancy backupVacancy = new BackupVacancy();
         addMultiData(backupVacancy.getBackupFiles(), outZipFile);
 
+        /*
+         * Backup Manual
+         */
+        BackupManual.setManualDaoLocal(manualDaoLocal);
+        BackupManual backupManual = new BackupManual();
+        addMultiData(backupManual.getBackupFiles(), outZipFile);
+        
         // Schließe die Zip-Datei.
         outZipFile.close();
 
