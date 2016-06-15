@@ -296,4 +296,23 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news/delete_form.jsp" />
 	</definition>
 
+
+    <!-- Templates für Manual Klasse -->
+	<definition name="manual" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual/list.jsp" />
+	</definition>
+
+	<definition name="manualAddForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual/add_form.jsp" />
+	</definition>
+
+	<definition name="manualEditForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual/edit_form.jsp" />
+	</definition>
+
+	<definition name="manualDeleteForm" extends="managementTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual/delete_form.jsp" />
+	</definition>
+
+
 </tiles-definitions>
