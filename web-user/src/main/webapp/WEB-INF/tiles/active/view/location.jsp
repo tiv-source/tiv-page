@@ -8,7 +8,9 @@
 
     <struts:property escape="false" value="page.getContent(getText('language'))" />
     
-    <struts:iterator value="list" status="locationStatus">
+  <struts:iterator value="list" status="locationStatus">
+    <struts:url var="locationLink" action="index" namespace="/location/%{uuid}"/>
+    <struts:a href="%{locationLink}">
       <div class="locations <struts:if test="#locationStatus.odd == true ">color1</struts:if><struts:else>color2</struts:else>">
         <div class="location">
           <h4><struts:property value="getName(getText('language'))" /></h4>
@@ -18,7 +20,7 @@
 
         <div id="map">
           <a href="http://www.openstreetmap.org/?mlat=<struts:property value="latitude" />&mlon=<struts:property value="longitude" />#map=19/<struts:property value="latitude" />/<struts:property value="longitude" />">
-            <img src="/osmcache/<struts:property value="uuid" />.png" />
+            <img src="/osmcache/<struts:property value="uuid" />_wdefault.png" />
           </a>
         </div>
         
@@ -72,7 +74,8 @@
         </div>
         <hr>
       </div>
-    </struts:iterator>
+    </struts:a>
+  </struts:iterator>
 
 
 
