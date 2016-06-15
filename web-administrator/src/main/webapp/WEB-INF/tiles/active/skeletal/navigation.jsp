@@ -13,6 +13,7 @@
 <struts:url var="pictureUrl"           action="index" namespace="/picture" />
 <struts:url var="queueUrl"             action="queue" namespace="/reservation" />
 <struts:url var="newsUrl"              action="index" namespace="/news" />
+<struts:url var="manualUrl"            action="index" namespace="/manual" />
 
 <struts:url var="userUrl"              action="index" namespace="/user" />
 <struts:url var="roleUrl"              action="index" namespace="/role" />
@@ -92,6 +93,12 @@
                   <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}" cssClass="navItem navNews">
                     <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_news.png);">&nbsp;</span>
                     <span><struts:text name="navigation.news"/></span>
+                  </struts:a>
+                </li>
+                <li>
+                  <struts:a href="%{manualUrl}" title="%{getText('navigation.manuals')}" cssClass="navItem navManual">
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_news.png);">&nbsp;</span>
+                    <span><struts:text name="navigation.manuals"/></span>
                   </struts:a>
                 </li>
               </ul>
