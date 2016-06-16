@@ -40,7 +40,7 @@ public class IndexAction extends EmptyAction {
 
     @Override
     @Actions({
-        @Action(value = "*", results = {
+        @Action(value = "main", results = {
             @Result(name = "success", type = "tiles", location = "sitemapTemplate")
         })
     })
