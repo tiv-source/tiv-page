@@ -87,4 +87,13 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery_list.jsp" />
 	</definition>
 
+	<definition name="manualList" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual_list.jsp" />
+	</definition>
+
+	<definition name="manual" extends="userTemplate">
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/manual.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual.jsp" />
+	</definition>
+
 </tiles-definitions>
