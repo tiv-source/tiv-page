@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.gallery;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,8 +12,10 @@ import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.user.actions.EmptyAction;
 
 public class GalleryAction extends EmptyAction {
@@ -33,8 +36,17 @@ public class GalleryAction extends EmptyAction {
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
+    
     private Gallery gallery;
 
+    private List<Picture> pictures;
+    
+    /**
+	 * Wird durch den Benutzer beeinflusst, es sollte vor der Verwendung auf
+	 * Sonderzeichen getestet werden.
+	 */
     private String technical;
 
     @Override
@@ -70,6 +82,8 @@ public class GalleryAction extends EmptyAction {
             LOGGER.info("gültiger technischer Name.");
 
             gallery = galleryDaoLocal.findByTechnical(technical);
+            // TODO: Neue Methode für die Abfrage
+            pictures = pictureDaoLocal.findAll(0, 10);
 
             return SUCCESS;
         }
@@ -83,6 +97,10 @@ public class GalleryAction extends EmptyAction {
 
 	public Gallery getGallery() {
 		return gallery;
+	}
+
+	public List<Picture> getPictures() {
+		return pictures;
 	}
 
 	private Boolean isValid(String input) {
