@@ -95,6 +95,8 @@ public class AddAction extends EmptyAction {
     	    vacancy.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    vacancy.getDescriptionMap().get(Language.DE).setNamingItem(vacancy);
     	    vacancy.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
+    	    String noLineBreaks = vacancy.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+    	    vacancy.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
 
     	    vacancy.getContentMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    vacancy.getContentMap().get(Language.DE).setContentItem(vacancy);

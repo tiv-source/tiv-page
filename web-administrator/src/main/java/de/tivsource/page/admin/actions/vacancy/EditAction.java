@@ -93,14 +93,16 @@ public class EditAction extends EmptyAction {
             	dbVacancy.getContentMap().get(Language.EN).setModified(new Date());
 
                 vacancy.getDescriptionMap().put(Language.DE, dbVacancy.getDescriptionObject(Language.DE));
-                dbVacancy.getDescriptionMap().get(Language.EN).setDescription(vacancy.getDescription(Language.EN));
+                String noLineBreaks = vacancy.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
+                dbVacancy.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbVacancy.getDescriptionMap().get(Language.EN).setKeywords(vacancy.getKeywords(Language.EN));
                 dbVacancy.getDescriptionMap().get(Language.EN).setName(vacancy.getName(Language.EN));
             } else {
             	dbVacancy.getContentMap().get(Language.DE).setContent(vacancy.getContent(Language.DE));
                 dbVacancy.getContentMap().get(Language.DE).setModified(new Date());
 
-                dbVacancy.getDescriptionMap().get(Language.DE).setDescription(vacancy.getDescription(Language.DE));
+                String noLineBreaks = vacancy.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+                dbVacancy.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbVacancy.getDescriptionMap().get(Language.DE).setKeywords(vacancy.getKeywords(Language.DE));;
                 dbVacancy.getDescriptionMap().get(Language.DE).setName(vacancy.getName(Language.DE));
             }

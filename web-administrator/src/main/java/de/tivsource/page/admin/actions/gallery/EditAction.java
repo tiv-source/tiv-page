@@ -84,11 +84,13 @@ public class EditAction extends EmptyAction {
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
                 gallery.getDescriptionMap().put(Language.DE, dbGallery.getDescriptionObject(Language.DE));
-                dbGallery.getDescriptionMap().get(Language.EN).setDescription(gallery.getDescription(Language.EN));
+                String noLineBreaks = gallery.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
+                dbGallery.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbGallery.getDescriptionMap().get(Language.EN).setKeywords(gallery.getKeywords(Language.EN));
                 dbGallery.getDescriptionMap().get(Language.EN).setName(gallery.getName(Language.EN));
             } else {
-                dbGallery.getDescriptionMap().get(Language.DE).setDescription(gallery.getDescription(Language.DE));
+            	String noLineBreaks = gallery.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+                dbGallery.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbGallery.getDescriptionMap().get(Language.DE).setKeywords(gallery.getKeywords(Language.DE));;
                 dbGallery.getDescriptionMap().get(Language.DE).setName(gallery.getName(Language.DE));
             }

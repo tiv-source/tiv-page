@@ -80,7 +80,9 @@ public class AddAction extends EmptyAction {
     	    manual.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    manual.getDescriptionMap().get(Language.DE).setNamingItem(manual);
     	    manual.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
-
+    	    String noLineBreaks = manual.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+    	    manual.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
+    	    
     	    manual.getContentMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    manual.getContentMap().get(Language.DE).setContentItem(manual);
     	    manual.getContentMap().get(Language.DE).setLanguage(Language.DE);

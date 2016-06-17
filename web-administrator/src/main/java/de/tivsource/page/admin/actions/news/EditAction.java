@@ -89,14 +89,16 @@ public class EditAction extends EmptyAction {
                 dbNews.getContentMap().get(Language.EN).setModified(new Date());
 
                 news.getDescriptionMap().put(Language.DE, dbNews.getDescriptionObject(Language.DE));
-                dbNews.getDescriptionMap().get(Language.EN).setDescription(news.getDescription(Language.EN));
+                String noLineBreaks = news.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
+                dbNews.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbNews.getDescriptionMap().get(Language.EN).setKeywords(news.getKeywords(Language.EN));
                 dbNews.getDescriptionMap().get(Language.EN).setName(news.getName(Language.EN));
             } else {
                 dbNews.getContentMap().get(Language.DE).setContent(news.getContent(Language.DE));
                 dbNews.getContentMap().get(Language.DE).setModified(new Date());
 
-                dbNews.getDescriptionMap().get(Language.DE).setDescription(news.getDescription(Language.DE));
+                String noLineBreaks = news.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+                dbNews.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbNews.getDescriptionMap().get(Language.DE).setKeywords(news.getKeywords(Language.DE));;
                 dbNews.getDescriptionMap().get(Language.DE).setName(news.getName(Language.DE));
             }

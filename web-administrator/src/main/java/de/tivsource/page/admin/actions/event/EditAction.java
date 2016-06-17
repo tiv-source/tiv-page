@@ -89,11 +89,13 @@ public class EditAction extends EmptyAction {
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
                 event.getDescriptionMap().put(Language.DE, dbEvent.getDescriptionObject(Language.DE));
-                dbEvent.getDescriptionMap().get(Language.EN).setDescription(event.getDescription(Language.EN));
+                String noLineBreaks = event.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
+                dbEvent.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbEvent.getDescriptionMap().get(Language.EN).setKeywords(event.getKeywords(Language.EN));
                 dbEvent.getDescriptionMap().get(Language.EN).setName(event.getName(Language.EN));
             } else {
-                dbEvent.getDescriptionMap().get(Language.DE).setDescription(event.getDescription(Language.DE));
+        	    String noLineBreaks = event.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+        	    dbEvent.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbEvent.getDescriptionMap().get(Language.DE).setKeywords(event.getKeywords(Language.DE));;
                 dbEvent.getDescriptionMap().get(Language.DE).setName(event.getName(Language.DE));
             }

@@ -79,7 +79,9 @@ public class AddAction extends EmptyAction {
     	    location.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
     	    location.getDescriptionMap().get(Language.DE).setNamingItem(location);
     	    location.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
-            
+    	    String noLineBreaks = location.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+    	    location.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
+    	    
             location.getDescriptionMap().get(Language.EN).setDescription(location.getDescriptionMap().get(Language.DE).getDescription());
             location.getDescriptionMap().get(Language.EN).setKeywords(location.getDescriptionMap().get(Language.DE).getKeywords());
             location.getDescriptionMap().get(Language.EN).setLanguage(Language.EN);

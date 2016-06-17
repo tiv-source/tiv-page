@@ -84,11 +84,13 @@ public class EditAction extends EmptyAction {
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
                 picture.getDescriptionMap().put(Language.DE, dbPicture.getDescriptionMap().get(Language.DE));
-                dbPicture.getDescriptionMap().get(Language.EN).setDescription(picture.getDescriptionMap().get(Language.EN).getDescription());
+                String noLineBreaks = picture.getDescriptionMap().get(Language.EN).getDescription().replaceAll("(\\r|\\n)", "");
+                dbPicture.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbPicture.getDescriptionMap().get(Language.EN).setKeywords(picture.getDescriptionMap().get(Language.EN).getKeywords());
                 dbPicture.getDescriptionMap().get(Language.EN).setName(picture.getDescriptionMap().get(Language.EN).getName());
             } else {
-                dbPicture.getDescriptionMap().get(Language.DE).setDescription(picture.getDescriptionMap().get(Language.DE).getDescription());
+            	String noLineBreaks = picture.getDescriptionMap().get(Language.DE).getDescription().replaceAll("(\\r|\\n)", "");
+                dbPicture.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbPicture.getDescriptionMap().get(Language.DE).setKeywords(picture.getDescriptionMap().get(Language.DE).getKeywords());;
                 dbPicture.getDescriptionMap().get(Language.DE).setName(picture.getDescriptionMap().get(Language.DE).getName());
             }

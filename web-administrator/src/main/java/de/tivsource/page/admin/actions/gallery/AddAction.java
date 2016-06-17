@@ -73,6 +73,8 @@ public class AddAction extends EmptyAction {
     	    gallery.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    gallery.getDescriptionMap().get(Language.DE).setNamingItem(gallery);
     	    gallery.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
+    	    String noLineBreaks = gallery.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+    	    gallery.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
 
     	    gallery.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
     	    gallery.getDescriptionMap().get(Language.EN).setNamingItem(gallery);

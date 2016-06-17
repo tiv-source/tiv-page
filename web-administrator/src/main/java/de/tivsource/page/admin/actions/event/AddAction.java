@@ -88,6 +88,8 @@ public class AddAction extends EmptyAction {
     	    event.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    event.getDescriptionMap().get(Language.DE).setNamingItem(event);
     	    event.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
+    	    String noLineBreaks = event.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+    	    event.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
 
     	    event.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
     	    event.getDescriptionMap().get(Language.EN).setNamingItem(event);

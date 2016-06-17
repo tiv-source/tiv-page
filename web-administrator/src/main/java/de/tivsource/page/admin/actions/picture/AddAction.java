@@ -97,6 +97,8 @@ public class AddAction extends EmptyAction {
     	    picture.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    picture.getDescriptionMap().get(Language.DE).setPicture(picture);
     	    picture.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
+    	    String noLineBreaks = picture.getDescriptionMap().get(Language.DE).getDescription().replaceAll("(\\r|\\n)", "");
+    	    picture.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
 
     	    picture.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
     	    picture.getDescriptionMap().get(Language.EN).setPicture(picture);

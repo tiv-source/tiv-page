@@ -80,7 +80,9 @@ public class AddAction extends EmptyAction {
     	    news.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    news.getDescriptionMap().get(Language.DE).setNamingItem(news);
     	    news.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
-
+    	    String noLineBreaks = news.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
+    	    news.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
+    	    
     	    news.getContentMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    news.getContentMap().get(Language.DE).setContentItem(news);
     	    news.getContentMap().get(Language.DE).setLanguage(Language.DE);
