@@ -13,6 +13,7 @@
 	<!-- Haupttemplate -->
 	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
 	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/content.jsp" />
+	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/content.jsp" />
 		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/content.jsp" />
 		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/content.jsp" />
 	</definition>
@@ -34,8 +35,9 @@
 	</definition>
 
 	<definition name="locationView" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/location_view.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location_view.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/location_view.jsp" />
+        <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/location_view.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/location_view.jsp" />
 	</definition>
 
 	<definition name="reservation" extends="userTemplate">
@@ -43,24 +45,28 @@
 	</definition>
 
 	<definition name="reservationLocation" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/reservation_location.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation_location.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/reservation_location.jsp" />
+	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/reservation_location.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/reservation_location.jsp" />
 	</definition>
 
 	<definition name="event" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/event.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/event.jsp" />
+	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/event.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/event.jsp" />
 	</definition>
 
 	<definition name="eventSuccess" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/event.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_success.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/event.jsp" />
+	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/event.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/event_success.jsp" />
 		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/event_success.jsp" />
 	</definition>
 
 	<definition name="eventDeadline" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/event.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/event.jsp" />
+	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/event.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
 	</definition>
 	
 	<definition name="vacancy" extends="userTemplate">
@@ -92,8 +98,9 @@
 	</definition>
 
 	<definition name="manual" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/manual.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/manual.jsp" />
+	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/manual.jsp" />
+	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/manual.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/manual.jsp" />
 	</definition>
 
 </tiles-definitions>
