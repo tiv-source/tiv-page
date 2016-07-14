@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <tiles:insertAttribute name="meta" />
+  <tiles:insertAttribute name="twitter" />
 
   <link href="/public/css/reset.css" rel="stylesheet" type="text/css">
   <link href="/public/css/main_style.css" rel="stylesheet" type="text/css">
