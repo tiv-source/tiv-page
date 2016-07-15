@@ -97,7 +97,7 @@
                 </li>
                 <li>
                   <struts:a href="%{manualUrl}" title="%{getText('navigation.manuals')}" cssClass="navItem navManual">
-                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_news.png);">&nbsp;</span>
+                    <span class="navIcon event" style="background-image: url(/admin/buttons/tiv_page_button_manual.png);">&nbsp;</span>
                     <span><struts:text name="navigation.manuals"/></span>
                   </struts:a>
                 </li>
