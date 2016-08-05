@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.user;
+package de.tivsource.page.admin.actions.system.user;
 
 import java.util.Date;
 import java.util.List;

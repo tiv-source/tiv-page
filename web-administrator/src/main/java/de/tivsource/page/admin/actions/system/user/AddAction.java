@@ -1,6 +1,8 @@
-package de.tivsource.page.admin.actions.user;
+package de.tivsource.page.admin.actions.system.user;
 
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +13,9 @@ import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.entity.administration.Role;
 import de.tivsource.page.entity.administration.User;
 
 /**
@@ -19,20 +23,23 @@ import de.tivsource.page.entity.administration.User;
  * @author Marc Michele
  *
  */
-public class DeleteAction extends EmptyAction {
+public class AddAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
 	 */
-    private static final long serialVersionUID = 671128068812196324L;
+    private static final long serialVersionUID = 5268669809114381373L;
 
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = LogManager.getLogger(DeleteAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
 
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;
+
+    @InjectEJB(name="RoleDao")
+    private RoleDaoLocal roleDaoLocal;
     
     private User user;
 
@@ -47,11 +54,11 @@ public class DeleteAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "delete", 
+        		value = "add", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "userDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "userDeleteError")
+        				@Result(name = "input", type="tiles", location = "userAddForm"),
+        				@Result(name = "error", type="tiles", location = "userAddError")
         				}
         )
     })
@@ -62,15 +69,14 @@ public class DeleteAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(user != null) {
-    		User dbUser = userDaoLocal.findByUuid(user.getUuid());
-            
-    		dbUser.setModifiedAddress(remoteAddress);
-            dbUser.setModified(new Date());
-            dbUser.setModifiedBy(remoteUser);
-            dbUser.setRoles(null);
+    	    user.setUuid(UUID.randomUUID().toString());
+    	    user.setModified(new Date());
+    	    user.setCreated(new Date());
+    	    user.setModifiedAddress(remoteAddress);
+    	    user.setModifiedBy(remoteUser);
 
-            userDaoLocal.merge(dbUser);
-    		userDaoLocal.delete(dbUser);
+    	    userDaoLocal.merge(user);
+
             return SUCCESS;
     	}
     	else {
@@ -79,5 +85,9 @@ public class DeleteAction extends EmptyAction {
     	
     	
     }// Ende execute()
-	
+
+    public List<Role> getRoleList() {
+        return roleDaoLocal.findAll(0, roleDaoLocal.countAll());
+    }
+
 }// Ende class
