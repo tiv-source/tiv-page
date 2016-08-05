@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.picture;
+package de.tivsource.page.admin.actions.others.picture;
 
 import java.util.List;
 

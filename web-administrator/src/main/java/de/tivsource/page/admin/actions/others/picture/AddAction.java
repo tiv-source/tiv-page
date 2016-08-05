@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.picture;
+package de.tivsource.page.admin.actions.others.picture;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,11 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -25,7 +23,10 @@ import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
+import de.tivsource.page.entity.enumeration.Language;
+import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.picture.PictureUrl;
 import de.tivsource.page.enumeration.UrlType;
@@ -35,30 +36,23 @@ import de.tivsource.page.enumeration.UrlType;
  * @author Marc Michele
  *
  */
-public class PictureEditAction extends EmptyAction {
+public class AddAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
 	 */
-	private static final long serialVersionUID = -732434023428163882L;
+	private static final long serialVersionUID = -5152279376430754651L;
 
 	/**
-	 * Statischer Logger der Klasse.
-	 */
-    private static final Logger LOGGER = LogManager.getLogger(PictureEditAction.class);
-
-    /**
-     * Pfad zu den Verzeichnissen der Bild Dateien
+     * Statischer Logger der Klasse.
      */
-    private static final String picturePath = "/srv/www/htdocs/pictures/";
-
-    /**
-     * Pfad in dem die hochgeladene orginal Bild Datei gespeichert wird.
-     */
-    private static final String uploadPath = picturePath + "FULL/";
+    private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
 
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
+
+    @InjectEJB(name="GalleryDao")
+    private GalleryDaoLocal galleryDaoLocal;
 
     private Picture picture;
 
@@ -79,11 +73,11 @@ public class PictureEditAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "picture", 
+        		value = "add", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input",   type = "tiles", location = "pictureForm"),
-        				@Result(name = "error",   type = "tiles", location = "pictureEditError")
+        				@Result(name = "input", type="tiles", location = "pictureAddForm"),
+        				@Result(name = "error", type="tiles", location = "pictureAddError")
         				}
         )
     })
@@ -94,22 +88,37 @@ public class PictureEditAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(picture != null) {
-    		LOGGER.info("UUID des Bildes: " + picture.getUuid());
-    		Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
+    	    picture.setUuid(UUID.randomUUID().toString());
+    	    picture.setModified(new Date());
+    	    picture.setCreated(new Date());
+    	    picture.setModifiedBy(remoteUser);
+    	    picture.setModifiedAddress(remoteAddress);
 
-    		dbPicture.setModified(new Date());
-    		dbPicture.setModifiedBy(remoteUser);
-    		dbPicture.setModifiedAddress(remoteAddress);
+    	    picture.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
+    	    picture.getDescriptionMap().get(Language.DE).setPicture(picture);
+    	    picture.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
+    	    String noLineBreaks = picture.getDescriptionMap().get(Language.DE).getDescription().replaceAll("(\\r|\\n)", "");
+    	    picture.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
 
+    	    picture.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
+    	    picture.getDescriptionMap().get(Language.EN).setPicture(picture);
+    	    picture.getDescriptionMap().get(Language.EN).setLanguage(Language.EN);
+    	    picture.getDescriptionMap().get(Language.EN).setName(picture.getDescriptionMap().get(Language.DE).getName());
+    	    picture.getDescriptionMap().get(Language.EN).setDescription(picture.getDescriptionMap().get(Language.DE).getDescription());
+    	    picture.getDescriptionMap().get(Language.EN).setKeywords(picture.getDescriptionMap().get(Language.DE).getKeywords());
+
+    	    
+    	    
     	    if(file != null) {
-    	    	// Lösche die alten Bilder
-    	    	deletePictures(dbPicture.getPictureUrls());
+
+                // Pfad in dem die Bild Datei gespeichert wird.
+    	    	String generatePath = "/srv/www/htdocs/pictures/";
+                String uploadPath = generatePath + "FULL/";
 
                 // Name der Bild Datei die erstellt werden soll. 
                 String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."
                     + file.getName() + new Date() + "Noch ein bischen.")
                     + ".png";
-                LOGGER.info("Variable pictureSaveName: " + pictureSaveName);
 
                 File fullPictureFileToCreate = new File(uploadPath, pictureSaveName);
                 // Wenn die Datei noch nicht existiert wird Sie erstellt.
@@ -117,26 +126,31 @@ public class PictureEditAction extends EmptyAction {
                     savePictureFile(file, fullPictureFileToCreate);
                 }
 
-            	createNormal(uploadPath + pictureSaveName, picturePath
+            	createNormal(uploadPath + pictureSaveName, generatePath
             		+ "NORMAL/" + pictureSaveName);
-            	createThumbnail(uploadPath + pictureSaveName, picturePath
+            	createThumbnail(uploadPath + pictureSaveName, generatePath
             		+ "THUMBNAIL/" + pictureSaveName);
-            	createLarge(uploadPath + pictureSaveName, picturePath
+            	createLarge(uploadPath + pictureSaveName, generatePath
             		+ "LARGE/" + pictureSaveName);
 
             	// Setzte die Urls in das Bild.
-            	dbPicture.setPictureUrls(generatePictureUrls(pictureSaveName, picture));
+            	picture.setPictureUrls(generatePictureUrls(pictureSaveName, picture));
     	    }
 
-    	    LOGGER.info("PictureUrl (FULL): " + dbPicture.getPictureUrls().get(UrlType.FULL).getUrl());
-            pictureDaoLocal.merge(dbPicture);
+    	    // Speichere Bild in der Datenbank
+    	    pictureDaoLocal.merge(picture);
             return SUCCESS;
     	}
     	else {
     		return ERROR;
     	}
-
+    	
+    	
     }// Ende execute()
+
+	public List<Gallery> getGalleryList() {
+		return galleryDaoLocal.findAll(0, galleryDaoLocal.countAll());
+	}
 
     private static void savePictureFile(File source, File destination) throws Exception {
         byte[] buffer = new byte[(int) source.length()];
@@ -207,8 +221,6 @@ public class PictureEditAction extends EmptyAction {
     }
 
     private static Map<UrlType, PictureUrl> generatePictureUrls(String pictureName, Picture pictureObject) {
-    	LOGGER.debug("generatePictureUrls(String pictureName, Picture pictureObject) aufgerufen.");
-    	LOGGER.info("Variable pictureName: " + pictureName);
 
         Map<UrlType, PictureUrl> pictureUrls = new HashMap<UrlType, PictureUrl>();
         PictureUrl normalPictureUrl = new PictureUrl();
@@ -242,28 +254,5 @@ public class PictureEditAction extends EmptyAction {
 
         return pictureUrls;
     }
-
-    private static void deletePictures(Map<UrlType, PictureUrl> pictureUrls) throws IOException {
-    	String pathFULL = picturePath + "FULL/" + pictureUrls.get(UrlType.FULL).getUrl();
-    	deleteFile(pathFULL);
-    	String pathLARGE = picturePath + "LARGE/" + pictureUrls.get(UrlType.LARGE).getUrl();
-    	deleteFile(pathLARGE);
-    	String pathNORMAL = picturePath + "NORMAL/" + pictureUrls.get(UrlType.NORMAL).getUrl();
-    	deleteFile(pathNORMAL);
-    	String pathTHUMBNAIL = picturePath + "THUMBNAIL/" + pictureUrls.get(UrlType.THUMBNAIL).getUrl();
-    	deleteFile(pathTHUMBNAIL);
-    }// Ende deletePictures(Map<UrlType, PictureUrl> pictureUrls)
-
-    private static void deleteFile(String source) throws IOException {
-    	Path filePath = Paths.get(source);
-		if (Files.exists(filePath) && !Files.isDirectory(filePath)
-				&& Files.isRegularFile(filePath)) {
-			// Lösche die Datei
-        	Files.delete(filePath);
-        	LOGGER.info("Datei: "+ source +" erfolgreich gelöscht");
-        } else {
-        	LOGGER.info("Konnte die Datei: "+ source +" nicht löschen.");
-        }
-    }// Ende deleteFile(String source)
-
+    
 }// Ende class
