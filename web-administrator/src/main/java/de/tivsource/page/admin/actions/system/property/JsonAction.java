@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.property;
+package de.tivsource.page.admin.actions.system.property;
 
 import java.util.List;
 

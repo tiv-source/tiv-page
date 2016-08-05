@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.property;
+package de.tivsource.page.admin.actions.system.property;
 
 import java.util.Date;
 
@@ -19,17 +19,17 @@ import de.tivsource.page.entity.property.Property;
  * @author Marc Michele
  *
  */
-public class AddAction extends EmptyAction {
+public class EditAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
 	 */
-    private static final long serialVersionUID = -1217385198172019511L;
+    private static final long serialVersionUID = 8810065390227066052L;
 
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
@@ -47,11 +47,11 @@ public class AddAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "add", 
+        		value = "edit", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "propertyAddForm"),
-        				@Result(name = "error", type="tiles", location = "propertyAddError")
+        				@Result(name = "input",   type = "tiles", location = "propertyEditForm"),
+        				@Result(name = "error",   type = "tiles", location = "propertyEditError")
         				}
         )
     })
@@ -62,17 +62,19 @@ public class AddAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(property != null) {
-    	    property.setModified(new Date());
-    	    property.setModifiedBy(remoteUser);
-    	    property.setModifiedAddress(remoteAddress);
-    	    propertyDaoLocal.merge(property);
+    		LOGGER.info(property.getKey());
+    		Property dbProperty = propertyDaoLocal.findByKey(property.getKey());
+    		dbProperty.setValue(property.getValue());
+    		dbProperty.setModified(new Date());
+    		dbProperty.setModifiedBy(remoteUser);
+    		dbProperty.setModifiedAddress(remoteAddress);
+    		propertyDaoLocal.merge(dbProperty);
             return SUCCESS;
     	}
     	else {
     		return ERROR;
     	}
-    	
-    	
+
     }// Ende execute()
 
 }// Ende class
