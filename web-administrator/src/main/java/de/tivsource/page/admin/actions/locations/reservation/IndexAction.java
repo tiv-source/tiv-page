@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.reservation;
+package de.tivsource.page.admin.actions.locations.reservation;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

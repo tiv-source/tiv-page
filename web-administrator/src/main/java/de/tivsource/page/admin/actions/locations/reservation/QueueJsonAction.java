@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.reservation;
+package de.tivsource.page.admin.actions.locations.reservation;
 
 import java.util.List;
 
