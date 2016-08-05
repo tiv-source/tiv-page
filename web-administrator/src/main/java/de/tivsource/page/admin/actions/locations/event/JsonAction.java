@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.event;
+package de.tivsource.page.admin.actions.locations.event;
 
 import java.util.List;
 
