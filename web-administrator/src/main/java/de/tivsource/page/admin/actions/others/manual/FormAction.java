@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.manual;
+package de.tivsource.page.admin.actions.others.manual;
 
 import java.util.List;
 
