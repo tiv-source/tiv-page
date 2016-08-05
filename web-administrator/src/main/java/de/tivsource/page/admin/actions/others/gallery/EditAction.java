@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.gallery;
+package de.tivsource.page.admin.actions.others.gallery;
 
 import java.util.Date;
 import java.util.List;
