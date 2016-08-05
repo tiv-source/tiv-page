@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Public*/
+div.buttoninfo {
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding:5px 0px;
+	border:2px solid rgba(220,220,220, 0.7);
+	border-radius: 5px;
+}
+
+div.typ1 {
+	float: left;
+	width:49%;
+} 
+
+div.typ2 {
+	float:right;
+	width:49%;
+}
+
+div.buttoninfo h5 {
+	float: left;
+	width:78%;
+	margin-bottom: 3px;
+	color:#696969;
+}
+
+div.buttoninfo p {
+	float: left;
+	width:78%;
+	color:#696969;
+}
+
+div.buttoninfo img {
+	float: left;
+	height: 60px;
+	width: 80px;
+	margin-right:12px;
+	margin-left:10px;
+}
+
+/*Public - Seiten*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

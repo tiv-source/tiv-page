@@ -1,0 +1,14 @@
+
+
+.ui-th-ltr, .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+    border-left: 0 none;
+    padding: 0 2.5px;
+}
+
+.ui-jqgrid  .ui-jqgrid-hbox {
+    padding-right: 0px;
+}
+
+.ui-jqgrid tr.ui-row-ltr td {
+    padding-right: 14px;
+}

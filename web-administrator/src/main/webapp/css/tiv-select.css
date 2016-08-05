@@ -1,0 +1,22 @@
+form.form label.dd-option-text {
+    display: none;
+}
+
+form.form label.dd-selected-text {
+    display: none;
+}
+
+.tiv-option-image, .tiv-selected-image {
+    float: left;
+    margin-right: 5px;
+    max-width: 200px;
+    vertical-align: middle;
+}
+
+div.tiv-select {
+    width: 250px;
+}
+
+ul.tiv-options.tiv-click-off-close {
+    width: 250px;
+}
