@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.vacancy;
+package de.tivsource.page.admin.actions.others.vacancy;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

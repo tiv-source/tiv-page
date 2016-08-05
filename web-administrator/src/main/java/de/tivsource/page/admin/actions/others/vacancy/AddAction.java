@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.vacancy;
+package de.tivsource.page.admin.actions.others.vacancy;
 
 import java.util.Date;
 import java.util.List;
