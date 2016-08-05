@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.location;
+package de.tivsource.page.admin.actions.locations.location;
 
 
 import java.util.Iterator;

@@ -1,7 +1,8 @@
-package de.tivsource.page.admin.actions.location;
+package de.tivsource.page.admin.actions.locations.location;
 
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,13 +15,14 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.location.OpeningHour;
 
 /**
  * 
  * @author Marc Michele
  *
  */
-public class OpeningHourDeleteAction extends EmptyAction {
+public class OpeningHourAddAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
@@ -30,58 +32,57 @@ public class OpeningHourDeleteAction extends EmptyAction {
     /**
 	 * Statischer Logger der Klasse.
 	 */
-    private static final Logger LOGGER = LogManager.getLogger(OpeningHourDeleteAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(OpeningHourAddAction.class);
 
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
-	private Location location;
+    private Location location;
 
-	private String uncheckLocation;
+	private OpeningHour openingHour;
 
-	private Integer openingHoursIndex;
-	
     public Location getLocation() {
         return location;
     }
 
-    public void setLocationUuid(String location) {
-        this.uncheckLocation = location;
+    public OpeningHour getOpeningHour() {
+        return openingHour;
     }
 
-    public void setOpeningHours(Integer openingHoursIndex) {
-        this.openingHoursIndex = openingHoursIndex;
+    public void setOpeningHour(OpeningHour openingHour) {
+        this.openingHour = openingHour;
     }
 
     @Override
     @Actions({
         @Action(
-        		value = "openingHourDelete", 
+        		value = "openingHourAdd", 
         		results = {
-                        @Result(name = "success", type = "redirect", params={"locationUuid", "%{location.uuid}", "location", "overview.html", "namespace", "/location"}),
-                        @Result(name = "input", type="tiles", location = "openingHourDeleteForm"),
-                        @Result(name = "error", type="tiles", location = "openingHourDeleteError")
+                        @Result(name = "success", type = "redirect", params={"locationUuid", "%{openingHour.location.uuid}", "location", "overview.html", "namespace", "/location"}),
+                        @Result(name = "input", type="tiles", location = "openingHourAddForm"),
+                        @Result(name = "error", type="tiles", location = "openingHourAddError")
                         }
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-    	this.loadPageParameter();
-
         String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
-        if(location != null) {
+        if(openingHour != null) {
 
-            Location dbLocation = locationDaoLocal.findByUuid(location.getUuid());
+            Location dbLocation = locationDaoLocal.findByUuid(openingHour.getLocation().getUuid());
+            location = dbLocation;
             dbLocation.setModified(new Date());
             dbLocation.setModifiedBy(remoteUser);
             dbLocation.setModifiedAddress(remoteAddress);
+
+            openingHour.setUuid(UUID.randomUUID().toString());
+            openingHour.setLocation(dbLocation);
+            dbLocation.getOpeningHours().add(openingHour);
+            
             locationDaoLocal.merge(dbLocation);
-
-            locationDaoLocal.removeOpeningHour(openingHoursIndex, location.getUuid());
-
 
             return SUCCESS;
         }
@@ -90,13 +91,5 @@ public class OpeningHourDeleteAction extends EmptyAction {
         }
 
     }// Ende execute()
-
-	private void loadPageParameter() {
-
-		if( uncheckLocation != null && uncheckLocation != "" && uncheckLocation.length() > 0) {
-			location = locationDaoLocal.findByUuid(uncheckLocation);
-		}
-
-	}// Ende loadPageParameter()
 
 }// Ende class

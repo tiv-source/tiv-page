@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.location;
+package de.tivsource.page.admin.actions.locations.location;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
