@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.message;
+package de.tivsource.page.admin.actions.others.message;
 
 import java.util.List;
 

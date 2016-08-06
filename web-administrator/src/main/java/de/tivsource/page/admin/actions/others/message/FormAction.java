@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.message;
+package de.tivsource.page.admin.actions.others.message;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,26 +16,26 @@ import de.tivsource.page.entity.message.Message;
  * @author Marc Michele
  *
  */
-public class ViewAction extends EmptyAction {
+public class FormAction extends EmptyAction {
 
 	/**
 	 * Serial Version UID.
 	 */
-    private static final long serialVersionUID = -2502111716063075247L;
+    private static final long serialVersionUID = 4505856166481245798L;
 
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = LogManager.getLogger(ViewAction.class);
+    private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
     @InjectEJB(name="MessageDao")
     private MessageDaoLocal messageDaoLocal;
 
-    private Message message;
+	private Message message;
 
-    private String uncheckMessage;
+	private String uncheckMessage;
 
-    public Message getMessage() {
+	public Message getMessage() {
         return message;
     }
 
@@ -43,25 +43,26 @@ public class ViewAction extends EmptyAction {
         this.uncheckMessage = uncheckMessage;
     }
 
-	@Override
+    @Override
     @Actions({
         @Action(
-        		value = "view", 
-        		results = { @Result(name = "success", type="tiles", location = "messageView") }
+        		value = "deleteForm", 
+        		results = { @Result(name = "success", type="tiles", location = "messageDeleteForm") }
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
+    	LOGGER.info("Message UUID: " + uncheckMessage);
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
 
 	private void loadPageParameter() {
+
 		if( uncheckMessage != null && uncheckMessage != "" && uncheckMessage.length() > 0) {
 		    message = messageDaoLocal.findByUuid(uncheckMessage);
-		    message.setContent((message.getContent().replace("\n", "<br/>")));
-		    
-		}
-	}// Ende loadPageParameter()
+		} 
 
+	}// Ende loadPageParameter()
+	
 }// Ende class
