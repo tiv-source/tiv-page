@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.page;
+package de.tivsource.page.admin.actions.others.page;
 
 import java.io.File;
 import java.io.FileInputStream;
