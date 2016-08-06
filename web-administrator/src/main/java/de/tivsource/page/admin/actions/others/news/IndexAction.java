@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.news;
+package de.tivsource.page.admin.actions.others.news;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

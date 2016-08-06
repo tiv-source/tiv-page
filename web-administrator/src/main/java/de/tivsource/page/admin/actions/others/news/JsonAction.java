@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.news;
+package de.tivsource.page.admin.actions.others.news;
 
 import java.util.List;
 
