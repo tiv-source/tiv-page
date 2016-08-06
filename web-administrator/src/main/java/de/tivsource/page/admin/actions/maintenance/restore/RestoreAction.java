@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.restore;
+package de.tivsource.page.admin.actions.maintenance.restore;
 
 import java.io.File;
 
