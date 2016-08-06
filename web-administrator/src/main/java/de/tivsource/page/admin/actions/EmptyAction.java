@@ -15,7 +15,6 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
-import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,9 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 @TilesDefinitions({
     @TilesDefinition(name="index",  extend = "adminTemplate"),
-    @TilesDefinition(name="logout", extend = "adminTemplate", putAttributes = {
-        @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/logout.jsp")
-    })
+    @TilesDefinition(name="logout", template = "/WEB-INF/tiles/active/view/logout.jsp")
 })
 public class EmptyAction extends ActionSupport implements ServletRequestAware,
 		ServletResponseAware, SessionAware {
