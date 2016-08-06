@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.files;
+package de.tivsource.page.admin.actions.maintenance.files;
 
 import java.io.File;
 import java.util.ArrayList;
