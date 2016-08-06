@@ -122,33 +122,6 @@
 
 
 
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-grid-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-richtext-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-tree-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-mobile-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
 
 
@@ -203,6 +176,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+<dependency>
+    <groupId>commons-lang</groupId>
+    <artifactId>commons-lang</artifactId>
+    <version>2.3</version>
+</dependency>
 
 
 	</dependencies>
@@ -216,4 +194,7 @@
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
 	<inceptionYear>2012</inceptionYear>
+	<properties>
+		<struts2.version>2.5.2</struts2.version>
+	</properties>
 </project>
