@@ -1,18 +1,19 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
 <struts:url var="propertyAddUrl" action="addForm" namespace="/property" />
-<struts:url id="remoteurl" action="table" namespace="/property"/>
+<struts:url var="remoteurl" action="table" namespace="/property" />
 
 <script type="text/javascript">
-function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/property/editForm.html?property="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+function formatLinks(cellvalue, options, rowObject) {
+  return "<a href='/admin/system/property/editForm.html?property="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/property/deleteForm.html?property="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "<a href='/admin/system/property/copyForm.html?property="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/system/property/deleteForm.html?property="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
@@ -32,101 +33,50 @@ function formatIsoDate(celldate, options, rowObject) {
             <struts:text name="property.add"/>
           </struts:a>
         </div>
-        
-        <sjg:grid
-          id="gridedittable"
-          caption="%{getText('properties')}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="20"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn 
-    	      name="key"
-    	      index="key"
-    	      title="%{getText('property.key')}"
-    	      width="350"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left" 
-    	      cssStyle="text-indent: 10px;"
-    	  />
-    	  <sjg:gridColumn
-    	    name="value"
-    	    index="value"
-    	    title="%{getText('property.value')}"
-    	    width="745"
-    	    editable="false"
-    	    sortable="true"
-    	    hidden="false"
-    	    search="false"
-    	    resizable="false"
-    	    align="left"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modified" 
-    	    index="modified" 
-    	    title="%{getText('modified')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedBy" 
-    	    index="modifiedBy" 
-    	    title="%{getText('modifiedBy')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedAddress" 
-    	    index="modifiedAddress" 
-    	    title="%{getText('modifiedAddress')}" 
-    	    width="130" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn
-    	      name="key"
-    	      index="editbar"
-    	      title=""
-    	      width="65"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="right"
-    	      formatter="formatEditLink"
-    	  />    	
-        </sjg:grid>
+
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/system/property/table.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            "Schlüssel", 
+            "Wert", 
+            "Bearbeitet am", 
+            "Bearbeitet von",
+            "Bearbeitungsadresse",
+            ""
+        ],
+        colModel: [
+            { name: "key",        width:  140 },
+            { name: "value",       width:  140, align: "center" },
+            { name: "modified",        width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",      width:  140, align: "right" },
+            { name: "modifiedAddress", width:  210, align: "right" },
+            { name: "key",             width:  130, align: "center", sortable: false, formatter:formatLinks }
+        ],
+        pager: "#entityPager",
+        rowNum: 10,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "firstname",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: "Eigenschaften"
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
