@@ -2,25 +2,28 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="locationAddUrl" action="addForm" namespace="/location" />
-<struts:url id="remoteurl" action="table" namespace="/location"/>
+<struts:url var="remoteurl" action="table" namespace="/location"/>
 
 <script type="text/javascript">
-function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/location/overview.html?locationUuid="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/clock.png'/></a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/location/editForm.html?location="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png'/></a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/location/deleteForm.html?location="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/></a>";
+function formatLinks(cellvalue, options, rowObject) {
+  return "<a href='/admin/locations/location/editForm.html?location="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/locations/location/copyForm.html?location="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/locations/location/deleteForm.html?location="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
+         "</a>";
 }
 </script>
 
 <script type="text/javascript">
 function formatTrueFalse(cellvalue, options, rowObject) {
   if (cellvalue) {
-    return "<img src='/admin/icons/16x16/accept.png'/>";  
+    return "<img src='/admin/icons/16x16/accept.png' style='width:14px;'/>";  
   } else {
-    return "<img src='/admin/icons/16x16/oneway.png'/>";
+    return "<img src='/admin/icons/16x16/oneway.png' style='width:14px;'/>";
   }
 }
 </script>
@@ -41,173 +44,63 @@ function formatIsoDate(celldate, options, rowObject) {
           </struts:a>
         </div>
 
-        <sjg:grid
-          id="gridedittable"
-          caption="%{getText('locations')}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="20"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn 
-    	    name="descriptionMap.DE.name" 
-    	    index="name" 
-    	    title="%{getText('location.descriptionMap.DE.name')}" 
-    	    width="280" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="address.zip" 
-    	    index="zip" 
-    	    title="%{getText('location.address.zip')}" 
-    	    width="45" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="right" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="address.city" 
-    	    index="city" 
-    	    title="%{getText('location.address.city')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="address.country" 
-    	    index="country" 
-    	    title="%{getText('location.address.country')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="contactDetails.telephone" 
-    	    index="telephone" 
-    	    title="%{getText('location.contactDetails.telephone')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="contactDetails.fax" 
-    	    index="fax" 
-    	    title="%{getText('location.contactDetails.fax')}" 
-    	    width="165" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="contactDetails.mobile" 
-    	    index="mobile" 
-    	    title="%{getText('location.contactDetails.mobile')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="event" 
-    	    index="event" 
-    	    title="%{getText('location.event')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="visible" 
-    	    index="visible" 
-    	    title="%{getText('visible')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modified" 
-    	    index="modified" 
-    	    title="%{getText('modified')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedBy" 
-    	    index="modifiedBy" 
-    	    title="%{getText('modifiedBy')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="uuid" 
-    	    index="editbar" 
-    	    title="" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="false" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="right" 
-    	    formatter="formatEditLink" 
-    	  />    	
-        </sjg:grid>
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/locations/location/table.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            "Name",
+            "PLZ",
+            "Stadt",
+            "Land",
+            "Telefon",
+            "Fax",
+            "Handy",
+            "Veranstaltungen", 
+            "Sichtbar", 
+            "Bearbeitet am", 
+            "Bearbeitet von",
+            "Bearbeitungsadresse",
+            ""
+        ],
+        colModel: [
+            { name: "descriptionMap.DE.name",   width:  140 },
+            { name: "address.zip",              width:  140 },
+            { name: "address.city",             width:  140 },
+            { name: "address.country",          width:  140 },
+            { name: "contactDetails.telephone", width:  140 },
+            { name: "contactDetails.fax",       width:  140 },
+            { name: "contactDetails.mobile",    width:  140 },
+            { name: "event",                    width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "visible",                  width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "modified",                 width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",               width:  140, align: "right" },
+            { name: "modifiedAddress",          width:  210, align: "right" },
+            { name: "uuid",                     width:  130, align: "center", sortable: false, formatter:formatLinks }
+        ],
+        pager: "#entityPager",
+        rowNum: 10,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "technical",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: "Filialen"
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
