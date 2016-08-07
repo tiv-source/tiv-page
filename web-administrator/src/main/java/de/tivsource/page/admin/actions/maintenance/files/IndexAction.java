@@ -18,6 +18,7 @@ import de.tivsource.page.admin.actions.EmptyAction;
  */
 @TilesDefinitions({
   @TilesDefinition(name="files",  extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta", value = "/WEB-INF/tiles/active/meta/default_jquery.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/maintenance.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/files/list.jsp")
   })
