@@ -5,6 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.page.admin.actions.EmptyAction;
 
@@ -13,6 +16,12 @@ import de.tivsource.page.admin.actions.EmptyAction;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="files",  extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/maintenance.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/files/list.jsp")
+  })
+})
 public class IndexAction extends EmptyAction {
 
 	/**
