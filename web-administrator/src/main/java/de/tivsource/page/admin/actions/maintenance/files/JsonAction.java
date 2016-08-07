@@ -71,6 +71,7 @@ public class JsonAction extends ActionSupport {
         */
 
         fileList = Arrays.asList(rawFileArray);
+        LOGGER.info("Grösse der fileList: " + fileList.size());
 
         setRecord(this.fileList.size());
 
