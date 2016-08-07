@@ -1,10 +1,8 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
 <struts:url var="pageAddUrl" action="addForm" namespace="/page" />
-<struts:url id="remoteurl" action="table" namespace="/files"/>
+<struts:url var="remoteurl" action="table" namespace="/files"/>
 
 <script type="text/javascript">
 function formatViewLink(cellvalue, options, rowObject) {
@@ -26,63 +24,45 @@ function formatEditLink(cellvalue, options, rowObject) {
         <div class="sub_menu">
         </div>
 
-        <sjg:grid
-          id="gridedittable"
-          caption="%{getText('files')}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="20"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn 
-    	    name="name" 
-    	    index="picture" 
-    	    title="%{getText('picture')}" 
-    	    width="650" 
-    	    editable="false" 
-    	    sortable="false" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatViewLink" 
-    	  />    	
-    	  <sjg:gridColumn 
-    	    name="name" 
-    	    index="name" 
-    	    title="%{getText('name')}" 
-    	    width="650" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="name" 
-    	    index="editbar" 
-    	    title="" 
-    	    width="285" 
-    	    editable="false" 
-    	    sortable="false" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatEditLink" 
-    	  />    	
-        </sjg:grid>
+
+
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/maintenance/files/table.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            "Bild", 
+            "Name", 
+            ""
+        ],
+        colModel: [
+            { name: "name",            width:  140, align: "center", formatter:formatViewLink },
+            { name: "name",            width:  140, align: "center" },
+            { name: "name",            width:  130, align: "center", sortable: false, formatter:formatEditLink }
+        ],
+        pager: "#entityPager",
+        rowNum: 10,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "technical",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: "Dateien"
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
