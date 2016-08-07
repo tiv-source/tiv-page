@@ -1,59 +1,40 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
-    
-    <div class="main">
 
-      <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_gridedittable" dir="ltr" style="width: 1600px;">
-        
-        <div class="ui-jqgrid-view" id="gview_gridedittable" style="width: 1600px;">
-    
-          <div class="ui-jqgrid-titlebar ui-corner-top ui-helper-clearfix">
-            <span class="ui-jqgrid-title">Backup</span>
-          </div>
-        </div>
+<struts:url var="databaseUrl"     action="database" namespace="/maintenance/backup" />
+<struts:url var="filesUrl"        action="files"    namespace="/maintenance/backup" />
+<struts:url var="picturesUrl"     action="pictures" namespace="/maintenance/backup" />    
 
-        <div style="width:100%; margin: 10px;">
-        <table>
-          <tr>
-            <td>Datenbank Backup</td>
-            <td>
-                <struts:a 
-                  id="submit_deny__Close" 
-                  name="submitClose" 
-                  cssClass="cancel small_red_button button" 
-                  cssStyle="width: 100px; color: #ffffff !important; text-align: center;"
-                  action="database" 
-                  namespace="/backup">hier klicken</struts:a>
-            </td>
-          </tr>
-          <tr>
-            <td>Datei Backup</td>
-            <td>
-                <struts:a 
-                  id="submit_deny__Close" 
-                  name="submitClose" 
-                  cssClass="cancel small_red_button button"
-                  cssStyle="width: 100px; color: #ffffff !important; text-align: center;" 
-                  action="files" 
-                  namespace="/backup">hier klicken</struts:a>
-            </td>
-          </tr>
-          <tr>
-            <td>Bild Backup</td>
-            <td>
-                <struts:a 
-                  id="submit_deny__Close" 
-                  name="submitClose" 
-                  cssClass="cancel small_red_button button"
-                  cssStyle="width: 100px; color: #ffffff !important; text-align: center;" 
-                  action="pictures" 
-                  namespace="/backup">hier klicken</struts:a>
-            </td>
-          </tr>
-        </table>
-        </div>
-
+      <div id="title">
+        <h5>Backup</h5>
       </div>
-    </div>
-    
-     
+
+      <struts:a href="%{databaseUrl}">
+        <div class="buttoninfo typ1" style="width: 32.5%;">
+          <img src="/admin/buttons/tiv_page_button_backup.png" alt="<struts:text name="navigation.backup.description"/>">
+          <h5>Datenbank Backup</h5>
+          <p>Hier klicken um ein Backup von der Datenbank zu erstellen</p>
+        </div>
+      </struts:a>
+
+      <struts:a href="%{filesUrl}">
+        <div class="buttoninfo typ1" style="margin-left: 14px; width: 32.5%;">
+          <img src="/admin/buttons/tiv_page_button_backup.png" alt="<struts:text name="navigation.backup.description"/>">
+          <h5>Datei Backup</h5>
+          <p>Hier klicken um ein Backup von der Datenbank zu erstellen</p>
+        </div>
+      </struts:a>
+
+      <struts:a href="%{picturesUrl}">
+        <div class="buttoninfo typ1" style="margin-left: 14px; width: 32.5%;">
+          <img src="/admin/buttons/tiv_page_button_backup.png" alt="<struts:text name="navigation.backup.description"/>">
+          <h5>Bild Backup</h5>
+          <p>Hier klicken um ein Backup von der Datenbank zu erstellen</p>
+        </div>
+      </struts:a>
+
+      <hr>
+
+
+
+
