@@ -1,18 +1,19 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjg" uri="/struts-jquery-grid-tags"%>
 
-<struts:url var="roleAddUrl" action="addForm" namespace="/role" />
-<struts:url id="remoteurl" action="table" namespace="/role"/>
+<struts:url var="roleAddUrl" action="addForm" namespace="/system/role" />
+<struts:url var="remoteurl" action="table" namespace="/system/role"/>
 
 <script type="text/javascript">
-function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/role/editForm.html?role="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+function formatLinks(cellvalue, options, rowObject) {
+  return "<a href='/admin/system/role/editForm.html?role="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/role/deleteForm.html?role="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "<a href='/admin/system/role/copyForm.html?role="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
+         "</a>&nbsp;&nbsp;&nbsp;" + 
+         "<a href='/admin/system/role/deleteForm.html?role="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
@@ -25,6 +26,7 @@ function formatIsoDate(celldate, options, rowObject) {
 }
 </script>
 
+
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
@@ -34,100 +36,50 @@ function formatIsoDate(celldate, options, rowObject) {
         </div>
         
         
-        <sjg:grid
-          id="gridedittable"
-          caption="%{getText('roles')}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="15"
-          editinline="false"
-          viewrecords="true"
-        >
-    	
-    	  <sjg:gridColumn
-    	      name="uuid"
-    	      index="uuid"
-    	      title="%{getText('role.uuid')}"
-    	      width="420"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn
-    	      name="technical"
-    	      index="technical"
-    	      title="%{getText('role.technical')}"
-    	      width="420"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modified" 
-    	    index="modified" 
-    	    title="%{getText('modified')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedBy" 
-    	    index="modifiedBy" 
-    	    title="%{getText('modifiedBy')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedAddress" 
-    	    index="modifiedAddress" 
-    	    title="%{getText('modifiedAddress')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	      name="uuid"
-    	      index="editbar"
-    	      title=""
-    	      width="310"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="right"
-    	      formatter="formatEditLink"
-    	  />    	
-        </sjg:grid>
+
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/system/role/table.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            "Name", 
+            "Erstellt am", 
+            "Bearbeitet am", 
+            "Bearbeitet von",
+            "Bearbeitungsadresse",
+            ""
+        ],
+        colModel: [
+            { name: "technical",       width:  140 },
+            { name: "created",         width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modified",        width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",      width:  140, align: "right" },
+            { name: "modifiedAddress", width:  210, align: "right" },
+            { name: "uuid",            width:  130, align: "center", sortable: false, formatter:formatLinks }
+        ],
+        pager: "#entityPager",
+        rowNum: 10,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "technical",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: "Rollen"
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
