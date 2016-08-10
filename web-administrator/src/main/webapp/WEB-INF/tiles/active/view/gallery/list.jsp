@@ -2,15 +2,15 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="galleryAddUrl" action="addForm" namespace="/gallery" />
-<struts:url id="remoteurl" action="table" namespace="/gallery"/>
+<struts:url var="remoteurl" action="table" namespace="/gallery"/>
 
 <script type="text/javascript">
-function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/gallery/editForm.html?gallery="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+function formatLinks(cellvalue, options, rowObject) {
+  return "<a href='/admin/others/gallery/editForm.html?gallery="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/gallery/deleteForm.html?gallery="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "<a href='/admin/others/gallery/deleteForm.html?gallery="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
@@ -18,9 +18,9 @@ function formatEditLink(cellvalue, options, rowObject) {
 <script type="text/javascript">
 function formatTrueFalse(cellvalue, options, rowObject) {
   if (cellvalue) {
-    return "<img src='/admin/icons/16x16/accept.png'/>";  
+    return "<img src='/admin/icons/16x16/accept.png' style='width:14px;'/>";  
   } else {
-    return "<img src='/admin/icons/16x16/oneway.png'/>";
+    return "<img src='/admin/icons/16x16/oneway.png' style='width:14px;'/>";
   }
 }
 </script>
@@ -41,137 +41,55 @@ function formatIsoDate(celldate, options, rowObject) {
           </struts:a>
         </div>
 
-        <sjg:grid
-          id="gridedittable"
-          caption="%{getText('galleries')}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="20"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn 
-    	    name="descriptionMap.DE.name" 
-    	    index="name" 
-    	    title="%{getText('gallery.descriptionMap.DE.name')}" 
-    	    width="370" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="technical" 
-    	    index="technical" 
-    	    title="%{getText('gallery.technical')}" 
-    	    width="280" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="orderNumber" 
-    	    index="orderNumber" 
-    	    title="%{getText('gallery.orderNumber')}" 
-    	    width="210" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="visible" 
-    	    index="visible" 
-    	    title="%{getText('visible')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatTrueFalse"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="created" 
-    	    index="created" 
-    	    title="%{getText('created')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modified" 
-    	    index="modified" 
-    	    title="%{getText('modified')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedBy" 
-    	    index="modifiedBy" 
-    	    title="%{getText('modifiedBy')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="modifiedAddress" 
-    	    index="modifiedAddress" 
-    	    title="%{getText('modifiedAddress')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="uuid" 
-    	    index="editbar" 
-    	    title="" 
-    	    width="65" 
-    	    editable="false" 
-    	    sortable="false" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="right" 
-    	    formatter="formatEditLink" 
-    	  />    	
-        </sjg:grid>
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/others/gallery/table.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            '<struts:text name="gallery.descriptionMap.DE.name"/>',
+            '<struts:text name="gallery.technical"/>',
+            '<struts:text name="gallery.orderNumber"/>',
+            '<struts:text name="visible"/>',
+            '<struts:text name="created"/>',
+            '<struts:text name="modified"/>',
+            '<struts:text name="modifiedBy"/>',
+            '<struts:text name="modifiedAddress"/>',
+            ""
+        ],
+        colModel: [
+            { name: "descriptionMap.DE.name",          width:  140, align: "right" },
+            { name: "technical",                       width:  140, align: "right" },
+            { name: "orderNumber",                     width:  140, align: "right" },
+            { name: "visible",                         width:  140, align: "right", formatter:formatTrueFalse },
+            { name: "created",                         width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",                      width:  140, align: "right" },
+            { name: "modifiedAddress",                 width:  140, align: "right" },
+            { name: "uuid",                            width:  130, align: "center", sortable: false, formatter:formatLinks }
+        ],
+        pager: "#entityPager",
+        rowNum: 15,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "created",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: '<struts:text name="galleries"/>'
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
