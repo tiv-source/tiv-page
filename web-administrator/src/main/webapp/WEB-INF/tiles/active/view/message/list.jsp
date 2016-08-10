@@ -1,15 +1,15 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url id="remoteurl"   action="table"   namespace="/message"/>
+<struts:url var="remoteurl"   action="table"   namespace="/message"/>
 
 <script type="text/javascript">
-function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/message/view.html?message="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/view.png'/>" + 
+function formatLinks(cellvalue, options, rowObject) {
+  return "<a href='/admin/others/message/view.html?message="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/view.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/message/deleteForm.html?message="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "<a href='/admin/others/message/deleteForm.html?message="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
@@ -38,137 +38,56 @@ function formatIsoDate(celldate, options, rowObject) {
         <div class="sub_menu">
           
         </div>
-        
-        <sjg:grid
-          id="gridedittable"
-          caption="%{getText('messages')}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="15"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn
-    	      name="gender"
-    	      index="gender"
-    	      title="%{getText('message.gender')}"
-    	      width="110"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatGender"
-    	  />
-    	  <sjg:gridColumn
-    	      name="firstname"
-    	      index="firstname"
-    	      title="%{getText('message.firstname')}"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="lastname"
-    	      index="lastname"
-    	      title="%{getText('message.lastname')}"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="telephone"
-    	      index="telephone"
-    	      title="%{getText('message.telephone')}"
-    	      width="190"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="fax"
-    	      index="fax"
-    	      title="%{getText('message.fax')}"
-    	      width="190"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="mail"
-    	      index="email"
-    	      title="%{getText('message.email')}"
-    	      width="250"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn 
-    	      name="created"
-    	      index="created"
-    	      title="%{getText('created')}"
-    	      width="140"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn 
-    	      name="createdAddress"
-    	      index="createdAddress"
-    	      title="%{getText('createdAddress')}"
-    	      width="140"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn
-    	      name="uuid"
-    	      index="editbar"
-    	      title=""
-    	      width="115"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="right"
-    	      formatter="formatEditLink"
-    	  />    	
-        </sjg:grid>
+
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/others/message/table.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            '<struts:text name="message.gender"/>',
+            '<struts:text name="message.firstname"/>',
+            '<struts:text name="message.lastname"/>',
+            '<struts:text name="message.telephone"/>',
+            '<struts:text name="message.fax"/>',
+            '<struts:text name="message.email"/>',
+            '<struts:text name="created"/>',
+            '<struts:text name="createdAddress"/>',
+            ""
+        ],
+        colModel: [
+            { name: "gender",             width:  140, align: "right", formatter:formatGender },
+            { name: "firstname",          width:  140, align: "right" },
+            { name: "lastname",           width:  140, align: "right" },
+            { name: "telephone",          width:  140, align: "right" },
+            { name: "fax",                width:  140, align: "right" },
+            { name: "mail",               width:  140, align: "right" },
+            { name: "created",            width:  140, align: "center", formatter:formatIsoDate },
+            { name: "createdAddress",     width:  140, align: "right" },
+            { name: "uuid",               width:  130, align: "center", sortable: false, formatter:formatLinks }
+        ],
+        pager: "#entityPager",
+        rowNum: 15,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "created",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: '<struts:text name="messages"/>'
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
