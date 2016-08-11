@@ -31,3 +31,9 @@
 
 
 <link rel="stylesheet" type="text/css" href="/admin/css/forms.css" media="screen" />
+
+<!-- ckeditor -->
+<script src="/admin/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="/admin/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+
+
