@@ -6,5 +6,8 @@
 <link href="/admin/css/reset.css" rel="stylesheet" type="text/css">
 <link href="/admin/css/main_style.css" rel="stylesheet" type="text/css">
 <link href="/admin/css/tp_admin.css" rel="stylesheet" type="text/css">
+
+<link href="/admin/css/forms.css" rel="stylesheet" type="text/css" media="screen">
+
 <link rel="shortcut icon" href="/admin/icons/tiv_page_favicon.ico" type="image/vnd.microsoft.icon" />
 <link rel="shortcut icon" href="/admin/icons/tiv_page_favicon.png" type="image/png" />
