@@ -4,8 +4,8 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2>
+        <div id="title">
+          <h5>
             <struts:text name="reservation.add"/> 
             für das 
             <struts:text name="%{reservation.event.getName(getText('language'))}"/> 
@@ -13,14 +13,14 @@
             <struts:text name="%{getText('format.reservation.date',{reservation.event.beginning})}"/> 
             im
             <struts:text name="%{reservation.event.location.getName(getText('language'))}"/> 
-          </h2>
+          </h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/reservation" 
+                  namespace="/locations/reservation" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -90,7 +90,7 @@
                   class="save small_green_button button">
                     <struts:text name="form.save"/>
               </button>
-              <struts:url var="abortReservationUrl" action="index" namespace="/reservation">
+              <struts:url var="abortReservationUrl" action="index" namespace="/locations/reservation">
                 <struts:param name="event" value="reservation.event.uuid"/>
               </struts:url>
               <struts:a 
