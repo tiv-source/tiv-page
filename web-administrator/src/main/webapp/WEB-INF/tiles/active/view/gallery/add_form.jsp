@@ -4,15 +4,15 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="gallery.add"/></h2>
+        <div id="title">
+          <h5><struts:text name="gallery.add"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/gallery" 
+                  namespace="/others/gallery" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -22,7 +22,7 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="gallery.technical"
                     parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em; width:827px;"
@@ -39,18 +39,19 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="gallery.orderNumber"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_gallery_orderNumber').spinner();
+                </script>
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="gallery.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -58,16 +59,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="gallery.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="gallery.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -94,7 +95,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/gallery">
+                  namespace="/others/gallery">
                    <struts:text name="form.abort"/>
               </struts:a>
             </div>
