@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -20,6 +23,22 @@ import de.tivsource.page.entity.administration.User;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="userAddForm",  extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/user/add_form.jsp")
+  }),
+  @TilesDefinition(name="userEditForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/user/edit_form.jsp")
+  }),
+  @TilesDefinition(name="userDeleteForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/user/delete_form.jsp")
+  })
+})
 public class FormAction extends EmptyAction {
 
 	/**
