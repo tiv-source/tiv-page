@@ -4,15 +4,15 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="page.add"/></h2>
+        <div id="title">
+          <h5><struts:text name="page.add"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/page" 
+                  namespace="/others/page" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -43,7 +43,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="page.technical"
                     parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em; width:827px;"
@@ -78,14 +78,15 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="page.topNavigationOrder"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_page_topNavigationOrder').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -98,14 +99,15 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="page.navigationOrder"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_page_navigationOrder').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -118,14 +120,15 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="page.bottomNavigationOrder"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_page_bottomNavigationOrder').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -138,18 +141,19 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="page.responsiveNavigationOrder"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_page_responsiveNavigationOrder').spinner();
+                </script>
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="page.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -157,16 +161,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="page.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="page.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -174,22 +178,22 @@
               </div>
 
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="page.contentMap.DE.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true" 
-					uploadHref="/admin/page/upload.html" 
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
-					customConfig="/admin/js/ckeditor.config.js"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
 
               <struts:hidden key="page.descriptionMap.EN.name" value="No English content available."/>
@@ -213,7 +217,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/page">
+                  namespace="/others/page">
                    <struts:text name="form.abort"/>
               </struts:a>
             </div>
