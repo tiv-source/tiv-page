@@ -13,7 +13,7 @@ function formatViewLink(cellvalue, options, rowObject) {
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
   return "<a href='/admin/files/deleteForm.html?file="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
@@ -45,7 +45,7 @@ $(function () {
         pager: "#entityPager",
         rowNum: 10,
         rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
-        sortname: "technical",
+        sortname: "name",
         sortorder: "asc",
         viewrecords: true,
         gridview: true,
