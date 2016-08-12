@@ -1,2 +1,31 @@
+<%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="struts" uri="/struts-tags" %>
 
-Bild wird noch verwendet. Bitte erst die Referenzen löschen.
+
+      <!--  Start MAIN -->
+      <div class="main">
+        <div class="sub_menu"></div>
+        <div id="title">
+          <h5><struts:text name="picture.delete"/></h5>
+        </div>
+
+        <div id="backend_update_form" class="update">
+          
+            <fieldset class="fieldset">
+
+              <div class="field">
+                <label for="picture.error" class="label"><struts:text name="picture.error" />:</label>
+                Bild wird noch verwendet. Bitte erst die Referenzen lÃ¶schen.
+              </div>
+
+            </fieldset>
+          
+        </div>
+
+
+      </div>
+      <!--  Ende MAIN -->
+
+
+
+
