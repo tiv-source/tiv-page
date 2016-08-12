@@ -9,7 +9,7 @@
   <struts:param name="picture" value="picture.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-<struts:url var="pictureUrl" namespace="/picture" action="pictureForm">
+<struts:url var="pictureUrl" namespace="/others/picture" action="pictureForm">
   <struts:param name="picture" value="picture.uuid" />
 </struts:url>
 
@@ -38,15 +38,15 @@
           </div>
         </div>
 
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="picture.edit"/></h2>
+        <div id="title">
+          <h5><struts:text name="picture.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="edit" 
-                  namespace="/picture" 
+                  namespace="/others/picture" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -67,14 +67,15 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="picture.orderNumber"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_picture_orderNumber').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -90,7 +91,7 @@
               <struts:hidden key="lang"/>
               
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="picture.descriptionMap.EN.name"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -98,16 +99,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="picture.descriptionMap.EN.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="picture.descriptionMap.EN.keywords"  
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -119,7 +120,7 @@
               <struts:hidden key="lang"/>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="picture.descriptionMap.DE.name"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -127,16 +128,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="picture.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="picture.descriptionMap.DE.keywords"  
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -164,7 +165,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/picture">
+                  namespace="/others/picture">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
