@@ -6,8 +6,8 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2>
+        <div id="title">
+          <h5>
             <struts:text name="reservation.confirm"/> 
             für das 
             <struts:text name="%{reservation.event.getName(getText('language'))}"/> 
@@ -15,14 +15,14 @@
             <struts:text name="%{getText('format.reservation.date',{reservation.event.beginning})}"/> 
             im
             <struts:text name="%{reservation.event.location.getName(getText('language'))}"/> 
-          </h2>
+          </h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="confirm" 
-                  namespace="/reservation" 
+                  namespace="/locations/reservation" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -103,7 +103,7 @@
                   class="save small_green_button button">
                     <struts:text name="form.confirm"/>
               </button>
-              <struts:url var="abortReservationUrl" action="queue" namespace="/reservation" />
+              <struts:url var="abortReservationUrl" action="queue" namespace="/locations/reservation" />
               <struts:a 
                   id="submit_deny__Close" 
                   name="submitClose" 
