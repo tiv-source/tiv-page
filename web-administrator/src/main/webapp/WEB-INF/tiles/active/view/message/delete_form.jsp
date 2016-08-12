@@ -6,15 +6,15 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="message.delete"/></h2>
+        <div id="title">
+          <h5><struts:text name="message.delete"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="delete" 
-                  namespace="/message" 
+                  namespace="/others/message" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -76,7 +76,7 @@
                   <struts:text name="message.content"/>:
                 </label>
                 <div style="padding-left: 200px;">
-                  <struts:property value="message.content" escape="false" />
+                  <struts:property value="message.content" escapeHtml="false" />
                 </div>
               </div>
 
@@ -109,7 +109,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/message">
+                  namespace="/others/message">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
