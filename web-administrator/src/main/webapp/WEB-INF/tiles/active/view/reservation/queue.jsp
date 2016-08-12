@@ -1,7 +1,7 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url id="remoteurl"   action="queueTable"   namespace="/reservation" />
+<struts:url var="remoteurl"   action="queueTable"   namespace="/reservation" />
 
 
 <script type="text/javascript">
