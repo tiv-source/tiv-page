@@ -12,7 +12,7 @@
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/news" 
+                  namespace="/others/news" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -128,7 +128,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/news">
+                  namespace="/others/news">
                    <struts:text name="form.abort"/>
               </struts:a>
             </div>
