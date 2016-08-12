@@ -28,15 +28,15 @@
           </div>
         </div>
 
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="vacancy.edit"/></h2>
+        <div id="title">
+          <h5><struts:text name="vacancy.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="edit" 
-                  namespace="/vacancy" 
+                  namespace="/others/vacancy" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
