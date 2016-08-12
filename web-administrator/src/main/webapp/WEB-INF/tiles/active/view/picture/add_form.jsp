@@ -4,15 +4,15 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="picture.add"/></h2>
+        <div id="title">
+          <h5><struts:text name="picture.add"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/picture" 
+                  namespace="/others/picture" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -31,30 +31,25 @@
               </div>
 
               <div class="field">
-                <sj:autocompleter
+                <struts:select
 					key="picture.gallery"
-					list="galleryList"
 					listValue="%{getName(getText('language'))}"
 					listKey="uuid"
-					selectBox="true"
-					selectBoxIcon="true"
-					onChangeTopics="autocompleteChange"
-					onFocusTopics="autocompleteFocus"
-					onSelectTopics="autocompleteSelect"
-					parentTheme="css_xhtml"
-					cssStyle="padding: 0.3em; height:14px;"
+					multiple="false"
+					list="galleryList"
 					/>
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="picture.orderNumber"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_picture_orderNumber').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -67,7 +62,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="picture.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -75,16 +70,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="picture.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="picture.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -112,7 +107,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/picture">
+                  namespace="/others/picture">
                    <struts:text name="form.abort"/>
               </struts:a>
             </div>
