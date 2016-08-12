@@ -1,27 +1,27 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="getListUrl" action="list" namespace="/reservation">
+<struts:url var="getListUrl" action="list" namespace="/locations/reservation">
   <struts:param name="event" value="event.uuid"/>
 </struts:url>
 
-<struts:url var="addReservationUrl" action="addForm" namespace="/reservation">
+<struts:url var="addReservationUrl" action="addForm" namespace="/locations/reservation">
   <struts:param name="event" value="event.uuid"/>
 </struts:url>
 
-<struts:url id="remoteurl"   action="table"   namespace="/reservation">
+<struts:url var="remoteurl"   action="table"   namespace="/locations/reservation">
   <struts:param name="event" value="event.uuid"/>
 </struts:url>
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/reservation/view.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/locations/reservation/view.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/view.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" +
-         "<a href='/admin/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none;'>" + 
+         "<a href='/admin/locations/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/pencil.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/locations/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/delete.png'/>" + 
          "</a>";
 }
