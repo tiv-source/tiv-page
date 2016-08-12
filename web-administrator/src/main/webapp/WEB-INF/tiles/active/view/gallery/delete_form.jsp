@@ -5,15 +5,15 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="gallery.delete"/></h2>
+        <div id="title">
+          <h5><struts:text name="gallery.delete"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="delete" 
-                  namespace="/gallery" 
+                  namespace="/others/gallery" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -44,7 +44,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/gallery">
+                  namespace="/others/gallery">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
