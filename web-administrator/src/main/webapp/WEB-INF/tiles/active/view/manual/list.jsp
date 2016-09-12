@@ -66,7 +66,7 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "picture.pictureUrls.THUMBNAIL.url", width:  140, align: "right" },
+            { name: "picture.pictureUrls.THUMBNAIL.url", width:  140, align: "center", formatter:formatPicture },
             { name: "descriptionMap.DE.name",            width:  140, align: "right" },
             { name: "releaseDate",                       width:  140, align: "right", formatter:formatIsoDate },
             { name: "visible",                           width:  140, align: "right", formatter:formatTrueFalse },
