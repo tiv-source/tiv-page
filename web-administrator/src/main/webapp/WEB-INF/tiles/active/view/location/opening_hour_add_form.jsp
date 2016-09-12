@@ -4,15 +4,15 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="openingHour.add"/></h2>
+        <div id="title">
+          <h5><struts:text name="openingHour.add"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="openingHourAdd" 
-                  namespace="/location" 
+                  namespace="/locations/location" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -33,7 +33,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="openingHour.open.hour"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -41,7 +41,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="openingHour.open.minute"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -49,7 +49,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="openingHour.close.hour"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -57,7 +57,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="openingHour.close.minute"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -81,7 +81,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/location">
+                  namespace="/locations/location">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
