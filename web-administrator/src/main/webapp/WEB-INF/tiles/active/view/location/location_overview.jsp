@@ -5,8 +5,8 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="location.openingHours" /></h2>
+        <div id="title">
+          <h5><struts:text name="location.openingHours" /></h5>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -45,7 +45,7 @@
                     <struts:text name="clock" />
                   </td>
                   <td>
-                    <struts:url id="openingHourDeleteURL" action="openingHourDeleteForm" namespace="/location">
+                    <struts:url var="openingHourDeleteURL" action="openingHourDeleteForm" namespace="/locations/location">
                       <struts:param name="openingHours" value="#openingHoursStatus.index" />
                       <struts:param name="locationUuid" value="#myLocation" />
                     </struts:url>
@@ -62,7 +62,7 @@
 
               </table>
               
-              <struts:url var="openingHourAddUrl" action="openingHourAddForm" namespace="/location">
+              <struts:url var="openingHourAddUrl" action="openingHourAddForm" namespace="/locations/location">
                 <struts:param name="locationUuid" value="#myLocation" />
               </struts:url>
               <struts:a href="%{openingHourAddUrl}">
@@ -80,7 +80,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/location">
+                  namespace="/locations/location">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
