@@ -35,7 +35,7 @@
       </struts:a>
 
       <struts:a href="%{cssUrl}">
-        <div class="buttoninfo typ1" style="margin-left: 14px; width: 32.5%;">
+        <div class="buttoninfo typ1" style="width: 32.5%;">
           <img src="/admin/buttons/tiv_page_button_backup.png" alt="<struts:text name="navigation.backup.description"/>">
           <h5>CSS Backup</h5>
           <p>Hier klicken um ein Backup von den CSS-Dateien zu erstellen</p>
