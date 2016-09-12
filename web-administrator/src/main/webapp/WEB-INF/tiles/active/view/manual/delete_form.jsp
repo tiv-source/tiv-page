@@ -6,8 +6,8 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="manual.delete"/></h2>
+        <div id="title">
+          <h5><struts:text name="manual.delete"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
