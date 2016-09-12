@@ -4,8 +4,8 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="manual.add"/></h2>
+        <div id="title">
+          <h5><struts:text name="manual.add"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -52,7 +52,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="manual.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -60,16 +60,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="manual.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="manual.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -77,21 +77,22 @@
               </div>
 
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="manual.contentMap.DE.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true" 
-					uploadHref="/admin/page/upload.html" 
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
 
               <struts:hidden key="manual.descriptionMap.EN.name" value="No English content available."/>
