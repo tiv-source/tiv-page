@@ -36,4 +36,9 @@
 <script src="/admin/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="/admin/ckeditor/adapters/jquery.js" type="text/javascript"></script>
 
+<!-- datetimepicker -->
+<link href="/admin/datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
+<script src="/admin/datetimepicker/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
+
+
 
