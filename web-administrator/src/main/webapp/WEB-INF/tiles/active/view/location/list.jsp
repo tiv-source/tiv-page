@@ -1,8 +1,8 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="locationAddUrl" action="addForm" namespace="/location" />
-<struts:url var="remoteurl" action="table" namespace="/location"/>
+<struts:url var="locationAddUrl" action="addForm" namespace="/locations/location" />
+<struts:url var="remoteurl" action="table" namespace="/locations/location"/>
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
