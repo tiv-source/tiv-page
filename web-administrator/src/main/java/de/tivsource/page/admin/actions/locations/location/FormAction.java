@@ -27,16 +27,16 @@ import de.tivsource.page.entity.picture.Picture;
 @TilesDefinitions({
   @TilesDefinition(name="locationAddForm",  extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/add_form.jsp")
   }),
   @TilesDefinition(name="locationEditForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/edit_form.jsp")
   }),
   @TilesDefinition(name="locationDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/delete_form.jsp")
   })
 })
