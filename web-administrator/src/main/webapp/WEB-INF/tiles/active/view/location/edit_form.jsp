@@ -41,15 +41,15 @@
 
         </div>
 
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="location.edit"/></h2>
+        <div id="title">
+          <h5><struts:text name="location.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="edit" 
-                  namespace="/location" 
+                  namespace="/locations/location" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -98,21 +98,22 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="location.order"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_location_order').spinner();
+                </script>
               </div>
 
             <struts:if test="lang=='EN'">
               <struts:hidden key="lang"/>
               
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.descriptionMap.EN.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -120,16 +121,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="location.descriptionMap.EN.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.descriptionMap.EN.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -142,7 +143,7 @@
               <struts:hidden key="lang"/>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -150,16 +151,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="location.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -172,7 +173,7 @@
 <!-- Address -->
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.address.street"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -180,7 +181,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.address.zip"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -188,7 +189,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.address.city"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -196,7 +197,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.address.country"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -206,7 +207,7 @@
 <!-- ContactDetails -->
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.contactDetails.mobile"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -214,7 +215,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.contactDetails.telephone"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -222,7 +223,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.contactDetails.fax"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -230,7 +231,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.contactDetails.email"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -238,7 +239,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.contactDetails.homepage"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -248,7 +249,7 @@
 <!-- Coordinates -->
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.longitude"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -256,7 +257,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="location.latitude"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -281,7 +282,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/location">
+                  namespace="/locations/location">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
