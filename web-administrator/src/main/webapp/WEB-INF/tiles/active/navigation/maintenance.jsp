@@ -9,6 +9,7 @@
 <struts:url var="backupUrl"            action="index" namespace="/maintenance/backup" />
 <struts:url var="restoreUrl"           action="index" namespace="/maintenance/restore" />
 <struts:url var="filesUrl"             action="index" namespace="/maintenance/files" />
+<struts:url var="cssUrl"               action="index" namespace="/maintenance/css" />
 
    	  <div class="nav">
    	    <div id="navi">
@@ -39,6 +40,13 @@
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_file.png" alt="<struts:text name="navigation.files"/>">
                 <p><struts:text name="navigation.files"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{cssUrl}" title="%{getText('navigation.css')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_file.png" alt="<struts:text name="navigation.css"/>">
+                <p><struts:text name="navigation.css"/></p>
               </div>
             </struts:a>
 
