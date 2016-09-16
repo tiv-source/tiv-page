@@ -194,7 +194,4 @@
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
 	<inceptionYear>2012</inceptionYear>
-	<properties>
-		<struts2.version>2.5.2</struts2.version>
-	</properties>
 </project>
