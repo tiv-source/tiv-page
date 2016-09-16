@@ -93,6 +93,11 @@ public class EventDao implements EventDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(Integer start, Integer max, String field, String order) {
+    	LOGGER.info("findAll(Integer start, Integer max, String field, String order) aufgerufen");
+    	LOGGER.info("Inhalt start: " + start);
+    	LOGGER.info("Inhalt max: " + max);
+    	LOGGER.info("Inhalt field: " + field);
+    	LOGGER.info("Inhalt order: " + order);
         String queryString = "SELECT DISTINCT e FROM Event e JOIN e.descriptionMap dm JOIN e.location.descriptionMap edm WHERE dm.language = 'DE' AND edm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
