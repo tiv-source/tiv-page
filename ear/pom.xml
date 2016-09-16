@@ -36,6 +36,12 @@
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
 			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
