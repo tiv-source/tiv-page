@@ -22,16 +22,16 @@ import de.tivsource.page.entity.property.Property;
 @TilesDefinitions({
   @TilesDefinition(name="propertyAddForm",  extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/add_form.jsp")
   }),
   @TilesDefinition(name="propertyEditForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/edit_form.jsp")
   }),
   @TilesDefinition(name="propertyDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/delete_form.jsp")
   })
 })
