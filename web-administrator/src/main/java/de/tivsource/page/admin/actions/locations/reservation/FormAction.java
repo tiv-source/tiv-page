@@ -29,24 +29,24 @@ import de.tivsource.page.entity.reservation.Reservation;
   @TilesDefinition(name="reservationAddForm",  extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/add_form.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/add_form.jsp")
   }),
   @TilesDefinition(name="reservationEditForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/edit_form.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/edit_form.jsp")
   }),
   @TilesDefinition(name="reservationDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/delete_form.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/delete_form.jsp")
   }),
   @TilesDefinition(name="reservationView", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/view.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/view.jsp")
   }),
   @TilesDefinition(name="reservationConfirmForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/confirm_form.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/confirm_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
