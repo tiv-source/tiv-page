@@ -136,7 +136,7 @@ public class ReservationDao implements ReservationDaoLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> confirmationQueue(Integer start, Integer max, String field, String order) {
-        String queryString = "select r from Reservation r where r.confirmed = ?1 order by ";
+        String queryString = "SELECT DISTINCT r FROM Reservation r JOIN r.event.descriptionMap dm JOIN r.event.location.descriptionMap edm WHERE r.confirmed = ?1 AND dm.language = 'DE' AND edm.language = 'DE' order by ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
