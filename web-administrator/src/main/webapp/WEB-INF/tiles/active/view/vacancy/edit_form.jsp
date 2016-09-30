@@ -87,19 +87,19 @@
               </div>
 
               <div class="field">
-                <sj:datepicker
+                <struts:textfield
                     key="vacancy.beginning"
-                    changeMonth="true"
-                    changeYear="true"
-                    displayFormat="dd.mm.yy"
-                    timepicker="false"
-                    style="width:100px;"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_vacancy_beginning').datepicker({ dateFormat: 'dd.mm.yy' });
+                </script>
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.workingTime"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -110,7 +110,7 @@
               <struts:hidden key="lang"/>
               
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.descriptionMap.EN.name"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -118,16 +118,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="vacancy.descriptionMap.EN.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.descriptionMap.EN.keywords"  
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -135,21 +135,22 @@
               </div>
 
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="vacancy.contentMap.EN.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true" 
-					uploadHref="/admin/page/upload.html" 
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
 
             </struts:if>
@@ -158,7 +159,7 @@
               <struts:hidden key="lang"/>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.descriptionMap.DE.name"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -166,16 +167,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="vacancy.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.descriptionMap.DE.keywords"  
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -183,21 +184,22 @@
               </div>
 
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="vacancy.contentMap.DE.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true" 
-					uploadHref="/admin/page/upload.html" 
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
             </struts:else>
 
@@ -221,7 +223,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/vacancy">
+                  namespace="/others/vacancy">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>

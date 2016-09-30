@@ -4,7 +4,7 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div  id="title">
+        <div id="title">
           <h5><struts:text name="vacancy.add"/></h5>
         </div>
 
@@ -43,20 +43,15 @@
               </div>
 
               <div class="field">
-                <sj:autocompleter
+                <struts:select
 					key="vacancy.location"
-					list="locationList"
 					listValue="%{getName(getText('language'))}"
 					listKey="uuid"
-					selectBox="true"
-					selectBoxIcon="true"
-					onChangeTopics="autocompleteChange"
-					onFocusTopics="autocompleteFocus"
-					onSelectTopics="autocompleteSelect"
-					parentTheme="css_xhtml"
-					cssStyle="padding: 0.3em; height:14px;"
+					multiple="false"
+					list="locationList"
 					/>
               </div>
+
 
               <div class="field">
                 <struts:checkbox
@@ -68,19 +63,19 @@
               </div>
 
               <div class="field">
-                <sj:datepicker
+                <struts:textfield
                     key="vacancy.beginning"
-                    changeMonth="true"
-                    changeYear="true"
-                    displayFormat="dd.mm.yy"
-                    timepicker="false"
-                    style="width:100px;"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#add_vacancy_beginning').datepicker({ dateFormat: 'dd.mm.yy' });
+                </script>
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.workingTime"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -88,7 +83,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -96,16 +91,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="vacancy.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="vacancy.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -113,21 +108,22 @@
               </div>
 
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="vacancy.contentMap.DE.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true" 
-					uploadHref="/admin/page/upload.html" 
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
 
               <struts:hidden key="vacancy.descriptionMap.EN.name" value="No English content available."/>
@@ -151,7 +147,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/vacancy">
+                  namespace="/others/vacancy">
                    <struts:text name="form.abort"/>
               </struts:a>
             </div>

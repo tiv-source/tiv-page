@@ -28,8 +28,8 @@
           </div>
         </div>
 
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="news.edit"/></h2>
+        <div id="title">
+          <h5><struts:text name="news.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -68,16 +68,20 @@
               </div>
 
               <div class="field">
-                <sj:datepicker
+                <struts:textfield
                     key="news.releaseDate"
-                    changeMonth="true"
-                    changeYear="true"
-                    displayFormat="dd.mm.yy"
-                    timepicker="true"
-                    timepickerFormat="hh:mm"
-                    style="width:100px;"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_news_releaseDate').datetimepicker({ 
+                	datepicker: true,
+                    format: 'd.m.Y H:i',
+                	lang: 'de',
+                	defaultDate: ''
+                });
+                </script>
               </div>
 
               <div class="field">
@@ -93,7 +97,7 @@
               <struts:hidden key="lang"/>
               
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="news.descriptionMap.EN.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -101,16 +105,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="news.descriptionMap.EN.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="news.descriptionMap.EN.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -118,20 +122,22 @@
               </div>
 
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="news.contentMap.EN.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true"
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
             </struts:if>
             
@@ -139,7 +145,7 @@
               <struts:hidden key="lang"/>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="news.descriptionMap.DE.name"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -147,38 +153,39 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="news.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="css_xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="news.descriptionMap.DE.keywords"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
-
+k
               <div class="field">
-                <sjr:ckeditor
+                <struts:textarea
                     id="editor"
                     key="news.contentMap.DE.content" 
 					rows="10" 
 					cols="80" 
 					width="840"
 					height="250"
-					uploads="true" 
-					uploadHref="/admin/page/upload.html" 
-					onFocusTopics="focusRichtext"
-					onBlurTopics="blurRichtext"
-					onChangeTopics="highlightRichtext"
 					escape="false"
 					cssStyle="padding-left:202px;"
 				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
               </div>
             </struts:else>
 

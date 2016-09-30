@@ -5,8 +5,8 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="user.edit"/></h2>
+        <div id="title">
+          <h5><struts:text name="user.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -23,7 +23,7 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="user.username"
                     labelposition="left"
                     parentTheme="css_xhtml"
@@ -32,7 +32,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="user.email"
                     labelposition="left"
                     parentTheme="css_xhtml"
@@ -41,7 +41,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="user.firstname"
                     labelposition="left"
                     parentTheme="css_xhtml"
@@ -50,7 +50,7 @@
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="user.lastname"
                     labelposition="left"
                     parentTheme="css_xhtml"
