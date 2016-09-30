@@ -5,5 +5,5 @@
   <meta name="twitter:site" content="<struts:property value="getProperty('twitter.site')" />" />
   <meta name="twitter:title" content="<struts:property value="location.getName(getText('language'))" />" />
   <meta name="twitter:description" content="<struts:property value="location.getDescription(getText('language'))" />" />
-  <meta name="twitter:image" content="<struts:text name="server.picture.url" />/LARGE/<struts:property value="location.picture.pictureUrls.LARGE.url" />" />
+  <meta name="twitter:image" content="<struts:property value="getProperty('server.picture.url')" />/LARGE/<struts:property value="location.picture.pictureUrls.LARGE.url" />" />
 
