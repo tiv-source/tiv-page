@@ -2,7 +2,7 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!doctype html>
-<html>
+<html lang="<struts:text name="language"/>">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,22 +10,29 @@
   <tiles:insertAttribute name="meta" />
   <tiles:insertAttribute name="twitter" />
 
-  <link href="/public/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="/public/css/main_style.css" rel="stylesheet" type="text/css">
-  <link href="/public/css/tiv_page.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="/public/icons/tiv_page_favicon.ico" type="image/vnd.microsoft.icon" />
-  <link rel="shortcut icon" href="/public/icons/tiv_page_favicon.png" type="image/png" />
+  <link rel="stylesheet" type="text/css" href="/public/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/main_style.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_sitethemes.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_actionthemes.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_gallery.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_formulars.css">
+
+  <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.ico.path')"/>" type="image/vnd.microsoft.icon" />
+  <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.png.path')"/>" type="image/png" />
 
 </head>
 <body>
 
 <div id="container">
   <!-- Top Anfang -->
+
+<struts:if test="getProperty('i18n') == 'true'">
   <!-- Language Anfang -->
-  <struts:url id="localeDE">
+  <struts:url var="localeDE">
     <struts:param name="request_locale" >de</struts:param>
   </struts:url>
-  <struts:url id="localeEN">
+  <struts:url var="localeEN">
     <struts:param name="request_locale" >en</struts:param>
   </struts:url>
   <ul id="flags">
@@ -33,6 +40,7 @@
     <li><struts:a href="%{localeEN}"><img src="/public/icons/flag-united_kingdom.png" alt="English" title="English"></struts:a></li>
   </ul>
   <!-- Language Ende -->
+</struts:if>
 
   <!-- Topnav Anfang -->
   <ul id="top_navi">
@@ -57,7 +65,7 @@
 
   <!-- Header Anfang -->
   <div id="logo">
-    <struts:url id="homeUrl" action="index" namespace="/" />
+    <struts:url var="homeUrl" action="index" namespace="/" />
     <struts:a href="%{homeUrl}">
       <img src="/public/images/tiv_page_logo.png" alt="TIV-Page-Logo">
     </struts:a>
