@@ -10,23 +10,23 @@
   <meta name="language" content="<struts:text name="language" />" />
 
   <struts:url var="canonicalUrl" />
-  <link rel="canonical" href="<struts:text name="server.base.url" /><struts:property escape="false" value="canonicalUrl" />" />
+  <link rel="canonical" href="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
 
   <meta property="og:title" content="<struts:property value="page.getName(getText('language'))" />" />
-  <meta property="og:url" content="<struts:text name="server.base.url" /><struts:property escape="false" value="canonicalUrl" />" />
-  <meta property="og:image" content="<struts:text name="server.picture.url" />/LARGE/<struts:property value="page.picture.pictureUrls.LARGE.url" />" />
+  <meta property="og:url" content="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
+  <meta property="og:image" content="<struts:property value="getProperty('server.picture.url')" />/LARGE/<struts:property value="page.picture.pictureUrls.LARGE.url" />" />
   <meta property="og:description" content="<struts:property value="page.getDescription(getText('language'))" />" />
 
 
-  <meta name="page-topic" content="<struts:text name="meta.page.topic" />" />
-  <meta name="classification" content="<struts:text name="meta.classification" />" />
-  <meta name="category" content="<struts:text name="meta.category" />" />
+  <meta name="page-topic" content="<struts:property value="getProperty('meta.page.topic')" />" />
+  <meta name="classification" content="<struts:property value="getProperty('meta.classification')" />" />
+  <meta name="category" content="<struts:property value="getProperty('meta.category')" />" />
 
-  <meta name="author" content="<struts:text name="meta.author" />" />
-  <meta name="owner" content="<struts:text name="meta.owner" />" />
-  <meta name="publisher" content="<struts:text name="meta.publisher" />" />
-  <meta name="copyright" content="<struts:text name="meta.copyright" />" />
-  <meta name="generator" content="<struts:text name="meta.generator" />" />
+  <meta name="author" content="<struts:property value="getProperty('meta.author')" />" />
+  <meta name="owner" content="<struts:property value="getProperty('meta.owner')" />" />
+  <meta name="publisher" content="<struts:property value="getProperty('meta.publisher')" />" />
+  <meta name="copyright" content="<struts:property value="getProperty('meta.copyright')" />" />
+  <meta name="generator" content="<struts:property value="getProperty('meta.generator')" />" />
 
   <meta name="date" content="<struts:date name="page.created" format="yyyy-MM-dd" />T<struts:date name="page.created" format="HH:mm:ss" />+01:00" />
   <meta name="created" content="<struts:date name="page.created" format="yyyy-MM-dd" />T<struts:date name="page.created" format="HH:mm:ss" />+01:00" />
@@ -43,5 +43,8 @@
   <meta http-equiv="expires" content="0" />
   <meta http-equiv="cache-control" content="no-cache" />
 
-  
+  <meta name="ICBM" content="<struts:property value="getProperty('icbm')" />" />
+  <meta name="geo.position" content="<struts:property value="getProperty('geo.position')" />" />
+  <meta name="geo.region" content="<struts:property value="getProperty('geo.region')" />" />
+  <meta name="geo.placename" content="<struts:property value="getProperty('geo.placename')" />" />
   

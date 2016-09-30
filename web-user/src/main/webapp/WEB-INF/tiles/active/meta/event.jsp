@@ -10,10 +10,10 @@
   <meta name="language" content="<struts:text name="language" />" />
 
   <struts:url var="canonicalUrl" />
-  <link rel="canonical" href="<struts:text name="server.base.url" /><struts:property escape="false" value="canonicalUrl" />" />
+  <link rel="canonical" href="<struts:text name="server.base.url" /><struts:property value="canonicalUrl" />" />
 
   <meta property="og:title" content="<struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" />" />
-  <meta property="og:url" content="<struts:text name="server.base.url" /><struts:property escape="false" value="canonicalUrl" />" />
+  <meta property="og:url" content="<struts:text name="server.base.url" /><struts:property value="canonicalUrl" />" />
   <meta property="og:image" content="<struts:text name="server.picture.url" />/LARGE/<struts:property value="event.picture.pictureUrls.LARGE.url" />" />
   <meta property="og:description" content="<struts:property value="event.getDescription(getText('language'))" />" />
 
