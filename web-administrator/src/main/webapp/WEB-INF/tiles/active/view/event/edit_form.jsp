@@ -29,15 +29,15 @@
           </div>
         </div>
 
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="event.edit"/></h2>
+        <div id="title">
+          <h5><struts:text name="event.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="edit" 
-                  namespace="/event" 
+                  namespace="/locations/event" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -69,53 +69,67 @@
 
             
               <div class="field">
-                <sj:datepicker
+                <struts:textfield
                     key="event.beginning"
-                    changeMonth="true"
-                    changeYear="true"
-                    displayFormat="dd.mm.yy"
-                    timepicker="true"
-                    timepickerFormat="hh:mm"
-                    style="width:100px;"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_beginning').datetimepicker({ 
+                	datepicker: true,
+                    format: 'd.m.Y H:i',
+                	lang: 'de',
+                	defaultDate: ''
+                });
+                </script>
               </div>
 
               <div class="field">
-                <sj:datepicker
+                <struts:textfield
                     key="event.ending"
-                    changeMonth="true"
-                    changeYear="true"
-                    displayFormat="dd.mm.yy"
-                    timepicker="true"
-                    timepickerFormat="hh:mm"
-                    style="width:100px;"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_ending').datetimepicker({ 
+                	datepicker: true,
+                    format: 'd.m.Y H:i',
+                	lang: 'de',
+                	defaultDate: ''
+                });
+                </script>
+
               </div>
               
               <div class="field">
-                <sj:datepicker
+                <struts:textfield
                     key="event.deadline"
-                    changeMonth="true"
-                    changeYear="true"
-                    displayFormat="dd.mm.yy"
-                    timepicker="true"
-                    timepickerFormat="hh:mm"
-                    style="width:100px;"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_deadline').datetimepicker({ 
+                	datepicker: true,
+                    format: 'd.m.Y H:i',
+                	lang: 'de',
+                	defaultDate: ''
+                });
+                </script>
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="event.price"
-                    min="0.00"
-                    step="0.01"
-                    numberFormat="C"
-                    mouseWheel="true"
                     parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_price').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -130,36 +144,39 @@
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="event.piwikGoal"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_piwikGoal').spinner();
+                </script>
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="event.maxReservations"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_maxReservations').spinner();
+                </script>
               </div>
 
               <div class="field">
-                <sj:spinner
+                <struts:textfield
                     key="event.maxPersons"
-                    min="0"
-                    max="200"
-                    step="1"
                     parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width: 56px; min-width: 56px;"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
+                <script type="text/javascript">
+                $('#edit_event_maxPersons').spinner();
+                </script>
               </div>
 
               <div class="field">
@@ -184,7 +201,7 @@
               <struts:hidden key="lang"/>
               
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="event.descriptionMap.EN.name"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -192,16 +209,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="event.descriptionMap.EN.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="event.descriptionMap.EN.keywords"  
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -213,7 +230,7 @@
               <struts:hidden key="lang"/>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="event.descriptionMap.DE.name"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -221,16 +238,16 @@
               </div>
 
               <div class="field">
-                <sj:textarea 
+                <struts:textarea 
                     key="event.descriptionMap.DE.description" 
                     cols="115" 
                     rows="8" 
                     parentTheme="xhtml"
-                ></sj:textarea>	  
+                ></struts:textarea>	  
               </div>
 
               <div class="field">
-                <sj:textfield 
+                <struts:textfield 
                     key="event.descriptionMap.DE.keywords"  
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
@@ -258,7 +275,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/event">
+                  namespace="/locations/event">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
