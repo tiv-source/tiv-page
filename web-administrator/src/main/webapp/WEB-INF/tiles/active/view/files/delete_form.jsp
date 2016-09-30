@@ -6,15 +6,16 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2><struts:text name="files.delete"/></h2>
+
+        <div id="title">
+          <h5><struts:text name="file.delete"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="delete" 
-                  namespace="/files" 
+                  namespace="/maintenance/files" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -24,7 +25,7 @@
 
               <div class="field">
                 <label for="file" class="label"><struts:text name="file"/></label>
-                <img src="/uploads/<struts:property value="file"/>" />
+                <img src="/uploads/<struts:property value="file"/>" style="height: unset; max-height: 200px; width: unset;"/>
                 <struts:hidden id="file" key="file"/>
                 <struts:property value="file"/>
               </div>
@@ -44,7 +45,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/files">
+                  namespace="/maintenance/files">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>

@@ -44,7 +44,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/vacancy">
+                  namespace="/others/vacancy">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>
