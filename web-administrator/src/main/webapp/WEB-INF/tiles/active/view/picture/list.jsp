@@ -57,6 +57,7 @@ $(function () {
         mtype: "GET",
         colNames: [
             '<struts:text name="picture.pictureUrls.THUMBNAIL.url"/>',
+            '<struts:text name="picture.descriptionMap.DE.name"/>',
             '<struts:text name="picture.gallery.descriptionMap.DE.name"/>',
             '<struts:text name="visible"/>',
             '<struts:text name="modified"/>',
@@ -65,8 +66,9 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "pictureUrls.THUMBNAIL.url",       width:  140, align: "right", formatter:formatPicture },
-            { name: "gallery.descriptionMap.DE.name",  width:  140, align: "right" },
+            { name: "pictureUrls.THUMBNAIL.url",       width:  140, align: "center", formatter:formatPicture },
+            { name: "descriptionMap.DE.name",          width:  140, align: "left" },
+            { name: "gallery.descriptionMap.DE.name",  width:  140, align: "left" },
             { name: "visible",                         width:  140, align: "right", formatter:formatTrueFalse },
             { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",                      width:  140, align: "right" },

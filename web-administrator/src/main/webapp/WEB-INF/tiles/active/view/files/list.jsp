@@ -1,18 +1,22 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="pageAddUrl" action="addForm" namespace="/page" />
-<struts:url var="remoteurl" action="table" namespace="/files"/>
+<struts:url var="filesAddUrl" action="addForm" namespace="/maintenance/files" />
+<struts:url var="remoteurl" action="table" namespace="/maintenance/files"/>
 
 <script type="text/javascript">
 function formatViewLink(cellvalue, options, rowObject) {
-  return "<img src='/uploads/"+ cellvalue +"' style='max-width:200px; max-height:100px;' />";
+	if(cellvalue.endsWith('.png') | cellvalue.endsWith('.jpg') | cellvalue.endsWith('.JPG')) {
+		return "<img src='/uploads/"+ cellvalue +"' style='max-width:200px; max-height:100px;' />";
+	} else {
+		return "<img src='/admin/icons/pdf.png' style='width:100px; height:100px;' />";
+	}
 }
 </script>
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/files/deleteForm.html?file="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/maintenance/files/deleteForm.html?file="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -22,6 +26,9 @@ function formatEditLink(cellvalue, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
+          <struts:a href="%{filesAddUrl}">
+            <struts:text name="file.add"/>
+          </struts:a>
         </div>
 
 

@@ -63,150 +63,56 @@ function formatIsoTime(celldate, options, rowObject) {
             <struts:text name="reservation.list"/>
           </struts:a>
         </div>
-        
-        <sjg:grid
-          id="gridedittable"
-          caption="Reservierungen für das %{event.getName(getText('language'))} am %{getText('format.reservation.date',{event.beginning})} im %{event.location.getName(getText('language'))}"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20"
-          rowNum="15"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn
-    	      name="gender"
-    	      index="gender"
-    	      title="Geschlecht"
-    	      width="110"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatGender"
-    	  />
-    	  <sjg:gridColumn
-    	      name="firstname"
-    	      index="firstname"
-    	      title="Firstname"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="lastname"
-    	      index="lastname"
-    	      title="Lastname"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="telephone"
-    	      index="telephone"
-    	      title="Telephone"
-    	      width="190"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="email"
-    	      index="email"
-    	      title="Mail"
-    	      width="270"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn
-    	      name="quantity"
-    	      index="quantity"
-    	      title="Quantity"
-    	      width="140"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn 
-    	      name="time"
-    	      index="time"
-    	      title="Time"
-    	      width="70"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatIsoTime"
-    	  />
-    	  <sjg:gridColumn 
-    	      name="createdAddress"
-    	      index="createdAddress"
-    	      title="createdAddress"
-    	      width="140"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn 
-    	      name="created"
-    	      index="created"
-    	      title="Created"
-    	      width="140"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn
-    	      name="uuid"
-    	      index="editbar"
-    	      title=""
-    	      width="70"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="right"
-    	      formatter="formatEditLink"
-    	  />    	
-        </sjg:grid>
+
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: '<struts:property value="remoteurl"/>',
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            "Anrede", 
+            "Vorname",
+            "Nachname", 
+            "Telefon", 
+            "EMail", 
+            "Personen", 
+            "uhrzeit", 
+            "Erstellt von", 
+            "Erstellt am",
+            ""
+        ],
+        colModel: [
+            { name: "gender",                 width:  140, align: "left", formatter:formatGender },
+            { name: "firstname",              width:  140 },
+            { name: "lastname",               width:  140 },
+            { name: "telephone",              width:  140 },
+            { name: "email",                  width:  140 },
+            { name: "quantity",               width:  140 },
+            { name: "time",                   width:  140, align: "center", formatter:formatIsoTime },
+            { name: "createdAddress",         width:  140, align: "center" },
+            { name: "created",                width:  140, align: "center", formatter:formatIsoDate },
+            { name: "uuid",                   width:   70, align: "center", sortable: false, formatter:formatEditLink }
+        ],
+        pager: "#entityPager",
+        rowNum: 10,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "name",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: 'Reservierungen für das <struts:property value="event.descriptionMap.DE.name"/> am <struts:text name="format.reservation.date"><struts:param value="event.beginning"/></struts:text> in der Filiale <struts:property value="event.location.descriptionMap.DE.name"/>'
+    }); 
+}); 
+</script>
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     

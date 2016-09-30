@@ -77,7 +77,7 @@ $(function () {
         width : 1600,
         cellLayout : 5,
         height:'auto',
-        caption: "Benutzer"
+        caption: '<struts:text name="users"/>'
     }); 
 }); 
 </script>

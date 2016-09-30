@@ -6,16 +6,16 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/reservation/index.html?event="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/locations/reservation/index.html?event="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/view.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/event/editForm.html?event="+ cellvalue + "' style='border-style: none;'>" + 
+         "<a href='/admin/locations/event/editForm.html?event="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/event/copyForm.html?event="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/locations/event/copyForm.html?event="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/event/deleteForm.html?event="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/locations/event/deleteForm.html?event="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -84,7 +84,7 @@ $(function () {
         pager: "#entityPager",
         rowNum: 10,
         rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
-        sortname: "technical",
+        sortname: "name",
         sortorder: "asc",
         viewrecords: true,
         gridview: true,
@@ -93,7 +93,7 @@ $(function () {
         width : 1600,
         cellLayout : 5,
         height:'auto',
-        caption: "Rollen"
+        caption: '<struts:text name="events"/>'
     }); 
 }); 
 </script>

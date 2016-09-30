@@ -71,7 +71,7 @@ $(function () {
         width : 1600,
         cellLayout : 5,
         height:'auto',
-        caption: "Rollen"
+        caption: '<struts:text name="roles"/>'
     }); 
 }); 
 </script>
