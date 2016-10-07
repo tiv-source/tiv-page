@@ -78,7 +78,7 @@
 
               <div class="field">
                 <label for="reservation.wishes" class="label">Wünsche:</label>
-                <div style="padding-left: 200px;"><struts:property value="reservation.wishes" escape="false" /></div>
+                <div style="padding-left: 200px;"><struts:property value="reservation.wishes" escapeHtml="false" /></div>
               </div>
 
               <div class="field">
