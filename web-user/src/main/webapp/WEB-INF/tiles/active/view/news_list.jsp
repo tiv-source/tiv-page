@@ -5,7 +5,7 @@
       <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
 
-    <struts:property escape="false" value="page.getContent(getText('language'))" />
+    <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
     <p class="bc_bottom">&nbsp;</p>
 
     <struts:iterator value="news" status="newsStatus">
