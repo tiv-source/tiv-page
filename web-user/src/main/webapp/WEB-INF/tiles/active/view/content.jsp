@@ -16,10 +16,10 @@
 
     <div id="social_net1">
       <div class="picturebox1">
-		<div class="fb-page" data-href="https://www.facebook.com/backhaus24" data-tabs="timeline" data-width="300" data-height="560" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+		<div class="fb-page" data-href="<struts:property value="getProperty('facebook.page.url')"/>" data-tabs="timeline" data-width="300" data-height="560" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
 		  <div class="fb-xfbml-parse-ignore">
-		    <blockquote cite="https://www.facebook.com/backhaus24">
-		      <a href="https://www.facebook.com/backhaus24">Backhaus</a>
+		    <blockquote cite="<struts:property value="getProperty('facebook.page.url')"/>">
+		      <a href="<struts:property value="getProperty('facebook.page.url')"/>"><struts:property value="getProperty('facebook.page.name')"/></a>
 		    </blockquote>
 		  </div>
 		</div>
@@ -27,9 +27,10 @@
     </div>
 
     <div id="home">
-      <struts:property escape="false" value="page.getContent(getText('language'))" />
+      <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
     </div>
 
+    <struts:if test="getProperty('home.location') == 'true'">
     <div id="actions">
 
       <struts:url var="eventLinkLeft" action="index" namespace="/event/%{leftLocation.uuid}"/>
@@ -74,3 +75,4 @@
 
       <hr>
     </div>
+    </struts:if>
