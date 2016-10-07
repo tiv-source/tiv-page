@@ -6,12 +6,11 @@
       <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
 
-    <struts:property escape="false" value="page.getContent(getText('language'))" />
+    <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
     
   <struts:iterator value="gallery" status="locationStatus">
-    <struts:url var="locationLink" action="index" namespace="/reservation/%{uuid}"/>
-    <struts:a href="%{locationLink}">
-
+    <struts:url var="galleryLink" action="index" namespace="/gallery/%{uuid}"/>
+    <struts:a href="%{galleryLink}">
       <div class="informations <struts:if test="#locationStatus.odd == true ">color3</struts:if><struts:else>color4</struts:else>">
         <div class="information">
          <h4><struts:property value="getName(getText('language'))" /></h4>
@@ -23,7 +22,6 @@
         </div>
         <hr>
       </div>
-    
     </struts:a>
   </struts:iterator>
 
