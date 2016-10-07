@@ -67,7 +67,7 @@ $(function () {
         ],
         colModel: [
             { name: "descriptionMap.DE.name",   width:  140 },
-            { name: "address.zip",              width:  140 },
+            { name: "address.zip",              width:   70 },
             { name: "address.city",             width:  140 },
             { name: "address.country",          width:  140 },
             { name: "contactDetails.telephone", width:  140 },
@@ -78,7 +78,7 @@ $(function () {
             { name: "modified",                 width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",               width:  140, align: "right" },
             { name: "modifiedAddress",          width:  210, align: "right" },
-            { name: "uuid",                     width:  130, align: "center", sortable: false, formatter:formatLinks }
+            { name: "uuid",                     width:   70, align: "center", sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 10,
