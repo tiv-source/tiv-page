@@ -140,7 +140,7 @@ public class IndexAction extends EmptyAction implements Pagination {
 	}
 
 	private void setUpPage() {
-    	page = pageDaoLocal.findByTechnical("news");
+    	page = pageDaoLocal.findByTechnical("gallery");
     }
 
     private void getDBCount() {
