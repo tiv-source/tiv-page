@@ -5,85 +5,31 @@
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>
-        <div id="usermanager_update_header" class="update usermanager module_header">
-          <h2>Add User</h2>
+
+        <div id="title">
+          <h5><struts:text name="file.add"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/user" 
+                  namespace="/maintenance/files" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
-                <sj:textfield 
-                    key="user.username"
-                    labelposition="left"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em;"
-                />
+                <struts:file key="file" theme="css_xhtml">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="disabledValue" />
+                </struts:file>
               </div>
-
-              <div class="field">
-                <sj:textfield 
-                    key="user.email"
-                    labelposition="left"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em;"
-                />
-              </div>
-
-              <div class="field">
-                <sj:textfield 
-                    key="user.firstname"
-                    labelposition="left"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em;"
-                />
-              </div>
-
-              <div class="field">
-                <sj:textfield 
-                    key="user.lastname"
-                    labelposition="left"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em;"
-                />
-              </div>
-
-              <div class="field">
-                <struts:password 
-                    key="user.password"
-                    labelposition="left"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em;"
-                />
-              </div>
-
-              <div class="field">
-                <struts:select
-                    key="user.roles"
-                    list="roleList" 
-                    listKey="uuid"  
-                    listValue="technical" 
-                    parentTheme="xhtml"
-                    labelposition="left"
-					cssStyle="padding: 0.3em; width: 640px;" 
-					multiple="true" 
-                />
-                <script type="text/javascript">
-                $("#add_user_roles").chosen()
-                </script>
-                
-              </div>
-
 
             </fieldset>
 
@@ -92,14 +38,18 @@
                   id="submit_confirm__Save" 
                   name="submit" 
                   value="save" 
-                  class="save small_green_button button">Save</button>
+                  class="save small_green_button button">
+                    <struts:text name="form.save"/>
+              </button>
 
               <struts:a 
                   id="submit_deny__Close" 
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/user">Close</struts:a>
+                  namespace="/maintenance/files">
+                    <struts:text name="form.abort"/>
+              </struts:a>
             </div>
           </struts:form>
 
