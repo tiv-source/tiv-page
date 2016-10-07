@@ -6,13 +6,13 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/reservation/confirmForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
+  return "<a href='/admin/locations/reservation/confirmForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/view.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" +
-         "<a href='/admin/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none;'>" + 
+         "<a href='/admin/locations/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/pencil.png'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
+         "<a href='/admin/locations/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
          "<img src='/admin/icons/16x16/delete.png'/>" + 
          "</a>";
 }
@@ -49,162 +49,61 @@ function formatIsoTime(celldate, options, rowObject) {
         <div class="sub_menu">
 
         </div>
-        
-        <sjg:grid
-          id="gridedittable"
-          caption="Unbestätigte Reservierungen"
-          dataType="json"
-          href="%{remoteurl}"
-          pager="true"
-          navigator="true"
-          navigatorAdd="false"
-          navigatorSearch="false"
-          navigatorEdit="false"
-          navigatorView="false"
-          navigatorDelete="false"
-          gridModel="gridModel"
-          rowList="5,10,15,20,25,50,100"
-          rowNum="20"
-          editinline="false"
-          viewrecords="true"
-        >
-    	  <sjg:gridColumn 
-    	    name="event.location.descriptionMap.DE.name" 
-    	    index="location.name" 
-    	    title="%{getText('event.location.descriptionMap.DE.name')}" 
-    	    width="175" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="event.descriptionMap.DE.name" 
-    	    index="event.name" 
-    	    title="%{getText('event.descriptionMap.DE.name')}" 
-    	    width="140" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="left" 
-    	  />
-    	  <sjg:gridColumn 
-    	    name="event.beginning" 
-    	    index="beginning" 
-    	    title="%{getText('event.beginning')}" 
-    	    width="70" 
-    	    editable="false" 
-    	    sortable="true" 
-    	    hidden="false" 
-    	    search="false" 
-    	    resizable="false" 
-    	    align="center" 
-    	    formatter="formatIsoDate"
-    	  />
-    	  <sjg:gridColumn
-    	      name="gender"
-    	      index="gender"
-    	      title="Geschlecht"
-    	      width="110"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatGender"
-    	  />
-    	  <sjg:gridColumn
-    	      name="firstname"
-    	      index="firstname"
-    	      title="Firstname"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="lastname"
-    	      index="lastname"
-    	      title="Lastname"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="telephone"
-    	      index="telephone"
-    	      title="Telephone"
-    	      width="120"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="left"
-    	  />
-    	  <sjg:gridColumn
-    	      name="email"
-    	      index="email"
-    	      title="Mail"
-    	      width="210"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn
-    	      name="quantity"
-    	      index="quantity"
-    	      title="Quantity"
-    	      width="140"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	  />
-    	  <sjg:gridColumn 
-    	      name="time"
-    	      index="time"
-    	      title="Time"
-    	      width="70"
-    	      editable="false"
-    	      sortable="true"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="center"
-    	      formatter="formatIsoTime"
-    	  />
-    	  <sjg:gridColumn
-    	      name="uuid"
-    	      index="editbar"
-    	      title=""
-    	      width="70"
-    	      editable="false"
-    	      sortable="false"
-    	      hidden="false"
-    	      search="false"
-    	      resizable="false"
-    	      align="right"
-    	      formatter="formatEditLink"
-    	  />    	
-        </sjg:grid>
+
+<script type="text/javascript">
+$(function () {
+    $("#entityList").jqGrid({
+        url: "/admin/locations/reservation/queueTable.html",
+        datatype: "json",
+        mtype: "GET",
+        colNames: [
+            "Filiale",
+            "Veranstaltung",
+            "Datum",
+            "Anrede",
+            "Vorname",
+            "Nachname", 
+            "Telefon", 
+            "EMail", 
+            "Personen", 
+            "Uhrzeit", 
+            ""
+        ],
+        colModel: [
+            { name: "event.location.descriptionMap.DE.name", width:  140, align: "left" },
+            { name: "event.descriptionMap.DE.name",          width:  140, align: "left" },
+            { name: "event.beginning",                       width:  140, align: "left", formatter:formatIsoDate },
+            { name: "gender",                                width:  140, align: "left", formatter:formatGender },
+            { name: "firstname",              width:  140 },
+            { name: "lastname",               width:  140 },
+            { name: "telephone",              width:  140 },
+            { name: "email",                  width:  140 },
+            { name: "quantity",               width:  140 },
+            { name: "time",                   width:  140, align: "center", formatter:formatIsoTime },
+            { name: "uuid",                   width:  130, align: "center", sortable: false, formatter:formatEditLink }
+        ],
+        pager: "#entityPager",
+        rowNum: 10,
+        rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
+        sortname: "location",
+        sortorder: "asc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true,
+        jsonReader : {root:"gridModel", records: "record"},
+        width : 1600,
+        cellLayout : 5,
+        height:'auto',
+        caption: "Unbestätigte Reservierungen"
+    }); 
+}); 
+</script>
+
+
+
+        <table id="entityList"><tr><td></td></tr></table> 
+        <div id="entityPager"></div>
+
 
         <div style="width:100%; margin: 10px;">&nbsp;</div>
     
