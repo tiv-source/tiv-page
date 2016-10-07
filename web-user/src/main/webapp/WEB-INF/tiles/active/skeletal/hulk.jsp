@@ -67,14 +67,14 @@
   <div id="logo">
     <struts:url var="homeUrl" action="index" namespace="/" />
     <struts:a href="%{homeUrl}">
-      <img src="/public/images/tiv_page_logo.png" alt="TIV-Page-Logo">
+      <img src="<struts:property value="getProperty('logo.path')"/>" alt="TIV-Page-Logo">
     </struts:a>
   </div>
   <!-- Header Ende -->			
 		
    <div id="mobile_navi">
      <label for="checkbox">
-       <p class="ellipsis"><struts:property value="page.getName(getText('language'))" /></p><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
+       <span class="ellipsis"><struts:property value="page.getName(getText('language'))" /></span><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
      </label>
      <input id="checkbox"  type="checkbox" />
      <ul class="mobile_sub">
