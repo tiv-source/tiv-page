@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatViewLink(cellvalue, options, rowObject) {
-	if(cellvalue.endsWith('.png') | cellvalue.endsWith('.jpg') | cellvalue.endsWith('.JPG')) {
-		return "<img src='/uploads/"+ cellvalue +"' style='max-width:200px; max-height:100px;' />";
+	if(cellvalue.endsWith('.png') | cellvalue.endsWith('.jpg') | cellvalue.endsWith('.JPG') | cellvalue.endsWith('.ico')) {
+		return "<img src='/uploads/"+ cellvalue +"' style='max-width:200px; max-height:100px; width: unset; height: unset;' />";
 	} else {
-		return "<img src='/admin/icons/pdf.png' style='width:100px; height:100px;' />";
+		return "<img src='/admin/icons/pdf.png' style='width:100px; height:100px; width: unset; height: unset;' />";
 	}
 }
 </script>
