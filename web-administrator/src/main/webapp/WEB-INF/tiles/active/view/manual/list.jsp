@@ -57,7 +57,6 @@ $(function () {
         colNames: [
             '<struts:text name="picture"/>',
             '<struts:text name="descriptionMap.DE.name"/>',
-            '<struts:text name="releaseDate"/>',
             '<struts:text name="visible"/>',
             '<struts:text name="created"/>',
             '<struts:text name="modified"/>',
@@ -67,14 +66,13 @@ $(function () {
         ],
         colModel: [
             { name: "picture.pictureUrls.THUMBNAIL.url", width:  140, align: "center", formatter:formatPicture },
-            { name: "descriptionMap.DE.name",            width:  140, align: "right" },
-            { name: "releaseDate",                       width:  140, align: "right", formatter:formatIsoDate },
-            { name: "visible",                           width:  140, align: "right", formatter:formatTrueFalse },
-            { name: "created",                           width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modified",                          width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",                        width:  140, align: "right" },
-            { name: "modifiedAddress",                   width:  140, align: "right" },
-            { name: "uuid",                              width:  130, align: "center", sortable: false, formatter:formatLinks }
+            { name: "descriptionMap.DE.name",            width:  210, align: "right" },
+            { name: "visible",                           width:   70, align: "right", formatter:formatTrueFalse },
+            { name: "created",                           width:  120, align: "center", formatter:formatIsoDate },
+            { name: "modified",                          width:  120, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",                        width:  100, align: "right" },
+            { name: "modifiedAddress",                   width:  100, align: "right" },
+            { name: "uuid",                              width:   70, align: "center", sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 15,
