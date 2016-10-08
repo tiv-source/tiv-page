@@ -6,7 +6,7 @@
 <struts:iterator value="manuals" status="manualStatus">
  <struts:url var="manualLink" action="index" namespace="/manual/%{uuid}"/>
  <url>
-  <loc><struts:text name="server.base.url" /><struts:property value="%{manualLink}" /></loc>
+  <loc><struts:property value="getProperty('server.base.url')" /><struts:property value="%{manualLink}" /></loc>
   <lastmod><struts:date name="modified" format="yyyy-MM-dd" /></lastmod>
   <changefreq>daily</changefreq>
   <priority>0.7</priority>

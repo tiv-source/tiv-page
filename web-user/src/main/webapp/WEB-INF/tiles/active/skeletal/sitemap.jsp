@@ -6,7 +6,7 @@
 <struts:iterator value="responsiveNavigation" status="responsiveNavigationStatus">
 <struts:url var="responsiveNavigationLink" action="index" namespace="/%{technical}"/>
  <url>
-  <loc><struts:text name="server.base.url" /><struts:property value="%{responsiveNavigationLink}" /></loc>
+  <loc><struts:property value="getProperty('server.base.url')" /><struts:property value="%{responsiveNavigationLink}" /></loc>
   <lastmod><struts:date name="modified" format="yyyy-MM-dd" /></lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
@@ -20,7 +20,7 @@
    <struts:param name="page"><struts:property value="top" /></struts:param>
  </struts:url>
  <url>
-  <loc><struts:text name="server.base.url" /><struts:property value="%{locationLink}" /></loc>
+  <loc><struts:property value="getProperty('server.base.url')" /><struts:property value="%{locationLink}" /></loc>
   <lastmod><struts:date name="modified" format="yyyy-MM-dd" /></lastmod>
   <changefreq>daily</changefreq>
   <priority>0.6</priority>
@@ -30,7 +30,7 @@
  <struts:iterator value="%{getEvents(uuid)}" status="eventStatus">
  <struts:url var="eventLink" action="index" namespace="/event/%{uuid}"/>
  <url>
-  <loc><struts:text name="server.base.url" /><struts:property value="%{eventLink}" /></loc>
+  <loc><struts:property value="getProperty('server.base.url')" /><struts:property value="%{eventLink}" /></loc>
   <lastmod><struts:date name="modified" format="yyyy-MM-dd" /></lastmod>
   <changefreq>daily</changefreq>
   <priority>0.7</priority>
