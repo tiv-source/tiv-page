@@ -9,7 +9,9 @@
   <meta name="keywords" content="<struts:property value="page.getKeywords(getText('language'))" />" />
   <meta name="language" content="<struts:text name="language" />" />
 
-  <struts:url var="canonicalUrl" />
+  <struts:url var="canonicalUrl">
+    <struts:param name="request_locale" ><struts:text name="language" /></struts:param>
+  </struts:url>
   <link rel="canonical" href="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
 
   <meta property="og:title" content="<struts:property value="page.getName(getText('language'))" />" />
