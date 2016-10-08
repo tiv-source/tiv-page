@@ -1,9 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-  <title>Comarchiv - <struts:property value="manual.getName(getText('language'))" /></title>
-  <meta name="title" content="Comarchiv - <struts:property value="manual.getName(getText('language'))" />" />
-  <meta name="searchtitle" content="Comarchiv - <struts:property value="manual.getName(getText('language'))" />" />
+  <title><struts:property value="getProperty('title')" /> - <struts:property value="manual.getName(getText('language'))" /></title>
+  <meta name="title" content="<struts:property value="getProperty('title')" /> - <struts:property value="manual.getName(getText('language'))" />" />
+  <meta name="searchtitle" content="<struts:property value="getProperty('title')" /> - <struts:property value="manual.getName(getText('language'))" />" />
   <meta name="description" content="<struts:property value="manual.getDescription(getText('language'))" />" />
   <meta name="abstract" content="<struts:property value="manual.getDescription(getText('language'))" />" />
   <meta name="keywords" content="<struts:property value="manual.getKeywords(getText('language'))" />" />

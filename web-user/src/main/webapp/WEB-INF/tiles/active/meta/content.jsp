@@ -1,9 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-  <title>TIV Page - <struts:property value="page.getName(getText('language'))" /></title>
-  <meta name="title" content="TIV Page - <struts:property value="page.getName(getText('language'))" />" />
-  <meta name="searchtitle" content="TIV Page - <struts:property value="page.getName(getText('language'))" />" />
+  <title><struts:property value="getProperty('title')" /> - <struts:property value="page.getName(getText('language'))" /></title>
+  <meta name="title" content="<struts:property value="getProperty('title')" /> - <struts:property value="page.getName(getText('language'))" />" />
+  <meta name="searchtitle" content="<struts:property value="getProperty('title')" /> - <struts:property value="page.getName(getText('language'))" />" />
   <meta name="description" content="<struts:property value="page.getDescription(getText('language'))" />" />
   <meta name="abstract" content="<struts:property value="page.getDescription(getText('language'))" />" />
   <meta name="keywords" content="<struts:property value="page.getKeywords(getText('language'))" />" />

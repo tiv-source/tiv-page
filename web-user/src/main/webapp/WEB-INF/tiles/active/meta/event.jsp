@@ -1,9 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-  <title>TIV Page - <struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" /></title>
-  <meta name="title" content="TIV Page - <struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" />" />
-  <meta name="searchtitle" content="TIV Page - <struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" />" />
+  <title><struts:property value="getProperty('title')" /> - <struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" /></title>
+  <meta name="title" content="<struts:property value="getProperty('title')" /> - <struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" />" />
+  <meta name="searchtitle" content="<struts:property value="getProperty('title')" /> - <struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" />" />
   <meta name="description" content="<struts:property value="event.getDescription(getText('language'))" />" />
   <meta name="abstract" content="<struts:property value="event.getDescription(getText('language'))" />" />
   <meta name="keywords" content="<struts:property value="event.getKeywords(getText('language'))" />" />

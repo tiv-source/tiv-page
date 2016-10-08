@@ -1,9 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-  <title>TIV Page - <struts:property value="location.getName(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" /></title>
-  <meta name="title" content="TIV Page - <struts:property value="location.getName(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" />" />
-  <meta name="searchtitle" content="TIV Page - <struts:property value="location.getName(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" />" />
+  <title><struts:property value="getProperty('title')" /> - <struts:property value="location.getName(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" /></title>
+  <meta name="title" content="<struts:property value="getProperty('title')" /> - <struts:property value="location.getName(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" />" />
+  <meta name="searchtitle" content="<struts:property value="getProperty('title')" /> - <struts:property value="location.getName(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" />" />
   <meta name="description" content="<struts:property value="location.getDescription(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" />" />
   <meta name="abstract" content="<struts:property value="location.getDescription(getText('language'))" /> <struts:text name="page" /> <struts:property value="current" />" />
   <meta name="keywords" content="<struts:property value="location.getKeywords(getText('language'))" />" />
