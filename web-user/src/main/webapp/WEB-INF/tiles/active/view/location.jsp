@@ -51,23 +51,47 @@
             </colgroup>
 
             <tr>
-              <td><img src="/public/icons/telephone.png" alt="Telefon" align="absmiddle"></td>
+              <td>
+                <img src="<struts:property value="getProperty('project.icon.path')"/>telephone.png"
+                     alt="Telefon"
+                     align="absmiddle">
+              </td>
               <td><struts:property value="contactDetails.telephone" /></td>
             </tr>
+
+          <struts:if test="getProperty('location.page.mobile') == 'true'">
             <tr>
-              <td><img src="/public/icons/mobile.png" alt="Mobil" align="absmiddle"></td>
+              <td>
+                <img src="<struts:property value="getProperty('project.icon.path')"/>mobile.png" 
+                     alt="Mobil" 
+                     align="absmiddle">
+              </td>
               <td><struts:property value="contactDetails.mobile" /></td>
             </tr>
+          </struts:if>
+
             <tr>
-              <td><img src="/public/icons/fax.png" alt="Fax" align="absmiddle"></td>
+              <td>
+                <img src="<struts:property value="getProperty('project.icon.path')"/>fax.png" 
+                     alt="Fax" 
+                     align="absmiddle">
+              </td>
               <td><struts:property value="contactDetails.fax" /></td>
             </tr>
             <tr>
-              <td><img src="/public/icons/email.png" alt="E-Mail" align="absmiddle"></td>
+              <td>
+                <img src="<struts:property value="getProperty('project.icon.path')"/>email.png" 
+                     alt="E-Mail" 
+                     align="absmiddle">
+              </td>
               <td><struts:property value="contactDetails.email" /></td>
             </tr>
             <tr>
-              <td><img src="/public/icons/world.png" alt="Website" align="absmiddle"></td>
+              <td>
+                <img src="<struts:property value="getProperty('project.icon.path')"/>world.png" 
+                     alt="Website" 
+                     align="absmiddle">
+              </td>
               <td><struts:property value="contactDetails.homepage" /></td>
             </tr>
           </table>
