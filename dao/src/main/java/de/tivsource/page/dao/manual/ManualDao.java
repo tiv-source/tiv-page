@@ -103,6 +103,16 @@ public class ManualDao implements ManualDaoLocal {
         return query.getResultList();
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Manual> findAllVisible(Integer start, Integer max) {
+        String queryString = "SELECT m FROM Manual m WHERE m.visible = 'Y' ORDER BY m.created desc";
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.manual.ManualDaoLocal#countAll()
 	 */
@@ -111,5 +121,11 @@ public class ManualDao implements ManualDaoLocal {
         Query query = entityManager.createQuery("Select Count(m) from Manual m");
         return Integer.parseInt(query.getSingleResult().toString());
 	}
+
+    @Override
+    public Integer countAllVisible() {
+        Query query = entityManager.createQuery("Select Count(m) from Manual m WHERE m.visible = 'Y'");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
 
 }// Ende class

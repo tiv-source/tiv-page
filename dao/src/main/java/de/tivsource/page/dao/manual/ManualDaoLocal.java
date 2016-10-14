@@ -74,6 +74,8 @@ public interface ManualDaoLocal {
      */
     public List<Manual> findAll(Integer start, Integer max, String field, String order);
 
+    public List<Manual> findAllVisible(Integer start, Integer max);
+
     /**
      * Methode die die Anzahl aller Manual Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -81,5 +83,7 @@ public interface ManualDaoLocal {
      * @return Integer - Anzahl der Manual Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllVisible();
 
 }// Ende interface
