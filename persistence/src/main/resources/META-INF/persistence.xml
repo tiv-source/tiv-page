@@ -10,6 +10,7 @@
 
 		<class>de.tivsource.page.entity.application.Application</class>
         <class>de.tivsource.page.entity.application.Education</class>
+        <class>de.tivsource.page.entity.appointment.Appointment</class>
 		<class>de.tivsource.page.entity.administration.Role</class>
 		<class>de.tivsource.page.entity.administration.User</class>
 		<class>de.tivsource.page.entity.contentitem.Content</class>
