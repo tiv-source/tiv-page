@@ -103,11 +103,11 @@ public class IndexAction extends EmptyAction implements Pagination {
 
         // Kalkuliere die Seiten
         this.calculate();
-        
-        // TODO: neue Methode die das Datum und das Attribute visible berücksichtigt 
-        manuals = manualDaoLocal.findAll(from, TO);
+ 
+        // Hole sichtbare Anleitungen aus der Datenbank
+        manuals = manualDaoLocal.findAllVisible(from, TO);
         return SUCCESS;
-        
+
     }// Ende execute()
 
     @Override
@@ -145,7 +145,7 @@ public class IndexAction extends EmptyAction implements Pagination {
 
     private void getDBCount() {
         LOGGER.debug("getDBCount() aufgerufen.");
-        dbQuantity = manualDaoLocal.countAll();
+        dbQuantity = manualDaoLocal.countAllVisible();
         LOGGER.debug("DbQuantity: " + dbQuantity);
         // Berechne die Maximal mögliche Seitenzahl
         maxPages = (dbQuantity % TO == 0) ? (dbQuantity / TO) : (dbQuantity / TO) + 1;

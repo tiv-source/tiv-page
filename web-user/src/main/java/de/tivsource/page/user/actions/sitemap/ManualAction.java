@@ -49,7 +49,7 @@ public class ManualAction extends EmptyAction {
     }// Ende execute()
 
     public List<Manual> getManuals() {
-        return manualDaoLocal.findAll(0, manualDaoLocal.countAll());
+        return manualDaoLocal.findAllVisible(0, manualDaoLocal.countAllVisible());
     }
 
 }// Ende class
