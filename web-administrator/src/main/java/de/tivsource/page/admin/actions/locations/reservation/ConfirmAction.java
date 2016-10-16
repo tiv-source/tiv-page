@@ -107,25 +107,26 @@ public class ConfirmAction extends EmptyAction {
     	    			propertyDaoLocal.findByKey("reservation.ads").getValue()
     	    		).getPictureUrl(UrlType.NORMAL.toString());
     	    
-    	    URL urlLogo = ConfirmAction.class.getClassLoader().getResource("logo1.png");
-    	    URL urlFont = ConfirmAction.class.getClassLoader().getResource("bankgothicltbt.ttf");
+    	    URL templatePath = new URL(propertyDaoLocal.findByKey("reservation.confirm.template.path").getValue());
+    	    URL logoPath = new URL(propertyDaoLocal.findByKey("reservation.confirm.logo.path").getValue());
+    	    URL fontPath = new URL(propertyDaoLocal.findByKey("reservation.confirm.font.path").getValue());
 
     	    // Hole die Benutzerdaten aus der Datenbank
     	    User user = userDaoLocal.findByUsername(remoteUser);
     	    
-    	    LOGGER.info("Pfad der Logo Datei " + urlLogo.getFile());
+    	    LOGGER.info("Pfad der Logo Datei " + logoPath.getFile());
     	    LOGGER.info("Pfad der Ads  Datei " + urlAds);
-    	    LOGGER.info("Pfad der Font Datei " + urlFont.getFile());
+    	    LOGGER.info("Pfad der Font Datei " + fontPath.getFile());
     	    
     	    ReservationMail reservationMail = new ReservationMail(
                     propertyDaoLocal.findByKey("mail.user").getValue(),
                     propertyDaoLocal.findByKey("mail.password").getValue(),
-                    this.getClass().getClassLoader().getResource("template_confirmation.xml"),
+                    templatePath,
                     dbReservation,
-                    new File(urlLogo.getFile()),
+                    new File(logoPath.getFile()),
                     new File(urlAds),
                     getProperties(),
-                    new File(urlFont.getFile()),
+                    new File(fontPath.getFile()),
                     propertyDaoLocal.findByKey("reservation.formAddress").getValue(),
                     propertyDaoLocal.findByKey("reservation.fromName").getValue(),
                     propertyDaoLocal.findByKey("reservation.replyToAddress").getValue(),
