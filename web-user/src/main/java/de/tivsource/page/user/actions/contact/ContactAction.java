@@ -1,5 +1,7 @@
 package de.tivsource.page.user.actions.contact;
 
+import java.net.URL;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
@@ -58,7 +60,8 @@ public class ContactAction extends EmptyAction {
     	Boolean contactPageEnabled = propertyDaoLocal.findByKey("contact.page.enabled").getValue().equals("true") ? true : false;
 
     	if(contactPageEnabled) {
-            LOGGER.info("Pfad zur temp.xml Klasse: " + this.getClass().getClassLoader().getResource("/template_mail.xml"));
+    	    URL templatePath = new URL(propertyDaoLocal.findByKey("mail.template.path").getValue());
+            LOGGER.info("Pfad zur temp.xml Klasse: " + templatePath);
             return SUCCESS;
     	} else {
     	    return ERROR;
