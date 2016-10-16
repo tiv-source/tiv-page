@@ -211,7 +211,7 @@ public class ReservationAction extends EmptyAction {
         InputStream template;
 
         try {
-            URL templatePath = this.getClass().getClassLoader().getResource("template_reservation.xml");
+            URL templatePath = new URL(propertyDaoLocal.findByKey("reservation.template.path").getValue());
             LOGGER.info("Pfad zur template Datei: " + templatePath);
             template = templatePath.openStream();
             LOGGER.info("Template eingelesen");
