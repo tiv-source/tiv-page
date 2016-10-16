@@ -51,7 +51,7 @@
     "@type" : "Offer",
     "price" : "<struts:property value="price" />",
     "priceCurrency" : "EUR",
-    "url" : "<struts:text name="server.base.url" /><struts:property value="%{eventLink}" />"
+    "url" : "<struts:property value="getProperty('server.base.url')" /><struts:property value="%{eventLink}" />"
   }    
 }
 
