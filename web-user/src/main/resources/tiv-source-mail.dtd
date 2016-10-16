@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT email (from|to|cc|bcc|subject|body|html)>
-<!ELEMENT from (#PCDATA)>
-<!ELEMENT to (#PCDATA)>
-<!ELEMENT cc (#PCDATA)>
-<!ELEMENT bcc (#PCDATA)>
-<!ELEMENT subject (#PCDATA)>
-<!ELEMENT body (#PCDATA)>
-<!ELEMENT html (#PCDATA)>
