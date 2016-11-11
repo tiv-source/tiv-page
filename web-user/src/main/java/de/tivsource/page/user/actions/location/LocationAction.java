@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.location;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,7 @@ import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
+import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -30,6 +32,11 @@ public class LocationAction extends EmptyAction {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = LogManager.getLogger(LocationAction.class);
+
+    /**
+     * Attribut das die maximal Anzahl der Liste enthält. 
+     */
+    private static final Integer TO = 3;
 
     @InjectEJB(name = "PageDao")
     private PageDaoLocal pageDaoLocal;
@@ -49,6 +56,8 @@ public class LocationAction extends EmptyAction {
     private String locationUuid;
 
     private Location location;
+
+    private List<Event> events;
     
     private Page page;
 
@@ -89,6 +98,12 @@ public class LocationAction extends EmptyAction {
             // Setze Daten in ein Page Objekt
             setUpPage();
 
+			// Wenn dies eine Event-Location ist dann hole die Events aus der
+			// Datenbank
+            if(location.getEvent()) {
+            	events = eventDaoLocal.findAll(locationUuid, 0, TO);
+            }
+
             return SUCCESS;
         }
 
@@ -104,7 +119,11 @@ public class LocationAction extends EmptyAction {
         return page;
     }
 
-    private Boolean isValid(String input) {
+    public List<Event> getEvents() {
+		return events;
+	}
+
+	private Boolean isValid(String input) {
         if (Pattern.matches("[abcdef0-9-]*", input)) {
             return true;
         } else {
