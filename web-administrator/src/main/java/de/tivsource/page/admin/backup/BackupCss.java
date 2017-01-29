@@ -12,7 +12,6 @@ import java.util.zip.ZipOutputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 
@@ -37,10 +36,7 @@ public class BackupCss {
 
 	public static File getZipFile() throws IOException {
         LOGGER.info("getZipFile() aufgerufen.");
-
-    	String realPath = ServletActionContext.getServletContext().getRealPath("/");
-    	String fixedPath = realPath.replaceAll("/web-administrator-0.0.1", "");
-    	String pathToCss = fixedPath + propertyDaoLocal.findByKey("css-path").getValue();
+    	String pathToCss = propertyDaoLocal.findByKey("css-path").getValue();
         
         // Zip-Datei erstellen und Stream bereitstellen.
         File zipFile = File.createTempFile("css_tivpage", "zip");

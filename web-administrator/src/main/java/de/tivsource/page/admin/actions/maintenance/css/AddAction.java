@@ -7,7 +7,6 @@ import java.io.InputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -80,9 +79,7 @@ public class AddAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	String realPath = ServletActionContext.getServletContext().getRealPath("/");
-    	String fixedPath = realPath.replaceAll("/web-administrator-0.0.1", "");
-    	String pathToCss = fixedPath + propertyDaoLocal.findByKey("css-path").getValue();
+    	String pathToCss = propertyDaoLocal.findByKey("css-path").getValue();
 
     	File cssFileToCreate = new File(pathToCss, filename);
         // Wenn die Datei noch nicht existiert wird Sie erstellt.

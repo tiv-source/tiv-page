@@ -10,13 +10,13 @@
   <tiles:insertAttribute name="meta" />
   <tiles:insertAttribute name="twitter" />
 
-  <link rel="stylesheet" type="text/css" href="/public/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/main_style.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_sitethemes.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_actionthemes.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_gallery.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/tiv_page_formulars.css">
+  <link rel="stylesheet" type="text/css" href="/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="/css/main_style.css">
+  <link rel="stylesheet" type="text/css" href="/css/tiv_page.css">
+  <link rel="stylesheet" type="text/css" href="/css/tiv_page_sitethemes.css">
+  <link rel="stylesheet" type="text/css" href="/css/tiv_page_actionthemes.css">
+  <link rel="stylesheet" type="text/css" href="/css/tiv_page_gallery.css">
+  <link rel="stylesheet" type="text/css" href="/css/tiv_page_formulars.css">
 
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.ico.path')"/>" type="image/vnd.microsoft.icon" />
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.png.path')"/>" type="image/png" />

@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -61,9 +60,7 @@ public class JsonAction extends ActionSupport {
         )
     })
     public String execute() {
-    	String realPath = ServletActionContext.getServletContext().getRealPath("/");
-    	String fixedPath = realPath.replaceAll("/web-administrator-0.0.1", "");
-    	String pathToCss = fixedPath + propertyDaoLocal.findByKey("css-path").getValue();
+    	String pathToCss = propertyDaoLocal.findByKey("css-path").getValue();
     	folder = new File(pathToCss);
     	rawFileArray = folder.listFiles();
 

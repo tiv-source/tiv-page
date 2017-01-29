@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -69,9 +68,7 @@ public class DeleteAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	String realPath = ServletActionContext.getServletContext().getRealPath("/");
-    	String fixedPath = realPath.replaceAll("/web-administrator-0.0.1", "");
-    	String pathToCss = fixedPath + propertyDaoLocal.findByKey("css-path").getValue();
+    	String pathToCss = propertyDaoLocal.findByKey("css-path").getValue();
     	
     	if(file != null && file.length() > 0) {
     	    String deleteFile = pathToCss + file;
