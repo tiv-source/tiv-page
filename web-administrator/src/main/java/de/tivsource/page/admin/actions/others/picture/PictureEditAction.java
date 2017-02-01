@@ -124,10 +124,22 @@ public class PictureEditAction extends EmptyAction {
             	createLarge(uploadPath + pictureSaveName, picturePath
             		+ "LARGE/" + pictureSaveName);
 
+                // Lösche alle Bilder
+                pictureDaoLocal.delete(dbPicture.getPictureUrls().get(UrlType.FULL).getUuid());
+                pictureDaoLocal.delete(dbPicture.getPictureUrls().get(UrlType.LARGE).getUuid());
+                pictureDaoLocal.delete(dbPicture.getPictureUrls().get(UrlType.NORMAL).getUuid());
+                pictureDaoLocal.delete(dbPicture.getPictureUrls().get(UrlType.THUMBNAIL).getUuid());
+                dbPicture.getPictureUrls().remove(UrlType.FULL);
+                dbPicture.getPictureUrls().remove(UrlType.LARGE);
+                dbPicture.getPictureUrls().remove(UrlType.NORMAL);
+                dbPicture.getPictureUrls().remove(UrlType.THUMBNAIL);
+                pictureDaoLocal.merge(dbPicture);
+
             	// Setzte die Urls in das Bild.
             	dbPicture.setPictureUrls(generatePictureUrls(pictureSaveName, picture));
     	    }
 
+    	    
     	    LOGGER.info("PictureUrl (FULL): " + dbPicture.getPictureUrls().get(UrlType.FULL).getUrl());
             pictureDaoLocal.merge(dbPicture);
             return SUCCESS;
