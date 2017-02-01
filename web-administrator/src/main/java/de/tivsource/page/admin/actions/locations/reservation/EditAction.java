@@ -77,7 +77,7 @@ public class EditAction extends EmptyAction {
     	if(reservation != null) {
     	    Reservation dbReservation = reservationDaoLocal.findByUuid(reservation.getUuid());
             redirect = "index.html?event=" + dbReservation.getEvent().getUuid();
-            // dbReservation.setConfirmed(confirmed);
+            dbReservation.setConfirmed(false);
             dbReservation.setEmail(reservation.getEmail());
             dbReservation.setFirstname(reservation.getFirstname());
             dbReservation.setGender(reservation.getGender());
