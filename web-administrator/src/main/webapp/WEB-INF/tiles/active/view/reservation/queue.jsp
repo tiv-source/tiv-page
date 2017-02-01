@@ -6,14 +6,14 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/reservation/confirmForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/view.png'/>" + 
+  return "<a href='/admin/locations/reservation/confirmForm.html?reservation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/view.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" +
-         "<a href='/admin/locations/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png'/>" + 
+         "<a href='/admin/locations/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none;'>" + 
-         "<img src='/admin/icons/16x16/delete.png'/>" + 
+         "<a href='/admin/locations/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
