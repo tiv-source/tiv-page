@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.entity.picture.PictureUrl;
 
 /**
  * @author Marc Michele
@@ -59,6 +60,12 @@ public class PictureDao implements PictureDaoLocal {
 		// Lösche das Bild aus der Datenbank
 		entityManager.remove(entityManager.find(Picture.class, picture.getUuid()));
 	}
+
+    @Override
+    public void delete(String pictureUrlUuid) {
+        // // Lösche die Bild Url aus der Datenbank
+        entityManager.remove(entityManager.find(PictureUrl.class, pictureUrlUuid));
+    }
 
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.picture.PictureDaoLocal#isPicture(java.lang.String)
