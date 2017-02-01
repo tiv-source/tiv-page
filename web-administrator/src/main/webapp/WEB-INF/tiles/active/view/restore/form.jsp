@@ -27,7 +27,7 @@
 
                 <struts:file key="restoreFile" theme="css_xhtml">
                   <struts:param name="required" value="true" />
-                  <struts:param name="disabled" value="disabledValue" />
+                  <struts:param name="disabled" value="false" />
                 </struts:file>
               </div>
 
