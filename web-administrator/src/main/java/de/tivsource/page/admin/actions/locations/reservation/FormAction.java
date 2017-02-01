@@ -28,24 +28,24 @@ import de.tivsource.page.entity.reservation.Reservation;
 @TilesDefinitions({
   @TilesDefinition(name="reservationAddForm",  extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/add_form.jsp")
   }),
   @TilesDefinition(name="reservationEditForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/edit_form.jsp")
   }),
   @TilesDefinition(name="reservationDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/delete_form.jsp")
   }),
   @TilesDefinition(name="reservationView", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/view.jsp")
   }),
   @TilesDefinition(name="reservationConfirmForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/reservation/confirm_form.jsp")
   })
 })
