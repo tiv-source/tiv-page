@@ -39,6 +39,13 @@ function formatIsoDate(celldate, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatCurrency(cellvalue, options, rowObject) {
+  var outputCurrency = parseFloat(cellvalue).toFixed(2);
+  return outputCurrency + " €";  
+}
+</script>
+
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
@@ -59,7 +66,7 @@ $(function () {
             "Preis", 
             "Anfang", 
             "Ende", 
-            "Reservierungsschluss", 
+            "Reservierungsschl.", 
             "Reservierbar", 
             "Sichtbar", 
             "Bearbeitet am", 
@@ -68,23 +75,23 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "descriptionMap.DE.name", width:  140 },
-            { name: "location.descriptionMap.DE.name", width:  140 },
-            { name: "price",           width:  140 },
-            { name: "beginning",       width:  140, align: "center", formatter:formatIsoDate },
-            { name: "ending",          width:  140, align: "center", formatter:formatIsoDate },
-            { name: "deadline",        width:  140, align: "center", formatter:formatIsoDate },
-            { name: "reservation",     width:  140, align: "center", formatter:formatTrueFalse },
-            { name: "visible",         width:  140, align: "center", formatter:formatTrueFalse },
-            { name: "modified",        width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",      width:  140, align: "right" },
-            { name: "modifiedAddress", width:  210, align: "right" },
-            { name: "uuid",            width:  130, align: "center", sortable: false, formatter:formatEditLink }
+            { name: "descriptionMap.DE.name",          width:  140 },
+            { name: "location.descriptionMap.DE.name", width:  210 },
+            { name: "price",                           width:   90, align:  "right", formatter:formatCurrency },
+            { name: "beginning",                       width:  140, align: "center", formatter:formatIsoDate },
+            { name: "ending",                          width:  140, align: "center", formatter:formatIsoDate },
+            { name: "deadline",                        width:  140, align: "center", formatter:formatIsoDate },
+            { name: "reservation",                     width:  130, align: "center", formatter:formatTrueFalse },
+            { name: "visible",                         width:  120, align: "center", formatter:formatTrueFalse },
+            { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",                      width:  140, align:  "right" },
+            { name: "modifiedAddress",                 width:  180, align:  "right" },
+            { name: "uuid",                            width:  130, align: "center", sortable: false, formatter:formatEditLink }
         ],
         pager: "#entityPager",
-        rowNum: 10,
+        rowNum: 15,
         rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
-        sortname: "name",
+        sortname: "beginning",
         sortorder: "asc",
         viewrecords: true,
         gridview: true,
