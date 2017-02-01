@@ -77,9 +77,11 @@ $(function () {
             "Telefon", 
             "EMail", 
             "Personen", 
-            "uhrzeit", 
+            "Uhrzeit", 
             "Erstellt von", 
             "Erstellt am",
+            "Bestätigt am",
+            "Bestätigt von",
             ""
         ],
         colModel: [
@@ -89,9 +91,11 @@ $(function () {
             { name: "telephone",              width:  140 },
             { name: "email",                  width:  140 },
             { name: "quantity",               width:  140 },
-            { name: "time",                   width:  140, align: "center", formatter:formatIsoTime },
-            { name: "createdAddress",         width:  140, align: "center" },
-            { name: "created",                width:  140, align: "center", formatter:formatIsoDate },
+            { name: "time",                   width:   70, align: "center", formatter:formatIsoTime },
+            { name: "createdAddress",         width:  100, align: "center" },
+            { name: "created",                width:  110, align: "center", formatter:formatIsoDate },
+            { name: "confirmedDate",          width:  110, align: "center", formatter:formatIsoDate },
+            { name: "confirmedBy",            width:  120, align: "center" },
             { name: "uuid",                   width:   70, align: "center", sortable: false, formatter:formatEditLink }
         ],
         pager: "#entityPager",
