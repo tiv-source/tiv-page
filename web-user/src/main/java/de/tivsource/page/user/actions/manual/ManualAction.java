@@ -70,11 +70,11 @@ public class ManualAction extends EmptyAction {
         LOGGER.info("ManualUuid: " + manualUuid);
 
         /*
-         * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
-         * die Location mit der Uuid gibt dann wird der Block ausgeführt.
+         * Wenn die Manual Uuid keine nicht erlaubten Zeichen enthält und es
+         * das Manual mit der Uuid gibt dann wird der Block ausgeführt.
          */
         if (isValid(manualUuid) && manualDaoLocal.isManualUuid(manualUuid)) {
-            LOGGER.info("gültige News Uuid.");
+            LOGGER.info("gültige Manual Uuid.");
 
             manual = manualDaoLocal.findByUuid(manualUuid);
 
