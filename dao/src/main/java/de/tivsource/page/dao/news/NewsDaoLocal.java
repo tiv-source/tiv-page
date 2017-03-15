@@ -42,6 +42,8 @@ public interface NewsDaoLocal {
      */
     public Boolean isNewsUrl(String urlName);
 
+    public Boolean isPublicNewsUuid(String uuid);
+
     public News findByUuid(String uuid);
 
     /**
@@ -67,6 +69,8 @@ public interface NewsDaoLocal {
      */
     public List<News> findAll(Integer start, Integer max, String field, String order);
 
+    public List<News> findAllVisible(Integer start, Integer max);
+
     /**
      * Methode die die Anzahl aller News Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -74,5 +78,7 @@ public interface NewsDaoLocal {
      * @return Integer - Anzahl der News Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllVisible();
 
 }// Ende interface
