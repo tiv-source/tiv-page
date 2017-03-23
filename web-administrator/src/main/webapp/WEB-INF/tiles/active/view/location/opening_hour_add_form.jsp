@@ -21,6 +21,16 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <label for="location.descriptionMap.DE.name" class="label" style="display: block; float: left;">Filiale: </label>
+                <struts:property value="location.descriptionMap.DE.name"/>
+              </div>
+
+              <div class="field">
+                <label for="location.address.city" class="label" style="display: block; float: left;">Ort: </label>
+                <struts:property value="location.address.city"/>
+              </div>
+
+              <div class="field">
                 <struts:select
                     key="openingHour.weekday"
                     list="weekdays" 
@@ -35,32 +45,36 @@
               <div class="field">
                 <struts:textfield 
                     key="openingHour.open.hour"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
+                    parentTheme="xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
               </div>
 
               <div class="field">
                 <struts:textfield 
                     key="openingHour.open.minute"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
+                    parentTheme="xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
               </div>
 
               <div class="field">
                 <struts:textfield 
                     key="openingHour.close.hour"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
+                    parentTheme="xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
               </div>
 
               <div class="field">
                 <struts:textfield 
                     key="openingHour.close.minute"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
+                    parentTheme="xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
                 />
               </div>
 
@@ -76,12 +90,14 @@
                   class="save small_green_button button">
                     <struts:text name="form.save"/>
               </button>
+              <struts:url var="overviewUrl" action="overview" namespace="/locations/location">
+                <struts:param name="locationUuid" value="location.uuid" />
+              </struts:url>
               <struts:a 
                   id="submit_deny__Close" 
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
-                  action="index" 
-                  namespace="/locations/location">
+                  href="%{overviewUrl}">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>

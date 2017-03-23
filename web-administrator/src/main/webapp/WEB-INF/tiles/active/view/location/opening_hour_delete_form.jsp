@@ -29,8 +29,8 @@
               </div>
 
               <div class="field">
-                <label for="openingHour.weeday" class="label"><struts:text name="openingHour.weekday"/></label>
-                <struts:property value="getText(openingHour.weekday)" />:
+                <label for="openingHour.weeday" class="label"><struts:text name="openingHour.weekday"/>:</label>
+                <struts:property value="getText(openingHour.weekday)" />
               </div>
 
               <div class="field">
@@ -53,12 +53,14 @@
                   class="save small_green_button button">
                     <struts:text name="form.delete"/>
               </button>
+              <struts:url var="overviewUrl" action="overview" namespace="/locations/location">
+                <struts:param name="locationUuid" value="location.uuid" />
+              </struts:url>
               <struts:a 
                   id="submit_deny__Close" 
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
-                  action="index" 
-                  namespace="/locations/location">
+                  href="%{overviewUrl}">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>

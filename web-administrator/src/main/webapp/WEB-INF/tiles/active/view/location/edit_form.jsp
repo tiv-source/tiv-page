@@ -9,7 +9,7 @@
   <struts:param name="location" value="location.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-<struts:url var="locationOverviewUrl" namespace="/location" action="overview">
+<struts:url var="locationOverviewUrl" namespace="/locations/location" action="overview">
   <struts:param name="locationUuid" value="location.uuid" />
 </struts:url>
 
