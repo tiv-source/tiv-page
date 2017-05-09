@@ -37,7 +37,7 @@ public class BackupEvent {
     	BufferedWriter backupFileWriterOut = new BufferedWriter(backupFileWriter);
 
     	// Format Definition 
-    	backupFileWriterOut.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|uuid(en)|name(en)|description(en)|keywords(en)|visible|created|modified|modifiedBy|modifiedAddress|price|beginning|ending|deadline|location|reservation|picture|piwikGoal|maxReservations|maxPersons|");
+    	backupFileWriterOut.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|uuid(en)|name(en)|description(en)|keywords(en)|visible|created|modified|modifiedBy|modifiedAddress|price|beginning|ending|deadline|location|reservation|picture|piwikGoal|maxReservations|maxPersons|pictureOnPage|");
 
     	Iterator<Event> typeIterator = eventDaoLocal.findAll(0, MAX).iterator();
     	while(typeIterator.hasNext()) {
@@ -59,7 +59,7 @@ public class BackupEvent {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|
-	    // price|beginning|ending|deadline|location|reservation|picture|piwikGoal|maxReservations|maxPersons|
+	    // price|beginning|ending|deadline|location|reservation|picture|piwikGoal|maxReservations|maxPersons|pictureOnPage|
 	    
 		StringBuffer nextString = new StringBuffer();
 
@@ -137,6 +137,9 @@ public class BackupEvent {
         nextString.append("|");
 
         nextString.append(next.getMaxPersons().toString());
+        nextString.append("|");
+
+        nextString.append(next.getPictureOnPage().toString());
         nextString.append("|");
 
 		return nextString.toString();

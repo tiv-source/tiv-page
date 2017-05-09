@@ -69,7 +69,11 @@ public class NamingItem {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "picture_uuid")
     private Picture picture;
-    
+
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean pictureOnPage = true;
+
     public String getUuid() {
         return uuid;
     }
@@ -134,7 +138,15 @@ public class NamingItem {
 		this.picture = picture;
 	}
 
-	/**
+	public Boolean getPictureOnPage() {
+        return pictureOnPage;
+    }
+
+    public void setPictureOnPage(Boolean pictureOnPage) {
+        this.pictureOnPage = pictureOnPage;
+    }
+
+    /**
      * Methode die den Namen des aktuellen Objektes zurück liefert, es muss dazu
      * die gewünschte Sprache als String übergeben werden (e.g. de/en/fr(etc.).
      * 

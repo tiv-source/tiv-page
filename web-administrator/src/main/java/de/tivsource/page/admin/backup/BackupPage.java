@@ -42,7 +42,7 @@ public class BackupPage {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|");
+    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|pictureOnPage|");
 
     	Iterator<Page> pageIterator = pageDaoLocal.findAll(0, max).iterator();
     	while(pageIterator.hasNext()) {
@@ -68,7 +68,7 @@ public class BackupPage {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|
-	    // navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|
+	    // navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|pictureOnPage|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -172,7 +172,10 @@ public class BackupPage {
 
         nextString.append(next.getPicture().getUuid());
         nextString.append("|");
-        
+
+        nextString.append(next.getPictureOnPage().toString());
+        nextString.append("|");
+
 		return nextString.toString();
 	}
 

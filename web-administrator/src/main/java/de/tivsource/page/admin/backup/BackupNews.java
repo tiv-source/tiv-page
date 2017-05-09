@@ -40,7 +40,7 @@ public class BackupNews {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|picture|releaseDate|");
+    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|picture|releaseDate|pictureOnPage|");
 
     	Iterator<News> pageIterator = newsDaoLocal.findAll(0, newsDaoLocal.countAll()).iterator();
     	while(pageIterator.hasNext()) {
@@ -65,7 +65,7 @@ public class BackupNews {
 		// uuid|
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-	    // visible|created|modified|modifiedBy|modifiedAddress|picture|releaseDate|
+	    // visible|created|modified|modifiedBy|modifiedAddress|picture|releaseDate|pictureOnPage|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -142,6 +142,9 @@ public class BackupNews {
 
 		nextString.append(simpleDateFormat.format(next.getReleaseDate()));
 		nextString.append("|");
+
+	    nextString.append(next.getPictureOnPage().toString());
+	    nextString.append("|");
 
 		return nextString.toString();
 	}

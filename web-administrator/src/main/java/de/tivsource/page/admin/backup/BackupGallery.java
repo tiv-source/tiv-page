@@ -35,7 +35,7 @@ public class BackupGallery {
     	BufferedWriter backupFileWriterOut = new BufferedWriter(backupFileWriter);
 
     	// Format Definition 
-    	backupFileWriterOut.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|uuid(en)|name(en)|description(en)|keywords(en)|visible|created|modified|modifiedBy|modifiedAddress|picture|technical|orderNumber|");
+    	backupFileWriterOut.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|uuid(en)|name(en)|description(en)|keywords(en)|visible|created|modified|modifiedBy|modifiedAddress|picture|technical|orderNumber|pictureOnPage|");
 
     	Iterator<Gallery> typeIterator = galleryDaoLocal.findAll(0, galleryDaoLocal.countAll()).iterator();
     	while(typeIterator.hasNext()) {
@@ -57,7 +57,7 @@ public class BackupGallery {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|picture|
-	    // technical|orderNumber|
+	    // technical|orderNumber|pictureOnPage|
 	    
 		StringBuffer nextString = new StringBuffer();
 		
@@ -114,6 +114,9 @@ public class BackupGallery {
         nextString.append("|");
 
         nextString.append(next.getOrderNumber().toString());
+        nextString.append("|");
+
+        nextString.append(next.getPictureOnPage().toString());
         nextString.append("|");
 
 		return nextString.toString();
