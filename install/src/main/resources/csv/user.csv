@@ -1,3 +1,3 @@
 [Format Definition] => uuid|username|email|firstname|lastname|password|roles|created|modified|ip|modifiedBy|
-65d1e9b1-add3-40f3-ac2f-636ef48160c7|easy|marc.michele@tivsource.de|Marc|Michele|test|administrator;|2015-02-15 19:51:51|2015-02-15 19:55:54|localhost|easy|
-7ca9a4b3-b89f-46a4-9d08-47273d076ed2|knuddel|kamilla.michele@tivsource.de|Kamilla|Michele|test|administrator;|2015-02-15 19:51:51|2015-02-15 19:55:54|localhost|easy|
+65d1e9b1-add3-40f3-ac2f-636ef48160c7|easy|marc.michele@tiv-consulting.de|Marc|Michele|test|administrator;|2015-02-15 19:51:51|2015-02-15 19:55:54|localhost|easy|
+7ca9a4b3-b89f-46a4-9d08-47273d076ed2|kmichele|kamilla.michele@tiv-consulting.de|Kamilla|Michele|test|administrator;|2015-02-15 19:51:51|2015-02-15 19:55:54|localhost|easy|
