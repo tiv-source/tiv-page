@@ -89,6 +89,10 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news.jsp" />
 	</definition>
 
+	<definition name="gallery" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery.jsp" />
+	</definition>
+
 	<definition name="galleryList" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery_list.jsp" />
 	</definition>
@@ -101,6 +105,10 @@
 	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/manual.jsp" />
 	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/manual.jsp" />
 		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/manual.jsp" />
+	</definition>
+
+	<definition name="picture" extends="userTemplate">
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture.jsp" />
 	</definition>
 
 </tiles-definitions>
