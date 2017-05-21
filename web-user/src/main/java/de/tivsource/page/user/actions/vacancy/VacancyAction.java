@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.vacancy;
 
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -110,7 +111,7 @@ public class VacancyAction extends EmptyAction {
     public Page getPage() {
         return page;
     }
-
+    
     private Boolean isValid(String input) {
         if (Pattern.matches("[abcdef0-9-]*", input)) {
             return true;

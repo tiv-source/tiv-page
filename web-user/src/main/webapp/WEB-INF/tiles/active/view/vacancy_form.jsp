@@ -39,7 +39,7 @@
         </div>
 
         <div class="field">
-          <struts:textfield key="application.fax" />
+          <struts:textfield key="application.mobile" />
         </div>
 
         <div class="field">

@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.vacancy;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -74,6 +75,10 @@ public class IndexAction extends EmptyAction {
     public Page getPage() {
     	return page;
     }// Ende getPage()
+
+    public Date getNow() {
+        return new Date();
+    }
 
     public List<Vacancy> getList() {
         return vacancyDaoLocal.findAll(0, vacancyDaoLocal.countAll());

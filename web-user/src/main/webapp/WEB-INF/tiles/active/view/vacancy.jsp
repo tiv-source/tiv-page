@@ -14,9 +14,25 @@
       <div class="informations <struts:if test="#vacancyStatus.odd == true ">color3</struts:if><struts:else>color4</struts:else>">
         <div class="information">
           <h4><struts:property value="getName(getText('language'))" /></h4>
-          <p><struts:property value="workingTime" /></p>
-          <p><struts:property value="beginning" /></p>
-          <p><struts:property value="location.getName(getText('language'))" /></p>
+
+          <p class="title">Arbeitszeit:</p>
+          <p class="description"><struts:property value="workingTime" /></p>
+
+          <p class="title">Anfang:</p>
+          <p class="description">
+            <struts:if test="%{now < beginning}">
+              <struts:date name="beginning" format="dd.MM.yyyy" />
+            </struts:if>
+            <struts:else>
+              ab Sofort
+            </struts:else>
+          </p>
+
+          <p class="title">Filiale:</p>
+          <p class="description"><struts:property value="location.getName(getText('language'))" /></p>
+
+          <p class="title">Standort:</p>
+          <p class="description"><struts:property value="location.address.city" /></p>
         </div>
 
         <div class="impression">
