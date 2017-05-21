@@ -3,27 +3,28 @@
 
 
     <div>
-      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
 
-    <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
+    <h1><struts:property value="gallery.getName(getText('language'))" /></h1>
+    <p><struts:property value="gallery.getDescription(getText('language'))" /></p>
+    <p class="bc_bottom">&nbsp;</p>
 
-    <div class="galleries">
-
+    <div class="gallery">
     
-  <struts:iterator value="gallery" status="locationStatus">
-    <struts:url var="galleryLink" action="index" namespace="/gallery/%{uuid}"/>
+  <struts:iterator value="pictures" status="pictureStatus">
+    <struts:url var="galleryLink" action="index" namespace="/gallery/%{gallery.uuid}/%{current}/%{#pictureStatus.count}"/>
     <div class="boxed">
       <div class="vcenter">
         <struts:a href="%{galleryLink}">
           <div class="clickable">
             <div class="holder">
               <div class="frame">
-                <img src="/pictures/FULL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+                <img src="/pictures/THUMBNAIL/<struts:property value="pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
               </div>
-            </div>
-            <div class="propertie">
-              <p><struts:property value="getName(getText('language'))" /></p>
+              <div class="propertie">
+                <p><struts:property value="getName(getText('language'))" /></p>
+              </div>
             </div>
           </div>
         </struts:a>
@@ -55,7 +56,7 @@
         </div>
       </struts:a>
     </struts:if>
-
+    
     </div>
     <hr>
 
