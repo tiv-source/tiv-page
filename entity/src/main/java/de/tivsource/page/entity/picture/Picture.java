@@ -204,4 +204,18 @@ public class Picture {
         }
     }
 
+    public String getDescription(String language) {
+        String result = descriptionMap.get(Language.DE).getDescription();
+        String tmpResult = descriptionMap.get(Language.DE).getDescription();
+        try {
+            tmpResult = descriptionMap.get(
+                    Language.valueOf(language.toUpperCase())).getDescription();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+
 }// Ende class
