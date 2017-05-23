@@ -29,7 +29,7 @@ import de.tivsource.page.helper.barcode.CreateBarcode;
  */
 public class CreateReservationPDF {
 
-	private static final String HTDOCS = "/srv/www/htdocs";
+	private static final String HTDOCS = "/var/www/html";
 
 	private File file;
 	

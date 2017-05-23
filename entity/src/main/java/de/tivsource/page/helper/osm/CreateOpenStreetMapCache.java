@@ -22,7 +22,7 @@ import javax.imageio.ImageIO;
  */
 public class CreateOpenStreetMapCache {
 
-	private static final String HTDOCS = "/srv/www/htdocs/osmcache/";
+	private static final String HTDOCS = "/var/www/html/osmcache/";
 	
 	private String uuid;
 
