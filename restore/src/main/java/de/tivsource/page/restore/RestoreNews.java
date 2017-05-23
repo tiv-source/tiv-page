@@ -80,7 +80,7 @@ public class RestoreNews {
 		// uuid|
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-	    // visible|created|modified|modifiedBy|modifiedAddress|picture|releaseDate|
+	    // visible|created|modified|modifiedBy|modifiedAddress|picture|releaseDate|pictureOnPage|
 
 
         News news = new News();
@@ -112,6 +112,7 @@ public class RestoreNews {
         news.setModifiedAddress(items[21]);
         news.setPicture(pictureDaoLocal.findByUuid(items[22]));
         news.setReleaseDate(convertDateString(items[23]));
+        news.setPictureOnPage(items[24].equals("true") ? true : false);
 
         return news;
     }

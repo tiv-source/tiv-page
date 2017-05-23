@@ -83,7 +83,7 @@ public class RestoreGallery {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|picture|
-	    // technical|orderNumber|
+	    // technical|orderNumber|pictureOnPage|
 
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
@@ -112,6 +112,7 @@ public class RestoreGallery {
 
         gallery.setTechnical(items[15]);
         gallery.setOrderNumber(Integer.parseInt(items[16]));
+        gallery.setPictureOnPage(items[17].equals("true") ? true : false);
 
 
         

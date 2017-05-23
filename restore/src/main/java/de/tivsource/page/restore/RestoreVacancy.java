@@ -84,7 +84,7 @@ public class RestoreVacancy {
         // uuid|
         // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-        // visible|created|modified|modifiedBy|ip|technical|beginning|workingTime|location|picture|
+        // visible|created|modified|modifiedBy|ip|technical|beginning|workingTime|location|picture|pictureOnPage|
 
         Vacancy vacancy = new Vacancy();
 
@@ -118,6 +118,7 @@ public class RestoreVacancy {
         vacancy.setWorkingTime(items[24]);
         vacancy.setLocation(locationDaoLocal.findByUuid(items[25]));
         vacancy.setPicture(pictureDaoLocal.findByUuid(items[26]));
+        vacancy.setPictureOnPage(items[27].equals("true") ? true : false);
 
         return vacancy;
     }

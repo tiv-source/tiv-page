@@ -63,6 +63,7 @@ $(function () {
             { name: "technical",                       width:  140, align: "right" },
             { name: "orderNumber",                     width:  140, align: "right" },
             { name: "visible",                         width:  140, align: "right", formatter:formatTrueFalse },
+            { name: "pictureOnPage",                   width:  140, align: "right", formatter:formatTrueFalse },
             { name: "created",                         width:  140, align: "center", formatter:formatIsoDate },
             { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",                      width:  140, align: "right" },

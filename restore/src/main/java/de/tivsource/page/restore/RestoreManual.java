@@ -80,7 +80,7 @@ public class RestoreManual {
 		// uuid|
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-	    // visible|created|modified|modifiedBy|modifiedAddress|picture|
+	    // visible|created|modified|modifiedBy|modifiedAddress|picture|pictureOnPage|
 
 
         Manual manual = new Manual();
@@ -111,6 +111,7 @@ public class RestoreManual {
         manual.setModifiedBy(items[20]);
         manual.setModifiedAddress(items[21]);
         manual.setPicture(pictureDaoLocal.findByUuid(items[22]));
+        manual.setPictureOnPage(items[23].equals("true") ? true : false);
         
         return manual;
     }

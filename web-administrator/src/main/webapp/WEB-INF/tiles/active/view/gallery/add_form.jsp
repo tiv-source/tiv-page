@@ -39,6 +39,15 @@
               </div>
 
               <div class="field">
+                <struts:checkbox
+                    key="gallery.pictureOnPage"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
                 <struts:textfield
                     key="gallery.orderNumber"
                     parentTheme="css_xhtml"

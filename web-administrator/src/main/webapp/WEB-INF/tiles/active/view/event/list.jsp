@@ -83,6 +83,7 @@ $(function () {
             { name: "deadline",                        width:  140, align: "center", formatter:formatIsoDate },
             { name: "reservation",                     width:  130, align: "center", formatter:formatTrueFalse },
             { name: "visible",                         width:  120, align: "center", formatter:formatTrueFalse },
+            { name: "pictureOnPage",                   width:  120, align: "center", formatter:formatTrueFalse },
             { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",                      width:  140, align:  "right" },
             { name: "modifiedAddress",                 width:  180, align:  "right" },

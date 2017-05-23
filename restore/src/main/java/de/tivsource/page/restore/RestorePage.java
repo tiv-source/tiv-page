@@ -81,7 +81,7 @@ public class RestorePage {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|
-	    // navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|
+	    // navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|pictureOnPage|
 
 
         Page page = new Page();
@@ -122,6 +122,7 @@ public class RestorePage {
         page.setResponsiveNavigation(items[30].equals("true") ? true : false);
         page.setResponsiveNavigationOrder(Integer.parseInt(items[31]));
         page.setPicture(pictureDaoLocal.findByUuid(items[32]));
+        page.setPictureOnPage(items[33].equals("true") ? true : false);
         
         return page;
     }

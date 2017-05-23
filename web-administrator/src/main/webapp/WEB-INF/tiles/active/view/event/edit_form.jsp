@@ -197,6 +197,15 @@
                 />
               </div>
 
+              <div class="field">
+                <struts:checkbox
+                    key="event.pictureOnPage"
+                    parentTheme="css_xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
             <struts:if test="lang=='EN'">
               <struts:hidden key="lang"/>
               

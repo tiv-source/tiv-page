@@ -81,7 +81,7 @@ public class RestoreLocation {
         // uuid(de)|name(de)|description(de)|keywords(de)|
         // uuid(en)|name(en)|description(en)|keywords(en)|
         // openingHours|
-        // latitude|longitude|visible|created|modified|modifiedBy|ip|events|picture|order|
+        // latitude|longitude|visible|created|modified|modifiedBy|ip|events|picture|order|pictureOnPage|
 
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
@@ -117,6 +117,7 @@ public class RestoreLocation {
         location.setPicture(pictureDaoLocal.findByUuid(items[27]));
 
         location.setOrder(Integer.parseInt(items[28]));
+        location.setPictureOnPage(items[29].equals("true") ? true : false);
 
         return location;
     }// Ende convert(String line)
