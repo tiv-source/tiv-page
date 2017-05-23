@@ -103,6 +103,7 @@ public class EditAction extends EmptyAction {
     		dbGallery.setOrderNumber(gallery.getOrderNumber());
     		dbGallery.setTechnical(gallery.getTechnical());
     		dbGallery.setPicture(gallery.getPicture());
+    		dbGallery.setPictureOnPage(gallery.getPictureOnPage());
     		
     		galleryDaoLocal.merge(dbGallery);
             return SUCCESS;

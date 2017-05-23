@@ -44,6 +44,15 @@
 
               <div class="field">
                 <struts:checkbox
+                    key="location.pictureOnPage"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
                     key="location.visible"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"

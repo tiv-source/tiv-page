@@ -117,6 +117,7 @@ public class EditAction extends EmptyAction {
     		dbVacancy.setModifiedBy(remoteUser);
     		dbVacancy.setVisible(vacancy.getVisible());
     		dbVacancy.setPicture(vacancy.getPicture());
+    		dbVacancy.setPictureOnPage(vacancy.getPictureOnPage());
     		
     		vacancyDaoLocal.merge(dbVacancy);
             return SUCCESS;

@@ -109,6 +109,7 @@ public class EditAction extends EmptyAction {
     		dbManual.setModifiedBy(remoteUser);
     		dbManual.setModifiedAddress(remoteAddress);
     		dbManual.setPicture(manual.getPicture());
+    		dbManual.setPictureOnPage(manual.getPictureOnPage());
 
 
     		manualDaoLocal.merge(dbManual);

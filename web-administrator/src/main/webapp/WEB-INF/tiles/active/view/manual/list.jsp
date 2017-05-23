@@ -57,6 +57,7 @@ $(function () {
         colNames: [
             '<struts:text name="picture"/>',
             '<struts:text name="descriptionMap.DE.name"/>',
+            '<struts:text name="manual.pictureOnPage.table"/>',
             '<struts:text name="visible"/>',
             '<struts:text name="created"/>',
             '<struts:text name="modified"/>',
@@ -67,6 +68,7 @@ $(function () {
         colModel: [
             { name: "picture.pictureUrls.THUMBNAIL.url", width:  140, align: "center", formatter:formatPicture },
             { name: "descriptionMap.DE.name",            width:  210, align: "right" },
+            { name: "pictureOnPage",                     width:   70, align: "right", formatter:formatTrueFalse },
             { name: "visible",                           width:   70, align: "right", formatter:formatTrueFalse },
             { name: "created",                           width:  120, align: "center", formatter:formatIsoDate },
             { name: "modified",                          width:  120, align: "center", formatter:formatIsoDate },

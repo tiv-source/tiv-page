@@ -54,6 +54,7 @@ $(function () {
         colNames: [
             '<struts:text name="vacancy.descriptionMap.DE.name"/>',
             '<struts:text name="vacancy.location.descriptionMap.DE.name"/>',
+            '<struts:text name="vacancy.pictureOnPage.table"/>',
             '<struts:text name="visible"/>',
             '<struts:text name="modified"/>',
             '<struts:text name="modifiedBy"/>',
@@ -62,6 +63,7 @@ $(function () {
         colModel: [
             { name: "descriptionMap.DE.name",          width:  140, align: "right" },
             { name: "location.descriptionMap.DE.name", width:  140, align: "right" },
+            { name: "pictureOnPage",                   width:  140, align: "right", formatter:formatTrueFalse },
             { name: "visible",                         width:  140, align: "right", formatter:formatTrueFalse },
             { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",                      width:  140, align: "right" },

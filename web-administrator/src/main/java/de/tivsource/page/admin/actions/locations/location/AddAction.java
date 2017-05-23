@@ -92,7 +92,7 @@ public class AddAction extends EmptyAction {
             /*
 
             // Pfad in dem die Bild Datei gespeichert wird.
-            String uploadPath = "/srv/www/htdocs/uploads/";
+            String uploadPath = "/var/www/html/uploads/";
 
             // Name der Bild Datei die erstellt werden soll. 
             String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."

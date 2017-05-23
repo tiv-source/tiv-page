@@ -119,6 +119,7 @@ public class EditAction extends EmptyAction {
     		dbPage.setModifiedBy(remoteUser);
     		dbPage.setModifiedAddress(remoteAddress);
     		dbPage.setPicture(page.getPicture());
+    		dbPage.setPictureOnPage(page.getPictureOnPage());
 
     		pageDaoLocal.merge(dbPage);
             return SUCCESS;

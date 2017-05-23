@@ -114,6 +114,7 @@ public class EditAction extends EmptyAction {
     		dbEvent.setPiwikGoal(event.getPiwikGoal());
     		dbEvent.setMaxReservations(event.getMaxReservations());
     		dbEvent.setMaxPersons(event.getMaxPersons());
+    		dbEvent.setPictureOnPage(event.getPictureOnPage());
 
     		eventDaoLocal.merge(dbEvent);
             return SUCCESS;

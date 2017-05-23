@@ -110,6 +110,7 @@ public class EditAction extends EmptyAction {
     		dbNews.setModifiedAddress(remoteAddress);
     		dbNews.setPicture(news.getPicture());
     		dbNews.setReleaseDate(news.getReleaseDate());
+    		dbNews.setPictureOnPage(news.getPictureOnPage());
 
     		newsDaoLocal.merge(dbNews);
             return SUCCESS;
