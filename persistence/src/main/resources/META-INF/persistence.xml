@@ -8,14 +8,17 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:openejb/Resource/tivPage</jta-data-source>
 
+		<class>de.tivsource.page.entity.administration.Role</class>
+		<class>de.tivsource.page.entity.administration.User</class>
 		<class>de.tivsource.page.entity.application.Application</class>
         <class>de.tivsource.page.entity.application.Education</class>
         <class>de.tivsource.page.entity.appointment.Appointment</class>
-		<class>de.tivsource.page.entity.administration.Role</class>
-		<class>de.tivsource.page.entity.administration.User</class>
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.event.Event</class>
+		<class>de.tivsource.page.entity.feedback.Feedback</class>
+		<class>de.tivsource.page.entity.feedback.FeedbackOption</class>
+		<class>de.tivsource.page.entity.feedback.FeedbackOptionDescription</class>
 		<class>de.tivsource.page.entity.gallery.Gallery</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
@@ -44,7 +47,7 @@
 			<property name="hibernate.format_sql" value="true" />
 
 			<!-- Drop and then re-create the database schema (don't do this in production) -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 
             <property name="hibernate.search.default.directory_provider" value="filesystem" />
             <property name="hibernate.search.default.indexBase" value="/srv/lucene/indexes" />
