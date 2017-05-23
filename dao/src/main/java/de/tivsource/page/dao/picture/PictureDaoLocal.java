@@ -64,6 +64,13 @@ public interface PictureDaoLocal {
     public List<Picture> findAll(Integer start, Integer max);
 
     public List<Picture> findAll(Integer start, Integer max, String field, String order);
+    
+    public List<Picture> findAll(Integer start, Integer max, String galleryUuid, String field, String order);
+
+    public Picture findPreviousPicture(Integer start, String galleryUuid);
+    public Picture findCurrentPicture(Integer start, String galleryUuid);
+    public Picture findNextPicture(Integer start, String galleryUuid);
+    
 
     /**
      * Methode die die Anzahl aller Picture Objekte die sich in der Datenbank
@@ -72,5 +79,7 @@ public interface PictureDaoLocal {
      * @return Integer - Anzahl der Picture Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllInGallery(String galleryUuid);
 
 }// Ende interface

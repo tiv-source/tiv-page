@@ -118,7 +118,7 @@ public class PictureDao implements PictureDaoLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Picture> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT DISTINCT p FROM Picture p JOIN p.descriptionMap dm JOIN p.location.descriptionMap edm WHERE dm.language = 'DE' AND edm.language = 'DE' ORDER BY ";
+        String queryString = "SELECT DISTINCT p FROM Picture p JOIN p.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
@@ -126,6 +126,46 @@ public class PictureDao implements PictureDaoLocal {
         return query.getResultList();
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Picture> findAll(Integer start, Integer max, String galleryUuid, String field, String order) {
+        String queryString = "SELECT DISTINCT p FROM Picture p JOIN p.descriptionMap dm WHERE p.gallery.uuid = ?1 AND dm.language = 'DE' ORDER BY ";
+        queryString = queryString + field + " " + order;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", galleryUuid);
+        return query.getResultList();
+    }
+
+    @Override
+    public Picture findPreviousPicture(Integer start, String galleryUuid) {
+        Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = ?1 ORDER BY p.orderNumber desc");
+        query.setFirstResult(start);
+        query.setMaxResults(1);
+        query.setParameter("1", galleryUuid);
+        return (Picture)query.getSingleResult();
+    }
+
+    @Override
+    public Picture findCurrentPicture(Integer start, String galleryUuid) {
+        LOGGER.info("findCurrentPicture(Integer start, String galleryUuid) aufgerufen");
+        Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = ?1 ORDER BY p.orderNumber, p.uuid desc");
+        query.setFirstResult(start);
+        query.setMaxResults(1);
+        query.setParameter("1", galleryUuid);
+        return (Picture)query.getResultList().get(0);
+    }
+
+    @Override
+    public Picture findNextPicture(Integer start, String galleryUuid) {
+        Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = ?1 ORDER BY p.orderNumber desc");
+        query.setFirstResult(start);
+        query.setMaxResults(1);
+        query.setParameter("1", galleryUuid);
+        return (Picture)query.getSingleResult();
+    }
+    
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.picture.PictureDaoLocal#countAll()
 	 */
@@ -134,5 +174,12 @@ public class PictureDao implements PictureDaoLocal {
         Query query = entityManager.createQuery("Select Count(p) from Picture p");
         return Integer.parseInt(query.getSingleResult().toString());
 	}
+
+    @Override
+    public Integer countAllInGallery(String galleryUuid) {
+        Query query = entityManager.createQuery("Select Count(p) from Picture p where p.gallery.uuid = ?1");
+        query.setParameter("1", galleryUuid);
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
 
 }// Ende class
