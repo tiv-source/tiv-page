@@ -31,7 +31,7 @@ public class JsonAction extends ActionSupport {
      */
     private static final Logger LOGGER = LogManager.getLogger(JsonAction.class);
 
-    private File folder = new File("/srv/www/htdocs/uploads");
+    private File folder = new File("/var/www/html/uploads");
 
     private File[] rawFileArray = folder.listFiles();
 

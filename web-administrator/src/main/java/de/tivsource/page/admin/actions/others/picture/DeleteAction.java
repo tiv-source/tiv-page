@@ -95,7 +95,7 @@ public class DeleteAction extends EmptyAction {
     }// Ende execute()
 
     private static void deletePictures(Map<UrlType, PictureUrl> pictureUrls) throws IOException {
-    	String picturePath = "/srv/www/htdocs/pictures/";
+    	String picturePath = "/var/www/html/pictures/";
     	String pathFULL = picturePath + "FULL/" + pictureUrls.get(UrlType.FULL).getUrl();
     	deleteFile(pathFULL);
     	String pathLARGE = picturePath + "LARGE/" + pictureUrls.get(UrlType.LARGE).getUrl();

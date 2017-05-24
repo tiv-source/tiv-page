@@ -52,7 +52,7 @@ public class DeleteAction extends EmptyAction {
     	LOGGER.info("execute() aufgerufen.");
 
     	if(file != null && file.length() > 0) {
-    	    String strPath = "/srv/www/htdocs/uploads/";
+    	    String strPath = "/var/www/html/uploads/";
     	    String deleteFile = strPath + file;
     	    File delete = new File(deleteFile);
     	    delete.delete();

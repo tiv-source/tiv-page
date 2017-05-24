@@ -33,7 +33,7 @@ public class BackupPictureFiles {
         File zipFile = File.createTempFile("tivpage_pictures", "zip");
         ZipOutputStream outZipFile = new ZipOutputStream(new FileOutputStream(zipFile));
 
-        String picturePath = "/srv/www/htdocs/pictures/";
+        String picturePath = "/var/www/html/pictures/";
         String picturePathFULL = picturePath + "FULL/";
         String picturePathLARGE = picturePath + "LARGE/";
         String picturePathNORMAL = picturePath + "NORMAL/";

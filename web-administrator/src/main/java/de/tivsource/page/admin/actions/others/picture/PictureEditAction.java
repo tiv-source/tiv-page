@@ -50,7 +50,7 @@ public class PictureEditAction extends EmptyAction {
     /**
      * Pfad zu den Verzeichnissen der Bild Dateien
      */
-    private static final String picturePath = "/srv/www/htdocs/pictures/";
+    private static final String picturePath = "/var/www/html/pictures/";
 
     /**
      * Pfad in dem die hochgeladene orginal Bild Datei gespeichert wird.

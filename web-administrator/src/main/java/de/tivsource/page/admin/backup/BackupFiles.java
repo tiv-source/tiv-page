@@ -33,7 +33,7 @@ public class BackupFiles {
         File zipFile = File.createTempFile("complete_tivpage", "zip");
         ZipOutputStream outZipFile = new ZipOutputStream(new FileOutputStream(zipFile));
 
-        File folder = new File("/srv/www/htdocs/uploads/");
+        File folder = new File("/var/www/html/uploads/");
         File[] listOfFiles = folder.listFiles();
         LOGGER.debug("Anzahl der Dateien: " + listOfFiles.length);
         for (int i = 0; i < listOfFiles.length; i++) {

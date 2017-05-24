@@ -112,7 +112,7 @@ public class AddAction extends EmptyAction {
     	    if(file != null) {
 
                 // Pfad in dem die Bild Datei gespeichert wird.
-    	    	String generatePath = "/srv/www/htdocs/pictures/";
+    	    	String generatePath = "/var/www/html/pictures/";
                 String uploadPath = generatePath + "FULL/";
 
                 // Name der Bild Datei die erstellt werden soll. 

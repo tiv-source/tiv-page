@@ -61,7 +61,7 @@ public class CkeditorUpload extends ActionSupport {
     }
 
     //String strPath = ServletActionContext.getServletContext().getRealPath(uploadFolder);
-    String strPath = "/srv/www/htdocs/uploads";
+    String strPath = "/var/www/html/uploads";
     File path = new File(strPath);
     if (!path.exists())
     {

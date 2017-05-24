@@ -44,7 +44,7 @@ public class ConfirmAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(ConfirmAction.class);
 
-    private static final String HTDOCS = "/srv/www/htdocs";
+    private static final String HTDOCS = "/var/www/html";
 
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;
