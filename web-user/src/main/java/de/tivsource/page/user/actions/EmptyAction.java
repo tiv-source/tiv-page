@@ -62,6 +62,8 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 
     private Event left;
     private Event right;
+
+    private Page page;
     
 	/**
 	 * Attribut das die ausgelesene Sprache enthält.
@@ -109,6 +111,7 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 
 		// Hole Action Locale
 		this.getLanguageFromActionContext();
+		page = pageDaoLocal.findByTechnical("home");
 
 		return SUCCESS;
 	}
@@ -134,7 +137,7 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
     }
 
     public Page getPage() {
-        return pageDaoLocal.findByTechnical("home");
+        return this.page;
     }
 
     public String getProperty(String key) {
