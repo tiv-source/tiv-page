@@ -7,13 +7,13 @@
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
   return "<a href='/admin/system/property/editForm.html?property="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:16px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
          "<a href='/admin/system/property/copyForm.html?property="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
+         "<img src='/admin/icons/16x16/copy.png' style='width:16px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
          "<a href='/admin/system/property/deleteForm.html?property="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
+         "<img src='/admin/icons/16x16/delete.png' style='width:16px;'/>" + 
          "</a>";
 }
 </script>
