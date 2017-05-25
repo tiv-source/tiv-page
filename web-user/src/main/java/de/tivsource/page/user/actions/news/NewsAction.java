@@ -70,10 +70,11 @@ public class NewsAction extends EmptyAction {
         LOGGER.info("NewsUuid: " + newsUuid);
 
         /*
-         * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
-         * die Location mit der Uuid gibt dann wird der Block ausgeführt.
+         * Wenn die News Uuid keine nicht erlaubten Zeichen enthält, es die News
+         * mit der Uuid gibt, diese sichtbar ist und das Veröffentlichungesdatum
+         * erreicht wurde, dann wird der Block ausgeführt.
          */
-        if (isValid(newsUuid) && newsDaoLocal.isNewsUrl(newsUuid)) {
+        if (isValid(newsUuid) && newsDaoLocal.isPublicNewsUuid(newsUuid)) {
             LOGGER.info("gültige News Uuid.");
 
             news = newsDaoLocal.findByUuid(newsUuid);
