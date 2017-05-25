@@ -1,6 +1,5 @@
 package de.tivsource.page.user.actions.vacancy;
 
-import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -126,6 +125,9 @@ public class VacancyAction extends EmptyAction {
         page.setTechnical(vacancy.getName(Language.DE));
         page.setDescriptionMap(vacancy.getDescriptionMap());
         page.setPicture(vacancy.getPicture());
+        page.setCreated(vacancy.getCreated());
+        page.setModified(vacancy.getModified());
+        page.setPictureOnPage(vacancy.getPictureOnPage());
     }
 
 }// Ende class

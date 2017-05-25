@@ -1,29 +1,32 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-
+  <struts:if test="page.pictureOnPage">
     <div>
       <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
+  </struts:if>
 
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
     
   <struts:iterator value="list" status="locationStatus">
     <struts:url var="locationLink" action="index" namespace="/location/%{uuid}"/>
-    <struts:a href="%{locationLink}">
-      <div class="locations <struts:if test="#locationStatus.odd == true ">color1</struts:if><struts:else>color2</struts:else>">
+    <div class="locations <struts:if test="#locationStatus.odd == true ">color1</struts:if><struts:else>color2</struts:else>">
+      <struts:a href="%{locationLink}">
         <div class="location">
           <h4><struts:property value="getName(getText('language'))" /></h4>
           <p><struts:property value="address.street" /></p>
           <p><struts:property value="address.zip" /> <struts:property value="address.city" /></p>
-        </div>						
-
-        <div id="map">
-          <a href="http://www.openstreetmap.org/?mlat=<struts:property value="latitude" />&mlon=<struts:property value="longitude" />#map=19/<struts:property value="latitude" />/<struts:property value="longitude" />">
-            <img src="/osmcache/<struts:property value="uuid" />_wdefault.png" />
-          </a>
         </div>
-        
+      </struts:a>						
+
+      <a href="http://www.openstreetmap.org/?mlat=<struts:property value="latitude" />&mlon=<struts:property value="longitude" />#map=19/<struts:property value="latitude" />/<struts:property value="longitude" />">
+        <div id="map">
+          <img src="/osmcache/<struts:property value="uuid" />_wdefault.png" />
+        </div>
+      </a>
+      
+      <struts:a href="%{locationLink}">  
         <div class="open">
           <h5>Öffnungszeiten:</h5>
 
@@ -40,7 +43,9 @@
             </struts:iterator>
           </table>
         </div>
-        
+      </struts:a>
+      
+      <struts:a href="%{locationLink}">  
         <div class="contacts">
           <h5>Kontakt:</h5>
 
@@ -96,9 +101,11 @@
             </tr>
           </table>
         </div>
-        <hr>
-      </div>
-    </struts:a>
+      </struts:a>
+
+      <hr>
+    </div>
+    
   </struts:iterator>
 
 

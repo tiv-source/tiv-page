@@ -10,9 +10,11 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+  <struts:if test="page.pictureOnPage">
     <div>
       <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
+  </struts:if>
 
     <div id="social_net1">
       <div class="picturebox1">
@@ -26,9 +28,7 @@
       </div>
     </div>
 
-    <div id="home">
-      <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
-    </div>
+    <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
     <struts:if test="getProperty('home.location') == 'true'">
     <div id="actions">

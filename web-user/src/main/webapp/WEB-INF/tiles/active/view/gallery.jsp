@@ -1,10 +1,11 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-
+  <struts:if test="gallery.pictureOnPage">
     <div>
       <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
+  </struts:if>
 
     <h1><struts:property value="gallery.getName(getText('language'))" /></h1>
     <p><struts:property value="gallery.getDescription(getText('language'))" /></p>

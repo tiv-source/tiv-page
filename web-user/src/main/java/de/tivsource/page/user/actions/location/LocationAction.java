@@ -137,6 +137,7 @@ public class LocationAction extends EmptyAction {
         page.setTechnical(location.getName(Language.DE));
         page.setDescriptionMap(location.getDescriptionMap());
         page.setPicture(location.getPicture());
+        page.setPictureOnPage(location.getPictureOnPage());
     }
 
 }// Ende class
