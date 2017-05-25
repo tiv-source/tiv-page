@@ -11,8 +11,10 @@
         <p><struts:property value="location.address.zip" /> <struts:property value="location.address.city" /></p>
       </div>
 
-      <div class="location_map">
-        <picture>
+
+      <a href="http://www.openstreetmap.org/?mlat=<struts:property value="location.latitude" />&mlon=<struts:property value="location.longitude" />#map=19/<struts:property value="location.latitude" />/<struts:property value="location.longitude" />">
+        <div class="location_map">
+          <picture>
 				<source media="(min-width:1701px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1701.png">
 				<source media="(min-width:1501px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1501.png">
 				<source media="(min-width:1401px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1401.png">
@@ -31,8 +33,9 @@
 				<!-- Fallback -->
 				<img src="/osmcache/<struts:property value="location.uuid" />_w0201.png" 
 					srcset="/osmcache/<struts:property value="location.uuid" />_w0201.png">
-			</picture>
-		</div>
+            </picture>
+		  </div>
+		</a>
         
 		<h5 class="distance_top3">Kontakt:</h5>
         
