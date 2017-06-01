@@ -113,7 +113,7 @@ public class FormAction extends EmptyAction {
 
 	public List<Picture> getPictureList() {
 		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll("f8fed35d-6df2-4d74-835d-fcf64faf2b5a");
+		return pictureDaoLocal.findAll("394010e8-6c7b-4958-b4e4-51a3ffb9e83f");
 	}
 
 }// Ende class

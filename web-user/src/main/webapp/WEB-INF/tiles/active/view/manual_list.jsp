@@ -28,7 +28,8 @@
           <hr>
         </div>
       </struts:a>
-    
+
+    <struts:if test="getProperty('manual.show.ads') == 'true'">
       <struts:if test="#manualStatus.index == 0">
         <div class="informations">
           <div class="ads">
@@ -42,6 +43,7 @@
           </div>
 		</div>
       </struts:if>
+    </struts:if>
 
     </struts:iterator>
 
