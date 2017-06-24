@@ -2,7 +2,7 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
   <struts:if test="gallery.pictureOnPage">
-    <div>
+    <div id="sitePicture">
       <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
   </struts:if>

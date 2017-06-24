@@ -11,7 +11,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
   <struts:if test="page.pictureOnPage">
-    <div>
+    <div id="sitePicture">
       <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
   </struts:if>
