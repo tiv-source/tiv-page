@@ -8,6 +8,7 @@
   </struts:if>
 
     <h1><struts:property value="location.getName(getText('language'))" /></h1>
+    <p class=" bc_bottom">	&nbsp;</p>
 
     <struts:iterator value="events" status="eventsStatus">
       <struts:url var="eventLink" action="index" namespace="/event/%{uuid}"/>
