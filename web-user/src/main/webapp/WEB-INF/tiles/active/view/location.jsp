@@ -45,7 +45,7 @@
         </div>
       </struts:a>
       
-      <struts:a href="%{locationLink}">  
+      <struts:a href="%{locationLink}">
         <div class="contacts">
           <h5>Kontakt:</h5>
 
@@ -61,7 +61,7 @@
                      alt="Telefon"
                      align="absmiddle">
               </td>
-              <td><struts:property value="contactDetails.telephone" /></td>
+              <td><struts:a href="%{contactDetails.telephoneAsLink}"><struts:property value="contactDetails.telephone" /></struts:a></td>
             </tr>
 
           <struts:if test="getProperty('location.page.mobile') == 'true'">
