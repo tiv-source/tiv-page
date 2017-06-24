@@ -8,6 +8,10 @@
     <h1>Reservierung</h1>
     <h6><struts:property value="event.getName(getText('language'))" /> im <struts:property value="event.location.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" /></h6>
 
+    <struts:if test="getProperty('event.show.description') == 'true'">
+      <p><struts:property value="event.getDescription(getText('language'))" /></p>
+    </struts:if>
+
     <struts:form
           cssClass="form" 
           action="reserve" 
@@ -46,7 +50,7 @@
               key="reservation.quantity"
               multiple="false"
               value="reservation.quantity"
-              list="#{'1':'01','2':'02','3':'03','4':'04','5':'05','6':'06','7':'07','8':'08','9':'09','10':'10','11':'11','12':'12','13':'13','14':'14','15':'15','16':'16','17':'17','18':'18','19':'19','20':'20'}"
+              list="#{'1':'01','2':'02','3':'03','4':'04','5':'05','6':'06','7':'07','8':'08','9':'09','10':'10','11':'11','12':'12'}"
           />
         </div>
 
