@@ -62,7 +62,9 @@
                alt="Telefon"
                align="absmiddle" 
                style="width: 20px; height: 20px; float: left; margin-bottom: 2px;">
-		  &nbsp;&nbsp; <struts:property value="location.contactDetails.telephone" />
+		    <struts:a href="%{location.contactDetails.telephoneAsLink}">
+		      &nbsp;&nbsp; <struts:property value="location.contactDetails.telephone" />
+		    </struts:a>
 		</p>
 
 		<p>
