@@ -24,6 +24,29 @@
 </head>
 <body>
 
+<struts:if test="getProperty('socialmedia.icons') == 'true'">
+  <div id="socialmedia">
+    <struts:if test="getProperty('socialmedia.facebook.url') != ''">
+      <a href="<struts:property value="getProperty('socialmedia.facebook.url')"/>" target="_blank">
+         <img src="/public/icons/fb_01.png" alt="Facebook">
+      </a>
+    </struts:if>
+
+    <struts:if test="getProperty('socialmedia.instagram.url') != ''">
+      <a href="<struts:property value="getProperty('socialmedia.instagram.url')"/>" target="_blank">
+        <img src="/public/icons/intag_01.png" alt="Instagram">
+      </a>
+    </struts:if>
+
+    <struts:if test="getProperty('socialmedia.twitter.url') != ''">
+      <a href="<struts:property value="getProperty('socialmedia.twitter.url')"/>" target="_blank">
+        <img src="/public/icons/tw_01.png" alt="Twitter">
+      </a>
+    </struts:if>
+  </div>
+</struts:if>
+
+
 <div id="container">
   <!-- Top Anfang -->
 
