@@ -77,4 +77,19 @@ public class ContactDetails {
         this.homepage = homepage;
     }
 
+    /**
+     * Methode die die Telefonnummer als tel: Link zurückgibt.
+     *
+     * @return
+     */
+    public String getTelephoneAsLink() {
+        StringBuilder stringBuilder = new StringBuilder("tel:+49");
+        String digits = telephone.replaceAll("[^0-9]", "");
+        char c = digits.charAt(0);
+        if (c == '0') {
+            return stringBuilder.append(digits.substring(1)).toString();
+        }
+        return stringBuilder.append(digits).toString();
+    }
+
 }// Ende class
