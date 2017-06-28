@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="picture.orderNumber">
+    <field-validator type="required" short-circuit="true">
+      <message key="picture.orderNumber.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="picture.orderNumber.validation.minmax" />
+    </field-validator>
+  </field>
+
+  <field name="picture.descriptionMap.DE.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="picture.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="picture.descriptionMap.DE.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="picture.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="picture.descriptionMap.DE.keywords">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="picture.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+  </field>
+  
+</validators>
