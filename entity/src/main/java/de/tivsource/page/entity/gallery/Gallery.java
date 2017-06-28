@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.search.annotations.Indexed;
 
-import de.tivsource.page.entity.namingitem.NamingItem;
 import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.entity.pictureitem.PictureItem;
 
 /**
  * 
@@ -23,7 +23,7 @@ import de.tivsource.page.entity.picture.Picture;
  */
 @Indexed
 @Entity
-public class Gallery extends NamingItem {
+public class Gallery extends PictureItem {
 
 	@Column(unique = true)
 	private String technical;

@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 import de.tivsource.page.entity.location.Location;
-import de.tivsource.page.entity.namingitem.NamingItem;
+import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.reservation.Reservation;
 
 /**
@@ -25,7 +25,7 @@ import de.tivsource.page.entity.reservation.Reservation;
  *
  */
 @Entity
-public class Event extends NamingItem {
+public class Event extends PictureItem {
 
     private BigDecimal price;
 

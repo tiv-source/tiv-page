@@ -11,11 +11,11 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
 import de.tivsource.page.entity.enumeration.Language;
-import de.tivsource.page.entity.namingitem.NamingItem;
+import de.tivsource.page.entity.pictureitem.PictureItem;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ContentItem extends NamingItem {
+public class ContentItem extends PictureItem {
 
     /**
      * Die Map mit dem Inhalt des Objektes, die Angabe ist Lokalisiert.

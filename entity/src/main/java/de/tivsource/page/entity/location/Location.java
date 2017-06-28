@@ -20,7 +20,7 @@ import org.hibernate.annotations.SortType;
 import de.tivsource.page.entity.embeddable.Address;
 import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.event.Event;
-import de.tivsource.page.entity.namingitem.NamingItem;
+import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.vacancy.Vacancy;
 
 /**
@@ -28,7 +28,7 @@ import de.tivsource.page.entity.vacancy.Vacancy;
  *
  */
 @Entity
-public class Location extends NamingItem {
+public class Location extends PictureItem {
 
     @Embedded
     private Address address;
