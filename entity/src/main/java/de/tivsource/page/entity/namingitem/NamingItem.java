@@ -14,8 +14,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -23,7 +21,6 @@ import javax.persistence.Temporal;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
-import de.tivsource.page.entity.picture.Picture;
 
 /**
  * Die Hauptklasse des Projektes.
@@ -65,22 +62,6 @@ public class NamingItem {
     private String modifiedBy;
 
     private String modifiedAddress;
-
-    /**
-     * Wir in die Klasse PictureItem verschoben
-     * @deprecated
-     */
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "picture_uuid")
-    private Picture picture;
-
-    /**
-     * Wir in die Klasse PictureItem verschoben
-     * @deprecated
-     */
-    @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
-    private Boolean pictureOnPage = true;
 
     public String getUuid() {
         return uuid;
@@ -136,38 +117,6 @@ public class NamingItem {
 
     public void setModifiedAddress(String modifiedAddress) {
         this.modifiedAddress = modifiedAddress;
-    }
-
-    /**
-     * Wir in die Klasse PictureItem verschoben
-     * @deprecated
-     */
-    public Picture getPicture() {
-		return picture;
-	}
-
-    /**
-     * Wir in die Klasse PictureItem verschoben
-     * @deprecated
-     */
-	public void setPicture(Picture picture) {
-		this.picture = picture;
-	}
-
-    /**
-     * Wir in die Klasse PictureItem verschoben
-     * @deprecated
-     */
-	public Boolean getPictureOnPage() {
-        return pictureOnPage;
-    }
-
-    /**
-     * Wir in die Klasse PictureItem verschoben
-     * @deprecated
-     */
-    public void setPictureOnPage(Boolean pictureOnPage) {
-        this.pictureOnPage = pictureOnPage;
     }
 
     /**
