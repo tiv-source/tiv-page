@@ -66,10 +66,18 @@ public class NamingItem {
 
     private String modifiedAddress;
 
+    /**
+     * Wir in die Klasse PictureItem verschoben
+     * @deprecated
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "picture_uuid")
     private Picture picture;
 
+    /**
+     * Wir in die Klasse PictureItem verschoben
+     * @deprecated
+     */
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean pictureOnPage = true;
@@ -130,18 +138,34 @@ public class NamingItem {
         this.modifiedAddress = modifiedAddress;
     }
 
+    /**
+     * Wir in die Klasse PictureItem verschoben
+     * @deprecated
+     */
     public Picture getPicture() {
 		return picture;
 	}
 
+    /**
+     * Wir in die Klasse PictureItem verschoben
+     * @deprecated
+     */
 	public void setPicture(Picture picture) {
 		this.picture = picture;
 	}
 
+    /**
+     * Wir in die Klasse PictureItem verschoben
+     * @deprecated
+     */
 	public Boolean getPictureOnPage() {
         return pictureOnPage;
     }
 
+    /**
+     * Wir in die Klasse PictureItem verschoben
+     * @deprecated
+     */
     public void setPictureOnPage(Boolean pictureOnPage) {
         this.pictureOnPage = pictureOnPage;
     }
