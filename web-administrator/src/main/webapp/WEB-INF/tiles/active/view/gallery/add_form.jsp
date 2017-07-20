@@ -22,6 +22,15 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:select
+                    key="gallery.type"
+                    listValue="%{toString()}"
+                    multiple="false"
+                    list="galleryTypeList"
+                />
+              </div>
+
+              <div class="field">
                 <struts:textfield 
                     key="gallery.technical"
                     parentTheme="css_xhtml"

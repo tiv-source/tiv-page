@@ -1,6 +1,8 @@
 package de.tivsource.page.admin.actions.others.gallery;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,18 +11,29 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.enumeration.GalleryType;
 
 /**
  * 
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="galleryAddForm",  extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/add_form.jsp")
+  })
+})
 public class AddAction extends EmptyAction {
 
 	/**
@@ -92,5 +105,9 @@ public class AddAction extends EmptyAction {
     	
     	
     }// Ende execute()
+
+    public List<GalleryType> getGalleryTypeList() {
+        return Arrays.asList(GalleryType.values());
+    }
 
 }// Ende class

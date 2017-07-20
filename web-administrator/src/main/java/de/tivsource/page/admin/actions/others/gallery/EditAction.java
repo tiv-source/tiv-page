@@ -1,5 +1,6 @@
 package de.tivsource.page.admin.actions.others.gallery;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -17,12 +21,20 @@ import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.enumeration.GalleryType;
 
 /**
  * 
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="galleryEditForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/edit_form.jsp")
+  })
+})
 public class EditAction extends EmptyAction {
 
 	/**
@@ -94,8 +106,7 @@ public class EditAction extends EmptyAction {
                 dbGallery.getDescriptionMap().get(Language.DE).setKeywords(gallery.getKeywords(Language.DE));;
                 dbGallery.getDescriptionMap().get(Language.DE).setName(gallery.getName(Language.DE));
             }
-    		
-    		
+
     		dbGallery.setModifiedAddress(remoteAddress);
     		dbGallery.setModified(new Date());
     		dbGallery.setModifiedBy(remoteUser);
@@ -104,7 +115,8 @@ public class EditAction extends EmptyAction {
     		dbGallery.setTechnical(gallery.getTechnical());
     		dbGallery.setPicture(gallery.getPicture());
     		dbGallery.setPictureOnPage(gallery.getPictureOnPage());
-    		
+    		dbGallery.setType(gallery.getType());
+
     		galleryDaoLocal.merge(dbGallery);
             return SUCCESS;
     	}
@@ -118,5 +130,9 @@ public class EditAction extends EmptyAction {
 		// TODO: Check ob gallery gesetzt wurde
 		return pictureDaoLocal.findAll(gallery.getUuid());
 	}
+
+	public List<GalleryType> getGalleryTypeList() {
+        return Arrays.asList(GalleryType.values());
+    }
 
 }// Ende class

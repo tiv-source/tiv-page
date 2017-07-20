@@ -1,5 +1,6 @@
 package de.tivsource.page.admin.actions.others.gallery;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,7 @@ import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.enumeration.GalleryType;
 
 /**
  * 
@@ -103,6 +105,10 @@ public class FormAction extends EmptyAction {
 	public List<Picture> getPictureList() {
 		// TODO: Check ob gallery gesetzt wurde
 		return pictureDaoLocal.findAll(gallery.getUuid());
+	}
+
+	public List<GalleryType> getGalleryTypeList() {
+	    return Arrays.asList(GalleryType.values());
 	}
 
 	private void loadPageParameter() {

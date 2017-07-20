@@ -15,6 +15,7 @@ import org.hibernate.search.annotations.Indexed;
 
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.pictureitem.PictureItem;
+import de.tivsource.page.enumeration.GalleryType;
 
 /**
  * 
@@ -29,6 +30,8 @@ public class Gallery extends PictureItem {
 	private String technical;
 
 	private Integer orderNumber;
+
+	private GalleryType type = GalleryType.LANDSCAPE;
 
 	@OneToMany(mappedBy = "gallery", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	private List<Picture> pictures;
@@ -49,7 +52,15 @@ public class Gallery extends PictureItem {
 		this.orderNumber = orderNumber;
 	}
 
-	public List<Picture> getPictures() {
+    public GalleryType getType() {
+        return type;
+    }
+
+    public void setType(GalleryType type) {
+        this.type = type;
+    }
+
+    public List<Picture> getPictures() {
 		return pictures;
 	}
 
