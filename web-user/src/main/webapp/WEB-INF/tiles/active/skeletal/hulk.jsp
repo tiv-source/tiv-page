@@ -28,19 +28,19 @@
   <div id="socialmedia">
     <struts:if test="getProperty('socialmedia.facebook.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.facebook.url')"/>" target="_blank">
-         <img src="/public/icons/fb_01.png" alt="Facebook">
+         <img src="<struts:property value="getProperty('socialmedia.facebook.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.facebook.url.icon.alt')"/>">
       </a>
     </struts:if>
 
     <struts:if test="getProperty('socialmedia.instagram.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.instagram.url')"/>" target="_blank">
-        <img src="/public/icons/intag_01.png" alt="Instagram">
+        <img src="<struts:property value="getProperty('socialmedia.instagram.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.instagram.url.icon.alt')"/>">
       </a>
     </struts:if>
 
     <struts:if test="getProperty('socialmedia.twitter.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.twitter.url')"/>" target="_blank">
-        <img src="/public/icons/tw_01.png" alt="Twitter">
+        <img src="<struts:property value="getProperty('socialmedia.twitter.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.twitter.url.icon.alt')"/>">
       </a>
     </struts:if>
   </div>
@@ -116,6 +116,29 @@
            </li>
          </struts:else>
        </struts:iterator>
+       <struts:if test="getProperty('socialmedia.icons') == 'true'">
+         <struts:if test="getProperty('socialmedia.facebook.url') != ''">
+           <li>
+             <a href="<struts:property value="getProperty('socialmedia.facebook.url')"/>" target="_blank">
+               Facebook
+             </a>
+           </li>
+         </struts:if>
+         <struts:if test="getProperty('socialmedia.instagram.url') != ''">
+           <li>
+             <a href="<struts:property value="getProperty('socialmedia.instagram.url')"/>" target="_blank">
+               Instagram
+             </a>
+           </li>
+         </struts:if>
+         <struts:if test="getProperty('socialmedia.twitter.url') != ''">
+           <li>
+             <a href="<struts:property value="getProperty('socialmedia.twitter.url')"/>" target="_blank">
+               Twitter
+             </a>
+           </li>
+         </struts:if>
+       </struts:if>
      </ul>		
    </div>     
 
