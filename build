@@ -2,7 +2,7 @@
 
 HOMEDIR=/home/marc
 #TOMEE=apache-tomee-plus-1.7.4
-TOMEE=apache-tomee-plus-7.0.2
+TOMEE=apache-tomee-plus-7.0.3
 
 echo "Setze Maven PATH"
 export PATH=$HOMEDIR/Maven/apache-maven-3.3.3/bin:$PATH
