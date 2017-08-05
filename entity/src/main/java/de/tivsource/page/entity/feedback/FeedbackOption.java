@@ -54,6 +54,8 @@ public class FeedbackOption {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean visible;
 
+    private String hints;
+    
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
@@ -111,6 +113,14 @@ public class FeedbackOption {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public String getHints() {
+        return hints;
+    }
+
+    public void setHints(String hints) {
+        this.hints = hints;
     }
 
     public Date getCreated() {
