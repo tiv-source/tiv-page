@@ -218,4 +218,18 @@ public class Picture {
         return tmpResult;
     }
 
+    public String getKeywords(String language) {
+        String result = descriptionMap.get(Language.DE).getKeywords();
+        String tmpResult = descriptionMap.get(Language.DE).getKeywords();
+        try {
+            tmpResult = descriptionMap.get(
+                    Language.valueOf(language.toUpperCase())).getKeywords();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+
 }// Ende class
