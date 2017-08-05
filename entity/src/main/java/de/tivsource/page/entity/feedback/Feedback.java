@@ -4,6 +4,7 @@
 package de.tivsource.page.entity.feedback;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.CollectionTable;
@@ -52,7 +53,7 @@ public class Feedback {
     @MapKeyColumn(name="name", length = 64)
     @Column(name="value")
     @CollectionTable(name="Feedback_Answers", joinColumns=@JoinColumn(name="feedback_uuid"))
-    private Map<String, Integer> answers;
+    private Map<String, Integer> answers = new HashMap<String, Integer>();
 
     /**
      * Kommentar
@@ -69,6 +70,10 @@ public class Feedback {
      * IP-Adresse von der aus das Feedback abgegeben wurde.
      */
     private String createdAddress;
+
+    public Feedback() {
+        super();
+    }
 
     public String getUuid() {
         return uuid;
