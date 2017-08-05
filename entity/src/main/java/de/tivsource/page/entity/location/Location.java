@@ -67,7 +67,7 @@ public class Location extends PictureItem {
 
     @Column(name="orderNumber")
     private Integer order = 1;
-    
+
     public Address getAddress() {
         return address;
     }
