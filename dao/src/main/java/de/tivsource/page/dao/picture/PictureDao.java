@@ -118,7 +118,7 @@ public class PictureDao implements PictureDaoLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Picture> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT DISTINCT p FROM Picture p JOIN p.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
+        String queryString = "SELECT DISTINCT p FROM Picture p JOIN p.descriptionMap dm JOIN p.gallery.descriptionMap gdm WHERE dm.language = 'DE' and gdm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
