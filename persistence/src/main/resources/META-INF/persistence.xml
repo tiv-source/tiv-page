@@ -13,6 +13,8 @@
 		<class>de.tivsource.page.entity.application.Application</class>
         <class>de.tivsource.page.entity.application.Education</class>
         <class>de.tivsource.page.entity.appointment.Appointment</class>
+        <class>de.tivsource.page.entity.companion.Companion</class>
+        <class>de.tivsource.page.entity.companion.CompanionGroup</class>
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.event.Event</class>
@@ -35,7 +37,6 @@
 		<class>de.tivsource.page.entity.property.Property</class>
 		<class>de.tivsource.page.entity.reservation.Reservation</class>
 		<class>de.tivsource.page.entity.vacancy.Vacancy</class>
-
 
 		
 
