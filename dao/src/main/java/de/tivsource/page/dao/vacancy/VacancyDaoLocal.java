@@ -55,6 +55,8 @@ public interface VacancyDaoLocal {
      */
     public List<Vacancy> findAll(Integer start, Integer max);
 
+    public List<Vacancy> findAllVisible(Integer start, Integer max);
+
     /**
      * Methode zu laden einer Liste von Vacancy Objekten, es muss dabei ein
      * Startwert, die Anzahl der zu ladenen Objekte, das Feld nach dem sortiert
@@ -75,5 +77,7 @@ public interface VacancyDaoLocal {
      * @return Integer - Anzahl der Vacancy Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+    
+    public Integer countAllVisible();
 
 }// Ende interface

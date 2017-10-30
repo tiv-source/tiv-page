@@ -86,6 +86,16 @@ public class VacancyDao implements VacancyDaoLocal {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Vacancy> findAllVisible(Integer start, Integer max) {
+        String queryString = "SELECT v FROM Vacancy v WHERE v.visible = 'Y'";
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
      */
@@ -106,6 +116,12 @@ public class VacancyDao implements VacancyDaoLocal {
     @Override
     public Integer countAll() {
         Query query = entityManager.createQuery("Select Count(v) from Vacancy v");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public Integer countAllVisible() {
+        Query query = entityManager.createQuery("Select Count(v) from Vacancy v WHERE v.visible = 'Y'");
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
