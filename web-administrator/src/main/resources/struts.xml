@@ -7,7 +7,7 @@
 	<constant name="struts.devMode" value="false" />
 	<constant name="struts.locale" value="de" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
-    <constant name="struts.multipart.maxSize" value="42000000" />
+    <constant name="struts.multipart.maxSize" value="98000000" />
     <constant name="struts.ui.theme" value="css_xhtml" />
 
 	<constant name="struts.convention.classes.reload" value="true" />
