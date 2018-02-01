@@ -351,6 +351,13 @@ a.button, a.nxt_aval_link, a.random_pwd_link {
     font-family: Helvetica,Arial,sans-serif;
 }
 
-
-
+p.ellipsis {
+	width: 90px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -moz-binding: url('ellipsis.xml#ellipsis');
+}
 
