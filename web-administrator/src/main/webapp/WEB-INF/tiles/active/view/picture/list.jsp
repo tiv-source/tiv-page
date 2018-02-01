@@ -67,9 +67,9 @@ $(function () {
         ],
         colModel: [
             { name: "pictureUrls.THUMBNAIL.url",       width:  140, align: "center", formatter:formatPicture },
-            { name: "descriptionMap.DE.name",          width:  140, align: "left" },
-            { name: "gallery.descriptionMap.DE.name",  width:  140, align: "left" },
-            { name: "visible",                         width:  140, align: "right", formatter:formatTrueFalse },
+            { name: "descriptionMap.DE.name",          width:  180, align: "left", index:"name" },
+            { name: "gallery.descriptionMap.DE.name",  width:  140, align: "left", index:"gallery" },
+            { name: "visible",                         width:  100, align: "right", formatter:formatTrueFalse },
             { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",                      width:  140, align: "right" },
             { name: "modifiedAddress",                 width:  140, align: "right" },
