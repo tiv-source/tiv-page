@@ -30,17 +30,19 @@ function formatGender(cellvalue, options, rowObject) {
 
 <script type="text/javascript">
 function formatIsoDate(celldate, options, rowObject) {
-  var newDate = new Date();
-  newDate.setTime(Date.parse(celldate));
-  return newDate.toLocaleFormat('%d.%m.%Y');
+    var dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    var newDate = new Date();
+    newDate.setTime(Date.parse(celldate));
+    return newDate.toLocaleDateString('de-DE', dateOptions);
 }
 </script>
 
 <script type="text/javascript">
 function formatIsoTime(celldate, options, rowObject) {
-  var newDate = new Date();
-  newDate.setTime(Date.parse(celldate));
-  return newDate.toLocaleFormat('%H:%M');
+    var timeOptions = { hour: '2-digit', minute: '2-digit' };
+    var newDate = new Date();
+    newDate.setTime(Date.parse(celldate));
+    return newDate.toLocaleTimeString('de-DE', timeOptions);
 }
 </script>
 
