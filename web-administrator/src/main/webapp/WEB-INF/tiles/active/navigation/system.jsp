@@ -24,21 +24,24 @@
             <struts:a href="%{userUrl}" title="%{getText('navigation.users')}">
               <div class="button fl_stop">
                 <img src="/admin/buttons/tiv_page_button_user.png" alt="<struts:text name="navigation.users"/>">
-                <p><struts:text name="navigation.users"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.users"/></p>
               </div>
             </struts:a>
 
             <struts:a href="%{roleUrl}" title="%{getText('navigation.roles')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_role.png" alt="<struts:text name="navigation.roles"/>">
-                <p><struts:text name="navigation.roles"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.roles"/></p>
               </div>
             </struts:a>
 
             <struts:a href="%{propertyUrl}" title="%{getText('navigation.properties')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.properties"/>">
-                <p><struts:text name="navigation.properties"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.properties"/></p>
               </div>
             </struts:a>
 

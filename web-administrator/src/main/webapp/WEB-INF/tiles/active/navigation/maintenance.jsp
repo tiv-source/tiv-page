@@ -25,28 +25,32 @@
             <struts:a href="%{backupUrl}" title="%{getText('navigation.backup')}">
               <div class="button fl_stop">
                 <img src="/admin/buttons/tiv_page_button_backup.png" alt="<struts:text name="navigation.backup"/>">
-                <p><struts:text name="navigation.backup"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.backup"/></p>
               </div>
             </struts:a>
 
             <struts:a href="%{restoreUrl}" title="%{getText('navigation.restore')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_restore.png" alt="<struts:text name="navigation.restore"/>">
-                <p><struts:text name="navigation.restore"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.restore"/></p>
               </div>
             </struts:a>
             
             <struts:a href="%{filesUrl}" title="%{getText('navigation.files')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_file.png" alt="<struts:text name="navigation.files"/>">
-                <p><struts:text name="navigation.files"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.files"/></p>
               </div>
             </struts:a>
 
             <struts:a href="%{cssUrl}" title="%{getText('navigation.css')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_file.png" alt="<struts:text name="navigation.css"/>">
-                <p><struts:text name="navigation.css"/></p>
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.css"/></p>
               </div>
             </struts:a>
 
