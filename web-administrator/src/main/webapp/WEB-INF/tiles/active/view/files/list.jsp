@@ -8,6 +8,10 @@
 function formatViewLink(cellvalue, options, rowObject) {
 	if(cellvalue.endsWith('.png') | cellvalue.endsWith('.jpg') | cellvalue.endsWith('.jpeg') | cellvalue.endsWith('.JPG') | cellvalue.endsWith('.JPEG') | cellvalue.endsWith('.ico')) {
 		return "<img src='/uploads/"+ cellvalue +"' style='max-width:200px; max-height:100px; width: unset; height: unset;' />";
+	} else if (cellvalue.endsWith('.mp4')) {
+		return "<img src='/admin/icons/128x128/mp4.png' style='width:100px; height:100px; width: unset; height: unset;' />";
+	} else if (cellvalue.endsWith('.doc')) {
+		return "<img src='/admin/icons/128x128/doc.png' style='width:100px; height:100px; width: unset; height: unset;' />";
 	} else {
 		return "<img src='/admin/icons/128x128/pdf.png' style='width:100px; height:100px; width: unset; height: unset;' />";
 	}
