@@ -15,6 +15,7 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
+import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.picture.Picture;
@@ -61,6 +62,9 @@ public class FormAction extends EmptyAction {
 
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
+
+    @InjectEJB(name="PropertyDao")
+    private PropertyDaoLocal propertyDaoLocal;
 
 	private Vacancy vacancy;
 
@@ -112,8 +116,8 @@ public class FormAction extends EmptyAction {
     }// Ende getLocationList()
 
 	public List<Picture> getPictureList() {
-		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll("41c1471b-6511-4e98-a1ab-fe13e7a906ed");
+		// return pictureDaoLocal.findAll("41c1471b-6511-4e98-a1ab-fe13e7a906ed");
+		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.vacancy.picture").getValue());
 	}
 
 	private void loadPageParameter() {

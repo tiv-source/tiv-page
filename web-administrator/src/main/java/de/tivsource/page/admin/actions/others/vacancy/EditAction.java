@@ -9,11 +9,15 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
+import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
@@ -25,6 +29,13 @@ import de.tivsource.page.entity.vacancy.Vacancy;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="vacancyEditForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/vacancy/edit_form.jsp")
+  })
+})
 public class EditAction extends EmptyAction {
 
 	/**
@@ -45,6 +56,9 @@ public class EditAction extends EmptyAction {
 
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
+
+    @InjectEJB(name="PropertyDao")
+    private PropertyDaoLocal propertyDaoLocal;
 
     private Vacancy vacancy;
 
@@ -133,8 +147,8 @@ public class EditAction extends EmptyAction {
     }
 
 	public List<Picture> getPictureList() {
-		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll("41c1471b-6511-4e98-a1ab-fe13e7a906ed");
+		// return pictureDaoLocal.findAll("41c1471b-6511-4e98-a1ab-fe13e7a906ed");
+		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.vacancy.picture").getValue());
 	}
 
 }// Ende class
