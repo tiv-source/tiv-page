@@ -1,6 +1,9 @@
 package de.tivsource.page.user.actions;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +22,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.page.Page;
 
@@ -59,6 +64,9 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
+
+    @InjectEJB(name="AppointmentDao")
+    private AppointmentDaoLocal appointmentDaoLocal;
 
     private Event left;
     private Event right;
@@ -158,6 +166,16 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
         return right;
     }
 
+    public List<Appointment> getSliderList() {
+        return appointmentDaoLocal.findAllVisible(0, 5);
+    }
+
+    public String getSliderWidth() {
+        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getSliderList().size()), 2, BigDecimal.ROUND_HALF_UP);
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); 
+        return numberFormat.format(sliderWidth);
+    }
+    
 	/**
 	 * Methode die die aktuelle Sprache aus dem Context holt.
 	 */
