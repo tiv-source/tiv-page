@@ -97,7 +97,7 @@
 		
    <div id="mobile_navi">
      <label for="checkbox">
-       <span class="ellipsis"><struts:property value="page.getName(getText('language'))" /></span><img src="/public/icons/menu-icon_grau_klein.png" alt="menu">
+       <span class="ellipsis"><struts:property value="page.getName(getText('language'))" /></span><img src="<struts:property value="getProperty('menu.icon.path')"/>" alt="menu">
      </label>
      <input id="checkbox"  type="checkbox" />
      <ul class="mobile_sub">
