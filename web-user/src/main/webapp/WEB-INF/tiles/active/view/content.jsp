@@ -1,6 +1,7 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
+<struts:if test="getProperty('facebook.on.home') == 'true'">
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -9,6 +10,7 @@
   js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+</struts:if>
 
   <struts:if test="page.pictureOnPage">
     <div id="sitePicture">
@@ -16,6 +18,7 @@
     </div>
   </struts:if>
 
+  <struts:if test="getProperty('facebook.on.home') == 'true'">
     <div id="social_net1">
       <div class="picturebox1">
 		<div class="fb-page" data-href="<struts:property value="getProperty('facebook.page.url')"/>" data-tabs="timeline" data-width="300" data-height="560" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
@@ -27,6 +30,7 @@
 		</div>
       </div>
     </div>
+  </struts:if>
 
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
@@ -75,4 +79,8 @@
 
       <hr>
     </div>
+    </struts:if>
+
+    <struts:if test="getProperty('home.appointment.slider')">
+      <struts:include value="content_slider.jsp" />
     </struts:if>
