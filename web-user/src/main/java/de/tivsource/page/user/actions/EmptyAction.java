@@ -17,6 +17,8 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -34,6 +36,9 @@ import de.tivsource.page.entity.page.Page;
  * 
  * @author Marc Michele
  */
+@TilesDefinitions({
+    @TilesDefinition(name="index",  extend = "userTemplate")
+})
 public class EmptyAction extends ActionSupport implements ServletRequestAware,
 		ServletResponseAware, SessionAware {
 
