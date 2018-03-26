@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="page.technical">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.technical.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="page.topNavigationOrder">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.topNavigationOrder.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.topNavigationOrder.validation.minmax" />
+    </field-validator>
+  </field>
+
+  <field name="page.navigationOrder">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.navigationOrder.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.navigationOrder.validation.minmax" />
+    </field-validator>
+  </field>
+
+  <field name="page.bottomNavigationOrder">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.bottomNavigationOrder.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.bottomNavigationOrder.validation.minmax" />
+    </field-validator>
+  </field>
+
+  <field name="page.responsiveNavigationOrder">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.responsiveNavigationOrder.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.responsiveNavigationOrder.validation.minmax" />
+    </field-validator>
+  </field>
+
+  <field name="page.descriptionMap.DE.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="page.descriptionMap.DE.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="page.descriptionMap.DE.keywords">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="page.contentMap.DE.content">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.contentMap.DE.content.validation.required" />
+    </field-validator>
+  </field>
+
+</validators>
