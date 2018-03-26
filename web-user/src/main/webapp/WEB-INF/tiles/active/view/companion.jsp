@@ -46,8 +46,8 @@
           </p>
           <p>
             <img src="<struts:property value="getProperty('project.icon.path')"/>world.png" alt="Website">
-            <a href="<struts:property value="location.contactDetails.homepage" />" target="blanc" class="nonbreak2">
-              <struts:property value="location.contactDetails.homepage" />
+            <a href="<struts:property value="contactDetails.homepage" />" target="blanc" class="nonbreak2">
+              <struts:property value="contactDetails.homepage" />
             </a>
           </p>
           <br>
