@@ -49,3 +49,9 @@
 .feedbackStars > img {
     width: 65px;
 }
+
+.feedbackStars {
+    height: 65px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
