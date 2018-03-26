@@ -39,6 +39,8 @@ public class FeedbackOptionDescription {
 
     private String keywords;
 
+    private String hints;
+
     @Enumerated(EnumType.STRING)
     private Language language;
 
@@ -72,6 +74,14 @@ public class FeedbackOptionDescription {
 
     public String getKeywords() {
         return keywords;
+    }
+
+    public String getHints() {
+        return hints;
+    }
+
+    public void setHints(String hints) {
+        this.hints = hints;
     }
 
     public void setKeywords(String keywords) {

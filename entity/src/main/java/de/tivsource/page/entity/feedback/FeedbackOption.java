@@ -54,6 +54,9 @@ public class FeedbackOption {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean visible;
 
+    /**
+     * @deprecated
+     */
     private String hints;
     
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -115,10 +118,16 @@ public class FeedbackOption {
         this.visible = visible;
     }
 
+    /**
+     * @deprecated
+     */
     public String getHints() {
         return hints;
     }
 
+    /**
+     * @deprecated
+     */
     public void setHints(String hints) {
         this.hints = hints;
     }
@@ -199,4 +208,23 @@ public class FeedbackOption {
         return tmpResult;
     }
 
+    /**
+     * Methode zum abfragen der Beschreibung in einer bestimmten Sprache.
+     * @param language - Sprache in der die Beschreibung gewünscht wird.
+     * @return
+     */
+    public String getHints(String language) {
+        String result = descriptionMap.get(Language.DE).getHints();
+        String tmpResult = descriptionMap.get(Language.DE).getHints();
+
+        try {
+            tmpResult = descriptionMap.get(Language.valueOf(language.toUpperCase())).getHints();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+    
 }// Ende class
