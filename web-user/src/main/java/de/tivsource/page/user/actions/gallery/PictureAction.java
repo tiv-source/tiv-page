@@ -1,5 +1,7 @@
 package de.tivsource.page.user.actions.gallery;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +15,10 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.entity.namingitem.Description;
+import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.user.actions.EmptyAction;
 import de.tivsource.page.user.interfaces.Pagination;
@@ -39,6 +44,8 @@ public class PictureAction extends EmptyAction implements Pagination {
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
     
+    private Page page;
+
     private Gallery gallery;
 
     private Picture picture;
@@ -61,11 +68,19 @@ public class PictureAction extends EmptyAction implements Pagination {
      */ 
     private Integer requestedPage;
 
+    private Integer previousPicture;
+
+    private Integer nextPicture;
+    
     /**
      * Anzahl der Bilder aus der Datenbank ermittlet.
      */
     private Integer pictureCount;
 
+    /**
+     * Maximal Anzahl von Bildern auf der aktuellen Seite.
+     */
+    private Integer maxPictures;
     /**
      * Attribut das die maximal Anzahl der Liste enthält. 
      */
@@ -99,6 +114,22 @@ public class PictureAction extends EmptyAction implements Pagination {
         // Hole Action Locale
         this.getLanguageFromActionContext();
 
+        /*
+         * Ermittle ob die Galeriefunktion der Webseite angeschaltet wurde.
+         */
+        boolean galleryPageEnabled = getProperty("gallery.page.enabled").equals("true") ? true : false;
+        if(!galleryPageEnabled) {
+            return ERROR;
+        }
+
+        /*
+         * Ermittle Wert des Attributes maxElements aus Datenbank, versuche
+         * die Eigenschaft gallery.page.max.pictures zu laden.
+         */
+        if(getProperty("gallery.overview.list.quantity") != null) {
+            maxElements = Integer.parseInt(getProperty("gallery.overview.list.quantity"));
+        }
+
         pathUuid = ServletActionContext.getRequest().getServletPath();
         LOGGER.info("UUID from Path: " + pathUuid);
 
@@ -120,7 +151,11 @@ public class PictureAction extends EmptyAction implements Pagination {
          */
         LOGGER.info("Zweiter Teil: " + parts[1]);
         if(parts.length == 3 && isNumber(parts[1])) {
-            requestedPage = Integer.parseInt(parts[1]);
+            try {
+                requestedPage = Integer.parseInt(parts[1]);
+            } catch (Exception e) {
+                return ERROR;
+            }
         } else {
             return ERROR;
         }
@@ -132,7 +167,11 @@ public class PictureAction extends EmptyAction implements Pagination {
          */
         LOGGER.info("Dritter Teil: " + parts[2]);
         if(parts.length == 3 && isNumber(parts[2])) {
-            requestedPicture = Integer.parseInt(parts[2]);
+            try {
+                requestedPicture = Integer.parseInt(parts[2]);
+            } catch (Exception e){
+                return ERROR;
+            }
         } else {
             return ERROR;
         }
@@ -149,20 +188,13 @@ public class PictureAction extends EmptyAction implements Pagination {
             pictureCount = pictureDaoLocal.countAllInGallery(gallery.getUuid());
             
             calculate();
-
-            /*
-             * Ermittle Wert des Attributes maxElements aus Datenbank, versuche
-             * die Eigenschaft gallery.page.max.pictures zu laden.
-             */
-            if(propertyDaoLocal.findByKey("gallery.page.max.pictures") != null) {
-                maxElements = Integer.parseInt(propertyDaoLocal.findByKey("gallery.page.max.pictures").getValue());
-            }
-            
             
             // TODO: Neue Methode für die Abfrage
             Integer pictureStart = requestedPage == 1 ? requestedPicture - 1 : (requestedPage - 1) * maxElements + requestedPicture - 1;
             LOGGER.info("Attribute pictureStart: " + pictureStart);
             picture = pictureDaoLocal.findCurrentPicture(pictureStart, gallery.getUuid());
+
+            createPageObject();
 
             return SUCCESS;
         }
@@ -174,13 +206,25 @@ public class PictureAction extends EmptyAction implements Pagination {
          return ERROR;
     }// Ende execute()
 
-	public Gallery getGallery() {
+	public Page getPage() {
+        return page;
+    }
+
+    public Gallery getGallery() {
 		return gallery;
 	}
 
 	public Picture getPicture() {
 		return picture;
 	}
+
+    public Integer getPreviousPicture() {
+        return previousPicture;
+    }
+
+    public Integer getNextPicture() {
+        return nextPicture;
+    }
 
     @Override
     public Integer getNext() {
@@ -226,6 +270,7 @@ public class PictureAction extends EmptyAction implements Pagination {
         maxPages = (pictureCount % maxElements == 0) ? (pictureCount / maxElements)
                 : (pictureCount / maxElements) + 1;
 
+        LOGGER.info("Inhalt von requestedPage: " + requestedPage);
         // Wenn page nicht gesetzt wurde
         if(requestedPage == null) {
             requestedPage = 1;
@@ -235,18 +280,78 @@ public class PictureAction extends EmptyAction implements Pagination {
         if(requestedPage > maxPages) {
             requestedPage = 1;
         }
-        
+        LOGGER.info("Inhalt von requestedPage nach den Überprüfungen: " + requestedPage);
+
+        maxPictures = requestedPage * maxElements < pictureCount ? maxElements : 
+            pictureCount - ((requestedPage - 1) * maxElements);
+        LOGGER.info("Errechnet maximal Anzahl von Bildern: " + maxPictures);
+
+        // Wenn Bildnummer größer als erlaubt ist
+        if(requestedPicture > maxPictures) {
+            requestedPicture = 1;
+        }
+
+        // Berechne Seitennummern
         if(requestedPage == 1) {
-            previous = null;
-            next = (2 <= maxPages) ? 2 : null;
-            from = 0;
-            current = 1;
-        } else {
-            previous = requestedPage -1;
-            next = (requestedPage + 1 <= maxPages) ? requestedPage + 1 : null;
-            from = (requestedPage - 1) * maxElements;
+            LOGGER.info("requestedPage erste Abfrage");
+            previous = requestedPage;
+            next = (requestedPicture + 1 > maxPictures) ? requestedPage + 1 : requestedPage;
+        }
+        else if(requestedPicture == 1 && requestedPage - 1 >= 1) {
+            LOGGER.info("requestedPage zweite Abfrage");
+            previous = requestedPage - 1;
+            next = (requestedPicture + 1 > maxPictures) ? requestedPage + 1 : requestedPage;
             current = requestedPage;
         }
+        else {
+            LOGGER.info("requestedPage letze Abfrage");
+            previous = requestedPicture <= maxElements ? requestedPage : 1;
+            next = (requestedPicture + 1 > maxPictures) ? requestedPage + 1 : requestedPage;
+            current = requestedPage;
+        }
+
+        /// Berechne Bildnummern
+        if(requestedPage == 1 && requestedPicture == 1) {
+            LOGGER.info("requestedPicture erste Abfrage");
+            previousPicture = null;
+            nextPicture = (2 <= pictureCount) ? 2 : null;
+        } 
+        else if ((requestedPicture + 1 <= maxElements) && (requestedPicture + 1 <= maxPictures)) {
+            LOGGER.info("requestedPicture zweite Abfrage");
+            previousPicture = requestedPicture - 1 >= 1 ? requestedPicture - 1 : maxElements;
+            nextPicture = requestedPicture + 1;
+        }
+        else {
+            LOGGER.info("requestedPicture letzte Abfrage");
+            previousPicture = requestedPicture - 1 > 1 ? requestedPicture - 1 : maxElements;
+            nextPicture = (requestedPicture + 1 > maxElements) && (requestedPage + 1 <= maxPages) ? 1 : null;
+        }
+        
     }// Ende calculate()
+
+    private void createPageObject(){
+        // Erstelle Page Objekt
+        page = new Page();
+        page.setTechnical("picture_01");
+        Map<Language, Description> descriptionMap = new HashMap<Language, Description>();
+
+        Description descriptionDE = new Description();
+        descriptionDE.setDescription(picture.getDescriptionMap().get(Language.DE).getDescription());
+        descriptionDE.setKeywords(picture.getDescriptionMap().get(Language.DE).getKeywords());
+        descriptionDE.setLanguage(Language.DE);
+        descriptionDE.setName(picture.getDescriptionMap().get(Language.DE).getName());
+        descriptionDE.setNamingItem(page);
+        descriptionMap.put(Language.DE, descriptionDE);
+
+        Description descriptionEN = new Description();
+        descriptionEN.setDescription(picture.getDescriptionMap().get(Language.EN).getDescription());
+        descriptionEN.setKeywords(picture.getDescriptionMap().get(Language.EN).getKeywords());
+        descriptionEN.setLanguage(Language.EN);
+        descriptionEN.setName(picture.getDescriptionMap().get(Language.EN).getName());
+        descriptionEN.setNamingItem(page);
+        descriptionMap.put(Language.EN, descriptionEN);
+        
+        page.setDescriptionMap(descriptionMap);
+    }
 
 }// Ende class

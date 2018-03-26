@@ -11,7 +11,6 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -29,16 +28,8 @@ public class IndexAction extends EmptyAction implements Pagination {
      */
     private static final Logger LOGGER = LogManager.getLogger(IndexAction.class);
 
-    /**
-     * Attribut das die maximal Anzahl der Liste enthält. 
-     */
-    private static final Integer TO = 7;
-
     @InjectEJB(name = "PageDao")
     private PageDaoLocal pageDaoLocal;
-
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
 
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
@@ -46,6 +37,13 @@ public class IndexAction extends EmptyAction implements Pagination {
     private List<Gallery> gallery;
 
     private Page page;
+
+    /**
+     * Attribut das die maximale Anzahl von Objekten enthält, die in der Liste
+     * enthalten seien sollen. Dieser Wert ist mit 7 vorbelegt und sollte aus
+     * der Datenbank geholt werden.
+     */
+    private Integer to;
 
     private Integer next;
     private Integer previous;
@@ -85,8 +83,21 @@ public class IndexAction extends EmptyAction implements Pagination {
         // Hole Action Locale
         this.getLanguageFromActionContext();
 
+        /*
+         * Ermittle ob die Galeriefunktion der Webseite angeschaltet wurde.
+         */
+        boolean galleryPageEnabled = getProperty("gallery.page.enabled").equals("true") ? true : false;
+        if(!galleryPageEnabled) {
+            return ERROR;
+        }
+
+        // Hole attribute to aus Datenbank 
+        to = Integer.parseInt(getProperty("gallery.list.quantity"));
+
         // Setze Daten in ein Page Objekt
         setUpPage();
+
+
 
         // Hole die Anzahl aus der Datenbank
         this.getDBCount();
@@ -103,9 +114,9 @@ public class IndexAction extends EmptyAction implements Pagination {
 
         // Kalkuliere die Seiten
         this.calculate();
-        
+
         // TODO: neue Methode die das Datum und das Attribute visible berücksichtigt 
-        gallery = galleryDaoLocal.findAllVisible(from, TO);
+        gallery = galleryDaoLocal.findAllVisible(from, to);
         return SUCCESS;
         
     }// Ende execute()
@@ -148,7 +159,7 @@ public class IndexAction extends EmptyAction implements Pagination {
         dbQuantity = galleryDaoLocal.countAllVisible();
         LOGGER.debug("DbQuantity: " + dbQuantity);
         // Berechne die Maximal mögliche Seitenzahl
-        maxPages = (dbQuantity % TO == 0) ? (dbQuantity / TO) : (dbQuantity / TO) + 1;
+        maxPages = (dbQuantity % to == 0) ? (dbQuantity / to) : (dbQuantity / to) + 1;
         LOGGER.debug("MaxPages: " + maxPages);
     }// Ende getDBCount()
 
@@ -165,7 +176,7 @@ public class IndexAction extends EmptyAction implements Pagination {
         } else {
             previous = pagination -1;
             next = (pagination + 1 <= maxPages) ? pagination + 1 : null;
-            from = (pagination - 1) * TO;
+            from = (pagination - 1) * to;
             current = pagination;
         }
     }// Ende calculate()

@@ -13,8 +13,8 @@ import org.apache.struts2.convention.annotation.Result;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.user.actions.EmptyAction;
 import de.tivsource.page.user.interfaces.Pagination;
@@ -31,15 +31,14 @@ public class GalleryAction extends EmptyAction implements Pagination {
      */
     private static final Logger LOGGER = LogManager.getLogger(GalleryAction.class);
 
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
-    
+
+    private Page page;
+
     private Gallery gallery;
 
     private List<Picture> pictures;
@@ -94,6 +93,23 @@ public class GalleryAction extends EmptyAction implements Pagination {
         // Hole Action Locale
         this.getLanguageFromActionContext();
 
+        /*
+         * Ermittle ob die Galeriefunktion der Webseite angeschaltet wurde.
+         */
+        boolean galleryPageEnabled = getProperty("gallery.page.enabled").equals("true") ? true : false;
+        if(!galleryPageEnabled) {
+            return ERROR;
+        }
+
+        /*
+         * Ermittle Wert des Attributes maxElements aus Datenbank, versuche
+         * die Eigenschaft gallery.page.max.pictures zu laden.
+         */
+        if(getProperty("gallery.overview.list.quantity") != null) {
+            maxElements = Integer.parseInt(getProperty("gallery.overview.list.quantity"));
+        }
+
+
         pathUuid = ServletActionContext.getRequest().getServletPath();
         LOGGER.info("UUID from Path: " + pathUuid);
 
@@ -117,14 +133,6 @@ public class GalleryAction extends EmptyAction implements Pagination {
             pictureCount = pictureDaoLocal.countAllInGallery(gallery.getUuid());
             LOGGER.info("Inhalt Attribute pictureCount:" + pictureCount);
 
-            /*
-             * Ermittle Wert des Attributes maxElements aus Datenbank, versuche
-             * die Eigenschaft gallery.page.max.pictures zu laden.
-             */
-            if(propertyDaoLocal.findByKey("gallery.page.max.pictures") != null) {
-                maxElements = Integer.parseInt(propertyDaoLocal.findByKey("gallery.page.max.pictures").getValue());
-            }
-
             // Kalkuliere Zähler Werte
             calculate();
 
@@ -132,6 +140,10 @@ public class GalleryAction extends EmptyAction implements Pagination {
 
             // TODO: Neue Methode für die Abfrage
             pictures = pictureDaoLocal.findAll(from, maxElements, gallery.getUuid(), "p.orderNumber, p.uuid", "desc");
+
+            page = new Page();
+            page.setTechnical("gallery_01");
+            page.setDescriptionMap(gallery.getDescriptionMap());
 
             return SUCCESS;
         }
@@ -143,7 +155,11 @@ public class GalleryAction extends EmptyAction implements Pagination {
          return ERROR;
     }// Ende execute()
 
-	public Gallery getGallery() {
+	public Page getPage() {
+        return page;
+    }
+
+    public Gallery getGallery() {
 		return gallery;
 	}
 
