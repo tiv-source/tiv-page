@@ -7,6 +7,8 @@
     </div>
   </struts:if>
 
+  <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
+
   <struts:form
       cssClass="form" 
       action="sent" 
@@ -18,12 +20,48 @@
   >
 
     <fieldset class="fieldset">
-      <div class="field">        
-        <struts:textfield key="feedback.cashpoint"  />
+      <div class="field">
+        <struts:if test="cashpoint">
+          <div id="wwgrp_sent_feedback_cashpoint" class="wwgrp">
+            <div id="wwlbl_sent_feedback_cashpoint" class="wwlbl">
+              <label for="sent_feedback_cashpoint" class="label">
+                <struts:text name="feedback.cashpoint"/>
+              </label>
+            </div>
+            <br>
+            <div id="wwctrl_sent_feedback_cashpoint" class="wwctrl">
+              <p style="padding-left:21px;">
+                <struts:property value="feedback.cashpoint"/>
+                <struts:hidden key="feedback.cashpoint"  />
+              </p>
+            </div>
+          </div>
+        </struts:if>
+        <struts:else>
+          <struts:textfield key="feedback.cashpoint"  />
+        </struts:else>
       </div>
 
-      <div class="field">        
-        <struts:textfield key="feedback.voucher"  />
+      <div class="field">
+        <struts:if test="voucher">
+          <div id="wwgrp_sent_feedback_voucher" class="wwgrp">
+            <div id="wwlbl_sent_feedback_voucher" class="wwlbl">
+              <label for="sent_feedback_voucher" class="label">
+                <struts:text name="feedback.voucher"/>
+              </label>
+            </div>
+            <br>
+            <div id="wwctrl_sent_feedback_voucher" class="wwctrl">
+              <p style="padding-left:21px;">
+                <struts:property value="feedback.voucher"/>
+                <struts:hidden key="feedback.voucher"  />
+              </p>
+            </div>
+          </div>
+        </struts:if>
+        <struts:else>
+          <struts:textfield key="feedback.voucher"  />
+        </struts:else>
       </div>
 
     <struts:iterator value="options" status="optionStatus">
@@ -33,6 +71,8 @@
       <struts:else>
         <struts:set var="score" value="0"/>
       </struts:else>
+
+      <struts:set var="hints" value="getHints(getText('language'))"/>
 
       <div class="field">
         <div id="wwgrp_sent_feedback_${mapKey}" class="wwgrp">
@@ -55,16 +95,15 @@
           </div>
           <div id="wwctrl_sent_feedback_${mapKey}" class="wwctrl">
             <div id="${uuid}" class="feedbackStars"></div>
-
-    <script type="text/javascript">
-      $('#' + "${uuid}").raty({
-        scoreName: 'feedback.answers[\'${mapKey}\']',
-        path: '/public/raty/images',
-        number: <struts:property value="maxStars" />,
-        hints: ['na ja', 'geht so', 'geht', 'gut', 'super', 'super gut', 'echt super gut'],
-        score: <struts:property value="#score"/>
-      });
-    </script>
+            <script type="text/javascript">
+              $('#' + "${uuid}").raty({
+                  scoreName: 'feedback.answers[\'${mapKey}\']',
+                  path: '/public/raty/images',
+                  number: <struts:property value="maxStars" />,
+                  hints: <struts:property value="#hints" />,
+                  score: <struts:property value="#score"/>
+              });
+            </script>
 
           </div>
         </div>
