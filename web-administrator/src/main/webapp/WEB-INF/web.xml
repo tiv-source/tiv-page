@@ -57,7 +57,17 @@
 	</security-role>
 
 	<error-page>
+		<error-code>400</error-code>
+		<location>/error_400.jsp</location>
+	</error-page>
+
+	<error-page>
 		<error-code>403</error-code>
 		<location>/notInRole.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>408</error-code>
+		<location>/error_408.jsp</location>
 	</error-page>
 </web-app>
