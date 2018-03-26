@@ -80,7 +80,9 @@ public class DeleteAction extends EmptyAction {
         if(picture != null) {
             if(!pictureDaoLocal.hasReferences(picture.getUuid())) {
                 Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
-                deletePictures(dbPicture.getPictureUrls());
+                if(dbPicture.getPictureUrls() != null && dbPicture.getPictureUrls().size() > 0) {
+                    deletePictures(dbPicture.getPictureUrls());
+                }
                 pictureDaoLocal.delete(dbPicture);
                 return SUCCESS;
             } else {
