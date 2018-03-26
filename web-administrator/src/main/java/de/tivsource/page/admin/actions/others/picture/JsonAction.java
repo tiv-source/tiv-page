@@ -84,8 +84,8 @@ public class JsonAction extends ActionSupport {
 		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
 				pictureList = this.pictureDaoLocal.findAll(from, getRows(), "dm.name", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("location")) {
-				pictureList = this.pictureDaoLocal.findAll(from, getRows(), "edm.name", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("gallery")) {
+				pictureList = this.pictureDaoLocal.findAll(from, getRows(), "gdm.name", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("price")) {
                 pictureList = this.pictureDaoLocal.findAll(from, getRows(), "p.price", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("beginning")) {
@@ -109,8 +109,8 @@ public class JsonAction extends ActionSupport {
 		    LOGGER.info("Sortieren nach desc");
             if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
                 pictureList = this.pictureDaoLocal.findAll(from, getRows(), "dm.name", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("location")) {
-                pictureList = this.pictureDaoLocal.findAll(from, getRows(), "edm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("gallery")) {
+                pictureList = this.pictureDaoLocal.findAll(from, getRows(), "gdm.name", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("price")) {
                 pictureList = this.pictureDaoLocal.findAll(from, getRows(), "p.price", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("beginning")) {
