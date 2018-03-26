@@ -9,7 +9,6 @@
 
     <h1><struts:property value="gallery.getName(getText('language'))" /></h1>
     <p><struts:property value="gallery.getDescription(getText('language'))" /></p>
-    <p class="bc_bottom">&nbsp;</p>
 
     <div class="gallery">
     
@@ -21,7 +20,7 @@
           <div class="clickable">
             <div class="holder">
               <div class="frame">
-                <img src="/pictures/THUMBNAIL/<struts:property value="pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+                <img src="/pictures/THUMBNAIL/<struts:property value="pictureUrls.THUMBNAIL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
               </div>
               <div class="propertie">
                 <p><struts:property value="getName(getText('language'))" /></p>
