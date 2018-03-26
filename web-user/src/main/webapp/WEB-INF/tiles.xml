@@ -14,13 +14,13 @@
 	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
 	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/content.jsp" />
 	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/content.jsp" />
-		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/content.jsp" />
+		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/home/content.jsp" />
 		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/content.jsp" />
 	</definition>
 
 	<definition name="index" extends="userTemplate">
 	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/home.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/content.jsp" />
+		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 
 	<definition name="page" extends="userTemplate">
