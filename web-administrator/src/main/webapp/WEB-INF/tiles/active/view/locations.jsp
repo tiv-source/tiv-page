@@ -4,6 +4,7 @@
 <struts:url var="locationUrl"          action="index" namespace="/locations/location" />
 <struts:url var="eventUrl"             action="index" namespace="/locations/event" />
 <struts:url var="queueUrl"             action="queue" namespace="/locations/reservation" />
+<struts:url var="feedbackOptionUrl"    action="index" namespace="/locations/feedbackoption" />
 
       <div id="title">
         <h5><struts:text name="navigation.category.locations"/></h5>
@@ -32,6 +33,15 @@
           <p><struts:text name="navigation.reservation.description"/></p>
         </div>
       </struts:a>
+
+      <struts:a href="%{feedbackOptionUrl}" title="%{getText('navigation.feedbackOptions')}">
+        <div class="buttoninfo typ2">
+          <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.feedbackOptions.description"/>">
+          <h5><struts:text name="navigation.feedbackOptions"/></h5>
+          <p><struts:text name="navigation.feedbackOptions.description"/></p>
+        </div>
+      </struts:a>
+
 
       <hr>
 
