@@ -7,6 +7,7 @@
 <struts:url var="systemtUrl"           action="index" namespace="/system" />
 
 <struts:url var="pageUrl"              action="index" namespace="/others/page" />
+<struts:url var="appointmentUrl"       action="index" namespace="/others/appointment" />
 <struts:url var="messageUrl"           action="index" namespace="/others/message" />
 <struts:url var="vacancyUrl"           action="index" namespace="/others/vacancy" />
 <struts:url var="galleryUrl"           action="index" namespace="/others/gallery" />
@@ -32,6 +33,14 @@
                 <img src="/admin/buttons/tiv_page_button_page.png" alt="<struts:text name="navigation.pages"/>">
                 <br />
                 <p class="ellipsis"><struts:text name="navigation.pages"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.appointments"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.appointments"/></p>
               </div>
             </struts:a>
 
