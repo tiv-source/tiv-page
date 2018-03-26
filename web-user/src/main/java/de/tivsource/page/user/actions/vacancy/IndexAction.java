@@ -81,7 +81,7 @@ public class IndexAction extends EmptyAction {
     }
 
     public List<Vacancy> getList() {
-        return vacancyDaoLocal.findAll(0, vacancyDaoLocal.countAll());
+        return vacancyDaoLocal.findAllVisible(0, vacancyDaoLocal.countAllVisible());
     }
 
 }// Ende class
