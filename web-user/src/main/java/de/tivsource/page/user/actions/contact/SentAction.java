@@ -165,8 +165,10 @@ public class SentAction extends EmptyAction {
                 propertyDaoLocal.findByKey("mail.smtp.auth").getValue());
         props.put("mail.smtp.tls", 
                 propertyDaoLocal.findByKey("mail.smtp.tls").getValue());
+        props.put("mail.smtp.starttls.enable", 
+                "true");
         props.put("mail.smtp.localhost", 
-                propertyDaoLocal.findByKey("mail.smtp.tls").getValue());
+                propertyDaoLocal.findByKey("mail.smtp.localhost").getValue());
         props.put("mail.user", 
                 propertyDaoLocal.findByKey("mail.user").getValue());
         props.put("mail.password", 
