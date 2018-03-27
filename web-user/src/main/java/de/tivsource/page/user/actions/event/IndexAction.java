@@ -102,42 +102,45 @@ public class IndexAction extends EmptyAction {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.event").getValue().equals("true") ? true : false;
 
-        eventUuid = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("EventUuid: " + eventUuid);
-        
-        eventUuid = eventUuid.replaceAll("/index.html", "");
-        eventUuid = eventUuid.replaceAll("/event/", "");
-            
-        LOGGER.info("EventUuid: " + eventUuid);
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        
-        /*
-         * Wenn die Event Uuid keine nicht erlaubten Zeichen enthält und es
-         * die Event mit der Uuid gibt dann wird der Block ausgeführt.
-         */
-        if (isValid(eventUuid) && eventDaoLocal.isEvent(eventUuid)) {
-            LOGGER.info("gültige Event Uuid.");
-            event = eventDaoLocal.findByUuid(eventUuid);
-            // Setze Daten in ein Page Objekt.
-            setUpPage();
-            Date now = new Date();
-            if(event.getDeadline().after(now)) {
-                return SUCCESS;
-            } else if (event.getBeginning().before(now)) {
-                return ERROR;
-            } else {
-                return INPUT;
+            // Lese UUID aus dem ServletRequest
+            eventUuid = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("EventUuid: " + eventUuid);
+            eventUuid = eventUuid.replaceAll("/index.html", "");
+            eventUuid = eventUuid.replaceAll("/event/", "");
+            LOGGER.info("EventUuid: " + eventUuid);
+
+            /*
+             * Wenn die Event Uuid keine nicht erlaubten Zeichen enthält und es
+             * die Event mit der Uuid gibt dann wird der Block ausgeführt.
+             */
+            if (isValid(eventUuid) && eventDaoLocal.isEvent(eventUuid)) {
+                LOGGER.info("gültige Event Uuid.");
+                event = eventDaoLocal.findByUuid(eventUuid);
+                // Setze Daten in ein Page Objekt.
+                setUpPage();
+                Date now = new Date();
+                if(event.getDeadline().after(now)) {
+                    return SUCCESS;
+                } else if (event.getBeginning().before(now)) {
+                    return ERROR;
+                } else {
+                    return INPUT;
+                }
             }
+            // Wenn einen Manipulationsversuch gab.
+            return ERROR;
+        } else {
+            // Wenn das Module nicht aktiviert ist oder es einen Manipulationsversuch gab.
+            return ERROR;
         }
-
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
     }// Ende execute()
 
 

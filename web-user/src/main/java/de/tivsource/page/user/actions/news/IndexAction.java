@@ -82,30 +82,40 @@ public class IndexAction extends EmptyAction implements Pagination {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.news").getValue().equals("true") ? true : false;
 
-        // Setze Daten in ein Page Objekt
-        setUpPage();
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        // Hole die Anzahl aus der Datenbank
-        this.getDBCount();
+            // Setze Daten in ein Page Objekt
+            setUpPage();
 
-        // Wenn page nicht gesetzt wurde
-        if(pagination == null) {
-        	pagination = 1;
+            // Hole die Anzahl aus der Datenbank
+            this.getDBCount();
+
+            // Wenn page nicht gesetzt wurde
+            if(pagination == null) {
+                pagination = 1;
+            }
+
+            //  Wenn page größer als maxPages ist.
+            if(pagination > maxPages) {
+                pagination = 1;
+            }
+
+            // Kalkuliere die Seiten
+            this.calculate();
+
+            news = newsDaoLocal.findAllVisible(from, TO);
+            return SUCCESS;            
+        } else {
+            // Wenn das Module nicht aktiviert ist.
+            return ERROR;
         }
 
-        //  Wenn page größer als maxPages ist.
-        if(pagination > maxPages) {
-        	pagination = 1;
-        }
-
-        // Kalkuliere die Seiten
-        this.calculate();
-
-        news = newsDaoLocal.findAllVisible(from, TO);
-        return SUCCESS;
         
     }// Ende execute()
 

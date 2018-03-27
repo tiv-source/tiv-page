@@ -87,20 +87,28 @@ public class SentAction extends EmptyAction {
 	public String execute() {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-    	this.getLanguageFromActionContext();
-    	
-    	// Speichere Message Objekt
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-        feedback.setUuid(UUID.randomUUID().toString());
-        feedback.setCreated(new Date());
-        feedback.setCreatedAddress(remoteAddress);
-        feedbackDaoLocal.merge(feedback);
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.feedback").getValue().equals("true") ? true : false;
 
-        LOGGER.info("Anzahl der Antworten: " + feedback.getAnswers().size());
-        
-		return SUCCESS;
-	}
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
+
+            // Speichere Message Objekt
+            String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+            feedback.setUuid(UUID.randomUUID().toString());
+            feedback.setCreated(new Date());
+            feedback.setCreatedAddress(remoteAddress);
+            feedbackDaoLocal.merge(feedback);
+
+            LOGGER.info("Anzahl der Antworten: " + feedback.getAnswers().size());
+            
+            return SUCCESS;            
+        } else {
+            return ERROR;
+        }
+	}// Ende execute()
 
     @Override
     public void validate(){

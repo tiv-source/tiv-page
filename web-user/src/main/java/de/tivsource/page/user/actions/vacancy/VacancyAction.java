@@ -68,24 +68,23 @@ public class VacancyAction extends EmptyAction {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
 
-        vacancyUuid = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("VacancyUuid: " + vacancyUuid);
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.vacancy").getValue().equals("true") ? true : false;
 
-        // /gallery/painting/index.html?page=1&request_locale=de
-        
-        
-        vacancyUuid = vacancyUuid.replaceAll("/form.html", "");
-        vacancyUuid = vacancyUuid.replaceAll("/index.html", "");
-        vacancyUuid = vacancyUuid.replaceAll("/vacancy/", "");
-            
-        LOGGER.info("VacancyUuid: " + vacancyUuid);
-        
-    	boolean contactPageEnabled = propertyDaoLocal.findByKey("vacancy.page.enabled").getValue().equals("true") ? true : false;
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        if(contactPageEnabled) {
+            // Lese UUID aus dem ServletRequest
+            vacancyUuid = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("VacancyUuid: " + vacancyUuid);
+            vacancyUuid = vacancyUuid.replaceAll("/form.html", "");
+            vacancyUuid = vacancyUuid.replaceAll("/index.html", "");
+            vacancyUuid = vacancyUuid.replaceAll("/vacancy/", "");
+            LOGGER.info("VacancyUuid: " + vacancyUuid);
+
             /*
              * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
              * die Location mit der Uuid gibt dann wird der Block ausgeführt.
@@ -96,14 +95,13 @@ public class VacancyAction extends EmptyAction {
                 setUpPage();
                 return SUCCESS;
             }
-        }
-       
 
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
+            // Wenn es einen Manipulationsversuch gab.
+            return ERROR;
+        } else {
+            // Wenn das Module nicht aktiviert ist.
+            return ERROR;
+        }
     }// Ende execute()
 
     @Override

@@ -62,36 +62,39 @@ public class GroupAction extends EmptyAction {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.companion").getValue().equals("true") ? true : false;
 
-        page = pageDaoLocal.findByTechnical("companion");
-        
-        pageName = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("PageName: " + pageName);
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        // /gallery/painting/index.html?page=1&request_locale=de
-        
-        
-        pageName = pageName.replaceAll("/index.html", "");
-        pageName = pageName.replaceAll("/companion/", "");
-            
-        LOGGER.info("PageName: " + pageName);
+            // Hole die Seite aus der Datenbank
+            page = pageDaoLocal.findByTechnical("companion");
 
-        /*
-         * Wenn der Seiten-Name keine nicht erlaubten Zeichen enthält und es
-         * die Seite mit dem Namen gibt dann wird der Block ausgeführt.
-         */
-        if (isValid(pageName) && companionGroupDaoLocal.isCompanionGroupTechnical(pageName)) {
-            companionGroup = companionGroupDaoLocal.findByTechnical(pageName);
-            return SUCCESS;
+            // Lese Namen aus dem ServletRequest
+            pageName = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("PageName: " + pageName);
+            pageName = pageName.replaceAll("/index.html", "");
+            pageName = pageName.replaceAll("/companion/", "");
+            LOGGER.info("PageName: " + pageName);
+
+            /*
+             * Wenn der Seiten-Name keine nicht erlaubten Zeichen enthält und es
+             * die Seite mit dem Namen gibt dann wird der Block ausgeführt.
+             */
+            if (isValid(pageName) && companionGroupDaoLocal.isCompanionGroupTechnical(pageName)) {
+                companionGroup = companionGroupDaoLocal.findByTechnical(pageName);
+                return SUCCESS;
+            }
+
+            // Wenn es einen Manipulationsversuch gab
+            return ERROR;
+        } else {
+            // Wenn das Modul nicht aktiviert ist
+            return ERROR;
         }
-
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
     }// Ende execute()
 
     public Page getPage() {

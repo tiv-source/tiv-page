@@ -55,40 +55,43 @@ public class ManualAction extends EmptyAction {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.manual").getValue().equals("true") ? true : false;
 
-        manualUuid = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("ManualUuid: " + manualUuid);
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        // /gallery/painting/index.html?page=1&request_locale=de
-        
-        
-        manualUuid = manualUuid.replaceAll("/index.html", "");
-        manualUuid = manualUuid.replaceAll("/manual/", "");
-            
-        LOGGER.info("ManualUuid: " + manualUuid);
+            // Lese UUID aus dem ServletRequest
+            manualUuid = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("ManualUuid: " + manualUuid);
+            manualUuid = manualUuid.replaceAll("/index.html", "");
+            manualUuid = manualUuid.replaceAll("/manual/", "");
+            LOGGER.info("ManualUuid: " + manualUuid);
 
-        /*
-         * Wenn die Manual Uuid keine nicht erlaubten Zeichen enthält und es
-         * das Manual mit der Uuid gibt dann wird der Block ausgeführt.
-         */
-        if (isValid(manualUuid) && manualDaoLocal.isManualUuid(manualUuid)) {
-            LOGGER.info("gültige Manual Uuid.");
+            /*
+             * Wenn die Manual Uuid keine nicht erlaubten Zeichen enthält und es
+             * das Manual mit der Uuid gibt dann wird der Block ausgeführt.
+             */
+            if (isValid(manualUuid) && manualDaoLocal.isManualUuid(manualUuid)) {
+                LOGGER.info("gültige Manual Uuid.");
 
-            manual = manualDaoLocal.findByUuid(manualUuid);
+                manual = manualDaoLocal.findByUuid(manualUuid);
 
-            // Setze Daten in ein Page Objekt
-            setUpPage();
+                // Setze Daten in ein Page Objekt
+                setUpPage();
 
-            return SUCCESS;
+                return SUCCESS;
+            }
+
+            // Wenn es einen Manipulationsversuch gab.
+            return ERROR;
+        } else {
+            // Wenn das Module nicht aktiviert ist.
+            return ERROR;
         }
 
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
     }// Ende execute()
 
     @Override

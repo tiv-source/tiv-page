@@ -36,27 +36,11 @@
               </div>
             </struts:a>
 
-            <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.appointments"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.appointments"/></p>
-              </div>
-            </struts:a>
-
             <struts:a href="%{messageUrl}" title="%{getText('navigation.messages')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.messages"/>">
                 <br />
                 <p class="ellipsis"><struts:text name="navigation.messages"/></p>
-              </div>
-            </struts:a>
-
-            <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.vacancies"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.vacancies"/></p>
               </div>
             </struts:a>
 
@@ -76,37 +60,63 @@
               </div>
             </struts:a>
 
-            <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}">
+            <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
               <div class="button">
-                <img src="/admin/buttons/tiv_page_button_news.png" alt="<struts:text name="navigation.news"/>">
+                <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.appointments"/>">
                 <br />
-                <p class="ellipsis"><struts:text name="navigation.news"/></p>
+                <p class="ellipsis"><struts:text name="navigation.appointments"/></p>
               </div>
             </struts:a>
 
-            <struts:a href="%{manualUrl}" title="%{getText('navigation.manuals')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.manuals"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.manuals"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.vacancy')">
+              <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.vacancies"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.vacancies"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
-            <struts:a href="%{companionUrl}" title="%{getText('navigation.companions')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.companions"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.companions"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.news')">
+              <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_news.png" alt="<struts:text name="navigation.news"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.news"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
-            <struts:a href="%{companionGroupUrl}" title="%{getText('navigation.companionGroups')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.companionGroups"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.companionGroups"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.manual')">
+              <struts:a href="%{manualUrl}" title="%{getText('navigation.manuals')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.manuals"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.manuals"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
+            <struts:if test="getProperty('module.companion')">
+              <struts:a href="%{companionUrl}" title="%{getText('navigation.companions')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.companions"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.companions"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
+            <struts:if test="getProperty('module.companion')">
+              <struts:a href="%{companionGroupUrl}" title="%{getText('navigation.companionGroups')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.companionGroups"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.companionGroups"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
 
 

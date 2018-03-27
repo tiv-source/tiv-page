@@ -76,42 +76,48 @@ public class LocationAction extends EmptyAction {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.location").getValue().equals("true") ? true : false;
 
-        locationUuid = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("LocationUuid: " + locationUuid);
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        // Lösche unbenötigte Teile aus dem Pfad
-        locationUuid = locationUuid.replaceAll("/index.html", "");
-        locationUuid = locationUuid.replaceAll("/location/", "");
+            // Lese UUID aus dem ServletRequest
+            locationUuid = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("LocationUuid: " + locationUuid);
+            // Lösche unbenötigte Teile aus dem Pfad
+            locationUuid = locationUuid.replaceAll("/index.html", "");
+            locationUuid = locationUuid.replaceAll("/location/", "");
+            LOGGER.info("LocationUuid: " + locationUuid);
 
-        LOGGER.info("LocationUuid: " + locationUuid);
-        
-        /*
-         * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
-         * die Location mit der Uuid gibt dann wird der Block ausgeführt.
-         */
-        if (isValid(locationUuid) && locationDaoLocal.isLocation(locationUuid)) {
-            LOGGER.info("gültige Location Uuid.");
+            /*
+             * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
+             * die Location mit der Uuid gibt dann wird der Block ausgeführt.
+             */
+            if (isValid(locationUuid) && locationDaoLocal.isLocation(locationUuid)) {
+                LOGGER.info("gültige Location Uuid.");
 
-            // Setze Daten in ein Page Objekt
-            setUpPage();
+                // Setze Daten in ein Page Objekt
+                setUpPage();
 
-			// Wenn dies eine Event-Location ist dann hole die Events aus der
-			// Datenbank
-            if(location.getEvent()) {
-            	events = eventDaoLocal.findAll(locationUuid, 0, TO);
+                // Wenn dies eine Event-Location ist dann hole die Events aus der
+                // Datenbank
+                if(location.getEvent()) {
+                    events = eventDaoLocal.findAll(locationUuid, 0, TO);
+                }
+
+                return SUCCESS;
             }
 
-            return SUCCESS;
+            // Wenn es einen Manipulationsversuch gab.
+            return ERROR;
+            
+        } else {
+            // Wenn das Modul nicht aktiviert ist.
+            return ERROR;
         }
-
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
     }// Ende execute()
 
     @Override

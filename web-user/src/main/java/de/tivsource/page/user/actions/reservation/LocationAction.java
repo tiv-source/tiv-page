@@ -101,56 +101,64 @@ public class LocationAction extends EmptyAction implements Pagination {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.reservation").getValue().equals("true") ? true : false;
 
-        locationUuid = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("LocationUuid: " + locationUuid);
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        // /gallery/painting/index.html?page=1&request_locale=de
-        
-        
-        locationUuid = locationUuid.replaceAll("/index.html", "");
-        locationUuid = locationUuid.replaceAll("/reservation/", "");
+            // Lese UUID aus dem ServletRequest
+            locationUuid = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("LocationUuid: " + locationUuid);
+            locationUuid = locationUuid.replaceAll("/index.html", "");
+            locationUuid = locationUuid.replaceAll("/reservation/", "");
+            LOGGER.info("LocationUuid: " + locationUuid);
             
-        LOGGER.info("LocationUuid: " + locationUuid);
-        
-        // Setze Daten in ein Page Objekt
-        setUpPage();
+            // Setze Daten in ein Page Objekt
+            setUpPage();
 
-        
-        /*
-         * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
-         * die Location mit der Uuid gibt dann wird der Block ausgeführt.
-         */
-        if (isValid(locationUuid) && locationDaoLocal.isEventLocation(locationUuid)) {
-            LOGGER.info("gültige Location Uuid.");
+            /*
+             * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
+             * die Location mit der Uuid gibt dann wird der Block ausgeführt.
+             */
+            if (isValid(locationUuid) && locationDaoLocal.isEventLocation(locationUuid)) {
+                LOGGER.info("gültige Location Uuid.");
 
-            // Hole die Anzahl aus der Datenbank
-            this.getDBCount();
+                // Hole die Anzahl aus der Datenbank
+                this.getDBCount();
 
-            // Wenn page nicht gesetzt wurde
-            if(pagination == null) {
-                pagination = 1;
+                // Wenn page nicht gesetzt wurde
+                if(pagination == null) {
+                    pagination = 1;
+                }
+
+                //  Wenn page größer als maxPages ist.
+                if(pagination > maxPages) {
+                    pagination = 1;
+                }
+
+                // Kalkuliere die Seiten
+                this.calculate();
+
+                events = eventDaoLocal.findAll(locationUuid, from, TO);
+                return SUCCESS;
             }
 
-            //  Wenn page größer als maxPages ist.
-            if(pagination > maxPages) {
-                pagination = 1;
-            }
-
-            // Kalkuliere die Seiten
-            this.calculate();
-
-            events = eventDaoLocal.findAll(locationUuid, from, TO);
-            return SUCCESS;
+            /*
+             * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
+             * gab.
+             */
+            return ERROR;
+            
+        } else {
+            /*
+             * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
+             * gab.
+             */
+             return ERROR;
         }
-
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
     }// Ende execute()
 
     @Override

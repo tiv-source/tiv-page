@@ -55,41 +55,43 @@ public class NewsAction extends EmptyAction {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.news").getValue().equals("true") ? true : false;
 
-        newsUuid = ServletActionContext.getRequest().getServletPath();
-        LOGGER.info("NewsUuid: " + newsUuid);
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
 
-        // /gallery/painting/index.html?page=1&request_locale=de
-        
-        
-        newsUuid = newsUuid.replaceAll("/index.html", "");
-        newsUuid = newsUuid.replaceAll("/news/", "");
+            // Lese UUID aus dem ServletRequest
+            newsUuid = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("NewsUuid: " + newsUuid);
+            newsUuid = newsUuid.replaceAll("/index.html", "");
+            newsUuid = newsUuid.replaceAll("/news/", "");
+            LOGGER.info("NewsUuid: " + newsUuid);
+
+            /*
+             * Wenn die News Uuid keine nicht erlaubten Zeichen enthält, es die News
+             * mit der Uuid gibt, diese sichtbar ist und das Veröffentlichungesdatum
+             * erreicht wurde, dann wird der Block ausgeführt.
+             */
+            if (isValid(newsUuid) && newsDaoLocal.isPublicNewsUuid(newsUuid)) {
+                LOGGER.info("gültige News Uuid.");
+
+                news = newsDaoLocal.findByUuid(newsUuid);
+
+                // Setze Daten in ein Page Objekt
+                setUpPage();
+
+                return SUCCESS;
+            }
             
-        LOGGER.info("NewsUuid: " + newsUuid);
-
-        /*
-         * Wenn die News Uuid keine nicht erlaubten Zeichen enthält, es die News
-         * mit der Uuid gibt, diese sichtbar ist und das Veröffentlichungesdatum
-         * erreicht wurde, dann wird der Block ausgeführt.
-         */
-        if (isValid(newsUuid) && newsDaoLocal.isPublicNewsUuid(newsUuid)) {
-            LOGGER.info("gültige News Uuid.");
-
-            news = newsDaoLocal.findByUuid(newsUuid);
-
-            // Setze Daten in ein Page Objekt
-            setUpPage();
-
-            return SUCCESS;
+            // Wenn es einen Manipulationsversuch gab.
+            return ERROR;
+        } else {
+            // Wenn das Module nicht aktiviert ist.
+            return ERROR;
         }
-
-        /*
-         * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
-         * gab.
-         */
-         return ERROR;
     }// Ende execute()
 
     @Override

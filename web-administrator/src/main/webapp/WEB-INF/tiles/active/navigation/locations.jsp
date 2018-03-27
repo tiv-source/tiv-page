@@ -24,37 +24,45 @@
 
           <div id="button_bar">
 
-            <struts:a href="%{locationUrl}" title="%{getText('navigation.locations')}">
-              <div class="button fl_stop">
-                <img src="/admin/buttons/tiv_page_button_location.png" alt="<struts:text name="navigation.locations"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.locations"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.location')">
+              <struts:a href="%{locationUrl}" title="%{getText('navigation.locations')}">
+                <div class="button fl_stop">
+                  <img src="/admin/buttons/tiv_page_button_location.png" alt="<struts:text name="navigation.locations"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.locations"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
-            <struts:a href="%{eventUrl}" title="%{getText('navigation.events')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.events"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.events"/></p>
-              </div>
-            </struts:a>
-            
-            <struts:a href="%{queueUrl}" title="%{getText('navigation.reservation')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.reservation"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.reservation"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.event')">
+              <struts:a href="%{eventUrl}" title="%{getText('navigation.events')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.events"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.events"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
-            <struts:a href="%{feedbackOptionUrl}" title="%{getText('navigation.feedbackOptions')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.feedbackOptions"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.feedbackOptions"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.reservation')">
+              <struts:a href="%{queueUrl}" title="%{getText('navigation.reservation')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.reservation"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.reservation"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
+            <struts:if test="getProperty('module.feedback')">
+              <struts:a href="%{feedbackOptionUrl}" title="%{getText('navigation.feedbackOptions')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.feedbackOptions"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.feedbackOptions"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
             <hr>
 

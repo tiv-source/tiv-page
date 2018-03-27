@@ -87,10 +87,19 @@ public class IndexAction extends EmptyAction implements Preparable {
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");
 
-        // Initialisiere Feedback Objekt
-        initFeedbackObject();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.feedback").getValue().equals("true") ? true : false;
 
-        return SUCCESS;
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Initialisiere Feedback Objekt
+            initFeedbackObject();
+            // Setze Daten in ein Page Objekt
+            setUpPage();
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
 
     }// Ende execute()
 
@@ -102,8 +111,7 @@ public class IndexAction extends EmptyAction implements Preparable {
 
         options = feedbackOptionDaoLocal.findAllVisible(0, feedbackOptionDaoLocal.countAllVisible());
 
-        // Setze Daten in ein Page Objekt
-        setUpPage();
+
     }
 
     @Override

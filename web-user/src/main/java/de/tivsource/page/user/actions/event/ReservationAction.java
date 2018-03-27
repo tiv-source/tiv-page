@@ -135,37 +135,51 @@ public class ReservationAction extends EmptyAction {
 	public String execute() {
         LOGGER.info("execute() aufgerufen.");
 
-        // Hole Action Locale
-    	this.getLanguageFromActionContext();
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.event").getValue().equals("true") ? true : false;
 
-    	setUpEvent();
-        // Setze Daten in ein Page Objekt.
-        setUpPage();
-        Date now = new Date();
-        if(event.getDeadline().after(now)) {
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
+            // Hole Event aus der Datenbank
+            setUpEvent();
+            // Setze Daten in ein Page Objekt.
+            setUpPage();
 
-            // Speichere Message Objekt
-            String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-            reservation.setUuid(UUID.randomUUID().toString());
-            reservation.setConfirmed(false);
-            reservation.setCreatedAddress(remoteAddress);
-            reservation.setCreated(new Date());
-            reservation.setModified(new Date());
-            reservation.setModifiedAddress(remoteAddress);
-            reservation.setModifiedBy(reservation.getFirstname() + " " + reservation.getLastname());
-            reservation.setOrigin(Origin.WEBSITE);
-            reservationDaoLocal.merge(reservation);
+            // Erzeuge aktuelles Datum
+            Date now = new Date();
 
-            sendMail();
+            // Überprüfe ob noch eine Reservierung möglich ist.
+            if(event.getDeadline().after(now)) {
 
-            return SUCCESS;
-        } else if (event.getBeginning().before(now)) {
-            return ERROR;
+                // Speichere Message Objekt
+                String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+                reservation.setUuid(UUID.randomUUID().toString());
+                reservation.setConfirmed(false);
+                reservation.setCreatedAddress(remoteAddress);
+                reservation.setCreated(new Date());
+                reservation.setModified(new Date());
+                reservation.setModifiedAddress(remoteAddress);
+                reservation.setModifiedBy(reservation.getFirstname() + " " + reservation.getLastname());
+                reservation.setOrigin(Origin.WEBSITE);
+                reservationDaoLocal.merge(reservation);
+
+                sendMail();
+
+                return SUCCESS;
+            } else if (event.getBeginning().before(now)) {
+                return ERROR;
+            } else {
+                return "deadline";
+            }
+
         } else {
-            return "deadline";
+            // Wenn das Module nicht aktviert wurde.
+            return ERROR;
         }
 
-	}
+	}// Ende execute()
 
     private void setUpPage() {
         if(event == null) {

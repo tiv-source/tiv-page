@@ -56,20 +56,22 @@ public class IndexAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
-    	// Hole Action Locale
-    	this.getLanguageFromActionContext();
-    	
-    	page = pageDaoLocal.findByTechnical("location");
 
-    	boolean contactPageEnabled = propertyDaoLocal.findByKey("location.page.enabled").getValue().equals("true") ? true : false;
+        // Hole Eigenschaft aus der Datenbank
+        boolean moduleEnabled = propertyDaoLocal.findByKey("module.location").getValue().equals("true") ? true : false;
 
-    	if(contactPageEnabled) {
+        // Prüfe ob das Module aktiviert ist
+        if(moduleEnabled) {
+            // Hole Action Locale
+            this.getLanguageFromActionContext();
+            // Hole Seite aus der Datenbank
+            page = pageDaoLocal.findByTechnical("location");
+
             return SUCCESS;
-    	} else {
-    	    return ERROR;
-    	}
-
+        } else {
+            // Wennn das Modul nicht aktiviert ist.
+            return ERROR;
+        }
     }// Ende execute()
 
     public Page getPage() {
