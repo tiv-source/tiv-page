@@ -19,6 +19,9 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.dao.property.PropertyDaoLocal;
+
 /**
  * 
  * @author Marc Michele
@@ -39,6 +42,9 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 	 * Statischer Logger der Klasse.
 	 */
     private static final Logger LOGGER = LogManager.getLogger(EmptyAction.class);
+
+    @InjectEJB(name="PropertyDao")
+    private PropertyDaoLocal propertyDaoLocal;
 
 	/**
 	 * Servlet-Request der die Post und Get Daten der Session enthält.
@@ -103,6 +109,10 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 	public String getActionName() {
 		return ActionContext.getContext().getName();
 	}
+
+    public String getProperty(String key) {
+        return propertyDaoLocal.findByKey(key).getValue();
+    }
 
 	/**
 	 * Methode die die aktuelle Sprache aus dem Context holt.
