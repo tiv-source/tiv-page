@@ -39,5 +39,5 @@
   <meta name="revisit-after" content="7 days" />
   <meta name="robots" content="INDEX,FOLLOW" />
 
-  <meta http-equiv="content-language" content="<struts:text name="language" />" />  
+  
   

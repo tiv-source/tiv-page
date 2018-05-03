@@ -39,8 +39,6 @@
   <meta name="revisit-after" content="7 days" />
   <meta name="robots" content="INDEX,FOLLOW" />
 
-  <meta http-equiv="content-language" content="<struts:text name="language" />" />  
-
   <meta name="ICBM" content="<struts:property value="getProperty('icbm')" />" />
   <meta name="geo.position" content="<struts:property value="getProperty('geo.position')" />" />
   <meta name="geo.region" content="<struts:property value="getProperty('geo.region')" />" />
