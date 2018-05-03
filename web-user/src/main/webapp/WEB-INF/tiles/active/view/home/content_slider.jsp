@@ -42,7 +42,7 @@
         </ul>
 
       </div>
-<struts:hidden id="sliderListSize" value="%{sliderList.size()}" name="sliderListSize"/>
+<struts:hidden id="sliderListSize" value="%{sliderList.size()}" name="sliderListSize" theme="simple"/>
 <script type="text/javascript">
 $(function sliderOn() {
 	// console.log("Hier bin ich.");
