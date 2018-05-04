@@ -41,6 +41,13 @@ public class Location extends PictureItem {
     private SortedSet<OpeningHour> openingHours;
 
     /**
+     * True wenn die Location auch in der Liste angezeigt werden soll.
+     */
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean inLocationList = true;
+
+    /**
      * Wenn in der Filiale Veranstaltungen stattfinden können, dann true wenn
      * nicht dann false (Achtung die Location taucht nur im Eventformular auf
      * wenn true).
@@ -90,6 +97,14 @@ public class Location extends PictureItem {
 
     public void setOpeningHours(SortedSet<OpeningHour> openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public Boolean getInLocationList() {
+        return inLocationList;
+    }
+
+    public void setInLocationList(Boolean inLocationList) {
+        this.inLocationList = inLocationList;
     }
 
     public Boolean getEvent() {
