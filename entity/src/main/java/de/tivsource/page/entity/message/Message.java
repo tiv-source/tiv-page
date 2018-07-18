@@ -58,6 +58,10 @@ public class Message {
 	@Lob
 	private String content;
 
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean privacy;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
@@ -125,6 +129,14 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Boolean getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(Boolean privacy) {
+        this.privacy = privacy;
     }
 
     public Date getCreated() {
