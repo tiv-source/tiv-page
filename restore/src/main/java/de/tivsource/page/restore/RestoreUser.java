@@ -66,7 +66,7 @@ public class RestoreUser {
 
     private User convert(String line) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
-        // uuid|username|email|firstname|lastname|password|roles|added|modified|ip|
+        // uuid|username|email|firstname|lastname|password|roles|created|modified|modifiedBy|modifiedAddress|
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
 
@@ -95,11 +95,10 @@ public class RestoreUser {
         // Füge Erstellungsdatum hinzu.
         user.setCreated(convertDateString(items[7]));
         user.setModified(convertDateString(items[8]));
+        user.setModifiedBy(items[9]);
+        user.setModifiedAddress(items[10]);
 
-        // Setze IP auf localhost.
-        user.setModifiedAddress(items[9]);
-
-        user.setModifiedBy(items[10]);
+        
 
         return user;
     }// Ende convert(String line)
