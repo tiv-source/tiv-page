@@ -127,7 +127,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Location l where l.visible = 'Y' ORDER BY l.order ASC");
+        Query query = entityManager.createQuery("FROM Location l WHERE l.visible = 'Y' AND l.inLocationList = 'Y' ORDER BY l.order ASC");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();

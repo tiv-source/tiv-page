@@ -56,7 +56,7 @@ public interface LocationDaoLocal {
 
     /**
      * Methode zum laden einer Liste von Location Objekten, es muss dabei ein
-     * Startwert angegeben werden und die Anzhal der zu ladenen Location Objekte.
+     * Startwert angegeben werden und die Anzahl der zu ladenen Location Objekte.
      *
      * @param start - Startwert ab der die Liste beginnen soll
      * @param max - Maximale Anzahl an Objekten die die Liste enthalten soll
@@ -68,6 +68,16 @@ public interface LocationDaoLocal {
 
     public List<Location> findAllEventLocation();
 
+    /**
+     * Methode zum Laden einer Listen von Location Objekten, es muss dabei ein
+     * Startwert angegeben werden und die Anzahl der zu ladenden Objekte. Diese
+     * Methode liefert nur die Objekte bei denen die Attribute visible=true und
+     * inLocationList=true gesetzt sind.
+     * 
+     * @param start
+     * @param max
+     * @return
+     */
     public List<Location> findAllVisible(Integer start, Integer max);
 
     /**
