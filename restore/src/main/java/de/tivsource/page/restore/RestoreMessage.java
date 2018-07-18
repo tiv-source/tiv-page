@@ -67,7 +67,7 @@ public class RestoreMessage {
         // Zerlege CSV-Zeile in String-Array.
         String[] items = line.split("\\|");
 
-        // uuid|gender|firstname|lastname|mail|telephone|fax|content|created|ip|
+        // uuid|gender|firstname|lastname|mail|telephone|fax|content|privacy|created|createdAddress|
 
         Message message = new Message();
 
@@ -79,8 +79,9 @@ public class RestoreMessage {
         message.setTelephone(items[5]);
         message.setFax(items[6]);
         message.setContent(createContent(items[7]));
-        message.setCreated(convertDateString(items[8]));
-        message.setCreatedAddress(items[9]);
+        message.setPrivacy(items[8].equals("true") ? true : false);
+        message.setCreated(convertDateString(items[9]));
+        message.setCreatedAddress(items[10]);
         
         return message;
     }
