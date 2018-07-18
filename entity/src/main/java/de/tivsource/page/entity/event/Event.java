@@ -4,8 +4,11 @@
 package de.tivsource.page.entity.event;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,19 +41,38 @@ public class Event extends PictureItem {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date deadline;
 
+    /**
+     * True wenn die Zeit auswählbar seien soll.
+     */
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean timeSelection = true;
+
+    /**
+     * Location Objekt zu dem das Event Objekt gehört.
+     */
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "location_uuid")
     private Location location;
 
+    /**
+     * True wenn für diese Event Objekt noch eine Reservierung möglich ist.
+     */
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean reservation;
-    
+
     @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Reservation> reservations;
 
+    /**
+     * Maximale Anzahl an Reservierungen die für diese Event Objekt möglich sind.
+     */
     private Integer maxReservations;
 
+    /**
+     * Maximal Anzahl an Personen für die Reserviert werden kann.
+     */
     private Integer maxPersons;
     
     private Integer piwikGoal;
@@ -85,6 +107,14 @@ public class Event extends PictureItem {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public Boolean getTimeSelection() {
+        return timeSelection;
+    }
+
+    public void setTimeSelection(Boolean timeSelection) {
+        this.timeSelection = timeSelection;
     }
 
     public Location getLocation() {
@@ -133,6 +163,11 @@ public class Event extends PictureItem {
 
 	public void setMaxPersons(Integer maxPersons) {
 		this.maxPersons = maxPersons;
+	}
+
+	public String getFormatedDate() {
+	    DateFormat dateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH);
+	    return dateFormat.format(beginning);
 	}
 
 }// Ende class
