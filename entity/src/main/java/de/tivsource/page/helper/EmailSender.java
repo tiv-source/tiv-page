@@ -37,6 +37,13 @@ public class EmailSender {
         message.addRecipients(Message.RecipientType.BCC,
                 template.getBccAddresses());
 
+        // Setze die ReplyTo Adresse
+        message.setReplyTo(new javax.mail.Address[]{
+                new InternetAddress(
+                        (String)arguments[3]
+                )
+        });
+        
         /*
          * Setze Subject in die Nachricht
          */
