@@ -54,15 +54,23 @@
           />
         </div>
 
-        <div class="field">
-          <struts:select
-              key="reservation.time"
-              listValue="%{getText('format.time',{clone()})}"
-              listKey="toString()"
-              multiple="false"
-              list="times"
+        <struts:if test="event.timeSelection">
+          <div class="field">
+            <struts:select
+                key="reservation.time"
+                listValue="%{getText('format.time',{clone()})}"
+                listKey="toString()"
+                multiple="false"
+                list="times"
+            />
+          </div>
+        </struts:if>
+        <struts:else>
+          <struts:hidden 
+            key="reservation.time" 
+            value="%{event.formatedDate}" 
           />
-        </div>
+        </struts:else>
 
         <div class="field">
           <struts:textarea  key="reservation.wishes" />
