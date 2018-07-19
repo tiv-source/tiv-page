@@ -153,6 +153,15 @@
 
               <div class="field">
                 <struts:checkbox
+                    key="event.timeSelection"
+                    parentTheme="css_xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
                     key="event.reservation"
                     parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em;"
