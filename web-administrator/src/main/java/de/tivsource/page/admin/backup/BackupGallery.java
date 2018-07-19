@@ -57,7 +57,7 @@ public class BackupGallery {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|picture|
-	    // technical|orderNumber|pictureOnPage|
+	    // technical|orderNumber|pictureOnPage|type|
 	    
 		StringBuffer nextString = new StringBuffer();
 		
