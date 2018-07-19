@@ -39,7 +39,7 @@ public class BackupLocation {
     	BufferedWriter backupFileWriterOut = new BufferedWriter(backupFileWriter);
 
     	// Format Definition 
-    	backupFileWriterOut.write("[Format Definition] => uuid|street|zip|city|country|mobile|telephone|fax|email|homepage|uuid(de)|name(de)|description(de)|keywords(de)|uuid(en)|name(en)|description(en)|keywords(en)|openingHours|latitude|longitude|visible|created|modified|modifiedBy|modifiedAddress|events|picture|order|pictureOnPage|");
+    	backupFileWriterOut.write("[Format Definition] => uuid|street|zip|city|country|mobile|telephone|fax|email|homepage|uuid(de)|name(de)|description(de)|keywords(de)|uuid(en)|name(en)|description(en)|keywords(en)|openingHours|latitude|longitude|visible|created|modified|modifiedBy|modifiedAddress|events|picture|order|pictureOnPage|inLocationList|");
 
     	Iterator<Location> typeIterator = locationDaoLocal.findAll(0, MAX).iterator();
     	while(typeIterator.hasNext()) {
@@ -61,7 +61,7 @@ public class BackupLocation {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
 	    // openingHours|latitude|longitude|visible|created|
-	    // modified|modifiedBy|modifiedAddress|events|picture|order|pictureOnPage|
+	    // modified|modifiedBy|modifiedAddress|events|picture|order|pictureOnPage|inLocationList|
 	    
 		StringBuffer nextString = new StringBuffer();
 
@@ -161,6 +161,9 @@ public class BackupLocation {
         nextString.append("|");
 
         nextString.append(next.getPictureOnPage().toString());
+        nextString.append("|");
+
+        nextString.append(next.getInLocationList().toString());
         nextString.append("|");
 
 		return nextString.toString();
