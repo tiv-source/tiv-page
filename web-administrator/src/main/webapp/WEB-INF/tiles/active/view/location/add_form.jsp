@@ -62,6 +62,15 @@
 
               <div class="field">
                 <struts:checkbox
+                    key="location.inLocationList"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
                     key="location.event"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
