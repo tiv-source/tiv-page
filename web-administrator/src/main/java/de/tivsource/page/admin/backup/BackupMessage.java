@@ -41,7 +41,7 @@ public class BackupMessage {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|gender|firstname|lastname|mail|telephone|fax|content|created|createdAddress|");
+    	bufferedWriter.write("[Format Definition] => uuid|gender|firstname|lastname|mail|telephone|fax|content|privacy|created|createdAddress|");
 
     	Iterator<Message> messageIterator = messageDaoLocal.findAll(0, max).iterator();
     	while(messageIterator.hasNext()) {
@@ -62,7 +62,7 @@ public class BackupMessage {
 	    LOGGER.info("convertToCsvLine(Page next) aufgerufen.");
 
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		// uuid|gender|firstname|lastname|mail|telephone|fax|content|created|createdAddress|
+		// uuid|gender|firstname|lastname|mail|telephone|fax|content|privacy|created|createdAddress|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -89,7 +89,10 @@ public class BackupMessage {
         
 		nextString.append("message_" + next.getUuid() + ".txt");
 		nextString.append("|");
-		
+
+        nextString.append(next.getPrivacy().toString());
+        nextString.append("|");
+
 		nextString.append(simpleDateFormat.format(next.getCreated()));
 		nextString.append("|");
 
