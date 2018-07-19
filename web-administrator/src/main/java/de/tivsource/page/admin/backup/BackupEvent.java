@@ -59,7 +59,8 @@ public class BackupEvent {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|
-	    // price|beginning|ending|deadline|location|reservation|picture|piwikGoal|maxReservations|maxPersons|pictureOnPage|
+	    // price|beginning|ending|deadline|location|reservation|
+	    // picture|piwikGoal|maxReservations|maxPersons|pictureOnPage|timeSelection|
 	    
 		StringBuffer nextString = new StringBuffer();
 
@@ -140,6 +141,9 @@ public class BackupEvent {
         nextString.append("|");
 
         nextString.append(next.getPictureOnPage().toString());
+        nextString.append("|");
+
+        nextString.append(next.getTimeSelection().toString());
         nextString.append("|");
 
 		return nextString.toString();
