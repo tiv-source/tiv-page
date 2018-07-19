@@ -17,6 +17,9 @@ import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
+import de.tivsource.page.dao.companion.CompanionDaoLocal;
+import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
@@ -65,6 +68,12 @@ public class BackupZipFile {
     private static VacancyDaoLocal vacancyDaoLocal;
 
     private static ManualDaoLocal manualDaoLocal;
+
+    private static AppointmentDaoLocal appointmentDaoLocal;
+
+    private static CompanionGroupDaoLocal companionGroupDaoLocal;
+
+    private static CompanionDaoLocal companionDaoLocal;
     
     private static byte[] buffer = new byte[1024];
 
@@ -120,7 +129,19 @@ public class BackupZipFile {
 		BackupZipFile.manualDaoLocal = manualDaoLocal;
 	}
 
-	public static File getZipFile() throws IOException {
+	public static void setAppointmentDaoLocal(AppointmentDaoLocal appointmentDaoLocal) {
+        BackupZipFile.appointmentDaoLocal = appointmentDaoLocal;
+    }
+
+    public static void setCompanionGroupDaoLocal(CompanionGroupDaoLocal companionGroupDaoLocal) {
+        BackupZipFile.companionGroupDaoLocal = companionGroupDaoLocal;
+    }
+
+    public static void setCompanionDaoLocal(CompanionDaoLocal companionDaoLocal) {
+        BackupZipFile.companionDaoLocal = companionDaoLocal;
+    }
+
+    public static File getZipFile() throws IOException {
         LOGGER.info("getZipFile() aufgerufen.");
 
         // Zip-Datei erstellen und Stream bereitstellen.
@@ -130,7 +151,7 @@ public class BackupZipFile {
         /*
          * Backup Gallery
          */
-        BackupGallery.setGalleryDaoLocal(galleryDaoLocal);;
+        BackupGallery.setGalleryDaoLocal(galleryDaoLocal);
         addData(BackupGallery.getBackupFile(), outZipFile, "gallery.csv");
 
         /*
@@ -210,7 +231,26 @@ public class BackupZipFile {
         BackupManual.setManualDaoLocal(manualDaoLocal);
         BackupManual backupManual = new BackupManual();
         addMultiData(backupManual.getBackupFiles(), outZipFile);
-        
+
+        /*
+         * Backup Appointment
+         */
+        BackupAppointment.setAppointmentDaoLocal(appointmentDaoLocal);
+        BackupAppointment backupAppointment = new BackupAppointment();
+        addMultiData(backupAppointment.getBackupFiles(), outZipFile);
+
+        /*
+         * Backup CompanionGroup
+         */
+        BackupCompanionGroup.setCompanionGroupDaoLocal(companionGroupDaoLocal);;
+        addData(BackupCompanionGroup.getBackupFile(), outZipFile, "companionGroup.csv");
+
+        /*
+         * Backup Companion
+         */
+        BackupCompanion.setCompanionDaoLocal(companionDaoLocal);;
+        addData(BackupCompanion.getBackupFile(), outZipFile, "companion.csv");
+
         // Schließe die Zip-Datei.
         outZipFile.close();
 
