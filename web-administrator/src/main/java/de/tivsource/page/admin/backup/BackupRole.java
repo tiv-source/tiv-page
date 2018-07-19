@@ -37,7 +37,7 @@ public class BackupRole {
     	BufferedWriter backupFileWriterOut = new BufferedWriter(backupFileWriter);
 
     	// Format Definition 
-    	backupFileWriterOut.write("[Format Definition] => uuid|technical|created|modified|modifiedBy|ip|");
+    	backupFileWriterOut.write("[Format Definition] => uuid|technical|created|modified|modifiedBy|modifiedAddress|");
 
     	Iterator<Role> typeIterator = roleDaoLocal.findAll(0, MAX).iterator();
     	while(typeIterator.hasNext()) {
@@ -53,7 +53,7 @@ public class BackupRole {
 
 	private static String convertToCsvLine(Role next) {
 
-		// uuid|technical|created|modified|modifiedBy|ip|
+		// uuid|technical|created|modified|modifiedBy|modifiedAddress|
 
 		StringBuffer nextString = new StringBuffer();
 
