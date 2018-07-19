@@ -39,7 +39,7 @@ public class BackupUser {
     	BufferedWriter backupFileWriterOut = new BufferedWriter(backupFileWriter);
 
     	// Format Definition 
-    	backupFileWriterOut.write("[Format Definition] => uuid|username|email|firstname|lastname|password|roles|created|modified|ip|modifiedBy|");
+    	backupFileWriterOut.write("[Format Definition] => uuid|username|email|firstname|lastname|password|roles|created|modified|modifiedBy|modifiedAddress|");
 
     	Iterator<User> typeIterator = userDaoLocal.findAll(0, MAX).iterator();
     	while(typeIterator.hasNext()) {
@@ -55,7 +55,7 @@ public class BackupUser {
 
 	private static String convertToCsvLine(User next) {
 
-	    // uuid|username|email|firstname|lastname|password|roles|created|modified|ip|modifiedBy|
+	    // uuid|username|email|firstname|lastname|password|roles|created|modified|modifiedBy|modifiedAddress|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -87,12 +87,12 @@ public class BackupUser {
 		nextString.append(simpleDateFormat.format(next.getModified()));
 		nextString.append("|");
 
-		nextString.append(next.getModifiedAddress());
-		nextString.append("|");
-
         nextString.append(next.getModifiedBy());
         nextString.append("|");
-		
+
+        nextString.append(next.getModifiedAddress());
+        nextString.append("|");
+
 		return nextString.toString();
 	}
 
