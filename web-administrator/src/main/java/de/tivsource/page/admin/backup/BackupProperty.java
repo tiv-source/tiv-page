@@ -55,7 +55,7 @@ public class BackupProperty {
 
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		// uuid|technical|created|modified|modifiedBy|ip|
+		// uuid|technical|created|modified|modifiedBy|modifiedAddress|
 
 		StringBuffer nextString = new StringBuffer();
 
