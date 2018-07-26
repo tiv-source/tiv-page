@@ -8,6 +8,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
@@ -17,6 +20,13 @@ import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
 
+@TilesDefinitions({
+  @TilesDefinition(name="appointment", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/appointment.jsp"),
+    @TilesPutAttribute(name = "twitter",    value = "/WEB-INF/tiles/active/twitter/content.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/appointment.jsp")
+  })
+})
 public class AppointmentAction extends EmptyAction {
 
     /**

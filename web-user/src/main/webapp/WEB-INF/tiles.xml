@@ -23,20 +23,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 
-	<definition name="page" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/page.jsp" />
-	</definition>
-
-	<definition name="appointmentList" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/appointment_list.jsp" />
-	</definition>
-
-	<definition name="appointment" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/appointment.jsp" />
-	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/appointment.jsp" />
-		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/appointment.jsp" />
-	</definition>
-
 	<definition name="companion" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/companion.jsp" />
 	</definition>
