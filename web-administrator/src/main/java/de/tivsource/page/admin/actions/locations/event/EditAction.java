@@ -119,6 +119,7 @@ public class EditAction extends EmptyAction {
     		dbEvent.setMaxReservations(event.getMaxReservations());
     		dbEvent.setMaxPersons(event.getMaxPersons());
     		dbEvent.setPictureOnPage(event.getPictureOnPage());
+    		dbEvent.setTimeSelection(event.getTimeSelection());
 
     		eventDaoLocal.merge(dbEvent);
             return SUCCESS;
