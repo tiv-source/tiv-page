@@ -74,8 +74,28 @@ public interface AppointmentDaoLocal {
      */
     public List<Appointment> findAll(Integer start, Integer max, String field, String order);
 
+    /**
+     * Methode zu laden der aktuell sichtbaren Apointment Objekte, dabei werden
+     * nur Objekte geladen die nicht vor dem aktuellen Datum liegen. Das heißt
+     * Objekte die in der Vergangenheit liegen werden nicht angezeigt.
+     * 
+     * @param start
+     * @param max
+     * @return
+     */
     public List<Appointment> findAllVisible(Integer start, Integer max);
-    
+
+    /**
+     * Methode zu laden der archivierten sichtbaren Apointment Objekte, dabei
+     * werden nur Objekte geladen die nicht nach dem aktuellen Datum liegen. Das
+     * heißt es werden nur Objekte die in der Vergangenheit liegen angezeigt.
+     * 
+     * @param start
+     * @param max
+     * @return
+     */
+    public List<Appointment> findAllArchiveVisible(Integer start, Integer max);
+
     /**
      * Methode die die Anzahl aller Appointment Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -85,5 +105,7 @@ public interface AppointmentDaoLocal {
     public Integer countAll();
 
     public Integer countAllVisible();
+
+    public Integer countAllArchiveVisible();
 
 }// Ende interface

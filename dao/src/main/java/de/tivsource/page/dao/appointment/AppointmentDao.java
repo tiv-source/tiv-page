@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.dao.appointment;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -95,7 +96,7 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT ap FROM Appointment ap ORDER BY ";
+        String queryString = "SELECT ap FROM Appointment ap JOIN ap.descriptionMap dm ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
@@ -109,10 +110,22 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT ap FROM Appointment ap WHERE ap.visible = 'Y' ORDER BY ap.pointInTime asc";
+        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime > ?1 AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("1", new Date());
+        return query.getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Appointment> findAllArchiveVisible(Integer start, Integer max) {
+        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime < ?1 AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("1", new Date());
         return query.getResultList();
     }
 
@@ -130,7 +143,15 @@ public class AppointmentDao implements AppointmentDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime > ?1 AND ap.visible = 'Y'");
+        query.setParameter("1", new Date());
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public Integer countAllArchiveVisible() {
+        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime < ?1 AND ap.visible = 'Y'");
+        query.setParameter("1", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
