@@ -96,7 +96,7 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT ap FROM Appointment ap JOIN ap.descriptionMap dm ORDER BY ";
+        String queryString = "SELECT DISTINCT ap FROM Appointment ap JOIN ap.descriptionMap dm  WHERE dm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
