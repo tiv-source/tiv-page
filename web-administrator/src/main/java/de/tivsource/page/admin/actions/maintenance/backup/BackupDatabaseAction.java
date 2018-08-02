@@ -15,6 +15,9 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.backup.BackupZipFile;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
+import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
+import de.tivsource.page.dao.companion.CompanionDaoLocal;
+import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
@@ -83,6 +86,15 @@ public class BackupDatabaseAction extends EmptyAction {
     @InjectEJB(name="ManualDao")
     private ManualDaoLocal manualDaoLocal;
 
+    @InjectEJB(name="AppointmentDao")
+    private AppointmentDaoLocal appointmentDaoLocal;
+
+    @InjectEJB(name="CompanionGroupDao")
+    private CompanionGroupDaoLocal companionGroupDaoLocal;
+
+    @InjectEJB(name="CompanionDao")
+    private CompanionDaoLocal companionDaoLocal;
+
 	private InputStream fileStream;
 
 	@Override
@@ -111,6 +123,9 @@ public class BackupDatabaseAction extends EmptyAction {
     	BackupZipFile.setReservationDaoLocal(reservationDaoLocal);
     	BackupZipFile.setVacancyDaoLocal(vacancyDaoLocal);
     	BackupZipFile.setManualDaoLocal(manualDaoLocal);
+    	BackupZipFile.setAppointmentDaoLocal(appointmentDaoLocal);
+    	BackupZipFile.setCompanionGroupDaoLocal(companionGroupDaoLocal);
+        BackupZipFile.setCompanionDaoLocal(companionDaoLocal);
     	File backupFile = BackupZipFile.getZipFile();
     	fileStream = new FileInputStream(backupFile);
     	backupFile.delete();
