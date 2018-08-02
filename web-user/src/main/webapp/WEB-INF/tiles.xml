@@ -23,10 +23,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 
-	<definition name="contactForm" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/contact_form.jsp" />
-	</definition>
-
 	<definition name="location" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location.jsp" />
 	</definition>

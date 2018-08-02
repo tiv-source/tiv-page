@@ -19,6 +19,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.message.MessageDaoLocal;
@@ -30,6 +33,16 @@ import de.tivsource.page.helper.EmailSender;
 import de.tivsource.page.helper.EmailTemplate;
 import de.tivsource.page.user.actions.EmptyAction;
 
+@TilesDefinitions({
+  @TilesDefinition(name="contactForm", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/contact/contact_form.jsp")
+  }),
+  @TilesDefinition(name="page", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/content.jsp"),
+    @TilesPutAttribute(name = "twitter",    value = "/WEB-INF/tiles/active/twitter/content.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/page.jsp")
+  })
+})
 public class SentAction extends EmptyAction {
 
     /**
