@@ -47,25 +47,6 @@
 		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/reservation_location.jsp" />
 	</definition>
 
-	<definition name="event" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/event.jsp" />
-	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/event.jsp" />
-		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/event.jsp" />
-	</definition>
-
-	<definition name="eventSuccess" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/event.jsp" />
-	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/event.jsp" />
-		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/event_success.jsp" />
-		<put-attribute name="tracking" value="/WEB-INF/tiles/active/tracking/event_success.jsp" />
-	</definition>
-
-	<definition name="eventDeadline" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/event.jsp" />
-	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/event.jsp" />
-		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/event_deadline.jsp" />
-	</definition>
-	
 	<definition name="vacancy" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy.jsp" />
 	</definition>

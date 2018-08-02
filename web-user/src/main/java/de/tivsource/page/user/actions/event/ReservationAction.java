@@ -23,6 +23,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.event.EventDaoLocal;
@@ -38,6 +41,29 @@ import de.tivsource.page.helper.EmailSender;
 import de.tivsource.page.helper.EmailTemplate;
 import de.tivsource.page.user.actions.EmptyAction;
 
+/**
+ * 
+ * @author Marc Michele
+ *
+ */
+@TilesDefinitions({
+  @TilesDefinition(name="event", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",    value = "/WEB-INF/tiles/active/meta/event.jsp"),
+    @TilesPutAttribute(name = "twitter", value = "/WEB-INF/tiles/active/twitter/event.jsp"),
+    @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/event/event.jsp")
+  }),
+  @TilesDefinition(name="eventSuccess", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",     value = "/WEB-INF/tiles/active/meta/event.jsp"),
+    @TilesPutAttribute(name = "twitter",  value = "/WEB-INF/tiles/active/twitter/event.jsp"),
+    @TilesPutAttribute(name = "content",  value = "/WEB-INF/tiles/active/view/event/event_success.jsp"),
+    @TilesPutAttribute(name = "tracking", value = "/WEB-INF/tiles/active/tracking/event_success.jsp")
+  }),
+  @TilesDefinition(name="eventDeadline", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",    value = "/WEB-INF/tiles/active/meta/event.jsp"),
+    @TilesPutAttribute(name = "twitter", value = "/WEB-INF/tiles/active/twitter/event.jsp"),
+    @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/event/event_deadline.jsp")
+  })
+})
 public class ReservationAction extends EmptyAction {
 
     /**
