@@ -166,7 +166,7 @@ public class PictureEditAction extends EmptyAction {
 
         Process p = Runtime.getRuntime().exec(
                 "/usr/bin/convert " + source
-                + " -resize 600x500 -quality 85 -compress JPEG "
+                + " -resize 600x500 -quality 85 "
                 + destination);
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -185,7 +185,7 @@ public class PictureEditAction extends EmptyAction {
 
         Process p = Runtime.getRuntime().exec(
                 "/usr/bin/convert " + source
-                + " -resize 1000x1000 -quality 85 -compress JPEG "
+                + " -resize 1000x1000 -quality 85 "
                 + destination);
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -204,7 +204,7 @@ public class PictureEditAction extends EmptyAction {
 
         Process p = Runtime.getRuntime().exec(
                 "/usr/bin/convert " + source
-                + " -resize 200x143 -quality 85 -compress JPEG "
+                + " -resize 200x143 -quality 85 "
                 + destination);
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
