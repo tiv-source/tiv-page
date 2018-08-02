@@ -47,14 +47,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy_form.jsp" />
 	</definition>
 
-	<definition name="newsList" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news_list.jsp" />
-	</definition>
-
-	<definition name="news" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/news.jsp" />
-	</definition>
-
 	<definition name="gallery" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery.jsp" />
 	</definition>

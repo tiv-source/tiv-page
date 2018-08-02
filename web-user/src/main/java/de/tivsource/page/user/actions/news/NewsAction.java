@@ -8,6 +8,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.news.NewsDaoLocal;
@@ -17,6 +20,16 @@ import de.tivsource.page.entity.news.News;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
 
+/**
+ * 
+ * @author Marc Michele
+ *
+ */
+@TilesDefinitions({
+  @TilesDefinition(name="news", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/news/news.jsp")
+  })
+})
 public class NewsAction extends EmptyAction {
 
     /**
