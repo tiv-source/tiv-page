@@ -36,7 +36,7 @@ public class JsonAction extends ActionSupport {
     private static final Logger LOGGER = LogManager.getLogger(JsonAction.class);
 	
 	@InjectEJB(name="AppointmentDao")
-    private AppointmentDaoLocal companionDaoLocal;
+    private AppointmentDaoLocal appointmentDaoLocal;
 
 	private List<Appointment> gridModel;
 	private List<Appointment> appointmentList;
@@ -67,7 +67,7 @@ public class JsonAction extends ActionSupport {
 		/*
 		 * Setze die Anzahl aller Objekte in der Datenbank.
 		 */
-		setRecord(this.companionDaoLocal.countAll());
+		setRecord(this.appointmentDaoLocal.countAll());
 
 		int to = (getRows() * getPage());
 		int from = to - getRows();
@@ -85,44 +85,44 @@ public class JsonAction extends ActionSupport {
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.uuid", "asc");
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.uuid", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "dm.name", "asc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "dm.name", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("pictureOnPage")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.pictureOnPage", "asc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.pictureOnPage", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("pointInTime")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.pointInTime", "asc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.pointInTime", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.created", "asc");
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.created", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.visible", "asc");
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.visible", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.modified", "asc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.modified", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.modifiedBy", "asc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.modifiedBy", "asc");
             } else {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows());
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.uuid", "desc");
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.uuid", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "dm.name", "desc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "dm.name", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("pictureOnPage")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.pictureOnPage", "desc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.pictureOnPage", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("pointInTime")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.pointInTime", "desc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.pointInTime", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.created", "desc");
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.created", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.visible", "desc");
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.visible", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.modified", "desc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.modified", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                appointmentList = this.companionDaoLocal.findAll(from, getRows(), "ap.modifiedBy", "desc");
+                appointmentList = this.appointmentDaoLocal.findAll(from, getRows(), "ap.modifiedBy", "desc");
             } else {
-				appointmentList = this.companionDaoLocal.findAll(from, getRows());
+				appointmentList = this.appointmentDaoLocal.findAll(from, getRows());
 			}
 		}
 
