@@ -23,19 +23,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 
-	<definition name="gallery" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery.jsp" />
-	</definition>
-
-	<definition name="galleryList" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery_list.jsp" />
-	</definition>
-
-	<definition name="picture" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/picture.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/picture.jsp" />
-	</definition>
-
 	<definition name="feedbackForm" extends="userTemplate">
 	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/feedback_form.jsp" />
 	    <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/feedback_form.jsp" />
