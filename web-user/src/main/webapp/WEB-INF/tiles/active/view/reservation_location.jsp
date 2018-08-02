@@ -8,6 +8,9 @@
   </struts:if>
 
     <h1><struts:property value="location.getName(getText('language'))" /></h1>
+    <struts:if test="getProperty('location.show.description') == 'true'">
+      <p><struts:property value="location.getDescription(getText('language'))" /></p>
+    </struts:if>
     <p class=" bc_bottom">	&nbsp;</p>
 
     <struts:iterator value="events" status="eventsStatus">
