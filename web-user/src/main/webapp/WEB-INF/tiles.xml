@@ -23,16 +23,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 
-	<definition name="location" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/location.jsp" />
-	</definition>
-
-	<definition name="locationView" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/location_view.jsp" />
-        <put-attribute name="twitter"  value="/WEB-INF/tiles/active/twitter/location_view.jsp" />
-		<put-attribute name="content"  value="/WEB-INF/tiles/active/view/location_view.jsp" />
-	</definition>
-
 	<definition name="reservation" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/reservation.jsp" />
 	</definition>
