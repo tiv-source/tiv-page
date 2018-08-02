@@ -84,3 +84,6 @@
     <struts:if test="getProperty('home.appointment.slider')">
       <struts:include value="content_slider.jsp" />
     </struts:if>
+
+
+
