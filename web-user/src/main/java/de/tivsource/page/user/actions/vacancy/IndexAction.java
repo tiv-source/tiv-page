@@ -8,6 +8,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -22,6 +25,11 @@ import de.tivsource.page.user.actions.EmptyAction;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="vacancy", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/vacancy/vacancy.jsp")
+  })
+})
 public class IndexAction extends EmptyAction {
 
     /**

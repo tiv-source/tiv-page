@@ -23,20 +23,6 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 
-	<definition name="vacancy" extends="userTemplate">
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy.jsp" />
-	</definition>
-
-	<definition name="vacancyDetail" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/vacancy.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy_detail.jsp" />
-	</definition>
-
-	<definition name="vacancyForm" extends="userTemplate">
-	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/vacancy.jsp" />
-		<put-attribute name="content" value="/WEB-INF/tiles/active/view/vacancy_form.jsp" />
-	</definition>
-
 	<definition name="gallery" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/gallery.jsp" />
 	</definition>
