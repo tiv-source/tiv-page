@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import com.opensymphony.xwork2.Preparable;
 
@@ -19,6 +22,18 @@ import de.tivsource.page.entity.feedback.FeedbackOption;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
 
+/**
+ * 
+ * @author Marc Michele
+ *
+ */
+@TilesDefinitions({
+  @TilesDefinition(name="feedbackForm", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/feedback_form.jsp"),
+    @TilesPutAttribute(name = "twitter",    value = "/WEB-INF/tiles/active/twitter/feedback_form.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/feedback/feedback_form.jsp")
+  })
+})
 public class IndexAction extends EmptyAction implements Preparable {
 
     /**
