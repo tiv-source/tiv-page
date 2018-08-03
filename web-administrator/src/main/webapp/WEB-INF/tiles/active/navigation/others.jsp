@@ -16,6 +16,7 @@
 <struts:url var="manualUrl"            action="index" namespace="/others/manual" />
 <struts:url var="companionGroupUrl"    action="index" namespace="/others/companiongroup" />
 <struts:url var="companionUrl"         action="index" namespace="/others/companion" />
+<struts:url var="sliderUrl"            action="index" namespace="/others/slider" />
 
    	  <div class="nav">
    	    <div id="navi">
@@ -118,7 +119,15 @@
               </struts:a>
             </struts:if>
 
-
+            <struts:if test="getProperty('module.slider')">
+              <struts:a href="%{sliderUrl}" title="%{getText('navigation.slider')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.slider"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.slider"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
             <hr>
 
