@@ -6,9 +6,13 @@ package de.tivsource.page.entity.slider;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 import org.hibernate.search.annotations.DocumentId;
@@ -40,7 +44,11 @@ public class Slider {
     
     private String page;
 
-    private String image;
+    private Integer orderNumber;
+
+    @OneToOne(mappedBy = "slider", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "image_uuid")
+    private SliderImage image;
 
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
@@ -96,11 +104,19 @@ public class Slider {
         this.page = page;
     }
 
-    public String getImage() {
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public SliderImage getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(SliderImage image) {
         this.image = image;
     }
 
