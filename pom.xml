@@ -33,6 +33,7 @@
 		<module>dao</module>
 		<module>web-administrator</module>
 		<module>web-user</module>
+		<module>web-image</module>
 		<module>web-reservation</module>
 		<module>install</module>
 		<module>ear</module>

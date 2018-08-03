@@ -67,6 +67,12 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-image</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-administrator</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
@@ -185,6 +191,11 @@
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>web-user</artifactId>
 							<contextRoot>/public</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-image</artifactId>
+							<contextRoot>/image</contextRoot>
 						</webModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
