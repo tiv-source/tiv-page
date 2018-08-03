@@ -43,11 +43,21 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
      * Lokaler Pfad der Orginal-Datei.
      */
     private String orginal;
+
+    /**
+     * Lokaler Pfad der kleinen Abbildung mit 1000 x 1000 Pixeln.
+     */
+    private String large;
+
+    /**
+     * Lokaler Pfad der normalen Abbildung mit 650 x 650 Pixeln.
+     */
+    private String normal;
     
     /**
-     * Lokaler Pfad der großen Abbildung mit 350 x 350 Pixeln.
+     * Lokaler Pfad der kleinen Abbildung mit 350 x 350 Pixeln.
      */
-    private String picture;
+    private String small;
 
     /**
      * Lokaler Pfad der Abbildung für Übersichtsseiten mit 148 x 148 Pixeln.
@@ -94,12 +104,28 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
         this.orginal = orginal;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getLarge() {
+        return large;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
+    public void setLarge(String large) {
+        this.large = large;
+    }
+
+    public String getNormal() {
+        return normal;
+    }
+
+    public void setNormal(String normal) {
+        this.normal = normal;
+    }
+
+    public String getSmall() {
+        return small;
+    }
+
+    public void setSmall(String small) {
+        this.small = small;
     }
 
     public String getThumbnail() {
@@ -126,9 +152,36 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
         this.standard = standard;
     }
 
-    public FileInputStream getPictureFileInputStream() {
+    public FileInputStream getOrginalFileInputStream() {
         try {
-            return new FileInputStream(new File(this.picture));
+            return new FileInputStream(new File(this.orginal));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public FileInputStream getLargeFileInputStream() {
+        try {
+            return new FileInputStream(new File(this.large));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public FileInputStream getNormalFileInputStream() {
+        try {
+            return new FileInputStream(new File(this.normal));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public FileInputStream getSmallFileInputStream() {
+        try {
+            return new FileInputStream(new File(this.small));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -176,7 +229,7 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
 
         try {
             // Datei die erstellt werden soll
-            File fileToCreate = new File(filePath, pictureSaveName + ".png");
+            File fileToCreate = new File(filePath, pictureSaveName + ".org.png");
             logger.debug("Absoluter Pfad der neuen Picture-Datei : "
                     + fileToCreate.getAbsolutePath());
 
@@ -191,13 +244,16 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
 
         String s = null;
 
-        String file = filePath + pictureSaveName + ".png";
-        String newFile = filePath + pictureSaveName + ".org.png";
+        String file = filePath + pictureSaveName + ".org.png";
+        String largeFile = filePath + pictureSaveName + ".large.png";
+        String normalFile = filePath + pictureSaveName + ".normal.png";
+        String smallFile = filePath + pictureSaveName + ".small.png";
         String thumbFile = filePath + pictureSaveName + ".thumb.png";
         String microFile = filePath + pictureSaveName + ".micro.png";
         try {
 
-            Process process = Runtime.getRuntime().exec("montage -background none -geometry 350x350 -quality 100 " + file + " "+ newFile);
+            Process process = Runtime.getRuntime().exec(
+                    "/usr/bin/convert -resize 1000x1000 -quality 85 " + file + " "+ largeFile);
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
@@ -209,7 +265,8 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
                 System.out.println(s);
             }
 
-            process = Runtime.getRuntime().exec("montage -background none -geometry 148x148 -quality 100 " + file + " " + thumbFile);
+            process = Runtime.getRuntime().exec(
+                    "/usr/bin/convert -resize 650x650 -quality 85 " + file + " "+ normalFile);
             stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
@@ -221,7 +278,34 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
                 System.out.println(s);
             }
 
-            process = Runtime.getRuntime().exec("montage -background none -geometry 50x50 -quality 100 " + file + " " + microFile);
+            process = Runtime.getRuntime().exec(
+                    "/usr/bin/convert -resize 350x350 -quality 85 " + file + " "+ smallFile);
+            stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            process = Runtime.getRuntime().exec(
+                    "/usr/bin/convert -resize 148x148 -quality 85 " + file + " " + thumbFile);
+            stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+            while ((s = stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            process = Runtime.getRuntime().exec(
+                    "/usr/bin/convert -resize 50x50 -quality 85 " + file + " " + microFile);
             stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
@@ -240,7 +324,9 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
         }
 
         this.setOrginal(file);
-        this.setPicture(newFile);
+        this.setLarge(largeFile);
+        this.setNormal(normalFile);
+        this.setSmall(smallFile);
         this.setThumbnail(thumbFile);
         this.setMicro(microFile);
         this.setStandard(true);
@@ -257,14 +343,24 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
             FileUtils.delete(thumbnailFile);
         }// Ende if
 
-        File pictureFile = new File(picture);
-        if (pictureFile.exists()) {
-            FileUtils.delete(pictureFile);
+        File smallFile = new File(small);
+        if (smallFile.exists()) {
+            FileUtils.delete(smallFile);
         }// Ende if
 
-        File uploadFile = new File(orginal);
-        if (uploadFile.exists()) {
-            FileUtils.delete(uploadFile);
+        File normalFile = new File(normal);
+        if (normalFile.exists()) {
+            FileUtils.delete(normalFile);
+        }// Ende if
+
+        File largeFile = new File(large);
+        if (largeFile.exists()) {
+            FileUtils.delete(largeFile);
+        }// Ende if
+
+        File orginalFile = new File(orginal);
+        if (orginalFile.exists()) {
+            FileUtils.delete(orginalFile);
         }// Ende if
     }// Ende delete()
     
