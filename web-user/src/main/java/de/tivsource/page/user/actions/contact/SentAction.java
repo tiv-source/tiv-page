@@ -135,7 +135,7 @@ public class SentAction extends EmptyAction {
 
             // Get session
             Session session = Session.getInstance(getProperties(), auth);
-            session.setDebug(true);
+            session.setDebug(false);
             
             EmailSender sendIt = new EmailSender();
             String[] argu = {

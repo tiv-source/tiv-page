@@ -107,7 +107,7 @@ public class ReservationMail {
 		this.bccAddress = bccAddress;
 		this.template = this.templatePath.openStream();
         this.session = Session.getInstance(properties, auth);
-        this.session.setDebug(true);
+        this.session.setDebug(false);
         this.emailTemplate = (EmailTemplate)EmailTemplate.getEmailTemplate(template);
 	}
 
