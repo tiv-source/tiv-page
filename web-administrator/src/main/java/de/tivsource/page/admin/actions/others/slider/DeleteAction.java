@@ -63,7 +63,8 @@ public class DeleteAction extends EmptyAction {
 
     	if(slider != null) {
     	    Slider dbSlider = sliderDaoLocal.findByUuid(slider.getUuid());
-    		dbSlider.setModified(new Date());
+    	    dbSlider.getImage().delete();
+    	    dbSlider.setModified(new Date());
     		dbSlider.setModifiedBy(remoteUser);
     		dbSlider.setModifiedAddress(remoteAddress);
     		sliderDaoLocal.merge(dbSlider);
