@@ -28,9 +28,11 @@ import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.page.Page;
+import de.tivsource.page.entity.slider.Slider;
 
 /**
  * 
@@ -73,6 +75,9 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
     @InjectEJB(name="AppointmentDao")
     private AppointmentDaoLocal appointmentDaoLocal;
 
+    @InjectEJB(name="SliderDao")
+    private SliderDaoLocal sliderDaoLocal;
+    
     private Event left;
     private Event right;
 
@@ -180,6 +185,17 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); 
         return numberFormat.format(sliderWidth);
     }
+    
+    public List<Slider> getHomeSliderList() {
+        return sliderDaoLocal.findAllVisible(0, 7, "home");
+    }
+
+    public String getHomeSliderWidth() {
+        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getHomeSliderList().size()), 2, BigDecimal.ROUND_HALF_UP);
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); 
+        return numberFormat.format(sliderWidth);
+    }
+
     
 	/**
 	 * Methode die die aktuelle Sprache aus dem Context holt.
