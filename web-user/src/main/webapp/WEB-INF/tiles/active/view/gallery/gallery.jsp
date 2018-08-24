@@ -6,7 +6,16 @@
       <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />" style="width: 100%;">
     </div>
   </struts:if>
-
+    
+    <div id="galleryNavigation">
+      <struts:url var="aboveUrl" action="index" namespace="/gallery" />
+      <struts:a href="%{aboveUrl}">
+        <div class="galleryNavigationAbove">
+          <img src="/public/icons/gallery_above_orange.png" alt="">
+          <p><struts:text name="gallery.above" /></p>
+        </div>
+      </struts:a>
+    </div>
     <h1><struts:property value="gallery.getName(getText('language'))" /></h1>
     <p><struts:property value="gallery.getDescription(getText('language'))" /></p>
 

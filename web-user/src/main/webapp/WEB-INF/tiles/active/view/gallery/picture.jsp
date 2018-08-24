@@ -1,7 +1,19 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
+    <div id="galleryNavigation">
+      <struts:url var="summaryUrl" action="index" namespace="/gallery/%{gallery.uuid}">
+        <struts:param name="page" value="%{requestedPage}"/>
+      </struts:url>
+      <struts:a href="%{summaryUrl}">
+        <div class="galleryNavigationAbove">
+          <img src="/public/icons/gallery_summary_orange.png" alt="">
+          <p><struts:text name="gallery.summary" /></p>
+        </div>
+      </struts:a>
+    </div>
     <h1><struts:property value="gallery.getName(getText('language'))" /></h1>
+
 
     <div id="touchbox" class="bigpic">
       <div class="bigpic_box">
