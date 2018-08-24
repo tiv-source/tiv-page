@@ -6,5 +6,5 @@
     userClassNames="de.tivsource.page.entity.administration.User"
     roleClassNames="de.tivsource.page.entity.administration.Role"
   />
-  <Valve className="de.tivsource.page.valve.security.RemoteAddressValve" debugTrace="true" />
+  <Valve className="de.tivsource.page.valve.security.RemoteAddressValve" />
 </Context>
