@@ -232,6 +232,10 @@ public class PictureAction extends EmptyAction implements Pagination {
 		return picture;
 	}
 
+    public Integer getRequestedPage() {
+        return requestedPage;
+    }
+
     public Integer getPreviousPicture() {
         return previousPicture;
     }
