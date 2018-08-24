@@ -9,8 +9,9 @@
 
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
-    <p class=" bc_bottom">	&nbsp;</p>
+    <p class=" bc_bottom">&nbsp;</p>
 
+  <struts:if test="appointments.size() > 0">
     <struts:iterator value="appointments" status="manualStatus">
       <struts:url var="appointmentLink" action="index" namespace="/appointment/%{uuid}"/>
     
@@ -42,6 +43,10 @@
       
 
     </struts:iterator>
+  </struts:if>
+  <struts:else>
+    <div class="noAppointemnts">Zur Zeit liegen keine Termine vor.</div>
+  </struts:else>
 
     <struts:if test="previous != null">
       <struts:url var="previousUrl" escapeAmp="false">
