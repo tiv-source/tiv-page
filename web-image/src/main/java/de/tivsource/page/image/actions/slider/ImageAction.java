@@ -126,12 +126,12 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
             }
         ),
         @Action(
-            value = "*/orginal",
+            value = "*/original",
             results = {
                 @Result(
                     name = "success", 
                     type="stream", 
-                    params= { "contentType","image/png","inputName","sliderImage.orginalFileInputStream"}
+                    params= { "contentType","image/png","inputName","sliderImage.originalFileInputStream"}
                 ),
                 @Result(name = "input", type="tiles", location="imageTemplate")
             }
@@ -175,7 +175,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         sliderImageUuid = sliderImageUuid.replaceAll("/small.png", "");
         sliderImageUuid = sliderImageUuid.replaceAll("/normal.png", "");
         sliderImageUuid = sliderImageUuid.replaceAll("/large.png", "");
-        sliderImageUuid = sliderImageUuid.replaceAll("/orginal.png", "");
+        sliderImageUuid = sliderImageUuid.replaceAll("/original.png", "");
         logger.info("Slider Image UUID: " + sliderImageUuid);
 
         try {

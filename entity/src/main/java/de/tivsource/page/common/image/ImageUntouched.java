@@ -42,7 +42,7 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
     /**
      * Lokaler Pfad der Orginal-Datei.
      */
-    private String orginal;
+    private String original;
 
     /**
      * Lokaler Pfad der kleinen Abbildung mit 1000 x 1000 Pixeln.
@@ -93,15 +93,15 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
     /**
      * @return the orginal
      */
-    public String getOrginal() {
-        return orginal;
+    public String getOriginal() {
+        return original;
     }
 
     /**
-     * @param orginal the orginal to set
+     * @param original the orginal to set
      */
-    public void setOrginal(String orginal) {
-        this.orginal = orginal;
+    public void setOriginal(String original) {
+        this.original = original;
     }
 
     public String getLarge() {
@@ -152,9 +152,9 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
         this.standard = standard;
     }
 
-    public FileInputStream getOrginalFileInputStream() {
+    public FileInputStream getOriginalFileInputStream() {
         try {
-            return new FileInputStream(new File(this.orginal));
+            return new FileInputStream(new File(this.original));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -323,7 +323,7 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
             System.exit(-1);
         }
 
-        this.setOrginal(file);
+        this.setOriginal(file);
         this.setLarge(largeFile);
         this.setNormal(normalFile);
         this.setSmall(smallFile);
@@ -358,9 +358,9 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
             FileUtils.delete(largeFile);
         }// Ende if
 
-        File orginalFile = new File(orginal);
-        if (orginalFile.exists()) {
-            FileUtils.delete(orginalFile);
+        File originalFile = new File(original);
+        if (originalFile.exists()) {
+            FileUtils.delete(originalFile);
         }// Ende if
     }// Ende delete()
     
