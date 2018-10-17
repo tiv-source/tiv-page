@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>tivpage</artifactId>
+		<groupId>de.tivsource.page</groupId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>web-shariff</artifactId>
+	<packaging>war</packaging>
+	<name>TIV-Page Shariff Web Project</name>
+	<url>http://shop.tivsource.de/</url>
+
+	<repositories>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>4.10</version>
+		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+
+
+		<dependency>
+			<groupId>org.shredzone.shariff</groupId>
+			<artifactId>backend</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+			</plugin>
+		</plugins>
+		<finalName>web-shariff</finalName>
+	</build>
+
+
+	<inceptionYear>2018</inceptionYear>
+	<organization>
+		<name>T.I.V. Consulting GmbH</name>
+		<url>http://www.tiv-consulting.de/</url>
+	</organization>
+</project>

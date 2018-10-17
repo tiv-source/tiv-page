@@ -41,6 +41,7 @@
 		<module>restore</module>
 		<module>mail-reservation</module>
 		<module>valve</module>
+		<module>web-shariff</module>
 	</modules>
 
 	<build>
