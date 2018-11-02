@@ -64,22 +64,22 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Boolean isGallery(String uuid) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = ?1 and g.visible = 'Y' order by g.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = :uuid and g.visible = 'Y' order by g.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
 	@Override
 	public Boolean isGalleryTechnical(String technical) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.technical = ?1 and g.visible = 'Y' order by g.uuid asc");
-        query.setParameter("1", technical);
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
+        query.setParameter("technical", technical);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
 	@Override
 	public Boolean hasReferences(String uuid) {
-        Query query = entityManager.createQuery("select p from Picture p where p.gallery.uuid = ?1 order by p.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select p from Picture p where p.gallery.uuid = :uuid order by p.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
@@ -93,8 +93,8 @@ public class GalleryDao implements GalleryDaoLocal {
 
 	@Override
 	public Gallery findByTechnical(String technical) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.technical = ?1 and g.visible = 'Y' order by g.uuid asc");
-        query.setParameter("1", technical);
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
+        query.setParameter("technical", technical);
 		return (Gallery) query.getSingleResult();
 	}
 
@@ -127,10 +127,10 @@ public class GalleryDao implements GalleryDaoLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Gallery> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Gallery g where g.visible = ?1 order by g.orderNumber asc");
+        Query query = entityManager.createQuery("from Gallery g where g.visible = :visible order by g.orderNumber asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", true);
+        query.setParameter("visible", true);
         return query.getResultList();
 	}
 
@@ -145,8 +145,8 @@ public class GalleryDao implements GalleryDaoLocal {
 
 	@Override
 	public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(g) from Gallery g where g.visible = ?1");
-        query.setParameter("1", true);
+        Query query = entityManager.createQuery("Select Count(g) from Gallery g where g.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 

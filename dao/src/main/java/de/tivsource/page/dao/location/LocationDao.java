@@ -63,15 +63,15 @@ public class LocationDao implements LocationDaoLocal {
 
 	@Override
 	public Boolean isLocation(String uuid) {
-        Query query = entityManager.createQuery("select l from Location l where l.uuid = ?1 and l.visible = 'Y' order by l.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = 'Y' order by l.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
     @Override
     public Boolean isEventLocation(String uuid) {
-        Query query = entityManager.createQuery("select l from Location l where l.uuid = ?1 and l.visible = 'Y' and l.event = 'Y' order by l.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = 'Y' and l.event = 'Y' order by l.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 

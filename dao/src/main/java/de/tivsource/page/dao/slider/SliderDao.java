@@ -99,11 +99,11 @@ public class SliderDao implements SliderDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Slider> findAllVisible(Integer start, Integer max, String page) {
-        String queryString = "SELECT s FROM Slider s WHERE s.visible = 'Y' and s.page = ?1 ORDER BY s.orderNumber desc";
+        String queryString = "SELECT s FROM Slider s WHERE s.visible = 'Y' and s.page = :page ORDER BY s.orderNumber desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", page);
+        query.setParameter("page", page);
         return query.getResultList();
     }
 
@@ -121,8 +121,8 @@ public class SliderDao implements SliderDaoLocal {
      */
     @Override
     public Integer countAllVisible(String page) {
-        Query query = entityManager.createQuery("Select Count(s) from Slider s WHERE s.visible = 'Y' and s.page = ?1");
-        query.setParameter("1", page);
+        Query query = entityManager.createQuery("Select Count(s) from Slider s WHERE s.visible = 'Y' and s.page = :page");
+        query.setParameter("page", page);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

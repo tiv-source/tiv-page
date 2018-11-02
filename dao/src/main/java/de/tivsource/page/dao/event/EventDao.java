@@ -62,8 +62,8 @@ public class EventDao implements EventDaoLocal {
 
     @Override
     public Boolean isEvent(String uuid) {
-        Query query = entityManager.createQuery("select e from Event e where e.uuid = ?1 and e.visible = 'Y' and e.reservation = 'Y' order by e.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = 'Y' and e.reservation = 'Y' order by e.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -109,33 +109,33 @@ public class EventDao implements EventDaoLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllActive(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Event e where e.ending > ?1 order by e.beginning asc");
+        Query query = entityManager.createQuery("from Event e where e.ending > :date order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", new Date());
+        query.setParameter("date", new Date());
         return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllActive(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT DISTINCT e FROM Event e JOIN e.descriptionMap dm JOIN e.location.descriptionMap edm WHERE dm.language = 'DE' AND edm.language = 'DE' AND e.ending > ?1 ORDER BY ";
+        String queryString = "SELECT DISTINCT e FROM Event e JOIN e.descriptionMap dm JOIN e.location.descriptionMap edm WHERE dm.language = 'DE' AND edm.language = 'DE' AND e.ending > :date ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", new Date());
+        query.setParameter("date", new Date());
         return query.getResultList();
 	}
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(String uuid, Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Event e where e.location.uuid = ?1 and e.visible = 'Y' and e.beginning > ?2 order by e.beginning asc");
+        Query query = entityManager.createQuery("from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", uuid);
-        query.setParameter("2", new Date());
+        query.setParameter("uuid", uuid);
+        query.setParameter("date", new Date());
         return query.getResultList();
     }
 
@@ -150,16 +150,16 @@ public class EventDao implements EventDaoLocal {
 
 	@Override
 	public Integer countAllActive() {
-        Query query = entityManager.createQuery("Select Count(e) from Event e where e.ending > ?1");
-        query.setParameter("1", new Date());
+        Query query = entityManager.createQuery("Select Count(e) from Event e where e.ending > :date");
+        query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
     @Override
     public Integer countAll(String uuid) {
-        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = ?1 and e.visible = 'Y' and e.beginning > ?2");
-        query.setParameter("1", uuid);
-        query.setParameter("2", new Date());
+        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date");
+        query.setParameter("uuid", uuid);
+        query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

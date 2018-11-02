@@ -67,7 +67,7 @@ public class UserDao implements UserDaoLocal {
     public User findByUsername(String username) {
         LOGGER.info("findByUsername(String username) aufgerufen.");
         try {
-            Query query = entityManager.createQuery("select u from User u where u.username = ?1");
+            Query query = entityManager.createQuery("select u from User u where u.username = :username");
             query.setParameter("1", username);
             return (User)query.getSingleResult();
         } catch(NoResultException e) {

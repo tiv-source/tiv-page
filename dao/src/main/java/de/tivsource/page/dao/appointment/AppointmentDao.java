@@ -65,7 +65,7 @@ public class AppointmentDao implements AppointmentDaoLocal {
      */
     @Override
     public Boolean isAppointmentUuid(String uuid) {
-        Query query = entityManager.createQuery("select ap from Appointment ap where ap.uuid = ?1 and ap.visible = 'Y' order by ap.uuid asc");
+        Query query = entityManager.createQuery("select ap from Appointment ap where ap.uuid = :uuid and ap.visible = 'Y' order by ap.uuid asc");
         query.setParameter("1", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
@@ -110,22 +110,22 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime > ?1 AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
+        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime > :date AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", new Date());
+        query.setParameter("date", new Date());
         return query.getResultList();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAllArchiveVisible(Integer start, Integer max) {
-        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime < ?1 AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
+        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime < :date AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", new Date());
+        query.setParameter("date", new Date());
         return query.getResultList();
     }
 
@@ -143,15 +143,15 @@ public class AppointmentDao implements AppointmentDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime > ?1 AND ap.visible = 'Y'");
-        query.setParameter("1", new Date());
+        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime > :date AND ap.visible = 'Y'");
+        query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
     @Override
     public Integer countAllArchiveVisible() {
-        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime < ?1 AND ap.visible = 'Y'");
-        query.setParameter("1", new Date());
+        Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime < :date AND ap.visible = 'Y'");
+        query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

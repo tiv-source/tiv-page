@@ -73,8 +73,8 @@ public class RoleDao implements RoleDaoLocal {
      */
     @Override
     public Role findByTechnical(String technical) {
-        Query query = entityManager.createQuery("select r from Role r where r.technical = ?1");
-        query.setParameter("1", technical);
+        Query query = entityManager.createQuery("select r from Role r where r.technical = :technical");
+        query.setParameter("technical", technical);
         return (Role)query.getSingleResult();
     }
 

@@ -65,8 +65,8 @@ public class CompanionDao implements CompanionDaoLocal {
      */
     @Override
     public Boolean isCompanionUuid(String uuid) {
-        Query query = entityManager.createQuery("select c from Companion c where c.uuid = ?1 and c.visible = 'Y' order by c.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select c from Companion c where c.uuid = :uuid and c.visible = 'Y' order by c.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -120,11 +120,11 @@ public class CompanionDao implements CompanionDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Companion> findAllVisible(Integer start, Integer max, CompanionGroup companionGroup) {
-        String queryString = "SELECT c FROM Companion c WHERE c.visible = 'Y' and c.group = ?1 ORDER BY c.name asc";
+        String queryString = "SELECT c FROM Companion c WHERE c.visible = 'Y' and c.group = :companionGroup ORDER BY c.name asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", companionGroup);
+        query.setParameter("companionGroup", companionGroup);
         return query.getResultList();
     }
 
@@ -148,8 +148,8 @@ public class CompanionDao implements CompanionDaoLocal {
 
     @Override
     public Integer countAllVisible(CompanionGroup companionGroup) {
-        Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = 'Y' and c.group = ?1");
-        query.setParameter("1", companionGroup);
+        Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = 'Y' and c.group = :companionGroup");
+        query.setParameter("companionGroup", companionGroup);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

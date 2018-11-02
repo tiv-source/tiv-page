@@ -65,16 +65,16 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public Boolean isNewsUrl(String uuid) {
-        Query query = entityManager.createQuery("select n from News n where n.uuid = ?1 and n.visible = 'Y' order by n.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = 'Y' order by n.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
     @Override
     public Boolean isPublicNewsUuid(String uuid) {
-        Query query = entityManager.createQuery("select n from News n where n.uuid = ?1 and n.visible = 'Y' and n.releaseDate < ?2 order by n.uuid asc");
-        query.setParameter("1", uuid);
-        query.setParameter("2", new Date());
+        Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = 'Y' and n.releaseDate < :date order by n.uuid asc");
+        query.setParameter("uuid", uuid);
+        query.setParameter("date", new Date());
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -115,11 +115,11 @@ public class NewsDao implements NewsDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<News> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT n FROM News n WHERE n.visible = 'Y' and n.releaseDate < ?1 ORDER BY n.releaseDate desc";
+        String queryString = "SELECT n FROM News n WHERE n.visible = 'Y' and n.releaseDate < :date ORDER BY n.releaseDate desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", new Date());
+        query.setParameter("date", new Date());
         return query.getResultList();
     }
 
@@ -134,8 +134,8 @@ public class NewsDao implements NewsDaoLocal {
 
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(n) from News n WHERE n.visible = 'Y' and n.releaseDate < ?1");
-        query.setParameter("1", new Date());
+        Query query = entityManager.createQuery("Select Count(n) from News n WHERE n.visible = 'Y' and n.releaseDate < :date");
+        query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

@@ -101,10 +101,10 @@ public class ReservationDao implements ReservationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Reservation> findAll(Event event, Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Reservation r where r.event = ?1");
+        Query query = entityManager.createQuery("from Reservation r where r.event = :event");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", event);
+        query.setParameter("event", event);
         return query.getResultList();
     }
 
@@ -114,34 +114,34 @@ public class ReservationDao implements ReservationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Reservation> findAll(Event event, Integer start, Integer max, String field, String order) {
-        String queryString = "select r from Reservation r where r.event = ?1 order by ";
+        String queryString = "select r from Reservation r where r.event = :event order by ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", event);
+        query.setParameter("event", event);
         return query.getResultList();
     }
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> confirmationQueue(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Reservation r where r.confirmed = ?1");
+        Query query = entityManager.createQuery("from Reservation r where r.confirmed = :confirmed");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", false);
+        query.setParameter("confirmed", false);
         return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> confirmationQueue(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT DISTINCT r FROM Reservation r JOIN r.event.descriptionMap dm JOIN r.event.location.descriptionMap edm WHERE r.confirmed = ?1 AND dm.language = 'DE' AND edm.language = 'DE' order by ";
+        String queryString = "SELECT DISTINCT r FROM Reservation r JOIN r.event.descriptionMap dm JOIN r.event.location.descriptionMap edm WHERE r.confirmed = :confirmed AND dm.language = 'DE' AND edm.language = 'DE' order by ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", false);
+        query.setParameter("confirmed", false);
         return query.getResultList();
 	}
 
@@ -156,22 +156,22 @@ public class ReservationDao implements ReservationDaoLocal {
 
     @Override
     public Integer countAll(Event event) {
-        Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.event = ?1");
-        query.setParameter("1", event);
+        Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.event = :event");
+        query.setParameter("event", event);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
 	@Override
 	public Integer countConfirmationQueue() {
-        Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.confirmed = ?1");
-        query.setParameter("1", false);
+        Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.confirmed = :confirmed");
+        query.setParameter("confirmed", false);
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
 	@Override
 	public Integer countQuantity(String uuid) {
-        Query query = entityManager.createQuery("select sum(r.quantity) from Reservation r where r.event.uuid = ?1 group by r.event");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select sum(r.quantity) from Reservation r where r.event.uuid = :uuid group by r.event");
+        query.setParameter("uuid", uuid);
         try {
         	String result = query.getSingleResult().toString();
         	return Integer.parseInt(result);

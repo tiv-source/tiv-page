@@ -61,8 +61,8 @@ public class VacancyDao implements VacancyDaoLocal {
 
 	@Override
 	public Boolean isVacancy(String uuid) {
-        Query query = entityManager.createQuery("select v from Vacancy v where v.uuid = ?1 and v.visible = 'Y' order by v.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select v from Vacancy v where v.uuid = :uuid and v.visible = 'Y' order by v.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 

@@ -55,8 +55,8 @@ public class FeedbackOptionDao implements FeedbackOptionDaoLocal {
      */
     @Override
     public Boolean isFeedbackOption(String uuid) {
-        Query query = entityManager.createQuery("select fo from FeedbackOption fo where fo.uuid = ?1 and fo.visible = 'Y' order by fo.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select fo from FeedbackOption fo where fo.uuid = :uuid and fo.visible = 'Y' order by fo.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -109,7 +109,7 @@ public class FeedbackOptionDao implements FeedbackOptionDaoLocal {
     @Override
     @SuppressWarnings("unchecked")
     public List<FeedbackOption> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from FeedbackOption fo where fo.visible = ?1 order by fo.orderNumber asc");
+        Query query = entityManager.createQuery("from FeedbackOption fo where fo.visible = :uuid order by fo.orderNumber asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("1", true);
@@ -130,7 +130,7 @@ public class FeedbackOptionDao implements FeedbackOptionDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(fo) from FeedbackOption fo where fo.visible = ?1");
+        Query query = entityManager.createQuery("Select Count(fo) from FeedbackOption fo where fo.visible = :uuid");
         query.setParameter("1", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }

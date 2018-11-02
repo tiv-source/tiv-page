@@ -64,8 +64,8 @@ public class ManualDao implements ManualDaoLocal {
 	 */
 	@Override
 	public Boolean isManualUuid(String uuid) {
-        Query query = entityManager.createQuery("select m from Manual m where m.uuid = ?1 and m.visible = 'Y' order by m.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select m from Manual m where m.uuid = :uuid and m.visible = 'Y' order by m.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 

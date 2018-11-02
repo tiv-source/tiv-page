@@ -64,8 +64,8 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public Boolean isCompanionGroup(String uuid) {
-        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.uuid = ?1 and cg.visible = 'Y' order by cg.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.uuid = :uuid and cg.visible = 'Y' order by cg.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -74,8 +74,8 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public Boolean isCompanionGroupTechnical(String technical) {
-        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = ?1 and cg.visible = 'Y' order by cg.uuid asc");
-        query.setParameter("1", technical);
+        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = 'Y' order by cg.uuid asc");
+        query.setParameter("technical", technical);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -84,8 +84,8 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public Boolean hasReferences(String uuid) {
-        Query query = entityManager.createQuery("select c from Companion c where c.group.uuid = ?1 order by c.uuid asc");
-        query.setParameter("1", uuid);
+        Query query = entityManager.createQuery("select c from Companion c where c.group.uuid = :uuid order by c.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -102,8 +102,8 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public CompanionGroup findByTechnical(String technical) {
-        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = ?1 and cg.visible = 'Y' order by cg.uuid asc");
-        query.setParameter("1", technical);
+        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = 'Y' order by cg.uuid asc");
+        query.setParameter("technical", technical);
         return (CompanionGroup) query.getSingleResult();
     }
 
@@ -139,10 +139,10 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<CompanionGroup> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("from CompanionGroup cg where cg.visible = ?1 order by cg.orderNumber asc");
+        Query query = entityManager.createQuery("from CompanionGroup cg where cg.visible = :visible order by cg.orderNumber asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", true);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -160,8 +160,8 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(cg) from CompanionGroup cg where cg.visible = ?1");
-        query.setParameter("1", true);
+        Query query = entityManager.createQuery("Select Count(cg) from CompanionGroup cg where cg.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

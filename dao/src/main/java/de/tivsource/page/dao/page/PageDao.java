@@ -61,8 +61,8 @@ public class PageDao implements PageDaoLocal {
 
     @Override
     public Boolean isPageUrl(String urlName) {
-        Query query = entityManager.createQuery("select p from Page p where p.technical = ?1 and p.visible = 'Y' order by p.uuid asc");
-        query.setParameter("1", urlName);
+        Query query = entityManager.createQuery("select p from Page p where p.technical = :urlName and p.visible = 'Y' order by p.uuid asc");
+        query.setParameter("urlName", urlName);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -72,8 +72,8 @@ public class PageDao implements PageDaoLocal {
     @Override
     public Page findByTechnical(String technical) {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
-        Query query = entityManager.createQuery("select p from Page p where p.technical = ?1");
-        query.setParameter("1", technical);
+        Query query = entityManager.createQuery("select p from Page p where p.technical = :technical");
+        query.setParameter("technical", technical);
         return (Page)query.getSingleResult();
     }
 
