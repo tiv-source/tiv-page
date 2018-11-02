@@ -112,7 +112,7 @@ public class FeedbackOptionDao implements FeedbackOptionDaoLocal {
         Query query = entityManager.createQuery("from FeedbackOption fo where fo.visible = :uuid order by fo.orderNumber asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("1", true);
+        query.setParameter("uuid", true);
         return query.getResultList();
     }
 
@@ -131,7 +131,7 @@ public class FeedbackOptionDao implements FeedbackOptionDaoLocal {
     @Override
     public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(fo) from FeedbackOption fo where fo.visible = :uuid");
-        query.setParameter("1", true);
+        query.setParameter("uuid", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
