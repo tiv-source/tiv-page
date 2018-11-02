@@ -181,8 +181,7 @@ public class ReservationMail {
                 "UTF-8");
 
         /*
-         * Erzeugen des Mantels, enthält als einziges Element die Hülle. Dies
-         * ist nötig damit die Bilder eingebettet werden können.
+         * Erzeugen des Body Teil, enthält als einziges Element den Mixed Teil.
          */
         MimeBodyPart mantle = new MimeBodyPart();
 
@@ -251,7 +250,7 @@ public class ReservationMail {
         mimeBodyPart.setDataHandler(new DataHandler(source));
         mimeBodyPart.setHeader("Content-Type", "application/pdf");
         mimeBodyPart.setFileName("Reservierungsbestaetigung.pdf");
-        
+
         // Setze den das PDF in das Inhalts-Element.
         content.addBodyPart(mimeBodyPart);
 
