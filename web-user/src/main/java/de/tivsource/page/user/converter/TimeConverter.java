@@ -15,7 +15,7 @@ import org.apache.struts2.util.StrutsTypeConverter;
 import com.opensymphony.xwork2.conversion.TypeConversionException;
 
 /**
- * @author marc
+ * @author Marc Michele
  *
  */
 public class TimeConverter extends StrutsTypeConverter {
