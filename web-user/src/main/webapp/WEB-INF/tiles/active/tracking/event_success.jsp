@@ -3,7 +3,7 @@
 <struts:set var="revenue" value="event.price * reservation.quantity" />
 
 <!-- Piwik -->
-<script type="text/javascript">
+<script>
   var _paq = _paq || [];
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);

@@ -3,7 +3,7 @@
 
 <struts:if test="getProperty('piwik.enabled') == 'true'">
 <!-- Piwik -->
-<script type="text/javascript">
+<script>
   var _paq = _paq || [];
   _paq.push(["setDomains", [<struts:property escapeHtml="false" value="getProperty('piwik.domains')"/>]]);
   _paq.push(['trackPageView']);
