@@ -5,7 +5,8 @@
 
 
 	<persistence-unit name="tivpage.persistence" transaction-type="JTA">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+	
+	    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:openejb/Resource/tivPage</jta-data-source>
 
 		<class>de.tivsource.page.entity.administration.Role</class>
@@ -53,6 +54,7 @@
 			<!-- Drop and then re-create the database schema (don't do this in production) -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 
+            <property name="hibernate.search.lucene_version" value="5.3.1" />
             <property name="hibernate.search.default.directory_provider" value="filesystem" />
             <property name="hibernate.search.default.indexBase" value="/srv/lucene/indexes" />
 
