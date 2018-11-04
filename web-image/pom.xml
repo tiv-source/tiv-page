@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>web-image</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Shop Image Web Project</name>
+	<name>TIV-Page Image Web Project</name>
 	<url>http://shop.tivsource.de/</url>
 
 
@@ -82,6 +82,7 @@
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-config-browser-plugin</artifactId>
 			<version>${struts2.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -156,40 +157,16 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.5</version>
+			<version>${log4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.5</version>
+			<version>${log4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-1.2-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-slf4j-impl</artifactId>
-		    <version>2.5</version>
-		    <scope>provided</scope>
-		</dependency>
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-api</artifactId>
-    <version>1.7.6</version>
-    <scope>provided</scope>
-</dependency>
 
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-    <scope>provided</scope>
-</dependency>
 
 	</dependencies>
 
