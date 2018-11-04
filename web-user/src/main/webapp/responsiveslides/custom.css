@@ -1,0 +1,43 @@
+
+.rslides_tabs {
+  list-style: none;
+  font-size: 18px;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  }
+
+.rslides_tabs li {
+  display: inline-block;
+  float: none;
+  margin-right: 1px;
+  padding-left: 5px;
+  }
+
+.rslides_tabs a {
+  width: 20px;
+  line-height: 20px;
+  padding: 0;
+  height: 20px;
+  background: black;
+  display: block;
+  border-radius: 50%;
+  font-size: 1px;
+  color: black;
+  }
+
+.rslides_tabs li:first-child {
+  margin-left: 0;
+  }
+
+.rslides_tabs .rslides_here a {
+  background: orange;
+  color: orange;
+  font-weight: bold;
+  
+  }
+
+a {
+  color: #fff;
+  text-decoration: none;
+  }
