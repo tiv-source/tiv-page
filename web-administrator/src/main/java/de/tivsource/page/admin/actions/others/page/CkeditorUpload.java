@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.util.UUID;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -19,8 +21,7 @@ import org.apache.struts2.convention.annotation.Result;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.inject.Inject;
-import com.opensymphony.xwork2.util.logging.Logger;
-import com.opensymphony.xwork2.util.logging.LoggerFactory;
+
 
 public class CkeditorUpload extends ActionSupport {
 
@@ -35,7 +36,7 @@ public class CkeditorUpload extends ActionSupport {
   private boolean             allowUploads          = false;
   private String              allowedFileExtensions = "";
 
-  private final static Logger LOG                   = LoggerFactory.getLogger(CkeditorUpload.class);
+  private final static Logger LOG                   = LogManager.getLogger(CkeditorUpload.class);
 
   @Actions({
       @org.apache.struts2.convention.annotation.Action(
