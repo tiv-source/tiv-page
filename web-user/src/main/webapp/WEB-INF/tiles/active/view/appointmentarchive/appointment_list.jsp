@@ -18,9 +18,18 @@
         <struts:a href="%{appointmentLink}">
           <div class="information">
             <h4><struts:property value="getName(getText('language'))" /></h4>
-            <h6><struts:date name="pointInTime" nice="true" /></h6>
+            <struts:if test="getProperty('appointment.archive.list.pointInTime.nice') == 'true'">
+              <h6><struts:date name="pointInTime" nice="true" /></h6>
+            </struts:if>
             <p><struts:property value="getDescription(getText('language'))" /></p>
-            <h6>Beginn um <struts:date name="pointInTime" format="HH:mm" /> am <struts:date name="pointInTime" format="dd.MM.yyyy" /></h6>
+            <h6>
+              <struts:if test="getProperty('appointment.archive.list.pointInTime.time') == 'true'">
+                Beginn um <struts:date name="pointInTime" format="HH:mm" /> 
+              </struts:if>
+              <struts:if test="getProperty('appointment.archive.list.pointInTime.date') == 'true'">
+                am <struts:date name="pointInTime" format="dd.MM.yyyy" />
+              </struts:if>
+            </h6>
           </div>
         </struts:a>
 
@@ -42,7 +51,7 @@
       </struts:url>
       <struts:a href="%{previousUrl}">
         <div class="pagination_left">
-          <img src="/public/icons/pagination_left_orange.png" alt="">
+          <img src="<struts:property value="getProperty('pagination.icon.left')" />" alt="<struts:text name="pagination.previous" />">
           <p><struts:text name="pagination.previous" /></p>
         </div>
       </struts:a>
@@ -54,7 +63,7 @@
       </struts:url>
       <struts:a href="%{nextUrl}">
         <div class="pagination_right">
-          <img src="/public/icons/pagination_right_orange.png" alt="">
+          <img src="<struts:property value="getProperty('pagination.icon.right')" />" alt="<struts:text name="pagination.next" />">
           <p><struts:text name="pagination.next" /></p>
         </div>
       </struts:a>
