@@ -7,6 +7,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <script src="/public/jquery/jquery-3.3.1.min.js"></script>
+
   <tiles:insertAttribute name="meta" />
   <tiles:insertAttribute name="twitter" />
 
@@ -20,6 +22,11 @@
 
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.ico.path')"/>" type="image/vnd.microsoft.icon" />
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.png.path')"/>" type="image/png" />
+
+  
+
+  <link rel="stylesheet" type="text/css" href="/public/cookieconsent/cookieconsent.min.css" />
+  <script src="/public/cookieconsent/cookieconsent.min.js"></script>
 
 </head>
 <body>
@@ -192,6 +199,36 @@
 </div>
 
 <tiles:insertAttribute name="tracking" />
+
+<struts:hidden id="cookieConsentPosition" name="cookieConsentPositionName" value="%{getProperty('cookieconsent.position')}" theme="simple"/>
+<struts:hidden id="cookieConsentPopupBackground" name="cookieConsentPopupBackgroundName" value="%{getProperty('cookieconsent.popup.background')}" theme="simple"/>
+<struts:hidden id="cookieConsentButtonBackground" name="cookieConsentButtonBackgroundName" value="%{getProperty('cookieconsent.button.background')}" theme="simple"/>
+<struts:hidden id="cookieConsentContentMessage" name="cookieConsentContentMessageName" value="%{getProperty('cookieconsent.content.message')}" theme="simple"/>
+<struts:hidden id="cookieConsentContentDismiss" name="cookieConsentContentDismissName" value="%{getProperty('cookieconsent.content.dismiss')}" theme="simple"/>
+<struts:hidden id="cookieConsentContentLink" name="cookieConsentContentLinkName" value="%{getProperty('cookieconsent.content.link')}" theme="simple"/>
+<struts:hidden id="cookieConsentContentHref" name="cookieConsentContentHrefName" value="%{getProperty('cookieconsent.content.href')}" theme="simple"/>
+<struts:hidden id="cookieConsentContentTarget" name="cookieConsentContentTargetName" value="%{getProperty('cookieconsent.content.target')}" theme="simple"/>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": $("#cookieConsentPopupBackground").val()
+    },
+    "button": {
+      "background": $("#cookieConsentButtonBackground").val()
+    }
+  },
+  "position": $("#cookieConsentPosition").val(),
+  "content": {
+    "message": $("#cookieConsentContentMessage").val(),
+    "dismiss": $("#cookieConsentContentDismiss").val(),
+    "link": $("#cookieConsentContentLink").val(),
+    "href": $("#cookieConsentContentHref").val(),
+    "target": $("#cookieConsentContentTarget").val()
+  }
+})});
+</script>
 
 </body>
 </html>
