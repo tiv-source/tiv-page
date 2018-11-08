@@ -29,6 +29,11 @@ import de.tivsource.page.entity.slider.SliderImage;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/slider/add_form.jsp")
+  }),
+  @TilesDefinition(name="sliderAddError",  extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/slider/add_error.jsp")
   })
 })
 public class AddAction extends EmptyAction {
@@ -72,8 +77,8 @@ public class AddAction extends EmptyAction {
             value = "add",
             results = {
                     @Result(name = "success", type = "redirectAction", location = "index.html"),
-                    @Result(name = "input", type="tiles", location = "articleAddForm"),
-                    @Result(name = "error", type="tiles", location = "articleAddError")
+                    @Result(name = "input", type="tiles", location = "sliderAddForm"),
+                    @Result(name = "error", type="tiles", location = "sliderAddError")
             }
         )
     })
