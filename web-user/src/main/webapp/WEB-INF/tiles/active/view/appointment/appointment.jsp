@@ -8,16 +8,30 @@
   </struts:if>
 
     <h1><struts:property escapeHtml="false" value="appointment.getName(getText('language'))" /></h1>
-    <h6><struts:date name="appointment.pointInTime" nice="true" /></h6>
+    <struts:if test="getProperty('appointment.pointInTime.nice') == 'true'">
+      <h6><struts:date name="appointment.pointInTime" nice="true" /></h6>
+    </struts:if>
     <h5><struts:property escapeHtml="false" value="appointment.getDescription(getText('language'))" /></h5>
     <struts:property escapeHtml="false" value="appointment.getContent(getText('language'))" />
 
-    <h6>Beginn um <struts:date name="appointment.pointInTime" format="HH:mm" /> am <struts:date name="appointment.pointInTime" format="dd.MM.yyyy" /></h6>
+    <h6>
+      <struts:if test="getProperty('appointment.pointInTime.time') == 'true'">
+        Beginn um <struts:date name="appointment.pointInTime" format="HH:mm" />
+      </struts:if>
+      <struts:if test="getProperty('appointment.pointInTime.date') == 'true'">
+        am <struts:date name="appointment.pointInTime" format="dd.MM.yyyy" />
+      </struts:if>
+    </h6>
 
     <struts:if test="appointment.booking">
       <a href="<struts:property escapeHtml="false" value="appointment.bookingUrl" />" target="_blank">
         <div class="booking">
-          Ticket kaufen
+          <struts:if test="language == 'en'">
+            <struts:property value="getProperty('appointment.booking.text.en')" />
+          </struts:if>
+          <struts:else>
+            <struts:property value="getProperty('appointment.booking.text.de')" />
+          </struts:else>
         </div>
       </a>
     </struts:if>
