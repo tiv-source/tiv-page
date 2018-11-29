@@ -45,7 +45,7 @@
   <meta name="geo.placename" content="<struts:property value="getProperty('geo.placename')" />" />
   
   <link rel="stylesheet" type="text/css" href="/css/slider.css">
-  <style type="text/css">
+  <style>
   .sliderElementsWidth {
     width: <struts:property value="100 * sliderList.size()" />%;
   }
@@ -53,7 +53,7 @@
     width: <struts:property value="sliderWidth" />%;
   }
   </style>
-  <style type="text/css">
+  <style>
   .homeSliderElementsWidth {
     width: <struts:property value="100 * homeSliderList.size()" />%;
   }
@@ -61,4 +61,9 @@
     width: <struts:property value="homeSliderWidth" />%;
   }
   </style>
-  <script src="/public/jquery/jquery-3.3.1.min.js"></script>
+
+
+  <link rel="stylesheet" href="/public/responsiveslides/responsiveslides.css">
+  <link rel="stylesheet" href="/public/responsiveslides/custom.css">
+  <script src="/public/responsiveslides/responsiveslides.js"></script>
+
