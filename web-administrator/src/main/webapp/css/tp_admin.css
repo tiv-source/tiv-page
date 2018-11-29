@@ -13,13 +13,14 @@ div.buttoninfo {
 
 div.typ1 {
 	float: left;
-	width:49%;
+	width: 49%;
 	height: 70px;
+	margin-right: 24px;
 } 
 
 div.typ2 {
-	float:right;
-	width:49%;
+	float: left;
+	width: 49%;
 	height: 70px;
 }
 
