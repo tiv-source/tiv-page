@@ -69,6 +69,10 @@ public class Reservation {
 
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean privacy;
+
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean confirmed;
 
     private String confirmedAddress;
@@ -171,6 +175,14 @@ public class Reservation {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public Boolean getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(Boolean privacy) {
+        this.privacy = privacy;
     }
 
     public Boolean getConfirmed() {
