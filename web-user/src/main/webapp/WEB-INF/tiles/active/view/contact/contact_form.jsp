@@ -46,6 +46,11 @@
         <div class="field">
           <struts:textarea key="message.content" />
         </div>
+
+        <div class="field">
+          <struts:checkbox key="message.privacy" theme="tivpage" />
+        </div>
+        
       </fieldset>
       <struts:submit type="button" value="Absenden" />
       <struts:reset type="button" value="Löschen" />
