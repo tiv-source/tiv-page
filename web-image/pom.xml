@@ -85,12 +85,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.struts</groupId>
-			<artifactId>struts2-json-plugin</artifactId>
-			<version>${struts2.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
 
 		<dependency>
@@ -102,43 +96,7 @@
 
 
 
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-grid-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-richtext-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-tree-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jgeppert.struts2.jquery</groupId>
-			<artifactId>struts2-jquery-mobile-plugin</artifactId>
-			<version>${struts2.jquery.version}</version>
-			<scope>provided</scope>
-		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate.common</groupId>
-			<artifactId>hibernate-commons-annotations</artifactId>
-			<scope>provided</scope>
-			<version>4.0.4.Final</version>
-		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -147,12 +105,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>rome</groupId>
-			<artifactId>rome</artifactId>
-			<version>1.0</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
