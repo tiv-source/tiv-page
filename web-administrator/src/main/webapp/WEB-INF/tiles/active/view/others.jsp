@@ -108,6 +108,15 @@
         </struts:a>
       </struts:if>
 
+      <struts:if test="getProperty('module.slider')">
+        <struts:a href="%{newsUrl}" title="%{getText('navigation.slider')}">
+          <div class="buttoninfo typ1">
+            <img src="/admin/buttons/tiv_page_button_news.png" alt="<struts:text name="navigation.slider.description"/>">
+            <h5><struts:text name="navigation.slider"/></h5>
+            <p><struts:text name="navigation.slider.description"/></p>
+          </div>
+        </struts:a>
+      </struts:if>
 
 
       <hr>
