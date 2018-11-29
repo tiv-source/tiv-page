@@ -45,7 +45,7 @@
 
 		<properties>
 
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 
 			<!-- As many hibernate properties as you need, some examples: -->
             <property name="hibernate.show.sql" value="true" />
