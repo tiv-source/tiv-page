@@ -14,4 +14,14 @@ import de.tivsource.page.entity.contentitem.ContentItem;
 @Entity
 public class Manual extends ContentItem {
 
+    private Integer orderNumber;
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
 }// Ende class

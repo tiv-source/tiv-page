@@ -106,7 +106,7 @@ public class ManualDao implements ManualDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Manual> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT m FROM Manual m WHERE m.visible = 'Y' ORDER BY m.created desc";
+        String queryString = "SELECT m FROM Manual m WHERE m.visible = 'Y' ORDER BY m.orderNumber, m.created desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);

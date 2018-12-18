@@ -8,7 +8,9 @@
   </struts:if>
 
     <h1><struts:property escapeHtml="false" value="manual.getName(getText('language'))" /></h1>
-    <h6><struts:date name="manual.created" format="dd.MM.yyyy" /></h6>
+    <struts:if test="getProperty('manual.show.date') == 'true'">
+      <h6><struts:date name="manual.created" format="dd.MM.yyyy" /></h6>
+    </struts:if>
     <h5><struts:property escapeHtml="false" value="manual.getDescription(getText('language'))" /></h5>
 
   <struts:if test="getProperty('manual.show.ads') == 'true'">    

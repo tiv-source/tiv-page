@@ -18,7 +18,9 @@
         <div class="informations">
           <div class="information">
             <h4><struts:property value="getName(getText('language'))" /></h4>
-            <h6><struts:date name="created" format="dd.MM.yyyy" /></h6>
+            <struts:if test="getProperty('manual.list.show.date') == 'true'">
+              <h6><struts:date name="created" format="dd.MM.yyyy" /></h6>
+            </struts:if>
             <p><struts:property value="getDescription(getText('language'))" /></p>
           </div>
         

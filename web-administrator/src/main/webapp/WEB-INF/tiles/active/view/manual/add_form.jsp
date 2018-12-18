@@ -43,6 +43,18 @@
               </div>
 
               <div class="field">
+                <struts:textfield
+                    key="manual.orderNumber"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
+                />
+                <script type="text/javascript">
+                $('#add_manual_orderNumber').spinner();
+                </script>
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="manual.pictureOnPage"
                     parentTheme="xhtml"
