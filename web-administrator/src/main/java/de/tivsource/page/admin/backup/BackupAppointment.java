@@ -40,7 +40,7 @@ public class BackupAppointment {
     	BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
     	// Format Definition 
-    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|pictureOnPage|pointInTime|booking|bookingUrl|");
+    	bufferedWriter.write("[Format Definition] => uuid|uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|visible|created|modified|modifiedBy|modifiedAddress|picture|pictureOnPage|pointInTime|booking|bookingUrl|hasVenue|venue|visibleFrom|");
 
     	Iterator<Appointment> appointmentIterator = appointmentDaoLocal.findAll(0, appointmentDaoLocal.countAll()).iterator();
     	while(appointmentIterator.hasNext()) {
@@ -66,6 +66,7 @@ public class BackupAppointment {
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
 	    // visible|created|modified|modifiedBy|modifiedAddress|picture|pictureOnPage|pointInTime|booking|bookingUrl|
+	    // hasVenue|venue|visibleFrom|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -149,6 +150,15 @@ public class BackupAppointment {
         nextString.append("|");
 
         nextString.append(next.getBookingUrl());
+        nextString.append("|");
+
+        nextString.append(next.getHasVenue().toString());
+        nextString.append("|");
+
+        nextString.append(next.getVenue());
+        nextString.append("|");
+
+        nextString.append(simpleDateFormat.format(next.getVisibleFrom()));
         nextString.append("|");
 
         

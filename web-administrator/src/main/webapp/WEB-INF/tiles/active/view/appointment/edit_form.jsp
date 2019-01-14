@@ -103,6 +103,40 @@
               </div>
 
               <div class="field">
+                <struts:checkbox
+                    key="appointment.hasVenue"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:textfield
+                    key="appointment.venue"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
+                <struts:textfield
+                    key="appointment.visibleFrom"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
+                />
+                <script type="text/javascript">
+                $('#edit_appointment_visibleFrom').datetimepicker({ 
+                	datepicker: true,
+                    format: 'd.m.Y H:i',
+                	lang: 'de',
+                	defaultDate: ''
+                });
+                </script>
+              </div>
+
+              <div class="field">
                 <struts:textfield
                     key="appointment.pointInTime"
                     parentTheme="css_xhtml"

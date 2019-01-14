@@ -22,7 +22,13 @@
               <struts:a href="%{appointmentLink}">
                 <figure>
                   <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="" width="600" height="400">
-                  <figcaption><struts:property value="getName(getText('language'))" /><br>am <struts:date name="pointInTime" format="dd.MM.yyyy" /></figcaption>
+                  <figcaption>
+                    <struts:property value="getName(getText('language'))" /><br>
+                    <struts:date name="pointInTime" format="dd.MM.yyyy" /> 
+                    <struts:if test="hasVenue">
+                      - <struts:property value="venue" />
+                    </struts:if>
+                  </figcaption>
                 </figure>
               </struts:a>
             </li>

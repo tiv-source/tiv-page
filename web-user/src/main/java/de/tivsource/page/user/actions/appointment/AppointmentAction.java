@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.appointment;
 
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -80,18 +81,23 @@ public class AppointmentAction extends EmptyAction {
         LOGGER.info("Appointment Uuid: " + appointmentUuid);
 
         /*
-         * Wenn die Manual Uuid keine nicht erlaubten Zeichen enthält und es
-         * das Manual mit der Uuid gibt dann wird der Block ausgeführt.
+         * Wenn die Appointment Uuid keine nicht erlaubten Zeichen enthält und es
+         * das Appointment Objekt mit der Uuid gibt dann wird der Block ausgeführt.
          */
         if (isValid(appointmentUuid) && appointmentDaoLocal.isAppointmentUuid(appointmentUuid)) {
             LOGGER.info("gültige Appointment Uuid.");
-
             appointment = appointmentDaoLocal.findByUuid(appointmentUuid);
+            
+            /*
+             * Wenn das Appointment Objekt sichbar sein soll und auch schon das
+             * Anzeigedtaum erreicht hat wird dieser Block ausgefüht.
+             */
+            if(appointment.getVisible() && new Date().after(appointment.getVisibleFrom())) {
+                // Setze Daten in ein Page Objekt
+                setUpPage();
 
-            // Setze Daten in ein Page Objekt
-            setUpPage();
-
-            return SUCCESS;
+                return SUCCESS;
+            }
         }
 
         /*

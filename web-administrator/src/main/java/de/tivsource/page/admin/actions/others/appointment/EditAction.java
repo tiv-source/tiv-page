@@ -125,6 +125,9 @@ public class EditAction extends EmptyAction {
             dbAppointment.setPointInTime(appointment.getPointInTime());
             dbAppointment.setBooking(appointment.getBooking());
             dbAppointment.setBookingUrl(appointment.getBookingUrl());
+            dbAppointment.setHasVenue(appointment.getHasVenue());
+            dbAppointment.setVenue(appointment.getVenue());
+            dbAppointment.setVisibleFrom(appointment.getVisibleFrom());
     		dbAppointment.setModified(new Date());
     		dbAppointment.setVisible(appointment.getVisible());
     		dbAppointment.setModifiedBy(remoteUser);

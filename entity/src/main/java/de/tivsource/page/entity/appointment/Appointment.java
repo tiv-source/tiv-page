@@ -27,6 +27,15 @@ public class Appointment extends ContentItem {
     
 	private String bookingUrl;
 
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean hasVenue;
+
+	private String venue;
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date visibleFrom;
+	
     public Date getPointInTime() {
         return pointInTime;
     }
@@ -49,6 +58,30 @@ public class Appointment extends ContentItem {
 
     public void setBookingUrl(String bookingUrl) {
         this.bookingUrl = bookingUrl;
+    }
+
+    public Boolean getHasVenue() {
+        return hasVenue;
+    }
+
+    public void setHasVenue(Boolean hasVenue) {
+        this.hasVenue = hasVenue;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public Date getVisibleFrom() {
+        return visibleFrom;
+    }
+
+    public void setVisibleFrom(Date visibleFrom) {
+        this.visibleFrom = visibleFrom;
     }
 
 }// Ende class

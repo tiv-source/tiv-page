@@ -21,13 +21,21 @@
             <struts:if test="getProperty('appointment.archive.list.pointInTime.nice') == 'true'">
               <h6><struts:date name="pointInTime" nice="true" /></h6>
             </struts:if>
-            <p><struts:property value="getDescription(getText('language'))" /></p>
+            <struts:if test="getProperty('appointment.archive.list.description') == 'true'">
+              <p><struts:property value="getDescription(getText('language'))" /></p>
+            </struts:if>
             <h6>
               <struts:if test="getProperty('appointment.archive.list.pointInTime.time') == 'true'">
                 Beginn um <struts:date name="pointInTime" format="HH:mm" /> 
               </struts:if>
               <struts:if test="getProperty('appointment.archive.list.pointInTime.date') == 'true'">
-                am <struts:date name="pointInTime" format="dd.MM.yyyy" />
+                <struts:if test="getProperty('appointment.archive.list.pointInTime.date.preposition') == 'true'">
+                am 
+                </struts:if>
+                <struts:date name="pointInTime" format="dd.MM.yyyy" /> 
+              </struts:if>
+              <struts:if test="hasVenue">
+                - <struts:property value="venue" />
               </struts:if>
             </h6>
           </div>
