@@ -66,7 +66,7 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @Override
     public Boolean isAppointmentUuid(String uuid) {
         Query query = entityManager.createQuery("select ap from Appointment ap where ap.uuid = :uuid and ap.visible = 'Y' order by ap.uuid asc");
-        query.setParameter("1", uuid);
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -110,7 +110,7 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime > :date AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
+        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime > :date AND ap.visible = 'Y' AND ap.visibleFrom < :date ORDER BY ap.pointInTime asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
@@ -121,7 +121,7 @@ public class AppointmentDao implements AppointmentDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAllArchiveVisible(Integer start, Integer max) {
-        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime < :date AND ap.visible = 'Y' ORDER BY ap.pointInTime asc";
+        String queryString = "SELECT ap FROM Appointment ap WHERE ap.pointInTime < :date AND ap.visible = 'Y' ORDER BY ap.pointInTime desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
