@@ -9,7 +9,7 @@
 <body>
 <br />
 <div style="text-align:center;">
-Die Session ist abgelaufen, Sie werden in 5 Sekunden auf die Startseite geleitet.
+Die Session ist abgelaufen, Sie werden in 5 Sekunden auf die Loginseite geleitet.
 </div>
 </body>
 </html>

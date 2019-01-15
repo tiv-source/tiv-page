@@ -51,16 +51,22 @@
 
 	<error-page>
 		<error-code>400</error-code>
-		<location>/error_400.jsp</location>
+		<location>/error/error_400.jsp</location>
 	</error-page>
 
 	<error-page>
 		<error-code>403</error-code>
-		<location>/notInRole.jsp</location>
+		<location>/error/error_403.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/error_404.jsp</location>
 	</error-page>
 
 	<error-page>
 		<error-code>408</error-code>
-		<location>/error_408.jsp</location>
+		<location>/error/error_408.jsp</location>
 	</error-page>
+
 </web-app>
