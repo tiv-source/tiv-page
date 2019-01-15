@@ -48,14 +48,15 @@
         </div>
       </struts:a>
 
-      <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
-        <div class="buttoninfo typ1">
-          <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.appointments.description"/>">
-          <h5><struts:text name="navigation.appointments"/></h5>
-          <p><struts:text name="navigation.appointments.description"/></p>
-        </div>
-      </struts:a>
-
+      <struts:if test="getProperty('module.appointment')">
+        <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
+          <div class="buttoninfo typ1">
+            <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.appointments.description"/>">
+            <h5><struts:text name="navigation.appointments"/></h5>
+            <p><struts:text name="navigation.appointments.description"/></p>
+          </div>
+        </struts:a>
+      </struts:if>
 
       <struts:if test="getProperty('module.vacancy')">
         <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">

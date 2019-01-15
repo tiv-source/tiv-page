@@ -61,13 +61,15 @@
               </div>
             </struts:a>
 
-            <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
-              <div class="button">
-                <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.appointments"/>">
-                <br />
-                <p class="ellipsis"><struts:text name="navigation.appointments"/></p>
-              </div>
-            </struts:a>
+            <struts:if test="getProperty('module.appointment')">
+              <struts:a href="%{appointmentUrl}" title="%{getText('navigation.appointments')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.appointments"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.appointments"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
 
             <struts:if test="getProperty('module.vacancy')">
               <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
