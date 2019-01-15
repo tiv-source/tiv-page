@@ -53,6 +53,7 @@
 $(function sliderOn() {
 	// console.log("Hier bin ich.");
 	var radioLength = $("#sliderListSize").val();
+	var intervalLength = $("#sliderListSize").val();
 	radioLength = parseInt(radioLength) + parseInt(1);
 	// console.log("Radio Länge " + radioLength)
 	var labelArray = [];
@@ -63,7 +64,7 @@ $(function sliderOn() {
 	// console.log("Array Länge " + labelArray.length)
 	var interval = 1;
 	var intervalId = setInterval(function(){
-		if(interval < 3) {
+		if(interval < intervalLength) {
 			// console.log("Jetzt wechseln.");
 			// console.log("Inhalt Array " + labelArray[interval]);
 			$(labelArray[interval]).click();
