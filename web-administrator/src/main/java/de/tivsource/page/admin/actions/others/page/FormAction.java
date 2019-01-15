@@ -65,7 +65,7 @@ public class FormAction extends EmptyAction {
 
 	private String uncheckPage;
 
-	private String lang;
+	private String lang = "DE";
 
 	public Page getPage() {
         return page;

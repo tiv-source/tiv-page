@@ -57,7 +57,7 @@ public class EditAction extends EmptyAction {
 
     private Page page;
 
-    private String lang;
+    private String lang = "DE";
 
     public Page getPage() {
         return page;
