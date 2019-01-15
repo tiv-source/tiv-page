@@ -61,7 +61,7 @@ public class EditAction extends EmptyAction {
 
     private Appointment appointment;
 
-    private String lang;
+    private String lang = "DE";
 
     public Appointment getAppointment() {
         return appointment;

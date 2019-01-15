@@ -35,6 +35,11 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/edit_form.jsp")
   }),
+  @TilesDefinition(name="appointmentCopyForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/copy_form.jsp")
+  }),
   @TilesDefinition(name="appointmentDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/delete_form.jsp")
@@ -65,7 +70,7 @@ public class FormAction extends EmptyAction {
 
 	private String uncheckAppointment;
 
-	private String lang;
+	private String lang = "DE";
 
 	public Appointment getAppointment() {
         return appointment;
@@ -92,6 +97,10 @@ public class FormAction extends EmptyAction {
         @Action(
         		value = "addForm", 
         		results = { @Result(name = "success", type="tiles", location = "appointmentAddForm") }
+        ),
+        @Action(
+                value = "copyForm", 
+                results = { @Result(name = "success", type="tiles", location = "appointmentCopyForm") }
         ),
         @Action(
         		value = "deleteForm", 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="appointment.visibleFrom">
+    <field-validator type="required">
+      <message key="appointment.visibleFrom.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="appointment.pointInTime">
+    <field-validator type="required">
+      <message key="appointment.pointInTime.validation.required" />
+    </field-validator>
+  </field>
+
+
+  <field name="appointment.descriptionMap.DE.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="appointment.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="appointment.descriptionMap.DE.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="appointment.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="appointment.descriptionMap.DE.keywords">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="appointment.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="appointment.contentMap.DE.content">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="appointment.contentMap.DE.content.validation.required" />
+    </field-validator>
+  </field>
+  
+</validators>
