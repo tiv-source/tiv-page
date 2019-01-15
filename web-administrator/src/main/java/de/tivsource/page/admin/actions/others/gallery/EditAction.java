@@ -55,7 +55,7 @@ public class EditAction extends EmptyAction {
 
     private Gallery gallery;
 
-    private String lang;
+    private String lang = "DE";
 
     public Gallery getGallery() {
         return gallery;

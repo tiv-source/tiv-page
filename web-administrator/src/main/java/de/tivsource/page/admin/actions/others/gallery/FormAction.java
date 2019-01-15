@@ -63,7 +63,7 @@ public class FormAction extends EmptyAction {
 
     private String uncheckGallery;
 
-    private String lang;
+    private String lang = "DE";
 
     public Gallery getGallery() {
         return gallery;
