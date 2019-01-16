@@ -177,7 +177,7 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
     }
 
     public List<Appointment> getSliderList() {
-        return appointmentDaoLocal.findAllVisible(0, 5);
+        return appointmentDaoLocal.findAllVisible(0, Integer.parseInt(propertyDaoLocal.findByKey("home.appointment.slider.max.items").getValue()));
     }
 
     public String getSliderWidth() {
