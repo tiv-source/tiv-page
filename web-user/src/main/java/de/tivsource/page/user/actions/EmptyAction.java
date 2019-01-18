@@ -181,7 +181,7 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
     }
 
     public String getSliderWidth() {
-        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getSliderList().size()), 2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getSliderList().size()), 3, BigDecimal.ROUND_HALF_UP);
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); 
         return numberFormat.format(sliderWidth);
     }
