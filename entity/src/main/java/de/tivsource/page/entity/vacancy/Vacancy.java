@@ -25,8 +25,6 @@ import de.tivsource.page.entity.location.Location;
 @Entity
 public class Vacancy extends ContentItem {
 
-    private String technical;
-
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date beginning;
 
@@ -38,14 +36,6 @@ public class Vacancy extends ContentItem {
 
     @OneToMany(mappedBy = "vacancy", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private List<Application> applications;
-
-    public String getTechnical() {
-        return technical;
-    }
-
-    public void setTechnical(String technical) {
-        this.technical = technical;
-    }
 
     public Date getBeginning() {
         return beginning;

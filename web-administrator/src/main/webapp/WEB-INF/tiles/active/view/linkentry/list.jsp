@@ -1,18 +1,15 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="pageAddUrl" action="addForm" namespace="/others/page" />
-<struts:url var="remoteurl" action="table" namespace="/others/page"/>
+<struts:url var="linkEntryAddUrl" action="addForm" namespace="/others/linkentry" />
+<struts:url var="remoteurl" action="table" namespace="/others/linkentry"/>
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/page/editForm.html?page="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/linkentry/editForm.html?linkEntry="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/page/copyForm.html?page="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
-         "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/page/deleteForm.html?page="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/linkentry/deleteForm.html?linkEntry="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -41,22 +38,28 @@ function formatIsoDate(celldate, options, rowObject) {
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
-          <struts:a href="%{pageAddUrl}">
-            <struts:text name="page.add"/>
+          <struts:a href="%{linkEntryAddUrl}">
+            <struts:text name="linkEntry.add"/>
           </struts:a>
         </div>
 
 <script type="text/javascript">
 $(function () {
     $("#entityList").jqGrid({
-        url: "/admin/others/page/table.html",
+        url: "/admin/others/linkentry/table.html",
         datatype: "json",
         mtype: "GET",
         colNames: [
             '<struts:text name="descriptionMap.DE.name"/>',
             '<struts:text name="technical"/>',
-            '<struts:text name="special"/>',
-            '<struts:text name="page.pictureOnPage.table"/>',
+            '<struts:text name="topNavigation"/>',
+            '<struts:text name="topNavigationOrder"/>',
+            '<struts:text name="navigation"/>',
+            '<struts:text name="navigationOrder"/>',
+            '<struts:text name="bottomNavigation"/>',
+            '<struts:text name="bottomNavigationOrder"/>',
+            '<struts:text name="responsiveNavigation"/>',
+            '<struts:text name="responsiveNavigationOrder"/>',
             '<struts:text name="visible"/>',
             '<struts:text name="modified"/>',
             '<struts:text name="modifiedBy"/>',
@@ -65,8 +68,14 @@ $(function () {
         colModel: [
             { name: "descriptionMap.DE.name",     width:  140 },
             { name: "technical",                  width:  140, align: "center" },
-            { name: "special",                    width:  140, align: "center", formatter:formatTrueFalse },
-            { name: "pictureOnPage",              width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "topNavigation",              width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "topNavigationOrder",         width:  140, align: "center" },
+            { name: "navigation",                 width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "navigationOrder",            width:  140, align: "center" },
+            { name: "bottomNavigation",           width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "bottomNavigationOrder",      width:  140, align: "center" },
+            { name: "responsiveNavigation",       width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "responsiveNavigationOrder",  width:  140, align: "center" },
             { name: "visible",                    width:  140, align: "center", formatter:formatTrueFalse },
             { name: "modified",                   width:  140, align: "center", formatter:formatIsoDate },
             { name: "modifiedBy",                 width:  140, align: "right" },
@@ -84,7 +93,7 @@ $(function () {
         width : 1600,
         cellLayout : 5,
         height:'auto',
-        caption: '<struts:text name="pages"/>'
+        caption: '<struts:text name="linkEntries"/>'
     }); 
 }); 
 </script>

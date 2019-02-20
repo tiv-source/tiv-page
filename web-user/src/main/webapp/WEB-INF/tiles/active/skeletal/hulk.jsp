@@ -75,8 +75,8 @@
   <!-- Topnav Anfang -->
   <ul id="top_navi">
     <struts:iterator value="topNavigation" status="topNavigationStatus">
-      <struts:url var="topnavlink" action="index" namespace="/%{technical}"/>
-        <struts:if test="page.technical == technical">
+      <struts:url var="topnavlink" value="%{url}"/>
+        <struts:if test="page.technical == technical.substring(3)">
           <li class="activlink3">
             <struts:property value="getName(getText('language'))" />
           </li>
@@ -109,8 +109,8 @@
      <input id="checkbox"  type="checkbox" />
      <ul class="mobile_sub">
        <struts:iterator value="responsiveNavigation" status="responsiveNavigationStatus">
-         <struts:url var="responsivenavlink" action="index" namespace="/%{technical}"/>
-         <struts:if test="page.technical == technical">
+         <struts:url var="responsivenavlink" value="%{url}"/>
+         <struts:if test="page.technical == technical.substring(3)">
            <li class="activlink2">
              <struts:property value="getName(getText('language'))" />
            </li>
@@ -152,8 +152,8 @@
   <!-- Navigation Anfang -->
   <ul id="main_navi">
       <struts:iterator value="navigation" status="navigationStatus">
-        <struts:url var="navlink" action="index" namespace="/%{technical}"/>
-          <struts:if test="page.technical == technical">
+        <struts:url var="navlink" value="%{url}"/>
+          <struts:if test="page.technical == technical.substring(3)">
             <li class="activlink1">
               <struts:property value="getName(getText('language'))" />
             </li>
@@ -178,8 +178,8 @@
   <!-- Bottomnav Anfang -->
   <ul id="bottom_navi">
   <struts:iterator value="bottomNavigation" status="bottomNavigationStatus">
-    <struts:url var="bottomnavlink" action="index" namespace="/%{technical}"/>
-    <struts:if test="page.technical == technical">
+    <struts:url var="bottomnavlink" value="%{url}"/>
+    <struts:if test="page.technical == technical.substring(3)">
       <li class="activlink3">
         <struts:property value="getName(getText('language'))" />
       </li>

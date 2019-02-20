@@ -67,8 +67,7 @@ public class BackupPage {
 		// uuid|
 	    // uuid(de)|name(de)|description(de)|keywords(de)|content_uuid(de)|content(de)|content_created(de)|content_modified(de)|
 	    // uuid(en)|name(en)|description(en)|keywords(en)|content_uuid(en)|content(en)|content_created(en)|content_modified(en)|
-	    // visible|created|modified|modifiedBy|modifiedAddress|technical|special|topNavigation|topNavigationOrder|navigation|
-	    // navigationOrder|bottomNavigation|bottomNavigationOrder|responsiveNavigation|responsiveNavigationOrder|picture|pictureOnPage|
+	    // visible|created|modified|modifiedBy|modifiedAddress|technical|special|picture|pictureOnPage|
 
 		StringBuffer nextString = new StringBuffer();
 
@@ -144,30 +143,6 @@ public class BackupPage {
         nextString.append("|");
 
         nextString.append(next.getSpecial().toString());
-        nextString.append("|");
-
-        nextString.append(next.getTopNavigation().toString());
-        nextString.append("|");
-
-        nextString.append(next.getTopNavigationOrder().toString());
-        nextString.append("|");
-        
-        nextString.append(next.getNavigation().toString());
-        nextString.append("|");
-
-        nextString.append(next.getNavigationOrder().toString());
-        nextString.append("|");
-
-        nextString.append(next.getBottomNavigation().toString());
-        nextString.append("|");
-
-        nextString.append(next.getBottomNavigationOrder().toString());
-        nextString.append("|");
-
-        nextString.append(next.getResponsiveNavigation().toString());
-        nextString.append("|");
-
-        nextString.append(next.getResponsiveNavigationOrder().toString());
         nextString.append("|");
 
         nextString.append(next.getPicture().getUuid());

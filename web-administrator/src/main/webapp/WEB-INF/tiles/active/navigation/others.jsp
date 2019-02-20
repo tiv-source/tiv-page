@@ -7,6 +7,8 @@
 <struts:url var="systemtUrl"           action="index" namespace="/system" />
 
 <struts:url var="pageUrl"              action="index" namespace="/others/page" />
+<struts:url var="menuEntryUrl"         action="menuentry" namespace="/others" />
+
 <struts:url var="appointmentUrl"       action="index" namespace="/others/appointment" />
 <struts:url var="messageUrl"           action="index" namespace="/others/message" />
 <struts:url var="vacancyUrl"           action="index" namespace="/others/vacancy" />
@@ -36,6 +38,16 @@
                 <p class="ellipsis"><struts:text name="navigation.pages"/></p>
               </div>
             </struts:a>
+
+
+            <struts:a href="%{menuEntryUrl}" title="%{getText('navigation.menuEntries')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_page.png" alt="<struts:text name="navigation.menuEntries"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.menuEntries"/></p>
+              </div>
+            </struts:a>
+
 
             <struts:a href="%{messageUrl}" title="%{getText('navigation.messages')}">
               <div class="button">

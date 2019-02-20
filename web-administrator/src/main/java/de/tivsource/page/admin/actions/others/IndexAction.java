@@ -20,7 +20,10 @@ import de.tivsource.page.admin.actions.EmptyAction;
     @TilesDefinition(name="others", extend = "adminTemplate", putAttributes = {
         @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
         @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/others.jsp")
-        
+    }),
+    @TilesDefinition(name="menuentry", extend = "adminTemplate", putAttributes = {
+        @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+        @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/menuentry.jsp")
     })
 })
 public class IndexAction extends EmptyAction {
@@ -40,7 +43,11 @@ public class IndexAction extends EmptyAction {
         @Action(
             value = "index", 
             results = { @Result(name = "success", type = "tiles", location = "others") }
-        ) 
+        ),
+        @Action(
+            value = "menuentry", 
+            results = { @Result(name = "success", type = "tiles", location = "menuentry") }
+        )
     })
     public String execute() throws Exception {
         LOGGER.info("execute() aufgerufen.");

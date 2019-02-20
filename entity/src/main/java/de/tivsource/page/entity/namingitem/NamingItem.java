@@ -49,6 +49,9 @@ public class NamingItem {
     @MapKey(name = "language")
     private Map<Language, Description> descriptionMap;
 
+    @Column(unique = true)
+    private String technical;
+
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean visible;
@@ -77,6 +80,20 @@ public class NamingItem {
 
     public void setDescriptionMap(Map<Language, Description> descriptionMap) {
         this.descriptionMap = descriptionMap;
+    }
+
+    /**
+     * @return the technical
+     */
+    public String getTechnical() {
+        return technical;
+    }
+
+    /**
+     * @param technical the technical to set
+     */
+    public void setTechnical(String technical) {
+        this.technical = technical;
     }
 
     public Boolean getVisible() {

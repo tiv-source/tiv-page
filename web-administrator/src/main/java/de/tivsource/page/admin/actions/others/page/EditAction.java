@@ -118,17 +118,9 @@ public class EditAction extends EmptyAction {
             }
 
 
-            dbPage.setBottomNavigation(page.getBottomNavigation());
-            dbPage.setBottomNavigationOrder(page.getBottomNavigationOrder());
     		dbPage.setModified(new Date());
-    		dbPage.setNavigation(page.getNavigation());
-    		dbPage.setNavigationOrder(page.getNavigationOrder());
-            dbPage.setResponsiveNavigation(page.getResponsiveNavigation());
-            dbPage.setResponsiveNavigationOrder(page.getResponsiveNavigationOrder());
     		dbPage.setSpecial(page.getSpecial());
     		dbPage.setTechnical(page.getTechnical());
-    		dbPage.setTopNavigation(page.getTopNavigation());
-    		dbPage.setTopNavigationOrder(page.getTopNavigationOrder());
     		dbPage.setVisible(page.getVisible());
     		dbPage.setModifiedBy(remoteUser);
     		dbPage.setModifiedAddress(remoteAddress);

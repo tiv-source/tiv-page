@@ -6,7 +6,6 @@ package de.tivsource.page.entity.gallery;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -26,23 +25,12 @@ import de.tivsource.page.enumeration.GalleryType;
 @Entity
 public class Gallery extends PictureItem {
 
-	@Column(unique = true)
-	private String technical;
-
 	private Integer orderNumber;
 
 	private GalleryType type = GalleryType.LANDSCAPE;
 
 	@OneToMany(mappedBy = "gallery", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
 	private List<Picture> pictures;
-
-	public String getTechnical() {
-		return technical;
-	}
-
-	public void setTechnical(String technical) {
-		this.technical = technical;
-	}
 
 	public Integer getOrderNumber() {
 		return orderNumber;

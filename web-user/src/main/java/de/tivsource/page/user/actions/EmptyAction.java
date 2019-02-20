@@ -24,8 +24,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.common.menuentry.MenuEntry;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.dao.menuentry.MenuEntryDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.slider.SliderDaoLocal;
@@ -68,6 +70,9 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 	
     @InjectEJB(name="PageDao")
 	private PageDaoLocal pageDaoLocal;
+
+    @InjectEJB(name="MenuEntryDao")
+    private MenuEntryDaoLocal menuEntryDaoLocal;
 
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
@@ -138,20 +143,20 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 		return ActionContext.getContext().getName();
 	}
 
-	public List<Page> getTopNavigation() {
-	    return pageDaoLocal.findAllTopNavigation();
+	public List<MenuEntry> getTopNavigation() {
+	    return menuEntryDaoLocal.findAllTopNavigation();
 	}
 
-    public List<Page> getNavigation() {
-        return pageDaoLocal.findAllNavigation();
+    public List<MenuEntry> getNavigation() {
+        return menuEntryDaoLocal.findAllNavigation();
     }
 
-    public List<Page> getBottomNavigation() {
-        return pageDaoLocal.findAllBottomNavigation();
+    public List<MenuEntry> getBottomNavigation() {
+        return menuEntryDaoLocal.findAllBottomNavigation();
     }
 
-    public List<Page> getResponsiveNavigation() {
-        return pageDaoLocal.findAllResponsiveNavigation();
+    public List<MenuEntry> getResponsiveNavigation() {
+        return menuEntryDaoLocal.findAllResponsiveNavigation();
     }
 
     public Page getPage() {

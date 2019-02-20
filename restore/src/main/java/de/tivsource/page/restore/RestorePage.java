@@ -113,16 +113,8 @@ public class RestorePage {
         page.setModifiedAddress(items[21]);
         page.setTechnical(items[22]);
         page.setSpecial(items[23].equals("true") ? true : false);
-        page.setTopNavigation(items[24].equals("true") ? true : false);
-        page.setTopNavigationOrder(Integer.parseInt(items[25]));
-        page.setNavigation(items[26].equals("true") ? true : false);
-        page.setNavigationOrder(Integer.parseInt(items[27]));
-        page.setBottomNavigation(items[28].equals("true") ? true : false);
-        page.setBottomNavigationOrder(Integer.parseInt(items[29]));
-        page.setResponsiveNavigation(items[30].equals("true") ? true : false);
-        page.setResponsiveNavigationOrder(Integer.parseInt(items[31]));
-        page.setPicture(pictureDaoLocal.findByUuid(items[32]));
-        page.setPictureOnPage(items[33].equals("true") ? true : false);
+        page.setPicture(pictureDaoLocal.findByUuid(items[24]));
+        page.setPictureOnPage(items[25].equals("true") ? true : false);
         
         return page;
     }
