@@ -8,7 +8,11 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.entity.contentitem.ContentItem;
+import de.tivsource.page.entity.manual.Manual;
+import de.tivsource.page.entity.news.News;
+import de.tivsource.page.entity.vacancy.Vacancy;
 
 /**
  * @author Marc Michele
@@ -42,8 +46,30 @@ public class ContentEntry extends MenuEntry {
 	public String getUrl() {
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("/");
-	// TODO: Attribute technical zu NamingItem	stringBuffer.append(contentItem.getTechnical());
-		stringBuffer.append("/");
+        if(contentItem instanceof Appointment) {
+            stringBuffer.append("appointment/");
+            stringBuffer.append(contentItem.getUuid());
+            stringBuffer.append("/");
+        }
+        else if(contentItem instanceof Manual) {
+		    stringBuffer.append("manual/");
+		    stringBuffer.append(contentItem.getUuid());
+		    stringBuffer.append("/");
+		}
+		else if(contentItem instanceof News) {
+		    stringBuffer.append("news/");
+            stringBuffer.append(contentItem.getUuid());
+            stringBuffer.append("/");
+		}
+        else if(contentItem instanceof Vacancy) {
+            stringBuffer.append("vacancy/");
+            stringBuffer.append(contentItem.getUuid());
+            stringBuffer.append("/");
+        }
+		else {
+	        stringBuffer.append(contentItem.getTechnical());
+	        stringBuffer.append("/");
+		}
 		stringBuffer.append("index.html");
 		return stringBuffer.toString();
 	}
