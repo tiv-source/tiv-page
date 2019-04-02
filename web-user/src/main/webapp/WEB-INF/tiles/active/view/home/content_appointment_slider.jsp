@@ -49,6 +49,7 @@
 
       </div>
 <struts:hidden id="sliderListSize" value="%{sliderList.size()}" name="sliderListSize" theme="simple"/>
+<struts:hidden id="sliderSpeed" value="%{getProperty('home.appointment.slider.speed')}" name="sliderSpeed" theme="simple"/>
 <script type="text/javascript">
 $(function sliderOn() {
 	// console.log("Hier bin ich.");
@@ -74,6 +75,6 @@ $(function sliderOn() {
 			$(labelArray[0]).click();
 			sliderOn();
 		}
-	}, 10000);
+	}, $("#sliderSpeed").val());
 });
 </script>
