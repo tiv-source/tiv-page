@@ -17,7 +17,7 @@ import javax.mail.internet.MimeUtility;
 
 public class EmailSender {
 
-    public void send(String to, EmailTemplate template, Object[] arguments,
+    public void send(String fromName, EmailTemplate template, Object[] arguments,
             Session session) throws AddressException, MessagingException,
             UnsupportedEncodingException {
 
@@ -29,7 +29,7 @@ public class EmailSender {
         /*
          * Setze Absender und Empfänger aus dem Template.
          */
-        message.setFrom(new InternetAddress(template.getFrom(), "Kontaktformular"));
+        message.setFrom(new InternetAddress(template.getFrom(), fromName));
         message.addRecipients(Message.RecipientType.TO,
                 template.getToAddresses());
         message.addRecipients(Message.RecipientType.CC,
