@@ -181,9 +181,10 @@ public class ReservationMail {
                 "UTF-8");
 
         /*
-         * Erzeugen des Body Teil, enthält als einziges Element den Mixed Teil.
+         * Erzeugen des Mixed Teiles, dieser enthät den "alternative" Teil und
+         * die Anhänge.
          */
-        MimeBodyPart mantle = new MimeBodyPart();
+        MimeMultipart mantle = new MimeMultipart("mixed");
 
         /*
          * Erzeugen der Hülle für Text und HTML. Ist vom Type "alternative" und
@@ -204,8 +205,13 @@ public class ReservationMail {
         // Hinzufügen des HTML-Teils zur Hülle.
         cover.addBodyPart(html);
 
+        // Erstelle den MimeBodyPart der den cover Teil enthalten soll und füge
+        // diesen hinzu.
+        MimeBodyPart coverMimeBodyPart = new MimeBodyPart();
+        coverMimeBodyPart.setContent(cover);
+
         // Füge das Cover dem Mantel hinzu.
-        mantle.setContent(cover);
+        mantle.addBodyPart(coverMimeBodyPart);
 
         /*
          * Setze den HTML-Inhalt aus dem Template in das HTML-Element. Setze das
@@ -222,15 +228,8 @@ public class ReservationMail {
         text.setText(MessageFormat.format(emailTemplate.getBody(), (Object[])arguments));
         text.setHeader("Content-Transfer-Encoding", "8bit");
 
-        // Erzeugen Nachrichten Inhalts-Element der Teil der die Bilder und den
-        // Mantel enthält.
-        MimeMultipart content = new MimeMultipart("related");
-
         // Setze den Inhalt in die Nachricht.
-        message.setContent(content);
-
-        // Setze den Setze den Mantel in das Inhalts-Element.
-        content.addBodyPart(mantle);
+        message.setContent(mantle);
 
         // Erzeuge das PDF
     	File pdfFile = new File("/tmp/" + reservation.getUuid() + ".pdf");
@@ -252,7 +251,7 @@ public class ReservationMail {
         mimeBodyPart.setFileName("Reservierungsbestaetigung.pdf");
 
         // Setze den das PDF in das Inhalts-Element.
-        content.addBodyPart(mimeBodyPart);
+        mantle.addBodyPart(mimeBodyPart);
 
         // Setze das Transfer-Encoding der gesamten Nachricht.
         message.setHeader("Content-Transfer-Encoding", "8bit");
