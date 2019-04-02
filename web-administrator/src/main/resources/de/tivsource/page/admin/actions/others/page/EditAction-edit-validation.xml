@@ -14,51 +14,6 @@
     </field-validator>
   </field>
 
-  <field name="page.topNavigationOrder">
-    <field-validator type="required" short-circuit="true">
-      <message key="page.topNavigationOrder.validation.required" />
-    </field-validator>
-    <field-validator type="int" short-circuit="true">
-      <param name="min">0</param>
-      <param name="max">1000</param>
-      <message key="page.topNavigationOrder.validation.minmax" />
-    </field-validator>
-  </field>
-
-  <field name="page.navigationOrder">
-    <field-validator type="required" short-circuit="true">
-      <message key="page.navigationOrder.validation.required" />
-    </field-validator>
-    <field-validator type="int" short-circuit="true">
-      <param name="min">0</param>
-      <param name="max">1000</param>
-      <message key="page.navigationOrder.validation.minmax" />
-    </field-validator>
-  </field>
-
-  <field name="page.bottomNavigationOrder">
-    <field-validator type="required" short-circuit="true">
-      <message key="page.bottomNavigationOrder.validation.required" />
-    </field-validator>
-    <field-validator type="int" short-circuit="true">
-      <param name="min">0</param>
-      <param name="max">1000</param>
-      <message key="page.bottomNavigationOrder.validation.minmax" />
-    </field-validator>
-  </field>
-
-  <field name="page.responsiveNavigationOrder">
-    <field-validator type="required" short-circuit="true">
-      <message key="page.responsiveNavigationOrder.validation.required" />
-    </field-validator>
-    <field-validator type="int" short-circuit="true">
-      <param name="min">0</param>
-      <param name="max">1000</param>
-      <message key="page.responsiveNavigationOrder.validation.minmax" />
-    </field-validator>
-  </field>
-
-
   <field name="page.descriptionMap.DE.name">
     <field-validator type="fieldexpression" short-circuit="true">
       <param name="expression">
