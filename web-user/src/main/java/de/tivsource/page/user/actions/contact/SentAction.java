@@ -11,7 +11,6 @@ import java.util.UUID;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.internet.AddressException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -148,12 +147,20 @@ public class SentAction extends EmptyAction {
             		message.getContent(),
             		message.getContent().replace("\n", "<br/>")
             		};
-            sendIt.send("Zur Zeit nicht genutzt", (EmailTemplate)notification, argu, session);
-		} catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+
+            new Thread(new Runnable() {
+                public void run(){
+                    try {
+                        sendIt.send("Kontaktformular", (EmailTemplate)notification, argu, session);
+                    } catch (UnsupportedEncodingException | MessagingException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    return; // to stop the thread
+                }
+            }).start();
+
+		} catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
 			// TODO Auto-generated catch block

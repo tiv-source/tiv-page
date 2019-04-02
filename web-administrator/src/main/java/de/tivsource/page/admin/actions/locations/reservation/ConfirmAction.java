@@ -1,6 +1,7 @@
 package de.tivsource.page.admin.actions.locations.reservation;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,8 +9,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.MessagingException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -133,7 +137,18 @@ public class ConfirmAction extends EmptyAction {
                     user.getFirstname() + " " + user.getLastname(),
                     propertyDaoLocal.findByKey("reservation.bccAddress").getValue()
     	    );
-    	    reservationMail.send();
+
+            new Thread(new Runnable() {
+                public void run(){
+                    try {
+                        reservationMail.send();
+                    } catch (COSVisitorException | MessagingException | IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    return; // to stop the thread
+                }
+            }).start();
 
             return SUCCESS;
     	}
