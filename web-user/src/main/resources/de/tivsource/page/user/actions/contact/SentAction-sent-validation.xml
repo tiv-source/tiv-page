@@ -18,7 +18,7 @@
       <message key="message.validation.firstname" />
     </field-validator>
     <field-validator type="regex">
-      <param name="regex">^[a-zA-Z\- ]*$</param>
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
       <message key="message.validation.letter" />
     </field-validator>
   </field>
@@ -28,7 +28,7 @@
       <message key="message.validation.lastname" />
     </field-validator>
     <field-validator type="regex">
-      <param name="regex">^[a-zA-Z\- ]*$</param>
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
       <message key="message.validation.letter" />
     </field-validator>
   </field>
