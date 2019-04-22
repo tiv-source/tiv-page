@@ -43,25 +43,28 @@
   <meta name="geo.position" content="<struts:property value="getProperty('geo.position')" />" />
   <meta name="geo.region" content="<struts:property value="getProperty('geo.region')" />" />
   <meta name="geo.placename" content="<struts:property value="getProperty('geo.placename')" />" />
-  
-  <link rel="stylesheet" type="text/css" href="/css/slider.css">
-  <style>
-  .sliderElementsWidth {
-    width: <struts:property value="100 * sliderList.size()" />%;
-  }
-  .sliderElementsWidth > li {
-    width: <struts:property value="sliderWidth" />%;
-  }
-  </style>
-  <style>
-  .homeSliderElementsWidth {
-    width: <struts:property value="100 * homeSliderList.size()" />%;
-  }
-  .homeSliderElementsWidth > li {
-    width: <struts:property value="homeSliderWidth" />%;
-  }
-  </style>
 
+  <struts:if test="getProperty('home.appointment.slider')">
+    <link rel="stylesheet" type="text/css" href="/css/slider.css">
+    <style>
+    .sliderElementsWidth {
+      width: <struts:property value="100 * sliderList.size()" />%;
+    }
+    .sliderElementsWidth > li {
+      width: <struts:property value="sliderWidth" />%;
+    }
+    </style>
+  </struts:if>
+  <struts:if test="getProperty('home.slider') == 'true'">
+    <style>
+    .homeSliderElementsWidth {
+      width: <struts:property value="100 * homeSliderList.size()" />%;
+    }
+    .homeSliderElementsWidth > li {
+      width: <struts:property value="homeSliderWidth" />%;
+    }
+    </style>
+  </struts:if>
 
   <link rel="stylesheet" href="/public/responsiveslides/responsiveslides.css">
   <link rel="stylesheet" href="/public/responsiveslides/custom.css">
