@@ -74,9 +74,9 @@ public class Event extends PictureItem {
      * Maximal Anzahl an Personen für die Reserviert werden kann.
      */
     private Integer maxPersons;
-    
+
     private Integer piwikGoal;
-    
+
     public BigDecimal getPrice() {
         return price;
     }
