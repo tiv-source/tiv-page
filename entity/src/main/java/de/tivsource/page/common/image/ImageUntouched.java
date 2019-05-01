@@ -6,10 +6,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Basic;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
 import javax.persistence.Transient;
 
 import org.apache.logging.log4j.LogManager;
@@ -82,12 +84,18 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
     @Transient
     private File uploadFile;
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date created;
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date modified;
+
+    private String modifiedBy;
+
+    private String modifiedAddress;
+
     public ImageUntouched() {
         super();
-    }
-
-    public static Logger getLogger() {
-        return logger;
     }
 
     /**
@@ -150,6 +158,62 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
 
     public void setStandard(Boolean standard) {
         this.standard = standard;
+    }
+
+    /**
+     * @return the created
+     */
+    public Date getCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    /**
+     * @return the modified
+     */
+    public Date getModified() {
+        return modified;
+    }
+
+    /**
+     * @param modified the modified to set
+     */
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
+    /**
+     * @return the modifiedBy
+     */
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    /**
+     * @param modifiedBy the modifiedBy to set
+     */
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    /**
+     * @return the modifiedAddress
+     */
+    public String getModifiedAddress() {
+        return modifiedAddress;
+    }
+
+    /**
+     * @param modifiedAddress the modifiedAddress to set
+     */
+    public void setModifiedAddress(String modifiedAddress) {
+        this.modifiedAddress = modifiedAddress;
     }
 
     public FileInputStream getOriginalFileInputStream() {

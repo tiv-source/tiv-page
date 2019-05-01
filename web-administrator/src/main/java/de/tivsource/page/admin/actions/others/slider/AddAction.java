@@ -94,12 +94,16 @@ public class AddAction extends EmptyAction {
             sliderImage.setSlider(slider);
             sliderImage.setUuid(UUID.randomUUID().toString());
             sliderImage.generate();
+            sliderImage.setCreated(new Date());
+            sliderImage.setModified(new Date());
+            sliderImage.setModifiedAddress(remoteAddress);
+            sliderImage.setModifiedBy(remoteUser);
             slider.setImage(sliderImage);
 
             slider.setCreated(new Date());
             slider.setModified(new Date());
-            slider.setModifiedBy(remoteUser);
             slider.setModifiedAddress(remoteAddress);
+            slider.setModifiedBy(remoteUser);
             sliderDaoLocal.merge(slider);
 
             return SUCCESS;
