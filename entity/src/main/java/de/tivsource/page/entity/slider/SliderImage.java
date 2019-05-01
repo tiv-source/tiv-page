@@ -28,9 +28,8 @@ public class SliderImage extends ImageUntouched implements Comparable<ImageUntou
      */
     private static final long serialVersionUID = 734687924779098003L;
 
-
     /**
-     * UUID des CategoryImage Objektes.
+     * UUID des SliderImage Objektes.
      */
     @Id
     @DocumentId

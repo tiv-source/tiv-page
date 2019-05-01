@@ -26,6 +26,7 @@ import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
+import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 
 /**
@@ -90,6 +91,9 @@ public class RestoreAction extends EmptyAction {
     @InjectEJB(name="ManualDao")
     private ManualDaoLocal manualDaoLocal;
 
+    @InjectEJB(name="SliderDao")
+    private SliderDaoLocal sliderDaoLocal;
+
     private File restoreFile;
 
     public void setRestoreFile(File restoreFile) {
@@ -106,9 +110,12 @@ public class RestoreAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-        RestoreZipFile restoreZipFile = new RestoreZipFile(galleryDaoLocal, pictureDaoLocal, userDaoLocal,
+        RestoreZipFile restoreZipFile = new RestoreZipFile(
+                galleryDaoLocal, pictureDaoLocal, userDaoLocal,
                 roleDaoLocal, pageDaoLocal, propertyDaoLocal, locationDaoLocal,
-                eventDaoLocal, messageDaoLocal, newsDaoLocal, reservationDaoLocal, vacancyDaoLocal, manualDaoLocal);
+                eventDaoLocal, messageDaoLocal, newsDaoLocal, reservationDaoLocal, 
+                vacancyDaoLocal, manualDaoLocal, sliderDaoLocal
+        );
     	restoreZipFile.restoreZip(restoreFile);
 
     	return SUCCESS;

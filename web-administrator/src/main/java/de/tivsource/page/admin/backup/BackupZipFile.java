@@ -30,6 +30,7 @@ import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
+import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 
 /**
@@ -74,6 +75,8 @@ public class BackupZipFile {
     private static CompanionGroupDaoLocal companionGroupDaoLocal;
 
     private static CompanionDaoLocal companionDaoLocal;
+
+    private static SliderDaoLocal sliderDaoLocal;
     
     private static byte[] buffer = new byte[1024];
 
@@ -139,6 +142,13 @@ public class BackupZipFile {
 
     public static void setCompanionDaoLocal(CompanionDaoLocal companionDaoLocal) {
         BackupZipFile.companionDaoLocal = companionDaoLocal;
+    }
+
+    /**
+     * @param sliderDaoLocal the sliderDaoLocal to set
+     */
+    public static void setSliderDaoLocal(SliderDaoLocal sliderDaoLocal) {
+        BackupZipFile.sliderDaoLocal = sliderDaoLocal;
     }
 
     public static File getZipFile() throws IOException {
@@ -242,15 +252,21 @@ public class BackupZipFile {
         /*
          * Backup CompanionGroup
          */
-        BackupCompanionGroup.setCompanionGroupDaoLocal(companionGroupDaoLocal);;
+        BackupCompanionGroup.setCompanionGroupDaoLocal(companionGroupDaoLocal);
         addData(BackupCompanionGroup.getBackupFile(), outZipFile, "companionGroup.csv");
 
         /*
          * Backup Companion
          */
-        BackupCompanion.setCompanionDaoLocal(companionDaoLocal);;
+        BackupCompanion.setCompanionDaoLocal(companionDaoLocal);
         addData(BackupCompanion.getBackupFile(), outZipFile, "companion.csv");
 
+        /*
+         * Backup Slider
+         */
+        BackupSlider.setSliderDaoLocal(sliderDaoLocal);
+        addData(BackupSlider.getBackupFile(), outZipFile, "slider.csv");
+        
         // Schließe die Zip-Datei.
         outZipFile.close();
 

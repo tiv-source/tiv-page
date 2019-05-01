@@ -28,6 +28,7 @@ import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
+import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.restore.RestoreEvent;
 import de.tivsource.page.restore.RestoreGallery;
@@ -40,6 +41,7 @@ import de.tivsource.page.restore.RestorePicture;
 import de.tivsource.page.restore.RestoreProperty;
 import de.tivsource.page.restore.RestoreReservation;
 import de.tivsource.page.restore.RestoreRole;
+import de.tivsource.page.restore.RestoreSlider;
 import de.tivsource.page.restore.RestoreUser;
 import de.tivsource.page.restore.RestoreVacancy;
 
@@ -80,6 +82,8 @@ public class RestoreZipFile {
 
     private ManualDaoLocal manualDaoLocal;
 
+    private SliderDaoLocal sliderDaoLocal;
+
     private Map<String, InputStream> streams = new HashMap<String, InputStream>();
 
     private Map<String, InputStream> pageStreams = new HashMap<String, InputStream>();
@@ -101,7 +105,8 @@ public class RestoreZipFile {
             NewsDaoLocal newsDaoLocal,
             ReservationDaoLocal reservationDaoLocal,
             VacancyDaoLocal vacancyDaoLocal,
-            ManualDaoLocal manualDaoLocal) {
+            ManualDaoLocal manualDaoLocal,
+            SliderDaoLocal sliderDaoLocal) {
         super();
         this.galleryDaoLocal = galleryDaoLocal;
         this.pictureDaoLocal = pictureDaoLocal;
@@ -116,6 +121,7 @@ public class RestoreZipFile {
         this.reservationDaoLocal = reservationDaoLocal;
         this.vacancyDaoLocal = vacancyDaoLocal;
         this.manualDaoLocal = manualDaoLocal;
+        this.sliderDaoLocal = sliderDaoLocal;
     }
 
     public void restoreZip(File file) throws IOException {
@@ -180,7 +186,10 @@ public class RestoreZipFile {
 
         // Stelle Manual wieder her
         restoreManual();
-        
+
+        // Stelle Slider wieder her
+        restoreSlider();
+
         // Schließe Datei
         zipFile.close();
 
@@ -270,6 +279,12 @@ public class RestoreZipFile {
         LOGGER.info("restoreManual() aufgerufen.");
         RestoreManual restoreManual = new RestoreManual(manualDaoLocal, pictureDaoLocal, manualStreams);
         restoreManual.generate();
+    }
+
+    private void restoreSlider() {
+        LOGGER.info("restoreSlider() aufgerufen.");
+        RestoreSlider restoreSlider = new RestoreSlider(sliderDaoLocal);
+        restoreSlider.generate(streams.get("slider.csv"));
     }
 
 }// Ende class
