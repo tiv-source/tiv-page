@@ -40,6 +40,7 @@
 		<class>de.tivsource.page.entity.picture.PictureDescription</class>
 		<class>de.tivsource.page.entity.picture.PictureUrl</class>
 		<class>de.tivsource.page.entity.pictureitem.PictureItem</class>
+		<class>de.tivsource.page.entity.pictureitem.PictureItemImage</class>
 		<class>de.tivsource.page.entity.property.Property</class>
 		<class>de.tivsource.page.entity.reservation.Reservation</class>
 		<class>de.tivsource.page.entity.slider.Slider</class>
