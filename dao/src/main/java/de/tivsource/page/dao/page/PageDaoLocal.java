@@ -41,7 +41,9 @@ public interface PageDaoLocal {
      * @return Boolean - true wenn es eine Seite (Page) ist.
      */
     public Boolean isPageUrl(String urlName);
-    
+
+    public Boolean hasMenuEntry(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Page anhand der
      * Benutzernames.

@@ -66,6 +66,14 @@ public class PageDao implements PageDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        Page page = entityManager.find(Page.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", page);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.page.PageDaoLocal#findByTechnical(java.lang.String)
      */

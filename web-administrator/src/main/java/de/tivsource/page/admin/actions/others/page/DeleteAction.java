@@ -8,6 +8,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -19,6 +22,23 @@ import de.tivsource.page.entity.page.Page;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="pageDeleteForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_form.jsp")
+  }),
+  @TilesDefinition(name="pageDeleteError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_error.jsp")
+  }),
+  @TilesDefinition(name="pageDatabaseError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/database_error.jsp")
+  })
+})
 public class DeleteAction extends EmptyAction {
 
     /**
@@ -51,7 +71,8 @@ public class DeleteAction extends EmptyAction {
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
         				@Result(name = "input", type="tiles", location = "pageDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "pageDeleteError")
+        				@Result(name = "error", type="tiles", location = "pageDeleteError"),
+        				@Result(name = "database", type="tiles", location = "pageDatabaseError")
         				}
         )
     })
@@ -63,18 +84,17 @@ public class DeleteAction extends EmptyAction {
 
     	if(page != null) {
     		Page dbPage = pageDaoLocal.findByUuid(page.getUuid());
-    		dbPage.setModified(new Date());
-    		dbPage.setModifiedBy(remoteUser);
-    		dbPage.setModifiedAddress(remoteAddress);
-    		pageDaoLocal.merge(dbPage);
-    		pageDaoLocal.delete(dbPage);
-            return SUCCESS;
+    		if(pageDaoLocal.hasMenuEntry(dbPage.getUuid())) {
+                dbPage.setModified(new Date());
+                dbPage.setModifiedBy(remoteUser);
+                dbPage.setModifiedAddress(remoteAddress);
+                pageDaoLocal.merge(dbPage);
+                pageDaoLocal.delete(dbPage);
+                return SUCCESS;
+    		}
     	}
-    	else {
-    		return ERROR;
-    	}
-    	
-    	
+  		return ERROR;
+
     }// Ende execute()
 	
 }// Ende class
