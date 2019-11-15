@@ -7,12 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
+import org.hibernate.envers.Audited;
+
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 
+/**
+ * 
+ * @author Marc Michele
+ *
+ */
+@Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ContentItem extends PictureItem {
@@ -24,12 +35,30 @@ public class ContentItem extends PictureItem {
     @MapKey(name = "language")
     private Map<Language, Content> contentMap;
 
+    @ManyToOne(targetEntity = CSSGroup.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cssGroup_uuid")
+    private CSSGroup cssGroup;
+
     public Map<Language, Content> getContentMap() {
         return contentMap;
     }
 
     public void setContentMap(Map<Language, Content> contentMap) {
         this.contentMap = contentMap;
+    }
+
+    /**
+     * @return the cssGroup
+     */
+    public CSSGroup getCssGroup() {
+        return cssGroup;
+    }
+
+    /**
+     * @param cssGroup the cssGroup to set
+     */
+    public void setCssGroup(CSSGroup cssGroup) {
+        this.cssGroup = cssGroup;
     }
 
     public String getContent(String language) {

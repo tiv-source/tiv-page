@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.embeddable.Address;
@@ -28,6 +29,7 @@ import de.tivsource.page.entity.vacancy.Vacancy;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Application {
 
@@ -38,7 +40,7 @@ public class Application {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
 	/**

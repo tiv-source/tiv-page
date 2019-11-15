@@ -31,14 +31,14 @@
 					<groupId>antlr</groupId>
 				</exclusion>
 			</exclusions>
-			<version>4.0.1.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<scope>provided</scope>
-			<version>4.0.1.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
@@ -51,9 +51,9 @@
 					<groupId>org.slf4j</groupId>
 				</exclusion>
 				<exclusion>
-                    <groupId>dom4j</groupId>
-                    <artifactId>dom4j</artifactId>
-                </exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
 			</exclusions>
 			<version>1.0.1.Final</version>
 		</dependency>
@@ -68,11 +68,11 @@
 					<groupId>org.slf4j</groupId>
 				</exclusion>
 				<exclusion>
-                    <groupId>dom4j</groupId>
-                    <artifactId>dom4j</artifactId>
-                </exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
 			</exclusions>
-			<version>4.0.1.Final</version>
+			<version>${hibernate.annotations.version}</version>
 		</dependency>
 
 		<dependency>
@@ -85,9 +85,9 @@
 					<groupId>org.slf4j</groupId>
 				</exclusion>
 				<exclusion>
-                    <groupId>dom4j</groupId>
-                    <artifactId>dom4j</artifactId>
-                </exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
 			</exclusions>
 			<version>4.2.0.Final</version>
 		</dependency>
@@ -118,16 +118,16 @@
 					<groupId>org.hibernate.javax.persistence</groupId>
 				</exclusion>
 				<exclusion>
-                    <groupId>dom4j</groupId>
-                    <artifactId>dom4j</artifactId>
-                </exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
 			</exclusions>
 			<version>4.0.1.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search</artifactId>
+			<artifactId>hibernate-search-orm</artifactId>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
@@ -163,11 +163,11 @@
 					<groupId>org.hibernate.javax.persistence</groupId>
 				</exclusion>
 				<exclusion>
-                    <groupId>dom4j</groupId>
-                    <artifactId>dom4j</artifactId>
-                </exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
 			</exclusions>
-			<version>4.0.0.CR1</version>
+			<version>${hibernate.search.version}</version>
 		</dependency>
 
 

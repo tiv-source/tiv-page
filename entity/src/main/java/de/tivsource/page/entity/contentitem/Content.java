@@ -13,10 +13,17 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
 
+/**
+ * 
+ * @author Marc Michele
+ *
+ */
+@Audited
 @Entity
 public class Content {
 
@@ -27,7 +34,7 @@ public class Content {
      */
     @Id
     @DocumentId
-    @Column(name = "uuid", unique = true)
+    @Column(name = "uuid", unique = true, length=42)
     private String uuid;
 
     @Lob

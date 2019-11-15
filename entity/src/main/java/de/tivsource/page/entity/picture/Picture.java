@@ -18,6 +18,7 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -33,6 +34,7 @@ import de.tivsource.page.enumeration.UrlType;
  * @author Marc Michele
  * 
  */
+@Audited
 @Indexed
 @Entity
 public class Picture {
@@ -44,7 +46,7 @@ public class Picture {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
     /**

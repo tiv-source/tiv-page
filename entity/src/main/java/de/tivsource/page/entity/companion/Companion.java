@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.embeddable.Address;
@@ -24,6 +25,7 @@ import de.tivsource.page.entity.embeddable.ContactDetails;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Companion {
 
@@ -34,7 +36,7 @@ public class Companion {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
     private String name;

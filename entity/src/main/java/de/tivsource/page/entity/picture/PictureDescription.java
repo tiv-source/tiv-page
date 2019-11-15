@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
@@ -19,6 +20,7 @@ import de.tivsource.page.entity.enumeration.Language;
  * @author Marc Michele
  * 
  */
+@Audited
 @Entity
 public class PictureDescription {
 
@@ -29,7 +31,7 @@ public class PictureDescription {
      */
     @Id
     @DocumentId
-    @Column(name = "uuid", unique = true)
+    @Column(name = "uuid", unique = true, length=42)
     private String uuid;
 
     private String name;

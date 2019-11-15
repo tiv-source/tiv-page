@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Sort;
 import org.hibernate.annotations.SortType;
+import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.embeddable.Address;
 import de.tivsource.page.entity.embeddable.ContactDetails;
@@ -27,6 +28,7 @@ import de.tivsource.page.entity.vacancy.Vacancy;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Location extends PictureItem {
 

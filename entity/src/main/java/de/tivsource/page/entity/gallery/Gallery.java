@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.Indexed;
 
 import de.tivsource.page.entity.picture.Picture;
@@ -21,6 +22,7 @@ import de.tivsource.page.enumeration.GalleryType;
  * @author Marc Michele
  * 
  */
+@Audited
 @Indexed
 @Entity
 public class Gallery extends PictureItem {

@@ -6,6 +6,7 @@ package de.tivsource.page.entity.page;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.Indexed;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -14,6 +15,7 @@ import de.tivsource.page.entity.contentitem.ContentItem;
  * @author Marc Michele
  * 
  */
+@Audited
 @Indexed
 @Entity
 public class Page extends ContentItem {

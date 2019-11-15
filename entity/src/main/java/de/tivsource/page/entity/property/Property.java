@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Indexed;
 
@@ -17,13 +18,14 @@ import org.hibernate.search.annotations.Indexed;
  * @author Marc Michele
  *
  */
+@Audited
 @Indexed
 @Entity
 public class Property {
 
     @Id
     @DocumentId
-    @Column(name="property_key", unique=true)
+    @Column(name="property_key", unique=true, length=128)
     private String key;
 
     @Column(name="property_value")

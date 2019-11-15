@@ -7,6 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
+
 import de.tivsource.page.entity.enumeration.CityType;
 import de.tivsource.page.entity.enumeration.CountryType;
 import de.tivsource.page.entity.namingitem.NamingItem;
@@ -20,6 +22,7 @@ import de.tivsource.page.entity.namingitem.NamingItem;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Exhibition extends NamingItem {
 

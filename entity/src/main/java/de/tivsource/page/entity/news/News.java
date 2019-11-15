@@ -8,12 +8,15 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
+
 import de.tivsource.page.entity.contentitem.ContentItem;
 
 /**
  * @author Marc Michele
  * 
  */
+@Audited
 @Entity
 public class News extends ContentItem {
 

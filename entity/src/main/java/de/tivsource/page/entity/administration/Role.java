@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 /**
@@ -20,6 +21,7 @@ import org.hibernate.search.annotations.DocumentId;
  * @author Marc Michele
  * @since 0.1
  */
+@Audited
 @Entity
 public class Role implements Principal {
 
@@ -29,7 +31,7 @@ public class Role implements Principal {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
     /**

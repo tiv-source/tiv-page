@@ -5,10 +5,13 @@ package de.tivsource.page.common.menuentry;
 
 import javax.persistence.Entity;
 
+import org.hibernate.envers.Audited;
+
 /**
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class LinkEntry extends MenuEntry {
 

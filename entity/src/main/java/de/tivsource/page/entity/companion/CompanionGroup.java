@@ -10,12 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import org.hibernate.envers.Audited;
+
 import de.tivsource.page.entity.pictureitem.PictureItem;
 
 /**
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class CompanionGroup extends PictureItem {
 

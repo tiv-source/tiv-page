@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
+
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.reservation.Reservation;
@@ -27,6 +29,7 @@ import de.tivsource.page.entity.reservation.Reservation;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Event extends PictureItem {
 

@@ -17,8 +17,9 @@
 		<struts2.version>2.5.20</struts2.version>
 		<struts2.jquery.version>4.0.3</struts2.jquery.version>
 		<log4j.version>2.11.1</log4j.version>
-		<hibernate.version>5.2.17.Final</hibernate.version>
-		<hibernate.search.version>5.9.3.Final</hibernate.search.version>
+		<hibernate.version>5.3.7.Final</hibernate.version>
+		<hibernate.annotations.version>5.0.4.Final</hibernate.annotations.version>
+		<hibernate.search.version>5.10.5.Final</hibernate.search.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +38,7 @@
 		<module>web-administrator</module>
 		<module>web-user</module>
 		<module>web-image</module>
+		<module>web-css</module>
 		<module>web-reservation</module>
 		<module>install</module>
 		<module>ear</module>

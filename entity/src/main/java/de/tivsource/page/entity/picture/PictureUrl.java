@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.enumeration.UrlType;
@@ -21,6 +22,7 @@ import de.tivsource.page.enumeration.UrlType;
  * @author marc
  *
  */
+@Audited
 @Entity
 public class PictureUrl {
 
@@ -31,7 +33,7 @@ public class PictureUrl {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
 	@Enumerated(EnumType.STRING)

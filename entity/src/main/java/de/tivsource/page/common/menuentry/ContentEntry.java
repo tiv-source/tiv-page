@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -18,7 +21,9 @@ import de.tivsource.page.entity.vacancy.Vacancy;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
+@Table(name = "ContentEntry")
 public class ContentEntry extends MenuEntry {
 
     @ManyToOne(fetch = FetchType.EAGER)

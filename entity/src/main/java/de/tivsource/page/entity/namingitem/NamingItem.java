@@ -18,6 +18,7 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
@@ -28,6 +29,7 @@ import de.tivsource.page.entity.enumeration.Language;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class NamingItem {
@@ -39,7 +41,7 @@ public class NamingItem {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
     /**

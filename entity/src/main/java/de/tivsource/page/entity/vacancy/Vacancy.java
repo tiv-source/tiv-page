@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
+
 import de.tivsource.page.entity.application.Application;
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.location.Location;
@@ -22,6 +24,7 @@ import de.tivsource.page.entity.location.Location;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Vacancy extends ContentItem {
 

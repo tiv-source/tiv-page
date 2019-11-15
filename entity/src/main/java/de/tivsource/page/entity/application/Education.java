@@ -13,12 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 /**
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Education {
 
@@ -29,7 +31,7 @@ public class Education {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)

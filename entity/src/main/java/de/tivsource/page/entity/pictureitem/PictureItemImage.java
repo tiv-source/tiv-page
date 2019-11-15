@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.common.image.ImageUntouched;
@@ -20,6 +21,7 @@ import de.tivsource.page.common.image.ImageUntouched;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class PictureItemImage extends ImageUntouched implements Comparable<ImageUntouched>, Serializable {
 
@@ -33,7 +35,7 @@ public class PictureItemImage extends ImageUntouched implements Comparable<Image
      */
     @Id
     @DocumentId
-    @Column(name = "uuid", unique = true)
+    @Column(name = "uuid", unique = true, length=42)
     private String uuid;
 
     @OneToOne(fetch = FetchType.LAZY)

@@ -29,7 +29,7 @@ public class FeedbackOptionDescription {
      */
     @Id
     @DocumentId
-    @Column(name = "uuid", unique = true)
+    @Column(name = "uuid", unique = true, length=42)
     private String uuid;
 
     private String name;

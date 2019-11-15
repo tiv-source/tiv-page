@@ -9,6 +9,9 @@
 	    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:openejb/Resource/tivPage</jta-data-source>
 
+        <class>de.tivsource.page.common.css.CSSFile</class>
+        <class>de.tivsource.page.common.css.CSSGroup</class>
+
         <class>de.tivsource.page.common.menuentry.MenuEntry</class>
         <class>de.tivsource.page.common.menuentry.ContentEntry</class>
         <class>de.tivsource.page.common.menuentry.LinkEntry</class>

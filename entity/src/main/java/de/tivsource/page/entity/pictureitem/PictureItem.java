@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.envers.Audited;
+
 import de.tivsource.page.entity.namingitem.NamingItem;
 import de.tivsource.page.entity.picture.Picture;
 
@@ -20,10 +22,12 @@ import de.tivsource.page.entity.picture.Picture;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PictureItem extends NamingItem {
 
+    // TODO: muss entfernt werden sobald das andere Bild benutzt wird
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "picture_uuid")
     private Picture picture;

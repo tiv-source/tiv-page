@@ -17,6 +17,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
 import de.tivsource.page.entity.event.Event;
@@ -26,6 +27,7 @@ import de.tivsource.page.enumeration.Origin;
  * @author Marc Michele
  *
  */
+@Audited
 @Entity
 public class Reservation {
 
@@ -36,7 +38,7 @@ public class Reservation {
      */
     @Id
     @DocumentId
-    @Column(name="uuid", unique=true)
+    @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
     /**
