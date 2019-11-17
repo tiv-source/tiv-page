@@ -14,8 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Sort;
-import org.hibernate.annotations.SortType;
+import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.embeddable.Address;
@@ -39,7 +38,7 @@ public class Location extends PictureItem {
     private ContactDetails contactDetails;
 
     @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval=true)
-    @Sort(type=SortType.NATURAL)
+    @SortNatural
     private SortedSet<OpeningHour> openingHours;
 
     /**
