@@ -54,6 +54,12 @@ public class IndexAction extends EmptyAction {
     private Page page;
 
     @Override
+    public void prepare() {
+        // Lade die Übersichtsseite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("vacancy");
+    }
+
+    @Override
     @Actions({
         @Action(
         		value = "index", 
@@ -73,9 +79,6 @@ public class IndexAction extends EmptyAction {
         if(moduleEnabled) {
             // Hole Action Locale
             this.getLanguageFromActionContext();
-
-            // Hole Seite aus der Datenbank
-            page = pageDaoLocal.findByTechnical("vacancy");
             return SUCCESS;
         } else {
             // Wenn das Module nicht aktiviert ist.

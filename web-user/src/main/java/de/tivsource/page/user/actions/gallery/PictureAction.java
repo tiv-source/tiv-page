@@ -350,7 +350,7 @@ public class PictureAction extends EmptyAction implements Pagination {
     private void createPageObject(){
         // Erstelle Page Objekt
         page = new Page();
-        page.setTechnical("picture_01");
+        page.setTechnical("picture_current");
         Map<Language, Description> descriptionMap = new HashMap<Language, Description>();
 
         Description descriptionDE = new Description();
@@ -370,6 +370,10 @@ public class PictureAction extends EmptyAction implements Pagination {
         descriptionMap.put(Language.EN, descriptionEN);
         
         page.setDescriptionMap(descriptionMap);
+        page.setPicture(picture);
+        page.setPictureOnPage(gallery.getPictureOnPage());
+        page.setCssGroup(gallery.getCssGroup());
+        
     }
 
 }// Ende class

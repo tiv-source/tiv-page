@@ -53,6 +53,12 @@ public class IndexAction extends EmptyAction {
     private Page page;
 
     @Override
+    public void prepare() {
+        // Lade die Filialübersichtsseite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("location");
+    }
+
+    @Override
     @Actions({
         @Action(
         		value = "index", 
@@ -72,9 +78,6 @@ public class IndexAction extends EmptyAction {
         if(moduleEnabled) {
             // Hole Action Locale
             this.getLanguageFromActionContext();
-            // Hole Seite aus der Datenbank
-            page = pageDaoLocal.findByTechnical("location");
-
             return SUCCESS;
         } else {
             // Wennn das Modul nicht aktiviert ist.

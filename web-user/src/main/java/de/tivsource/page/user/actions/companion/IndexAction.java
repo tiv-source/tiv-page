@@ -58,6 +58,12 @@ public class IndexAction extends EmptyAction {
     private Page page;
 
     @Override
+    public void prepare() {
+        // Hole Seite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("companion");
+    }
+
+    @Override
     @Actions({
         @Action(
         		value = "index", 
@@ -77,9 +83,6 @@ public class IndexAction extends EmptyAction {
         if(moduleEnabled) {
             // Hole Action Locale
             this.getLanguageFromActionContext();
-
-            // Hole Seite aus der Datenbank
-            page = pageDaoLocal.findByTechnical("companion");
             return SUCCESS;
         } else {
             // Wenn das Module nicht aktiviert ist.

@@ -11,8 +11,6 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
-import com.opensymphony.xwork2.Preparable;
-
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.feedback.FeedbackOptionDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -34,7 +32,7 @@ import de.tivsource.page.user.actions.EmptyAction;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/feedback/feedback_form.jsp")
   })
 })
-public class IndexAction extends EmptyAction implements Preparable {
+public class IndexAction extends EmptyAction {
 
     /**
      * Serial Version UID.
@@ -92,6 +90,18 @@ public class IndexAction extends EmptyAction implements Preparable {
     }
 
     @Override
+    public void prepare() {
+        LOGGER.info("prepare() aufgerufen.");
+        // Lade die Feeback Seite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("feedback");
+        
+        // Hole Action Locale
+        this.getLanguageFromActionContext();
+
+        options = feedbackOptionDaoLocal.findAllVisible(0, feedbackOptionDaoLocal.countAllVisible());
+    }// Ende prepare()
+
+    @Override
     @Actions({
         @Action(value = "index", results = {
             @Result(name = "success", type = "tiles", location = "feedbackForm"),
@@ -109,8 +119,6 @@ public class IndexAction extends EmptyAction implements Preparable {
         if(moduleEnabled) {
             // Initialisiere Feedback Objekt
             initFeedbackObject();
-            // Setze Daten in ein Page Objekt
-            setUpPage();
             return SUCCESS;
         } else {
             return ERROR;
@@ -119,27 +127,12 @@ public class IndexAction extends EmptyAction implements Preparable {
     }// Ende execute()
 
     @Override
-    public void prepare() throws Exception {
-        LOGGER.info("prepare() aufgerufen.");
-        // Hole Action Locale
-        this.getLanguageFromActionContext();
-
-        options = feedbackOptionDaoLocal.findAllVisible(0, feedbackOptionDaoLocal.countAllVisible());
-
-
-    }
-
-    @Override
     public Page getPage() {
         return page;
     }
 
     public List<FeedbackOption> getOptions() {
         return options;
-    }
-
-    private void setUpPage() {
-    	page = pageDaoLocal.findByTechnical("feedback");
     }
 
     private void initFeedbackObject() {

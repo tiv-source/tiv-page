@@ -18,7 +18,6 @@ import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
-import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.page.Page;
@@ -155,10 +154,11 @@ public class LocationAction extends EmptyAction {
     private void setUpPage() {
         location = locationDaoLocal.findByUuid(locationUuid);
         page = new Page();
-        page.setTechnical(location.getName(Language.DE));
+        page.setTechnical(location.getTechnical());
         page.setDescriptionMap(location.getDescriptionMap());
         page.setPicture(location.getPicture());
         page.setPictureOnPage(location.getPictureOnPage());
+        page.setCssGroup(location.getCssGroup());
     }
 
 }// Ende class

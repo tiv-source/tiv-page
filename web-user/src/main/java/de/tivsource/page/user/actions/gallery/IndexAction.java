@@ -83,6 +83,12 @@ public class IndexAction extends EmptyAction implements Pagination {
     private Integer maxPages;
 
     @Override
+    public void prepare() {
+        // Lade die Galerie Seite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("gallery");
+    }
+
+    @Override
     @Actions({
         @Action(value = "index", results = {
             @Result(name = "success", type = "tiles", location = "galleryList"),
@@ -106,11 +112,6 @@ public class IndexAction extends EmptyAction implements Pagination {
 
         // Hole attribute to aus Datenbank 
         to = Integer.parseInt(getProperty("gallery.list.quantity"));
-
-        // Setze Daten in ein Page Objekt
-        setUpPage();
-
-
 
         // Hole die Anzahl aus der Datenbank
         this.getDBCount();
@@ -162,10 +163,6 @@ public class IndexAction extends EmptyAction implements Pagination {
     public List<Gallery> getGallery() {
 		return gallery;
 	}
-
-	private void setUpPage() {
-    	page = pageDaoLocal.findByTechnical("gallery");
-    }
 
     private void getDBCount() {
         LOGGER.debug("getDBCount() aufgerufen.");

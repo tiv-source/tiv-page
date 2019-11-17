@@ -53,6 +53,12 @@ public class IndexAction extends EmptyAction {
     private Page page;
 
     @Override
+    public void prepare() {
+        // Lade die Übersichtsseite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("reservation");
+    }
+
+    @Override
     @Actions({
         @Action(
         		value = "index", 
@@ -72,7 +78,6 @@ public class IndexAction extends EmptyAction {
     	if(moduleEnabled) {
             // Hole Action Locale
             this.getLanguageFromActionContext();
-            page = pageDaoLocal.findByTechnical("reservation");
     	    return SUCCESS;
     	} else {
     	    return ERROR;

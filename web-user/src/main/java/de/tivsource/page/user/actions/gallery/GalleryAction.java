@@ -155,8 +155,11 @@ public class GalleryAction extends EmptyAction implements Pagination {
             pictures = pictureDaoLocal.findAll(from, maxElements, gallery.getUuid(), "p.orderNumber, p.uuid", "desc");
 
             page = new Page();
-            page.setTechnical("gallery_01");
+            page.setTechnical(gallery.getTechnical());
             page.setDescriptionMap(gallery.getDescriptionMap());
+            page.setPicture(gallery.getPicture());
+            page.setPictureOnPage(gallery.getPictureOnPage());
+            page.setCssGroup(gallery.getCssGroup());
 
             return SUCCESS;
         }

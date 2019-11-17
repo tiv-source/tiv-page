@@ -126,8 +126,11 @@ public class NewsAction extends EmptyAction {
 
     private void setUpPage() {
         page = new Page();
+        page.setTechnical(news.getTechnical());
         page.setDescriptionMap(news.getDescriptionMap());
         page.setPicture(news.getPicture());
+        page.setPictureOnPage(news.getPictureOnPage());
+        page.setCssGroup(news.getCssGroup());
     }
 
 }// Ende class

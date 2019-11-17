@@ -12,13 +12,12 @@
   <tiles:insertAttribute name="meta" />
   <tiles:insertAttribute name="twitter" />
 
-  <link rel="stylesheet" type="text/css" href="/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="/css/main_style.css">
-  <link rel="stylesheet" type="text/css" href="/css/tiv_page.css">
-  <link rel="stylesheet" type="text/css" href="/css/tiv_page_sitethemes.css">
-  <link rel="stylesheet" type="text/css" href="/css/tiv_page_actionthemes.css">
-  <link rel="stylesheet" type="text/css" href="/css/tiv_page_gallery.css">
-  <link rel="stylesheet" type="text/css" href="/css/tiv_page_formulars.css">
+  <!-- Anfang der CSS-Dateien -->
+  <struts:iterator value="page.cssGroup.files" status="cssFilesStatus">
+    <!-- <struts:property value="name" /> -->
+    <link rel="stylesheet" type="text/css" href="/cssfile/<struts:property value="uuid" />.css">
+  </struts:iterator>
+  <!-- Ende der CSS-Dateien -->
 
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.ico.path')"/>" type="image/vnd.microsoft.icon" />
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.png.path')"/>" type="image/png" />

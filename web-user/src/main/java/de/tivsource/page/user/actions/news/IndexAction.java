@@ -85,6 +85,12 @@ public class IndexAction extends EmptyAction implements Pagination {
     private Integer maxPages;
 
     @Override
+    public void prepare() {
+        // Lade die Übersichtsseite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("news");
+    }
+
+    @Override
     @Actions({
         @Action(value = "index", results = {
             @Result(name = "success", type = "tiles", location = "newsList"),
@@ -102,9 +108,6 @@ public class IndexAction extends EmptyAction implements Pagination {
         if(moduleEnabled) {
             // Hole Action Locale
             this.getLanguageFromActionContext();
-
-            // Setze Daten in ein Page Objekt
-            setUpPage();
 
             // Hole die Anzahl aus der Datenbank
             this.getDBCount();
@@ -160,10 +163,6 @@ public class IndexAction extends EmptyAction implements Pagination {
     public List<News> getNews() {
 		return news;
 	}
-
-	private void setUpPage() {
-    	page = pageDaoLocal.findByTechnical("news");
-    }
 
     private void getDBCount() {
         LOGGER.debug("getDBCount() aufgerufen.");

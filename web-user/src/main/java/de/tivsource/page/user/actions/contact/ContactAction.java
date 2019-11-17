@@ -48,6 +48,12 @@ public class ContactAction extends EmptyAction {
     private Page page;
 
     @Override
+    public void prepare() {
+        // Lade die Kontaktseite aus der Datenbank
+        this.page = pageDaoLocal.findByTechnical("contact");
+    }
+
+    @Override
     @Actions({
         @Action(
         		value = "index", 
@@ -63,8 +69,6 @@ public class ContactAction extends EmptyAction {
     	// Hole Action Locale
     	this.getLanguageFromActionContext();
 
-    	this.page = pageDaoLocal.findByTechnical("contact");
-    	
     	Boolean contactPageEnabled = propertyDaoLocal.findByKey("contact.page.enabled").getValue().equals("true") ? true : false;
 
     	if(contactPageEnabled) {

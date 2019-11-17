@@ -16,7 +16,6 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
-import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.vacancy.Vacancy;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -138,12 +137,13 @@ public class VacancyAction extends EmptyAction {
     private void setUpPage() {
     	vacancy = vacancyDaoLocal.findByUuid(vacancyUuid);
         page = new Page();
-        page.setTechnical(vacancy.getName(Language.DE));
+        page.setTechnical(vacancy.getTechnical());
         page.setDescriptionMap(vacancy.getDescriptionMap());
         page.setPicture(vacancy.getPicture());
+        page.setPictureOnPage(vacancy.getPictureOnPage());
+        page.setCssGroup(vacancy.getCssGroup());
         page.setCreated(vacancy.getCreated());
         page.setModified(vacancy.getModified());
-        page.setPictureOnPage(vacancy.getPictureOnPage());
     }
 
 }// Ende class

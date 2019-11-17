@@ -22,6 +22,7 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.menuentry.MenuEntry;
@@ -43,7 +44,7 @@ import de.tivsource.page.entity.slider.Slider;
 @TilesDefinitions({
     @TilesDefinition(name="index",  extend = "userTemplate")
 })
-public class EmptyAction extends ActionSupport implements ServletRequestAware,
+public class EmptyAction extends ActionSupport implements Preparable, ServletRequestAware,
 		ServletResponseAware, SessionAware {
 
 	/**
@@ -125,6 +126,12 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 		this.session = session;
 	}
 
+    @Override
+    public void prepare() {
+        // Lade die Startseite
+        page = pageDaoLocal.findByTechnical("home");
+    }
+
 	@Override
 	@Actions({ 
 		@Action(value = "index", results = { @Result(name = "success", type = "tiles", location = "index") })
@@ -134,7 +141,6 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 
 		// Hole Action Locale
 		this.getLanguageFromActionContext();
-		page = pageDaoLocal.findByTechnical("home");
 
 		return SUCCESS;
 	}

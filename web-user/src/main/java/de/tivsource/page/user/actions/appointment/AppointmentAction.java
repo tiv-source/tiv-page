@@ -128,6 +128,8 @@ public class AppointmentAction extends EmptyAction {
         page = new Page();
         page.setDescriptionMap(appointment.getDescriptionMap());
         page.setPicture(appointment.getPicture());
+        page.setPictureOnPage(appointment.getPictureOnPage());
+        page.setCssGroup(appointment.getCssGroup());
     }
 
 }// Ende class

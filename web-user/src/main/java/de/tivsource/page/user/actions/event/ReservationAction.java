@@ -215,6 +215,9 @@ public class ReservationAction extends EmptyAction {
             page = new Page();
             page.setTechnical(event.getName(Language.DE));
             page.setDescriptionMap(event.getDescriptionMap());
+            page.setPicture(event.getPicture());
+            page.setPictureOnPage(event.getPictureOnPage());
+            page.setCssGroup(event.getCssGroup());
         } else {
             page = new Page();
             page.setTechnical(event.getName(Language.DE));
@@ -222,6 +225,9 @@ public class ReservationAction extends EmptyAction {
             page.getDescriptionMap().get(Language.DE).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.DE) + " - " + page.getDescriptionMap().get(Language.DE).getName());
             // TODO: Hier müsste das noch lokalisiert werden
             page.getDescriptionMap().get(Language.EN).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.EN) + " - " + page.getDescriptionMap().get(Language.EN).getName());
+            page.setPicture(event.getPicture());
+            page.setPictureOnPage(event.getPictureOnPage());
+            page.setCssGroup(event.getCssGroup());
         }
     }
 

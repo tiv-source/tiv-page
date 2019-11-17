@@ -66,6 +66,12 @@ public class GroupAction extends EmptyAction {
     private Page page;
 
     @Override
+    public void prepare() {
+        // Hole Seite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("companion");
+    }
+
+    @Override
     @Actions({
         @Action(value = "*/index", results = {
             @Result(name = "success", type = "tiles", location = "companionGroup"),
@@ -81,9 +87,6 @@ public class GroupAction extends EmptyAction {
         if(moduleEnabled) {
             // Hole Action Locale
             this.getLanguageFromActionContext();
-
-            // Hole die Seite aus der Datenbank
-            page = pageDaoLocal.findByTechnical("companion");
 
             // Lese Namen aus dem ServletRequest
             pageName = ServletActionContext.getRequest().getServletPath();

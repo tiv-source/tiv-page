@@ -177,6 +177,9 @@ public class IndexAction extends EmptyAction {
         page = new Page();
         page.setTechnical(event.getName(Language.DE));
         page.setDescriptionMap(event.getDescriptionMap());
+        page.setPicture(event.getPicture());
+        page.setPictureOnPage(event.getPictureOnPage());
+        page.setCssGroup(event.getCssGroup());
     }
     
 }// Ende class

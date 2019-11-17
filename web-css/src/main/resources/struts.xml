@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.locale" value="de" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<constant name="struts.convention.classes.reload" value="true" />
+	<constant name="struts.convention.exclude.parentClassLoader" value="true" />
+	<constant name="struts.convention.action.fileProtocols" value="jar,vfsfile,vfszip" />
+
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
+    
+
+	<constant name="struts.action.extension" value="css"/>
+	
+	<constant name="struts.convention.package.locators" value="actions,action" />
+	<constant name="struts.convention.package.locators.disable" value="false" />
+	<constant name="struts.convention.package.locators.basePackage"	value="de.tivsource.page.css.actions" />
+	
+	<constant name="struts.convention.default.parent.package" value="public" />
+
+
+	<package name="public" extends="convention-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<interceptors>
+			<interceptor name="ejb3" class="de.tivsource.ejb3plugin.InjectEJBInterceptor" />
+
+			<interceptor-stack name="defaultPageStack">
+				<interceptor-ref name="ejb3" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="validation" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultPageStack" />
+
+	</package>
+
+</struts>
