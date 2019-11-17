@@ -276,7 +276,7 @@ public class CSSFile implements Comparable<CSSFile> {
     }
 
     public void generate() {
-        String filePath = "/srv/www/tomcat-upload/";
+        String filePath = "/srv/tiv-page/cssfile/";
         // Generiere UUID für den Dateinamen
         String cssSaveName = UUID.randomUUID().toString();
         try {
