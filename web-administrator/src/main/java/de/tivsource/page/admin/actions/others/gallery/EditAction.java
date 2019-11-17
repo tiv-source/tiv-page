@@ -89,9 +89,6 @@ public class EditAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        if(gallery != null && gallery.getUuid() != null) {
-            pictureList = pictureDaoLocal.findAll(gallery.getUuid());
-        }
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -115,6 +112,7 @@ public class EditAction extends EmptyAction {
     	if(gallery != null) {
     		LOGGER.info("UUID des Events: " + gallery.getUuid());
     		Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
+    		pictureList = pictureDaoLocal.findAll(gallery.getUuid());
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
                 gallery.getDescriptionMap().put(Language.DE, dbGallery.getDescriptionObject(Language.DE));

@@ -24,8 +24,8 @@ import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
 
-import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.enumeration.Language;
+import de.tivsource.page.entity.pictureitem.PictureItem;
 
 /**
  * @author Marc Michele
@@ -60,7 +60,7 @@ public class CSSGroup implements Comparable<CSSGroup> {
     private SortedSet<CSSFile> files;
 
     @OneToMany(mappedBy = "cssGroup", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
-    private List<ContentItem> contentItems;
+    private List<PictureItem> pictureItems;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
@@ -154,18 +154,17 @@ public class CSSGroup implements Comparable<CSSGroup> {
     }
 
     /**
-     * @return the contentItems
+     * @return the pictureItems
      */
-    public List<ContentItem> getContentItems() {
-        return contentItems;
+    public List<PictureItem> getPictureItems() {
+        return pictureItems;
     }
 
     /**
-     * @param contentItems
-     *            the contentItems to set
+     * @param pictureItems the pictureItems to set
      */
-    public void setContentItems(List<ContentItem> contentItems) {
-        this.contentItems = contentItems;
+    public void setPictureItems(List<PictureItem> pictureItems) {
+        this.pictureItems = pictureItems;
     }
 
     /**

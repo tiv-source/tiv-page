@@ -93,9 +93,6 @@ public class FormAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        if(gallery != null && gallery.getUuid() != null) {
-            pictureList = pictureDaoLocal.findAll(gallery.getUuid());
-        }
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -135,8 +132,10 @@ public class FormAction extends EmptyAction {
     }// Ende getCssGroupList()
 
 	private void loadPageParameter() {
+	    LOGGER.info("loadPageParameter() aufgerufen.");
 		if( uncheckGallery != null && uncheckGallery != "" && uncheckGallery.length() > 0) {
 		    gallery = galleryDaoLocal.findByUuid(uncheckGallery);
+		    pictureList = pictureDaoLocal.findAll(uncheckGallery);
 		} else {
 		    gallery = new Gallery();
 		}

@@ -49,7 +49,7 @@ public class JsonAction extends ActionSupport {
     @Action(
             value = "table",
             results = {
-                @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.reservations, gridModel.*.events, gridModel.*.vacancies, gridModel.*.picture, gridModel.*.contentItems"})
+                @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.reservations, gridModel.*.events, gridModel.*.vacancies, gridModel.*.picture, gridModel.*.pictureItems"})
             }
         )
 	public String execute() {
