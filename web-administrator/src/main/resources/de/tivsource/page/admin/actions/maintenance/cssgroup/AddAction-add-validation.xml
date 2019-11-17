@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="cssGroup.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="cssGroup.name.validation.required" />
+    </field-validator>
+    <field-validator type="stringlength">
+      <param name="minLength">3</param>
+      <param name="maxLength">255</param>
+      <param name="trim">true</param>
+      <message key="cssGroup.name.validation.stringlength" />
+    </field-validator>
+  </field>
+
+  <field name="cssGroup.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="cssGroup.description.validation.required" />
+    </field-validator>
+    <field-validator type="stringlength">
+      <param name="minLength">7</param>
+      <param name="maxLength">255</param>
+      <param name="trim">true</param>
+      <message key="cssGroup.description.validation.stringlength" />
+    </field-validator>
+  </field>
+     
+</validators>

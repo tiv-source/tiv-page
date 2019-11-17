@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="cssFile.uploadFile">
+    <field-validator type="required">
+      <message key="cssFile.uploadFile.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="cssFile.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="cssFile.name.validation.required" />
+    </field-validator>
+    <field-validator type="stringlength">
+      <param name="minLength">3</param>
+      <param name="maxLength">255</param>
+      <param name="trim">true</param>
+      <message key="cssFile.name.validation.stringlength" />
+    </field-validator>
+  </field>
+
+  <field name="cssFile.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="cssFile.description.validation.required" />
+    </field-validator>
+    <field-validator type="stringlength">
+      <param name="minLength">7</param>
+      <param name="maxLength">255</param>
+      <param name="trim">true</param>
+      <message key="cssFile.description.validation.stringlength" />
+    </field-validator>
+  </field>
+
+  <field name="cssFile.priority">
+    <field-validator type="required" short-circuit="true">
+      <message key="cssFile.priority.validation.required" />
+    </field-validator>
+    <field-validator type="int">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="cssFile.priority.validation.minmax" />
+    </field-validator>
+  </field>
+     
+</validators>

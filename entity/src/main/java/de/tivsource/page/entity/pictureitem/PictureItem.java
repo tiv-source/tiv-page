@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.envers.Audited;
 
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.entity.namingitem.NamingItem;
 import de.tivsource.page.entity.picture.Picture;
 
@@ -39,6 +40,10 @@ public class PictureItem extends NamingItem {
     @Basic
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean pictureOnPage = true;
+
+    @ManyToOne(targetEntity = CSSGroup.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cssGroup_uuid")
+    private CSSGroup cssGroup;
 
     public Picture getPicture() {
         return picture;
@@ -68,6 +73,20 @@ public class PictureItem extends NamingItem {
 
     public void setPictureOnPage(Boolean pictureOnPage) {
         this.pictureOnPage = pictureOnPage;
+    }
+
+    /**
+     * @return the cssGroup
+     */
+    public CSSGroup getCssGroup() {
+        return cssGroup;
+    }
+
+    /**
+     * @param cssGroup the cssGroup to set
+     */
+    public void setCssGroup(CSSGroup cssGroup) {
+        this.cssGroup = cssGroup;
     }
 
 }// Ende class
