@@ -9,7 +9,9 @@
 <struts:url var="backupUrl"            action="index" namespace="/maintenance/backup" />
 <struts:url var="restoreUrl"           action="index" namespace="/maintenance/restore" />
 <struts:url var="filesUrl"             action="index" namespace="/maintenance/files" />
-<struts:url var="cssUrl"               action="index" namespace="/maintenance/css" />
+<struts:url var="cssFileUrl"           action="index" namespace="/maintenance/cssfile" />
+<struts:url var="cssGroupUrl"          action="index" namespace="/maintenance/cssgroup" />
+
 
    	  <div class="nav">
    	    <div id="navi">
@@ -46,11 +48,19 @@
               </div>
             </struts:a>
 
-            <struts:a href="%{cssUrl}" title="%{getText('navigation.css')}">
+            <struts:a href="%{cssFileUrl}" title="%{getText('navigation.css')}">
               <div class="button">
-                <img src="/admin/buttons/tiv_page_button_file.png" alt="<struts:text name="navigation.css"/>">
+                <img src="/admin/buttons/tiv_page_button_cssfile.png" alt="<struts:text name="navigation.cssfiles"/>">
                 <br />
-                <p class="ellipsis"><struts:text name="navigation.css"/></p>
+                <p class="ellipsis"><struts:text name="navigation.cssfiles"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{cssGroupUrl}" title="%{getText('navigation.cssgroups')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_cssgroups.png" alt="<struts:text name="navigation.cssgroups"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.cssgroups"/></p>
               </div>
             </struts:a>
 

@@ -16,6 +16,8 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -49,6 +51,9 @@ public class AddAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="VacancyDao")
     private VacancyDaoLocal vacancyDaoLocal;
 
@@ -65,6 +70,12 @@ public class AddAction extends EmptyAction {
 
     private String lang;
 
+    private List<Location> locationList;
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
+
 	public Vacancy getVacancy() {
         return vacancy;
     }
@@ -79,6 +90,14 @@ public class AddAction extends EmptyAction {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    @Override
+    public void prepare() {
+        super.prepare();
+        locationList = locationDaoLocal.findAll(0, locationDaoLocal.countAll());
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.vacancy.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -146,13 +165,17 @@ public class AddAction extends EmptyAction {
     }// Ende execute()
 
     public List<Location> getLocationList() {
-        // TODO: Anzahl der Objkte anpassen
-        return locationDaoLocal.findAll(0, locationDaoLocal.countAll());
+        return locationList;
     }// Ende getLocationList()
 
-	public List<Picture> getPictureList() {
-		// return pictureDaoLocal.findAll("41c1471b-6511-4e98-a1ab-fe13e7a906ed");
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.vacancy.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

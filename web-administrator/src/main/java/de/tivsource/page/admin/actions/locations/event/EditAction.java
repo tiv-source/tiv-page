@@ -12,6 +12,8 @@ import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
@@ -38,6 +40,9 @@ public class EditAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
 
@@ -54,6 +59,12 @@ public class EditAction extends EmptyAction {
 
     private String lang;
 
+    private List<Location> locationList;
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
+
     public Event getEvent() {
         return event;
     }
@@ -68,6 +79,14 @@ public class EditAction extends EmptyAction {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    @Override
+    public void prepare() {
+        super.prepare();
+        locationList = locationDaoLocal.findAll(0, locationDaoLocal.countAll());
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.event.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -120,6 +139,7 @@ public class EditAction extends EmptyAction {
     		dbEvent.setMaxPersons(event.getMaxPersons());
     		dbEvent.setPictureOnPage(event.getPictureOnPage());
     		dbEvent.setTimeSelection(event.getTimeSelection());
+    		dbEvent.setCssGroup(event.getCssGroup());
 
     		eventDaoLocal.merge(dbEvent);
             return SUCCESS;
@@ -131,12 +151,17 @@ public class EditAction extends EmptyAction {
     }// Ende execute()
 
     public List<Location> getLocationList() {
-        return locationDaoLocal.findAllEventLocation();
-    }
+        return locationList;
+    }// Ende getLocationList()
 
-	public List<Picture> getPictureList() {
-		// return pictureDaoLocal.findAll("81e889ed-3195-4390-bf96-80477300c313");
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.event.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

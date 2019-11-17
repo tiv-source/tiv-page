@@ -6,7 +6,7 @@
       <div class="main">
         <div class="sub_menu"></div>
         <div id="title">
-          <h5><struts:text name="contentEntry.delete"/></h5>
+          <h5><struts:text name="page.delete"/></h5>
         </div>
 
         <div id="backend_update_form" class="update" style="text-align=center;">

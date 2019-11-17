@@ -14,6 +14,8 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
@@ -53,6 +55,9 @@ public class FormAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
@@ -64,6 +69,10 @@ public class FormAction extends EmptyAction {
     private String uncheckGallery;
 
     private String lang = "DE";
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
 
     public Gallery getGallery() {
         return gallery;
@@ -80,20 +89,29 @@ public class FormAction extends EmptyAction {
 	public void setLang(String lang) {
 	    this.lang = lang;
 	}
-	
+
+    @Override
+    public void prepare() {
+        super.prepare();
+        if(gallery != null && gallery.getUuid() != null) {
+            pictureList = pictureDaoLocal.findAll(gallery.getUuid());
+        }
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
 	@Override
     @Actions({
         @Action(
-        		value = "editForm", 
-        		results = { @Result(name = "success", type="tiles", location = "galleryEditForm") }
+            value = "editForm",
+            results = { @Result(name = "success", type="tiles", location = "galleryEditForm") }
         ),
         @Action(
-        		value = "addForm", 
-        		results = { @Result(name = "success", type="tiles", location = "galleryAddForm") }
+            value = "addForm",
+            results = { @Result(name = "success", type="tiles", location = "galleryAddForm") }
         ),
         @Action(
-        		value = "deleteForm", 
-        		results = { @Result(name = "success", type="tiles", location = "galleryDeleteForm") }
+            value = "deleteForm",
+            results = { @Result(name = "success", type="tiles", location = "galleryDeleteForm") }
         )
     })
     public String execute() throws Exception {
@@ -102,14 +120,19 @@ public class FormAction extends EmptyAction {
     	return SUCCESS;
     }// Ende execute()
 
-	public List<Picture> getPictureList() {
-		// TODO: Check ob gallery gesetzt wurde
-		return pictureDaoLocal.findAll(gallery.getUuid());
-	}
-
 	public List<GalleryType> getGalleryTypeList() {
 	    return Arrays.asList(GalleryType.values());
 	}
+
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 	private void loadPageParameter() {
 		if( uncheckGallery != null && uncheckGallery != "" && uncheckGallery.length() > 0) {

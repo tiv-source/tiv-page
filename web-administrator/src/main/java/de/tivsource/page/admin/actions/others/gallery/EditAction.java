@@ -16,6 +16,8 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -33,6 +35,10 @@ import de.tivsource.page.enumeration.GalleryType;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/edit_form.jsp")
+  }),
+  @TilesDefinition(name="galleryEditError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/edit_error.jsp")
   })
 })
 public class EditAction extends EmptyAction {
@@ -47,6 +53,9 @@ public class EditAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
@@ -56,6 +65,10 @@ public class EditAction extends EmptyAction {
     private Gallery gallery;
 
     private String lang = "DE";
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
 
     public Gallery getGallery() {
         return gallery;
@@ -74,14 +87,23 @@ public class EditAction extends EmptyAction {
     }
 
     @Override
+    public void prepare() {
+        super.prepare();
+        if(gallery != null && gallery.getUuid() != null) {
+            pictureList = pictureDaoLocal.findAll(gallery.getUuid());
+        }
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
+    @Override
     @Actions({
         @Action(
-        		value = "edit", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input",   type = "tiles", location = "galleryEditForm"),
-        				@Result(name = "error",   type = "tiles", location = "galleryEditError")
-        				}
+            value = "edit",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input",   type = "tiles", location = "galleryEditForm"),
+                @Result(name = "error",   type = "tiles", location = "galleryEditError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -116,6 +138,7 @@ public class EditAction extends EmptyAction {
     		dbGallery.setPicture(gallery.getPicture());
     		dbGallery.setPictureOnPage(gallery.getPictureOnPage());
     		dbGallery.setType(gallery.getType());
+    		dbGallery.setCssGroup(gallery.getCssGroup());
 
     		galleryDaoLocal.merge(dbGallery);
             return SUCCESS;
@@ -126,13 +149,18 @@ public class EditAction extends EmptyAction {
 
     }// Ende execute()
 
-	public List<Picture> getPictureList() {
-		// TODO: Check ob gallery gesetzt wurde
-		return pictureDaoLocal.findAll(gallery.getUuid());
-	}
-
 	public List<GalleryType> getGalleryTypeList() {
         return Arrays.asList(GalleryType.values());
     }
+
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

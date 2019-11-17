@@ -15,6 +15,8 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -46,6 +48,9 @@ public class EditAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
 
@@ -58,6 +63,10 @@ public class EditAction extends EmptyAction {
     private Page page;
 
     private String lang = "DE";
+
+    private List<Picture> pictureList;
+    
+    private List<CSSGroup> cssGroupList;
 
     public Page getPage() {
         return page;
@@ -73,6 +82,13 @@ public class EditAction extends EmptyAction {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.page.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -126,6 +142,7 @@ public class EditAction extends EmptyAction {
     		dbPage.setModifiedAddress(remoteAddress);
     		dbPage.setPicture(page.getPicture());
     		dbPage.setPictureOnPage(page.getPictureOnPage());
+    		dbPage.setCssGroup(page.getCssGroup());
 
     		pageDaoLocal.merge(dbPage);
             return SUCCESS;
@@ -136,9 +153,14 @@ public class EditAction extends EmptyAction {
 
     }// Ende execute()
 
-	public List<Picture> getPictureList() {
-		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.page.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }
 
 }// Ende class

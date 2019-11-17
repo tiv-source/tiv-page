@@ -62,6 +62,19 @@
               </div>
 
               <div class="field">
+                <struts:select
+                    key="vacancy.cssGroup"
+                    list="cssGroupList" 
+                    listKey="uuid"  
+                    listValue="name" 
+                    parentTheme="xhtml"
+                    labelposition="left"
+					cssStyle="padding: 0.3em; width: 640px;" 
+					multiple="false" 
+                />
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="vacancy.visible"
                     parentTheme="xhtml"

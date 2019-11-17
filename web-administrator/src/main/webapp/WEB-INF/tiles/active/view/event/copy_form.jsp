@@ -190,6 +190,20 @@
               </div>
 
               <div class="field">
+                <struts:select
+                    key="event.cssGroup"
+                    value="%{event.cssGroup.{uuid}}"
+                    list="cssGroupList" 
+                    listKey="uuid"  
+                    listValue="name" 
+                    parentTheme="xhtml"
+                    labelposition="left"
+					cssStyle="padding: 0.3em; width: 640px;" 
+					multiple="false" 
+                />
+              </div>
+
+              <div class="field">
                 <struts:textfield 
                     key="event.descriptionMap.DE.name"
                     parentTheme="css_xhtml"

@@ -84,13 +84,15 @@ public class DeleteAction extends EmptyAction {
 
     	if(page != null) {
     		Page dbPage = pageDaoLocal.findByUuid(page.getUuid());
-    		if(pageDaoLocal.hasMenuEntry(dbPage.getUuid())) {
+    		if(!pageDaoLocal.hasMenuEntry(dbPage.getUuid())) {
                 dbPage.setModified(new Date());
                 dbPage.setModifiedBy(remoteUser);
                 dbPage.setModifiedAddress(remoteAddress);
                 pageDaoLocal.merge(dbPage);
                 pageDaoLocal.delete(dbPage);
                 return SUCCESS;
+    		} else {
+    		    return "database";
     		}
     	}
   		return ERROR;

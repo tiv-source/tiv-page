@@ -13,7 +13,9 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.appointment.Appointment;
@@ -60,6 +62,9 @@ public class FormAction extends EmptyAction {
 	@InjectEJB(name="AppointmentDao")
     private AppointmentDaoLocal appointmentDaoLocal;
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
 
@@ -71,6 +76,10 @@ public class FormAction extends EmptyAction {
 	private String uncheckAppointment;
 
 	private String lang = "DE";
+
+    private List<Picture> pictureList;
+
+	private List<CSSGroup> cssGroupList;
 
 	public Appointment getAppointment() {
         return appointment;
@@ -86,6 +95,13 @@ public class FormAction extends EmptyAction {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.appointment.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -125,8 +141,13 @@ public class FormAction extends EmptyAction {
 	}// Ende loadPageParameter()
 
 	public List<Picture> getPictureList() {
-	    //return pictureDaoLocal.findAll("394010e8-6c7b-4958-b4e4-51a3ffb9e83f");
-	    return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.appointment.picture").getValue());
-	}
+	    return pictureList;
+	}// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

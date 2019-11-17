@@ -17,7 +17,10 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
+import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.enumeration.GalleryType;
@@ -32,6 +35,10 @@ import de.tivsource.page.enumeration.GalleryType;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/add_form.jsp")
+  }),
+  @TilesDefinition(name="galleryAddError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/add_error.jsp")
   })
 })
 public class AddAction extends EmptyAction {
@@ -46,10 +53,18 @@ public class AddAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
+    @InjectEJB(name="PictureDao")
+    private PictureDaoLocal pictureDaoLocal;
+
     private Gallery gallery;
+
+    private List<CSSGroup> cssGroupList;
 
     public Gallery getGallery() {
         return gallery;
@@ -60,14 +75,20 @@ public class AddAction extends EmptyAction {
     }
 
     @Override
+    public void prepare() {
+        super.prepare();
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
+    @Override
     @Actions({
         @Action(
-        		value = "add", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "galleryAddForm"),
-        				@Result(name = "error", type="tiles", location = "galleryAddError")
-        				}
+            value = "add",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input", type="tiles", location = "galleryAddForm"),
+                @Result(name = "error", type="tiles", location = "galleryAddError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -109,5 +130,11 @@ public class AddAction extends EmptyAction {
     public List<GalleryType> getGalleryTypeList() {
         return Arrays.asList(GalleryType.values());
     }
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

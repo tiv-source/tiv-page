@@ -16,7 +16,9 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.companion.CompanionGroup;
@@ -33,6 +35,10 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/add_form.jsp")
+  }),
+  @TilesDefinition(name="companionGroupAddError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/add_error.jsp")
   })
 })
 public class AddAction extends EmptyAction {
@@ -50,13 +56,20 @@ public class AddAction extends EmptyAction {
     @InjectEJB(name="CompanionGroupDao")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
 
-    private CompanionGroup companionGroup;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
+
+    private CompanionGroup companionGroup;
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
 
     public CompanionGroup getCompanionGroup() {
         return companionGroup;
@@ -66,15 +79,22 @@ public class AddAction extends EmptyAction {
         this.companionGroup = companionGroup;
     }
 
+    @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
 	@Override
     @Actions({
         @Action(
-        		value = "add", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "companionGroupAddForm"),
-        				@Result(name = "error", type="tiles", location = "companionGroupAddError")
-        				}
+            value = "add",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input", type="tiles", location = "companionGroupAddForm"),
+                @Result(name = "error", type="tiles", location = "companionGroupAddError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -112,9 +132,14 @@ public class AddAction extends EmptyAction {
     	
     }// Ende execute()
 
-	public List<Picture> getPictureList() {
-		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

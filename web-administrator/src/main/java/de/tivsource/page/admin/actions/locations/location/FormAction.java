@@ -14,6 +14,8 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -53,6 +55,9 @@ public class FormAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
@@ -67,6 +72,10 @@ public class FormAction extends EmptyAction {
 	private String uncheckLocation;
 
 	private String lang;
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
 
     public Location getLocation() {
         return location;
@@ -85,18 +94,25 @@ public class FormAction extends EmptyAction {
     }
 
     @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.location.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
+    @Override
     @Actions({
         @Action(
-        		value = "editForm", 
-        		results = { @Result(name = "success", type="tiles", location = "locationEditForm") }
+            value = "editForm",
+            results = { @Result(name = "success", type="tiles", location = "locationEditForm") }
         ),
         @Action(
-        		value = "addForm", 
-        		results = { @Result(name = "success", type="tiles", location = "locationAddForm") }
+            value = "addForm",
+            results = { @Result(name = "success", type="tiles", location = "locationAddForm") }
         ),
         @Action(
-                value = "deleteForm", 
-                results = { @Result(name = "success", type="tiles", location = "locationDeleteForm") }
+            value = "deleteForm",
+            results = { @Result(name = "success", type="tiles", location = "locationDeleteForm") }
         )
     })
     public String execute() throws Exception {
@@ -106,10 +122,15 @@ public class FormAction extends EmptyAction {
     	return SUCCESS;
     }// Ende execute()
 
-	public List<Picture> getPictureList() {
-		// return pictureDaoLocal.findAll("d8a2d89f-cda4-4c64-9e51-18592e88bbc6");
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.location.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 	private void loadPageParameter() {
 

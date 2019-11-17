@@ -13,7 +13,9 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.companion.CompanionGroup;
@@ -55,6 +57,9 @@ public class FormAction extends EmptyAction {
 	@InjectEJB(name="CompanionGroupDao")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
 
@@ -66,6 +71,10 @@ public class FormAction extends EmptyAction {
 	private String uncheckCompanionGroup;
 
 	private String lang;
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
 
 	public CompanionGroup getCompanionGroup() {
         return companionGroup;
@@ -84,18 +93,25 @@ public class FormAction extends EmptyAction {
     }
 
     @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
+    @Override
     @Actions({
         @Action(
-        		value = "editForm", 
-        		results = { @Result(name = "success", type="tiles", location = "companionGroupEditForm") }
+            value = "editForm",
+            results = { @Result(name = "success", type="tiles", location = "companionGroupEditForm") }
         ),
         @Action(
-        		value = "addForm", 
-        		results = { @Result(name = "success", type="tiles", location = "companionGroupAddForm") }
+            value = "addForm",
+            results = { @Result(name = "success", type="tiles", location = "companionGroupAddForm") }
         ),
         @Action(
-        		value = "deleteForm", 
-        		results = { @Result(name = "success", type="tiles", location = "companionGroupDeleteForm") }
+            value = "deleteForm",
+            results = { @Result(name = "success", type="tiles", location = "companionGroupDeleteForm") }
         )
     })
     public String execute() throws Exception {
@@ -115,9 +131,14 @@ public class FormAction extends EmptyAction {
 
 	}// Ende loadPageParameter()
 
-	public List<Picture> getPictureList() {
-		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class

@@ -13,6 +13,8 @@ import org.apache.struts2.convention.annotation.Result;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.manual.ManualDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -37,6 +39,9 @@ public class AddAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="ManualDao")
     private ManualDaoLocal manualDaoLocal;
 
@@ -48,12 +53,23 @@ public class AddAction extends EmptyAction {
 
     private Manual manual;
 
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
+
     public Manual getManual() {
         return manual;
     }
 
     public void setManual(Manual manual) {
         this.manual = manual;
+    }
+
+    @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.manual.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
 	@Override
@@ -116,8 +132,13 @@ public class AddAction extends EmptyAction {
     }// Ende execute()
 
 	public List<Picture> getPictureList() {
-		//return pictureDaoLocal.findAll("394010e8-6c7b-4958-b4e4-51a3ffb9e83f");
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.manual.picture").getValue());
+	    return pictureList;
 	}
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }
 
 }// Ende class

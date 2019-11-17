@@ -18,6 +18,7 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -30,7 +31,7 @@ import de.tivsource.page.dao.property.PropertyDaoLocal;
     @TilesDefinition(name="index",  extend = "adminTemplate"),
     @TilesDefinition(name="logout", template = "/WEB-INF/tiles/active/view/logout.jsp")
 })
-public class EmptyAction extends ActionSupport implements ServletRequestAware,
+public class EmptyAction extends ActionSupport implements Preparable, ServletRequestAware,
 		ServletResponseAware, SessionAware {
 
 	/**
@@ -91,6 +92,10 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
+    @Override
+    public void prepare() {
+    }
 
 	@Override
 	@Actions({ 

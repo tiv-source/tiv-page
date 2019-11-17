@@ -9,10 +9,15 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
+import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.companion.CompanionGroup;
@@ -24,6 +29,17 @@ import de.tivsource.page.entity.picture.Picture;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="companionGroupEditForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/edit_form.jsp")
+  }),
+  @TilesDefinition(name="companionGroupEditError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/edit_error.jsp")
+  })
+})
 public class EditAction extends EmptyAction {
 
 	/**
@@ -39,15 +55,22 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="CompanionGroupDao")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
 
+    @InjectEJB(name = "CSSGroupDao")
+    private CSSGroupDaoLocal cssGroupDaoLocal;
+
     @InjectEJB(name="PictureDao")
     private PictureDaoLocal pictureDaoLocal;
-
-    private CompanionGroup companionGroup;
 
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
+    private CompanionGroup companionGroup;
+
     private String lang;
+
+    private List<Picture> pictureList;
+
+    private List<CSSGroup> cssGroupList;
 
     public CompanionGroup getCompanionGroup() {
         return companionGroup;
@@ -66,14 +89,21 @@ public class EditAction extends EmptyAction {
     }
 
     @Override
+    public void prepare() {
+        super.prepare();
+        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
+        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
+    }
+
+    @Override
     @Actions({
         @Action(
-        		value = "edit", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input",   type = "tiles", location = "companionGroupEditForm"),
-        				@Result(name = "error",   type = "tiles", location = "companionGroupEditError")
-        				}
+            value = "edit",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input",   type = "tiles", location = "companionGroupEditForm"),
+                @Result(name = "error",   type = "tiles", location = "companionGroupEditError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -109,6 +139,7 @@ public class EditAction extends EmptyAction {
     		dbCompanionGroup.setModifiedAddress(remoteAddress);
     		dbCompanionGroup.setPicture(companionGroup.getPicture());
     		dbCompanionGroup.setPictureOnPage(companionGroup.getPictureOnPage());
+    		dbCompanionGroup.setCssGroup(companionGroup.getCssGroup());
 
 
     		companionGroupDaoLocal.merge(dbCompanionGroup);
@@ -120,9 +151,14 @@ public class EditAction extends EmptyAction {
 
     }// Ende execute()
 
-	public List<Picture> getPictureList() {
-		// TODO: Gallery UUID aus den Einstellungen auslesen und setzen
-		return pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
-	}
+    public List<Picture> getPictureList() {
+        return pictureList;
+    }// Ende getPictureList()
+
+    public List<CSSGroup> getCssGroupList() {
+        LOGGER.info("getCssGroupList() aufgerufen.");
+        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        return cssGroupList;
+    }// Ende getCssGroupList()
 
 }// Ende class
