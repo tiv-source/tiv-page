@@ -32,6 +32,9 @@ public class Property {
     private String value;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date created;
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
@@ -52,6 +55,20 @@ public class Property {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    /**
+     * @return the created
+     */
+    public Date getCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public Date getModified() {
