@@ -43,7 +43,9 @@
 		<module>install</module>
 		<module>ear</module>
 		<module>struts2-ejb3plugin</module>
+		<module>backup</module>
 		<module>restore</module>
+		<module>converter</module>
 		<module>mail-reservation</module>
 		<module>valve</module>
 		<module>web-shariff</module>

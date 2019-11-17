@@ -55,9 +55,20 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>backup</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>restore</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>converter</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>

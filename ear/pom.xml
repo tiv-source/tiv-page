@@ -45,6 +45,11 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>backup</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>restore</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -68,6 +73,12 @@
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-image</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-css</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
@@ -245,6 +256,11 @@
 						</webModule>
 						<webModule>
 							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-css</artifactId>
+							<contextRoot>/cssfile</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
 							<artifactId>web-image</artifactId>
 							<contextRoot>/image</contextRoot>
 						</webModule>
@@ -252,6 +268,11 @@
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>entity</artifactId>
 							<bundleFileName>entity.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>backup</artifactId>
+							<bundleFileName>backup.jar</bundleFileName>
 						</jarModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
