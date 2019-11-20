@@ -50,7 +50,7 @@ public class QueueJsonAction extends ActionSupport {
     @Action(
             value = "queueTable",
             results = {
-                @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.reservations, gridModel.*.events, gridModel.*.vacancies, gridModel.*.picture"})
+                @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.reservations, gridModel.*.events, gridModel.*.vacancies, gridModel.*.picture, gridModel.*.pictureItems"})
             }
         )
 	public String execute() {
