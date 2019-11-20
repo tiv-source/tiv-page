@@ -5,8 +5,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.UUID;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,20 +24,19 @@ public class BackupCSSFile {
 
     private CSSFileDaoLocal cssFileDaoLocal;
 
+    private List<File> backupFiles = new ArrayList<File>();
+
     public BackupCSSFile(CSSFileDaoLocal cssFileDaoLocal) {
         super();
         this.cssFileDaoLocal = cssFileDaoLocal;
     }
 
-    public File getBackupFile() throws IOException {
+    public List<File> getBackupFiles() throws IOException {
         LOGGER.info("getBackupFile() aufgerufen.");
 
-        // Erzeuge eine zufällige UUID
-        String randomId = UUID.randomUUID().toString();
-
         // Datei Kram
-        File file = new File("/tmp/cssFile_" + randomId + ".csv");
-        FileWriter fileWriter = new FileWriter(file);
+        File backupFile = new File("/tmp/cssFile.csv");
+        FileWriter fileWriter = new FileWriter(backupFile);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
         // Format Definition
@@ -47,12 +47,15 @@ public class BackupCSSFile {
             CSSFile next = cssFileIterator.next();
             bufferedWriter.write("\n");
             bufferedWriter.write(convertToCsvLine(next));
+            storeCSSFileInList(next);
         }
 
         bufferedWriter.close();
         fileWriter.close();
+        
+        backupFiles.add(backupFile);
 
-        return file;
+        return backupFiles;
     }
 
     private String convertToCsvLine(CSSFile next) {
@@ -96,6 +99,11 @@ public class BackupCSSFile {
         nextString.append("|");
 
         return nextString.toString();
+    }
+
+    private void storeCSSFileInList(CSSFile next) {
+        File file = new File(next.getPath());
+        backupFiles.add(file);
     }
 
 }// Ende class

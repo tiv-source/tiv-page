@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -73,11 +74,12 @@ public class BackupAction extends EmptyAction {
         File zipFile = File.createTempFile("cssFile", "zip");
         ZipOutputStream outZipFile = new ZipOutputStream(new FileOutputStream(zipFile));
 
-        /*
-         * Backup Gallery
-         */
         BackupCSSFile backupCSSFile = new BackupCSSFile(cssFileDaoLocal);
-        addData(backupCSSFile.getBackupFile(), outZipFile, "cssFile.csv");
+        Iterator<File> cssFileIterator = backupCSSFile.getBackupFiles().iterator();
+        while(cssFileIterator.hasNext()) {
+            File next = cssFileIterator.next();
+            addData(next, outZipFile, next.getName());
+        }
 
         // Schließe die Zip-Datei.
         outZipFile.close();
@@ -89,10 +91,10 @@ public class BackupAction extends EmptyAction {
 
         FileInputStream fileInputStream = new FileInputStream(file);
 
-        // Ab hier beginnt der Exhibition Teil
+        // Erstelle neuen ZIP Datei Eintrag
         zipOutputStream.putNextEntry(new ZipEntry(filename));
 
-        // Transfer bytes from the file to the ZIP file
+        // Transferiere bytes von der Datei in die ZIP Datei
         int len;
         while ((len = fileInputStream.read(buffer)) > 0) {
             zipOutputStream.write(buffer, 0, len);
@@ -100,7 +102,11 @@ public class BackupAction extends EmptyAction {
 
         zipOutputStream.closeEntry();
         fileInputStream.close();
-        file.delete();
+
+        // Lösche die Dateien nur wenn es nicht die Orginal Bilder sind.
+        if(!file.getName().endsWith(".css")) {
+            file.delete();
+        }
     }
     
 }// Ende class
