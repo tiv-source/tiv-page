@@ -41,11 +41,11 @@ public class IndexAction extends EmptyAction {
     private EventDaoLocal eventDaoLocal;
 
     private Event event;
-    
+
     private String eventUuid;
 
     private List<Reservation> reservations;
-    
+
     @Override
     @Actions({
         @Action(
@@ -69,21 +69,17 @@ public class IndexAction extends EmptyAction {
     	// Hole Action Locale
     	this.getLanguageFromActionContext();
 
-
-
     	eventUuid = ServletActionContext.getRequest().getServletPath();
         LOGGER.info("EventUuid: " + eventUuid);
 
     	// http://ncc1701a/reservation/event/ac7006f9-625c-4996-a534-eb123c5f0320/view.html
-        
-        
+
         eventUuid = eventUuid.replaceAll("/reservation_list_view.html", "");
         eventUuid = eventUuid.replaceAll("/reservation_list_edit.html", "");
         eventUuid = eventUuid.replaceAll("/event/", "");
-            
+
         LOGGER.info("EventUuid: " + eventUuid);
 
-        
         /*
          * Wenn die Location Uuid keine nicht erlaubten Zeichen enthält und es
          * die Location mit der Uuid gibt dann wird der Block ausgeführt.
