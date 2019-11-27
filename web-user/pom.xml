@@ -59,6 +59,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>converter</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
