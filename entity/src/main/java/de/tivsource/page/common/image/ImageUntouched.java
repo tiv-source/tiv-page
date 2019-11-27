@@ -41,6 +41,8 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
      */
     private static final Logger logger = LogManager.getLogger(ImageUntouched.class);
 
+    protected static String uploadPath = "/srv/tiv-page/upload/";
+
     /**
      * Lokaler Pfad der Orginal-Datei.
      */
@@ -286,14 +288,13 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
     }
 
     public void generate() {
-        String filePath = "/srv/tiv-page/upload/";
 
         // Generiere UUID für den Dateinamen
         String pictureSaveName = UUID.randomUUID().toString();
 
         try {
             // Datei die erstellt werden soll
-            File fileToCreate = new File(filePath, pictureSaveName + ".org.png");
+            File fileToCreate = new File(uploadPath, pictureSaveName + ".org.png");
             logger.debug("Absoluter Pfad der neuen Picture-Datei : "
                     + fileToCreate.getAbsolutePath());
 
@@ -308,12 +309,12 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
 
         String s = null;
 
-        String file = filePath + pictureSaveName + ".org.png";
-        String largeFile = filePath + pictureSaveName + ".large.png";
-        String normalFile = filePath + pictureSaveName + ".normal.png";
-        String smallFile = filePath + pictureSaveName + ".small.png";
-        String thumbFile = filePath + pictureSaveName + ".thumb.png";
-        String microFile = filePath + pictureSaveName + ".micro.png";
+        String file = uploadPath + pictureSaveName + ".org.png";
+        String largeFile = uploadPath + pictureSaveName + ".large.png";
+        String normalFile = uploadPath + pictureSaveName + ".normal.png";
+        String smallFile = uploadPath + pictureSaveName + ".small.png";
+        String thumbFile = uploadPath + pictureSaveName + ".thumb.png";
+        String microFile = uploadPath + pictureSaveName + ".micro.png";
         try {
 
             Process process = Runtime.getRuntime().exec(
