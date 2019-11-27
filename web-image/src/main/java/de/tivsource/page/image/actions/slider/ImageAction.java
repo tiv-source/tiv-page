@@ -47,9 +47,14 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
     private SliderImageDaoLocal sliderImageDaoLocal;
 
     /**
-     * Aktuelle Kategorie.
+     * Das Bild des aktuellen Sliders.
      */
     private SliderImage sliderImage;
+
+    /**
+     * Das Bild darf normalerweise aus dem Cache geladen werden.
+     */
+    private boolean cache = true;
 
     public void setServletRequest(HttpServletRequest servletRequest) {
         this.servletRequest = servletRequest;
@@ -60,6 +65,13 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
      */
     public SliderImage getSliderImage() {
         return sliderImage;
+    }
+
+    /**
+     * @param cache the cache to set
+     */
+    public void setCache(boolean cache) {
+        this.cache = cache;
     }
 
     /**
@@ -157,11 +169,17 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         //response.setHeader("Cache-control", "no-cache, no-store");
         //response.setHeader("Pragma", "no-cache");
 
-        response.setHeader("Expires", expires);
-        response.setHeader("Last-Modified", lastModified);
-        response.setHeader("Retry-After", expires);
+        if(cache) {
+            response.setHeader("Expires", expires);
+            response.setHeader("Last-Modified", lastModified);
+            response.setHeader("Retry-After", expires);
+        } else {
+            response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Expires", "-1");
+        }
 
-        if(since!=null && since.equals(lastModified)) {
+        if(cache && since!=null && since.equals(lastModified)) {
             response.setStatus(304);
             return INPUT;
         }
