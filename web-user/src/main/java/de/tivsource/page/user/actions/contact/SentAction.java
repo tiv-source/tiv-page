@@ -23,6 +23,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.common.captcha.Captcha;
+import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -54,6 +56,9 @@ public class SentAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(SentAction.class);
 
+    @InjectEJB(name="CaptchaDao")
+    private CaptchaDaoLocal captchaDaoLocal;
+
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
 
@@ -67,13 +72,9 @@ public class SentAction extends EmptyAction {
 
 	private Page page;
 
-	public Message getMessage() {
-        return message;
-    }
+    private Captcha captcha;
 
-    public void setMessage(Message message) {
-        this.message = message;
-    }
+    private String answer;
 
     @Actions({
         @Action(
@@ -90,17 +91,22 @@ public class SentAction extends EmptyAction {
         // Hole Action Locale
     	this.getLanguageFromActionContext();
 
-    	// Sende Mail
-    	sendMail();
-    	
-    	// Speichere Message Objekt
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-        message.setCreated(new Date());
-        message.setCreatedAddress(remoteAddress);
-        message.setUuid(UUID.randomUUID().toString());
-        messageDaoLocal.merge(message);
-        
-		return SUCCESS;
+
+        if(answer != null && captcha != null && !answer.trim().equals("") && captcha.getContent().equals(answer)) {
+            sendMail();
+            // Speichere Message Objekt
+            String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+            message.setCreated(new Date());
+            message.setCreatedAddress(remoteAddress);
+            message.setUuid(UUID.randomUUID().toString());
+            messageDaoLocal.merge(message);
+
+            return SUCCESS;            
+        } else {
+            captcha = captchaDaoLocal.random();
+            addFieldError("answer", "Bitte geben Sie die Hausnummer ein.");
+            return INPUT;
+        }
 	}
 
     @Override
@@ -111,7 +117,36 @@ public class SentAction extends EmptyAction {
         return page;
     }// Ende getPage()
 
-	private void sendMail() {
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+	/**
+     * @return the captcha
+     */
+    public Captcha getCaptcha() {
+        return captcha;
+    }
+
+    /**
+     * @param captcha the captcha to set
+     */
+    public void setCaptcha(Captcha captcha) {
+        this.captcha = captcha;
+    }
+
+    /**
+     * @param answer the answer to set
+     */
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    private void sendMail() {
 		LOGGER.info("sendMail() aufgerufen.");
 		
 		javax.mail.Authenticator auth = new javax.mail.Authenticator() {

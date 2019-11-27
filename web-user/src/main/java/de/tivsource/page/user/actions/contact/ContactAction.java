@@ -12,6 +12,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.common.captcha.Captcha;
+import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.page.Page;
@@ -39,6 +41,9 @@ public class ContactAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(ContactAction.class);
 
+    @InjectEJB(name="CaptchaDao")
+    private CaptchaDaoLocal captchaDaoLocal;
+
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
 
@@ -47,10 +52,14 @@ public class ContactAction extends EmptyAction {
 
     private Page page;
 
+    private Captcha captcha;
+
     @Override
     public void prepare() {
         // Lade die Kontaktseite aus der Datenbank
         this.page = pageDaoLocal.findByTechnical("contact");
+        // Lade Zufälligen Captcha aus der Datenbank
+        captcha = captchaDaoLocal.random();
     }
 
     @Override
@@ -85,5 +94,12 @@ public class ContactAction extends EmptyAction {
     public Page getPage() {
     	return this.page;
     }// Ende getPage()
+
+    /**
+     * @return the captcha
+     */
+    public Captcha getCaptcha() {
+        return captcha;
+    }
 
 }// Ende class

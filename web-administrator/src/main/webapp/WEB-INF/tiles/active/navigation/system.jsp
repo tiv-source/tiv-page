@@ -9,6 +9,7 @@
 <struts:url var="userUrl"              action="index" namespace="/system/user" />
 <struts:url var="roleUrl"              action="index" namespace="/system/role" />
 <struts:url var="propertyUrl"          action="index" namespace="/system/property" />
+<struts:url var="captchaUrl"           action="index" namespace="/system/captcha" />
 
    	  <div class="nav">
    	    <div id="navi">
@@ -42,6 +43,14 @@
                 <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.properties"/>">
                 <br />
                 <p class="ellipsis"><struts:text name="navigation.properties"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{captchaUrl}" title="%{getText('navigation.captchas')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.captchas"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.captchas"/></p>
               </div>
             </struts:a>
 
