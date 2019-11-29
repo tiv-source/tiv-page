@@ -4,3 +4,6 @@
 tiv-page.log
 tiv-page-auth.log
 *.ttf
+/checkUpdate.sh
+/cleanupServer.sh
+/updateServer.sh
