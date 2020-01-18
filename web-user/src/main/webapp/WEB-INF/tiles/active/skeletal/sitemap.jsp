@@ -4,7 +4,7 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <struts:iterator value="responsiveNavigation" status="responsiveNavigationStatus">
-<struts:url var="responsiveNavigationLink" action="index" namespace="/%{technical}"/>
+<struts:url var="responsiveNavigationLink" action="index" namespace="/%{technical.substring(3)}"/>
  <url>
   <loc><struts:property value="getProperty('server.base.url')" /><struts:property value="%{responsiveNavigationLink}" /></loc>
   <lastmod><struts:date name="modified" format="yyyy-MM-dd" /></lastmod>
