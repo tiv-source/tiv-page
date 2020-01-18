@@ -39,7 +39,9 @@ public class SubsumptionDao implements SubsumptionDaoLocal {
     @Override
     public void merge(Subsumption subsumption) {
         LOGGER.info("merge(Subsumption subsumption) aufgerufen");
-        LOGGER.info("Anzahl der ContentItems: " + subsumption.getContentItems().size());
+        if(subsumption.getContentItems() != null) {
+            LOGGER.info("Anzahl der ContentItems: " + subsumption.getContentItems().size());
+        }
         entityManager.merge(subsumption);
     }
 
