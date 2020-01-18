@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="subsumption.technical">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="subsumption.technical.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-z,0-9]{4,21} ]]></param>
+      <message key="subsumption.technical.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="subsumption.descriptionMap.DE.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="subsumption.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="subsumption.descriptionMap.DE.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="subsumption.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="subsumption.descriptionMap.DE.keywords">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="subsumption.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="subsumption.contentMap.DE.content">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="subsumption.contentMap.DE.content.validation.required" />
+    </field-validator>
+  </field>
+
+</validators>

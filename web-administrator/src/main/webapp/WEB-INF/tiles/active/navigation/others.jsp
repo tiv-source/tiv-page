@@ -19,6 +19,8 @@
 <struts:url var="companionGroupUrl"    action="index" namespace="/others/companiongroup" />
 <struts:url var="companionUrl"         action="index" namespace="/others/companion" />
 <struts:url var="sliderUrl"            action="index" namespace="/others/slider" />
+<struts:url var="subsumptionUrl"       action="index" namespace="/others/subsumption" />
+
 
    	  <div class="nav">
    	    <div id="navi">
@@ -47,6 +49,15 @@
                 <p class="ellipsis"><struts:text name="navigation.menuEntries"/></p>
               </div>
             </struts:a>
+
+            <struts:a href="%{subsumptionUrl}" title="%{getText('navigation.subsumptions')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.subsumptions"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.subsumptions"/></p>
+              </div>
+            </struts:a>
+
 
 
             <struts:a href="%{messageUrl}" title="%{getText('navigation.messages')}">
