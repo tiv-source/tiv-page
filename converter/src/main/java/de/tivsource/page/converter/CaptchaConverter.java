@@ -17,7 +17,7 @@ import de.tivsource.page.common.captcha.Captcha;
 import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
 
 /**
- * @author marc
+ * @author Marc Michele
  *
  */
 public class CaptchaConverter extends StrutsTypeConverter {
