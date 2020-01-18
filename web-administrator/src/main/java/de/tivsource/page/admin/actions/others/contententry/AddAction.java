@@ -81,7 +81,7 @@ public class AddAction extends EmptyAction implements Preparable {
 
     @Override
     public void prepare() {
-    	contentItems = contentItemDaoLocal.findAll(0, contentItemDaoLocal.countAll());
+    	contentItems = contentItemDaoLocal.findAllUnassigned(0, contentItemDaoLocal.countAllUnassigned());
     }
     
 	@Override

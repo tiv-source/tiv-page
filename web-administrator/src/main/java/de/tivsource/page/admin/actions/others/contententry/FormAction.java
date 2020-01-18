@@ -93,7 +93,7 @@ public class FormAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-    	contentItems = contentItemDaoLocal.findAll(0, contentItemDaoLocal.countAll());
+    	contentItems = contentItemDaoLocal.findAllUnassigned(0, contentItemDaoLocal.countAllUnassigned());
 
     	this.loadPageParameter();
     	
