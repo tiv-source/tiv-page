@@ -14,7 +14,7 @@
           <struts:form 
                   cssClass="form" 
                   action="delete" 
-                  namespace="/locations/feedbackOption" 
+                  namespace="/locations/feedbackoption" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"

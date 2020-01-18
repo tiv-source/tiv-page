@@ -208,6 +208,19 @@ public class FeedbackOption {
         return tmpResult;
     }
 
+    public FeedbackOptionDescription getDescriptionObject(Language language) {
+        FeedbackOptionDescription result = descriptionMap.get(Language.DE);
+        FeedbackOptionDescription tmpResult = descriptionMap.get(Language.DE);
+        try {
+            tmpResult = descriptionMap.get(language);
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+
     /**
      * Methode zum abfragen der Beschreibung in einer bestimmten Sprache.
      * @param language - Sprache in der die Beschreibung gewünscht wird.
