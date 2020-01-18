@@ -51,6 +51,7 @@
 		<class>de.tivsource.page.entity.reservation.Reservation</class>
 		<class>de.tivsource.page.entity.slider.Slider</class>
 		<class>de.tivsource.page.entity.slider.SliderImage</class>
+		<class>de.tivsource.page.entity.subsumption.Subsumption</class>
 		<class>de.tivsource.page.entity.vacancy.Vacancy</class>
 
 		

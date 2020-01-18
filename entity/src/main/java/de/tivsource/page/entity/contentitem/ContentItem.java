@@ -23,7 +23,7 @@ import de.tivsource.page.entity.pictureitem.PictureItem;
 @Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ContentItem extends PictureItem {
+public abstract class ContentItem extends PictureItem implements Comparable<ContentItem> {
 
     /**
      * Die Map mit dem Inhalt des Objektes, die Angabe ist Lokalisiert.
@@ -80,5 +80,7 @@ public class ContentItem extends PictureItem {
         }
         return tmpResult;
     }
+
+    public abstract String getUrl();
 
 }// Ende class
