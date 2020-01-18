@@ -78,14 +78,6 @@ public interface PageDaoLocal {
      */
     public List<Page> findAll(Integer start, Integer max, String field, String order);
 
-    public List<Page> findAllTopNavigation();
-
-    public List<Page> findAllNavigation();
-
-    public List<Page> findAllBottomNavigation();
-
-    public List<Page> findAllResponsiveNavigation();
-
     /**
      * Methode die die Anzahl aller Page Objekte die sich in der Datenbank
      * befinden zurück liefert.
