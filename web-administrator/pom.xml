@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>web-administrator</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Page Administration Web Project</name>
+	<name>Administrations-Modul</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -206,4 +206,5 @@
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
 	<inceptionYear>2012</inceptionYear>
+	<description>In diesem Objekt befindet sich der Code der Administrationsoberfläche des CM-Systems.</description>
 </project>

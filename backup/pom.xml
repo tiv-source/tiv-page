@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>backup</artifactId>
 	<packaging>jar</packaging>
-	<name>Backup package</name>
+	<name>Backup Modul</name>
 	<url>http://page.tivsource.de/</url>
 	<dependencies>
 
@@ -87,5 +87,6 @@
 		<name>T.I.V. Consulting GmbH</name>
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
-	<inceptionYear>2012</inceptionYear>
+	<inceptionYear>2010</inceptionYear>
+	<description>In diesem Modul befindet sich der Quellcode der Backup-Klassen, die dazu dienen ein Backup der Internet-Seite, die durch das CM-System verwaltet wird, zu erstellen.</description>
 </project>
