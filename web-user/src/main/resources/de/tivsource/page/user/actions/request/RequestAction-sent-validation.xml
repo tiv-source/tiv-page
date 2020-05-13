@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+  <field name="requestInput.gender">
+    <field-validator type="required" short-circuit="true">
+      <message key="requestInput.validation.gender"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[([M])|([F])|([O])]]></param>
+      <message key="requestInput.validation.gender.input" />
+    </field-validator>
+  </field>
+
+  <field name="requestInput.firstname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="requestInput.validation.firstname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="requestInput.validation.letter" />
+    </field-validator>
+  </field>
+
+  <field name="requestInput.lastname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="requestInput.validation.lastname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="requestInput.validation.letter" />
+    </field-validator>
+  </field>
+
+  <field name="requestInput.mail">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="requestInput.validation.mail" />
+    </field-validator>
+    <field-validator type="email">
+      <message key="requestInput.validation.mail.valid" />
+    </field-validator>
+  </field>
+
+  <field name="requestInputprivacy">
+    <field-validator type="fieldexpression">
+      <param name="expression">requestInput.privacy</param>
+      <message key="requestInput.validation.privacy" />
+    </field-validator>
+  </field>
+
+</validators>
