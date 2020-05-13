@@ -8,8 +8,51 @@
 	<version>0.0.1</version>
 	<packaging>pom</packaging>
 
-	<name>Project package</name>
-	<url>http://page.tivsource.de/</url>
+	<name>TIV-Page</name>
+	<description>TIV-Page ist ein CMS (Content Management System) das in Java geschrieben ist. Es wird unter anderem das Java Framework Struts2 benutzt</description>
+	<inceptionYear>2010</inceptionYear>
+	<url>https://page.tiv-source.de/</url>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License Version 2 (GPL V2)</name>
+			<url>http://www.gnu.org/licenses/gpl-2.0.txt</url>
+			<distribution>manual</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>T.I.V. Consulting GmbH</name>
+		<url>https://www.tiv-consulting.de/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>tiv-source</id>
+			<name>Marc Michele</name>
+			<email>marc.michele@tiv-source.de</email>
+			<organization>T.I.V. Consulting GmbH</organization>
+			<organizationUrl>http://www.tiv-consulting.de/</organizationUrl>
+			<roles>
+				<role>developer</role>
+				<role>testing</role>
+			</roles>
+			<timezone>Europe/Berlin</timezone>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Kamilla Czastka</name>
+			<email>info@czastka.de</email>
+			<organization>Kamilla Czastka Painting</organization>
+			<organizationUrl>http://www.czastka.de/</organizationUrl>
+			<roles>
+				<role>documentation, graphics</role>
+			</roles>
+			<timezone>Europe/Berlin</timezone>
+		</contributor>
+	</contributors>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,6 +64,74 @@
 		<hibernate.annotations.version>5.0.4.Final</hibernate.annotations.version>
 		<hibernate.search.version>5.10.5.Final</hibernate.search.version>
 	</properties>
+
+	<scm>
+		<url>https://github.com/tiv-source/tiv-page/tree/master/</url>
+		<connection>scm:git:https://github.com/tiv-source/tiv-page.git</connection>
+		<tag>0.0.1-SNAPSHOT</tag>
+		<developerConnection>scm:git:https://github.com/tiv-source/tiv-page.git</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<url>https://github.com/tiv-source/tiv-page/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<distributionManagement>
+		<site>
+			<id>tiv-source-page</id>
+			<url>sftp://page@apache4.nethold.de/html/</url>
+		</site>
+	</distributionManagement>
+
+	<reporting>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-changelog-plugin</artifactId>
+	            <version>2.2</version>
+	            <configuration>
+	                <type>range</type>
+	                <range>730</range>
+	            </configuration>
+	        </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+                   <use>false</use>
+                   <links>
+                     <link>http://java.sun.com/javase/6/docs/api/</link>
+                   </links>
+                </configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>taglist-maven-plugin</artifactId>
+			    <version>2.4</version>
+			    <configuration>
+			        <tagListOptions>
+			            <tagClasses>
+			                <tagClass>
+			                    <displayName>Todo Work</displayName>
+			                    <tags>
+			                        <tag>
+			                            <matchString>todo</matchString>
+			                            <matchType>ignoreCase</matchType>
+			                        </tag>
+			                        <tag>
+			                            <matchString>FixMe</matchString>
+			                            <matchType>exact</matchType>
+			                        </tag>
+			                    </tags>
+			                </tagClass>
+			            </tagClasses>
+			        </tagListOptions>
+			    </configuration>
+			</plugin>
+	    </plugins>
+	</reporting>
 
 	<dependencies>
 		<dependency>
@@ -83,14 +194,34 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+				    <chmod>true</chmod>
+                    <inputEncoding>UTF-8</inputEncoding>
+                    <outputEncoding>UTF-8</outputEncoding>
+					<locales>de</locales>
+					<templateFile>${maven.multiModuleProjectDirectory}/src/site/site.vm</templateFile>
+				</configuration>
+			</plugin>
 		</plugins>
+		<extensions>
+			<!-- Aktiviert SSH Support  -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.9</version>
+			</extension>
+		</extensions>
 	</build>
 
 	<repositories>
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Maven Repository Group</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+			<url>https://repository.jboss.org/nexus/content/groups/public</url>
 		</repository>
 		<repository>
 			<id>apache.nexus</id>
@@ -99,7 +230,7 @@
 		</repository>
             <repository>
                 <id>mvnrepository</id>
-                <url>http://repo1.maven.org/maven2</url>
+                <url>https://repo1.maven.org/maven2</url>
                 <snapshots>
                     <enabled>true</enabled>
                 </snapshots>
@@ -108,10 +239,22 @@
                 </releases>
             </repository>
 	</repositories>
+	
+	<pluginRepositories>
+	    <pluginRepository>
+	        <id>maven-central</id>
+	        <url>https://repo.maven.apache.org/maven2</url>
+	        <releases>
+	            <enabled>true</enabled>
+	            <updatePolicy>always</updatePolicy>
+	            <checksumPolicy>warn</checksumPolicy>
+	        </releases>
+	        <snapshots>
+	            <enabled>true</enabled>
+	            <updatePolicy>always</updatePolicy>
+	            <checksumPolicy>warn</checksumPolicy>
+	        </snapshots>
+	    </pluginRepository>
+	</pluginRepositories>
 
-	<inceptionYear>2012</inceptionYear>
-	<organization>
-		<name>T.I.V. Consulting GmbH</name>
-		<url>http://www.tiv-consulting.de/</url>
-	</organization>
 </project>
