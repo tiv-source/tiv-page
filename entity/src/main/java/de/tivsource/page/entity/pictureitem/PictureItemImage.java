@@ -42,6 +42,10 @@ public class PictureItemImage extends ImageUntouched implements Comparable<Image
     @JoinColumn(name = "pictureitem_uuid")
     private PictureItem pictureItem;
 
+    static {
+        uploadPath = "/srv/tiv-page/picture/";
+    }
+
     /**
      * @return the uuid
      */
