@@ -148,6 +148,7 @@
   <!-- Content Anfang -->
   <div id=content> 
     <tiles:insertAttribute name="content" />
+    <hr>
   </div>
   <!-- Content Ende -->
 
