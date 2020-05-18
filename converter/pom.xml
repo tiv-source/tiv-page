@@ -10,8 +10,8 @@
 	</parent>
 	<artifactId>converter</artifactId>
 	<packaging>jar</packaging>
-	<name>Converter package</name>
-	<url>http://page.tivsource.de/</url>
+	<name>Converter Module</name>
+	<url>http://page.tiv-source.de/converter/</url>
 	<dependencies>
 
 		<dependency>
@@ -53,7 +53,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -88,4 +88,5 @@
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
 	<inceptionYear>2012</inceptionYear>
+	<description>Das Converter Modul dient dazu alle Konverter die in den anderen Modulen des Projektes benötigt werden zusammen zufassen.</description>
 </project>

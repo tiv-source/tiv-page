@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>dao</artifactId>
 	<packaging>ejb</packaging>
-	<name>Dao package</name>
+	<name>DAO Module</name>
 	<url>http://page.tivsource.de/</url>
 	<dependencies>
 

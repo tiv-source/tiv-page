@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>ear</artifactId>
 	<packaging>ear</packaging>
-	<name>TIV Page Enterprise Archiv</name>
+	<name>Enterprise Archiv</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -19,7 +19,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>

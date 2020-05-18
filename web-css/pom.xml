@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>web-css</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Page CSS Web Project</name>
+	<name>CSS-Modul</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -21,7 +21,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 		</dependency>
 
 		<dependency>

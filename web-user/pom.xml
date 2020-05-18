@@ -10,7 +10,6 @@
 	</parent>
 	<artifactId>web-user</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Page User Web Project</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -29,7 +28,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 		</dependency>
 
 		<dependency>
@@ -204,4 +203,5 @@
 		<name>T.I.V. Consulting GmbH</name>
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
+	<name>Internetseitenmodul</name>
 </project>

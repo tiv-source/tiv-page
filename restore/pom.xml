@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>restore</artifactId>
 	<packaging>jar</packaging>
-	<name>Restore package</name>
+	<name>Wiederherstellungspaket</name>
 	<url>http://page.tivsource.de/</url>
 	<build>
 		<plugins>

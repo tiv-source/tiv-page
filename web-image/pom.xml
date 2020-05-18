@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>web-image</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Page Image Web Project</name>
+	<name>Image-Modul</name>
 	<url>http://shop.tivsource.de/</url>
 
 
@@ -29,7 +29,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 		</dependency>
 
 		<dependency>

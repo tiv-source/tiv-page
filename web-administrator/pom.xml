@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>web-administrator</artifactId>
 	<packaging>war</packaging>
-	<name>Administrations-Modul</name>
+	<name>Administrationsmodul</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -21,7 +21,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 		</dependency>
 
 		<dependency>
@@ -141,7 +141,7 @@
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<scope>provided</scope>
-			<version>4.0.4.Final</version>
+			<version>${hibernate.annotations.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>

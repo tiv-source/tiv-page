@@ -10,8 +10,8 @@
 	</parent>
 	<artifactId>web-shariff</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Page Shariff Web Project</name>
-	<url>http://shop.tivsource.de/</url>
+	<name>Shariff-Modul</name>
+	<url>http://page.tiv-source.de/web-shariff/</url>
 
 	<repositories>
 		<repository>
@@ -27,7 +27,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-			<version>4.10</version>
+			<version>${junit.version}</version>
 		</dependency>
 
 

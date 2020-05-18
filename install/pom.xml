@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>install</artifactId>
 	<packaging>war</packaging>
-	<name>TIV-Page Install Project</name>
+	<name>Installationsmodul</name>
 	<url>http://page.tivsource.de/</url>
 
 	<properties>

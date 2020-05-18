@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>entity</artifactId>
 	<packaging>jar</packaging>
-	<name>Entity package</name>
+	<name>Objektpaket</name>
 	<url>http://page.tivsource.de/</url>
 	<dependencies>
 
@@ -122,7 +122,7 @@
 					<artifactId>dom4j</artifactId>
 				</exclusion>
 			</exclusions>
-			<version>4.0.1.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
