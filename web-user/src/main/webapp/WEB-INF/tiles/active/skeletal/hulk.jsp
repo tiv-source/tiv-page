@@ -122,29 +122,6 @@
            </li>
          </struts:else>
        </struts:iterator>
-       <struts:if test="getProperty('socialmedia.icons') == 'true'">
-         <struts:if test="getProperty('socialmedia.facebook.url') != ''">
-           <li>
-             <a href="<struts:property value="getProperty('socialmedia.facebook.url')"/>" target="_blank">
-               Facebook
-             </a>
-           </li>
-         </struts:if>
-         <struts:if test="getProperty('socialmedia.instagram.url') != ''">
-           <li>
-             <a href="<struts:property value="getProperty('socialmedia.instagram.url')"/>" target="_blank">
-               Instagram
-             </a>
-           </li>
-         </struts:if>
-         <struts:if test="getProperty('socialmedia.twitter.url') != ''">
-           <li>
-             <a href="<struts:property value="getProperty('socialmedia.twitter.url')"/>" target="_blank">
-               Twitter
-             </a>
-           </li>
-         </struts:if>
-       </struts:if>
      </ul>		
    </div>     
 
