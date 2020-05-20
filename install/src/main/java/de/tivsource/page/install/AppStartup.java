@@ -4,6 +4,7 @@
 package de.tivsource.page.install;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
@@ -19,6 +20,8 @@ import de.tivsource.page.entity.property.Property;
  *
  */
 public class AppStartup implements ServletContextListener {
+
+    private static final Logger LOGGER = Logger.getLogger("INFO");
 
     @EJB
     private RoleDaoLocal roleDaoLocal;
@@ -66,6 +69,71 @@ public class AppStartup implements ServletContextListener {
             propertyDaoLocal.merge(property);
         }
 
+        checkAllAttributesExisting();
+
     }// Ende contextInitialized
+
+    /**
+     * Methode um zu überprüfen ob alle benötigten Attribute in der Datenbank vorhanden sind.
+     */
+    private void checkAllAttributesExisting() {
+        String[][] properties = {
+                {"appointment.archive.list.description",                  "true"},
+                {"appointment.archive.list.pointInTime.date",             "true"},
+                {"appointment.archive.list.pointInTime.date.preposition", "true"},
+                {"appointment.archive.list.pointInTime.nice",             "true"},
+                {"appointment.archive.list.pointInTime.time",             "true"},
+                {"appointment.archive.pointInTime.date",                  "true"},
+                {"appointment.archive.pointInTime.nice",                  "true"},
+                {"appointment.archive.pointInTime.time",                  "true"},
+                {"appointment.booking.text.de",                           "Ticket kaufen"},
+                {"appointment.booking.text.en",                           "Buy a ticket"},
+                {"appointment.list.description",                          "true"},
+                {"appointment.list.pointInTime.date",                     "true"},
+                {"appointment.list.pointInTime.date.preposition",         "true"},
+                {"appointment.list.pointInTime.nice",                     "true"},
+                {"appointment.list.pointInTime.time",                     "true"},
+                {"appointment.pointInTime.date",                          "true"},
+                {"appointment.pointInTime.nice",                          "true"},
+                {"appointment.pointInTime.time",                          "true"},
+                {"captcha.image.lastModified",                            "Sun, 24 Nov 2019 14:26:08 GMT"},
+                {"companion.page.enabled",                                "false"},
+                {"contact.page.enabled",                                  "true"},
+                {"cookieconsent.button.background",                       "#f1d600"},
+                {"cookieconsent.content.dismiss",                         "Akzeptieren"},
+                {"cookieconsent.content.href",                            "/public/privacy/index.html"},
+                {"cookieconsent.content.link",                            "Mehr erfahren"},
+                {"cookieconsent.content.message",                         "Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website so angenehm wie möglich zu gestalten. Durch die Nutzung unserer Website erklären Sie sich mit unserer Verwendung von Cookies einverstanden."},
+                {"cookieconsent.content.target",                          ""},
+                {"cookieconsent.popup.background",                        "#000"},
+                {"cookieconsent.position",                                "top"},
+                {"css-path",                                              "/var/www/html/css/"},
+                {"cssFile.lastModified",                                  "Sun, 24 Nov 2019 14:26:08 GMT"},
+                {"event.show.description",                                "true"},
+                {"module.request",                                        "false"},
+                {"request.template.path",                                 "file:/srv/tiv-page/templates/template_request.xml"},
+        };
+        for (int i = 0; i < properties.length; i++) {
+            if(!checkAttribute(properties[i][0], properties[i][1])) {
+                LOGGER.info("Eigenschaft: " + properties[i][0] + " hinzugefügt.");
+            }
+        }
+    }// Ende checkAllAttributesExisting()
+
+    private Boolean checkAttribute(String inputKey, String inputValue) {
+        Property dbProperty = propertyDaoLocal.findByKey(inputKey);
+        // Prüfe ob der Wert in der Datenbank vorhanden ist
+        if(dbProperty != null) {
+            return true;
+        }
+        Property property = new Property();
+        property.setKey(inputKey);
+        property.setModified(new Date());
+        property.setModifiedAddress("localhost");
+        property.setModifiedBy("Installer");
+        property.setValue(inputValue);
+        propertyDaoLocal.merge(property);
+        return false;
+    }// Ende checkAttribute(String inputKey, String inputValue)
 
 }// Ende class
