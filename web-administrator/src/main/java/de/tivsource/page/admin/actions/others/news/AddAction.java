@@ -119,7 +119,9 @@ public class AddAction extends EmptyAction {
             news.getContentMap().get(Language.EN).setLanguage(Language.EN);
             news.getContentMap().get(Language.EN).setCreated(new Date());
             news.getContentMap().get(Language.EN).setModified(new Date());
-    	    
+
+            news.setTechnical("NEWS_" + news.getUuid());
+
     		newsDaoLocal.merge(news);
 
             return SUCCESS;

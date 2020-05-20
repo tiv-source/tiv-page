@@ -119,7 +119,9 @@ public class AddAction extends EmptyAction {
             manual.getContentMap().get(Language.EN).setLanguage(Language.EN);
             manual.getContentMap().get(Language.EN).setCreated(new Date());
             manual.getContentMap().get(Language.EN).setModified(new Date());
-    	    
+
+            manual.setTechnical("MANUAL_" + manual.getUuid());
+
     		manualDaoLocal.merge(manual);
 
             return SUCCESS;

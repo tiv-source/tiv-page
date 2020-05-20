@@ -120,6 +120,7 @@ public class AddAction extends EmptyAction {
     	    event.getDescriptionMap().get(Language.EN).setName(event.getDescriptionMap().get(Language.DE).getName());
     	    event.getDescriptionMap().get(Language.EN).setDescription(event.getDescriptionMap().get(Language.DE).getDescription());
     	    event.getDescriptionMap().get(Language.EN).setKeywords(event.getDescriptionMap().get(Language.DE).getKeywords());
+    	    event.setTechnical("EVENT_" + event.getUuid());
 
     	    eventDaoLocal.merge(event);
             return SUCCESS;

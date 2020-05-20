@@ -132,6 +132,8 @@ public class AddAction extends EmptyAction {
             appointment.getContentMap().get(Language.EN).setCreated(new Date());
             appointment.getContentMap().get(Language.EN).setModified(new Date());
 
+            appointment.setTechnical("APPOINTMENT_" + appointment.getUuid());
+
     		appointmentDaoLocal.merge(appointment);
 
             return SUCCESS;

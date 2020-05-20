@@ -151,8 +151,9 @@ public class AddAction extends EmptyAction {
     	    vacancy.getContentMap().get(Language.EN).setCreated(new Date());
     	    vacancy.getContentMap().get(Language.EN).setModified(new Date());
     	    vacancy.getContentMap().get(Language.EN).setContent(vacancy.getContentMap().get(Language.DE).getContent());
-    	    
-    	    
+
+    	    vacancy.setTechnical("VACANCY_" + vacancy.getUuid());
+
     	    vacancyDaoLocal.merge(vacancy);
 
             return SUCCESS;

@@ -122,6 +122,8 @@ public class AddAction extends EmptyAction {
             location.getDescriptionMap().get(Language.EN).setName(location.getDescriptionMap().get(Language.DE).getName());
             location.getDescriptionMap().get(Language.EN).setNamingItem(location);
             location.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
+            
+            location.setTechnical("LOCATION_" + location.getUuid());
 
             /*
 
