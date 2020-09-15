@@ -23,6 +23,11 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <label for="property.key" class="label">Name:</label>
+                <struts:property value="property.key"/>
+              </div>
+
+              <div class="field">
                 <struts:textfield 
                     key="property.value"
                     labelposition="left"

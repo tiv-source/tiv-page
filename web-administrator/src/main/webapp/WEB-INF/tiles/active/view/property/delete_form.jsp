@@ -22,9 +22,14 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <label for="role.technical" class="label">Name:</label>
+                <label for="property.key" class="label">Name:</label>
                 <struts:hidden id="property.key" key="property.key"/>
-                <struts:property value="property.key"/><br />
+                <struts:property value="property.key"/>
+              </div>
+
+              <div class="field">
+                <label for="property.value" class="label">Inhalt:</label>
+                <struts:hidden id="property.value" key="property.value"/>
                 <struts:property value="property.value"/>
               </div>
 
