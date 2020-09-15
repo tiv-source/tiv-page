@@ -3,7 +3,9 @@ package de.tivsource.page.user.actions.event;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -163,7 +165,16 @@ public class IndexAction extends EmptyAction {
         }
     }// Ende execute()
 
-
+    public Map<Integer, String> getQuantityList() {
+        Map<Integer, String> quantityList = new HashMap<Integer, String>();
+        // 1:01;2:02;3:03;4:04;5:05;6:06
+        String stringList[] = propertyDaoLocal.findByKey("event.quantity.list").getValue().split(";");
+        for(String entry : stringList) {
+            String entryList[] = entry.split(":");
+            quantityList.put(Integer.parseInt(entryList[0]), entryList[1]);
+        }
+        return quantityList;
+    }
 
     private Boolean isValid(String input) {
         if (Pattern.matches("[abcdef0-9-]*", input)) {

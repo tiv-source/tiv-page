@@ -110,7 +110,10 @@ public class AppStartup implements ServletContextListener {
                 {"css-path",                                              "/var/www/html/css/"},
                 {"cssFile.lastModified",                                  "Sun, 24 Nov 2019 14:26:08 GMT"},
                 {"event.show.description",                                "true"},
+                {"event.quantity.list",                                   "1:01;2:02;3:03;4:04;5:05;6:06;7:07;8:08;9:09;10:10;11:11;12:12"},
                 {"module.request",                                        "false"},
+                {"news.on.home",                                          "false"},
+                {"news.on.home.quantity",                                 "2"},
                 {"request.template.path",                                 "file:/srv/tiv-page/templates/template_request.xml"},
         };
         for (int i = 0; i < properties.length; i++) {
