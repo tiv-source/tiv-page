@@ -191,7 +191,7 @@
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
-k
+
               <div class="field">
                 <struts:textarea
                     id="editor"
