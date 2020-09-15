@@ -16,14 +16,19 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author Marc Michele
  *
  */
 public class CreateOpenStreetMapCache {
 
+    private static final Logger LOGGER = LogManager.getLogger(CreateOpenStreetMapCache.class);
+
 	private static final String HTDOCS = "/var/www/html/osmcache/";
-	
+
 	private String uuid;
 
 	private String centerLatitude;
@@ -32,17 +37,18 @@ public class CreateOpenStreetMapCache {
 	
 	// <struts:property value="latitude" />,<struts:property value="longitude" />
 	// <struts:property value="latitude" />,<struts:property value="longitude" />
-	private String url = "http://staticmap.openstreetmap.de/staticmap.php?center=";
-	private String urlParameter1 = "&zoom=18&size=";
-	private String urlParameter2 = "&maptype=mapnik&markers=";
-	private String urlParameter3 = ",lightblue";
+	// https://osm-static-maps.herokuapp.com/?geojson=[{%22type%22:%22Point%22,%22coordinates%22:[7.336500,51.438845]}]&height=230&width=250&zoom=17
+	private String url = "https://osm-static-maps.herokuapp.com/?geojson=[{%22type%22:%22Point%22,%22coordinates%22:[";
+	private String urlParameter1 = "],%22markerIconOptions%22:{%22iconUrl%22:%22https://www.backhaus.nrw/uploads/marker.png%22,iconAnchor:[13,35]}}]&width=";
+	private String urlParameter2 = "&height=";
+	private String urlParameter3 = "&zoom=17&attribution=%C2%A9%20OpenStreetMap%20contributors";
 
-	private Map<String, String> widthMap;
+	private Map<String, String[]> widthMap;
 
 	public CreateOpenStreetMapCache(String uuid, String latitude,
 			String longitude) {
 		super();
-		widthMap = new HashMap<String, String>();
+		widthMap = new HashMap<String, String[]>();
 		initWidth();
 		this.uuid = uuid;
 		this.centerLatitude = latitude;
@@ -57,25 +63,26 @@ public class CreateOpenStreetMapCache {
 					constructUrl(widthMap.get(key)), 
 					constructPath(key)
 					);
+			LOGGER.info("MAP-URL: " + constructUrl(widthMap.get(key)));
 		}
 	}// Ende generate()
 
     private void initWidth() {
-    	widthMap.put("wdefault", "250x230");
-    	widthMap.put("w0201",    "250x250");
-    	widthMap.put("w0581",    "230x465");
-    	widthMap.put("w0619",    "232x450");
-    	widthMap.put("w0641",    "270x467");
-    	widthMap.put("w0701",    "300x450");
-    	widthMap.put("w0901",    "300x465");
-    	widthMap.put("w0951",    "310x450");
-    	widthMap.put("w1001",    "340x452");
-    	widthMap.put("w1101",    "440x455");
-    	widthMap.put("w1291",    "490x455");
-    	widthMap.put("w1321",    "540x455");
-    	widthMap.put("w1401",    "590x455");
-    	widthMap.put("w1501",    "640x458");
-    	widthMap.put("w1701",    "740x458");
+    	widthMap.put("wdefault", new String[]{"250","230"});
+    	widthMap.put("w0201",    new String[]{"250","250"});
+    	widthMap.put("w0581",    new String[]{"230","465"});
+    	widthMap.put("w0619",    new String[]{"232","450"});
+    	widthMap.put("w0641",    new String[]{"270","467"});
+    	widthMap.put("w0701",    new String[]{"300","450"});
+    	widthMap.put("w0901",    new String[]{"300","465"});
+    	widthMap.put("w0951",    new String[]{"310","450"});
+    	widthMap.put("w1001",    new String[]{"340","452"});
+    	widthMap.put("w1101",    new String[]{"440","455"});
+    	widthMap.put("w1291",    new String[]{"490","455"});
+    	widthMap.put("w1321",    new String[]{"540","455"});
+    	widthMap.put("w1401",    new String[]{"590","455"});
+    	widthMap.put("w1501",    new String[]{"640","458"});
+    	widthMap.put("w1701",    new String[]{"740","458"});
     }
 
     private void loadImages(String urlString, String filePath) {
@@ -103,18 +110,16 @@ public class CreateOpenStreetMapCache {
 	    }
     }
     
-    private String constructUrl(String size) {
+    private String constructUrl(String[] size) {
     	StringBuffer stringBuffer = new StringBuffer();
     	stringBuffer.append(url);
-    	stringBuffer.append(centerLatitude);
-    	stringBuffer.append(",");
     	stringBuffer.append(centerLongitude);
+    	stringBuffer.append(",");
+    	stringBuffer.append(centerLatitude);
     	stringBuffer.append(urlParameter1);
-    	stringBuffer.append(size);
+    	stringBuffer.append(size[0]);
     	stringBuffer.append(urlParameter2);
-    	stringBuffer.append(centerLatitude);
-    	stringBuffer.append(",");
-    	stringBuffer.append(centerLongitude);
+    	stringBuffer.append(size[1]);
     	stringBuffer.append(urlParameter3);
     	return stringBuffer.toString();
     }
