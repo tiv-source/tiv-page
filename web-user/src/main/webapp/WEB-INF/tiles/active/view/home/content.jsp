@@ -18,6 +18,10 @@
 
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
+    <struts:if test="getProperty('news.on.home') == 'true'">
+      <struts:include value="content_news.jsp" />
+    </struts:if>
+
     <struts:if test="getProperty('home.location') == 'true'">
       <struts:include value="content_event.jsp" />
     </struts:if>

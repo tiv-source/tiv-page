@@ -29,11 +29,13 @@ import de.tivsource.page.common.menuentry.MenuEntry;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.menuentry.MenuEntryDaoLocal;
+import de.tivsource.page.dao.news.NewsDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.entity.event.Event;
+import de.tivsource.page.entity.news.News;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.slider.Slider;
 
@@ -83,7 +85,10 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 
     @InjectEJB(name="SliderDao")
     private SliderDaoLocal sliderDaoLocal;
-    
+
+    @InjectEJB(name="NewsDao")
+    private NewsDaoLocal newsDaoLocal;
+
     private Event left;
     private Event right;
 
@@ -94,6 +99,8 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	 */
 	private String language = null;
 
+	private List<News> newsList;
+	
 	public EmptyAction() {
 		super();
 	}
@@ -130,6 +137,7 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
     public void prepare() {
         // Lade die Startseite
         page = pageDaoLocal.findByTechnical("home");
+        newsList = newsDaoLocal.findAllVisible(0, Integer.parseInt(propertyDaoLocal.findByKey("news.on.home.quantity").getValue()));
     }
 
 	@Override
@@ -207,8 +215,14 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
         return numberFormat.format(sliderWidth);
     }
 
-    
-	/**
+    /**
+     * @return the newsList
+     */
+    public List<News> getNewsList() {
+        return newsList;
+    }
+
+    /**
 	 * Methode die die aktuelle Sprache aus dem Context holt.
 	 */
 	protected void getLanguageFromActionContext() {
