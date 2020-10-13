@@ -63,7 +63,7 @@
 		<hibernate.version>5.3.7.Final</hibernate.version>
 		<hibernate.annotations.version>5.0.4.Final</hibernate.annotations.version>
 		<hibernate.search.version>5.10.5.Final</hibernate.search.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<scm>
