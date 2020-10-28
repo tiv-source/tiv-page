@@ -62,7 +62,7 @@ public class EventDao implements EventDaoLocal {
 
     @Override
     public Boolean isEvent(String uuid) {
-        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = 'Y' and e.reservation = 'Y' order by e.uuid asc");
+        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = 'Y' order by e.uuid asc");
         query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
