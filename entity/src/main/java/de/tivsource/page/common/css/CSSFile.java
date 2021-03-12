@@ -5,6 +5,7 @@ package de.tivsource.page.common.css;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Objects;
 import java.util.SortedSet;
 import java.util.UUID;
 
@@ -298,7 +299,12 @@ public class CSSFile implements Comparable<CSSFile> {
 
     @Override
     public int compareTo(CSSFile o) {
-        if (o.priority < this.priority) {
+        logger.info("compareTo(CSSFile o) aufgerufen.");
+        if (this.priority == null && o.priority != null){
+            return -1;
+        } else if (this.priority != null && o.priority == null){
+            return 1;
+        } else if (o.priority < this.priority) {
             return 1;
         } else if (o.priority > this.priority) {
             return -1;
@@ -306,5 +312,29 @@ public class CSSFile implements Comparable<CSSFile> {
             return o.uuid.compareTo(this.uuid);
         }
     }// Ende compareTo(CSSFile o)
+
+    @Override
+    public int hashCode() {
+        logger.info("hashCode() aufgerufen.");
+        int hash = 7;
+        hash = 21 *  hash + uuid.hashCode();
+        hash = 21 *  hash + (name == null ? 0 : name.hashCode());
+        hash = 21 *  hash + (description == null ? 0 : description.hashCode());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        logger.info("equals(Object o) aufgerufen.");
+        // Selbst Test
+        if (this == o) return true;
+        // NULL Test
+        if (o == null) return false;
+        // type check and cast
+        if (getClass() != o.getClass()) return false;
+        CSSFile cssFile = (CSSFile) o;
+        // field comparison
+        return Objects.equals(uuid, cssFile.getUuid());
+    }
 
 }// Ende class

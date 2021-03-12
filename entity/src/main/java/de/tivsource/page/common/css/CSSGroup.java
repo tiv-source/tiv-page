@@ -4,7 +4,8 @@
 package de.tivsource.page.common.css;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.SortedSet;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Version;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.DocumentId;
@@ -35,6 +38,11 @@ import de.tivsource.page.entity.pictureitem.PictureItem;
 @Entity
 @Table(name = "CSSGroup")
 public class CSSGroup implements Comparable<CSSGroup> {
+
+    /**
+     * Statischer Logger der Klasse CSSGroup für die Ausgabe mit log4j.
+     */
+    private static final Logger logger = LogManager.getLogger(CSSFile.class);
 
     /**
      * UUID der Klasse CSSGroup, diese ID ist einmalig über alle Objekte hinweg
@@ -60,7 +68,7 @@ public class CSSGroup implements Comparable<CSSGroup> {
     private SortedSet<CSSFile> files;
 
     @OneToMany(mappedBy = "cssGroup", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
-    private List<PictureItem> pictureItems;
+    private Set<PictureItem> pictureItems;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
@@ -156,14 +164,14 @@ public class CSSGroup implements Comparable<CSSGroup> {
     /**
      * @return the pictureItems
      */
-    public List<PictureItem> getPictureItems() {
+    public Set<PictureItem> getPictureItems() {
         return pictureItems;
     }
 
     /**
      * @param pictureItems the pictureItems to set
      */
-    public void setPictureItems(List<PictureItem> pictureItems) {
+    public void setPictureItems(Set<PictureItem> pictureItems) {
         this.pictureItems = pictureItems;
     }
 
@@ -249,7 +257,31 @@ public class CSSGroup implements Comparable<CSSGroup> {
      */
     @Override
     public int compareTo(CSSGroup o) {
+        logger.trace("compareTo(CSSGroup o) aufgerufen.");
         return o.name.compareTo(this.name);
+    }
+
+    @Override
+    public int hashCode() {
+        logger.trace("hashCode() aufgerufen.");
+        int hash = 7;
+        hash = 21 *  hash + uuid.hashCode();
+        hash = 21 *  hash + (name == null ? 0 : name.hashCode());
+        hash = 21 *  hash + (description == null ? 0 : description.hashCode());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // Selbst Test
+        if (this == o) return true;
+        // NULL Test
+        if (o == null) return false;
+        // type check and cast
+        if (getClass() != o.getClass()) return false;
+        CSSGroup cssGroup = (CSSGroup) o;
+        // field comparison
+        return Objects.equals(uuid, cssGroup.getUuid());
     }
 
 }// Ende class
