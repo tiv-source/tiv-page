@@ -42,6 +42,11 @@ import de.tivsource.page.user.actions.EmptyAction;
     @TilesPutAttribute(name = "meta",    value = "/WEB-INF/tiles/active/meta/event.jsp"),
     @TilesPutAttribute(name = "twitter", value = "/WEB-INF/tiles/active/twitter/event.jsp"),
     @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/event/event_deadline.jsp")
+  }),
+  @TilesDefinition(name="eventFullyBooked", extend = "userTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",    value = "/WEB-INF/tiles/active/meta/event.jsp"),
+    @TilesPutAttribute(name = "twitter", value = "/WEB-INF/tiles/active/twitter/event.jsp"),
+    @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/event/event_fully_booked.jsp")
   })
 })
 public class IndexAction extends EmptyAction {
@@ -118,6 +123,7 @@ public class IndexAction extends EmptyAction {
         @Action(value = "*/index", results = {
             @Result(name = "success", type = "tiles", location = "event"),
             @Result(name = "input",   type = "tiles", location = "eventDeadline"),
+            @Result(name = "fullybooked",   type = "tiles", location = "eventFullyBooked"),
             @Result(name = "error",   type = "redirectAction", location = "index.html", params={"namespace", "/"})
         })
     })
@@ -148,6 +154,9 @@ public class IndexAction extends EmptyAction {
                 event = eventDaoLocal.findByUuid(eventUuid);
                 // Setze Daten in ein Page Objekt.
                 setUpPage();
+                if(!event.getReservation()) {
+                    return "fullybooked";
+                }
                 Date now = new Date();
                 if(event.getDeadline().after(now)) {
                     return SUCCESS;
