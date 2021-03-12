@@ -27,12 +27,12 @@
                 <p><struts:property value="getDescription(getText('language'))" /></p>
               </struts:if>
             </div>
-        
-            <div class="impression">
-              <struts:if test="subsumption.showPictures">
+
+            <struts:if test="subsumption.showPictures">
+              <div class="impression">
                 <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
-              </struts:if>
-            </div>
+              </div>
+            </struts:if>
             <hr>
           </div>
         </struts:a>
