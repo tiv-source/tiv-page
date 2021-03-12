@@ -42,12 +42,9 @@ public class SliderImage extends ImageUntouched implements Comparable<ImageUntou
     @JoinColumn(name = "slider_uuid")
     private Slider slider;
 
-    static {
-        uploadPath = "/srv/tiv-page/slider/";
-    }
-
     public SliderImage() {
         super();
+        uploadPath = "/srv/tiv-page/slider/";
     }
 
     public String getUuid() {

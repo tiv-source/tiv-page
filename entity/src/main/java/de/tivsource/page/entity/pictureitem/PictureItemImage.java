@@ -42,7 +42,8 @@ public class PictureItemImage extends ImageUntouched implements Comparable<Image
     @JoinColumn(name = "pictureitem_uuid")
     private PictureItem pictureItem;
 
-    static {
+    public PictureItemImage() {
+        super();
         uploadPath = "/srv/tiv-page/picture/";
     }
 
