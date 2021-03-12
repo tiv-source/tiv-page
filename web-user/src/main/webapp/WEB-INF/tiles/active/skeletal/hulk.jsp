@@ -145,12 +145,7 @@
   </ul>
   <!-- Navigation Ende -->
 
-  <!-- Content Anfang -->
-  <div id=content> 
-    <tiles:insertAttribute name="content" />
-    <hr>
-  </div>
-  <!-- Content Ende -->
+  <tiles:insertAttribute name="content" />
 
   <!-- Bottomnav Anfang -->
   <ul id="bottom_navi">

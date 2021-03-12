@@ -7,7 +7,14 @@
     </div>
   </struts:if>
 
-  <struts:property escapeHtml="false" value="vacancy.getContent(getText('language'))" />
+  <!-- Content Anfang -->
+  <div id=content>
+
+    <struts:property escapeHtml="false" value="vacancy.getContent(getText('language'))" />
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
 
 
 

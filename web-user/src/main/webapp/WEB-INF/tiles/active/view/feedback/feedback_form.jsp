@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
   <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
   <struts:form
@@ -117,7 +120,9 @@
 
   </struts:form>
   
-
+    <hr>
+  </div>
+  <!-- Content Ende -->
 
 
 

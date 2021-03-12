@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <h1><struts:property escapeHtml="false" value="manual.getName(getText('language'))" /></h1>
     <struts:if test="getProperty('manual.show.date') == 'true'">
       <h6><struts:date name="manual.created" format="dd.MM.yyyy" /></h6>
@@ -24,3 +27,6 @@
 
     <struts:property escapeHtml="false" value="manual.getContent(getText('language'))" />
     
+    <hr>
+  </div>
+  <!-- Content Ende -->

@@ -12,6 +12,9 @@
       </struts:if>
     </struts:else>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <struts:if test="getProperty('facebook.on.home') == 'true'">
       <struts:include value="content_facebook.jsp" />
     </struts:if>
@@ -32,5 +35,7 @@
       </struts:if>
     </struts:if>
 
-
+    <hr>
+  </div>
+  <!-- Content Ende -->
 

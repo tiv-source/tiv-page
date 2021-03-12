@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <struts:property escapeHtml="false" value="subsumption.getContent(getText('language'))" />
 
     <p class=" bc_bottom">	&nbsp;</p>
@@ -38,3 +41,7 @@
         </struts:a>
       </struts:if>
     </struts:iterator>
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

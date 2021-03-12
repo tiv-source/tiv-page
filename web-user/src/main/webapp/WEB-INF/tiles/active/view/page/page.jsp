@@ -20,6 +20,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
   <struts:if test="getProperty('facebook.on.pages') == 'true'">
     <div id="social_net1">
       <div class="picturebox1">
@@ -35,4 +38,7 @@
   </struts:if>
 
   <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
-    
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
     
   <struts:iterator value="list" status="locationStatus">
@@ -108,5 +111,7 @@
     
   </struts:iterator>
 
-
+    <hr>
+  </div>
+  <!-- Content Ende -->
 

@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
   <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
       <ul class="companiongroups">
@@ -56,5 +59,8 @@
 
   </struts:iterator>
 
-  <hr>
-  
+
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

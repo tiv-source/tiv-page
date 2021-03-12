@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <h1><struts:property escapeHtml="false" value="appointment.getName(getText('language'))" /></h1>
     <struts:if test="getProperty('appointment.archive.pointInTime.nice') == 'true'">
       <h6><struts:date name="appointment.pointInTime" nice="true" /></h6>
@@ -23,3 +26,6 @@
       </struts:if>
     </h6>
 
+    <hr>
+  </div>
+  <!-- Content Ende -->

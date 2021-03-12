@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <h1><struts:property value="location.getName(getText('language'))" /></h1>
     <struts:if test="getProperty('location.show.description') == 'true'">
       <p><struts:property value="location.getDescription(getText('language'))" /></p>
@@ -96,4 +99,6 @@
       </struts:a>
     </struts:if>
 
-    
+    <hr>
+  </div>
+  <!-- Content Ende -->

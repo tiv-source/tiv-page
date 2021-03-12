@@ -7,6 +7,9 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
     <div class="galleries">
@@ -58,5 +61,8 @@
     </struts:if>
 
     </div>
-    <hr>
 
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

@@ -1,6 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <div id="galleryNavigation">
       <struts:url var="summaryUrl" action="index" namespace="/gallery/%{gallery.uuid}">
         <struts:param name="page" value="%{requestedPage}"/>
@@ -46,7 +49,8 @@
       </div>
 
     </div>
-    <hr>
+
+
 
 
     <script>
@@ -75,3 +79,7 @@
 		  });
       });
 			</script>
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

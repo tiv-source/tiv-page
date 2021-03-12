@@ -7,9 +7,16 @@
     </div>
   </struts:if>
 
+  <!-- Content Anfang -->
+  <div id=content>
+
     <struts:if test="location.event">
       <struts:include value="location_view_event.jsp" />
     </struts:if>
     <struts:else>
       <struts:include value="location_view_normal.jsp" />
     </struts:else>
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
