@@ -3,7 +3,7 @@
 
   <struts:if test="subsumption.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="subsumption.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="subsumption.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
 
