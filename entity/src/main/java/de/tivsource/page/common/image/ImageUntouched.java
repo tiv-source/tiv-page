@@ -41,7 +41,11 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
      */
     private static final Logger logger = LogManager.getLogger(ImageUntouched.class);
 
-    protected static String uploadPath = "/srv/tiv-page/upload/";
+    /**
+     * Lokaler Dateisystem Pfad zu den hochgeladenen Bildern.
+     */
+    @Transient
+    protected String uploadPath = "/srv/tiv-page/upload/";
 
     /**
      * Lokaler Pfad der Orginal-Datei.

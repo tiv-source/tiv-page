@@ -41,7 +41,8 @@ public class CaptchaImage extends ImageUntouched implements Comparable<ImageUnto
     @JoinColumn(name = "captcha_uuid")
     private Captcha captcha;
 
-    static {
+    public CaptchaImage() {
+        super();
         uploadPath = "/srv/tiv-page/captcha/";
     }
 
