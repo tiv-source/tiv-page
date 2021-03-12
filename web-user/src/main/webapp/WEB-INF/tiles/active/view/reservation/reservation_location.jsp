@@ -22,7 +22,12 @@
             <h4><struts:property value="getName(getText('language'))" /> am <struts:date name="beginning" format="dd.MM.yyyy" /></h4>
             <p>Preis pro Person: <struts:text name="format.money"><struts:param name="value" value="price"/></struts:text></p>
             <p>von <struts:date name="beginning" format="HH:mm" /> Uhr bis <struts:date name="ending" format="HH:mm" /> Uhr</p>
-            <p>Online Reservierung möglich bis zum <struts:date name="deadline" format="dd.MM.yyyy" /> um <struts:date name="deadline" format="HH:mm" /> Uhr</p>
+            <struts:if test="reservation">
+              <p>Online Reservierung m&ouml;glich bis zum <struts:date name="deadline" format="dd.MM.yyyy" /> um <struts:date name="deadline" format="HH:mm" /> Uhr</p>
+            </struts:if>
+            <struts:else>
+              <p>Leider ist eine Online Reservierung nicht mehr m&ouml;glich, da wir an diesem Termin ausgebucht sind.</p>
+            </struts:else>
           </div>
         
           <div class="impression">
