@@ -3,6 +3,8 @@
  */
 package de.tivsource.page.entity.pictureitem;
 
+import java.util.Objects;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -87,6 +89,28 @@ public class PictureItem extends NamingItem {
      */
     public void setCssGroup(CSSGroup cssGroup) {
         this.cssGroup = cssGroup;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 21 *  hash + getUuid().hashCode();
+        hash = 21 *  hash + (getName("de") == null ? 0 : getName("de").hashCode());
+        hash = 21 *  hash + (getDescription("de") == null ? 0 : getDescription("de").hashCode());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // Selbst Test
+        if (this == o) return true;
+        // NULL Test
+        if (o == null) return false;
+        // type check and cast
+        if (getClass() != o.getClass()) return false;
+        PictureItem pictureItem = (PictureItem) o;
+        // field comparison
+        return Objects.equals(getUuid(), pictureItem.getUuid());
     }
 
 }// Ende class
