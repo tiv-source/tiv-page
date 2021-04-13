@@ -34,19 +34,25 @@
   <div id="socialmedia">
     <struts:if test="getProperty('socialmedia.facebook.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.facebook.url')"/>" target="_blank">
-         <img src="<struts:property value="getProperty('socialmedia.facebook.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.facebook.url.icon.alt')"/>">
+         <img id="facebook" src="<struts:property value="getProperty('socialmedia.facebook.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.facebook.url.icon.alt')"/>">
       </a>
     </struts:if>
 
     <struts:if test="getProperty('socialmedia.instagram.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.instagram.url')"/>" target="_blank">
-        <img src="<struts:property value="getProperty('socialmedia.instagram.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.instagram.url.icon.alt')"/>">
+        <img id="instagram" src="<struts:property value="getProperty('socialmedia.instagram.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.instagram.url.icon.alt')"/>">
       </a>
     </struts:if>
 
     <struts:if test="getProperty('socialmedia.twitter.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.twitter.url')"/>" target="_blank">
-        <img src="<struts:property value="getProperty('socialmedia.twitter.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.twitter.url.icon.alt')"/>">
+        <img id="twitter" src="<struts:property value="getProperty('socialmedia.twitter.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.twitter.url.icon.alt')"/>">
+      </a>
+    </struts:if>
+
+    <struts:if test="getProperty('socialmedia.whatsapp.url') != ''">
+      <a href="<struts:property value="getProperty('socialmedia.whatsapp.url')"/>" target="_blank">
+        <img id="whatsapp" src="<struts:property value="getProperty('socialmedia.whatsapp.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.whatsapp.url.icon.alt')"/>">
       </a>
     </struts:if>
   </div>

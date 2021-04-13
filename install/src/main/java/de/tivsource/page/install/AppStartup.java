@@ -115,6 +115,9 @@ public class AppStartup implements ServletContextListener {
                 {"news.on.home",                                          "false"},
                 {"news.on.home.quantity",                                 "2"},
                 {"request.template.path",                                 "file:/srv/tiv-page/templates/template_request.xml"},
+                {"socialmedia.whatsapp.url",                              ""},
+                {"socialmedia.whatsapp.url.icon",                         "/uploads/WhatsApp.png"},
+                {"socialmedia.whatsapp.url.icon.alt",                     "WhatsApp"},
         };
         for (int i = 0; i < properties.length; i++) {
             if(!checkAttribute(properties[i][0], properties[i][1])) {
