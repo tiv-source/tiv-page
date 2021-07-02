@@ -69,6 +69,14 @@ public class ManualDao implements ManualDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    @Override
+    public Boolean isManualUrl(String urlName) {
+        LOGGER.info("isManualUrl(String urlName) aufgerufen");
+        Query query = entityManager.createQuery("select m from Manual m where m.technical = :urlName and m.visible = 'Y' order by m.uuid asc");
+        query.setParameter("urlName", urlName);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.manual.ManualDaoLocal#findByUuid(java.lang.String)
 	 */
@@ -76,6 +84,14 @@ public class ManualDao implements ManualDaoLocal {
 	public Manual findByUuid(String uuid) {
 		return entityManager.find(Manual.class, uuid);
 	}
+
+    @Override
+    public Manual findByTechnical(String technical) {
+        LOGGER.info("findByTechnical(String technical) aufgerufen.");
+        Query query = entityManager.createQuery("select m from Manual m where m.technical = :technical and m.visible = 'Y'");
+        query.setParameter("technical", technical);
+        return (Manual)query.getSingleResult();
+    }
 
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.manual.ManualDaoLocal#findAll(java.lang.Integer, java.lang.Integer)

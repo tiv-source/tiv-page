@@ -15,7 +15,7 @@
     <p class=" bc_bottom">	&nbsp;</p>
 
     <struts:iterator value="manuals" status="manualStatus">
-      <struts:url var="manualLink" action="index" namespace="/manual/%{uuid}"/>
+      <struts:url var="manualLink" action="index" namespace="/manual/%{technical}"/>
     
       <struts:a href="%{manualLink}">
         <div class="informations">

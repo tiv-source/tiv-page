@@ -9,6 +9,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -26,6 +29,17 @@ import de.tivsource.page.entity.picture.Picture;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="manualEditForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/manual/edit_form.jsp")
+  }),
+  @TilesDefinition(name="manualEditError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/manual/edit_error.jsp")
+  })
+})
 public class EditAction extends EmptyAction {
 
 	/**
@@ -52,7 +66,7 @@ public class EditAction extends EmptyAction {
 
     private Manual manual;
 
-    private String lang;
+    private String lang = "DE";
 
     private List<Picture> pictureList;
 
@@ -123,7 +137,7 @@ public class EditAction extends EmptyAction {
                 dbManual.getDescriptionMap().get(Language.DE).setName(manual.getName(Language.DE));
             }
 
-
+            dbManual.setTechnical(manual.getTechnical());
     		dbManual.setModified(new Date());
     		dbManual.setVisible(manual.getVisible());
     		dbManual.setModifiedBy(remoteUser);

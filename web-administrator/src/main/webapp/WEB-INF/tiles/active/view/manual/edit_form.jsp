@@ -68,6 +68,14 @@
               </div>
 
               <div class="field">
+                <struts:textfield 
+                    key="manual.technical"
+                    parentTheme="css_xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
                 <struts:textfield
                     key="manual.orderNumber"
                     parentTheme="css_xhtml"

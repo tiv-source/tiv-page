@@ -70,7 +70,7 @@ public class FormAction extends EmptyAction {
 
 	private String uncheckManual;
 
-	private String lang;
+	private String lang = "DE";
 
 	private List<Picture> pictureList;
 	
