@@ -89,7 +89,7 @@ public class VacancyDao implements VacancyDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Vacancy> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT v FROM Vacancy v WHERE v.visible = 'Y'";
+        String queryString = "SELECT v FROM Vacancy v WHERE v.visible = 'Y' ORDER BY  v.orderNumber DESC";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);

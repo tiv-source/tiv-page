@@ -93,13 +93,13 @@
 
               <div class="field">
                 <struts:textfield
-                    key="location.order"
+                    key="location.orderNumber"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
                 />
                 <script type="text/javascript">
-                $('#add_location_order').spinner();
+                $('#add_location_orderNumber').spinner();
                 </script>
               </div>
 

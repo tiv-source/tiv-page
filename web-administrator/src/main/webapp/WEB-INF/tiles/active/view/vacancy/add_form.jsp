@@ -75,6 +75,18 @@
               </div>
 
               <div class="field">
+                <struts:textfield
+                    key="vacancy.orderNumber"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
+                />
+                <script type="text/javascript">
+                $('#add_vacancy_orderNumber').spinner();
+                </script>
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="vacancy.visible"
                     parentTheme="xhtml"
