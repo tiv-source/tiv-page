@@ -59,6 +59,9 @@ public class PageDao implements PageDaoLocal {
         entityManager.remove(entityManager.find(Page.class, page.getUuid()));
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#isPageUrl(java.lang.String)
+     */
     @Override
     public Boolean isPageUrl(String urlName) {
         Query query = entityManager.createQuery("select p from Page p where p.technical = :urlName and p.visible = 'Y' order by p.uuid asc");
@@ -66,6 +69,9 @@ public class PageDao implements PageDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#hasMenuEntry(java.lang.String)
+     */
     @Override
     public Boolean hasMenuEntry(String uuid) {
         Page page = entityManager.find(Page.class, uuid);
@@ -85,6 +91,9 @@ public class PageDao implements PageDaoLocal {
         return (Page)query.getSingleResult();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#findByUuid(java.lang.String)
+     */
     @Override
     public Page findByUuid(String uuid) {
         return entityManager.find(Page.class, uuid);

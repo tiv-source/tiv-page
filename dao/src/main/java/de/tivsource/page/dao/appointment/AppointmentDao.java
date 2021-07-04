@@ -118,6 +118,9 @@ public class AppointmentDao implements AppointmentDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.appointment.AppointmentDaoLocal#findAllArchiveVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Appointment> findAllArchiveVisible(Integer start, Integer max) {
@@ -148,6 +151,9 @@ public class AppointmentDao implements AppointmentDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.appointment.AppointmentDaoLocal#countAllArchiveVisible()
+     */
     @Override
     public Integer countAllArchiveVisible() {
         Query query = entityManager.createQuery("Select Count(ap) from Appointment ap WHERE ap.pointInTime < :date AND ap.visible = 'Y'");

@@ -70,6 +70,9 @@ public class NewsDao implements NewsDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal#isPublicNewsUuid(java.lang.String)
+     */
     @Override
     public Boolean isPublicNewsUuid(String uuid) {
         Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = 'Y' and n.releaseDate < :date order by n.uuid asc");
@@ -112,6 +115,9 @@ public class NewsDao implements NewsDaoLocal {
         return query.getResultList();
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<News> findAllVisible(Integer start, Integer max) {
@@ -132,6 +138,9 @@ public class NewsDao implements NewsDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal#countAllVisible()
+     */
     @Override
     public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(n) from News n WHERE n.visible = 'Y' and n.releaseDate < :date");

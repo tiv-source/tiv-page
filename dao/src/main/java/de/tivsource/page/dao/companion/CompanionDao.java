@@ -117,6 +117,9 @@ public class CompanionDao implements CompanionDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.companion.CompanionDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer, de.tivsource.page.entity.companion.CompanionGroup)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Companion> findAllVisible(Integer start, Integer max, CompanionGroup companionGroup) {
@@ -146,6 +149,9 @@ public class CompanionDao implements CompanionDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.companion.CompanionDaoLocal#countAllVisible(de.tivsource.page.entity.companion.CompanionGroup)
+     */
     @Override
     public Integer countAllVisible(CompanionGroup companionGroup) {
         Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = 'Y' and c.group = :companionGroup");

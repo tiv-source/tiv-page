@@ -61,6 +61,9 @@ public class LocationDao implements LocationDaoLocal {
         entityManager.remove(entityManager.find(Location.class, location.getUuid()));
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.location.LocationDaoLocal#isLocation(java.lang.String)
+	 */
 	@Override
 	public Boolean isLocation(String uuid) {
         Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = 'Y' order by l.uuid asc");
@@ -68,6 +71,9 @@ public class LocationDao implements LocationDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.location.LocationDaoLocal#isEventLocation(java.lang.String)
+     */
     @Override
     public Boolean isEventLocation(String uuid) {
         Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = 'Y' and l.event = 'Y' order by l.uuid asc");
@@ -83,6 +89,9 @@ public class LocationDao implements LocationDaoLocal {
         return entityManager.find(Location.class, uuid);
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.location.LocationDaoLocal#findByUuidWidthEvents(java.lang.String)
+     */
     @Override
     public Location findByUuidWidthEvents(String uuid) {
         Location location = entityManager.find(Location.class, uuid);
@@ -116,6 +125,9 @@ public class LocationDao implements LocationDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.location.LocationDaoLocal#findAllEventLocation()
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllEventLocation() {
@@ -124,6 +136,9 @@ public class LocationDao implements LocationDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.location.LocationDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllVisible(Integer start, Integer max) {
@@ -142,12 +157,18 @@ public class LocationDao implements LocationDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.location.LocationDaoLocal#countAllVisible()
+     */
     @Override
     public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(l) from Location l where l.visible = 'Y'");
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.location.LocationDaoLocal#removeOpeningHour(java.lang.Integer, java.lang.String)
+     */
     @Override
     public void removeOpeningHour(Integer index, String location) {
 
@@ -165,7 +186,5 @@ public class LocationDao implements LocationDaoLocal {
         entityManager.remove(openingHour);
 
     }
-
-
 
 }// Ende class

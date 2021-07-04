@@ -60,6 +60,9 @@ public class EventDao implements EventDaoLocal {
         entityManager.remove(entityManager.find(Event.class, event.getUuid()));
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.event.EventDaoLocal#isEvent(java.lang.String)
+     */
     @Override
     public Boolean isEvent(String uuid) {
         Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = 'Y' order by e.uuid asc");
@@ -106,6 +109,9 @@ public class EventDao implements EventDaoLocal {
         return query.getResultList();
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.event.EventDaoLocal#findAllActive(java.lang.Integer, java.lang.Integer)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllActive(Integer start, Integer max) {
@@ -116,6 +122,9 @@ public class EventDao implements EventDaoLocal {
         return query.getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.event.EventDaoLocal#findAllActive(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllActive(Integer start, Integer max, String field, String order) {
@@ -128,6 +137,9 @@ public class EventDao implements EventDaoLocal {
         return query.getResultList();
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.event.EventDaoLocal#findAll(java.lang.String, java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(String uuid, Integer start, Integer max) {
@@ -148,6 +160,9 @@ public class EventDao implements EventDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.event.EventDaoLocal#countAllActive()
+	 */
 	@Override
 	public Integer countAllActive() {
         Query query = entityManager.createQuery("Select Count(e) from Event e where e.ending > :date");
@@ -155,6 +170,9 @@ public class EventDao implements EventDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.event.EventDaoLocal#countAll(java.lang.String)
+     */
     @Override
     public Integer countAll(String uuid) {
         Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date");

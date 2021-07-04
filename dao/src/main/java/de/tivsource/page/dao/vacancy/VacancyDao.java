@@ -59,6 +59,9 @@ public class VacancyDao implements VacancyDaoLocal {
         entityManager.remove(entityManager.find(Vacancy.class, vacancy.getUuid()));
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#isVacancy(java.lang.String)
+	 */
 	@Override
 	public Boolean isVacancy(String uuid) {
         Query query = entityManager.createQuery("select v from Vacancy v where v.uuid = :uuid and v.visible = 'Y' order by v.uuid asc");
@@ -86,6 +89,9 @@ public class VacancyDao implements VacancyDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Vacancy> findAllVisible(Integer start, Integer max) {
@@ -119,6 +125,9 @@ public class VacancyDao implements VacancyDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#countAllVisible()
+     */
     @Override
     public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(v) from Vacancy v WHERE v.visible = 'Y'");

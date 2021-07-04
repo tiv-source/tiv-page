@@ -61,6 +61,9 @@ public class PictureDao implements PictureDaoLocal {
 		entityManager.remove(entityManager.find(Picture.class, picture.getUuid()));
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.picture.PictureDaoLocal#delete(java.lang.String)
+     */
     @Override
     public void delete(String pictureUrlUuid) {
         // // Lösche die Bild Url aus der Datenbank
@@ -77,6 +80,9 @@ public class PictureDao implements PictureDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.picture.PictureDaoLocal#hasReferences(java.lang.String)
+	 */
 	@Override
 	public Boolean hasReferences(String uuid) {
         Query query = entityManager.createQuery("select n from NamingItem n where n.picture.uuid = :uuid order by n.uuid asc");
@@ -92,6 +98,9 @@ public class PictureDao implements PictureDaoLocal {
 		return entityManager.find(Picture.class, uuid);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.picture.PictureDaoLocal#findAll(java.lang.String)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Picture> findAll(String uuid) {
@@ -126,6 +135,9 @@ public class PictureDao implements PictureDaoLocal {
         return query.getResultList();
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.picture.PictureDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Picture> findAll(Integer start, Integer max, String galleryUuid, String field, String order) {
@@ -138,6 +150,9 @@ public class PictureDao implements PictureDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.picture.PictureDaoLocal#findPreviousPicture(java.lang.Integer, java.lang.String)
+     */
     @Override
     public Picture findPreviousPicture(Integer start, String galleryUuid) {
         Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = :galleryUuid ORDER BY p.orderNumber desc");
@@ -147,6 +162,9 @@ public class PictureDao implements PictureDaoLocal {
         return (Picture)query.getSingleResult();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.picture.PictureDaoLocal#findCurrentPicture(java.lang.Integer, java.lang.String)
+     */
     @Override
     public Picture findCurrentPicture(Integer start, String galleryUuid) {
         LOGGER.info("findCurrentPicture(Integer start, String galleryUuid) aufgerufen");
@@ -157,6 +175,9 @@ public class PictureDao implements PictureDaoLocal {
         return (Picture)query.getResultList().get(0);
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.picture.PictureDaoLocal#findNextPicture(java.lang.Integer, java.lang.String)
+     */
     @Override
     public Picture findNextPicture(Integer start, String galleryUuid) {
         Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = :galleryUuid ORDER BY p.orderNumber desc");
@@ -175,6 +196,9 @@ public class PictureDao implements PictureDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.picture.PictureDaoLocal#countAllInGallery(java.lang.String)
+     */
     @Override
     public Integer countAllInGallery(String galleryUuid) {
         Query query = entityManager.createQuery("Select Count(p) from Picture p where p.gallery.uuid = :galleryUuid");

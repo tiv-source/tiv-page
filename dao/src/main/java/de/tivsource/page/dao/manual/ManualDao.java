@@ -69,6 +69,9 @@ public class ManualDao implements ManualDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.manual.ManualDaoLocal#isManualUrl(java.lang.String)
+     */
     @Override
     public Boolean isManualUrl(String urlName) {
         LOGGER.info("isManualUrl(String urlName) aufgerufen");
@@ -85,6 +88,9 @@ public class ManualDao implements ManualDaoLocal {
 		return entityManager.find(Manual.class, uuid);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.manual.ManualDaoLocal#findByTechnical(java.lang.String)
+     */
     @Override
     public Manual findByTechnical(String technical) {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
@@ -119,6 +125,9 @@ public class ManualDao implements ManualDaoLocal {
         return query.getResultList();
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.manual.ManualDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Manual> findAllVisible(Integer start, Integer max) {
@@ -138,6 +147,9 @@ public class ManualDao implements ManualDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.manual.ManualDaoLocal#countAllVisible()
+     */
     @Override
     public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(m) from Manual m WHERE m.visible = 'Y'");

@@ -75,6 +75,9 @@ public class UserDao implements UserDaoLocal {
         }
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.administration.UserDaoLocal#findByUuid(java.lang.String)
+     */
     @Override
     public User findByUuid(String uuid) {
         return entityManager.find(User.class, uuid);
@@ -92,6 +95,9 @@ public class UserDao implements UserDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.administration.UserDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+     */
     @Override
     @SuppressWarnings("unchecked")
     public List<User> findAll(Integer start, Integer max, String field,

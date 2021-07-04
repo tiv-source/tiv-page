@@ -69,6 +69,9 @@ public class GalleryDao implements GalleryDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#isGalleryTechnical(java.lang.String)
+	 */
 	@Override
 	public Boolean isGalleryTechnical(String technical) {
         Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
@@ -76,6 +79,9 @@ public class GalleryDao implements GalleryDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#hasReferences(java.lang.String)
+	 */
 	@Override
 	public Boolean hasReferences(String uuid) {
         Query query = entityManager.createQuery("select p from Picture p where p.gallery.uuid = :uuid order by p.uuid asc");
@@ -91,6 +97,9 @@ public class GalleryDao implements GalleryDaoLocal {
 		return entityManager.find(Gallery.class, uuid);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findByTechnical(java.lang.String)
+	 */
 	@Override
 	public Gallery findByTechnical(String technical) {
         Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
@@ -124,6 +133,9 @@ public class GalleryDao implements GalleryDaoLocal {
         return query.getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Gallery> findAllVisible(Integer start, Integer max) {
@@ -143,6 +155,9 @@ public class GalleryDao implements GalleryDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#countAllVisible()
+	 */
 	@Override
 	public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(g) from Gallery g where g.visible = :visible");
