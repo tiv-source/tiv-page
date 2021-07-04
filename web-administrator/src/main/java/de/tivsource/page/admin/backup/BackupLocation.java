@@ -157,7 +157,7 @@ public class BackupLocation {
         nextString.append(next.getPicture().getUuid());
         nextString.append("|");
 
-        nextString.append(next.getOrder().toString());
+        nextString.append(next.getOrderNumber().toString());
         nextString.append("|");
 
         nextString.append(next.getPictureOnPage().toString());

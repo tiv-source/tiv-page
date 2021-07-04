@@ -58,6 +58,8 @@ public class NamingItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean visible;
 
+    private Integer orderNumber = 1;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
@@ -104,6 +106,14 @@ public class NamingItem {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Date getCreated() {

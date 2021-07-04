@@ -149,7 +149,7 @@ public class EditAction extends EmptyAction {
     		dbLocation.setLatitude(location.getLatitude());
     		dbLocation.setLongitude(location.getLongitude());
     		dbLocation.setPicture(location.getPicture());
-    		dbLocation.setOrder(location.getOrder());
+    		dbLocation.setOrderNumber(location.getOrderNumber());
     		dbLocation.setPictureOnPage(location.getPictureOnPage());
     		dbLocation.setInLocationList(location.getInLocationList());
     		dbLocation.setCssGroup(location.getCssGroup());

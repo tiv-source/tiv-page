@@ -25,24 +25,8 @@ import de.tivsource.page.entity.namingitem.NamingItem;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Reason extends NamingItem {
 
-    private Integer orderNumber = 1;
-
     @OneToMany(mappedBy = "reason", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
     private List<Request> requests;
-
-    /**
-     * @return the orderNumber
-     */
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
-
-    /**
-     * @param orderNumber the orderNumber to set
-     */
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
-    }
 
     /**
      * @return the requests

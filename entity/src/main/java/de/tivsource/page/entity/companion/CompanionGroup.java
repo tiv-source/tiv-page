@@ -22,18 +22,8 @@ import de.tivsource.page.entity.pictureitem.PictureItem;
 @Entity
 public class CompanionGroup extends PictureItem {
 
-    private Integer orderNumber;
-
     @OneToMany(mappedBy = "group", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     private List<Companion> companions;
-
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
-    }
 
     public List<Companion> getCompanions() {
         return companions;

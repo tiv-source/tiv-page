@@ -119,7 +119,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllEventLocation() {
-        String queryString = "select l from Location l where l.event = 'Y' order by l.order";
+        String queryString = "select l from Location l where l.event = 'Y' order by l.orderNumber";
         Query query = entityManager.createQuery(queryString);
         return query.getResultList();
     }
@@ -127,7 +127,7 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("FROM Location l WHERE l.visible = 'Y' AND l.inLocationList = 'Y' ORDER BY l.order ASC");
+        Query query = entityManager.createQuery("FROM Location l WHERE l.visible = 'Y' AND l.inLocationList = 'Y' ORDER BY l.orderNumber ASC");
         query.setFirstResult(start);
         query.setMaxResults(max);
         return query.getResultList();
