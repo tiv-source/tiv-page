@@ -2,11 +2,11 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="page" value="subsumption.uuid" />
+  <struts:param name="subsumption" value="subsumption.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 <struts:url var="germanUrl">
-  <struts:param name="page" value="subsumption.uuid" />
+  <struts:param name="subsumption" value="subsumption.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
 
