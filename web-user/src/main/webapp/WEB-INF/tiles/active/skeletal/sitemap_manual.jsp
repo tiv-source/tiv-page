@@ -4,7 +4,7 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <struts:iterator value="manuals" status="manualStatus">
- <struts:url var="manualLink" action="index" namespace="/manual/%{uuid}"/>
+ <struts:url var="manualLink" action="index" namespace="/manual/%{technical}"/>
  <url>
   <loc><struts:property value="getProperty('server.base.url')" /><struts:property value="%{manualLink}" /></loc>
   <lastmod><struts:date name="modified" format="yyyy-MM-dd" /></lastmod>
