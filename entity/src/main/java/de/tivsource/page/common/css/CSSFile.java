@@ -299,7 +299,7 @@ public class CSSFile implements Comparable<CSSFile> {
 
     @Override
     public int compareTo(CSSFile o) {
-        logger.info("compareTo(CSSFile o) aufgerufen.");
+        logger.trace("compareTo(CSSFile o) aufgerufen.");
         if (this.priority == null && o.priority != null){
             return -1;
         } else if (this.priority != null && o.priority == null){
@@ -315,7 +315,7 @@ public class CSSFile implements Comparable<CSSFile> {
 
     @Override
     public int hashCode() {
-        logger.info("hashCode() aufgerufen.");
+        logger.trace("hashCode() aufgerufen.");
         int hash = 7;
         hash = 21 *  hash + uuid.hashCode();
         hash = 21 *  hash + (name == null ? 0 : name.hashCode());
@@ -325,7 +325,7 @@ public class CSSFile implements Comparable<CSSFile> {
 
     @Override
     public boolean equals(Object o) {
-        logger.info("equals(Object o) aufgerufen.");
+        logger.trace("equals(Object o) aufgerufen.");
         // Selbst Test
         if (this == o) return true;
         // NULL Test
