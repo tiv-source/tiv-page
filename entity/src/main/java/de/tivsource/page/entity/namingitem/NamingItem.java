@@ -229,7 +229,7 @@ public class NamingItem {
         }
         return tmpResult;
     }
-    
+
     public String getShortDescription(String language) {
         String result = descriptionMap.get(Language.DE).getDescription();
         String tmpResult = descriptionMap.get(Language.DE).getDescription();
