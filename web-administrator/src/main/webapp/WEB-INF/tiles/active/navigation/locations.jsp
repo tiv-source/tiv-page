@@ -10,6 +10,8 @@
 <struts:url var="eventUrl"             action="index" namespace="/locations/event" />
 <struts:url var="queueUrl"             action="queue" namespace="/locations/reservation" />
 <struts:url var="feedbackOptionUrl"    action="index" namespace="/locations/feedbackoption" />
+<struts:url var="reasonUrl"            action="index" namespace="/locations/reason" />
+<struts:url var="requestUrl"           action="index" namespace="/locations/request" />
 
 
 
@@ -63,6 +65,28 @@
                 </div>
               </struts:a>
             </struts:if>
+
+            <struts:if test="getProperty('module.request')">
+              <struts:a href="%{reasonUrl}" title="%{getText('navigation.reason')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.reason"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.reason"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
+
+            <struts:if test="getProperty('module.request')">
+              <struts:a href="%{requestUrl}" title="%{getText('navigation.request')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.request"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.request"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
 
             <hr>
 
