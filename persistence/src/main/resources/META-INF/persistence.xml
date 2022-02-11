@@ -42,6 +42,9 @@
 		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
 		<class>de.tivsource.page.entity.news.News</class>
 		<class>de.tivsource.page.entity.page.Page</class>
+		<class>de.tivsource.page.entity.pdf.PDF</class>
+		<class>de.tivsource.page.entity.pdf.PDFDescription</class>
+		<class>de.tivsource.page.entity.pdf.PDFImage</class>
 		<class>de.tivsource.page.entity.picture.Picture</class>
 		<class>de.tivsource.page.entity.picture.PictureDescription</class>
 		<class>de.tivsource.page.entity.picture.PictureUrl</class>

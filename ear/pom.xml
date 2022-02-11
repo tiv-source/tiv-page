@@ -78,6 +78,12 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-pdf</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-css</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
@@ -263,6 +269,11 @@
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>web-image</artifactId>
 							<contextRoot>/image</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-pdf</artifactId>
+							<contextRoot>/pdf</contextRoot>
 						</webModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
