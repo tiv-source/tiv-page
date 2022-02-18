@@ -50,6 +50,12 @@
       </a>
     </struts:if>
 
+    <struts:if test="getProperty('socialmedia.mastodon.url') != ''">
+      <a rel="me" href="<struts:property value="getProperty('socialmedia.mastodon.url')"/>" target="_blank">
+        <img id="mastodon" src="<struts:property value="getProperty('socialmedia.mastodon.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.mastodon.url.icon.alt')"/>">
+      </a>
+    </struts:if>
+
     <struts:if test="getProperty('socialmedia.whatsapp.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.whatsapp.url')"/>" target="_blank">
         <img id="whatsapp" src="<struts:property value="getProperty('socialmedia.whatsapp.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.whatsapp.url.icon.alt')"/>">
