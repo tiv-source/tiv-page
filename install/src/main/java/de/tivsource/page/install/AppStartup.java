@@ -140,6 +140,17 @@ public class AppStartup implements ServletContextListener {
                 {"pdf.list.show.description",                             "true"},
                 {"pdf.list.show.description.title",                       "true"},
                 {"pdf.list.image.size",                                   "thumbnail.png"},
+                {"og.image.size.appointment",                             "/LARGE/"},
+                {"og.image.size.content",                                 "/LARGE/"},
+                {"og.image.size.event",                                   "/LARGE/"},
+                {"og.image.size.feedback.form",                           "/LARGE/"},
+                {"og.image.size.home",                                    "/LARGE/"},
+                {"og.image.size.location",                                "/LARGE/"},
+                {"og.image.size.manual",                                  "/LARGE/"},
+                {"og.image.size.picture",                                 "/LARGE/"},
+                {"og.image.size.reservation.location",                    "/LARGE/"},
+                {"og.image.size.subsumption",                             "/LARGE/"},
+                {"og.image.size.vacancy",                                 "/LARGE/"},
         };
         for (int i = 0; i < properties.length; i++) {
             if(!checkAttribute(properties[i][0], properties[i][1])) {
