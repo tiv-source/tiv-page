@@ -14,6 +14,17 @@
     </field-validator>
   </field>
 
+  <field name="page.orderNumber">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.orderNumber.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.orderNumber.validation.minmax" />
+    </field-validator>
+  </field>
+
   <field name="page.descriptionMap.DE.name">
     <field-validator type="fieldexpression" short-circuit="true">
       <param name="expression">

@@ -158,6 +158,7 @@ public class EditAction extends EmptyAction {
     		dbSubsumption.setShowDescriptions(subsumption.getShowDescriptions());
     		dbSubsumption.setShowPictures(subsumption.getShowPictures());
     		dbSubsumption.setShowTitles(subsumption.getShowTitles());
+    		dbSubsumption.setOrderDates(subsumption.getOrderDates());
     		
 
     		subsumptionDaoLocal.merge(dbSubsumption);

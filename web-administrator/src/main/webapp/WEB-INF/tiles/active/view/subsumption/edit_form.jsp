@@ -125,9 +125,18 @@
               </div>
 
               <div class="field">
+                <struts:checkbox
+                    key="subsumption.orderDates"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
                 <struts:select
                     key="subsumption.cssGroup"
-                    value="%{page.cssGroup.{uuid}}"
+                    value="subsumption.cssGroup.{uuid}"
                     list="cssGroupList" 
                     listKey="uuid"  
                     listValue="name" 

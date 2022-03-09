@@ -310,4 +310,25 @@ public class NamingItem {
         return tmpResult;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        // Selbsttest
+        if (this == o) {
+            return true;
+        }
+        // Auf NULL prüfen
+        if (o == null) {
+            return false;
+        }
+        // Überprüfen ob das Objekt der Klasse angehört
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        NamingItem namingItem = (NamingItem) o;
+        if(this.uuid.equals(namingItem.uuid)) {
+            return true;
+        }
+        return false;
+    }// Ende equals(Object o)
+
 }// Ende class

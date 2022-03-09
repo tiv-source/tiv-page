@@ -51,6 +51,18 @@
               </div>
 
               <div class="field">
+                <struts:textfield
+                    key="page.orderNumber"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
+                />
+                <script type="text/javascript">
+                $('#add_page_orderNumber').spinner();
+                </script>
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="page.pictureOnPage"
                     parentTheme="xhtml"

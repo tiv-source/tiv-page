@@ -143,6 +143,7 @@ public class EditAction extends EmptyAction {
     		dbPage.setPicture(page.getPicture());
     		dbPage.setPictureOnPage(page.getPictureOnPage());
     		dbPage.setCssGroup(page.getCssGroup());
+    		dbPage.setOrderNumber(page.getOrderNumber());
 
     		pageDaoLocal.merge(dbPage);
             return SUCCESS;

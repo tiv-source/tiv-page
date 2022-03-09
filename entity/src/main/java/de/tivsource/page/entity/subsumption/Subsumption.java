@@ -42,6 +42,10 @@ public class Subsumption extends ContentItem {
     @org.hibernate.annotations.Type(type = "yes_no")
     private Boolean showPictures = true;
 
+    @Basic
+    @org.hibernate.annotations.Type(type = "yes_no")
+    private Boolean orderDates = true;
+
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER, targetEntity = ContentItem.class)
     @SortNatural
     private SortedSet<ContentItem> contentItems;
@@ -100,6 +104,20 @@ public class Subsumption extends ContentItem {
      */
     public void setShowPictures(Boolean showPictures) {
         this.showPictures = showPictures;
+    }
+
+    /**
+     * @return the orderDates
+     */
+    public Boolean getOrderDates() {
+        return orderDates;
+    }
+
+    /**
+     * @param orderDates the orderDates to set
+     */
+    public void setOrderDates(Boolean orderDates) {
+        this.orderDates = orderDates;
     }
 
     /**

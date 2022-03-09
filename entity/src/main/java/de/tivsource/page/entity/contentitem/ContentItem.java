@@ -81,6 +81,17 @@ public abstract class ContentItem extends PictureItem implements Comparable<Cont
         return tmpResult;
     }
 
+    @Override
+    public int compareTo(ContentItem o) {
+        if (o.getCreated().after(this.getCreated())) {
+            return 1;
+        } else if (o.getCreated().before(this.getCreated())) {
+            return -1;
+        } else {
+            return o.getUuid().compareTo(this.getUuid());
+        }
+    }
+
     public abstract String getUrl();
 
 }// Ende class
