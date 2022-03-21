@@ -43,6 +43,16 @@
 				<interceptor-ref name="defaultStack"/>
 				<interceptor-ref name="validation" />
 			</interceptor-stack>
+
+			<interceptor-stack name="defaultImageStack">
+			    <interceptor-ref name="fileUpload">
+			        <param name="allowedTypes">image/png,image/jpeg,image/pjpeg</param>
+			        <param name="maximumSize">1500000</param>
+			    </interceptor-ref>
+				<interceptor-ref name="ejb3" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="validation" />
+			</interceptor-stack>
 		</interceptors>
 
 		<default-interceptor-ref name="defaultTIVPageAdminStack" />

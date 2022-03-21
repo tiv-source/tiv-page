@@ -21,6 +21,7 @@
 <struts:url var="sliderUrl"            action="index" namespace="/others/slider" />
 <struts:url var="subsumptionUrl"       action="index" namespace="/others/subsumption" />
 <struts:url var="pdfUrl"               action="index" namespace="/others/pdf" />
+<struts:url var="exhibitionUrl"        action="index" namespace="/others/exhibition" />
 
 
    	  <div class="nav">
@@ -155,13 +156,22 @@
               </struts:a>
             </struts:if>
 
-
             <struts:if test="getProperty('module.pdf')">
               <struts:a href="%{pdfUrl}" title="%{getText('navigation.pdf')}">
                 <div class="button">
                   <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.pdf"/>">
                   <br />
                   <p class="ellipsis"><struts:text name="navigation.pdf"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
+            <struts:if test="getProperty('module.exhibition')">
+              <struts:a href="%{exhibitionUrl}" title="%{getText('navigation.exhibition')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_manual.png" alt="<struts:text name="navigation.exhibition"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.exhibition"/></p>
                 </div>
               </struts:a>
             </struts:if>

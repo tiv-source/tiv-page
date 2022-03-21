@@ -30,6 +30,7 @@
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.event.Event</class>
+		<class>de.tivsource.page.entity.exhibition.Exhibition</class>
 		<class>de.tivsource.page.entity.feedback.Feedback</class>
 		<class>de.tivsource.page.entity.feedback.FeedbackOption</class>
 		<class>de.tivsource.page.entity.feedback.FeedbackOptionDescription</class>

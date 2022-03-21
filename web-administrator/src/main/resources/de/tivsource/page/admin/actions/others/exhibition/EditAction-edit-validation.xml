@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+ "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+
+<validators>
+
+  <field name="exhibition.technical">
+    <field-validator type="requiredstring">
+      <message key="exhibition.technical.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-z,0-9]{4,21} ]]></param>
+      <message key="exhibition.technical.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.orderNumber">
+    <field-validator type="required" short-circuit="true">
+      <message key="exhibition.orderNumber.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">10000</param>
+      <message key="exhibition.orderNumber.validation.minmax" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.descriptionMap.DE.name">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             exhibition.descriptionMap.DE.name!=null &&
+             exhibition.descriptionMap.DE.name.trim()!="" &&
+             exhibition.descriptionMap.DE.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="exhibition.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.descriptionMap.DE.description">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             exhibition.descriptionMap.DE.description!=null &&
+             exhibition.descriptionMap.DE.description.trim()!="" &&
+             exhibition.descriptionMap.DE.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="exhibition.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.descriptionMap.DE.keywords">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             exhibition.descriptionMap.DE.keywords!=null &&
+             exhibition.descriptionMap.DE.keywords.trim()!="" &&
+             exhibition.descriptionMap.DE.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="exhibition.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.descriptionMap.EN.name">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             exhibition.descriptionMap.EN.name!=null &&
+             exhibition.descriptionMap.EN.name.trim()!="" &&
+             exhibition.descriptionMap.EN.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="exhibition.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.descriptionMap.EN.description">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             exhibition.descriptionMap.EN.description!=null &&
+             exhibition.descriptionMap.EN.description.trim()!="" &&
+             exhibition.descriptionMap.EN.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="exhibition.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="exhibition.descriptionMap.EN.keywords">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             exhibition.descriptionMap.EN.keywords!=null &&
+             exhibition.descriptionMap.EN.keywords.trim()!="" &&
+             exhibition.descriptionMap.EN.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="exhibition.descriptionMap.EN.keywords.validation.required" />
+    </field-validator>
+  </field>
+
+</validators>

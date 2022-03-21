@@ -44,7 +44,7 @@ public class PictureItemImage extends ImageUntouched implements Comparable<Image
 
     public PictureItemImage() {
         super();
-        uploadPath = "/srv/tiv-page/picture/";
+        uploadPath = "/srv/tiv-page/pictureItem/";
     }
 
     /**

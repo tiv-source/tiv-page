@@ -9,9 +9,9 @@ import javax.persistence.Temporal;
 
 import org.hibernate.envers.Audited;
 
+import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.enumeration.CityType;
 import de.tivsource.page.entity.enumeration.CountryType;
-import de.tivsource.page.entity.namingitem.NamingItem;
 
 /**
  * Austellungen
@@ -24,7 +24,7 @@ import de.tivsource.page.entity.namingitem.NamingItem;
  */
 @Audited
 @Entity
-public class Exhibition extends NamingItem {
+public class Exhibition extends ContentItem {
 
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date moment;
@@ -35,14 +35,15 @@ public class Exhibition extends NamingItem {
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date end;
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date visibleFrom;
+
 	@Enumerated(EnumType.STRING)
 	private CityType place;
 	
 	@Enumerated(EnumType.STRING)
 	private CountryType country;
 
-	private String thumbnail;
-	
 	public Exhibition() {
 		super();
 	}
@@ -71,7 +72,21 @@ public class Exhibition extends NamingItem {
 		this.end = end;
 	}
 
-	public CityType getPlace() {
+	/**
+     * @return the visibleFrom
+     */
+    public Date getVisibleFrom() {
+        return visibleFrom;
+    }
+
+    /**
+     * @param visibleFrom the visibleFrom to set
+     */
+    public void setVisibleFrom(Date visibleFrom) {
+        this.visibleFrom = visibleFrom;
+    }
+
+    public CityType getPlace() {
 		return place;
 	}
 
@@ -87,12 +102,18 @@ public class Exhibition extends NamingItem {
 		this.country = country;
 	}
 
-	public String getThumbnail() {
-		return thumbnail;
-	}
-
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
+    /* (non-Javadoc)
+     * @see de.tivsource.page.entity.contentitem.ContentItem#getUrl()
+     */
+    @Override
+    public String getUrl() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("/");
+        stringBuffer.append("exhibition/");
+        stringBuffer.append(this.getTechnical());
+        stringBuffer.append("/");
+        stringBuffer.append("index.html");
+        return stringBuffer.toString();
+    }
 
 }// Ende class
