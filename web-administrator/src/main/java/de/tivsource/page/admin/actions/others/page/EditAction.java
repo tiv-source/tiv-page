@@ -148,10 +148,7 @@ public class EditAction extends EmptyAction {
     		pageDaoLocal.merge(dbPage);
             return SUCCESS;
     	}
-    	else {
-    		return ERROR;
-    	}
-
+   		return ERROR;
     }// Ende execute()
 
     public List<Picture> getPictureList() {
