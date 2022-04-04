@@ -59,7 +59,7 @@
 	    <project.version>0.0.1</project.version>
 		<struts2.version>2.5.28.3</struts2.version>
 		<struts2.jquery.version>4.0.3</struts2.jquery.version>
-		<log4j.version>2.17.1</log4j.version>
+		<log4j.version>2.17.2</log4j.version>
 		<hibernate.version>5.3.7.Final</hibernate.version>
 		<hibernate.annotations.version>5.0.4.Final</hibernate.annotations.version>
 		<hibernate.search.version>5.10.5.Final</hibernate.search.version>
@@ -210,6 +210,7 @@
 	    <module>dao</module>
 	    <module>ear</module>
 	    <module>entity</module>
+	    <module>exceptions</module>
 	    <module>install</module>
 	    <module>mail-reservation</module>
 	    <module>persistence</module>
