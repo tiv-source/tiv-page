@@ -57,7 +57,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <project.version>0.0.1</project.version>
-		<struts2.version>2.5.28.3</struts2.version>
+		<struts2.version>2.5.30</struts2.version>
 		<struts2.jquery.version>4.0.3</struts2.jquery.version>
 		<log4j.version>2.17.2</log4j.version>
 		<hibernate.version>5.3.7.Final</hibernate.version>
