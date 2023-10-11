@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.dao.exhibition;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -124,7 +125,7 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        query.setParameter("date", new Date());
+        query.setParameter("date", Date.from(Instant.now().minusSeconds(86400)));
         return query.getResultList();
     }
 
