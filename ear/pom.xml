@@ -45,6 +45,11 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>exceptions</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>backup</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -279,6 +284,11 @@
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>entity</artifactId>
 							<bundleFileName>entity.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>exceptions</artifactId>
+							<bundleFileName>exceptions.jar</bundleFileName>
 						</jarModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
