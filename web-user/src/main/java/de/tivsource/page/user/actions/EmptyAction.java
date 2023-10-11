@@ -177,6 +177,13 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
         return this.page;
     }
 
+    /**
+     * @return the language
+     */
+    public String getLanguage() {
+        return language;
+    }
+
     public String getProperty(String key) {
         return propertyDaoLocal.findByKey(key).getValue();
     }
