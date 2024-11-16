@@ -5,9 +5,8 @@ package de.tivsource.page.dao.vacancy;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.vacancy.Vacancy;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

@@ -5,9 +5,8 @@ package de.tivsource.page.dao.menuentry;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.common.menuentry.MenuEntry;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

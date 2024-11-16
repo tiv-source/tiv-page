@@ -5,15 +5,14 @@ package de.tivsource.page.dao.manual;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.manual.Manual;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -64,8 +63,9 @@ public class ManualDao implements ManualDaoLocal {
 	 */
 	@Override
 	public Boolean isManualUuid(String uuid) {
-        Query query = entityManager.createQuery("select m from Manual m where m.uuid = :uuid and m.visible = 'Y' order by m.uuid asc");
+        Query query = entityManager.createQuery("select m from Manual m where m.uuid = :uuid and m.visible = :visible order by m.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
@@ -75,8 +75,9 @@ public class ManualDao implements ManualDaoLocal {
     @Override
     public Boolean isManualUrl(String urlName) {
         LOGGER.info("isManualUrl(String urlName) aufgerufen");
-        Query query = entityManager.createQuery("select m from Manual m where m.technical = :urlName and m.visible = 'Y' order by m.uuid asc");
+        Query query = entityManager.createQuery("select m from Manual m where m.technical = :urlName and m.visible = :visible order by m.uuid asc");
         query.setParameter("urlName", urlName);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -94,8 +95,9 @@ public class ManualDao implements ManualDaoLocal {
     @Override
     public Manual findByTechnical(String technical) {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
-        Query query = entityManager.createQuery("select m from Manual m where m.technical = :technical and m.visible = 'Y'");
+        Query query = entityManager.createQuery("select m from Manual m where m.technical = :technical and m.visible = :visible");
         query.setParameter("technical", technical);
+        query.setParameter("visible", true);
         return (Manual)query.getSingleResult();
     }
 
@@ -131,10 +133,11 @@ public class ManualDao implements ManualDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Manual> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT m FROM Manual m WHERE m.visible = 'Y' ORDER BY m.orderNumber, m.created desc";
+        String queryString = "SELECT m FROM Manual m WHERE m.visible = :visible ORDER BY m.orderNumber, m.created desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -152,7 +155,8 @@ public class ManualDao implements ManualDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(m) from Manual m WHERE m.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(m) from Manual m WHERE m.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

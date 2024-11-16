@@ -3,9 +3,8 @@
  */
 package de.tivsource.page.dao.pictureitem;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.pictureitem.PictureItem;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

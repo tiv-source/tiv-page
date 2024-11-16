@@ -5,15 +5,14 @@ package de.tivsource.page.dao.slider;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.slider.Slider;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -99,10 +98,11 @@ public class SliderDao implements SliderDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Slider> findAllVisible(Integer start, Integer max, String page) {
-        String queryString = "SELECT s FROM Slider s WHERE s.visible = 'Y' and s.page = :page ORDER BY s.orderNumber desc";
+        String queryString = "SELECT s FROM Slider s WHERE s.visible = :visible and s.page = :page ORDER BY s.orderNumber desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         query.setParameter("page", page);
         return query.getResultList();
     }
@@ -121,7 +121,8 @@ public class SliderDao implements SliderDaoLocal {
      */
     @Override
     public Integer countAllVisible(String page) {
-        Query query = entityManager.createQuery("Select Count(s) from Slider s WHERE s.visible = 'Y' and s.page = :page");
+        Query query = entityManager.createQuery("Select Count(s) from Slider s WHERE s.visible = :visible and s.page = :page");
+        query.setParameter("visible", true);
         query.setParameter("page", page);
         return Integer.parseInt(query.getSingleResult().toString());
     }

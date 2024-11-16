@@ -3,9 +3,8 @@
  */
 package de.tivsource.page.dao.pdf;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.pdf.PDFImage;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

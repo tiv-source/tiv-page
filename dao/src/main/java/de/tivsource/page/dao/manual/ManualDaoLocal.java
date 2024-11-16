@@ -5,9 +5,8 @@ package de.tivsource.page.dao.manual;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.manual.Manual;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

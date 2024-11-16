@@ -5,15 +5,14 @@ package de.tivsource.page.dao.contentitem;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -49,10 +48,11 @@ public class ContentItemDao implements ContentItemDaoLocal {
     @Override
     public List<ContentItem> findAllVisible(String uuid, Integer start, Integer max) {
         LOGGER.info("findAll(Integer start, Integer max) aufgerufen");
-        Query query = entityManager.createQuery("from ContentItem ci where ci.uuid != :uuid and ci.visible = 'Y'");
+        Query query = entityManager.createQuery("from ContentItem ci where ci.uuid != :uuid and ci.visible = :visible");
         query.setParameter("uuid", uuid);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -74,8 +74,9 @@ public class ContentItemDao implements ContentItemDaoLocal {
      */
     @Override
     public Integer countAllVisible(String uuid) {
-        Query query = entityManager.createQuery("Select Count(ci) from ContentItem ci where ci.uuid != :uuid and ci.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(ci) from ContentItem ci where ci.uuid != :uuid and ci.visible = :visible");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

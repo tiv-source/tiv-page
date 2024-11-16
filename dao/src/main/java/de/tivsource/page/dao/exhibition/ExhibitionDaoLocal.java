@@ -2,9 +2,8 @@ package de.tivsource.page.dao.exhibition;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.exhibition.Exhibition;
+import jakarta.ejb.Local;
 
 /**
  * 

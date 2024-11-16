@@ -5,10 +5,10 @@ package de.tivsource.page.dao.companion;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -65,8 +65,9 @@ public class CompanionDao implements CompanionDaoLocal {
      */
     @Override
     public Boolean isCompanionUuid(String uuid) {
-        Query query = entityManager.createQuery("select c from Companion c where c.uuid = :uuid and c.visible = 'Y' order by c.uuid asc");
+        Query query = entityManager.createQuery("select c from Companion c where c.uuid = :uuid and c.visible = :visible order by c.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -110,10 +111,11 @@ public class CompanionDao implements CompanionDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Companion> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT c FROM Companion c WHERE c.visible = 'Y' ORDER BY c.name asc";
+        String queryString = "SELECT c FROM Companion c WHERE c.visible = :visible ORDER BY c.name asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -123,10 +125,11 @@ public class CompanionDao implements CompanionDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Companion> findAllVisible(Integer start, Integer max, CompanionGroup companionGroup) {
-        String queryString = "SELECT c FROM Companion c WHERE c.visible = 'Y' and c.group = :companionGroup ORDER BY c.name asc";
+        String queryString = "SELECT c FROM Companion c WHERE c.visible = :visible and c.group = :companionGroup ORDER BY c.name asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         query.setParameter("companionGroup", companionGroup);
         return query.getResultList();
     }
@@ -145,7 +148,8 @@ public class CompanionDao implements CompanionDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
@@ -154,11 +158,10 @@ public class CompanionDao implements CompanionDaoLocal {
      */
     @Override
     public Integer countAllVisible(CompanionGroup companionGroup) {
-        Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = 'Y' and c.group = :companionGroup");
+        Query query = entityManager.createQuery("Select Count(c) from Companion c WHERE c.visible = :visible and c.group = :companionGroup");
+        query.setParameter("visible", true);
         query.setParameter("companionGroup", companionGroup);
         return Integer.parseInt(query.getSingleResult().toString());
     }
-
-
 
 }// Ende class

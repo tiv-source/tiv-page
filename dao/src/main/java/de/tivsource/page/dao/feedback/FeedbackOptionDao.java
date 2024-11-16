@@ -5,15 +5,14 @@ package de.tivsource.page.dao.feedback;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.feedback.FeedbackOption;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -55,8 +54,9 @@ public class FeedbackOptionDao implements FeedbackOptionDaoLocal {
      */
     @Override
     public Boolean isFeedbackOption(String uuid) {
-        Query query = entityManager.createQuery("select fo from FeedbackOption fo where fo.uuid = :uuid and fo.visible = 'Y' order by fo.uuid asc");
+        Query query = entityManager.createQuery("select fo from FeedbackOption fo where fo.uuid = :uuid and fo.visible = :visible order by fo.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 

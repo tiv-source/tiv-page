@@ -7,17 +7,16 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.exhibition.Exhibition;
 import de.tivsource.page.entity.property.Property;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -67,18 +66,19 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         LOGGER.info("isExhibitionTechnical(String technical) aufgerufen");
         Query query = entityManager.createQuery(
                 "select exh from Exhibition exh "
-                + "where exh.technical = :technical and exh.visible = 'Y' order by exh.uuid asc"
+                + "where exh.technical = :technical and exh.visible = :visible order by exh.uuid asc"
         );
         query.setParameter("technical", technical);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
     @Override
     public Exhibition findByTechnical(String technical) {
         Query query = entityManager.createQuery(
-                "select exh from Exhibition exh where exh.technical = :technical and exh.visible = 'Y'"
+                "select exh from Exhibition exh where exh.technical = :technical and exh.visible = :visible"
         );
-
+        query.setParameter("visible", true);
         query.setParameter("technical", technical);
         Exhibition dbExhibition = (Exhibition) query.getSingleResult();
         // LOGGER.info("PictureMap Size: " + dbExhibition.getPictureMap().size());
@@ -121,10 +121,11 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Exhibition> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT ex FROM Exhibition ex WHERE ex.end > :date AND ex.visible = 'Y' AND ex.visibleFrom < :date ORDER BY ex.start asc";
+        String queryString = "SELECT ex FROM Exhibition ex WHERE ex.end > :date AND ex.visible = :visible AND ex.visibleFrom < :date ORDER BY ex.start asc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         query.setParameter("date", Date.from(Instant.now().minusSeconds(86400)));
         return query.getResultList();
     }
@@ -154,8 +155,9 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
     @Override
     public Integer countAllVisible() {
         LOGGER.info("countAllVisible() aufgerufen");
-        Query query = entityManager.createQuery("Select Count(ex) from Exhibition ex WHERE ex.end > :date AND ex.visibleFrom < :date AND ex.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(ex) from Exhibition ex WHERE ex.end > :date AND ex.visibleFrom < :date AND ex.visible = :visible");
         query.setParameter("date", new Date());
+        query.setParameter("visible", true);
         String result = query.getSingleResult().toString();
         LOGGER.info("Anzahl der sichtbaren Exhibition Objekte in der Datenbank: " + result);
         return Integer.parseInt(result);

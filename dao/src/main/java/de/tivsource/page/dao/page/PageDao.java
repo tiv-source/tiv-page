@@ -5,15 +5,14 @@ package de.tivsource.page.dao.page;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.page.Page;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -64,8 +63,9 @@ public class PageDao implements PageDaoLocal {
      */
     @Override
     public Boolean isPageUrl(String urlName) {
-        Query query = entityManager.createQuery("select p from Page p where p.technical = :urlName and p.visible = 'Y' order by p.uuid asc");
+        Query query = entityManager.createQuery("select p from Page p where p.technical = :urlName and p.visible = :visible order by p.uuid asc");
         query.setParameter("urlName", urlName);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 

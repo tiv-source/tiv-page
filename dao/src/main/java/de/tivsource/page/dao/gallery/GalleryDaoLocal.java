@@ -5,9 +5,8 @@ package de.tivsource.page.dao.gallery;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.gallery.Gallery;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

@@ -5,16 +5,15 @@ package de.tivsource.page.dao.pdf;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.enumeration.PDFType;
 import de.tivsource.page.entity.pdf.PDF;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -56,8 +55,9 @@ public class PDFDao implements PDFDaoLocal {
      */
     @Override
     public Boolean isPDF(String uuid) {
-        Query query = entityManager.createQuery("select p from PDF p where p.uuid = :uuid and p.visible = 'Y' order by p.uuid asc");
+        Query query = entityManager.createQuery("select p from PDF p where p.uuid = :uuid and p.visible = :visible order by p.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -130,7 +130,8 @@ public class PDFDao implements PDFDaoLocal {
 
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(p) from PDF p WHERE p.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(p) from PDF p WHERE p.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

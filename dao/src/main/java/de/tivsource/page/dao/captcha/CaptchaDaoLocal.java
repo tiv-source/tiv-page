@@ -2,7 +2,7 @@ package de.tivsource.page.dao.captcha;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import jakarta.ejb.Local;
 
 import de.tivsource.page.common.captcha.Captcha;
 

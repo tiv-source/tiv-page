@@ -5,10 +5,9 @@ package de.tivsource.page.dao.pdf;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.enumeration.PDFType;
 import de.tivsource.page.entity.pdf.PDF;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

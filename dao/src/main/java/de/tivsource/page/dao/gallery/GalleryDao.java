@@ -5,15 +5,14 @@ package de.tivsource.page.dao.gallery;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.gallery.Gallery;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -64,8 +63,9 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Boolean isGallery(String uuid) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = :uuid and g.visible = 'Y' order by g.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = :uuid and g.visible = :visible order by g.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
@@ -74,7 +74,8 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Boolean isGalleryTechnical(String technical) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = :visible order by g.uuid asc");
+        query.setParameter("visible", true);
         query.setParameter("technical", technical);
         return (query.getResultList().size() > 0 ? true : false);
 	}
@@ -102,7 +103,8 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Gallery findByTechnical(String technical) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = :visible order by g.uuid asc");
+        query.setParameter("visible", true);
         query.setParameter("technical", technical);
 		return (Gallery) query.getSingleResult();
 	}

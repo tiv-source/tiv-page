@@ -5,10 +5,10 @@ package de.tivsource.page.dao.companion;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,8 +64,9 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public Boolean isCompanionGroup(String uuid) {
-        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.uuid = :uuid and cg.visible = 'Y' order by cg.uuid asc");
+        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.uuid = :uuid and cg.visible = :visible order by cg.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -74,8 +75,9 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public Boolean isCompanionGroupTechnical(String technical) {
-        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = 'Y' order by cg.uuid asc");
+        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = :visible order by cg.uuid asc");
         query.setParameter("technical", technical);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -102,8 +104,9 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public CompanionGroup findByTechnical(String technical) {
-        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = 'Y' order by cg.uuid asc");
+        Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = :visible order by cg.uuid asc");
         query.setParameter("technical", technical);
+        query.setParameter("visible", true);
         return (CompanionGroup) query.getSingleResult();
     }
 

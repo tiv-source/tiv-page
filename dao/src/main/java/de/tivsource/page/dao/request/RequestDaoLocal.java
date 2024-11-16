@@ -5,9 +5,8 @@ package de.tivsource.page.dao.request;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.request.Request;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

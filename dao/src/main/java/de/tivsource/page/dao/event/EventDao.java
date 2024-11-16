@@ -6,15 +6,14 @@ package de.tivsource.page.dao.event;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.event.Event;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -65,8 +64,9 @@ public class EventDao implements EventDaoLocal {
      */
     @Override
     public Boolean isEvent(String uuid) {
-        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = 'Y' order by e.uuid asc");
+        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = :visible order by e.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -143,10 +143,11 @@ public class EventDao implements EventDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(String uuid, Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date order by e.beginning asc");
+        Query query = entityManager.createQuery("from Event e where e.location.uuid = :uuid and e.visible = :visible and e.beginning > :date order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         query.setParameter("date", new Date());
         return query.getResultList();
     }
@@ -175,8 +176,9 @@ public class EventDao implements EventDaoLocal {
      */
     @Override
     public Integer countAll(String uuid) {
-        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date");
+        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = :uuid and e.visible = :visible and e.beginning > :date");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }

@@ -5,7 +5,7 @@ package de.tivsource.page.dao.companion;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import jakarta.ejb.Local;
 
 import de.tivsource.page.entity.companion.CompanionGroup;
 

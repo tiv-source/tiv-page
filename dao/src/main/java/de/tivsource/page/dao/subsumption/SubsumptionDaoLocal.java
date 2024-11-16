@@ -5,9 +5,8 @@ package de.tivsource.page.dao.subsumption;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.subsumption.Subsumption;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

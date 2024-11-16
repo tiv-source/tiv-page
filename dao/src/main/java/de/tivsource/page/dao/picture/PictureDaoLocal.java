@@ -5,9 +5,8 @@ package de.tivsource.page.dao.picture;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.picture.Picture;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

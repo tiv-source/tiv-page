@@ -5,15 +5,14 @@ package de.tivsource.page.dao.subsumption;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.subsumption.Subsumption;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -58,8 +57,9 @@ public class SubsumptionDao implements SubsumptionDaoLocal {
      */
     @Override
     public Boolean isSubsumptionUrl(String urlName) {
-        Query query = entityManager.createQuery("select s from Subsumption s where s.technical = :urlName and s.visible = 'Y' order by s.uuid asc");
+        Query query = entityManager.createQuery("select s from Subsumption s where s.technical = :urlName and s.visible = :visible order by s.uuid asc");
         query.setParameter("urlName", urlName);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 

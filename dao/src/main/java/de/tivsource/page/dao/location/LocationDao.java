@@ -6,16 +6,15 @@ package de.tivsource.page.dao.location;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -66,8 +65,9 @@ public class LocationDao implements LocationDaoLocal {
 	 */
 	@Override
 	public Boolean isLocation(String uuid) {
-        Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = 'Y' order by l.uuid asc");
+        Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = :visible order by l.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
@@ -76,8 +76,10 @@ public class LocationDao implements LocationDaoLocal {
      */
     @Override
     public Boolean isEventLocation(String uuid) {
-        Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = 'Y' and l.event = 'Y' order by l.uuid asc");
+        Query query = entityManager.createQuery("select l from Location l where l.uuid = :uuid and l.visible = :visible and l.event = :event order by l.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
+        query.setParameter("event", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -131,8 +133,9 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllEventLocation() {
-        String queryString = "select l from Location l where l.event = 'Y' order by l.orderNumber";
+        String queryString = "select l from Location l where l.event = :visible order by l.orderNumber";
         Query query = entityManager.createQuery(queryString);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -142,9 +145,11 @@ public class LocationDao implements LocationDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Location> findAllVisible(Integer start, Integer max) {
-        Query query = entityManager.createQuery("FROM Location l WHERE l.visible = 'Y' AND l.inLocationList = 'Y' ORDER BY l.orderNumber ASC");
+        Query query = entityManager.createQuery("FROM Location l WHERE l.visible = :visible AND l.inLocationList = :inLocationList ORDER BY l.orderNumber ASC");
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
+        query.setParameter("inLocationList", true);
         return query.getResultList();
     }
 
@@ -162,7 +167,8 @@ public class LocationDao implements LocationDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(l) from Location l where l.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(l) from Location l where l.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
