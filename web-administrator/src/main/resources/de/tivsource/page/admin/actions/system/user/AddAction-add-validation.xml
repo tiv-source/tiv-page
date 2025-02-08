@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="user.username">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="user.username.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-z0-9]{4,140} ]]></param>
+      <message key="user.username.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="user.email">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="user.email.validation.required" />
+    </field-validator>
+    <field-validator type="email">
+      <message key="user.email.validation.valid" />
+    </field-validator>
+  </field>
+
+  <field name="user.firstname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="user.firstname.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="user.firstname.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="user.lastname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="user.lastname.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="user.lastname.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="user.password">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="user.password.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-zA-Z0-9ÄÖÜäöüß\-,;.:@#]{8,140} ]]></param>
+      <message key="user.password.validation.character" />
+    </field-validator>
+  </field>
+
+</validators>

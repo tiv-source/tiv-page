@@ -6,13 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/system/user/editForm.html?user="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/system/user/editForm.html?uncheckUser="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/system/user/copyForm.html?user="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
-         "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/system/user/deleteForm.html?user="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/system/user/deleteForm.html?uncheckUser="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -70,7 +67,7 @@ $(function () {
         pager: "#entityPager",
         rowNum: 10,
         rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
-        sortname: "firstname",
+        sortname: "username",
         sortorder: "asc",
         viewrecords: true,
         gridview: true,
