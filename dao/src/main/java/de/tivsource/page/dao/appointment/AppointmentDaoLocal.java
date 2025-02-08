@@ -41,7 +41,9 @@ public interface AppointmentDaoLocal {
      * @return Boolean - true wenn es ein Termin (Appointment) ist.
      */
     public Boolean isAppointmentUuid(String uuid);
-    
+
+    public Boolean hasMenuEntry(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Appointment anhand der
      * Uuid.

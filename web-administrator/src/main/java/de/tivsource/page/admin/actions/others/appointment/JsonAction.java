@@ -7,12 +7,12 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
@@ -150,6 +150,7 @@ public class JsonAction extends ActionSupport {
 	 * @param rows
 	 *            how many rows we want to have into the grid
 	 */
+	@StrutsParameter
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
@@ -165,6 +166,7 @@ public class JsonAction extends ActionSupport {
 	 * @param page
 	 *            current page of the query
 	 */
+	@StrutsParameter
 	public void setPage(Integer page) {
 		this.page = page;
 	}
@@ -235,6 +237,7 @@ public class JsonAction extends ActionSupport {
 	 * @param sord
 	 *            sorting order
 	 */
+	@StrutsParameter
 	public void setSord(String sord) {
 		this.sord = sord;
 	}
@@ -250,6 +253,7 @@ public class JsonAction extends ActionSupport {
 	 * @param sidx
 	 *            get index row - i.e. user click to sort.
 	 */
+	@StrutsParameter
 	public void setSidx(String sidx) {
 		this.sidx = sidx;
 	}

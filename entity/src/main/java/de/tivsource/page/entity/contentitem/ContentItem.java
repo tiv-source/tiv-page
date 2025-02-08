@@ -2,18 +2,17 @@ package de.tivsource.page.entity.contentitem;
 
 import java.util.Map;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.pictureitem.PictureItem;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.OneToMany;
 
 /**
  * 

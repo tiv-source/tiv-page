@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,13 +24,13 @@ import de.tivsource.page.entity.appointment.Appointment;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="appointmentDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/delete_form.jsp")
-  }),
   @TilesDefinition(name="appointmentDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/delete_error.jsp")
+  }),
+  @TilesDefinition(name="appointmentDatabaseError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/database_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -49,6 +50,7 @@ public class DeleteAction extends EmptyAction {
 
     private Appointment appointment;
 
+    @StrutsParameter(depth=3)
     public Appointment getAppointment() {
         return appointment;
     }
@@ -63,8 +65,9 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "appointmentDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "appointmentDeleteError")
+        				@Result(name = "input", type="tiles", location = "appointmentDeleteError"),
+        				@Result(name = "error", type="tiles", location = "appointmentDeleteError"),
+                        @Result(name = "database", type="tiles", location = "appointmentDatabaseError")
         				}
         )
     })
@@ -76,18 +79,18 @@ public class DeleteAction extends EmptyAction {
 
     	if(appointment != null) {
     	    Appointment dbAppointment = appointmentDaoLocal.findByUuid(appointment.getUuid());
-    		dbAppointment.setModified(new Date());
-    		dbAppointment.setModifiedBy(remoteUser);
-    		dbAppointment.setModifiedAddress(remoteAddress);
-    		appointmentDaoLocal.merge(dbAppointment);
-    		appointmentDaoLocal.delete(dbAppointment);
-            return SUCCESS;
+            if(!appointmentDaoLocal.hasMenuEntry(dbAppointment.getUuid())) {
+                dbAppointment.setModified(new Date());
+                dbAppointment.setModifiedBy(remoteUser);
+                dbAppointment.setModifiedAddress(remoteAddress);
+                appointmentDaoLocal.merge(dbAppointment);
+                appointmentDaoLocal.delete(dbAppointment);
+                return SUCCESS;
+            } else {
+                return "database";
+            }
     	}
-    	else {
-    		return ERROR;
-    	}
-    	
-    	
+    	return ERROR;
     }// Ende execute()
 	
 }// Ende class

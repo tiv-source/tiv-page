@@ -5,13 +5,13 @@ package de.tivsource.page.entity.appointment;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -21,22 +21,22 @@ import de.tivsource.page.entity.contentitem.ContentItem;
 @Entity
 public class Appointment extends ContentItem {
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
 	private Date pointInTime;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean booking;
     
 	private String bookingUrl;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean hasVenue;
 
 	private String venue;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date visibleFrom;
 	
     public Date getPointInTime() {

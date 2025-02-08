@@ -6,15 +6,14 @@ package de.tivsource.page.dao.appointment;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.appointment.Appointment;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -68,6 +67,17 @@ public class AppointmentDao implements AppointmentDaoLocal {
         Query query = entityManager.createQuery("select ap from Appointment ap where ap.uuid = :uuid and ap.visible = :visible order by ap.uuid asc");
         query.setParameter("uuid", uuid);
         query.setParameter("visible", true);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.appointment.AppointmentDaoLocal#hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        Appointment appointment = entityManager.find(Appointment.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", appointment);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
