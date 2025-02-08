@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.converter;
+package de.tivsource.page.converter;
 
 import java.util.ArrayList;
 import java.util.List;
