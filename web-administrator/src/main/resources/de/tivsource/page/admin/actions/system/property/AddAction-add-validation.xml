@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="property.key">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="property.key.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-zA-Z0-9.]{4,140} ]]></param>
+      <message key="property.key.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="property.value">
+    <field-validator type="required" short-circuit="true">
+      <message key="property.value.validation.required" />
+    </field-validator>
+  </field>
+
+</validators>
