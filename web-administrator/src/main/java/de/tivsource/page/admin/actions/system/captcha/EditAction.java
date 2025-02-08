@@ -2,15 +2,19 @@ package de.tivsource.page.admin.actions.system.captcha;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -18,9 +22,11 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.captcha.Captcha;
+import de.tivsource.page.common.captcha.image.CaptchaImage;
 import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -38,7 +44,7 @@ import de.tivsource.page.entity.property.Property;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/captcha/edit_error.jsp")
   })
 })
-public class EditAction extends EmptyAction {
+public class EditAction extends EmptyAction implements UploadedFilesAware {
 
     /**
      * Serial Version UID.
@@ -58,6 +64,7 @@ public class EditAction extends EmptyAction {
 
     private Captcha captcha;
 
+    @StrutsParameter(depth=2)
     public Captcha getCaptcha() {
         return captcha;
     }
@@ -133,4 +140,17 @@ public class EditAction extends EmptyAction {
         propertyDaoLocal.merge(lastModified);
     }// Ende setLastModified()
 
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.captcha = new Captcha();
+            this.captcha.setImage(new CaptchaImage());
+            this.captcha.getImage().setCaptcha(this.captcha);
+            this.captcha.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
+    }
+    
 }// Ende class

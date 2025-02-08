@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="captcha.image.uploadFile">
+    <field-validator type="required" short-circuit="true">
+      <message key="captcha.image.uploadFile.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="captcha.image.uploadFileContentType">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="captcha.image.uploadFileContentType.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ ^image\/png ]]></param>
+      <message key="captcha.image.uploadFileContentType.validation.type" />
+    </field-validator>
+  </field>
+
+  <field name="captcha.content">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="captcha.content.validation.required" />
+    </field-validator>
+    <field-validator type="stringlength" short-circuit="true">
+      <param name="minLength">2</param>
+      <param name="maxLength">14</param>
+      <param name="trim">true</param>
+      <message key="captcha.content.validation.length" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-Z0-9 ]*$</param>
+      <message key="captcha.content.validation.character" />
+    </field-validator>
+  </field>
+
+</validators>
