@@ -5,7 +5,7 @@
       <div class="main">
         <div class="sub_menu"></div>
         <div id="title">
-          <h5><struts:text name="companion.add"/></h5>
+          <h5><struts:text name="companion.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">

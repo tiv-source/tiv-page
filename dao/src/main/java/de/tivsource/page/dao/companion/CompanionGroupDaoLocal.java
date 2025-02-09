@@ -37,7 +37,7 @@ public interface CompanionGroupDaoLocal {
     public Boolean isCompanionGroup(String uuid);
 
     public Boolean isCompanionGroupTechnical(String technical);
-    
+
     public Boolean hasReferences(String uuid);
 
     public CompanionGroup findByUuid(String uuid);

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -15,7 +16,6 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.companion.CompanionDaoLocal;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.companion.Companion;
 import de.tivsource.page.entity.companion.CompanionGroup;
 
@@ -57,30 +57,18 @@ public class FormAction extends EmptyAction {
 
     @InjectEJB(name="CompanionGroupDao")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
-	
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
 
 	private Companion companion;
 
 	private String uncheckCompanion;
 
-	private String lang;
-
 	public Companion getCompanion() {
         return companion;
     }
 
-	public void setCompanion(String uncheckCompanion) {
+	@StrutsParameter
+	public void setUncheckCompanion(String uncheckCompanion) {
         this.uncheckCompanion = uncheckCompanion;
-    }
-
-	public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
     }
 
     @Override

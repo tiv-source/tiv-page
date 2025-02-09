@@ -7,9 +7,12 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -19,11 +22,11 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.companion.CompanionGroup;
 import de.tivsource.page.entity.enumeration.Language;
-import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.entity.pictureitem.PictureItemImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -41,7 +44,7 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -59,18 +62,14 @@ public class AddAction extends EmptyAction {
     @InjectEJB(name = "CSSGroupDao")
     private CSSGroupDaoLocal cssGroupDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
     private CompanionGroup companionGroup;
 
-    private List<Picture> pictureList;
-
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public CompanionGroup getCompanionGroup() {
         return companionGroup;
     }
@@ -82,7 +81,6 @@ public class AddAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -120,8 +118,15 @@ public class AddAction extends EmptyAction {
             companionGroup.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
             companionGroup.getDescriptionMap().get(Language.EN).setNamingItem(companionGroup);
             companionGroup.getDescriptionMap().get(Language.EN).setLanguage(Language.EN);
-    	    
-    		companionGroupDaoLocal.merge(companionGroup);
+
+            companionGroup.getImage().setUuid(UUID.randomUUID().toString());
+            companionGroup.getImage().generate();
+            companionGroup.getImage().setCreated(new Date());
+            companionGroup.getImage().setModified(new Date());
+            companionGroup.getImage().setModifiedAddress(remoteAddress);
+            companionGroup.getImage().setModifiedBy(remoteUser);
+
+            companionGroupDaoLocal.merge(companionGroup);
 
             return SUCCESS;
     	}
@@ -132,14 +137,23 @@ public class AddAction extends EmptyAction {
     	
     }// Ende execute()
 
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
-
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.companionGroup = new CompanionGroup();
+            this.companionGroup.setImage(new PictureItemImage());
+            this.companionGroup.getImage().setPictureItem(this.companionGroup);
+            this.companionGroup.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
+    }
 
 }// Ende class
