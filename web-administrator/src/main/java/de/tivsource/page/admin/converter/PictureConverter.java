@@ -17,9 +17,10 @@ import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.picture.Picture;
 
 /**
- * @author marc
+ * @author Marc Michele
  *
  */
+@Deprecated
 public class PictureConverter extends StrutsTypeConverter {
 
     /**
