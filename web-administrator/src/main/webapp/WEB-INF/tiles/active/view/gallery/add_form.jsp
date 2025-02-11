@@ -17,9 +17,19 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
+
+              <div class="field">
+                <struts:fielderror fieldName="gallery.image.uploadFileContentType" />
+                <struts:file key="gallery.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
+              </div>
 
               <div class="field">
                 <struts:select

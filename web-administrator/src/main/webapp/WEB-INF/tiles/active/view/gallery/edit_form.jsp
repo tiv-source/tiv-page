@@ -2,12 +2,15 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="gallery" value="gallery.uuid" />
+  <struts:param name="uncheckGallery" value="gallery.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 <struts:url var="germanUrl">
-  <struts:param name="gallery" value="gallery.uuid" />
+  <struts:param name="uncheckGallery" value="gallery.uuid" />
   <struts:param name="lang">DE</struts:param>
+</struts:url>
+<struts:url var="imageUrl" namespace="/others/gallery" action="imageForm">
+  <struts:param name="uncheckGallery" value="gallery.uuid" />
 </struts:url>
 
       <!--  Start MAIN -->
@@ -26,6 +29,13 @@
               <struts:a href="%{germanUrl}">
                 <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
                 <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
+              </struts:a>
+            </div>
+
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{imageUrl}">
+                <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
               </struts:a>
             </div>
           </div>
@@ -47,27 +57,6 @@
             <struts:hidden key="gallery.uuid"/>
 
             <fieldset class="fieldset">
-
-              <div class="field">
-                <struts:hidden id="gallery_picture" name="gallery.picture" value="gallery.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="gallery.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="gallery.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#edit_gallery_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#gallery_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
-              </div>
 
               <div class="field">
                 <struts:select

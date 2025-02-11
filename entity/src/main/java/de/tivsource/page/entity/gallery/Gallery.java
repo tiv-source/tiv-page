@@ -5,17 +5,16 @@ package de.tivsource.page.entity.gallery;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.enumeration.GalleryType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 
 /**
  * 

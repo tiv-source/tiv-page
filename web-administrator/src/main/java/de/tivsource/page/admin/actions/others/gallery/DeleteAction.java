@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -22,7 +23,7 @@ import de.tivsource.page.entity.gallery.Gallery;
 @TilesDefinitions({
   @TilesDefinition(name="galleryDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/delete_error.jsp")
   }),
   @TilesDefinition(name="galleryReferences", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
@@ -46,6 +47,7 @@ public class DeleteAction extends EmptyAction {
 
     private Gallery gallery;
 
+    @StrutsParameter(depth=3)
     public Gallery getGallery() {
         return gallery;
     }
@@ -60,7 +62,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "galleryDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "galleryDeleteError"),
         				@Result(name = "error", type="tiles", location = "galleryDeleteError"),
         				@Result(name = "references", type="tiles", location = "galleryReferences")
         				}
