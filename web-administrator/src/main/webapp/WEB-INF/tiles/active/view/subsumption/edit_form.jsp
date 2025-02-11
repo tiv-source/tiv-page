@@ -2,12 +2,15 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="subsumption" value="subsumption.uuid" />
+  <struts:param name="uncheckSubsumption" value="subsumption.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 <struts:url var="germanUrl">
-  <struts:param name="subsumption" value="subsumption.uuid" />
+  <struts:param name="uncheckSubsumption" value="subsumption.uuid" />
   <struts:param name="lang">DE</struts:param>
+</struts:url>
+<struts:url var="imageUrl" namespace="/others/subsumption" action="imageForm">
+  <struts:param name="uncheckSubsumption" value="subsumption.uuid" />
 </struts:url>
 
       <!--  Start MAIN -->
@@ -25,6 +28,13 @@
               <struts:a href="%{germanUrl}">
                 <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/>
                 <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
+              </struts:a>
+            </div>
+
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{imageUrl}">
+                <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
               </struts:a>
             </div>
           </div>
@@ -49,27 +59,6 @@
             <struts:hidden key="subsumption.uuid"/>
 
             <fieldset class="fieldset">
-
-              <div class="field">
-                <struts:hidden id="subsumption_picture" name="subsumption.picture" value="subsumption.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="subsumption.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="subsumption.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#edit_subsumption_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#subsumption_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
-              </div>
 
               <div class="field">
                 <struts:textfield 

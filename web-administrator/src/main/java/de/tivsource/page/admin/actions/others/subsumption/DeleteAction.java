@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -56,6 +57,7 @@ public class DeleteAction extends EmptyAction {
 
     private Subsumption subsumption;
 
+    @StrutsParameter(depth=3)
     public Subsumption getSubsumption() {
         return subsumption;
     }
@@ -70,7 +72,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "subsumptionDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "subsumptionDeleteError"),
         				@Result(name = "error", type="tiles", location = "subsumptionDeleteError"),
         				@Result(name = "database", type="tiles", location = "subsumptionDatabaseError")
         				}
