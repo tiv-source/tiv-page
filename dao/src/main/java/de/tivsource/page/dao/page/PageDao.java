@@ -88,7 +88,7 @@ public class PageDao implements PageDaoLocal {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
         Query query = entityManager.createQuery("select p from Page p where p.technical = :technical");
         query.setParameter("technical", technical);
-        return (Page)query.getSingleResult();
+        return query.getResultList().isEmpty() ? null : (Page)query.getSingleResult();
     }
 
     /* (non-Javadoc)

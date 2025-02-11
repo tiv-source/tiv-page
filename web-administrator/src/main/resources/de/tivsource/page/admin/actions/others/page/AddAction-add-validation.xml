@@ -4,6 +4,22 @@
 
 <validators>
 
+  <field name="page.image">
+    <field-validator type="required" short-circuit="true">
+      <message key="captcha.image.uploadFile.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="page.image.uploadFileContentType">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.image.uploadFileContentType.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ ^image\/png ]]></param>
+      <message key="page.image.uploadFileContentType.validation.type" />
+    </field-validator>
+  </field>
+
   <field name="page.technical">
     <field-validator type="requiredstring" short-circuit="true">
       <message key="page.technical.validation.required" />

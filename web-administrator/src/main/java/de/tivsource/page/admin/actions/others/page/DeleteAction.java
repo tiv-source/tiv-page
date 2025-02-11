@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,18 +24,11 @@ import de.tivsource.page.entity.page.Page;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="pageDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_form.jsp")
-  }),
   @TilesDefinition(name="pageDeleteError", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_error.jsp")
   }),
   @TilesDefinition(name="pageDatabaseError", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/database_error.jsp")
   })
@@ -56,6 +50,7 @@ public class DeleteAction extends EmptyAction {
 
     private Page page;
 
+    @StrutsParameter(depth=3)
     public Page getPage() {
         return page;
     }
@@ -70,7 +65,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "pageDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "pageDeleteError"),
         				@Result(name = "error", type="tiles", location = "pageDeleteError"),
         				@Result(name = "database", type="tiles", location = "pageDatabaseError")
         				}
@@ -91,9 +86,8 @@ public class DeleteAction extends EmptyAction {
                 pageDaoLocal.merge(dbPage);
                 pageDaoLocal.delete(dbPage);
                 return SUCCESS;
-    		} else {
-    		    return "database";
     		}
+    		return "database";
     	}
   		return ERROR;
 

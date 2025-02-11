@@ -3,13 +3,13 @@
  */
 package de.tivsource.page.entity.page;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
 
 /**
  * @author Marc Michele
@@ -21,7 +21,7 @@ import de.tivsource.page.entity.contentitem.ContentItem;
 public class Page extends ContentItem {
 
 	@Basic
-	@org.hibernate.annotations.Type(type = "yes_no")
+	@Convert(converter = org.hibernate.type.YesNoConverter.class)
 	private Boolean special;
 
 	public Boolean getSpecial() {

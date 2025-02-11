@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -18,11 +19,9 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.page.Page;
-import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -34,6 +33,10 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/edit_form.jsp")
+  }),
+  @TilesDefinition(name="pageEditError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/edit_error.jsp")
   })
 })
 public class EditAction extends EmptyAction {
@@ -54,9 +57,6 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
@@ -64,10 +64,9 @@ public class EditAction extends EmptyAction {
 
     private String lang = "DE";
 
-    private List<Picture> pictureList;
-    
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Page getPage() {
         return page;
     }
@@ -80,6 +79,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -87,7 +87,6 @@ public class EditAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.page.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -140,7 +139,6 @@ public class EditAction extends EmptyAction {
     		dbPage.setVisible(page.getVisible());
     		dbPage.setModifiedBy(remoteUser);
     		dbPage.setModifiedAddress(remoteAddress);
-    		dbPage.setPicture(page.getPicture());
     		dbPage.setPictureOnPage(page.getPictureOnPage());
     		dbPage.setCssGroup(page.getCssGroup());
     		dbPage.setOrderNumber(page.getOrderNumber());
@@ -150,10 +148,6 @@ public class EditAction extends EmptyAction {
     	}
    		return ERROR;
     }// Ende execute()
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
