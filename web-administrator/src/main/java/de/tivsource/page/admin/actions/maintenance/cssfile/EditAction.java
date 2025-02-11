@@ -2,15 +2,19 @@ package de.tivsource.page.admin.actions.maintenance.cssfile;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -21,6 +25,7 @@ import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.dao.cssfile.CSSFileDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -38,7 +43,7 @@ import de.tivsource.page.entity.property.Property;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/cssfile/edit_error.jsp")
   })
 })
-public class EditAction extends EmptyAction {
+public class EditAction extends EmptyAction implements UploadedFilesAware {
 
     /**
      * Serial Version UID.
@@ -58,6 +63,7 @@ public class EditAction extends EmptyAction {
 
     private CSSFile cssFile;
 
+    @StrutsParameter(depth=2)
     public CSSFile getCssFile() {
         return cssFile;
     }
@@ -111,6 +117,17 @@ public class EditAction extends EmptyAction {
         // Wenn es keine Datei gab wird die Fehlerseite aufgrufen
         return ERROR;
     }// Ende execute()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.cssFile = new CSSFile();
+            this.cssFile.setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
+    }
 
     private void setLastModified() {
         // Lese Daten des Remote Benutzers
