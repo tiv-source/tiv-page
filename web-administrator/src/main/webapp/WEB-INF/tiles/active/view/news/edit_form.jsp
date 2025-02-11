@@ -2,31 +2,43 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="news" value="news.uuid" />
+  <struts:param name="uncheckNews" value="news.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 <struts:url var="germanUrl">
-  <struts:param name="news" value="news.uuid" />
+  <struts:param name="uncheckNews" value="news.uuid" />
   <struts:param name="lang">DE</struts:param>
+</struts:url>
+<struts:url var="imageUrl" namespace="/others/news" action="imageForm">
+  <struts:param name="uncheckNews" value="news.uuid" />
 </struts:url>
 
       <!--  Start MAIN -->
       <div class="main">
-        <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{englishUrl}">
-              <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/>
-              <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
-            </struts:a>
-          </div>
+        <struts:if test="actionName!='edit'">
+          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{englishUrl}">
+                <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/>
+                <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
+              </struts:a>
+            </div>
 
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{germanUrl}">
-              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/>
-              <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
-            </struts:a>
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{germanUrl}">
+                <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/>
+                <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
+              </struts:a>
+            </div>
+
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{imageUrl}">
+                <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
+              </struts:a>
+            </div>
           </div>
-        </div>
+        </struts:if>
 
         <div id="title">
           <h5><struts:text name="news.edit"/></h5>
@@ -47,29 +59,9 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="news_picture" name="news.picture" value="news.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="news.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="news.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#edit_news_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#news_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
-              </div>
-
-              <div class="field">
                 <struts:textfield
                     key="news.releaseDate"
+                    value="%{getFormatted('format.dateTime','news.releaseDate')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"

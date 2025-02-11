@@ -71,6 +71,17 @@ public class NewsDao implements NewsDaoLocal {
 	}
 
     /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal##hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        News news = entityManager.find(News.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", news);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    /* (non-Javadoc)
      * @see de.tivsource.page.dao.news.NewsDaoLocal#isPublicNewsUuid(java.lang.String)
      */
     @Override

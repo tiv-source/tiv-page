@@ -43,6 +43,8 @@ public interface NewsDaoLocal {
 
     public Boolean isPublicNewsUuid(String uuid);
 
+    public Boolean hasMenuEntry(String uuid);
+
     public News findByUuid(String uuid);
 
     /**
