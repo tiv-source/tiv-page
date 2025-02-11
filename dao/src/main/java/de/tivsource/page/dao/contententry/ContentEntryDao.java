@@ -50,6 +50,8 @@ public class ContentEntryDao implements ContentEntryDaoLocal {
 	@Override
 	public void merge(ContentEntry contentEntry) {
         LOGGER.info("merge(ContentEntry contentEntry) aufgerufen");
+        LOGGER.trace("Name des zu speichernden ContentEntry Objektes: " + contentEntry.getName("de"));
+        LOGGER.trace("Name des abhängigen ContentItem Objektes: " + contentEntry.getContentItem().getName("de"));
         entityManager.merge(contentEntry);
 	}
 

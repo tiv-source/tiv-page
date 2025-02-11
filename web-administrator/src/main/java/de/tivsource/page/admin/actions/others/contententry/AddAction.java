@@ -6,15 +6,15 @@ import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.Preparable;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
-
-import com.opensymphony.xwork2.Preparable;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -67,6 +67,7 @@ public class AddAction extends EmptyAction implements Preparable {
 
     private List<ContentItem> contentItems;
 
+    @StrutsParameter(depth=3)
     public ContentEntry getContentEntry() {
         return contentEntry;
     }

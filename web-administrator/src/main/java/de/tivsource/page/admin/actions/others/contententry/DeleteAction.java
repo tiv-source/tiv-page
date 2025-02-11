@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,13 +24,7 @@ import de.tivsource.page.dao.contententry.ContentEntryDaoLocal;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="contentEntryDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/contententry/delete_form.jsp")
-  }),
   @TilesDefinition(name="contentEntryDeleteError", extend = "adminTemplate", putAttributes = {
-	@TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
 	@TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
 	@TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/contententry/delete_error.jsp")
   })
@@ -51,6 +46,7 @@ public class DeleteAction extends EmptyAction {
 
     private ContentEntry contentEntry;
 
+    @StrutsParameter(depth=3)
     public ContentEntry getContentEntry() {
         return contentEntry;
     }
@@ -65,7 +61,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "contentEntryDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "contentEntryDeleteError"),
         				@Result(name = "error", type="tiles", location = "contentEntryDeleteError")
         				}
         )

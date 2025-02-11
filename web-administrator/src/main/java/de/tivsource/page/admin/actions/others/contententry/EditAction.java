@@ -5,15 +5,15 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.Preparable;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
-
-import com.opensymphony.xwork2.Preparable;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -66,6 +66,7 @@ public class EditAction extends EmptyAction implements Preparable {
 
     private List<ContentItem> contentItems;
 
+    @StrutsParameter(depth=3)
     public ContentEntry getContentEntry() {
         return contentEntry;
     }
@@ -101,7 +102,9 @@ public class EditAction extends EmptyAction implements Preparable {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(contentEntry != null) {
-    		LOGGER.info(contentEntry.getTechnical());
+    		LOGGER.info("UUID des ContentEntry Objektes: " + contentEntry.getUuid());
+    		LOGGER.info("UUID des ContentItem Objektes: " + contentEntry.getContentItem().getUuid());
+    		
     		ContentEntry dbContentEntry = contentEntryDaoLocal.findByUuid(contentEntry.getUuid());
     		contentItems.add(dbContentEntry.getContentItem());
     		dbContentEntry.setContentItem(contentEntry.getContentItem());
@@ -128,6 +131,10 @@ public class EditAction extends EmptyAction implements Preparable {
     		dbContentEntry.setVisible(contentEntry.getVisible());
     		dbContentEntry.setModifiedBy(remoteUser);
     		dbContentEntry.setModifiedAddress(remoteAddress);
+    		
+    		LOGGER.trace("Name des zu speichernden ContentEntry Objektes " + dbContentEntry.getName("de"));
+    		LOGGER.trace("Name des abhängigen ContentItem Objektes " + dbContentEntry.getContentItem().getName("de"));
+    		LOGGER.trace("Größe der DescriptionMap des abhängigen ContentItem Objektes " + dbContentEntry.getContentItem().getDescriptionMap().size());
     		contentEntryDaoLocal.merge(dbContentEntry);
             return SUCCESS;
     	}

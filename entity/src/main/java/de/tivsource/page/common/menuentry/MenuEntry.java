@@ -3,14 +3,14 @@
  */
 package de.tivsource.page.common.menuentry;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.namingitem.NamingItem;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 /**
  * @author Marc Michele
@@ -22,25 +22,25 @@ import de.tivsource.page.entity.namingitem.NamingItem;
 public abstract class MenuEntry extends NamingItem {
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean topNavigation;
 
     private Integer topNavigationOrder = 100;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean navigation;
 
     private Integer navigationOrder = 100;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean bottomNavigation;
 
     private Integer bottomNavigationOrder = 100;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean responsiveNavigation;
 
     private Integer responsiveNavigationOrder = 100;
