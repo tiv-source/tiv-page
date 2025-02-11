@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -20,10 +21,6 @@ import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="cssGroupDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/maintenance.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/cssgroup/delete_form.jsp")
-  }),
   @TilesDefinition(name="cssGroupDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/maintenance.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/cssgroup/delete_error.jsp")
@@ -53,6 +50,7 @@ public class DeleteAction extends EmptyAction {
     /**
 	 * @return the cssGroup
 	 */
+    @StrutsParameter(depth=1)
 	public CSSGroup getCssGroup() {
 		return cssGroup;
 	}
@@ -70,7 +68,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "cssGroupDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "cssGroupDeleteError"),
         				@Result(name = "error", type="tiles", location = "cssGroupDeleteError"),
         				@Result(name = "references", type="tiles", location = "cssGroupReferences")
         				}
