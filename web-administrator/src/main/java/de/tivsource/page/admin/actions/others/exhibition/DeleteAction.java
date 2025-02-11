@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,14 +24,13 @@ import de.tivsource.page.entity.exhibition.Exhibition;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="exhibitionDeleteForm",  extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/application.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/delete_form.jsp")
-  }),
   @TilesDefinition(name="exhibitionDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/application.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/delete_error.jsp")
+  }),
+  @TilesDefinition(name="pageDatabaseError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/database_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -50,6 +50,7 @@ public class DeleteAction extends EmptyAction {
 
     private Exhibition exhibition;
 
+    @StrutsParameter(depth=3)
     public Exhibition getExhibition() {
         return exhibition;
     }
@@ -64,8 +65,9 @@ public class DeleteAction extends EmptyAction {
             value = "delete",
             results = {
                 @Result(name = "success", type = "redirectAction", location = "index.html"),
-                @Result(name = "input", type="tiles", location = "exhibitionDeleteForm"),
-                @Result(name = "error", type="tiles", location = "exhibitionDeleteError")
+                @Result(name = "input", type="tiles", location = "exhibitionDeleteError"),
+                @Result(name = "error", type="tiles", location = "exhibitionDeleteError"),
+                @Result(name = "database", type="tiles", location = "pageDatabaseError")
             }
         )
     })
@@ -77,12 +79,15 @@ public class DeleteAction extends EmptyAction {
 
         if(exhibition != null) {
             Exhibition dbExhibition = exhibitionDaoLocal.findByUuid(exhibition.getUuid());
-            dbExhibition.setModified(new Date());
-            dbExhibition.setModifiedBy(remoteUser);
-            dbExhibition.setModifiedAddress(remoteAddress);
-            exhibitionDaoLocal.merge(dbExhibition);
-            exhibitionDaoLocal.delete(dbExhibition);
-            return SUCCESS;
+            if(!exhibitionDaoLocal.hasMenuEntry(dbExhibition.getUuid())) {
+                dbExhibition.setModified(new Date());
+                dbExhibition.setModifiedBy(remoteUser);
+                dbExhibition.setModifiedAddress(remoteAddress);
+                exhibitionDaoLocal.merge(dbExhibition);
+                exhibitionDaoLocal.delete(dbExhibition);
+                return SUCCESS;
+            }
+            return "database";
         }
         return ERROR;
     }// Ende execute()

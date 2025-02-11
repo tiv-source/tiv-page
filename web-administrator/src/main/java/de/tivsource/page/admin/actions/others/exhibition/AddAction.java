@@ -8,9 +8,12 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -26,6 +29,7 @@ import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.exhibition.Exhibition;
 import de.tivsource.page.entity.namingitem.Description;
 import de.tivsource.page.entity.pictureitem.PictureItemImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -43,7 +47,7 @@ import de.tivsource.page.entity.pictureitem.PictureItemImage;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
     /**
      * Serial Version UID.
@@ -63,30 +67,15 @@ public class AddAction extends EmptyAction {
 
     private Exhibition exhibition;
 
-    private PictureItemImage exhibitionImage;
-
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Exhibition getExhibition() {
         return exhibition;
     }
 
     public void setExhibition(Exhibition exhibition) {
         this.exhibition = exhibition;
-    }
-
-    /**
-     * @return the exhibitionImage
-     */
-    public PictureItemImage getExhibitionImage() {
-        return exhibitionImage;
-    }
-
-    /**
-     * @param exhibitionImage - the exhibitionImage to set
-     */
-    public void setExhibitionImage(PictureItemImage exhibitionImage) {
-        this.exhibitionImage = exhibitionImage;
     }
 
     @Override
@@ -115,21 +104,6 @@ public class AddAction extends EmptyAction {
         if (exhibition != null) {
             LOGGER.info("Größe der DescriptionMap: "
                     + exhibition.getDescriptionMap().size());
-
-            /*
-             *  Erzeuge notwendige Initialisierung des 
-             *  PictureItemImage Objektes.
-             */
-            if(exhibitionImage != null) {
-                exhibitionImage.setPictureItem(exhibition);
-                exhibitionImage.setUuid(UUID.randomUUID().toString());
-                exhibitionImage.generate();
-                exhibitionImage.setCreated(new Date());
-                exhibitionImage.setModified(new Date());
-                exhibitionImage.setModifiedAddress(remoteAddress);
-                exhibitionImage.setModifiedBy(remoteUser);
-                exhibition.setImage(exhibitionImage);
-            }
             
             exhibition.setCreated(new Date());
             exhibition.setModified(new Date());
@@ -172,6 +146,13 @@ public class AddAction extends EmptyAction {
             exhibition.setModifiedAddress(remoteAddress);
             exhibition.setModifiedBy(remoteUser);
 
+            exhibition.getImage().setUuid(UUID.randomUUID().toString());
+            exhibition.getImage().generate();
+            exhibition.getImage().setCreated(new Date());
+            exhibition.getImage().setModified(new Date());
+            exhibition.getImage().setModifiedAddress(remoteAddress);
+            exhibition.getImage().setModifiedBy(remoteUser);
+
             exhibitionDaoLocal.merge(exhibition);
 
             return SUCCESS;
@@ -194,5 +175,18 @@ public class AddAction extends EmptyAction {
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.exhibition = new Exhibition();
+            this.exhibition.setImage(new PictureItemImage());
+            this.exhibition.getImage().setPictureItem(this.exhibition);
+            this.exhibition.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
+    }
 
 }// Ende class

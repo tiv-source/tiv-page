@@ -2,17 +2,17 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="exhibition" value="exhibition.uuid" />
+  <struts:param name="uncheckExhibition" value="exhibition.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 
 <struts:url var="germanUrl">
-  <struts:param name="exhibition" value="exhibition.uuid" />
+  <struts:param name="uncheckExhibition" value="exhibition.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
 
-<struts:url var="imageUrl" namespace="/others/exhibition/image" action="index">
-  <struts:param name="exhibition" value="exhibition.uuid" />
+<struts:url var="imageUrl" namespace="/others/exhibition" action="imageForm">
+  <struts:param name="uncheckExhibition" value="exhibition.uuid" />
 </struts:url>
 
       <!--  Start MAIN -->
@@ -111,6 +111,7 @@
               <div class="field">
                 <struts:textfield
                     key="exhibition.moment"
+                    value="%{getFormatted('format.dateTime','exhibition.moment')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -128,6 +129,7 @@
               <div class="field">
                 <struts:textfield
                     key="exhibition.start"
+                    value="%{getFormatted('format.date','exhibition.start')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -146,6 +148,7 @@
               <div class="field">
                 <struts:textfield
                     key="exhibition.end"
+                    value="%{getFormatted('format.date','exhibition.end')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -195,6 +198,7 @@
               <div class="field">
                 <struts:textfield
                     key="exhibition.visibleFrom"
+                    value="%{getFormatted('format.dateTime','exhibition.visibleFrom')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"

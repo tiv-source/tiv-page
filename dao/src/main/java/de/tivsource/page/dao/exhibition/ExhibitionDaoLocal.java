@@ -40,6 +40,8 @@ public interface ExhibitionDaoLocal {
      */
     public Boolean isExhibitionTechnical(String technical);
 
+    public Boolean hasMenuEntry(String uuid);
+
     /**
      * Gibt das Exhibition-Objekt zurück das den angegebenen technischen Namen
      * hat.

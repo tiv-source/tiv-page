@@ -5,17 +5,11 @@
 <struts:url var="remoteurl" action="table" namespace="/others/exhibition"/>
 
 <script type="text/javascript">
-function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
-}
-</script>
-
-<script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/exhibition/editForm.html?exhibition="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/exhibition/editForm.html?uncheckExhibition="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/exhibition/deleteForm.html?exhibition="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/exhibition/deleteForm.html?uncheckExhibition="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -50,6 +44,11 @@ function formatIsoDateTime(celldate, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatPicture(cellvalue, options, rowObject) {
+	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
+}
+</script>
 
       <!--  Start MAIN -->
       <div class="main">

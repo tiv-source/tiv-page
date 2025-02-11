@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -68,12 +69,22 @@ public class EditAction extends EmptyAction {
 
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Exhibition getExhibition() {
         return exhibition;
     }
 
     public void setExhibition(Exhibition exhibition) {
         this.exhibition = exhibition;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    @StrutsParameter
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     @Override
@@ -150,20 +161,6 @@ public class EditAction extends EmptyAction {
 
         return ERROR;
     }// Ende execute()
-
-    /**
-     * @return the lang
-     */
-    public String getLang() {
-        return lang;
-    }
-
-    /**
-     * @param lang the lang to set
-     */
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
 
     public List<CountryType> getCountryList() {
         return Arrays.asList(CountryType.values());

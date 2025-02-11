@@ -2,16 +2,15 @@ package de.tivsource.page.entity.exhibition;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.enumeration.CityType;
 import de.tivsource.page.entity.enumeration.CountryType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Temporal;
 
 /**
  * Austellungen
@@ -26,16 +25,16 @@ import de.tivsource.page.entity.enumeration.CountryType;
 @Entity
 public class Exhibition extends ContentItem {
 
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
 	private Date moment;
 
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
 	private Date start;
 
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
 	private Date end;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date visibleFrom;
 
 	@Enumerated(EnumType.STRING)

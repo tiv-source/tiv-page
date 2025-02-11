@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -41,6 +42,10 @@ import de.tivsource.page.entity.exhibition.Exhibition;
   @TilesDefinition(name="exhibitionDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/delete_form.jsp")
+  }),
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/image_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -66,12 +71,28 @@ public class FormAction extends EmptyAction {
 
     private Exhibition exhibition;
 
+    private String uncheckExhibition;
+
     private String lang = "DE";
 
     private List<CSSGroup> cssGroupList;
 
     public Exhibition getExhibition() {
         return exhibition;
+    }
+
+    @StrutsParameter
+    public void setUncheckExhibition(String uncheckExhibition) {
+        this.uncheckExhibition = uncheckExhibition;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    @StrutsParameter
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     @Override
@@ -93,6 +114,10 @@ public class FormAction extends EmptyAction {
         @Action(
             value = "deleteForm",
             results = { @Result(name = "success", type="tiles", location = "exhibitionDeleteForm") }
+        ),
+        @Action(
+            value = "imageForm", 
+            results = { @Result(name = "success", type="tiles", location = "imageForm") }
         )
     })
     public String execute() throws Exception {
@@ -103,20 +128,6 @@ public class FormAction extends EmptyAction {
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
-
-    /**
-     * @return the lang
-     */
-    public String getLang() {
-        return lang;
-    }
-
-    /**
-     * @param lang the lang to set
-     */
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
 
     public List<CountryType> getCountryList() {
         return Arrays.asList(CountryType.values());
@@ -133,10 +144,8 @@ public class FormAction extends EmptyAction {
     }// Ende getCssGroupList()
 
     private void loadPageParameter() {
-        String exhibitionUuid = this.getServletRequest().getParameter("exhibition");
-        LOGGER.info("Aktuelle ID des Exhibition-Objektes aus dem Servlet Request ausgelesen.");
-        if( exhibitionUuid != null && exhibitionUuid != "" && exhibitionUuid.length() > 0) {
-            exhibition = exhibitionDaoLocal.findByUuid(exhibitionUuid);
+        if( uncheckExhibition != null && uncheckExhibition != "" && uncheckExhibition.length() > 0) {
+            exhibition = exhibitionDaoLocal.findByUuid(uncheckExhibition);
         } else {
             exhibition = new Exhibition();
         }

@@ -24,7 +24,8 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:file key="exhibitionImage.uploadFile" parentTheme="xhtml" labelposition="left">
+                <struts:fielderror fieldName="exhibition.image.uploadFileContentType" />
+                <struts:file key="exhibition.image" parentTheme="xhtml" labelposition="left">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>

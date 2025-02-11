@@ -39,7 +39,7 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
     }
 
     /* (non-Javadoc)
-     * @see de.czastka.dao.exhibition.ExhibitionDaoLocal#save(de.czastka.entity.exhibition.Exhibition)
+     * @see de.tivsource.page.dao.exhibition.ExhibitionDaoLocal#save(de.tivsource.page.entity.exhibition.Exhibition)
      */
     public void save(Exhibition exhibition) {
         LOGGER.info("save(Exhibition exhibition) aufgerufen");
@@ -47,7 +47,7 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
     }
 
     /* (non-Javadoc)
-     * @see de.czastka.dao.exhibition.ExhibitionDaoLocal#merge(de.czastka.entity.exhibition.Exhibition)
+     * @see de.tivsource.page.dao.exhibition.ExhibitionDaoLocal#merge(de.tivsource.page.entity.exhibition.Exhibition)
      */
     public void merge(Exhibition exhibition) {
         exhibition.setModified(new Date());
@@ -55,7 +55,7 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
     }
 
     /* (non-Javadoc)
-     * @see de.czastka.dao.exhibition.ExhibitionDaoLocal#delete(de.czastka.entity.exhibition.Exhibition)
+     * @see de.tivsource.page.dao.exhibition.ExhibitionDaoLocal#delete(de.tivsource.page.entity.exhibition.Exhibition)
      */
     public void delete(Exhibition exhibition) {
         entityManager.remove(entityManager.find(Exhibition.class, exhibition.getUuid()));
@@ -70,6 +70,17 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         );
         query.setParameter("technical", technical);
         query.setParameter("visible", true);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.exhibition.AppointmentDaoLocal#hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        Exhibition exhibition = entityManager.find(Exhibition.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", exhibition);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
