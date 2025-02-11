@@ -8,6 +8,10 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -19,6 +23,16 @@ import de.tivsource.page.entity.manual.Manual;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="manualDeleteError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/manual/delete_error.jsp")
+  }),
+  @TilesDefinition(name="manualDatabaseError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/manual/database_error.jsp")
+  })
+})
 public class DeleteAction extends EmptyAction {
 
     /**
@@ -36,6 +50,7 @@ public class DeleteAction extends EmptyAction {
 
     private Manual manual;
 
+    @StrutsParameter(depth=3)
     public Manual getManual() {
         return manual;
     }
@@ -50,8 +65,9 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "manualDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "manualDeleteError")
+        				@Result(name = "input", type="tiles", location = "manualDeleteError"),
+        				@Result(name = "error", type="tiles", location = "manualDeleteError"),
+                        @Result(name = "database", type="tiles", location = "manualDatabaseError")
         				}
         )
     })
@@ -63,12 +79,15 @@ public class DeleteAction extends EmptyAction {
 
     	if(manual != null) {
     		Manual dbManual = manualDaoLocal.findByUuid(manual.getUuid());
-    		dbManual.setModified(new Date());
-    		dbManual.setModifiedBy(remoteUser);
-    		dbManual.setModifiedAddress(remoteAddress);
-    		manualDaoLocal.merge(dbManual);
-    		manualDaoLocal.delete(dbManual);
-            return SUCCESS;
+    		if(!manualDaoLocal.hasMenuEntry(dbManual.getUuid())) {
+                dbManual.setModified(new Date());
+                dbManual.setModifiedBy(remoteUser);
+                dbManual.setModifiedAddress(remoteAddress);
+                manualDaoLocal.merge(dbManual);
+                manualDaoLocal.delete(dbManual);
+                return SUCCESS;
+    		}
+    		return "database";
     	}
     	else {
     		return ERROR;

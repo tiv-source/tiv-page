@@ -49,6 +49,8 @@ public interface ManualDaoLocal {
      */
     public Boolean isManualUrl(String urlName);
 
+    public Boolean hasMenuEntry(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Manual anhand der
      * Uuid.

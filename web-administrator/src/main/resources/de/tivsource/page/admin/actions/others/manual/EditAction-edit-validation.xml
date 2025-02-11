@@ -24,13 +24,41 @@
            ||
            (
              lang.equals("DE") &&
-             manual.descriptionMap.DE.name!=null &&
-             manual.descriptionMap.DE.name.trim()!="" &&
-             manual.descriptionMap.DE.name.trim().length()>3
+             manual.descriptionMap.DE.name!=null
            ))
         ]]>
       </param>
       <message key="manual.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             manual.descriptionMap.DE.name.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             manual.descriptionMap.DE.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.DE.name.validation.length" />
     </field-validator>
   </field>
 
@@ -44,13 +72,41 @@
            ||
            (
              lang.equals("DE") &&
-             manual.descriptionMap.DE.description!=null &&
-             manual.descriptionMap.DE.description.trim()!="" &&
-             manual.descriptionMap.DE.description.trim().length()>3
+             manual.descriptionMap.DE.description!=null
            ))
         ]]>
       </param>
       <message key="manual.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             manual.descriptionMap.DE.description.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             manual.descriptionMap.DE.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.DE.description.validation.length" />
     </field-validator>
   </field>
 
@@ -64,13 +120,41 @@
            ||
            (
              lang.equals("DE") &&
-             manual.descriptionMap.DE.keywords!=null &&
-             manual.descriptionMap.DE.keywords.trim()!="" &&
-             manual.descriptionMap.DE.keywords.trim().length()>3
+             manual.descriptionMap.DE.keywords!=null
            ))
         ]]>
       </param>
       <message key="manual.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             manual.descriptionMap.DE.keywords.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             manual.descriptionMap.DE.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.DE.keywords.validation.length" />
     </field-validator>
   </field>
 
@@ -84,13 +168,41 @@
            ||
            (
              lang.equals("EN") &&
-             manual.descriptionMap.EN.name!=null &&
-             manual.descriptionMap.EN.name.trim()!="" &&
-             manual.descriptionMap.EN.name.trim().length()>3
+             manual.descriptionMap.EN.name!=null
            ))
         ]]>
       </param>
       <message key="manual.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             manual.descriptionMap.EN.name.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             manual.descriptionMap.EN.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.EN.name.validation.length" />
     </field-validator>
   </field>
 
@@ -104,13 +216,41 @@
            ||
            (
              lang.equals("EN") &&
-             manual.descriptionMap.EN.description!=null &&
-             manual.descriptionMap.EN.description.trim()!="" &&
-             manual.descriptionMap.EN.description.trim().length()>3
+             manual.descriptionMap.EN.description!=null
            ))
         ]]>
       </param>
       <message key="manual.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             manual.descriptionMap.EN.description.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             manual.descriptionMap.EN.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.EN.description.validation.length" />
     </field-validator>
   </field>
 
@@ -124,15 +264,44 @@
            ||
            (
              lang.equals("EN") &&
-             manual.descriptionMap.EN.keywords!=null &&
-             manual.descriptionMap.EN.keywords.trim()!="" &&
-             manual.descriptionMap.EN.keywords.trim().length()>3
+             manual.descriptionMap.EN.keywords!=null
            ))
         ]]>
       </param>
       <message key="manual.descriptionMap.EN.keywords.validation.required" />
     </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             manual.descriptionMap.EN.keywords.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.EN.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             manual.descriptionMap.EN.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="manual.descriptionMap.EN.keywords.validation.length" />
+    </field-validator>
   </field>
+
 
 
 </validators>

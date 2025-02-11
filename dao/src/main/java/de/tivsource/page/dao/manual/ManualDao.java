@@ -81,6 +81,17 @@ public class ManualDao implements ManualDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.manual.ManualDaoLocal#hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        Manual manual = entityManager.find(Manual.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", manual);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.manual.ManualDaoLocal#findByUuid(java.lang.String)
 	 */
