@@ -32,6 +32,8 @@ public interface PDFDaoLocal {
 
     public PDF findByUuid(String uuid);
 
+    public PDF findVisibleByUuid(String uuid);
+
     /**
      * Methode zum laden einer Liste von PDF Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzhal der zu ladenen PDF Objekte.

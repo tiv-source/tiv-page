@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -38,6 +39,14 @@ import de.tivsource.page.entity.pdf.PDF;
   @TilesDefinition(name="pdfDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/pdf/delete_form.jsp")
+  }),
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/pdf/image_form.jsp")
+  }),
+  @TilesDefinition(name="pdfForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/pdf/pdf_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -62,20 +71,22 @@ public class FormAction extends EmptyAction {
 
 	private String uncheckPdf;
 
-	private String lang;
+	private String lang = "DE";
 
 	public PDF getPdf() {
         return pdf;
     }
 
-	public void setPdf(String uncheckpdf) {
-        this.uncheckPdf = uncheckpdf;
+	@StrutsParameter
+	public void setUncheckPdf(String uncheckPdf) {
+        this.uncheckPdf = uncheckPdf;
     }
 
 	public String getLang() {
         return lang;
     }
 
+	@StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -98,6 +109,14 @@ public class FormAction extends EmptyAction {
         @Action(
         		value = "deleteForm", 
         		results = { @Result(name = "success", type="tiles", location = "pdfDeleteForm") }
+        ),
+        @Action(
+                value = "imageForm", 
+                results = { @Result(name = "success", type="tiles", location = "imageForm") }
+        ),
+        @Action(
+                value = "pdfForm", 
+                results = { @Result(name = "success", type="tiles", location = "pdfForm") }
         )
     })
     public String execute() throws Exception {

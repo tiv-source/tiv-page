@@ -62,6 +62,17 @@ public class PDFDao implements PDFDaoLocal {
     }
 
     /* (non-Javadoc)
+     * @see de.tivsource.page.dao.pdf.PDFDaoLocal#findVisibleByUuid(java.lang.String)
+     */
+    @Override
+    public PDF findVisibleByUuid(String uuid) {
+        Query query = entityManager.createQuery("select p from PDF p where p.uuid = :uuid and p.visible = :visible order by p.uuid asc");
+        query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
+        return (PDF) (query.getResultList().size() > 0 && query.getResultList().size() < 2 ? query.getSingleResult() : null) ;
+    }
+
+    /* (non-Javadoc)
      * @see de.tivsource.page.dao.pdf.PDFDaoLocal#findByUuid(java.lang.String)
      */
     @Override

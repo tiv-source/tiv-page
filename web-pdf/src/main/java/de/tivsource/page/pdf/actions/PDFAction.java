@@ -4,23 +4,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.ServletRequestAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.ServletRequestAware;
-
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.pdf.PDFDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.pdf.PDF;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -56,10 +55,6 @@ public class PDFAction extends ActionSupport implements ServletRequestAware {
      */
     private boolean cache = true;
 
-    public void setServletRequest(HttpServletRequest servletRequest) {
-        this.servletRequest = servletRequest;
-    }
-
     /**
      * @return the pdf
      */
@@ -70,6 +65,7 @@ public class PDFAction extends ActionSupport implements ServletRequestAware {
     /**
      * @param cache the cache to set
      */
+    @StrutsParameter
     public void setCache(boolean cache) {
         this.cache = cache;
     }
@@ -137,12 +133,16 @@ public class PDFAction extends ActionSupport implements ServletRequestAware {
         logger.info("PDF UUID: " + pdfUuid);
 
         try {
-            pdf = pdfDaoLocal.findByUuid(pdfUuid);
-            Integer downloadCounter = pdf.getDownloadCounter() + 1;
-            pdf.setDownloadCounter(downloadCounter);
-            logger.info("PDF UUID: " + pdfUuid + " wurde " + downloadCounter + " heruntergeladen." );
-            pdfDaoLocal.merge(pdf);
-            return SUCCESS;
+            pdf = pdfDaoLocal.findVisibleByUuid(pdfUuid);
+            if(pdf != null) {
+                Integer downloadCounter = pdf.getDownloadCounter() + 1;
+                pdf.setDownloadCounter(downloadCounter);
+                logger.info("PDF UUID: " + pdfUuid + " wurde " + downloadCounter + " heruntergeladen." );
+                pdfDaoLocal.merge(pdf);
+                return SUCCESS;
+            }
+            addActionError(getText("pdf.actionError.get.noResultException"));
+            return ERROR;
         } catch (NumberFormatException exception) {
             addActionError(getText("pdf.actionError.get.numberFormatException"));
             exception.printStackTrace();
@@ -152,6 +152,11 @@ public class PDFAction extends ActionSupport implements ServletRequestAware {
             exception.printStackTrace();
             return ERROR;
         }
+    }
+
+    @Override
+    public void withServletRequest(HttpServletRequest httpServletRequest) {
+        this.servletRequest = httpServletRequest;
     }
 
 }// Ende class

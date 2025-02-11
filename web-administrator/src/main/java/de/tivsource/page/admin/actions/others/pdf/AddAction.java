@@ -3,6 +3,7 @@ package de.tivsource.page.admin.actions.others.pdf;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -11,9 +12,12 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -25,7 +29,9 @@ import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.enumeration.PDFType;
 import de.tivsource.page.entity.pdf.PDF;
+import de.tivsource.page.entity.pdf.PDFImage;
 import de.tivsource.page.entity.property.Property;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -43,7 +49,7 @@ import de.tivsource.page.entity.property.Property;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/pdf/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -63,6 +69,7 @@ public class AddAction extends EmptyAction {
 
     private PDF pdf;
 
+    @StrutsParameter(depth=3)
     public PDF getPdf() {
         return pdf;
     }
@@ -112,8 +119,7 @@ public class AddAction extends EmptyAction {
 
             // Erstelle die PDF Datei
             pdf.generate();
-
-            pdf.getImage().setPdf(pdf);
+            
             pdf.getImage().setUuid(UUID.randomUUID().toString());
             pdf.getImage().generate();
             pdf.getImage().setCreated(new Date());
@@ -182,5 +188,30 @@ public class AddAction extends EmptyAction {
         }
         propertyDaoLocal.merge(lastModified);
     }// Ende setLastModified()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("Variable uploadedFiles ist nicht leer.");
+            // Erstelle das PDF-Objekt
+            this.pdf = new PDF();
+            Iterator<UploadedFile> ufIterator = uploadedFiles.iterator();
+            while(ufIterator.hasNext()) {
+                UploadedFile next = ufIterator.next();
+                LOGGER.info("UploadedFile für Input-Name: " + next.getInputName() + " gefunden.");
+                if(next.getInputName().equalsIgnoreCase("pdf.uploadFile")) {
+                    LOGGER.info("Setze UploadedFile für Input-Name pdf.uploadFile.");
+                    this.pdf.setUploadFile(UploadedFileToUploadFile.convert(next));
+                }
+                if(next.getInputName().equalsIgnoreCase("pdf.image.uploadFile")) {
+                    LOGGER.info("Setze UploadedFile für Input-Name pdf.image.uploadFile.");
+                    this.pdf.setImage(new PDFImage());
+                    this.pdf.getImage().setPdf(this.pdf);
+                    this.pdf.getImage().setUploadFile(UploadedFileToUploadFile.convert(next));
+                }                
+            }// Ende while()
+         }
+    }// Ende withUploadedFiles(List<UploadedFile> uploadedFiles)
 
 }// Ende class

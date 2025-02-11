@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/pdf/editForm.html?pdf="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/pdf/editForm.html?uncheckPdf="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/pdf/deleteForm.html?pdf="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/pdf/deleteForm.html?uncheckPdf="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }

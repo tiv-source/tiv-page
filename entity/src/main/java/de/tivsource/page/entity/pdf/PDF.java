@@ -10,28 +10,29 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.Transient;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tools.ant.util.FileUtils;
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.common.file.FileActions;
+import de.tivsource.page.common.file.UploadFile;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.enumeration.PDFType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.Transient;
 
 /**
  * @author Marc Michele
@@ -78,7 +79,7 @@ public class PDF implements Serializable {
 
     private String edition;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date dateOfPublication;
 
     private Integer downloadCounter = 0;
@@ -89,7 +90,7 @@ public class PDF implements Serializable {
     private String file;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean visible;
 
     private Integer orderNumber = 1;
@@ -98,10 +99,10 @@ public class PDF implements Serializable {
     @JoinColumn(name = "image_uuid")
     private PDFImage image;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
@@ -113,7 +114,7 @@ public class PDF implements Serializable {
      * nur nach der Erstellung oder nach eine Änderung.
      */
     @Transient
-    private File uploadFile;
+    private UploadFile uploadFile;
 
     public String getUuid() {
         return uuid;
@@ -227,11 +228,11 @@ public class PDF implements Serializable {
         this.modifiedAddress = modifiedAddress;
     }
 
-    public File getUploadFile() {
+    public UploadFile getUploadFile() {
         return uploadFile;
     }
 
-    public void setUploadFile(File uploadFile) {
+    public void setUploadFile(UploadFile uploadFile) {
         this.uploadFile = uploadFile;
     }
 
@@ -248,7 +249,7 @@ public class PDF implements Serializable {
 
             // Wenn die Datei noch nicht existiert wird Sie erstellt.
             if (!fileToCreate.exists()) {
-                FileActions.savePictureFile(this.getUploadFile(), fileToCreate);
+                FileActions.savePictureFile(new File(uploadFile.getAbsolutePath()), fileToCreate);
             }// Ende if
         } // Ende try
         catch (Exception e) {

@@ -17,6 +17,8 @@
     
 
 	<constant name="struts.action.extension" value="pdf"/>
+
+    <constant name="struts.allowlist.classes" value="de.tivsource.page.entity.pdf.PDF"/>
 	
 	<constant name="struts.convention.package.locators" value="actions,action" />
 	<constant name="struts.convention.package.locators.disable" value="false" />

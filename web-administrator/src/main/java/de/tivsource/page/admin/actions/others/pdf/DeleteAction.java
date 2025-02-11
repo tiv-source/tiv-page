@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -46,6 +47,7 @@ public class DeleteAction extends EmptyAction {
 
     private PDF pdf;
 
+    @StrutsParameter(depth=3)
     public PDF getPdf() {
         return pdf;
     }
@@ -60,7 +62,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "pdfDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "pdfDeleteError"),
         				@Result(name = "error", type="tiles", location = "pdfDeleteError")
         				}
         )
@@ -68,7 +70,7 @@ public class DeleteAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
-        if(pdf != null) {
+        if(pdf != null && pdf.getUuid() != "") {
             PDF dbPdf = pdfDaoLocal.findByUuid(pdf.getUuid());
             if(dbPdf.getImage() != null) {
                 dbPdf.getImage().delete();
