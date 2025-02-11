@@ -4,13 +4,13 @@
       <!--  Start MAIN -->
       <div class="main">
         <div id="title">
-          <h5><struts:text name="picture.edit"/></h5>
+          <h5><struts:text name="appointment.image.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
           <struts:form 
                   cssClass="form" 
-                  action="picture" 
+                  action="image" 
                   namespace="/others/picture" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
@@ -29,7 +29,7 @@
 
               <div class="field">
                 <label for="picture" class="label">Aktuelles Bild:</label>
-                <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url"/>" />
+                <img alt="" src="/image/picture/<struts:property value="picture.uuid" />/normal.png?cache=false">
               </div>
 
               <div class="field">
@@ -55,8 +55,9 @@
                   id="submit_deny__Close" 
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
-                  action="index" 
+                  action="editForm" 
                   namespace="/others/picture">
+                    <struts:param name="uncheckPicture" value="%{picture.uuid}" />
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>

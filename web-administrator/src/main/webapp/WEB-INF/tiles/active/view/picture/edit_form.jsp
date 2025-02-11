@@ -2,15 +2,15 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="picture" value="picture.uuid" />
+  <struts:param name="uncheckPicture" value="picture.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 <struts:url var="germanUrl">
-  <struts:param name="picture" value="picture.uuid" />
+  <struts:param name="uncheckPicture" value="picture.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-<struts:url var="pictureUrl" namespace="/others/picture" action="pictureForm">
-  <struts:param name="picture" value="picture.uuid" />
+<struts:url var="imageUrl" namespace="/others/picture" action="imageForm">
+  <struts:param name="uncheckPicture" value="picture.uuid" />
 </struts:url>
 
       <!--  Start MAIN -->
@@ -31,7 +31,7 @@
           </div>
 
           <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{pictureUrl}">
+            <struts:a href="%{imageUrl}">
               <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
               <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
             </struts:a>

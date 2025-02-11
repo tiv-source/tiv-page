@@ -30,7 +30,7 @@
 
               <div class="field">
                 <label for="picture" class="label">Bild:</label>
-                <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url"/>" />
+                <img src="/image/picture/<struts:property value="picture.uuid"/>/normal.png?cache=false" />
               </div>
 
             </fieldset>
