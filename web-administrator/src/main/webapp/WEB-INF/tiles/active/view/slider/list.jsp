@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/slider/editForm.html?slider="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/slider/editForm.html?uncheckSlider="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/slider/deleteForm.html?slider="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/slider/deleteForm.html?uncheckSlider="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -37,7 +37,7 @@ function formatIsoDate(celldate, options, rowObject) {
 
 <script type="text/javascript">
 function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/image/slider/" + cellvalue + "/thumbnail.png'/>";  
+	return "<img src='/image/slider/" + cellvalue + "/thumbnail.png?cache=false'/>";  
 }
 </script>
 
