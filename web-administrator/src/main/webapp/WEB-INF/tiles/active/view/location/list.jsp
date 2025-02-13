@@ -6,13 +6,13 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/location/editForm.html?location="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/locations/location/editForm.html?uncheckLocation="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/location/copyForm.html?location="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/location/copyForm.html?uncheckLocation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/location/deleteForm.html?location="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/location/deleteForm.html?uncheckLocation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }

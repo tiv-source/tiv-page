@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -45,6 +46,7 @@ public class OpeningHourAddAction extends EmptyAction {
         return location;
     }
 
+    @StrutsParameter(depth=2)
     public OpeningHour getOpeningHour() {
         return openingHour;
     }
@@ -58,7 +60,7 @@ public class OpeningHourAddAction extends EmptyAction {
         @Action(
         		value = "openingHourAdd", 
         		results = {
-                        @Result(name = "success", type = "redirect", params={"locationUuid", "%{openingHour.location.uuid}", "location", "overview.html", "namespace", "/location"}),
+                        @Result(name = "success", type = "redirect", params={"uncheckLocation", "%{openingHour.location.uuid}", "location", "overview.html", "namespace", "/location"}),
                         @Result(name = "input", type="tiles", location = "openingHourAddForm"),
                         @Result(name = "error", type="tiles", location = "openingHourAddError")
                         }

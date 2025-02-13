@@ -91,7 +91,7 @@
                     <struts:text name="form.save"/>
               </button>
               <struts:url var="overviewUrl" action="overview" namespace="/locations/location">
-                <struts:param name="locationUuid" value="location.uuid" />
+                <struts:param name="uncheckLocation" value="location.uuid" />
               </struts:url>
               <struts:a 
                   id="submit_deny__Close" 
