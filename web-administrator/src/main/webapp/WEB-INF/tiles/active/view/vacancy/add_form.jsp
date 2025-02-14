@@ -12,34 +12,23 @@
           <struts:form 
                   cssClass="form" 
                   action="add" 
-                  namespace="/others/vacancy" 
+                  namespace="/locations/vacancy" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="vacancy_picture" name="vacancy.picture" value="vacancy.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="vacancy.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="vacancy.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#add_vacancy_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#vacancy_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
+                <struts:fielderror fieldName="vacancy.image.uploadFileContentType" />
+                <struts:file key="vacancy.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
               </div>
 
               <div class="field">
@@ -180,7 +169,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/others/vacancy">
+                  namespace="/locations/vacancy">
                    <struts:text name="form.abort"/>
               </struts:a>
             </div>

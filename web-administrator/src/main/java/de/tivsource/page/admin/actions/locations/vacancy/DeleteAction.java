@@ -1,10 +1,11 @@
-package de.tivsource.page.admin.actions.others.vacancy;
+package de.tivsource.page.admin.actions.locations.vacancy;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -33,6 +34,7 @@ public class DeleteAction extends EmptyAction {
 
     private Vacancy vacancy;
 
+    @StrutsParameter(depth=3)
     public Vacancy getVacancy() {
         return vacancy;
     }
@@ -47,7 +49,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "vacancyDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "vacancyDeleteError"),
         				@Result(name = "error", type="tiles", location = "vacancyDeleteError")
         				}
         )

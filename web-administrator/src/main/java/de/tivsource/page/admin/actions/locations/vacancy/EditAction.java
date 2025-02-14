@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.others.vacancy;
+package de.tivsource.page.admin.actions.locations.vacancy;
 
 import java.util.Date;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -18,12 +19,9 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
-import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.vacancy.Vacancy;
 
 /**
@@ -34,7 +32,7 @@ import de.tivsource.page.entity.vacancy.Vacancy;
 @TilesDefinitions({
   @TilesDefinition(name="vacancyEditForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/vacancy/edit_form.jsp")
   })
 })
@@ -59,22 +57,15 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
     private Vacancy vacancy;
 
     private String lang;
-
-    private List<Picture> pictureList;
 
     private List<Location> locationList;
 
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Vacancy getVacancy() {
         return vacancy;
     }
@@ -87,6 +78,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -94,7 +86,6 @@ public class EditAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.vacancy.picture").getValue());
         locationList = locationDaoLocal.findAll(0, locationDaoLocal.countAll());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
@@ -150,7 +141,6 @@ public class EditAction extends EmptyAction {
     		dbVacancy.setModified(new Date());
     		dbVacancy.setModifiedBy(remoteUser);
     		dbVacancy.setVisible(vacancy.getVisible());
-    		dbVacancy.setPicture(vacancy.getPicture());
     		dbVacancy.setPictureOnPage(vacancy.getPictureOnPage());
     		dbVacancy.setCssGroup(vacancy.getCssGroup());
     		
@@ -166,10 +156,6 @@ public class EditAction extends EmptyAction {
     public List<Location> getLocationList() {
         return locationList;
     }// Ende getLocationList()
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");

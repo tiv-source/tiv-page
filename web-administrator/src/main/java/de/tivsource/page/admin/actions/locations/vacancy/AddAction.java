@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.others.vacancy;
+package de.tivsource.page.admin.actions.locations.vacancy;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -21,7 +22,6 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
@@ -37,7 +37,7 @@ import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 @TilesDefinitions({
   @TilesDefinition(name="vacancyAddForm",  extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/vacancy/add_form.jsp")
   })
 })
@@ -62,31 +62,19 @@ public class AddAction extends EmptyAction implements UploadedFilesAware {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
     private Vacancy vacancy;
-
-    private String lang;
 
     private List<Location> locationList;
 
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
 	public Vacancy getVacancy() {
         return vacancy;
     }
 
     public void setVacancy(Vacancy vacancy) {
         this.vacancy = vacancy;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
     }
 
     @Override

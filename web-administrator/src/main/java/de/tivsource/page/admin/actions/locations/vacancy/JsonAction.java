@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.others.vacancy;
+package de.tivsource.page.admin.actions.locations.vacancy;
 
 import java.util.List;
 
