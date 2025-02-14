@@ -2,15 +2,16 @@ package de.tivsource.page.entity.message;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Temporal;
 
 /**
  * 
@@ -35,7 +36,7 @@ public class Message {
 	 * Geschlecht des Kontaktes.
 	 */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean gender;
 
 	/**
@@ -61,10 +62,10 @@ public class Message {
 	private String content;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean privacy;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
     private String createdAddress;
