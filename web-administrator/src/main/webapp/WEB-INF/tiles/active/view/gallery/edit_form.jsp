@@ -15,7 +15,6 @@
 
       <!--  Start MAIN -->
       <div class="main">
-
         <struts:if test="actionName!='edit'">
           <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
             <div style="padding:0px; margin:5px; height:24px;">
