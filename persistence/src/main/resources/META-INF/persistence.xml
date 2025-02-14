@@ -51,6 +51,7 @@
 		<class>de.tivsource.page.entity.pdf.PDFImage</class>
 		<class>de.tivsource.page.entity.picture.Picture</class>
 		<class>de.tivsource.page.entity.picture.PictureDescription</class>
+		<class>de.tivsource.page.entity.picture.PictureImage</class>
 		<class>de.tivsource.page.entity.picture.PictureUrl</class>
 		<class>de.tivsource.page.entity.pictureitem.PictureItem</class>
 		<class>de.tivsource.page.entity.pictureitem.PictureItemImage</class>
