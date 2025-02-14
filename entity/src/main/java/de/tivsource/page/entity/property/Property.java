@@ -12,6 +12,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 
 /**
@@ -30,6 +31,10 @@ public class Property {
 
     @Column(name="property_value")
     private String value;
+
+    @Lob
+    @Column(name="property_comment")
+    private String comment;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
@@ -55,6 +60,20 @@ public class Property {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    /**
+     * @return the comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the comment to set
+     */
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     /**
