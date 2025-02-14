@@ -2,26 +2,24 @@ package de.tivsource.page.admin.actions;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionContext;
+import org.apache.struts2.ActionSupport;
+import org.apache.struts2.Preparable;
+import org.apache.struts2.action.ServletRequestAware;
+import org.apache.struts2.action.ServletResponseAware;
+import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
-
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 
@@ -73,24 +71,12 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 		return servletRequest;
 	}
 
-	public void setServletRequest(HttpServletRequest httpServletRequest) {
-		this.servletRequest = httpServletRequest;
-	}
-
 	public HttpServletResponse getServletResponse() {
 		return servletResponse;
 	}
 
-	public void setServletResponse(HttpServletResponse servletResponse) {
-		this.servletResponse = servletResponse;
-	}
-
 	public Map<String, Object> getSession() {
 		return session;
-	}
-
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
     @Override
@@ -112,7 +98,7 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	}
 
 	public String getActionName() {
-		return ActionContext.getContext().getName();
+		return ActionContext.getContext().getActionName();
 	}
 
     public String getProperty(String key) {
@@ -128,5 +114,20 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 		language = actionContext.getLocale().getLanguage();
 		LOGGER.info("Action Locale: " + language);
 	}
+
+    @Override
+    public void withSession(Map<String, Object> session) {
+        this.session = session;
+    }
+
+    @Override
+    public void withServletResponse(HttpServletResponse servletResponse) {
+        this.servletResponse = servletResponse;
+    }
+
+    @Override
+    public void withServletRequest(HttpServletRequest httpServletRequest) {
+        this.servletRequest = httpServletRequest;
+    }
 
 }// Ende class

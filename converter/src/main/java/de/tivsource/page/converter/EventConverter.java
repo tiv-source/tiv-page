@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.converter;
+package de.tivsource.page.converter;
 
 import java.util.Map;
 
@@ -13,19 +13,19 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.conversion.TypeConversionException;
 import org.apache.struts2.util.StrutsTypeConverter;
 
-import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.dao.event.EventDaoLocal;
+import de.tivsource.page.entity.event.Event;
 
 /**
  * @author marc
  *
  */
-public class LocationConverter extends StrutsTypeConverter {
+public class EventConverter extends StrutsTypeConverter {
 
     /**
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = LogManager.getLogger(LocationConverter.class);
+    private static final Logger LOGGER = LogManager.getLogger(EventConverter.class);
 
 	/* (non-Javadoc)
 	 * @see org.apache.struts2.util.StrutsTypeConverter#convertFromString(java.util.Map, java.lang.String[], java.lang.Class)
@@ -35,18 +35,18 @@ public class LocationConverter extends StrutsTypeConverter {
 	public Object convertFromString(Map context, String[] values, Class toClass) {
 
         if (values == null || values.length == 0 || values[0].trim().length() == 0) {
-        	LOGGER.info("Keine Location UUID angegeben.");
-        	throw new TypeConversionException("Keine Location UUID angegeben angegeben.");
+        	LOGGER.info("Keine Event UUID angegeben.");
+        	throw new TypeConversionException("Keine Event UUID angegeben angegeben.");
         }
         
         try {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            LocationDaoLocal locationDaoLocal = (LocationDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/LocationDao");
-            return locationDaoLocal.findByUuidWidthEvents(values[0]);
+            EventDaoLocal eventDaoLocal = (EventDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/EventDao");
+            return eventDaoLocal.findByUuid(values[0]);
         } catch (Exception e) {
-        	LOGGER.info("Keine gültige Location UUID angegeben.");
-        	throw new TypeConversionException("Keine gültige Location UUID angegeben.");
+        	LOGGER.info("Keine gültige Event UUID angegeben.");
+        	throw new TypeConversionException("Keine gültige Event UUID angegeben.");
         }
 	}
 
@@ -56,8 +56,8 @@ public class LocationConverter extends StrutsTypeConverter {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public String convertToString(Map context, Object o) {
-		Location location = (Location)o;
-		return location.getUuid();
+	    Event event = (Event)o;
+		return event.getUuid();
 	}
 
 }// Ende class
