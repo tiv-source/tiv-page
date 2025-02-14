@@ -4,20 +4,18 @@
 	<Appenders>
 
 		<RollingFile name="NormalAppender" fileName="logs/tiv-page.log"
-			filePattern="logs/tiv-page-%d{yyyy-MM-dd}.log.gz" append="true">
+			filePattern="logs/tiv-page-%d{yyyy-MM-dd}-%i.log.gz" append="true">
 			<PatternLayout pattern="%d{ISO8601} %-5p [%t] %c:%L %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="200 MB" />
 			</Policies>
 		</RollingFile>
 
 		<RollingFile name="AuthAppender" fileName="logs/tiv-page-auth.log"
-			filePattern="logs/tiv-page-auth-%d{yyyy-MM-dd}.log.gz" append="true">
+			filePattern="logs/tiv-page-auth-%d{yyyy-MM-dd}-%i.log.gz" append="true">
 			<PatternLayout pattern="%d{ISO8601} %-5p [%t] %c:%L %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="200 MB" />
 			</Policies>
 		</RollingFile>
 
@@ -25,23 +23,27 @@
 
 	<Loggers>
 
-		<Logger name="de.nethold" level="trace">
+		<Logger name="de.tivsource" level="trace" additivity="false">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
-		<Logger name="com.opensymphony.xwork2.util.OgnlUtil" level="warn">
+		<Logger name="de.nethold" level="trace" additivity="false">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
-		<Logger name="com.opensymphony" level="warn">
+		<Logger name="com.opensymphony.xwork2.util.OgnlUtil" level="warn" additivity="false">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
-		<Logger name="freemarker" level="warn">
+		<Logger name="com.opensymphony" level="warn" additivity="false">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
-		<Logger name="org.apache.struts2" level="warn">
+		<Logger name="freemarker" level="warn" additivity="false">
+			<AppenderRef ref="NormalAppender" />
+		</Logger>
+
+		<Logger name="org.apache.struts2" level="warn" additivity="false">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
@@ -77,7 +79,7 @@
 			<AppenderRef ref="AuthAppender" />
 		</Logger>
 
-		<Root level="debug">
+		<Root level="warn">
 			<AppenderRef ref="NormalAppender" />
 		</Root>
 
