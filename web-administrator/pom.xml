@@ -72,6 +72,12 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>exceptions</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>valve</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
