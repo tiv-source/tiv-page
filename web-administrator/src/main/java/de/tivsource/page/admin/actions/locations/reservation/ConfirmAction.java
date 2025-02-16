@@ -2,34 +2,35 @@ package de.tivsource.page.admin.actions.locations.reservation;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import javax.mail.MessagingException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.pdfbox.exceptions.COSVisitorException;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.administration.User;
 import de.tivsource.page.entity.reservation.Reservation;
-import de.tivsource.page.enumeration.UrlType;
-import de.tivsource.page.helper.sender.ReservationMail;
+import de.tivsource.page.exceptions.NoMailSessionCreatedException;
+import de.tivsource.page.helper.MailSender;
+import de.tivsource.page.helper.MailTemplate;
+import de.tivsource.page.helper.pdf.CreateReservationPDF;
+import jakarta.mail.MessagingException;
 
 /**
  * 
@@ -48,8 +49,6 @@ public class ConfirmAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(ConfirmAction.class);
 
-    private static final String HTDOCS = "/var/www/html";
-
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;
     
@@ -62,13 +61,26 @@ public class ConfirmAction extends EmptyAction {
     @InjectEJB(name="ReservationDao")
     private ReservationDaoLocal reservationDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
+    /**
+     * Benutzer der die Bestätigung verschickt.
+     */
+    private User user;
 
-    private String redirect;
+    /**
+     * Reservierung für die die Bestätigung verschickt werden soll.
+     */
+    private Reservation dbReservation;
+
+    /**
+     * PDF-Datei/Bestätigung 
+     */
+    private File pdfFile;
     
+    private String redirect;
+
     private Reservation reservation;
 
+    @StrutsParameter(depth=1)
     public Reservation getReservation() {
         return reservation;
     }
@@ -97,15 +109,65 @@ public class ConfirmAction extends EmptyAction {
 
         String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+        // Hole die Benutzerdaten aus der Datenbank
+        user = userDaoLocal.findByUsername(remoteUser);
 
+        
     	if(reservation != null) {
-    	    Reservation dbReservation = reservationDaoLocal.findByUuid(reservation.getUuid());
+    	    // Lade die Reservierung und setze Attribute
+    	    dbReservation = reservationDaoLocal.findByUuid(reservation.getUuid());
     	    dbReservation.setConfirmed(true);
     	    dbReservation.setConfirmedAddress(remoteAddress);
     	    dbReservation.setConfirmedDate(new Date());
     	    dbReservation.setConfirmedBy(remoteUser);
     	    reservationDaoLocal.merge(dbReservation);
 
+    	    LOGGER.info("UUID des Events: " + dbReservation.getEvent().getUuid());
+    	    LOGGER.info("UUID der Location: " + dbReservation.getEvent().getLocation().getUuid());
+
+            // Erzeuge das PDF-Bestätigung
+            pdfFile = new File("/tmp/" + reservation.getUuid() + ".pdf");
+            new CreateReservationPDF(
+                    pdfFile,
+                    dbReservation,
+                    new File(getProperty("mail.confirmreservation.logo.path")),
+                    new File(getProperty("mail.confirmreservation.ads.path")),
+                    new File(getProperty("mail.confirmreservation.font.path"))
+            );
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy ");
+            String[] arguments = {
+                    dbReservation.getGender() ? "Sehr geehrte Frau" : "Sehr geehrter Herr",
+                    dbReservation.getFirstname(), 
+                    dbReservation.getLastname(),
+                    user.getFirstname() + " " + user.getLastname(),
+                    dbReservation.getEmail(), 
+                    dbReservation.getTelephone(),
+                    simpleDateFormat.format(dbReservation.getTime()),
+                    dbReservation.getQuantity().toString(),
+                    dbReservation.getWishes(),
+                    dbReservation.getWishes().replace("\n", "<br/>")
+                    };
+
+            MailSender mailSender = new MailSender(getProperties(), createMailTemplate());
+            Boolean debugMailSession = getProperty("mail.confirmreservation.debug.session").equals("true") ? true : false;
+            mailSender.createSession(debugMailSession);
+            
+            new Thread(new Runnable() {
+                public void run(){
+                    try {
+                        mailSender.send(arguments);
+                        pdfFile.delete();
+                    } catch (NoMailSessionCreatedException | MessagingException | UnsupportedEncodingException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    return; // to stop the thread
+                }
+            }).start();
+            
+    	    /*
+    	    
     	    // Hole das entsprechnde Bild aus der Datenbank
     	    String urlAds = HTDOCS + pictureDaoLocal.findByUuid(
     	    			propertyDaoLocal.findByKey("reservation.ads").getValue()
@@ -115,8 +177,6 @@ public class ConfirmAction extends EmptyAction {
     	    URL logoPath = new URL(propertyDaoLocal.findByKey("reservation.confirm.logo.path").getValue());
     	    URL fontPath = new URL(propertyDaoLocal.findByKey("reservation.confirm.font.path").getValue());
 
-    	    // Hole die Benutzerdaten aus der Datenbank
-    	    User user = userDaoLocal.findByUsername(remoteUser);
     	    
     	    LOGGER.info("Pfad der Logo Datei " + logoPath.getFile());
     	    LOGGER.info("Pfad der Ads  Datei " + urlAds);
@@ -149,7 +209,7 @@ public class ConfirmAction extends EmptyAction {
                     return; // to stop the thread
                 }
             }).start();
-
+*/
             return SUCCESS;
     	}
     	else {
@@ -201,12 +261,14 @@ public class ConfirmAction extends EmptyAction {
                 propertyDaoLocal.findByKey("mail.transport.protocol").getValue());
         props.put("mail.host", 
                 propertyDaoLocal.findByKey("mail.host").getValue());
+        props.put("mail.port", 
+                propertyDaoLocal.findByKey("mail.port").getValue());
         props.put("mail.smtp.auth", 
                 propertyDaoLocal.findByKey("mail.smtp.auth").getValue());
         props.put("mail.smtp.tls", 
                 propertyDaoLocal.findByKey("mail.smtp.tls").getValue());
         props.put("mail.smtp.starttls.enable",
-                "true");
+                propertyDaoLocal.findByKey("mail.smtp.starttls.enable").getValue());
         props.put("mail.smtp.localhost", 
                 propertyDaoLocal.findByKey("mail.smtp.localhost").getValue());
         props.put("mail.user", 
@@ -217,8 +279,64 @@ public class ConfirmAction extends EmptyAction {
                 propertyDaoLocal.findByKey("mail.mime.charset").getValue());
         props.put("mail.use8bit", 
                 propertyDaoLocal.findByKey("mail.use8bit").getValue());
-        
+        //TODO: Reihenfolge aufräumen
+        props.put("mail.smtp.ssl.protocols", 
+                propertyDaoLocal.findByKey("mail.smtp.ssl.protocols").getValue());
+        props.put("mail.smtp.ssl.trust", 
+                propertyDaoLocal.findByKey("mail.smtp.ssl.trust").getValue());
         return props;
     } // Ende getProperties()
-    
+
+    /**
+     * Methode zum erstellen des Mail-Templates
+     *
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws IOException
+     * @throws MessagingException
+     */
+    private MailTemplate createMailTemplate()
+            throws UnsupportedEncodingException, IOException, MessagingException {
+        MailTemplate mailTemplate = new MailTemplate();
+        mailTemplate.setFrom(
+                getProperty("mail.confirmreservation.from.personal"),
+                getProperty("mail.confirmreservation.from.address")
+                );
+        mailTemplate.addTo(
+                dbReservation.getFirstname() + " " + dbReservation.getLastname(),
+                dbReservation.getEmail()
+                );
+        mailTemplate.addBcc(
+                getProperty("mail.confirmreservation.bcc.personal"),
+                getProperty("mail.confirmreservation.bcc.address")
+                );
+        mailTemplate.addReplyTo(
+                user.getFirstname() + " " + user.getLastname(),
+                getProperty("mail.confirmreservation.replyTo.address")
+                );
+        mailTemplate.addAttachment(
+                pdfFile.getAbsolutePath(),
+                getProperty("mail.confirmreservation.pdf.name"),
+                "application/pdf"
+                );
+        if(getProperty("mail.contactform.language").equals("en")) {
+            mailTemplate.setSubject(
+                    "Reservierungsbestätigung für " + 
+                    dbReservation.getEvent().getLocation().getName("en")
+                    );
+            mailTemplate.setBody(getProperty("mail.confirmreservation.body.en"));
+            mailTemplate.setHtml(getProperty("mail.confirmreservation.html.en"));
+            mailTemplate.addImages(getProperty("mail.confirmreservation.images.en"));
+        } else {
+            mailTemplate.setSubject(
+                    "Reservierungsbestätigung für " + 
+                    dbReservation.getEvent().getLocation().getName("de")
+                    );
+            mailTemplate.setBody(getProperty("mail.confirmreservation.body.de"));
+            mailTemplate.setHtml(getProperty("mail.confirmreservation.html.de"));
+            mailTemplate.addImages(getProperty("mail.confirmreservation.images.de"));
+        }
+        return mailTemplate;
+    }
+
 }// Ende class

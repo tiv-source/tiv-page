@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -45,6 +46,7 @@ public class EditAction extends EmptyAction {
     
     private Reservation reservation;
 
+    @StrutsParameter(depth=1)
     public Reservation getReservation() {
         return reservation;
     }
@@ -76,8 +78,11 @@ public class EditAction extends EmptyAction {
 
     	if(reservation != null) {
     	    Reservation dbReservation = reservationDaoLocal.findByUuid(reservation.getUuid());
-            redirect = "index.html?event=" + dbReservation.getEvent().getUuid();
+            redirect = "index.html?uncheckEvent=" + dbReservation.getEvent().getUuid();
             dbReservation.setConfirmed(false);
+            dbReservation.setConfirmedAddress(null);
+            dbReservation.setConfirmedBy(null);
+            dbReservation.setConfirmedDate(null);
             dbReservation.setEmail(reservation.getEmail());
             dbReservation.setFirstname(reservation.getFirstname());
             dbReservation.setGender(reservation.getGender());

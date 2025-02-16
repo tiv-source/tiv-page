@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -35,6 +36,7 @@ public class DeleteAction extends EmptyAction {
     
     private Reservation reservation;
 
+    @StrutsParameter(depth=1)
     public Reservation getReservation() {
         return reservation;
     }

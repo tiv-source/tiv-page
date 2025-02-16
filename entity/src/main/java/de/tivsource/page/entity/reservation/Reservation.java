@@ -5,23 +5,23 @@ package de.tivsource.page.entity.reservation;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.enumeration.Origin;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -45,7 +45,7 @@ public class Reservation {
      * Attribute dass das Geschlecht der Person enthält, true wenn weiblich und false wenn männlich.
      */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean gender;
 
     private String firstname;
@@ -58,7 +58,7 @@ public class Reservation {
 
     private Integer quantity;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     @Column(name="reservation_time")
     private Date time;
 
@@ -70,26 +70,26 @@ public class Reservation {
     private Event event;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean privacy;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean confirmed;
 
     private String confirmedAddress;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date confirmedDate;
 
     private String confirmedBy;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
     private String createdAddress;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
