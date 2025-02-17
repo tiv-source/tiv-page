@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/feedbackoption/editForm.html?feedbackOption="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/locations/feedbackoption/editForm.html?uncheckFeedbackOption="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/feedbackoption/deleteForm.html?feedbackOption="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/feedbackoption/deleteForm.html?uncheckFeedbackOption="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
