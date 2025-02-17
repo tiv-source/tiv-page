@@ -2,6 +2,7 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
 <struts:url var="locationUrl"          action="index" namespace="/locations/location" />
+<struts:url var="vacancyUrl"           action="index" namespace="/locations/vacancy" />
 <struts:url var="eventUrl"             action="index" namespace="/locations/event" />
 <struts:url var="queueUrl"             action="queue" namespace="/locations/reservation" />
 <struts:url var="feedbackOptionUrl"    action="index" namespace="/locations/feedbackoption" />
@@ -22,9 +23,19 @@
         </struts:a>
       </struts:if>
 
+      <struts:if test="getProperty('module.vacancy')">
+        <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
+          <div class="buttoninfo typ2">
+            <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.vacancies.description"/>">
+            <h5><struts:text name="navigation.vacancies"/></h5>
+            <p><struts:text name="navigation.vacancies.description"/></p>
+          </div>
+        </struts:a>
+      </struts:if>
+
       <struts:if test="getProperty('module.event')">
         <struts:a href="%{eventUrl}" title="%{getText('navigation.events')}">
-          <div class="buttoninfo typ2">
+          <div class="buttoninfo typ1">
             <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.events.description"/>">
             <h5><struts:text name="navigation.events"/></h5>
             <p><struts:text name="navigation.events.description"/></p>
@@ -34,7 +45,7 @@
 
       <struts:if test="getProperty('module.reservation')">
         <struts:a href="%{queueUrl}" title="%{getText('navigation.reservation')}">
-          <div class="buttoninfo typ1">
+          <div class="buttoninfo typ2">
             <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.reservation.description"/>">
             <h5><struts:text name="navigation.reservation"/></h5>
             <p><struts:text name="navigation.reservation.description"/></p>
@@ -44,7 +55,7 @@
 
       <struts:if test="getProperty('module.feedback')">
         <struts:a href="%{feedbackOptionUrl}" title="%{getText('navigation.feedbackOptions')}">
-          <div class="buttoninfo typ2">
+          <div class="buttoninfo typ1">
             <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.feedbackOptions.description"/>">
             <h5><struts:text name="navigation.feedbackOptions"/></h5>
             <p><struts:text name="navigation.feedbackOptions.description"/></p>
@@ -55,7 +66,7 @@
 
       <struts:if test="getProperty('module.request')">
         <struts:a href="%{reasonUrl}" title="%{getText('navigation.reason')}">
-          <div class="buttoninfo typ1">
+          <div class="buttoninfo typ2">
             <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.reason.description"/>">
             <h5><struts:text name="navigation.reason"/></h5>
             <p><struts:text name="navigation.reason.description"/></p>
@@ -65,7 +76,7 @@
 
       <struts:if test="getProperty('module.request')">
         <struts:a href="%{requestUrl}" title="%{getText('navigation.request')}">
-          <div class="buttoninfo typ2">
+          <div class="buttoninfo typ1">
             <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.request.description"/>">
             <h5><struts:text name="navigation.request"/></h5>
             <p><struts:text name="navigation.request.description"/></p>

@@ -3,6 +3,7 @@
 
 <struts:url var="othersUrl"            action="index" namespace="/others" />
 <struts:url var="locationsUrl"         action="index" namespace="/locations" />
+<struts:url var="newsletterUrl"        action="index" namespace="/newsletter" />
 <struts:url var="maintenanceUrl"       action="index" namespace="/maintenance" />
 <struts:url var="systemtUrl"           action="index" namespace="/system" />
 
@@ -18,6 +19,7 @@
    	      <ul id="orientation">
    	        <li><struts:a href="%{othersUrl}"><struts:text name="navigation.category.others"/></struts:a></li>
    	        <li><struts:a href="%{locationsUrl}"><struts:text name="navigation.category.locations"/></struts:a></li>
+   	        <li><struts:a href="%{newsletterUrl}"><struts:text name="navigation.category.newsletter"/></struts:a></li>
    	        <li class="activlink1"><struts:text name="navigation.category.maintenance"/></li>
    	        <li><struts:a href="%{systemtUrl}"><struts:text name="navigation.category.system"/></struts:a></li>
    	      </ul>

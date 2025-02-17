@@ -6,7 +6,6 @@
 
 <struts:url var="appointmentUrl"       action="index" namespace="/others/appointment" />
 <struts:url var="messageUrl"           action="index" namespace="/others/message" />
-<struts:url var="vacancyUrl"           action="index" namespace="/others/vacancy" />
 <struts:url var="galleryUrl"           action="index" namespace="/others/gallery" />
 <struts:url var="pictureUrl"           action="index" namespace="/others/picture" />
 <struts:url var="newsUrl"              action="index" namespace="/others/news" />
@@ -80,17 +79,6 @@
           </div>
         </struts:a>
       </struts:if>
-
-      <struts:if test="getProperty('module.vacancy')">
-        <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
-          <div class="buttoninfo typ2">
-            <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.vacancies.description"/>">
-            <h5><struts:text name="navigation.vacancies"/></h5>
-            <p><struts:text name="navigation.vacancies.description"/></p>
-          </div>
-        </struts:a>
-      </struts:if>
-
 
       <struts:if test="getProperty('module.news')">
         <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}">

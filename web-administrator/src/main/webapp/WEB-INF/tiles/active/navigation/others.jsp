@@ -3,6 +3,7 @@
 
 <struts:url var="publicUrl"            action="index" namespace="/others" />
 <struts:url var="locationsUrl"         action="index" namespace="/locations" />
+<struts:url var="newsletterUrl"        action="index" namespace="/newsletter" />
 <struts:url var="maintenanceUrl"       action="index" namespace="/maintenance" />
 <struts:url var="systemtUrl"           action="index" namespace="/system" />
 
@@ -11,7 +12,6 @@
 
 <struts:url var="appointmentUrl"       action="index" namespace="/others/appointment" />
 <struts:url var="messageUrl"           action="index" namespace="/others/message" />
-<struts:url var="vacancyUrl"           action="index" namespace="/others/vacancy" />
 <struts:url var="galleryUrl"           action="index" namespace="/others/gallery" />
 <struts:url var="pictureUrl"           action="index" namespace="/others/picture" />
 <struts:url var="newsUrl"              action="index" namespace="/others/news" />
@@ -29,6 +29,7 @@
    	      <ul id="orientation">
    	        <li class="activlink1"><struts:text name="navigation.category.others"/></li>
    	        <li><struts:a href="%{locationsUrl}"><struts:text name="navigation.category.locations"/></struts:a></li>
+   	        <li><struts:a href="%{newsletterUrl}"><struts:text name="navigation.category.newsletter"/></struts:a></li>
    	        <li><struts:a href="%{maintenanceUrl}"><struts:text name="navigation.category.maintenance"/></struts:a></li>
    	        <li><struts:a href="%{systemtUrl}"><struts:text name="navigation.category.system"/></struts:a></li>
    	      </ul>
@@ -60,8 +61,6 @@
               </div>
             </struts:a>
 
-
-
             <struts:a href="%{messageUrl}" title="%{getText('navigation.messages')}">
               <div class="button">
                 <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.messages"/>">
@@ -92,16 +91,6 @@
                   <img src="/admin/buttons/tiv_page_button_message.png" alt="<struts:text name="navigation.appointments"/>">
                   <br />
                   <p class="ellipsis"><struts:text name="navigation.appointments"/></p>
-                </div>
-              </struts:a>
-            </struts:if>
-
-            <struts:if test="getProperty('module.vacancy')">
-              <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
-                <div class="button">
-                  <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.vacancies"/>">
-                  <br />
-                  <p class="ellipsis"><struts:text name="navigation.vacancies"/></p>
                 </div>
               </struts:a>
             </struts:if>
