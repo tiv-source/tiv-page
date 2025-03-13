@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="<struts:property value="page.getName(getText('language'))" />" />
   <meta property="og:url" content="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
-  <meta property="og:image" content="<struts:property value="getProperty('server.picture.url')" /><struts:property value="getProperty('og.image.size.home')" /><struts:property value="page.picture.pictureUrls.LARGE.url" />" />
+  <meta property="og:image" content="<struts:property value="getProperty('pictureItem.image.path')" />/<struts:property value="page.uuid" />/<struts:property value="getProperty('og.image.size.home')" />" />
   <meta property="og:description" content="<struts:property value="page.getDescription(getText('language'))" />" />
 
 
