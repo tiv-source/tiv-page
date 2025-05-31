@@ -145,6 +145,25 @@
                     cssStyle="padding: 0.3em; width:827px;"
                 />
               </div>
+
+              <div class="field">
+                <struts:textarea
+                    id="editor"
+                    key="gallery.contentMap.EN.content" 
+					rows="10" 
+					cols="80" 
+					width="840"
+					height="250"
+					escape="false"
+					cssStyle="padding-left:202px;"
+				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
+              </div>
             </struts:if>
             
             <struts:else>
@@ -175,6 +194,24 @@
                 />
               </div>
 
+              <div class="field">
+                <struts:textarea
+                    id="editor"
+                    key="gallery.contentMap.DE.content" 
+					rows="10" 
+					cols="80" 
+					width="840"
+					height="250"
+					escape="false"
+					cssStyle="padding-left:202px;"
+				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
+              </div>
             </struts:else>
 
             </fieldset>

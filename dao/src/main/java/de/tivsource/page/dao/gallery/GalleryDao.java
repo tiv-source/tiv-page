@@ -90,6 +90,25 @@ public class GalleryDao implements GalleryDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        Gallery gallery = entityManager.find(Gallery.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", gallery);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        Gallery gallery = entityManager.find(Gallery.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", gallery);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+	
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findByUuid(java.lang.String)
 	 */

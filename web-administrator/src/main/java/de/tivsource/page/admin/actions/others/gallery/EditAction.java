@@ -110,6 +110,10 @@ public class EditAction extends EmptyAction {
     		Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
+                gallery.getContentMap().put(Language.DE, dbGallery.getContentObject(Language.DE));
+                dbGallery.getContentMap().get(Language.EN).setContent(gallery.getContent(Language.EN));
+                dbGallery.getContentMap().get(Language.EN).setModified(new Date());
+                
                 gallery.getDescriptionMap().put(Language.DE, dbGallery.getDescriptionObject(Language.DE));
                 String noLineBreaks = gallery.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
                 dbGallery.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
@@ -117,6 +121,9 @@ public class EditAction extends EmptyAction {
                 dbGallery.getDescriptionMap().get(Language.EN).setName(gallery.getName(Language.EN));
                 LOGGER.info("Name der Gallery: " + gallery.getName(Language.EN));
             } else {
+                dbGallery.getContentMap().get(Language.DE).setContent(gallery.getContent(Language.DE));
+                dbGallery.getContentMap().get(Language.DE).setModified(new Date());
+
             	String noLineBreaks = gallery.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
                 dbGallery.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbGallery.getDescriptionMap().get(Language.DE).setKeywords(gallery.getKeywords(Language.DE));;

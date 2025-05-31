@@ -134,6 +134,19 @@ public class AddAction extends EmptyAction implements UploadedFilesAware {
     	    gallery.getDescriptionMap().get(Language.EN).setDescription(gallery.getDescriptionMap().get(Language.DE).getDescription());
     	    gallery.getDescriptionMap().get(Language.EN).setKeywords(gallery.getDescriptionMap().get(Language.DE).getKeywords());
 
+    	    gallery.getContentMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
+    	    gallery.getContentMap().get(Language.DE).setContentItem(gallery);
+    	    gallery.getContentMap().get(Language.DE).setLanguage(Language.DE);
+            gallery.getContentMap().get(Language.DE).setCreated(new Date());
+            gallery.getContentMap().get(Language.DE).setModified(new Date());
+
+            gallery.getContentMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
+            gallery.getContentMap().get(Language.EN).setContentItem(gallery);
+            gallery.getContentMap().get(Language.EN).setLanguage(Language.EN);
+            gallery.getContentMap().get(Language.EN).setContent(gallery.getContent(Language.DE));
+            gallery.getContentMap().get(Language.EN).setCreated(new Date());
+            gallery.getContentMap().get(Language.EN).setModified(new Date());
+
     	    gallery.getImage().setUuid(UUID.randomUUID().toString());
     	    gallery.getImage().generate();
     	    gallery.getImage().setCreated(new Date());

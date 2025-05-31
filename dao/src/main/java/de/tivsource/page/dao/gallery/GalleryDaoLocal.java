@@ -39,6 +39,10 @@ public interface GalleryDaoLocal {
     
     public Boolean hasReferences(String uuid);
 
+    public Boolean hasMenuEntry(String uuid);
+
+    public Boolean hasSubSumption(String uuid);
+
     public Gallery findByUuid(String uuid);
 
     public Gallery findByTechnical(String technical);
