@@ -92,12 +92,10 @@ public class DeleteAction extends EmptyAction {
                     appointmentDaoLocal.merge(dbAppointment);
                     appointmentDaoLocal.delete(dbAppointment);
                     return SUCCESS;
-                } else {
-                    return "subsumption";
                 }
-            } else {
-                return "menuentry";
+                return "subsumption";
             }
+            return "menuentry";
     	}
     	return ERROR;
     }// Ende execute()
