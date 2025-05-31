@@ -14,6 +14,8 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -33,8 +35,11 @@ import jakarta.persistence.Version;
 @Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = NamingItem.DISCRIMINATOR_COLUMN, discriminatorType = DiscriminatorType.STRING, length = 255)
 public class NamingItem {
 
+    public static final String DISCRIMINATOR_COLUMN = "classname";
+    
     /**
      * UUID des Objektes der Klasse NamingItem, diese ID ist einmalig über alle
      * Objekte hinweg und sollte der bevorzugte weg sein auf bestimmte Objekte
@@ -45,6 +50,9 @@ public class NamingItem {
     @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
+    @Column(updatable = false, insertable = false)
+    protected String classname;
+    
     /**
      * Die Map mit dem Beschreibung des Objektes, die Angabe ist Lokalisiert.
      */
