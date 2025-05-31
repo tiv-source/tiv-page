@@ -28,9 +28,13 @@ import de.tivsource.page.entity.appointment.Appointment;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/delete_error.jsp")
   }),
-  @TilesDefinition(name="appointmentDatabaseError", extend = "adminTemplate", putAttributes = {
+  @TilesDefinition(name="appointmentMenuEntryError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/database_error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="appointmentSubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -67,7 +71,8 @@ public class DeleteAction extends EmptyAction {
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
         				@Result(name = "input", type="tiles", location = "appointmentDeleteError"),
         				@Result(name = "error", type="tiles", location = "appointmentDeleteError"),
-                        @Result(name = "database", type="tiles", location = "appointmentDatabaseError")
+                        @Result(name = "menuentry", type="tiles", location = "appointmentMenuEntryError"),
+                        @Result(name = "subsumption", type="tiles", location = "appointmentSubSumptionError")
         				}
         )
     })
@@ -80,14 +85,18 @@ public class DeleteAction extends EmptyAction {
     	if(appointment != null) {
     	    Appointment dbAppointment = appointmentDaoLocal.findByUuid(appointment.getUuid());
             if(!appointmentDaoLocal.hasMenuEntry(dbAppointment.getUuid())) {
-                dbAppointment.setModified(new Date());
-                dbAppointment.setModifiedBy(remoteUser);
-                dbAppointment.setModifiedAddress(remoteAddress);
-                appointmentDaoLocal.merge(dbAppointment);
-                appointmentDaoLocal.delete(dbAppointment);
-                return SUCCESS;
+                if(!appointmentDaoLocal.hasSubSumption(dbAppointment.getUuid())) {
+                    dbAppointment.setModified(new Date());
+                    dbAppointment.setModifiedBy(remoteUser);
+                    dbAppointment.setModifiedAddress(remoteAddress);
+                    appointmentDaoLocal.merge(dbAppointment);
+                    appointmentDaoLocal.delete(dbAppointment);
+                    return SUCCESS;
+                } else {
+                    return "subsumption";
+                }
             } else {
-                return "database";
+                return "menuentry";
             }
     	}
     	return ERROR;

@@ -81,6 +81,14 @@ public class AppointmentDao implements AppointmentDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        Appointment appointment = entityManager.find(Appointment.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", appointment);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.appointment.AppointmentDaoLocal#findByUuid(java.lang.String)
      */

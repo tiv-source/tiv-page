@@ -44,6 +44,8 @@ public interface AppointmentDaoLocal {
 
     public Boolean hasMenuEntry(String uuid);
 
+    public Boolean hasSubSumption(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Appointment anhand der
      * Uuid.
