@@ -133,7 +133,6 @@ public class EditAction extends EmptyAction {
 
             dbVacancy.setBeginning(vacancy.getBeginning());
             dbVacancy.setWorkingTime(vacancy.getWorkingTime());
-            dbVacancy.setTechnical(vacancy.getTechnical());
             dbVacancy.setOrderNumber(vacancy.getOrderNumber());
 
     		dbVacancy.setModifiedAddress(remoteAddress);
