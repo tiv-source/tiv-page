@@ -42,6 +42,8 @@ public interface ExhibitionDaoLocal {
 
     public Boolean hasMenuEntry(String uuid);
 
+    public Boolean hasSubSumption(String uuid);
+
     /**
      * Gibt das Exhibition-Objekt zurück das den angegebenen technischen Namen
      * hat.

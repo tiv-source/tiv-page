@@ -28,9 +28,13 @@ import de.tivsource.page.entity.exhibition.Exhibition;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/application.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/delete_error.jsp")
   }),
-  @TilesDefinition(name="pageDatabaseError", extend = "adminTemplate", putAttributes = {
+  @TilesDefinition(name="exhibitionMenuEntryError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/database_error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="exhibitionSubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/exhibition/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -67,7 +71,8 @@ public class DeleteAction extends EmptyAction {
                 @Result(name = "success", type = "redirectAction", location = "index.html"),
                 @Result(name = "input", type="tiles", location = "exhibitionDeleteError"),
                 @Result(name = "error", type="tiles", location = "exhibitionDeleteError"),
-                @Result(name = "database", type="tiles", location = "pageDatabaseError")
+                @Result(name = "menuentry", type="tiles", location = "exhibitionMenuEntryError"),
+                @Result(name = "subsumption", type="tiles", location = "exhibitionSubSumptionError")
             }
         )
     })
@@ -80,14 +85,17 @@ public class DeleteAction extends EmptyAction {
         if(exhibition != null) {
             Exhibition dbExhibition = exhibitionDaoLocal.findByUuid(exhibition.getUuid());
             if(!exhibitionDaoLocal.hasMenuEntry(dbExhibition.getUuid())) {
-                dbExhibition.setModified(new Date());
-                dbExhibition.setModifiedBy(remoteUser);
-                dbExhibition.setModifiedAddress(remoteAddress);
-                exhibitionDaoLocal.merge(dbExhibition);
-                exhibitionDaoLocal.delete(dbExhibition);
-                return SUCCESS;
+                if(!exhibitionDaoLocal.hasSubSumption(dbExhibition.getUuid())) {
+                    dbExhibition.setModified(new Date());
+                    dbExhibition.setModifiedBy(remoteUser);
+                    dbExhibition.setModifiedAddress(remoteAddress);
+                    exhibitionDaoLocal.merge(dbExhibition);
+                    exhibitionDaoLocal.delete(dbExhibition);
+                    return SUCCESS;
+                }
+                return "subsumption";
             }
-            return "database";
+            return "menuentry";
         }
         return ERROR;
     }// Ende execute()

@@ -85,6 +85,14 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
     }
 
     @Override
+    public Boolean hasSubSumption(String uuid) {
+        Exhibition exhibition = entityManager.find(Exhibition.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", exhibition);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
     public Exhibition findByTechnical(String technical) {
         Query query = entityManager.createQuery(
                 "select exh from Exhibition exh where exh.technical = :technical and exh.visible = :visible"

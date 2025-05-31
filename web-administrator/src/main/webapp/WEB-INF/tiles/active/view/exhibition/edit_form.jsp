@@ -129,7 +129,7 @@
               <div class="field">
                 <struts:textfield
                     key="exhibition.start"
-                    value="%{getFormatted('format.date','exhibition.start')}"
+                    value="%{getFormatted('format.dateOnly','exhibition.start')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -148,7 +148,7 @@
               <div class="field">
                 <struts:textfield
                     key="exhibition.end"
-                    value="%{getFormatted('format.date','exhibition.end')}"
+                    value="%{getFormatted('format.dateOnly','exhibition.end')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
