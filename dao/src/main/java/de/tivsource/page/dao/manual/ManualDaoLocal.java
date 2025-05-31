@@ -51,6 +51,8 @@ public interface ManualDaoLocal {
 
     public Boolean hasMenuEntry(String uuid);
 
+    public Boolean hasSubSumption(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Manual anhand der
      * Uuid.

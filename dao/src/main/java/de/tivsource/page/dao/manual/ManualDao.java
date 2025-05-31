@@ -92,6 +92,14 @@ public class ManualDao implements ManualDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        Manual manual = entityManager.find(Manual.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", manual);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.manual.ManualDaoLocal#findByUuid(java.lang.String)
 	 */
