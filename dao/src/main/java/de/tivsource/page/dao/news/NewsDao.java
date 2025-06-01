@@ -81,6 +81,14 @@ public class NewsDao implements NewsDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        News news = entityManager.find(News.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", news);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.news.NewsDaoLocal#isPublicNewsUuid(java.lang.String)
      */

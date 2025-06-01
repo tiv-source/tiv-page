@@ -45,6 +45,8 @@ public interface NewsDaoLocal {
 
     public Boolean hasMenuEntry(String uuid);
 
+    public Boolean hasSubSumption(String uuid);
+
     public News findByUuid(String uuid);
 
     /**

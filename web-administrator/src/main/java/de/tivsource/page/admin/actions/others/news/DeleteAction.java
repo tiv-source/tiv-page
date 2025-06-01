@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -27,9 +28,13 @@ import de.tivsource.page.entity.news.News;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/news/delete_error.jsp")
   }),
-  @TilesDefinition(name="newsDatabaseError", extend = "adminTemplate", putAttributes = {
+  @TilesDefinition(name="newsMenuEntryError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/news/database_error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/news/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="newsSubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/news/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -49,6 +54,7 @@ public class DeleteAction extends EmptyAction {
 
     private News news;
 
+    @StrutsParameter(depth=3)
     public News getNews() {
         return news;
     }
@@ -60,13 +66,14 @@ public class DeleteAction extends EmptyAction {
 	@Override
     @Actions({
         @Action(
-        		value = "delete", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "newsDeleteError"),
-        				@Result(name = "error", type="tiles", location = "newsDeleteError"),
-                        @Result(name = "database", type="tiles", location = "newsDatabaseError")
-        				}
+            value = "delete",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input", type="tiles", location = "newsDeleteError"),
+                @Result(name = "error", type="tiles", location = "newsDeleteError"),
+                @Result(name = "menuentry", type="tiles", location = "newsMenuEntryError"),
+                @Result(name = "subsumption", type="tiles", location = "newsSubSumptionError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -78,20 +85,20 @@ public class DeleteAction extends EmptyAction {
     	if(news != null) {
     		News dbNews = newsDaoLocal.findByUuid(news.getUuid());
     		if(!newsDaoLocal.hasMenuEntry(dbNews.getUuid())) {
-                dbNews.setModified(new Date());
-                dbNews.setModifiedBy(remoteUser);
-                dbNews.setModifiedAddress(remoteAddress);
-                newsDaoLocal.merge(dbNews);
-                newsDaoLocal.delete(dbNews);
-                return SUCCESS;
+    		    if(!newsDaoLocal.hasSubSumption(dbNews.getUuid())) {
+                    dbNews.setModified(new Date());
+                    dbNews.setModifiedBy(remoteUser);
+                    dbNews.setModifiedAddress(remoteAddress);
+                    newsDaoLocal.merge(dbNews);
+                    newsDaoLocal.delete(dbNews);
+                    return SUCCESS;    		        
+    		    }
+    		    return "subsumption";
     		}
-    		return "database";
+    		return "menuentry";
     	}
-    	else {
-    		return ERROR;
-    	}
-    	
-    	
+   		return ERROR;
+
     }// Ende execute()
 	
 }// Ende class
