@@ -28,9 +28,13 @@ import de.tivsource.page.entity.page.Page;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_error.jsp")
   }),
-  @TilesDefinition(name="pageDatabaseError", extend = "adminTemplate", putAttributes = {
+  @TilesDefinition(name="pageMenuEntryError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/database_error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="pageSubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -62,13 +66,14 @@ public class DeleteAction extends EmptyAction {
 	@Override
     @Actions({
         @Action(
-        		value = "delete", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "pageDeleteError"),
-        				@Result(name = "error", type="tiles", location = "pageDeleteError"),
-        				@Result(name = "database", type="tiles", location = "pageDatabaseError")
-        				}
+            value = "delete",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input", type="tiles", location = "pageDeleteError"),
+                @Result(name = "error", type="tiles", location = "pageDeleteError"),
+                @Result(name = "menuentry", type="tiles", location = "pageMenuEntryError"),
+                @Result(name = "subsumption", type="tiles", location = "pageSubSumptionError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -80,14 +85,17 @@ public class DeleteAction extends EmptyAction {
     	if(page != null) {
     		Page dbPage = pageDaoLocal.findByUuid(page.getUuid());
     		if(!pageDaoLocal.hasMenuEntry(dbPage.getUuid())) {
-                dbPage.setModified(new Date());
-                dbPage.setModifiedBy(remoteUser);
-                dbPage.setModifiedAddress(remoteAddress);
-                pageDaoLocal.merge(dbPage);
-                pageDaoLocal.delete(dbPage);
-                return SUCCESS;
+    		    if(!pageDaoLocal.hasSubSumption(dbPage.getUuid())) {
+                    dbPage.setModified(new Date());
+                    dbPage.setModifiedBy(remoteUser);
+                    dbPage.setModifiedAddress(remoteAddress);
+                    pageDaoLocal.merge(dbPage);
+                    pageDaoLocal.delete(dbPage);
+                    return SUCCESS;
+    		    }
+    		    return "subsumption";
     		}
-    		return "database";
+    		return "menuentry";
     	}
   		return ERROR;
 

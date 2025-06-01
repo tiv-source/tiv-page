@@ -43,6 +43,8 @@ public interface PageDaoLocal {
 
     public Boolean hasMenuEntry(String uuid);
 
+    public Boolean hasSubSumption(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Page anhand der
      * Benutzernames.
