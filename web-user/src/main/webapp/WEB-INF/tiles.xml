@@ -14,6 +14,7 @@
 	<!-- Haupttemplate -->
 	<definition name="userTemplate" template="/WEB-INF/tiles/active/skeletal/hulk.jsp">
 	    <put-attribute name="meta"      value="/WEB-INF/tiles/active/meta/content.jsp" />
+	    <put-attribute name="pagetags"  value="/WEB-INF/tiles/active/pagetags/content.jsp" />
 	    <put-attribute name="opengraph" value="/WEB-INF/tiles/active/opengraph/content.jsp" />
 	    <put-attribute name="geo"       value="/WEB-INF/tiles/active/geo/content.jsp" />
 	    <put-attribute name="twitter"   value="/WEB-INF/tiles/active/twitter/content.jsp" />
@@ -22,7 +23,7 @@
 	</definition>
 
 	<definition name="index" extends="userTemplate">
-	    <put-attribute name="meta"     value="/WEB-INF/tiles/active/meta/home.jsp" />
+	    <put-attribute name="meta"    value="/WEB-INF/tiles/active/meta/home.jsp" />
 		<put-attribute name="content" value="/WEB-INF/tiles/active/view/home/content.jsp" />
 	</definition>
 

@@ -14,25 +14,10 @@
   </struts:url>
   <link rel="canonical" href="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
 
-  <meta name="page-topic" content="<struts:property value="getProperty('meta.page.topic')" />" />
-  <meta name="classification" content="<struts:property value="getProperty('meta.classification')" />" />
-  <meta name="category" content="<struts:property value="getProperty('meta.category')" />" />
-
-  <meta name="author" content="<struts:property value="getProperty('meta.author')" />" />
-  <meta name="owner" content="<struts:property value="getProperty('meta.owner')" />" />
-  <meta name="publisher" content="<struts:property value="getProperty('meta.publisher')" />" />
-  <meta name="copyright" content="<struts:property value="getProperty('meta.copyright')" />" />
-  <meta name="generator" content="<struts:property value="getProperty('meta.generator')" />" />
-
   <meta name="date" content="<struts:date name="page.created" format="yyyy-MM-dd" />T<struts:date name="page.created" format="HH:mm:ss" />+01:00" />
   <meta name="created" content="<struts:date name="page.created" format="yyyy-MM-dd" />T<struts:date name="page.created" format="HH:mm:ss" />+01:00" />
   <meta name="changed" content="<struts:date name="page.modified" format="yyyy-MM-dd" />T<struts:date name="page.modified" format="HH:mm:ss" />+01:00" />
   <meta name="modified" content="<struts:date name="page.modified" format="yyyy-MM-dd" />T<struts:date name="page.modified" format="HH:mm:ss" />+01:00" />
-
-
-  <meta name="revisit-after" content="<struts:property value="getProperty('meta.revisit-after')" />" />
-  <meta name="robots" content="<struts:property value="getProperty('meta.robots')" />" />
-
 
   <struts:if test="getProperty('home.appointment.slider')">
     <link rel="stylesheet" type="text/css" href="/css/slider.css">

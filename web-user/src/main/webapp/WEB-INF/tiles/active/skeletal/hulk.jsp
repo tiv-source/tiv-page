@@ -10,6 +10,7 @@
   <script src="/public/jquery/jquery-3.3.1.min.js"></script>
 
   <tiles:insertAttribute name="meta" />
+  <tiles:insertAttribute name="pagetags" />
   <tiles:insertAttribute name="opengraph" />
   <tiles:insertAttribute name="geo" />
   <tiles:insertAttribute name="twitter" />
