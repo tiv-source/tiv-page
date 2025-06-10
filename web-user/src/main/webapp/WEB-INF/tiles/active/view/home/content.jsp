@@ -7,7 +7,7 @@
     <struts:else>
       <struts:if test="page.pictureOnPage">
         <div id="sitePicture">
-          <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />">
+          <img alt="" src="/image/pictureitem/<struts:property value="page.uuid" />/<struts:property value="getProperty('image.size.content')" />">
         </div>
       </struts:if>
     </struts:else>

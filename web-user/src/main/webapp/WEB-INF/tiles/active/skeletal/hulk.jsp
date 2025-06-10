@@ -10,6 +10,8 @@
   <script src="/public/jquery/jquery-3.3.1.min.js"></script>
 
   <tiles:insertAttribute name="meta" />
+  <tiles:insertAttribute name="opengraph" />
+  <tiles:insertAttribute name="geo" />
   <tiles:insertAttribute name="twitter" />
 
   <!-- Anfang der CSS-Dateien -->
@@ -108,7 +110,7 @@
   <div id="logo">
     <struts:url var="homeUrl" action="index" namespace="/" />
     <struts:a href="%{homeUrl}">
-      <img src="<struts:property value="getProperty('logo.path')"/>" alt="TIV-Page-Logo">
+      <img id="logo_image" src="<struts:property value="getProperty('logo.path')"/>" alt="<struts:property value="getProperty('logo.alt')"/>">
     </struts:a>
   </div>
   <!-- Header Ende -->			

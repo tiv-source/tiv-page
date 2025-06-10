@@ -14,12 +14,6 @@
   </struts:url>
   <link rel="canonical" href="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
 
-  <meta property="og:title" content="<struts:property value="page.getName(getText('language'))" />" />
-  <meta property="og:url" content="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
-  <meta property="og:image" content="<struts:property value="getProperty('server.base.url')" />/image/pictureitem/<struts:property value="%{page.uuid}"/>/<struts:property value="getProperty('og.image.size.page')" />" />
-  <meta property="og:description" content="<struts:property value="page.getDescription(getText('language'))" />" />
-
-
   <meta name="page-topic" content="<struts:property value="getProperty('meta.page.topic')" />" />
   <meta name="classification" content="<struts:property value="getProperty('meta.classification')" />" />
   <meta name="category" content="<struts:property value="getProperty('meta.category')" />" />
@@ -39,8 +33,3 @@
   <meta name="revisit-after" content="<struts:property value="getProperty('meta.revisit-after')" />" />
   <meta name="robots" content="<struts:property value="getProperty('meta.robots')" />" />
 
-  <meta name="ICBM" content="<struts:property value="getProperty('icbm')" />" />
-  <meta name="geo.position" content="<struts:property value="getProperty('geo.position')" />" />
-  <meta name="geo.region" content="<struts:property value="getProperty('geo.region')" />" />
-  <meta name="geo.placename" content="<struts:property value="getProperty('geo.placename')" />" />
-  
