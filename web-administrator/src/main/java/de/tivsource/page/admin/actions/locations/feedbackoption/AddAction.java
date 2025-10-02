@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -39,6 +40,7 @@ public class AddAction extends EmptyAction {
 
     private FeedbackOption feedbackOption;
 
+    @StrutsParameter(depth=3)
     public FeedbackOption getFeedbackOption() {
         return feedbackOption;
     }
@@ -53,8 +55,8 @@ public class AddAction extends EmptyAction {
         		value = "add", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "manualAddForm"),
-        				@Result(name = "error", type="tiles", location = "manualAddError")
+        				@Result(name = "input", type="tiles", location = "feedbackOptionAddForm"),
+        				@Result(name = "error", type="tiles", location = "feedbackOptionAddError")
         				}
         )
     })

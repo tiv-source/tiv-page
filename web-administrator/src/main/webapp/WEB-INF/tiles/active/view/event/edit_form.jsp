@@ -2,32 +2,43 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="englishUrl">
-  <struts:param name="event" value="event.uuid" />
+  <struts:param name="uncheckEvent" value="event.uuid" />
   <struts:param name="lang">EN</struts:param>
 </struts:url>
 <struts:url var="germanUrl">
-  <struts:param name="event" value="event.uuid" />
+  <struts:param name="uncheckEvent" value="event.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-
+<struts:url var="imageUrl" namespace="/locations/event" action="imageForm">
+  <struts:param name="uncheckEvent" value="event.uuid" />
+</struts:url>
 
       <!--  Start MAIN -->
       <div class="main">
-        <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{englishUrl}">
-              <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/> 
-              <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
-            </struts:a>
-          </div>
+        <struts:if test="actionName!='edit'">
+          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{englishUrl}">
+                <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
+              </struts:a>
+            </div>
 
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{germanUrl}">
-              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
-              <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
-            </struts:a>
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{germanUrl}">
+                <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
+              </struts:a>
+            </div>
+
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{imageUrl}">
+                <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
+              </struts:a>
+            </div>
           </div>
-        </div>
+        </struts:if>
 
         <div id="title">
           <h5><struts:text name="event.edit"/></h5>
@@ -47,30 +58,9 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="event_picture" name="event.picture" value="event.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="event.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="event.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#edit_event_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#event_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
-              </div>
-
-            
-              <div class="field">
                 <struts:textfield
                     key="event.beginning"
+                    value="%{getFormatted('format.dateTime','event.beginning')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -88,6 +78,7 @@
               <div class="field">
                 <struts:textfield
                     key="event.ending"
+                    value="%{getFormatted('format.dateTime','event.ending')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -106,6 +97,7 @@
               <div class="field">
                 <struts:textfield
                     key="event.deadline"
+                    value="%{getFormatted('format.dateTime','event.deadline')}"
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"

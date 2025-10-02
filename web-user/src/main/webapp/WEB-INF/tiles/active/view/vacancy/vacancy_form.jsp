@@ -2,8 +2,11 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
   <div id="sitePicture">
-    <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+    <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />">
   </div>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
   <h1>Bewerbung auf die Stelle <struts:property value="vacancy.getName(getText('language'))" /></h1>
 
@@ -76,4 +79,10 @@
       </div>
     
     </struts:a>
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
+
+
 

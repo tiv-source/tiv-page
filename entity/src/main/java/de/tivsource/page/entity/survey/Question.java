@@ -6,14 +6,13 @@ package de.tivsource.page.entity.survey;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
-import org.hibernate.search.annotations.DocumentId;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -31,7 +30,7 @@ public class Question {
     @Column(name="uuid", unique=true)
     private String uuid;
 
-    @Lob
+    @Column(columnDefinition="LONGTEXT")
     private String text;
 
     @Enumerated(EnumType.STRING)
@@ -43,10 +42,10 @@ public class Question {
 
     private Survey survey;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;

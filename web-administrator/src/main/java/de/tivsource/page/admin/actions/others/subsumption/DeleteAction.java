@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,20 +24,18 @@ import de.tivsource.page.entity.subsumption.Subsumption;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="subsumptionDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/subsumption/delete_form.jsp")
-  }),
   @TilesDefinition(name="subsumptionDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/subsumption/delete_error.jsp")
   }),
-  @TilesDefinition(name="subsumptionDatabaseError", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+  @TilesDefinition(name="subsumptionMenuEntryError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/subsumption/database_error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/subsumption/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="subsumptionSubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/subsumption/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -56,6 +55,7 @@ public class DeleteAction extends EmptyAction {
 
     private Subsumption subsumption;
 
+    @StrutsParameter(depth=3)
     public Subsumption getSubsumption() {
         return subsumption;
     }
@@ -70,9 +70,10 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "subsumptionDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "subsumptionDeleteError"),
         				@Result(name = "error", type="tiles", location = "subsumptionDeleteError"),
-        				@Result(name = "database", type="tiles", location = "subsumptionDatabaseError")
+                        @Result(name = "menuentry", type="tiles", location = "subsumptionMenuEntryError"),
+                        @Result(name = "subsumption", type="tiles", location = "subsumptionSubSumptionError")
         				}
         )
     })
@@ -85,15 +86,17 @@ public class DeleteAction extends EmptyAction {
     	if(subsumption != null) {
     	    Subsumption dbSubsumption = subsumptionDaoLocal.findByUuid(subsumption.getUuid());
     		if(!subsumptionDaoLocal.hasMenuEntry(dbSubsumption.getUuid())) {
-                dbSubsumption.setModified(new Date());
-                dbSubsumption.setModifiedBy(remoteUser);
-                dbSubsumption.setModifiedAddress(remoteAddress);
-                subsumptionDaoLocal.merge(dbSubsumption);
-                subsumptionDaoLocal.delete(dbSubsumption);
-                return SUCCESS;
-    		} else {
-    		    return "database";
+    		    if(!subsumptionDaoLocal.hasSubSumption(dbSubsumption.getUuid())) {
+                    dbSubsumption.setModified(new Date());
+                    dbSubsumption.setModifiedBy(remoteUser);
+                    dbSubsumption.setModifiedAddress(remoteAddress);
+                    subsumptionDaoLocal.merge(dbSubsumption);
+                    subsumptionDaoLocal.delete(dbSubsumption);
+                    return SUCCESS;
+    		    }
+    		    return "subsumption";
     		}
+    		return "menuentry";
     	}
   		return ERROR;
 

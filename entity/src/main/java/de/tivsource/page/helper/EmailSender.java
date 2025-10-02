@@ -3,16 +3,16 @@ package de.tivsource.page.helper;
 import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.internet.MimeUtility;
 
 
 public class EmailSender {
@@ -38,7 +38,7 @@ public class EmailSender {
                 template.getBccAddresses());
 
         // Setze die ReplyTo Adresse
-        message.setReplyTo(new javax.mail.Address[]{
+        message.setReplyTo(new jakarta.mail.Address[]{
                 new InternetAddress(
                         (String)arguments[3]
                 )

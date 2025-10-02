@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="<struts:property value="manual.getName(getText('language'))" />" />
   <meta property="og:url" content="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
-  <meta property="og:image" content="<struts:property value="getProperty('server.picture.url')" />/LARGE/<struts:property value="manual.picture.pictureUrls.LARGE.url" />" />
+  <meta property="og:image" content="<struts:property value="getProperty('server.base.url')" />/image/pictureitem/<struts:property value="%{manual.uuid}"/>/<struts:property value="getProperty('og.image.size.manual')" />" />
   <meta property="og:description" content="<struts:property value="manual.getDescription(getText('language'))" />" />
 
 

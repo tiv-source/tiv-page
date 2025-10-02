@@ -3,11 +3,18 @@
 
   <struts:if test="page.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
 
-  <struts:property escapeHtml="false" value="vacancy.getContent(getText('language'))" />
+  <!-- Content Anfang -->
+  <div id=content>
+
+    <struts:property escapeHtml="false" value="vacancy.getContent(getText('language'))" />
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
 
 
 

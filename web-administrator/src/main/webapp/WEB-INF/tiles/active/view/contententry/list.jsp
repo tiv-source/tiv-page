@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/contententry/editForm.html?contentEntry="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/contententry/editForm.html?uncheckContentEntry="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/contententry/deleteForm.html?contentEntry="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/contententry/deleteForm.html?uncheckContentEntry="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -66,7 +66,7 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "descriptionMap.DE.name",     width:  140 },
+            { name: "descriptionMap.DE.name",     width:  140, index: "name" },
             { name: "technical",                  width:  140, align: "center" },
             { name: "topNavigation",              width:  140, align: "center", formatter:formatTrueFalse },
             { name: "topNavigationOrder",         width:  140, align: "center" },

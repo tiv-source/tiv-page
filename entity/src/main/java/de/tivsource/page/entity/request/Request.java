@@ -8,24 +8,24 @@ import java.io.FileInputStream;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.Transient;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tika.Tika;
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.common.file.FileActions;
 import de.tivsource.page.entity.location.Location;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.Transient;
 
 /**
  * @author Marc Michele
@@ -66,7 +66,7 @@ public class Request {
 
     private String lastname;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date birthday;
 
     private String mail;
@@ -84,21 +84,21 @@ public class Request {
     private String comment;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean privacy;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean confirmed;
 
     private String confirmedAddress;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date confirmedDate;
 
     private String confirmedBy;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
     private String createdAddress;

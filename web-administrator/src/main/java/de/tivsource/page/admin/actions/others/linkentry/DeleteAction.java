@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,13 +24,7 @@ import de.tivsource.page.dao.linkentry.LinkEntryDaoLocal;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="linkEntryDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/linkentry/delete_form.jsp")
-  }),
   @TilesDefinition(name="linkEntryDeleteError", extend = "adminTemplate", putAttributes = {
-	@TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
 	@TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
 	@TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/linkentry/delete_error.jsp")
   })
@@ -51,6 +46,7 @@ public class DeleteAction extends EmptyAction {
 
     private LinkEntry linkEntry;
 
+    @StrutsParameter(depth=3)
     public LinkEntry getLinkEntry() {
         return linkEntry;
     }
@@ -65,7 +61,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "linkEntryDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "linkEntryDeleteError"),
         				@Result(name = "error", type="tiles", location = "linkEntryDeleteError")
         				}
         )

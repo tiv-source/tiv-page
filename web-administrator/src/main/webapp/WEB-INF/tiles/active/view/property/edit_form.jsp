@@ -23,6 +23,7 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:fielderror fieldName="property.key" />
                 <label for="property.key" class="label">Name:</label>
                 <struts:property value="property.key"/>
               </div>

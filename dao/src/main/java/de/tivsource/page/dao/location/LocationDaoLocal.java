@@ -5,9 +5,8 @@ package de.tivsource.page.dao.location;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.location.Location;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

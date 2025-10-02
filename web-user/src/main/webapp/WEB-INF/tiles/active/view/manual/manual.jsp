@@ -3,9 +3,12 @@
 
   <struts:if test="manual.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="manual.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="manual.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <h1><struts:property escapeHtml="false" value="manual.getName(getText('language'))" /></h1>
     <struts:if test="getProperty('manual.show.date') == 'true'">
@@ -24,3 +27,6 @@
 
     <struts:property escapeHtml="false" value="manual.getContent(getText('language'))" />
     
+    <hr>
+  </div>
+  <!-- Content Ende -->

@@ -5,9 +5,8 @@ package de.tivsource.page.dao.cssfile;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.common.css.CSSFile;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

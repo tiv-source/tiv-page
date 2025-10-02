@@ -7,12 +7,12 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
@@ -88,7 +88,15 @@ public class JsonAction extends ActionSupport {
 				roleList = this.roleDaoLocal.findAll(from, getRows(), "r.uuid", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
 				roleList = this.roleDaoLocal.findAll(from, getRows(), "r.technical", "asc");
-			} else {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.created", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.modified", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.modifiedBy", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedAddress")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.modifiedAddress", "asc");
+            } else {
 				roleList = this.roleDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
@@ -97,7 +105,15 @@ public class JsonAction extends ActionSupport {
 				roleList = this.roleDaoLocal.findAll(from, getRows(), "r.uuid", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
 				roleList = this.roleDaoLocal.findAll(from, getRows(), "r.technical", "desc");
-			} else {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.created", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.modified", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.modifiedBy", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedAddress")) {
+                roleList = this.roleDaoLocal.findAll(from, getRows(), "r.modifiedAddress", "desc");
+            } else {
 				roleList = this.roleDaoLocal.findAll(from, getRows());
 			}
 		}
@@ -126,6 +142,7 @@ public class JsonAction extends ActionSupport {
 	 * @param rows
 	 *            how many rows we want to have into the grid
 	 */
+	@StrutsParameter
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
@@ -141,6 +158,7 @@ public class JsonAction extends ActionSupport {
 	 * @param page
 	 *            current page of the query
 	 */
+	@StrutsParameter
 	public void setPage(Integer page) {
 		this.page = page;
 	}
@@ -211,6 +229,7 @@ public class JsonAction extends ActionSupport {
 	 * @param sord
 	 *            sorting order
 	 */
+	@StrutsParameter
 	public void setSord(String sord) {
 		this.sord = sord;
 	}
@@ -226,6 +245,7 @@ public class JsonAction extends ActionSupport {
 	 * @param sidx
 	 *            get index row - i.e. user click to sort.
 	 */
+	@StrutsParameter
 	public void setSidx(String sidx) {
 		this.sidx = sidx;
 	}

@@ -5,29 +5,30 @@ package de.tivsource.page.common.css;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Objects;
 import java.util.SortedSet;
 import java.util.UUID;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.Transient;
-import javax.persistence.Version;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.common.file.FileActions;
+import de.tivsource.page.common.file.UploadFile;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 
 /**
  * @author Marc Michele
@@ -58,6 +59,7 @@ public class CSSFile implements Comparable<CSSFile> {
 
     private Integer priority;
 
+    @Deprecated
     private String path;
 
     /**
@@ -65,7 +67,13 @@ public class CSSFile implements Comparable<CSSFile> {
      * vorhanden und wird nur zum erstellen benötigt.
      */
     @Transient
-    private File uploadFile;
+    private UploadFile uploadFile;
+
+    @Transient
+    private String uploadFileContentType;
+
+    @Transient
+    private String uploadFileFileName;
 
     /**
      * Gruppen zu dem die CSS Datei gehört.
@@ -79,10 +87,10 @@ public class CSSFile implements Comparable<CSSFile> {
     @SortNatural
     private SortedSet<CSSGroup> groups;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
@@ -158,6 +166,7 @@ public class CSSFile implements Comparable<CSSFile> {
     /**
      * @return the path
      */
+    @Deprecated
     public String getPath() {
         return path;
     }
@@ -166,6 +175,7 @@ public class CSSFile implements Comparable<CSSFile> {
      * @param path
      *            the path to set
      */
+    @Deprecated
     public void setPath(String path) {
         this.path = path;
     }
@@ -173,7 +183,7 @@ public class CSSFile implements Comparable<CSSFile> {
     /**
      * @return the uploadFile
      */
-    public File getUploadFile() {
+    public UploadFile getUploadFile() {
         return uploadFile;
     }
 
@@ -181,8 +191,24 @@ public class CSSFile implements Comparable<CSSFile> {
      * @param uploadFile
      *            the uploadFile to set
      */
-    public void setUploadFile(File uploadFile) {
+    public void setUploadFile(UploadFile uploadFile) {
+        this.uploadFileContentType = uploadFile.getContentType();
+        this.uploadFileFileName = uploadFile.getInputName();
         this.uploadFile = uploadFile;
+    }
+
+    /**
+     * @return the uploadFileContentType
+     */
+    public String getUploadFileContentType() {
+        return uploadFileContentType;
+    }
+
+    /**
+     * @return the uploadFileFileName
+     */
+    public String getUploadFileFileName() {
+        return uploadFileFileName;
     }
 
     /**
@@ -287,7 +313,7 @@ public class CSSFile implements Comparable<CSSFile> {
 
             // Wenn die Datei noch nicht existiert wird Sie erstellt.
             if (!fileToCreate.exists()) {
-                FileActions.savePictureFile(this.getUploadFile(), fileToCreate);
+                FileActions.savePictureFile(new File(uploadFile.getAbsolutePath()), fileToCreate);
             }// Ende if
         } // Ende try
         catch (Exception e) {
@@ -298,7 +324,12 @@ public class CSSFile implements Comparable<CSSFile> {
 
     @Override
     public int compareTo(CSSFile o) {
-        if (o.priority < this.priority) {
+        logger.trace("compareTo(CSSFile o) aufgerufen.");
+        if (this.priority == null && o.priority != null){
+            return -1;
+        } else if (this.priority != null && o.priority == null){
+            return 1;
+        } else if (o.priority < this.priority) {
             return 1;
         } else if (o.priority > this.priority) {
             return -1;
@@ -306,5 +337,29 @@ public class CSSFile implements Comparable<CSSFile> {
             return o.uuid.compareTo(this.uuid);
         }
     }// Ende compareTo(CSSFile o)
+
+    @Override
+    public int hashCode() {
+        logger.trace("hashCode() aufgerufen.");
+        int hash = 7;
+        hash = 21 *  hash + uuid.hashCode();
+        hash = 21 *  hash + (name == null ? 0 : name.hashCode());
+        hash = 21 *  hash + (description == null ? 0 : description.hashCode());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        logger.trace("equals(Object o) aufgerufen.");
+        // Selbst Test
+        if (this == o) return true;
+        // NULL Test
+        if (o == null) return false;
+        // type check and cast
+        if (getClass() != o.getClass()) return false;
+        CSSFile cssFile = (CSSFile) o;
+        // field comparison
+        return Objects.equals(uuid, cssFile.getUuid());
+    }
 
 }// Ende class

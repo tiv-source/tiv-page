@@ -5,7 +5,7 @@ package de.tivsource.page.dao.appointment;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import jakarta.ejb.Local;
 
 import de.tivsource.page.entity.appointment.Appointment;
 
@@ -41,7 +41,11 @@ public interface AppointmentDaoLocal {
      * @return Boolean - true wenn es ein Termin (Appointment) ist.
      */
     public Boolean isAppointmentUuid(String uuid);
-    
+
+    public Boolean hasMenuEntry(String uuid);
+
+    public Boolean hasSubSumption(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Appointment anhand der
      * Uuid.

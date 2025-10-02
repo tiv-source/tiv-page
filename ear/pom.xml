@@ -45,6 +45,11 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>exceptions</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>backup</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -78,6 +83,12 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
+			<artifactId>web-pdf</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-css</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
@@ -90,15 +101,10 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
-			<artifactId>web-shariff</artifactId>
-			<version>${project.version}</version>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-reservation</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
+			<scope>provided</scope>
 		</dependency>
 
 
@@ -115,25 +121,26 @@
 
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
+			<groupId>org.hibernate.search</groupId>
+			<artifactId>hibernate-search-mapper-orm</artifactId>
 			<version>${hibernate.search.version}</version>
-        </dependency>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-community-dialects</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-envers</artifactId>
 			<exclusions>
 				<exclusion>
@@ -172,12 +179,6 @@
 
 
 
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
-			<version>6.0</version>
-			<scope>provided</scope>
-		</dependency>
 
 
 
@@ -251,11 +252,6 @@
 						</webModule>
 						<webModule>
 							<groupId>de.tivsource.page</groupId>
-							<artifactId>web-shariff</artifactId>
-							<contextRoot>/shariff</contextRoot>
-						</webModule>
-						<webModule>
-							<groupId>de.tivsource.page</groupId>
 							<artifactId>web-css</artifactId>
 							<contextRoot>/cssfile</contextRoot>
 						</webModule>
@@ -264,10 +260,20 @@
 							<artifactId>web-image</artifactId>
 							<contextRoot>/image</contextRoot>
 						</webModule>
+						<webModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>web-pdf</artifactId>
+							<contextRoot>/pdf</contextRoot>
+						</webModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>entity</artifactId>
 							<bundleFileName>entity.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>de.tivsource.page</groupId>
+							<artifactId>exceptions</artifactId>
+							<bundleFileName>exceptions.jar</bundleFileName>
 						</jarModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>

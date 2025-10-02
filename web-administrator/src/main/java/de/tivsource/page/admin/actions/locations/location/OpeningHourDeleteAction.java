@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -45,10 +46,12 @@ public class OpeningHourDeleteAction extends EmptyAction {
         return location;
     }
 
+    @StrutsParameter
     public void setLocationUuid(String location) {
         this.uncheckLocation = location;
     }
 
+    @StrutsParameter
     public void setOpeningHours(Integer openingHoursIndex) {
         this.openingHoursIndex = openingHoursIndex;
     }
@@ -58,7 +61,7 @@ public class OpeningHourDeleteAction extends EmptyAction {
         @Action(
         		value = "openingHourDelete", 
         		results = {
-                        @Result(name = "success", type = "redirect", params={"locationUuid", "%{location.uuid}", "location", "overview.html", "namespace", "/location"}),
+                        @Result(name = "success", type = "redirect", params={"uncheckLocation", "%{location.uuid}", "location", "overview.html", "namespace", "/location"}),
                         @Result(name = "input", type="tiles", location = "openingHourDeleteForm"),
                         @Result(name = "error", type="tiles", location = "openingHourDeleteError")
                         }

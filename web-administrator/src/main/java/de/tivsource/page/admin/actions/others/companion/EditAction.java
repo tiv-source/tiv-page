@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -52,22 +53,13 @@ public class EditAction extends EmptyAction {
 
     private Companion companion;
 
-    private String lang;
-
+    @StrutsParameter(depth=2)
     public Companion getCompanion() {
         return companion;
     }
 
 	public void setCompanion(Companion companion) {
         this.companion = companion;
-    }
-	
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
     }
 
     @Override

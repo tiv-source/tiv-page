@@ -26,13 +26,41 @@
            ||
            (
              lang.equals("DE") &&
-             appointment.descriptionMap.DE.name!=null &&
-             appointment.descriptionMap.DE.name.trim()!="" &&
-             appointment.descriptionMap.DE.name.trim().length()>3
+             appointment.descriptionMap.DE.name!=null
            ))
         ]]>
       </param>
       <message key="appointment.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             appointment.descriptionMap.DE.name.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             appointment.descriptionMap.DE.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.DE.name.validation.length" />
     </field-validator>
   </field>
 
@@ -46,13 +74,41 @@
            ||
            (
              lang.equals("DE") &&
-             appointment.descriptionMap.DE.description!=null &&
-             appointment.descriptionMap.DE.description.trim()!="" &&
-             appointment.descriptionMap.DE.description.trim().length()>3
+             appointment.descriptionMap.DE.description!=null
            ))
         ]]>
       </param>
       <message key="appointment.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             appointment.descriptionMap.DE.description.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             appointment.descriptionMap.DE.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.DE.description.validation.length" />
     </field-validator>
   </field>
 
@@ -66,17 +122,12 @@
            ||
            (
              lang.equals("DE") &&
-             appointment.descriptionMap.DE.keywords!=null &&
-             appointment.descriptionMap.DE.keywords.trim()!="" &&
-             appointment.descriptionMap.DE.keywords.trim().length()>3
+             appointment.descriptionMap.DE.keywords!=null
            ))
         ]]>
       </param>
       <message key="appointment.descriptionMap.DE.keywords.validation.required" />
     </field-validator>
-  </field>
-
-  <field name="appointment.contentMap.DE.content">
     <field-validator type="fieldexpression" short-circuit="true">
       <param name="expression">
         <![CDATA[
@@ -86,13 +137,26 @@
            ||
            (
              lang.equals("DE") &&
-             appointment.contentMap.DE.content!=null &&
-             appointment.contentMap.DE.content.trim()!="" &&
-             appointment.contentMap.DE.content.trim().length()>3
+             appointment.descriptionMap.DE.keywords.trim()!=""
            ))
         ]]>
       </param>
-      <message key="appointment.contentMap.DE.content.validation.required" />
+      <message key="appointment.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             appointment.descriptionMap.DE.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.DE.keywords.validation.length" />
     </field-validator>
   </field>
 
@@ -106,13 +170,41 @@
            ||
            (
              lang.equals("EN") &&
-             appointment.descriptionMap.EN.name!=null &&
-             appointment.descriptionMap.EN.name.trim()!="" &&
-             appointment.descriptionMap.EN.name.trim().length()>3
+             appointment.descriptionMap.EN.name!=null
            ))
         ]]>
       </param>
       <message key="appointment.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             appointment.descriptionMap.EN.name.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             appointment.descriptionMap.EN.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.EN.name.validation.length" />
     </field-validator>
   </field>
 
@@ -126,13 +218,41 @@
            ||
            (
              lang.equals("EN") &&
-             appointment.descriptionMap.EN.description!=null &&
-             appointment.descriptionMap.EN.description.trim()!="" &&
-             appointment.descriptionMap.EN.description.trim().length()>3
+             appointment.descriptionMap.EN.description!=null
            ))
         ]]>
       </param>
       <message key="appointment.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             appointment.descriptionMap.EN.description.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             appointment.descriptionMap.EN.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.EN.description.validation.length" />
     </field-validator>
   </field>
 
@@ -146,17 +266,12 @@
            ||
            (
              lang.equals("EN") &&
-             appointment.descriptionMap.EN.keywords!=null &&
-             appointment.descriptionMap.EN.keywords.trim()!="" &&
-             appointment.descriptionMap.EN.keywords.trim().length()>3
+             appointment.descriptionMap.EN.keywords!=null
            ))
         ]]>
       </param>
       <message key="appointment.descriptionMap.EN.keywords.validation.required" />
     </field-validator>
-  </field>
-
-  <field name="appointment.contentMap.EN.content">
     <field-validator type="fieldexpression" short-circuit="true">
       <param name="expression">
         <![CDATA[
@@ -166,15 +281,29 @@
            ||
            (
              lang.equals("EN") &&
-             appointment.contentMap.EN.content!=null &&
-             appointment.contentMap.EN.content.trim()!="" &&
-             appointment.contentMap.EN.content.trim().length()>3
+             appointment.descriptionMap.EN.keywords.trim()!=""
            ))
         ]]>
       </param>
-      <message key="appointment.contentMap.EN.content.validation.required" />
+      <message key="appointment.descriptionMap.EN.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             appointment.descriptionMap.EN.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="appointment.descriptionMap.EN.keywords.validation.length" />
     </field-validator>
   </field>
+
 
 
 </validators>

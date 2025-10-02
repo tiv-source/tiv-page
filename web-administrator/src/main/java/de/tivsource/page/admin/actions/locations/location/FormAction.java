@@ -1,6 +1,7 @@
 package de.tivsource.page.admin.actions.locations.location;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -17,10 +19,8 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.location.Location;
-import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.enumeration.Weekday;
 
 /**
  * 
@@ -41,6 +41,20 @@ import de.tivsource.page.entity.picture.Picture;
   @TilesDefinition(name="locationDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/delete_form.jsp")
+  }),
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/image_form.jsp")
+  }),
+  @TilesDefinition(name="locationOverview", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/default.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/location_overview.jsp")
+  }),
+  @TilesDefinition(name="openingHourAddForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/default.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/opening_hour_add_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -61,19 +75,11 @@ public class FormAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
 	private Location location;
 
 	private String uncheckLocation;
 
-	private String lang;
-
-    private List<Picture> pictureList;
+	private String lang = "DE";
 
     private List<CSSGroup> cssGroupList;
 
@@ -81,14 +87,16 @@ public class FormAction extends EmptyAction {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.uncheckLocation = location;
+    @StrutsParameter
+    public void setUncheckLocation(String uncheckLocation) {
+        this.uncheckLocation = uncheckLocation;
     }
 
 	public String getLang() {
         return lang;
     }
 
+	@StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -96,7 +104,6 @@ public class FormAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.location.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -113,18 +120,25 @@ public class FormAction extends EmptyAction {
         @Action(
             value = "deleteForm",
             results = { @Result(name = "success", type="tiles", location = "locationDeleteForm") }
+        ),
+        @Action(
+            value = "imageForm", 
+            results = { @Result(name = "success", type="tiles", location = "imageForm") }
+        ),
+        @Action(
+            value = "overview", 
+            results = { @Result(name = "success", type="tiles", location = "locationOverview") }
+        ),
+        @Action(
+            value = "openingHourAddForm",
+            results = { @Result(name = "success", type="tiles", location = "openingHourAddForm") }
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
@@ -132,10 +146,15 @@ public class FormAction extends EmptyAction {
         return cssGroupList;
     }// Ende getCssGroupList()
 
+    public List<Weekday> getWeekdays() {
+        return Arrays.asList(Weekday.values());
+    }
+
 	private void loadPageParameter() {
 
 		if( uncheckLocation != null && uncheckLocation != "" && uncheckLocation.length() > 0) {
 			location = locationDaoLocal.findByUuid(uncheckLocation);
+			LOGGER.info("Anzahl der OpeningHours: " + location.getOpeningHours().size());
 		} else {
 			location = new Location();
 		}

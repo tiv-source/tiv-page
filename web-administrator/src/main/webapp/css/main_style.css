@@ -92,7 +92,7 @@ span {
 }
 
 b {
-	color: #;
+	color: #000000;
 }
 
 #container {
@@ -219,7 +219,7 @@ div#button_bar {
 
 div.button {
 	float: left;
-	margin-left:40px;
+	margin-left:10px;
 	margin-bottom:2px;
 	padding:2px 3px;
 }

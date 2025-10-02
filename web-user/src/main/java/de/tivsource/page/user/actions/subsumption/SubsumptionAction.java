@@ -1,5 +1,9 @@
 package de.tivsource.page.user.actions.subsumption;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +20,8 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.subsumption.SubsumptionDaoLocal;
+import de.tivsource.page.entity.contentitem.ContentItem;
+import de.tivsource.page.entity.contentitem.ContentItemOrderNumberComparator;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.subsumption.Subsumption;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -88,6 +94,14 @@ public class SubsumptionAction extends EmptyAction {
             LOGGER.info("gültige Manual Uuid.");
             subsumption = subsumptionDaoLocal.findByTechnical(subsumptionTechnical);
             if(subsumption.getVisible()) {
+                if(!subsumption.getOrderDates()) {
+                    SortedSet<ContentItem> contentItems = new TreeSet<ContentItem>(new ContentItemOrderNumberComparator());
+                    LOGGER.info("Anzahl der ConetntItems vor dem Kopieren: " + contentItems.size());
+                    contentItems.addAll(subsumption.getContentItems());
+                    LOGGER.info("Anzahl der ConetntItems nach dem Kopieren: " + contentItems.size());
+                    subsumption.setContentItems(contentItems);
+                    LOGGER.info("Anzahl der ConetntItems in de Zusammenfassung: " + subsumption.getContentItems().size());
+                }
                 // Setze Daten in ein Page Objekt
                 page = new Page();
                 page.setTechnical(subsumption.getTechnical());

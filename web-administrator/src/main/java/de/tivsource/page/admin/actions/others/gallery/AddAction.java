@@ -8,9 +8,12 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,7 +26,9 @@ import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
+import de.tivsource.page.entity.pictureitem.PictureItemImage;
 import de.tivsource.page.enumeration.GalleryType;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -41,7 +46,7 @@ import de.tivsource.page.enumeration.GalleryType;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -64,14 +69,26 @@ public class AddAction extends EmptyAction {
 
     private Gallery gallery;
 
+    private String lang = "DE";
+
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Gallery getGallery() {
         return gallery;
     }
 
     public void setGallery(Gallery gallery) {
         this.gallery = gallery;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    @StrutsParameter
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     @Override
@@ -117,6 +134,26 @@ public class AddAction extends EmptyAction {
     	    gallery.getDescriptionMap().get(Language.EN).setDescription(gallery.getDescriptionMap().get(Language.DE).getDescription());
     	    gallery.getDescriptionMap().get(Language.EN).setKeywords(gallery.getDescriptionMap().get(Language.DE).getKeywords());
 
+    	    gallery.getContentMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
+    	    gallery.getContentMap().get(Language.DE).setContentItem(gallery);
+    	    gallery.getContentMap().get(Language.DE).setLanguage(Language.DE);
+            gallery.getContentMap().get(Language.DE).setCreated(new Date());
+            gallery.getContentMap().get(Language.DE).setModified(new Date());
+
+            gallery.getContentMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
+            gallery.getContentMap().get(Language.EN).setContentItem(gallery);
+            gallery.getContentMap().get(Language.EN).setLanguage(Language.EN);
+            gallery.getContentMap().get(Language.EN).setContent(gallery.getContent(Language.DE));
+            gallery.getContentMap().get(Language.EN).setCreated(new Date());
+            gallery.getContentMap().get(Language.EN).setModified(new Date());
+
+    	    gallery.getImage().setUuid(UUID.randomUUID().toString());
+    	    gallery.getImage().generate();
+    	    gallery.getImage().setCreated(new Date());
+    	    gallery.getImage().setModified(new Date());
+    	    gallery.getImage().setModifiedAddress(remoteAddress);
+    	    gallery.getImage().setModifiedBy(remoteUser);
+    	    
     	    galleryDaoLocal.merge(gallery);
             return SUCCESS;
     	}
@@ -136,5 +173,18 @@ public class AddAction extends EmptyAction {
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.gallery = new Gallery();
+            this.gallery.setImage(new PictureItemImage());
+            this.gallery.getImage().setPictureItem(this.gallery);
+            this.gallery.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
+    }
 
 }// Ende class

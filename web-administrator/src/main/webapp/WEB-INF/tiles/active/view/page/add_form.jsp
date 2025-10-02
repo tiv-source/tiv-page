@@ -17,29 +17,18 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="page_picture" name="page.picture" value="page.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="page.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="page.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#add_page_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#page_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
+                <struts:fielderror fieldName="page.image.uploadFileContentType" />
+                <struts:file key="page.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
               </div>
 
               <div class="field">
@@ -48,6 +37,18 @@
                     parentTheme="css_xhtml"
 					cssStyle="padding: 0.3em; width:827px;"
                 />
+              </div>
+
+              <div class="field">
+                <struts:textfield
+                    key="page.orderNumber"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
+                />
+                <script type="text/javascript">
+                $('#add_page_orderNumber').spinner();
+                </script>
               </div>
 
               <div class="field">

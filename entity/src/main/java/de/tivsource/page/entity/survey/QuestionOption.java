@@ -3,10 +3,10 @@
  */
 package de.tivsource.page.entity.survey;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
-import org.hibernate.search.annotations.DocumentId;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 
 /**
  * @author Marc Michele

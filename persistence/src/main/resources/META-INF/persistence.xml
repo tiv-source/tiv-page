@@ -30,20 +30,28 @@
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
 		<class>de.tivsource.page.entity.event.Event</class>
+		<class>de.tivsource.page.entity.exhibition.Exhibition</class>
 		<class>de.tivsource.page.entity.feedback.Feedback</class>
 		<class>de.tivsource.page.entity.feedback.FeedbackOption</class>
 		<class>de.tivsource.page.entity.feedback.FeedbackOptionDescription</class>
 		<class>de.tivsource.page.entity.gallery.Gallery</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
+		<class>de.tivsource.page.entity.mail.MailAddress</class>
+		<class>de.tivsource.page.entity.mail.MailAddressLock</class>
+		<class>de.tivsource.page.entity.mail.MailAddressLockRequest</class>
 		<class>de.tivsource.page.entity.manual.Manual</class>
 		<class>de.tivsource.page.entity.message.Message</class>
 		<class>de.tivsource.page.entity.namingitem.Description</class>
 		<class>de.tivsource.page.entity.namingitem.NamingItem</class>
 		<class>de.tivsource.page.entity.news.News</class>
 		<class>de.tivsource.page.entity.page.Page</class>
+		<class>de.tivsource.page.entity.pdf.PDF</class>
+		<class>de.tivsource.page.entity.pdf.PDFDescription</class>
+		<class>de.tivsource.page.entity.pdf.PDFImage</class>
 		<class>de.tivsource.page.entity.picture.Picture</class>
 		<class>de.tivsource.page.entity.picture.PictureDescription</class>
+		<class>de.tivsource.page.entity.picture.PictureImage</class>
 		<class>de.tivsource.page.entity.picture.PictureUrl</class>
 		<class>de.tivsource.page.entity.pictureitem.PictureItem</class>
 		<class>de.tivsource.page.entity.pictureitem.PictureItemImage</class>
@@ -60,8 +68,8 @@
 
 		<properties>
 
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            
 			<!-- As many hibernate properties as you need, some examples: -->
             <property name="hibernate.show.sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

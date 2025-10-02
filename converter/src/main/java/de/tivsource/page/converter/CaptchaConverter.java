@@ -9,9 +9,8 @@ import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
+import org.apache.struts2.conversion.TypeConversionException;
 import org.apache.struts2.util.StrutsTypeConverter;
-
-import com.opensymphony.xwork2.conversion.TypeConversionException;
 
 import de.tivsource.page.common.captcha.Captcha;
 import de.tivsource.page.dao.captcha.CaptchaDaoLocal;

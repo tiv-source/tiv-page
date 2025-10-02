@@ -7,10 +7,13 @@
     <struts:else>
       <struts:if test="page.pictureOnPage">
         <div id="sitePicture">
-          <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+          <img alt="" src="/image/pictureitem/<struts:property value="page.uuid" />/<struts:property value="getProperty('image.size.content')" />">
         </div>
       </struts:if>
     </struts:else>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <struts:if test="getProperty('facebook.on.home') == 'true'">
       <struts:include value="content_facebook.jsp" />
@@ -32,5 +35,7 @@
       </struts:if>
     </struts:if>
 
-
+    <hr>
+  </div>
+  <!-- Content Ende -->
 

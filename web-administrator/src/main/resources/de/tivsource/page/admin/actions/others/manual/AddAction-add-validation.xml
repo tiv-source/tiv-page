@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="manual.technical">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="manual.technical.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-z,0-9]{4,49} ]]></param>
+      <message key="manual.technical.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="manual.descriptionMap.DE.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="manual.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="manual.descriptionMap.DE.description">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="manual.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="manual.descriptionMap.DE.keywords">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="manual.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="manual.contentMap.DE.content">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="manual.contentMap.DE.content.validation.required" />
+    </field-validator>
+  </field>
+
+</validators>

@@ -24,6 +24,8 @@ import de.tivsource.page.entity.page.Page;
 @TilesDefinitions({
   @TilesDefinition(name="page", extend = "userTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/content.jsp"),
+    @TilesPutAttribute(name = "opengraph",  value = "/WEB-INF/tiles/active/opengraph/content.jsp"),
+    @TilesPutAttribute(name = "geo",        value = "/WEB-INF/tiles/active/geo/content.jsp"),
     @TilesPutAttribute(name = "twitter",    value = "/WEB-INF/tiles/active/twitter/content.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/page.jsp")
   })
@@ -95,7 +97,7 @@ public class PageAction extends EmptyAction {
     }
 
     private Boolean isValid(String input) {
-        if (Pattern.matches("[a-z]*", input)) {
+        if (Pattern.matches("[a-z0-9]*", input)) {
             return true;
         } else {
             return false;

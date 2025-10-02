@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -58,7 +59,9 @@ public class FormAction extends EmptyAction {
         return property;
     }
 
-	public void setProperty(String uncheckProperty) {
+    @StrutsParameter
+    public void setUncheckProperty(String uncheckProperty) {
+        LOGGER.info("setze den Schlüssel für die Eigenschaft.");
         this.uncheckProperty = uncheckProperty;
     }
 
@@ -84,7 +87,9 @@ public class FormAction extends EmptyAction {
     }// Ende execute()
 
 	private void loadPageParameter() {
+	    LOGGER.info("loadPageParameter() aufgerufen.");
 		if( uncheckProperty != null && uncheckProperty != "" && uncheckProperty.length() > 0) {
+		    LOGGER.info("hole die Eigenschaft aus der Datenbank.");
 		    property = propertyDaoLocal.findByKey(uncheckProperty);
 		} else {
 		    property = new Property();

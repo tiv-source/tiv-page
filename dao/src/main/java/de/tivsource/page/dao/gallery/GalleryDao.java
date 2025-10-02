@@ -5,15 +5,14 @@ package de.tivsource.page.dao.gallery;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.gallery.Gallery;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -64,18 +63,26 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Boolean isGallery(String uuid) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = :uuid and g.visible = 'Y' order by g.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = :uuid and g.visible = :visible order by g.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#isGalleryTechnical(java.lang.String)
+	 */
 	@Override
 	public Boolean isGalleryTechnical(String technical) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = :visible order by g.uuid asc");
+        query.setParameter("visible", true);
         query.setParameter("technical", technical);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#hasReferences(java.lang.String)
+	 */
 	@Override
 	public Boolean hasReferences(String uuid) {
         Query query = entityManager.createQuery("select p from Picture p where p.gallery.uuid = :uuid order by p.uuid asc");
@@ -83,6 +90,25 @@ public class GalleryDao implements GalleryDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        Gallery gallery = entityManager.find(Gallery.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", gallery);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        Gallery gallery = entityManager.find(Gallery.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", gallery);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+	
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findByUuid(java.lang.String)
 	 */
@@ -91,9 +117,13 @@ public class GalleryDao implements GalleryDaoLocal {
 		return entityManager.find(Gallery.class, uuid);
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findByTechnical(java.lang.String)
+	 */
 	@Override
 	public Gallery findByTechnical(String technical) {
-        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = 'Y' order by g.uuid asc");
+        Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = :visible order by g.uuid asc");
+        query.setParameter("visible", true);
         query.setParameter("technical", technical);
 		return (Gallery) query.getSingleResult();
 	}
@@ -124,6 +154,9 @@ public class GalleryDao implements GalleryDaoLocal {
         return query.getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Gallery> findAllVisible(Integer start, Integer max) {
@@ -143,6 +176,9 @@ public class GalleryDao implements GalleryDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#countAllVisible()
+	 */
 	@Override
 	public Integer countAllVisible() {
         Query query = entityManager.createQuery("Select Count(g) from Gallery g where g.visible = :visible");

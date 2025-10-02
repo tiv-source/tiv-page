@@ -9,9 +9,8 @@ import javax.naming.InitialContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.conversion.TypeConversionException;
 import org.apache.struts2.util.StrutsTypeConverter;
-
-import com.opensymphony.xwork2.conversion.TypeConversionException;
 
 import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.dao.cssfile.CSSFileDaoLocal;

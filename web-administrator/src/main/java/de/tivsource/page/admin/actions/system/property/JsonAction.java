@@ -7,12 +7,12 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -77,7 +77,7 @@ public class JsonAction extends ActionSupport {
 		if (to > getRecord()) {
 			to = getRecord();
 		}
-		
+
 		/*
 		 * Sortieren aufsteigen
 		 */
@@ -87,7 +87,13 @@ public class JsonAction extends ActionSupport {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.key", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("value")) {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.value", "asc");
-			} else {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modified", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedBy", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedAddress")) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedAddress", "asc");
+            } else {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
@@ -96,7 +102,13 @@ public class JsonAction extends ActionSupport {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.key", "desc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("value")) {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.value", "desc");
-			} else {
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modified", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedBy", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedAddress")) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedAddress", "desc");
+            } else {
 				propertyList = this.propertyDaoLocal.findAll(from, getRows());
 			}
 		}
@@ -115,16 +127,23 @@ public class JsonAction extends ActionSupport {
 	}
 
 	/**
-	 * @return how many rows we want to have into the grid
+	 * Methode, die die Anzahl der Zeilen zurück liefert, die in der
+	 * Tabelle pro Seite enthalten sind.
+	 *
+	 * @return liefert die Anzahl der Zeilen in der Tablle pro Seite
 	 */
 	public Integer getRows() {
 		return rows;
 	}
 
 	/**
-	 * @param rows
-	 *            how many rows we want to have into the grid
+	 * Methode zum setzen der Anzahl der zurück zuliefernden Zeilen,
+	 * kann durch den Benutzer gesetzt werden.
+	 * Deshalb ist diese Methode mit @StrutsParameter annotiert.
+	 *
+	 * @param rows - Anzahl der Zeilen, die angezeigt werden sollen
 	 */
+	@StrutsParameter
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
@@ -140,6 +159,7 @@ public class JsonAction extends ActionSupport {
 	 * @param page
 	 *            current page of the query
 	 */
+	@StrutsParameter
 	public void setPage(Integer page) {
 		this.page = page;
 	}
@@ -210,6 +230,7 @@ public class JsonAction extends ActionSupport {
 	 * @param sord
 	 *            sorting order
 	 */
+	@StrutsParameter
 	public void setSord(String sord) {
 		this.sord = sord;
 	}
@@ -225,6 +246,7 @@ public class JsonAction extends ActionSupport {
 	 * @param sidx
 	 *            get index row - i.e. user click to sort.
 	 */
+	@StrutsParameter
 	public void setSidx(String sidx) {
 		this.sidx = sidx;
 	}

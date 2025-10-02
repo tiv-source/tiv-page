@@ -1,32 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="englishUrl">
-  <struts:param name="page" value="contentEntry.uuid" />
-  <struts:param name="lang">EN</struts:param>
-</struts:url>
-<struts:url var="germanUrl">
-  <struts:param name="page" value="contentEntry.uuid" />
-  <struts:param name="lang">DE</struts:param>
-</struts:url>
-
       <!--  Start MAIN -->
       <div class="main">
-        <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{englishUrl}">
-              <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/>
-              <p style="padding-left: 35px; padding-top: 1px;">Englische Version</p>
-            </struts:a>
-          </div>
-
-          <div style="padding:0px; margin:5px; height:24px;">
-            <struts:a href="%{germanUrl}">
-              <img src="/admin/icons/80x60_flag-germany.png" style="float: left; width: 28px;"/>
-              <p style="padding-left: 35px; padding-top: 1px;">Deutsche Version</p>
-            </struts:a>
-          </div>
-        </div>
+        <div class="sub_menu"></div>
 
         <div id="title">
           <h5><struts:text name="contentEntry.edit"/></h5>

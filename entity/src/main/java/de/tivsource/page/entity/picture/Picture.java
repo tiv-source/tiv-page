@@ -6,25 +6,26 @@ package de.tivsource.page.entity.picture;
 import java.util.Date;
 import java.util.Map;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.enumeration.UrlType;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
 
 /**
  * 
@@ -52,28 +53,33 @@ public class Picture {
     /**
      * Die Map mit dem Beschreibung des Objektes, die Angabe ist Lokalisiert.
      */
-    @OneToMany(mappedBy = "picture", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "picture", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @MapKey(name = "language")
     private Map<Language, PictureDescription> descriptionMap;
 
-    @OneToMany(mappedBy = "picture", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "picture", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @MapKey(name = "urlType")
+    @Deprecated
     private Map<UrlType, PictureUrl> pictureUrls;
 
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean visible;
 
     private Integer orderNumber;
-    
+
+    @OneToOne(mappedBy = "picture", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "image_uuid")
+    private PictureImage image;
+
     @ManyToOne(targetEntity = Gallery.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "gallery_uuid")
     private Gallery gallery;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
@@ -96,10 +102,12 @@ public class Picture {
 		this.descriptionMap = descriptionMap;
 	}
 
+	@Deprecated
 	public Map<UrlType, PictureUrl> getPictureUrls() {
 		return pictureUrls;
 	}
 
+	@Deprecated
 	public void setPictureUrls(Map<UrlType, PictureUrl> pictureUrls) {
 		this.pictureUrls = pictureUrls;
 	}
@@ -120,7 +128,21 @@ public class Picture {
 		this.orderNumber = orderNumber;
 	}
 
-	public Gallery getGallery() {
+	/**
+     * @return the image
+     */
+    public PictureImage getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(PictureImage image) {
+        this.image = image;
+    }
+
+    public Gallery getGallery() {
 		return gallery;
 	}
 

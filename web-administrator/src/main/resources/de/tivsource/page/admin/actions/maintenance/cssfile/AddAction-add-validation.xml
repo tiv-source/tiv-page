@@ -9,6 +9,16 @@
     </field-validator>
   </field>
 
+  <field name="cssFile.uploadFileContentType">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="cssFile.uploadFileContentType.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ ^text\/css ]]></param>
+      <message key="cssFile.uploadFileContentType.validation.type" />
+    </field-validator>
+  </field>
+
   <field name="cssFile.name">
     <field-validator type="requiredstring" short-circuit="true">
       <message key="cssFile.name.validation.required" />

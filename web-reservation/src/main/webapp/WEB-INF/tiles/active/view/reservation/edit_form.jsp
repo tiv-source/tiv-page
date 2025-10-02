@@ -3,7 +3,11 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
 <%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
 
-      <s:form id="checkboxlist_form1" action="echo" theme="simple">
+      <s:form 
+        id="checkboxlist_form1" 
+        action="edit" 
+        theme="simple"
+      >
 
         <sjm:radio
             id="reservation.gender"

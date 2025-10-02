@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
-        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-        "http://struts.apache.org/dtds/struts-2.5.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 6.0//EN"
+        "https://struts.apache.org/dtds/struts-6.0.dtd">
 
 <struts>
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 	<constant name="struts.locale" value="de" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
     <constant name="struts.multipart.maxSize" value="98000000" />
     <constant name="struts.ui.theme" value="css_xhtml" />
+    <constant name="struts.ui.checkbox.submitUnchecked" value="true" />
+
 
 	<constant name="struts.convention.classes.reload" value="true" />
 	<constant name="struts.convention.exclude.parentClassLoader" value="true" />
@@ -18,6 +20,10 @@
     <constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
 
     <constant name="struts.action.extension" value="html"/>
+
+    <constant name="struts.allowlist.classes" value=""/>
+    <constant name="struts.allowlist.packageNames" value="de.tivsource.page.admin.actions,de.tivsource.page.entity,de.tivsource.page.common"/>
+    
 	
 	<constant name="struts.convention.package.locators" value="actions,action" />
 	<constant name="struts.convention.package.locators.disable" value="false" />
@@ -43,6 +49,16 @@
 				<interceptor-ref name="defaultStack"/>
 				<interceptor-ref name="validation" />
 			</interceptor-stack>
+
+			<interceptor-stack name="defaultImageStack">
+			    <interceptor-ref name="actionFileUpload">
+			        <param name="allowedTypes">image/png,image/jpeg,image/pjpeg</param>
+			        <param name="maximumSize">1500000</param>
+			    </interceptor-ref>
+				<interceptor-ref name="ejb3" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="validation" />
+			</interceptor-stack>
 		</interceptors>
 
 		<default-interceptor-ref name="defaultTIVPageAdminStack" />
@@ -50,7 +66,7 @@
 	</package>
 
 	<!-- JSON Actions -->
-	<package name="administratorJson" namespace="/json" extends="struts-default,json-default">
+	<package name="administratorJson" namespace="/json" extends="struts-default, json-default, velocity-default">
 
 	  <result-types>
 	    <result-type name="json" class="org.apache.struts2.json.JSONResult"/>

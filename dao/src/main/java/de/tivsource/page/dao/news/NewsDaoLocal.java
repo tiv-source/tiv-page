@@ -5,9 +5,8 @@ package de.tivsource.page.dao.news;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.news.News;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele
@@ -43,6 +42,10 @@ public interface NewsDaoLocal {
     public Boolean isNewsUrl(String urlName);
 
     public Boolean isPublicNewsUuid(String uuid);
+
+    public Boolean hasMenuEntry(String uuid);
+
+    public Boolean hasSubSumption(String uuid);
 
     public News findByUuid(String uuid);
 

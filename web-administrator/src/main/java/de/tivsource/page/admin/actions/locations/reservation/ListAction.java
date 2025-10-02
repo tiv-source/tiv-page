@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.odftoolkit.simple.SpreadsheetDocument;
 
 import de.tivsource.ejb3plugin.InjectEJB;
@@ -50,7 +51,8 @@ public class ListAction extends EmptyAction {
 
 	private InputStream fileStream;
 
-    public void setEvent(String uncheckedEvent) {
+	@StrutsParameter
+    public void setUncheckedEvent(String uncheckedEvent) {
         this.uncheckedEvent = uncheckedEvent;
     }
 

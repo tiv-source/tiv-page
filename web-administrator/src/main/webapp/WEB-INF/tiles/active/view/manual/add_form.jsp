@@ -17,29 +17,26 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="manual_picture" name="manual.picture" value="manual.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="manual.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="manual.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
+                <struts:fielderror fieldName="manual.image.uploadFileContentType" />
+                <struts:file key="manual.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
+              </div>
+
+              <div class="field">
+                <struts:textfield 
+                    key="manual.technical"
+                    parentTheme="css_xhtml"
+					cssStyle="padding: 0.3em; width:827px;"
                 />
-                <script type="text/javascript">
-                $('#add_manual_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#manual_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
               </div>
 
               <div class="field">

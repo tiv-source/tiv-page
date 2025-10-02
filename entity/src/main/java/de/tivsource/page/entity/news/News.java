@@ -5,12 +5,11 @@ package de.tivsource.page.entity.news;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -20,7 +19,7 @@ import de.tivsource.page.entity.contentitem.ContentItem;
 @Entity
 public class News extends ContentItem {
 
-	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
+	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
 	private Date releaseDate;
 
 	public Date getReleaseDate() {

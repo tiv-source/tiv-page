@@ -5,9 +5,8 @@ package de.tivsource.page.dao.message;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.message.Message;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

@@ -6,10 +6,10 @@ package de.tivsource.page.dao.administration;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,6 +78,9 @@ public class RoleDao implements RoleDaoLocal {
         return (Role)query.getSingleResult();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.administration.RoleDaoLocal#findByUuid(java.lang.String)
+     */
     @Override
     public Role findByUuid(String uuid) {
         return entityManager.find(Role.class, uuid);
@@ -95,6 +98,9 @@ public class RoleDao implements RoleDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.administration.RoleDaoLocal#findAll(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Role> findAll(Integer start, Integer max, String field,

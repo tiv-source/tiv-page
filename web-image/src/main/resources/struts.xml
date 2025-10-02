@@ -17,6 +17,9 @@
     
 
 	<constant name="struts.action.extension" value="png"/>
+
+    <constant name="struts.allowlist.classes" value="de.tivsource.page.entity.pictureitem.PictureItemImage,de.tivsource.page.common.captcha.image.CaptchaImage,de.tivsource.page.entity.pdf.PDFImage,de.tivsource.page.entity.slider.SliderImage,de.tivsource.page.entity.picture.PictureImage"/>
+	<constant name="struts.allowlist.packageNames" value="de.tivsource.page.common.image"/>
 	
 	<constant name="struts.convention.package.locators" value="actions,action" />
 	<constant name="struts.convention.package.locators.disable" value="false" />

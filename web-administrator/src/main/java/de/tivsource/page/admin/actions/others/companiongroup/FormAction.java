@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -16,10 +17,8 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.companion.CompanionGroup;
-import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -40,6 +39,10 @@ import de.tivsource.page.entity.picture.Picture;
   @TilesDefinition(name="companionGroupDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/delete_form.jsp")
+  }),
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/companiongroup/image_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -60,9 +63,6 @@ public class FormAction extends EmptyAction {
     @InjectEJB(name = "CSSGroupDao")
     private CSSGroupDaoLocal cssGroupDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
@@ -70,9 +70,7 @@ public class FormAction extends EmptyAction {
 
 	private String uncheckCompanionGroup;
 
-	private String lang;
-
-    private List<Picture> pictureList;
+	private String lang = "DE";
 
     private List<CSSGroup> cssGroupList;
 
@@ -80,7 +78,8 @@ public class FormAction extends EmptyAction {
         return companionGroup;
     }
 
-	public void setCompanionGroup(String uncheckCompanionGroup) {
+	@StrutsParameter
+	public void setUncheckCompanionGroup(String uncheckCompanionGroup) {
         this.uncheckCompanionGroup = uncheckCompanionGroup;
     }
 
@@ -88,6 +87,7 @@ public class FormAction extends EmptyAction {
         return lang;
     }
 
+	@StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -95,7 +95,6 @@ public class FormAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.companion.group.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -112,6 +111,10 @@ public class FormAction extends EmptyAction {
         @Action(
             value = "deleteForm",
             results = { @Result(name = "success", type="tiles", location = "companionGroupDeleteForm") }
+        ),
+        @Action(
+                value = "imageForm", 
+                results = { @Result(name = "success", type="tiles", location = "imageForm") }
         )
     })
     public String execute() throws Exception {
@@ -130,10 +133,6 @@ public class FormAction extends EmptyAction {
 		}
 
 	}// Ende loadPageParameter()
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");

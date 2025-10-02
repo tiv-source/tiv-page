@@ -16,9 +16,12 @@
 
   <struts:if test="page.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/image/pictureitem/<struts:property value="page.uuid" />/large.png">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
   <struts:if test="getProperty('facebook.on.pages') == 'true'">
     <div id="social_net1">
@@ -35,4 +38,7 @@
   </struts:if>
 
   <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
-    
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

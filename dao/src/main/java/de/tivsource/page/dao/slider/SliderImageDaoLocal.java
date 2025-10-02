@@ -3,9 +3,8 @@
  */
 package de.tivsource.page.dao.slider;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.slider.SliderImage;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

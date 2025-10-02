@@ -3,9 +3,12 @@
 
   <struts:if test="appointment.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="appointment.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="appointment.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <h1><struts:property escapeHtml="false" value="appointment.getName(getText('language'))" /></h1>
     <struts:if test="getProperty('appointment.pointInTime.nice') == 'true'">
@@ -35,3 +38,8 @@
         </div>
       </a>
     </struts:if>
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
+

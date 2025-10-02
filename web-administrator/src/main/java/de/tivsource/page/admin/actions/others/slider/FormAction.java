@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -34,6 +35,10 @@ import de.tivsource.page.entity.slider.Slider;
   @TilesDefinition(name="sliderDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/slider/delete_form.jsp")
+  }),
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/slider/image_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -62,7 +67,8 @@ public class FormAction extends EmptyAction {
         return slider;
     }
 
-	public void setSlider(String uncheckSlider) {
+	@StrutsParameter
+	public void setUncheckSlider(String uncheckSlider) {
         this.uncheckSlider = uncheckSlider;
     }
 
@@ -79,6 +85,10 @@ public class FormAction extends EmptyAction {
         @Action(
         		value = "deleteForm", 
         		results = { @Result(name = "success", type="tiles", location = "sliderDeleteForm") }
+        ),
+        @Action(
+                value = "imageForm", 
+                results = { @Result(name = "success", type="tiles", location = "imageForm") }
         )
     })
     public String execute() throws Exception {

@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/system/captcha/editForm.html?captcha="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/system/captcha/editForm.html?uncheckCaptcha="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:16px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/system/captcha/deleteForm.html?captcha="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/system/captcha/deleteForm.html?uncheckCaptcha="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:16px;'/>" + 
          "</a>";
 }

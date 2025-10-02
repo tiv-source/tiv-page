@@ -5,9 +5,8 @@ package de.tivsource.page.dao.contentitem;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.contentitem.ContentItem;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

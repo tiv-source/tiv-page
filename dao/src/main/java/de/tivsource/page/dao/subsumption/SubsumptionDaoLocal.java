@@ -5,9 +5,8 @@ package de.tivsource.page.dao.subsumption;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.subsumption.Subsumption;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele
@@ -42,6 +41,14 @@ public interface SubsumptionDaoLocal {
      * @return
      */
     public Boolean hasMenuEntry(String uuid);
+
+    /**
+     * Methode um zu Testen ob die Einordnung (Subsumption) in einer anderen Einordnung 
+     * (Subsumption) verwendet wird. 
+     * @param uuid
+     * @return
+     */
+    public Boolean hasSubSumption(String uuid);
 
     /**
      * Methode zum laden eines Objektes der Klasse Subsumption anhand der

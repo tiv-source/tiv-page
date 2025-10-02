@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="<struts:property value="event.location.getName(getText('language'))" /> - <struts:property value="event.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" />" />
   <meta property="og:url" content="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
-  <meta property="og:image" content="<struts:property value="getProperty('server.picture.url')" />/LARGE/<struts:property value="event.picture.pictureUrls.LARGE.url" />" />
+  <meta property="og:image" content="<struts:property value="getProperty('server.base.url')" />/image/pictureitem/<struts:property value="%{event.uuid}"/>/<struts:property value="getProperty('og.image.size.event')" />" />
   <meta property="og:description" content="<struts:property value="event.getDescription(getText('language'))" />" />
 
 
@@ -38,8 +38,6 @@
 
   <meta name="revisit-after" content="7 days" />
   <meta name="robots" content="INDEX,FOLLOW" />
-
-
 
   
   

@@ -5,9 +5,8 @@ package de.tivsource.page.dao.gallery;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.gallery.Gallery;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele
@@ -39,6 +38,10 @@ public interface GalleryDaoLocal {
     public Boolean isGalleryTechnical(String technical);
     
     public Boolean hasReferences(String uuid);
+
+    public Boolean hasMenuEntry(String uuid);
+
+    public Boolean hasSubSumption(String uuid);
 
     public Gallery findByUuid(String uuid);
 

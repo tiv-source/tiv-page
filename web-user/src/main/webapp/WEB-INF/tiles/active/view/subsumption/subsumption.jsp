@@ -3,9 +3,12 @@
 
   <struts:if test="subsumption.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="subsumption.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="subsumption.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <struts:property escapeHtml="false" value="subsumption.getContent(getText('language'))" />
 
@@ -27,14 +30,18 @@
                 <p><struts:property value="getDescription(getText('language'))" /></p>
               </struts:if>
             </div>
-        
-            <div class="impression">
-              <struts:if test="subsumption.showPictures">
+
+            <struts:if test="subsumption.showPictures">
+              <div class="impression">
                 <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
-              </struts:if>
-            </div>
+              </div>
+            </struts:if>
             <hr>
           </div>
         </struts:a>
       </struts:if>
     </struts:iterator>
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

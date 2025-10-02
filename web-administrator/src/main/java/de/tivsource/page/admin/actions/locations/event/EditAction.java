@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -16,12 +17,9 @@ import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
-import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
@@ -49,22 +47,15 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
     private Event event;
 
-    private String lang;
+    private String lang = "DE";
 
     private List<Location> locationList;
 
-    private List<Picture> pictureList;
-
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Event getEvent() {
         return event;
     }
@@ -77,6 +68,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -85,7 +77,6 @@ public class EditAction extends EmptyAction {
     public void prepare() {
         super.prepare();
         locationList = locationDaoLocal.findAll(0, locationDaoLocal.countAll());
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.event.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -133,7 +124,6 @@ public class EditAction extends EmptyAction {
     		dbEvent.setPrice(event.getPrice());
     		dbEvent.setReservation(event.getReservation());
     		dbEvent.setVisible(event.getVisible());
-    		dbEvent.setPicture(event.getPicture());
     		dbEvent.setPiwikGoal(event.getPiwikGoal());
     		dbEvent.setMaxReservations(event.getMaxReservations());
     		dbEvent.setMaxPersons(event.getMaxPersons());
@@ -153,10 +143,6 @@ public class EditAction extends EmptyAction {
     public List<Location> getLocationList() {
         return locationList;
     }// Ende getLocationList()
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");

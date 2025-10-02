@@ -4,6 +4,22 @@
 
 <validators>
 
+  <field name="page.image">
+    <field-validator type="required" short-circuit="true">
+      <message key="captcha.image.uploadFile.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="page.image.uploadFileContentType">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="page.image.uploadFileContentType.validation.required" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ ^image\/png ]]></param>
+      <message key="page.image.uploadFileContentType.validation.type" />
+    </field-validator>
+  </field>
+
   <field name="page.technical">
     <field-validator type="requiredstring" short-circuit="true">
       <message key="page.technical.validation.required" />
@@ -11,6 +27,17 @@
     <field-validator type="regex">
       <param name="regex"><![CDATA[ [a-z,0-9]{4,21} ]]></param>
       <message key="page.technical.validation.character" />
+    </field-validator>
+  </field>
+
+  <field name="page.orderNumber">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.orderNumber.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.orderNumber.validation.minmax" />
     </field-validator>
   </field>
 

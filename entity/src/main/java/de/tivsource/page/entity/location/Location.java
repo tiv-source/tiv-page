@@ -6,14 +6,6 @@ package de.tivsource.page.entity.location;
 import java.util.List;
 import java.util.SortedSet;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
 import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
 
@@ -22,6 +14,13 @@ import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.vacancy.Vacancy;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 
 /**
  * @author Marc Michele
@@ -45,7 +44,7 @@ public class Location extends PictureItem {
      * True wenn die Location auch in der Liste angezeigt werden soll.
      */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean inLocationList = true;
 
     /**
@@ -54,7 +53,7 @@ public class Location extends PictureItem {
      * wenn true).
      */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean event;
 
     @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
@@ -72,9 +71,6 @@ public class Location extends PictureItem {
      * Latitude der Location.
      */
     private String latitude;
-
-    @Column(name="orderNumber")
-    private Integer order = 1;
 
     public Address getAddress() {
         return address;
@@ -147,13 +143,5 @@ public class Location extends PictureItem {
     public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
-
-	public Integer getOrder() {
-		return order;
-	}
-
-	public void setOrder(Integer order) {
-		this.order = order;
-	}
 
 }// Ende class

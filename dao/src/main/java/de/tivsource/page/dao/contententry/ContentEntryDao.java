@@ -6,10 +6,10 @@ package de.tivsource.page.dao.contententry;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +50,8 @@ public class ContentEntryDao implements ContentEntryDaoLocal {
 	@Override
 	public void merge(ContentEntry contentEntry) {
         LOGGER.info("merge(ContentEntry contentEntry) aufgerufen");
+        LOGGER.trace("Name des zu speichernden ContentEntry Objektes: " + contentEntry.getName("de"));
+        LOGGER.trace("Name des abhängigen ContentItem Objektes: " + contentEntry.getContentItem().getName("de"));
         entityManager.merge(contentEntry);
 	}
 
@@ -66,8 +68,9 @@ public class ContentEntryDao implements ContentEntryDaoLocal {
 	 */
 	@Override
 	public Boolean isContentEntryUrl(String urlName) {
-        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.technical = :urlName and ce.visible = 'Y' order by ce.uuid asc");
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.technical = :urlName and ce.visible = :visible order by ce.uuid asc");
         query.setParameter("urlName", urlName);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 

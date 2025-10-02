@@ -5,9 +5,8 @@ package de.tivsource.page.dao.slider;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.slider.Slider;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

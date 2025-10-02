@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -31,6 +32,10 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/edit_form.jsp")
+  }),
+  @TilesDefinition(name="pictureEditError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/edit_error.jsp")
   })
 })
 public class EditAction extends EmptyAction {
@@ -53,8 +58,9 @@ public class EditAction extends EmptyAction {
 
     private Picture picture;
 
-    private String lang;
+    private String lang = "DE";
 
+    @StrutsParameter(depth=4)
     public Picture getPicture() {
         return picture;
     }
@@ -67,6 +73,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }

@@ -17,29 +17,18 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="companionGroup_picture" name="companionGroup.picture" value="companionGroup.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="companionGroup.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="companionGroup.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#add_companionGroup_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#companionGroup_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
+                <struts:fielderror fieldName="companionGroup.image.uploadFileContentType" />
+                <struts:file key="companionGroup.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
               </div>
 
               <div class="field">
