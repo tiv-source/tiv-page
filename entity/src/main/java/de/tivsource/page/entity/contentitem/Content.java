@@ -13,7 +13,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 
@@ -36,7 +35,7 @@ public class Content {
     @Column(name = "uuid", unique = true, length=42)
     private String uuid;
 
-    @Lob
+    @Column(columnDefinition="LONGTEXT")
     private String content;
 
     @Enumerated(EnumType.STRING)

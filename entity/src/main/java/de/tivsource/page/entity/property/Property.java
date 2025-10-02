@@ -12,7 +12,6 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 
 /**
@@ -32,8 +31,7 @@ public class Property {
     @Column(name="property_value")
     private String value;
 
-    @Lob
-    @Column(name="property_comment")
+    @Column(name="property_comment", columnDefinition="LONGTEXT")
     private String comment;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)

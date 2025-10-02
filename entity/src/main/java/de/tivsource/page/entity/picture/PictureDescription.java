@@ -11,7 +11,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 /**
@@ -35,7 +34,7 @@ public class PictureDescription {
 
     private String name;
 
-    @Lob
+    @Column(columnDefinition="LONGTEXT")
     private String description;
 
     private String keywords;

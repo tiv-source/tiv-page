@@ -10,7 +10,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 
 /**
@@ -58,7 +57,7 @@ public class Message {
 
 	private String fax;
 
-	@Lob
+	@Column(columnDefinition="LONGTEXT")
 	private String content;
 
     @Basic

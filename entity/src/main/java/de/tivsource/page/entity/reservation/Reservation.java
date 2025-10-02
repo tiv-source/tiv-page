@@ -19,7 +19,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 
@@ -62,7 +61,7 @@ public class Reservation {
     @Column(name="reservation_time")
     private Date time;
 
-    @Lob
+    @Column(columnDefinition="LONGTEXT")
     private String wishes;
 
     @ManyToOne(fetch = FetchType.EAGER)
