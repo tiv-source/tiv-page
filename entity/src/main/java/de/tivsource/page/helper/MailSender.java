@@ -164,6 +164,9 @@ public class MailSender {
         // Setze den Setze den Mantel in das Inhalts-Element.
         content.addBodyPart(mantle);
 
+        // Setze die Anhänge in die Nachricht
+        generateAttachments(content, mailTemplate.getAttachments());
+
         // Setze die Bilder in die Nachricht
         generateInlineImages(content, mailTemplate.getImages());
 
@@ -177,11 +180,19 @@ public class MailSender {
         Transport.send(message);
     }
 
+    private void generateAttachments(MimeMultipart mimeMultipart, ArrayList<MimeBodyPart> attachments) throws MessagingException {
+        LOGGER.info("generateAttachments(MimeMultipart mimeMultipart, ArrayList<MimeBodyPart> attachments) aufgerufen.");
+        Iterator<MimeBodyPart> attachmentsIterator = attachments.iterator();
+        while (attachmentsIterator.hasNext()) {
+            mimeMultipart.addBodyPart(attachmentsIterator.next());
+        }
+    }// Ende generateAttachments(MimeMultipart mimeMultipart, ArrayList<MimeBodyPart> attachments)
+    
     private void generateInlineImages(MimeMultipart mimeMultipart, ArrayList<MimeBodyPart> images) throws MessagingException {
         LOGGER.info("generateInlineImages(MimeMultipart mimeMultipart, ArrayList<MimeBodyPart> images) aufgerufen.");
-        Iterator<MimeBodyPart> imagesIt = images.iterator();
-        while (imagesIt.hasNext()) {
-            mimeMultipart.addBodyPart(imagesIt.next());
+        Iterator<MimeBodyPart> imagesIterator = images.iterator();
+        while (imagesIterator.hasNext()) {
+            mimeMultipart.addBodyPart(imagesIterator.next());
         }
     }// Ende generateInlineImages(MimeMultipart mimeMultipart, ArrayList<MimeBodyPart> images)
 

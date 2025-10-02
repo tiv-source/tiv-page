@@ -51,6 +51,8 @@ public class MailTemplate {
 
     private ArrayList<MimeBodyPart> images = new ArrayList<MimeBodyPart>();
 
+    private ArrayList<MimeBodyPart> attachments = new ArrayList<MimeBodyPart>();
+
     /**
      * @return the from
      */
@@ -224,6 +226,30 @@ public class MailTemplate {
             images.add(mimeBodyPart);
         }
         in.close();
+    }
+
+    /**
+     * @return the attachments
+     */
+    public ArrayList<MimeBodyPart> getAttachments() {
+        return attachments;
+    }
+
+    /**
+     * 
+     * @param filePath
+     * @param fileName
+     * @param contentType
+     * @throws MessagingException
+     */
+    public void addAttachment(String filePath, String fileName, String contentType) throws MessagingException {
+        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+        DataSource fileDataSource = new FileDataSource(filePath);
+        mimeBodyPart.setDataHandler(new DataHandler(fileDataSource));
+        mimeBodyPart.setDisposition(MimeBodyPart.ATTACHMENT);
+        mimeBodyPart.setHeader("Content-Type", contentType);
+        mimeBodyPart.setFileName(fileName);
+        attachments.add(mimeBodyPart);
     }
 
     /**
