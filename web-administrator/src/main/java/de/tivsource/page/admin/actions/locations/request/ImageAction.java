@@ -6,24 +6,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.ServletRequestAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.tika.Tika;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.request.RequestDaoLocal;
 import de.tivsource.page.entity.request.Request;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -63,10 +61,6 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
      * Das Bild darf normalerweise aus dem Cache geladen werden.
      */
     private boolean cache = true;
-
-    public void setServletRequest(HttpServletRequest servletRequest) {
-        this.servletRequest = servletRequest;
-    }
 
     /**
      * @return the request
@@ -169,6 +163,11 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
             exception.printStackTrace();
             return ERROR;
         }
+    }
+
+    @Override
+    public void withServletRequest(HttpServletRequest httpServletRequest) {
+        this.servletRequest = httpServletRequest;
     }
 
 }// Ende class

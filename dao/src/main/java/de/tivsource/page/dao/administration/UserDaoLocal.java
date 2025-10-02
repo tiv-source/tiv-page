@@ -5,7 +5,7 @@ package de.tivsource.page.dao.administration;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import jakarta.ejb.Local;
 
 import de.tivsource.page.entity.administration.User;
 

@@ -7,6 +7,7 @@
 	<constant name="struts.devMode" value="false" />
 	<constant name="struts.locale" value="de" />
     <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.ui.checkbox.submitUnchecked" value="true" />
 
 	<constant name="struts.convention.classes.reload" value="true" />
 	<constant name="struts.convention.exclude.parentClassLoader" value="true" />
@@ -14,9 +15,11 @@
 
     <constant name="struts.enable.SlashesInActionNames" value="true"/>
     <constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
-    
 
 	<constant name="struts.action.extension" value="html"/>
+
+    <constant name="struts.allowlist.classes" value="java.util.Locale"/>
+    <constant name="struts.allowlist.packageNames" value="de.tivsource.page.user.actions,de.tivsource.page.entity,de.tivsource.page.common"/>
 	
 	<constant name="struts.convention.package.locators" value="actions,action" />
 	<constant name="struts.convention.package.locators.disable" value="false" />
@@ -42,7 +45,7 @@
 			<interceptor-stack name="uploadStack">
 				<interceptor-ref name="ejb3" />
 				<interceptor-ref name="defaultStack"/>
-				<interceptor-ref name="fileUpload">
+				<interceptor-ref name="actionFileUpload">
 					<param name="maximumSize">5242880</param>
 				    <param name="allowedTypes">image/jpeg,image/jpg,image/png</param>
 				</interceptor-ref>

@@ -6,7 +6,6 @@
 
 <struts:url var="appointmentUrl"       action="index" namespace="/others/appointment" />
 <struts:url var="messageUrl"           action="index" namespace="/others/message" />
-<struts:url var="vacancyUrl"           action="index" namespace="/others/vacancy" />
 <struts:url var="galleryUrl"           action="index" namespace="/others/gallery" />
 <struts:url var="pictureUrl"           action="index" namespace="/others/picture" />
 <struts:url var="newsUrl"              action="index" namespace="/others/news" />
@@ -15,6 +14,8 @@
 <struts:url var="companionUrl"         action="index" namespace="/others/companion" />
 <struts:url var="sliderUrl"            action="index" namespace="/others/slider" />
 <struts:url var="subsumptionUrl"       action="index" namespace="/others/subsumption" />
+<struts:url var="pdfUrl"               action="index" namespace="/others/pdf" />
+<struts:url var="exhibitionUrl"        action="index" namespace="/others/exhibition" />
 
 
       <div id="title">
@@ -79,17 +80,6 @@
         </struts:a>
       </struts:if>
 
-      <struts:if test="getProperty('module.vacancy')">
-        <struts:a href="%{vacancyUrl}" title="%{getText('navigation.vacancies')}">
-          <div class="buttoninfo typ2">
-            <img src="/admin/buttons/tiv_page_button_vacancy.png" alt="<struts:text name="navigation.vacancies.description"/>">
-            <h5><struts:text name="navigation.vacancies"/></h5>
-            <p><struts:text name="navigation.vacancies.description"/></p>
-          </div>
-        </struts:a>
-      </struts:if>
-
-
       <struts:if test="getProperty('module.news')">
         <struts:a href="%{newsUrl}" title="%{getText('navigation.news')}">
           <div class="buttoninfo typ1">
@@ -140,6 +130,25 @@
         </struts:a>
       </struts:if>
 
+      <struts:if test="getProperty('module.pdf')">
+        <struts:a href="%{pdfUrl}" title="%{getText('navigation.pdf')}">
+          <div class="buttoninfo typ1">
+            <img src="/admin/buttons/tiv_page_button_news.png" alt="<struts:text name="navigation.pdf.description"/>">
+            <h5><struts:text name="navigation.pdf"/></h5>
+            <p><struts:text name="navigation.pdf.description"/></p>
+          </div>
+        </struts:a>
+      </struts:if>
+
+      <struts:if test="getProperty('module.exhibition')">
+        <struts:a href="%{exhibitionUrl}" title="%{getText('navigation.exhibition')}">
+          <div class="buttoninfo typ1">
+            <img src="/admin/buttons/tiv_page_button_news.png" alt="<struts:text name="navigation.exhibition.description"/>">
+            <h5><struts:text name="navigation.exhibition"/></h5>
+            <p><struts:text name="navigation.exhibition.description"/></p>
+          </div>
+        </struts:a>
+      </struts:if>
 
       <hr>
 

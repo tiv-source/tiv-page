@@ -116,7 +116,7 @@ public class RestoreLocation {
         location.setEvent(items[26].equals("true") ? true : false);
         location.setPicture(pictureDaoLocal.findByUuid(items[27]));
 
-        location.setOrder(Integer.parseInt(items[28]));
+        location.setOrderNumber(Integer.parseInt(items[28]));
         location.setPictureOnPage(items[29].equals("true") ? true : false);
 
         return location;

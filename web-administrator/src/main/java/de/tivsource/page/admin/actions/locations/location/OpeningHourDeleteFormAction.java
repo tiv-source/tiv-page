@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -58,7 +59,8 @@ public class OpeningHourDeleteFormAction extends EmptyAction {
         return location;
     }
 
-    public void setLocationUuid(String location) {
+    @StrutsParameter
+    public void setUncheckLocation(String location) {
         this.uncheckLocation = location;
     }
 
@@ -66,6 +68,7 @@ public class OpeningHourDeleteFormAction extends EmptyAction {
         return openingHoursIndex;
     }
 
+    @StrutsParameter
     public void setOpeningHours(Integer openingHoursIndex) {
         this.openingHoursIndex = openingHoursIndex;
     }

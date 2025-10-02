@@ -6,22 +6,25 @@ package de.tivsource.page.entity.namingitem;
 import java.util.Date;
 import java.util.Map;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.entity.enumeration.Language;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MapKey;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.Version;
 
 /**
  * Die Hauptklasse des Projektes.
@@ -32,8 +35,11 @@ import de.tivsource.page.entity.enumeration.Language;
 @Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = NamingItem.DISCRIMINATOR_COLUMN, discriminatorType = DiscriminatorType.STRING, length = 255)
 public class NamingItem {
 
+    public static final String DISCRIMINATOR_COLUMN = "classname";
+    
     /**
      * UUID des Objektes der Klasse NamingItem, diese ID ist einmalig über alle
      * Objekte hinweg und sollte der bevorzugte weg sein auf bestimmte Objekte
@@ -44,6 +50,9 @@ public class NamingItem {
     @Column(name="uuid", unique=true, length=42)
     private String uuid;
 
+    @Column(updatable = false, insertable = false)
+    protected String classname;
+    
     /**
      * Die Map mit dem Beschreibung des Objektes, die Angabe ist Lokalisiert.
      */
@@ -54,14 +63,22 @@ public class NamingItem {
     @Column(unique = true)
     private String technical;
 
+    /**
+     * Versionsnummer für die Locking Strategie: optimistic-locking.
+     */
+    @Version
+    private int version;
+
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean visible;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Integer orderNumber = 1;
+
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
@@ -98,12 +115,34 @@ public class NamingItem {
         this.technical = technical;
     }
 
+    /**
+     * @return the version
+     */
+    public int getVersion() {
+        return version;
+    }
+
+    /**
+     * @param version the version to set
+     */
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     public Boolean getVisible() {
         return visible;
     }
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Date getCreated() {
@@ -219,7 +258,7 @@ public class NamingItem {
         }
         return tmpResult;
     }
-    
+
     public String getShortDescription(String language) {
         String result = descriptionMap.get(Language.DE).getDescription();
         String tmpResult = descriptionMap.get(Language.DE).getDescription();
@@ -299,5 +338,26 @@ public class NamingItem {
         }
         return tmpResult;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        // Selbsttest
+        if (this == o) {
+            return true;
+        }
+        // Auf NULL prüfen
+        if (o == null) {
+            return false;
+        }
+        // Überprüfen ob das Objekt der Klasse angehört
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        NamingItem namingItem = (NamingItem) o;
+        if(this.uuid.equals(namingItem.uuid)) {
+            return true;
+        }
+        return false;
+    }// Ende equals(Object o)
 
 }// Ende class

@@ -18,6 +18,7 @@ public class FileActions {
 
     private static final Logger logger = LogManager.getLogger(FileActions.class);
 
+    // TODO: Muss umbenannt werden / Gibts vielleicht schon was besseres ??
     public static void savePictureFile(File source, File destination) throws Exception {
 
         logger.debug("savePictureFile aufgerufen");

@@ -9,23 +9,36 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.manual.ManualDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.manual.Manual;
-import de.tivsource.page.entity.picture.Picture;
 
 /**
  * 
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="manualEditForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/manual/edit_form.jsp")
+  }),
+  @TilesDefinition(name="manualEditError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/manual/edit_error.jsp")
+  })
+})
 public class EditAction extends EmptyAction {
 
 	/**
@@ -44,20 +57,16 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="ManualDao")
     private ManualDaoLocal manualDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
     private Manual manual;
 
-    private String lang;
-
-    private List<Picture> pictureList;
+    private String lang = "DE";
 
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Manual getManual() {
         return manual;
     }
@@ -70,6 +79,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -77,7 +87,6 @@ public class EditAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.manual.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -123,12 +132,11 @@ public class EditAction extends EmptyAction {
                 dbManual.getDescriptionMap().get(Language.DE).setName(manual.getName(Language.DE));
             }
 
-
+            dbManual.setTechnical(manual.getTechnical());
     		dbManual.setModified(new Date());
     		dbManual.setVisible(manual.getVisible());
     		dbManual.setModifiedBy(remoteUser);
     		dbManual.setModifiedAddress(remoteAddress);
-    		dbManual.setPicture(manual.getPicture());
     		dbManual.setPictureOnPage(manual.getPictureOnPage());
     		dbManual.setOrderNumber(manual.getOrderNumber());
     		dbManual.setCssGroup(manual.getCssGroup());
@@ -142,10 +150,6 @@ public class EditAction extends EmptyAction {
     	}
 
     }// Ende execute()
-
-	public List<Picture> getPictureList() {
-	    return pictureList;
-	}
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");

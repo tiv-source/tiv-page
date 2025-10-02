@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -19,10 +20,8 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
-import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.enumeration.GalleryType;
 
 /**
@@ -59,17 +58,13 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     private Gallery gallery;
 
     private String lang = "DE";
 
-    private List<Picture> pictureList;
-
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Gallery getGallery() {
         return gallery;
     }
@@ -82,6 +77,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -112,19 +108,27 @@ public class EditAction extends EmptyAction {
     	if(gallery != null) {
     		LOGGER.info("UUID des Events: " + gallery.getUuid());
     		Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
-    		pictureList = pictureDaoLocal.findAll(gallery.getUuid());
 
             if(lang.contentEquals(new StringBuffer("EN"))) {
+                gallery.getContentMap().put(Language.DE, dbGallery.getContentObject(Language.DE));
+                dbGallery.getContentMap().get(Language.EN).setContent(gallery.getContent(Language.EN));
+                dbGallery.getContentMap().get(Language.EN).setModified(new Date());
+                
                 gallery.getDescriptionMap().put(Language.DE, dbGallery.getDescriptionObject(Language.DE));
                 String noLineBreaks = gallery.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
                 dbGallery.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbGallery.getDescriptionMap().get(Language.EN).setKeywords(gallery.getKeywords(Language.EN));
                 dbGallery.getDescriptionMap().get(Language.EN).setName(gallery.getName(Language.EN));
+                LOGGER.info("Name der Gallery: " + gallery.getName(Language.EN));
             } else {
+                dbGallery.getContentMap().get(Language.DE).setContent(gallery.getContent(Language.DE));
+                dbGallery.getContentMap().get(Language.DE).setModified(new Date());
+
             	String noLineBreaks = gallery.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
                 dbGallery.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbGallery.getDescriptionMap().get(Language.DE).setKeywords(gallery.getKeywords(Language.DE));;
                 dbGallery.getDescriptionMap().get(Language.DE).setName(gallery.getName(Language.DE));
+                LOGGER.info("Name der Gallery: " + gallery.getName(Language.DE));
             }
 
     		dbGallery.setModifiedAddress(remoteAddress);
@@ -133,7 +137,6 @@ public class EditAction extends EmptyAction {
     		dbGallery.setVisible(gallery.getVisible());
     		dbGallery.setOrderNumber(gallery.getOrderNumber());
     		dbGallery.setTechnical(gallery.getTechnical());
-    		dbGallery.setPicture(gallery.getPicture());
     		dbGallery.setPictureOnPage(gallery.getPictureOnPage());
     		dbGallery.setType(gallery.getType());
     		dbGallery.setCssGroup(gallery.getCssGroup());
@@ -150,10 +153,6 @@ public class EditAction extends EmptyAction {
 	public List<GalleryType> getGalleryTypeList() {
         return Arrays.asList(GalleryType.values());
     }
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");

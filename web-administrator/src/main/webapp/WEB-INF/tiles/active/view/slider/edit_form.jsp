@@ -1,9 +1,23 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
+<struts:url var="imageUrl" namespace="/others/slider" action="imageForm">
+  <struts:param name="uncheckSlider" value="slider.uuid" />
+</struts:url>
+
       <!--  Start MAIN -->
       <div class="main">
-        <div class="sub_menu"></div>
+        <struts:if test="actionName!='edit'">
+          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{imageUrl}">
+                <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
+              </struts:a>
+            </div>
+          </div>
+        </struts:if>
+
         <div id="title">
           <h5><struts:text name="slider.edit"/></h5>
         </div>
@@ -65,7 +79,7 @@
                     labelposition="left"
                 />
                 <script type="text/javascript">
-                $('#add_slider_orderNumber').spinner();
+                $('#edit_slider_orderNumber').spinner();
                 </script>
               </div>
 

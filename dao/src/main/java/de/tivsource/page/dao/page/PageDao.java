@@ -5,15 +5,14 @@ package de.tivsource.page.dao.page;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.page.Page;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -59,17 +58,32 @@ public class PageDao implements PageDaoLocal {
         entityManager.remove(entityManager.find(Page.class, page.getUuid()));
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#isPageUrl(java.lang.String)
+     */
     @Override
     public Boolean isPageUrl(String urlName) {
-        Query query = entityManager.createQuery("select p from Page p where p.technical = :urlName and p.visible = 'Y' order by p.uuid asc");
+        Query query = entityManager.createQuery("select p from Page p where p.technical = :urlName and p.visible = :visible order by p.uuid asc");
         query.setParameter("urlName", urlName);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#hasMenuEntry(java.lang.String)
+     */
     @Override
     public Boolean hasMenuEntry(String uuid) {
         Page page = entityManager.find(Page.class, uuid);
         Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", page);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        Page page = entityManager.find(Page.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
         query.setParameter("contentItem", page);
         return (query.getResultList().size() > 0 ? true : false);
     }
@@ -82,9 +96,12 @@ public class PageDao implements PageDaoLocal {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
         Query query = entityManager.createQuery("select p from Page p where p.technical = :technical");
         query.setParameter("technical", technical);
-        return (Page)query.getSingleResult();
+        return query.getResultList().isEmpty() ? null : (Page)query.getSingleResult();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#findByUuid(java.lang.String)
+     */
     @Override
     public Page findByUuid(String uuid) {
         return entityManager.find(Page.class, uuid);

@@ -3,10 +3,13 @@
 
   <struts:if test="gallery.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
-    
+
+  <!-- Content Anfang -->
+  <div id=content>
+  
     <div id="galleryNavigation">
       <struts:url var="aboveUrl" action="index" namespace="/gallery" />
       <struts:a href="%{aboveUrl}">
@@ -67,5 +70,8 @@
     </struts:if>
     
     </div>
-    <hr>
 
+
+    <hr>
+  </div>
+  <!-- Content Ende -->

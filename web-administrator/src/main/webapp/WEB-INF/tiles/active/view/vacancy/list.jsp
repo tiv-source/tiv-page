@@ -1,18 +1,18 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="vacancyAddUrl" action="addForm" namespace="/others/vacancy" />
-<struts:url var="remoteurl" action="table" namespace="/others/vacancy"/>
+<struts:url var="vacancyAddUrl" action="addForm" namespace="/locations/vacancy" />
+<struts:url var="remoteurl" action="table" namespace="/locations/vacancy"/>
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/vacancy/editForm.html?vacancy="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/locations/vacancy/editForm.html?uncheckVacancy="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/vacancy/copyForm.html?vacancy="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/vacancy/copyForm.html?uncheckVacancy="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/vacancy/deleteForm.html?vacancy="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/vacancy/deleteForm.html?uncheckVacancy="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -38,6 +38,12 @@ function formatIsoDate(celldate, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatPicture(cellvalue, options, rowObject) {
+	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
+}
+</script>
+
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
@@ -50,10 +56,11 @@ function formatIsoDate(celldate, options, rowObject) {
 <script type="text/javascript">
 $(function () {
     $("#entityList").jqGrid({
-        url: "/admin/others/vacancy/table.html",
+        url: "/admin/locations/vacancy/table.html",
         datatype: "json",
         mtype: "GET",
         colNames: [
+        	'<struts:text name="picture"/>',
             '<struts:text name="vacancy.descriptionMap.DE.name"/>',
             '<struts:text name="vacancy.location.descriptionMap.DE.name"/>',
             '<struts:text name="vacancy.pictureOnPage.table"/>',
@@ -63,12 +70,13 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "descriptionMap.DE.name",          width:  140, align: "right" },
-            { name: "location.descriptionMap.DE.name", width:  140, align: "right" },
-            { name: "pictureOnPage",                   width:  140, align: "right", formatter:formatTrueFalse },
-            { name: "visible",                         width:  140, align: "right", formatter:formatTrueFalse },
+            { name: "uuid",                            width:  140, align: "center", sortable: false, formatter:formatPicture },
+            { name: "descriptionMap.DE.name",          width:  140, align: "left" },
+            { name: "location.descriptionMap.DE.name", width:  140, align: "left" },
+            { name: "pictureOnPage",                   width:  140, align: "center", formatter:formatTrueFalse },
+            { name: "visible",                         width:  140, align: "center", formatter:formatTrueFalse },
             { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",                      width:  140, align: "right" },
+            { name: "modifiedBy",                      width:  140, align: "left" },
             { name: "uuid",                            width:  130, align: "center", sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",

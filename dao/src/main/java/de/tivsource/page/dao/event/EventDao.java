@@ -6,15 +6,14 @@ package de.tivsource.page.dao.event;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.event.Event;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -60,10 +59,14 @@ public class EventDao implements EventDaoLocal {
         entityManager.remove(entityManager.find(Event.class, event.getUuid()));
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.event.EventDaoLocal#isEvent(java.lang.String)
+     */
     @Override
     public Boolean isEvent(String uuid) {
-        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = 'Y' and e.reservation = 'Y' order by e.uuid asc");
+        Query query = entityManager.createQuery("select e from Event e where e.uuid = :uuid and e.visible = :visible order by e.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -106,6 +109,9 @@ public class EventDao implements EventDaoLocal {
         return query.getResultList();
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.event.EventDaoLocal#findAllActive(java.lang.Integer, java.lang.Integer)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllActive(Integer start, Integer max) {
@@ -116,6 +122,9 @@ public class EventDao implements EventDaoLocal {
         return query.getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.event.EventDaoLocal#findAllActive(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllActive(Integer start, Integer max, String field, String order) {
@@ -128,13 +137,17 @@ public class EventDao implements EventDaoLocal {
         return query.getResultList();
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.event.EventDaoLocal#findAll(java.lang.String, java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Event> findAll(String uuid, Integer start, Integer max) {
-        Query query = entityManager.createQuery("from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date order by e.beginning asc");
+        Query query = entityManager.createQuery("from Event e where e.location.uuid = :uuid and e.visible = :visible and e.beginning > :date order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         query.setParameter("date", new Date());
         return query.getResultList();
     }
@@ -148,6 +161,9 @@ public class EventDao implements EventDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.event.EventDaoLocal#countAllActive()
+	 */
 	@Override
 	public Integer countAllActive() {
         Query query = entityManager.createQuery("Select Count(e) from Event e where e.ending > :date");
@@ -155,10 +171,14 @@ public class EventDao implements EventDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.event.EventDaoLocal#countAll(java.lang.String)
+     */
     @Override
     public Integer countAll(String uuid) {
-        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = :uuid and e.visible = 'Y' and e.beginning > :date");
+        Query query = entityManager.createQuery("Select Count(e) from Event e where e.location.uuid = :uuid and e.visible = :visible and e.beginning > :date");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         query.setParameter("date", new Date());
         return Integer.parseInt(query.getSingleResult().toString());
     }

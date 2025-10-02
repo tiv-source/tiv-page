@@ -2,26 +2,26 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 <struts:url var="getListUrl" action="list" namespace="/locations/reservation">
-  <struts:param name="event" value="event.uuid"/>
+  <struts:param name="uncheckedEvent" value="event.uuid"/>
 </struts:url>
 
 <struts:url var="addReservationUrl" action="addForm" namespace="/locations/reservation">
-  <struts:param name="event" value="event.uuid"/>
+  <struts:param name="uncheckedEvent" value="event.uuid"/>
 </struts:url>
 
 <struts:url var="remoteurl"   action="table"   namespace="/locations/reservation">
-  <struts:param name="event" value="event.uuid"/>
+  <struts:param name="uncheckedEvent" value="event.uuid"/>
 </struts:url>
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/reservation/view.html?reservation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/locations/reservation/view.html?uncheckedReservation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/view.png' style='width:16px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" +
-         "<a href='/admin/locations/reservation/editForm.html?reservation="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/reservation/editForm.html?uncheckedReservation="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:16px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/reservation/deleteForm.html?reservation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/reservation/deleteForm.html?uncheckedReservation="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:16px;'/>" + 
          "</a>";
 }
@@ -53,6 +53,19 @@ function formatIsoTime(celldate, options, rowObject) {
     var newDate = new Date();
     newDate.setTime(Date.parse(celldate));
     return newDate.toLocaleTimeString('de-DE', timeOptions);
+}
+</script>
+
+<script type="text/javascript">
+function formatConfirmedDate(celldate, options, rowObject) {
+    var dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    var timeOptions = { hour: '2-digit', minute: '2-digit' };
+    var newDate = new Date();
+    if(celldate == null) {
+    	return "Noch nicht bestätigt.";
+    }
+    newDate.setTime(Date.parse(celldate));
+    return newDate.toLocaleTimeString('de-DE', timeOptions) + " - " + newDate.toLocaleDateString('de-DE', dateOptions);
 }
 </script>
 
@@ -97,7 +110,7 @@ $(function () {
             { name: "time",                   width:   70, align: "center", formatter:formatIsoTime },
             { name: "createdAddress",         width:  100, align: "center" },
             { name: "created",                width:  110, align: "center", formatter:formatIsoDate },
-            { name: "confirmedDate",          width:  110, align: "center", formatter:formatIsoDate },
+            { name: "confirmedDate",          width:  110, align: "center", formatter:formatConfirmedDate },
             { name: "confirmedBy",            width:  120, align: "center" },
             { name: "uuid",                   width:   70, align: "center", sortable: false, formatter:formatEditLink }
         ],

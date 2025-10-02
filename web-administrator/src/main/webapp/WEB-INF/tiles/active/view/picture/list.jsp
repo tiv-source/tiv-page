@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/picture/editForm.html?picture="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/picture/editForm.html?uncheckPicture="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/picture/deleteForm.html?picture="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/picture/deleteForm.html?uncheckPicture="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -17,7 +17,7 @@ function formatLinks(cellvalue, options, rowObject) {
 
 <script type="text/javascript">
 function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/pictures/THUMBNAIL/" + cellvalue + "'/>";  
+	return "<img src='/image/picture/" + cellvalue + "/thumbnail.png?cache=false'/>";
 }
 </script>
 
@@ -68,7 +68,7 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "pictureUrls.THUMBNAIL.url",       width:  140, align: "center", formatter:formatPicture },
+            { name: "uuid",                            width:  140, align: "center", sortable: false, formatter:formatPicture },
             { name: "descriptionMap.DE.name",          width:  180, align: "left", index:"name" },
             { name: "gallery.descriptionMap.DE.name",  width:  140, align: "left", index:"gallery" },
             { name: "visible",                         width:  100, align: "right", formatter:formatTrueFalse },

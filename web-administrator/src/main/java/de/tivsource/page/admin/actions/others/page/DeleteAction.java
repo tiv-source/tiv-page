@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -23,20 +24,17 @@ import de.tivsource.page.entity.page.Page;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="pageDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_form.jsp")
-  }),
   @TilesDefinition(name="pageDeleteError", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/delete_error.jsp")
   }),
-  @TilesDefinition(name="pageDatabaseError", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
+  @TilesDefinition(name="pageMenuEntryError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/database_error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="pageSubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -56,6 +54,7 @@ public class DeleteAction extends EmptyAction {
 
     private Page page;
 
+    @StrutsParameter(depth=3)
     public Page getPage() {
         return page;
     }
@@ -67,13 +66,14 @@ public class DeleteAction extends EmptyAction {
 	@Override
     @Actions({
         @Action(
-        		value = "delete", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "pageDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "pageDeleteError"),
-        				@Result(name = "database", type="tiles", location = "pageDatabaseError")
-        				}
+            value = "delete",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input", type="tiles", location = "pageDeleteError"),
+                @Result(name = "error", type="tiles", location = "pageDeleteError"),
+                @Result(name = "menuentry", type="tiles", location = "pageMenuEntryError"),
+                @Result(name = "subsumption", type="tiles", location = "pageSubSumptionError")
+            }
         )
     })
     public String execute() throws Exception {
@@ -85,15 +85,17 @@ public class DeleteAction extends EmptyAction {
     	if(page != null) {
     		Page dbPage = pageDaoLocal.findByUuid(page.getUuid());
     		if(!pageDaoLocal.hasMenuEntry(dbPage.getUuid())) {
-                dbPage.setModified(new Date());
-                dbPage.setModifiedBy(remoteUser);
-                dbPage.setModifiedAddress(remoteAddress);
-                pageDaoLocal.merge(dbPage);
-                pageDaoLocal.delete(dbPage);
-                return SUCCESS;
-    		} else {
-    		    return "database";
+    		    if(!pageDaoLocal.hasSubSumption(dbPage.getUuid())) {
+                    dbPage.setModified(new Date());
+                    dbPage.setModifiedBy(remoteUser);
+                    dbPage.setModifiedAddress(remoteAddress);
+                    pageDaoLocal.merge(dbPage);
+                    pageDaoLocal.delete(dbPage);
+                    return SUCCESS;
+    		    }
+    		    return "subsumption";
     		}
+    		return "menuentry";
     	}
   		return ERROR;
 

@@ -5,15 +5,14 @@ package de.tivsource.page.dao.vacancy;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.vacancy.Vacancy;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -59,10 +58,14 @@ public class VacancyDao implements VacancyDaoLocal {
         entityManager.remove(entityManager.find(Vacancy.class, vacancy.getUuid()));
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#isVacancy(java.lang.String)
+	 */
 	@Override
 	public Boolean isVacancy(String uuid) {
-        Query query = entityManager.createQuery("select v from Vacancy v where v.uuid = :uuid and v.visible = 'Y' order by v.uuid asc");
+        Query query = entityManager.createQuery("select v from Vacancy v where v.uuid = :uuid and v.visible = :visible order by v.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
@@ -86,13 +89,17 @@ public class VacancyDao implements VacancyDaoLocal {
         return query.getResultList();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Vacancy> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT v FROM Vacancy v WHERE v.visible = 'Y'";
+        String queryString = "SELECT v FROM Vacancy v WHERE v.visible = :visible ORDER BY  v.orderNumber DESC";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -119,9 +126,13 @@ public class VacancyDao implements VacancyDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.vacancy.VacancyDaoLocal#countAllVisible()
+     */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(v) from Vacancy v WHERE v.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(v) from Vacancy v WHERE v.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

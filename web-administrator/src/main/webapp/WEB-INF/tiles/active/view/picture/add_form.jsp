@@ -24,7 +24,7 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:file key="file" parentTheme="xhtml" labelposition="left">
+                <struts:file key="picture.image" parentTheme="xhtml" labelposition="left">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>
@@ -89,7 +89,6 @@
               <struts:hidden key="picture.descriptionMap.EN.name" value="No English content available."/>
               <struts:hidden key="picture.descriptionMap.EN.description" value="No English content available."/>
               <struts:hidden key="picture.descriptionMap.EN.keywords" value="No English content available."/>
-              <struts:hidden key="picture.contentMap.EN.content" value="No English content available."/>
 
             </fieldset>
 

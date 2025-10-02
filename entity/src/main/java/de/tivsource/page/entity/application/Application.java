@@ -6,24 +6,24 @@ package de.tivsource.page.entity.application;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.entity.embeddable.Address;
 import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.vacancy.Vacancy;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -47,7 +47,7 @@ public class Application {
 	 * Geschlecht des Kontaktes.
 	 */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean gender;
 
 	/**
@@ -66,7 +66,7 @@ public class Application {
     @Embedded
     private ContactDetails contactDetails;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date birthday;
 
     @OneToMany(mappedBy = "application", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval=true)
@@ -76,7 +76,7 @@ public class Application {
     @JoinColumn(name = "vacancy_uuid")
     private Vacancy vacancy;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
     private String createdAddress;

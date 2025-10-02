@@ -7,10 +7,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/maintenance/cssfile/editForm.html?cssFile="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/maintenance/cssfile/editForm.html?uncheckCssFile="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/maintenance/cssfile/deleteForm.html?cssFile="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/maintenance/cssfile/deleteForm.html?uncheckCssFile="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }

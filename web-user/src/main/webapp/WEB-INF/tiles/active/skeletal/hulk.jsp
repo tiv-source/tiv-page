@@ -10,6 +10,9 @@
   <script src="/public/jquery/jquery-3.3.1.min.js"></script>
 
   <tiles:insertAttribute name="meta" />
+  <tiles:insertAttribute name="pagetags" />
+  <tiles:insertAttribute name="opengraph" />
+  <tiles:insertAttribute name="geo" />
   <tiles:insertAttribute name="twitter" />
 
   <!-- Anfang der CSS-Dateien -->
@@ -34,19 +37,31 @@
   <div id="socialmedia">
     <struts:if test="getProperty('socialmedia.facebook.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.facebook.url')"/>" target="_blank">
-         <img src="<struts:property value="getProperty('socialmedia.facebook.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.facebook.url.icon.alt')"/>">
+         <img id="facebook" src="<struts:property value="getProperty('socialmedia.facebook.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.facebook.url.icon.alt')"/>">
       </a>
     </struts:if>
 
     <struts:if test="getProperty('socialmedia.instagram.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.instagram.url')"/>" target="_blank">
-        <img src="<struts:property value="getProperty('socialmedia.instagram.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.instagram.url.icon.alt')"/>">
+        <img id="instagram" src="<struts:property value="getProperty('socialmedia.instagram.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.instagram.url.icon.alt')"/>">
       </a>
     </struts:if>
 
     <struts:if test="getProperty('socialmedia.twitter.url') != ''">
       <a href="<struts:property value="getProperty('socialmedia.twitter.url')"/>" target="_blank">
-        <img src="<struts:property value="getProperty('socialmedia.twitter.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.twitter.url.icon.alt')"/>">
+        <img id="twitter" src="<struts:property value="getProperty('socialmedia.twitter.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.twitter.url.icon.alt')"/>">
+      </a>
+    </struts:if>
+
+    <struts:if test="getProperty('socialmedia.mastodon.url') != ''">
+      <a rel="me" href="<struts:property value="getProperty('socialmedia.mastodon.url')"/>" target="_blank">
+        <img id="mastodon" src="<struts:property value="getProperty('socialmedia.mastodon.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.mastodon.url.icon.alt')"/>">
+      </a>
+    </struts:if>
+
+    <struts:if test="getProperty('socialmedia.whatsapp.url') != ''">
+      <a href="<struts:property value="getProperty('socialmedia.whatsapp.url')"/>" target="_blank">
+        <img id="whatsapp" src="<struts:property value="getProperty('socialmedia.whatsapp.url.icon')"/>" alt="<struts:property value="getProperty('socialmedia.whatsapp.url.icon.alt')"/>">
       </a>
     </struts:if>
   </div>
@@ -96,7 +111,7 @@
   <div id="logo">
     <struts:url var="homeUrl" action="index" namespace="/" />
     <struts:a href="%{homeUrl}">
-      <img src="<struts:property value="getProperty('logo.path')"/>" alt="TIV-Page-Logo">
+      <img id="logo_image" src="<struts:property value="getProperty('logo.path')"/>" alt="<struts:property value="getProperty('logo.alt')"/>">
     </struts:a>
   </div>
   <!-- Header Ende -->			
@@ -145,12 +160,7 @@
   </ul>
   <!-- Navigation Ende -->
 
-  <!-- Content Anfang -->
-  <div id=content> 
-    <tiles:insertAttribute name="content" />
-    <hr>
-  </div>
-  <!-- Content Ende -->
+  <tiles:insertAttribute name="content" />
 
   <!-- Bottomnav Anfang -->
   <ul id="bottom_navi">

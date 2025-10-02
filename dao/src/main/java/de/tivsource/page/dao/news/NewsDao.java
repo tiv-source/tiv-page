@@ -6,15 +6,14 @@ package de.tivsource.page.dao.news;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.news.News;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -65,15 +64,39 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public Boolean isNewsUrl(String uuid) {
-        Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = 'Y' order by n.uuid asc");
+        Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = :visible order by n.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal##hasMenuEntry(java.lang.String)
+     */
+    @Override
+    public Boolean hasMenuEntry(String uuid) {
+        News news = entityManager.find(News.class, uuid);
+        Query query = entityManager.createQuery("select ce from ContentEntry ce where ce.contentItem = :contentItem order by ce.uuid asc");
+        query.setParameter("contentItem", news);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
+    public Boolean hasSubSumption(String uuid) {
+        News news = entityManager.find(News.class, uuid);
+        Query query = entityManager.createQuery("select s from Subsumption s where :contentItem MEMBER OF s.contentItems order by s.uuid asc");
+        query.setParameter("contentItem", news);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal#isPublicNewsUuid(java.lang.String)
+     */
     @Override
     public Boolean isPublicNewsUuid(String uuid) {
-        Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = 'Y' and n.releaseDate < :date order by n.uuid asc");
+        Query query = entityManager.createQuery("select n from News n where n.uuid = :uuid and n.visible = :visible and n.releaseDate < :date order by n.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         query.setParameter("date", new Date());
         return (query.getResultList().size() > 0 ? true : false);
     }
@@ -112,13 +135,17 @@ public class NewsDao implements NewsDaoLocal {
         return query.getResultList();
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<News> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT n FROM News n WHERE n.visible = 'Y' and n.releaseDate < :date ORDER BY n.releaseDate desc";
+        String queryString = "SELECT n FROM News n WHERE n.visible = :visible and n.releaseDate < :date ORDER BY n.releaseDate desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         query.setParameter("date", new Date());
         return query.getResultList();
     }
@@ -132,10 +159,14 @@ public class NewsDao implements NewsDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.news.NewsDaoLocal#countAllVisible()
+     */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(n) from News n WHERE n.visible = 'Y' and n.releaseDate < :date");
+        Query query = entityManager.createQuery("Select Count(n) from News n WHERE n.visible = :visible and n.releaseDate < :date");
         query.setParameter("date", new Date());
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

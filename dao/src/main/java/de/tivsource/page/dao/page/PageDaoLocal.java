@@ -5,9 +5,8 @@ package de.tivsource.page.dao.page;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.page.Page;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele
@@ -43,6 +42,8 @@ public interface PageDaoLocal {
     public Boolean isPageUrl(String urlName);
 
     public Boolean hasMenuEntry(String uuid);
+
+    public Boolean hasSubSumption(String uuid);
 
     /**
      * Methode zum laden eines Objektes der Klasse Page anhand der

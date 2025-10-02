@@ -17,29 +17,18 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:hidden id="subsumption_picture" name="subsumption.picture" value="subsumption.picture.uuid" />
-                <script type="text/javascript" src="/admin/js/jquery.tivselect.js"></script>
-                <struts:select
-                    key="subsumption.picture"
-                    listValue="pictureUrls.THUMBNAIL.url"
-                    listKey="uuid"
-                    multiple="false"
-                    value="subsumption.picture.{uuid}"
-                    list="pictureList" 
-                    theme="tivpage"
-                />
-                <script type="text/javascript">
-                $('#add_subsumption_picture').tivselect({
-                    onSelected: function(data){
-                    	$("#subsumption_picture").val(data.selectedData.value);
-                    }   
-                });
-                </script>
+                <struts:fielderror fieldName="subsumption.image.uploadFileContentType" />
+                <struts:file key="subsumption.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
               </div>
 
               <div class="field">
@@ -89,6 +78,15 @@
               <div class="field">
                 <struts:checkbox
                     key="subsumption.showPictures"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="subsumption.orderDates"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
 					labelposition="left"

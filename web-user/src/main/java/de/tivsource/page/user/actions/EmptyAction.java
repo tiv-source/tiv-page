@@ -1,28 +1,27 @@
 package de.tivsource.page.user.actions;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionContext;
+import org.apache.struts2.ActionSupport;
+import org.apache.struts2.Preparable;
+import org.apache.struts2.action.ServletRequestAware;
+import org.apache.struts2.action.ServletResponseAware;
+import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
-
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.menuentry.MenuEntry;
@@ -38,6 +37,8 @@ import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.news.News;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.slider.Slider;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 
@@ -113,24 +114,12 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 		return servletRequest;
 	}
 
-	public void setServletRequest(HttpServletRequest httpServletRequest) {
-		this.servletRequest = httpServletRequest;
-	}
-
 	public HttpServletResponse getServletResponse() {
 		return servletResponse;
 	}
 
-	public void setServletResponse(HttpServletResponse servletResponse) {
-		this.servletResponse = servletResponse;
-	}
-
 	public Map<String, Object> getSession() {
 		return session;
-	}
-
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
     @Override
@@ -154,7 +143,7 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	}
 
 	public String getActionName() {
-		return ActionContext.getContext().getName();
+		return ActionContext.getContext().getActionName();
 	}
 
 	public List<MenuEntry> getTopNavigation() {
@@ -177,8 +166,20 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
         return this.page;
     }
 
+    /**
+     * @return the language
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    @StrutsParameter
     public String getProperty(String key) {
-        return propertyDaoLocal.findByKey(key).getValue();
+        if(isValidKey(key)) {
+            // TODO: Überprüfen ob es den Key gibt wenn nicht Objekt mit Aussagekräftigem Inhalt wiedergeben.
+            return propertyDaoLocal.findByKey(key).getValue();
+        }
+        return "Invalid Key";
     }
 
     public Event getLeftLocation() {
@@ -200,7 +201,7 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
     }
 
     public String getSliderWidth() {
-        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getSliderList().size()), 3, BigDecimal.ROUND_HALF_UP);
+        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getSliderList().size()), 3, RoundingMode.HALF_UP);
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); 
         return numberFormat.format(sliderWidth);
     }
@@ -210,7 +211,7 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
     }
 
     public String getHomeSliderWidth() {
-        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getHomeSliderList().size()), 2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal sliderWidth = new BigDecimal(100).divide(new BigDecimal(getHomeSliderList().size()), 2, RoundingMode.HALF_UP);
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); 
         return numberFormat.format(sliderWidth);
     }
@@ -231,5 +232,28 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 		language = actionContext.getLocale().getLanguage();
 		LOGGER.info("Action Locale: " + language);
 	}
+
+	protected Boolean isValidKey(String input) {
+        if (Pattern.matches("[a-zA-Z0-9.]*", input)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+	
+    @Override
+    public void withSession(Map<String, Object> session) {
+        this.session = session;
+    }
+
+    @Override
+    public void withServletResponse(HttpServletResponse servletResponse) {
+        this.servletResponse = servletResponse;
+    }
+
+    @Override
+    public void withServletRequest(HttpServletRequest httpServletRequest) {
+        this.servletRequest = httpServletRequest;
+    }
 
 }// Ende class

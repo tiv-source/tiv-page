@@ -5,9 +5,8 @@ package de.tivsource.page.dao.property;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.property.Property;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

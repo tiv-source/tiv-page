@@ -119,10 +119,9 @@ public class AppointmentAction extends EmptyAction {
     private Boolean isValid(String input) {
         if (Pattern.matches("[abcdef0-9-]*", input)) {
             return true;
-        } else {
-            return false;
         }
-    }
+        return false;
+    }// Ende isValid(String input)
 
     private void setUpPage() {
         page = new Page();

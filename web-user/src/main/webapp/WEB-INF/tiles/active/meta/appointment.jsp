@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="<struts:property value="appointment.getName(getText('language'))" />" />
   <meta property="og:url" content="<struts:property value="getProperty('server.base.url')" /><struts:property value="canonicalUrl" />" />
-  <meta property="og:image" content="<struts:property value="getProperty('server.picture.url')" />/LARGE/<struts:property value="appointment.picture.pictureUrls.LARGE.url" />" />
+  <meta property="og:image" content="<struts:property value="getProperty('server.base.url')" />/image/pictureitem/<struts:property value="%{appointment.uuid}"/>/<struts:property value="getProperty('og.image.size.appointment')" />" />
   <meta property="og:description" content="<struts:property value="appointment.getDescription(getText('language'))" />" />
 
 
@@ -36,8 +36,11 @@
   <meta name="modified" content="<struts:date name="appointment.modified" format="yyyy-MM-dd" />T<struts:date name="appointment.modified" format="HH:mm:ss" />+01:00" />
 
 
-  <meta name="revisit-after" content="7 days" />
-  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta name="revisit-after" content="<struts:property value="getProperty('meta.revisit-after')" />" />
+  <meta name="robots" content="<struts:property value="getProperty('meta.robots')" />" />
 
-  
+  <meta name="ICBM" content="<struts:property value="getProperty('icbm')" />" />
+  <meta name="geo.position" content="<struts:property value="getProperty('geo.position')" />" />
+  <meta name="geo.region" content="<struts:property value="getProperty('geo.region')" />" />
+  <meta name="geo.placename" content="<struts:property value="getProperty('geo.placename')" />" />
   

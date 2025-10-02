@@ -9,17 +9,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.persistence.Basic;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.Transient;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tools.ant.util.FileUtils;
-import org.hibernate.annotations.Type;
 
 import de.tivsource.page.common.file.FileActions;
+import de.tivsource.page.common.file.UploadFile;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.Transient;
 
 /**
  * Die Klasse Image dient dazu Bilder zu verwalten
@@ -41,7 +41,11 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
      */
     private static final Logger logger = LogManager.getLogger(ImageUntouched.class);
 
-    protected static String uploadPath = "/srv/tiv-page/upload/";
+    /**
+     * Lokaler Dateisystem Pfad zu den hochgeladenen Bildern.
+     */
+    @Transient
+    protected String uploadPath = "/srv/tiv-page/upload/";
 
     /**
      * Lokaler Pfad der Orginal-Datei.
@@ -77,19 +81,25 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
      * Boolean ob das Bild ein Default Bild ist (Ja/Nein).
      */
     @Basic
-    @Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean standard;
 
     /**
      * Datei, die aus einem Formular hochgeladen wird.
      */
     @Transient
-    private File uploadFile;
+    private UploadFile uploadFile;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Transient
+    private String uploadFileContentType;
+
+    @Transient
+    private String uploadFileFileName;
+
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date modified;
 
     private String modifiedBy;
@@ -275,16 +285,32 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
     /**
      * @return the uploadFile
      */
-    public File getUploadFile() {
+    public UploadFile getUploadFile() {
         return uploadFile;
     }
 
     /**
-     * @param uploadFile
+     * @param uploadedFile
      *            the uploadFile to set
      */
-    public void setUploadFile(File uploadFile) {
+    public void setUploadFile(UploadFile uploadFile) {
+        this.uploadFileContentType = uploadFile.getContentType();
+        this.uploadFileFileName = uploadFile.getInputName();
         this.uploadFile = uploadFile;
+    }
+
+    /**
+     * @return the uploadFileContentType
+     */
+    public String getUploadFileContentType() {
+        return uploadFileContentType;
+    }
+
+    /**
+     * @return the uploadFileFileName
+     */
+    public String getUploadFileFileName() {
+        return uploadFileFileName;
     }
 
     public void generate() {
@@ -300,7 +326,7 @@ public class ImageUntouched implements Comparable<ImageUntouched>, Serializable 
 
             // Wenn die Datei noch nicht existiert wird Sie erstellt.
             if (!fileToCreate.exists()) {
-                FileActions.savePictureFile(this.getUploadFile(), fileToCreate);
+                FileActions.savePictureFile(new File(uploadFile.getAbsolutePath()), fileToCreate);
             }// Ende if
         } // Ende try
         catch (Exception e) {

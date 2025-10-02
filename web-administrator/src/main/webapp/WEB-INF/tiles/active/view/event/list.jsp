@@ -6,16 +6,16 @@
 
 <script type="text/javascript">
 function formatEditLink(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/reservation/index.html?event="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/locations/reservation/index.html?uncheckEvent="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/view.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/event/editForm.html?event="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/event/editForm.html?uncheckEvent="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/event/copyForm.html?event="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/event/copyForm.html?uncheckEvent="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/event/deleteForm.html?event="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/locations/event/deleteForm.html?uncheckEvent="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }

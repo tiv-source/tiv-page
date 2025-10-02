@@ -1,10 +1,14 @@
 package de.tivsource.page.admin.actions.others.gallery;
 
+import java.util.Date;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -22,11 +26,19 @@ import de.tivsource.page.entity.gallery.Gallery;
 @TilesDefinitions({
   @TilesDefinition(name="galleryDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/error.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/delete_error.jsp")
   }),
   @TilesDefinition(name="galleryReferences", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/references.jsp")
+  }),
+  @TilesDefinition(name="galleryMenuEntryError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/menuentry_error.jsp")
+  }),
+  @TilesDefinition(name="gallerySubSumptionError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/subsumption_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -46,6 +58,7 @@ public class DeleteAction extends EmptyAction {
 
     private Gallery gallery;
 
+    @StrutsParameter(depth=3)
     public Gallery getGallery() {
         return gallery;
     }
@@ -57,32 +70,42 @@ public class DeleteAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "delete", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "galleryDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "galleryDeleteError"),
-        				@Result(name = "references", type="tiles", location = "galleryReferences")
-        				}
+            value = "delete",
+            results = {
+                @Result(name = "success", type = "redirectAction", location = "index.html"),
+                @Result(name = "input", type="tiles", location = "galleryDeleteError"),
+                @Result(name = "error", type="tiles", location = "galleryDeleteError"),
+                @Result(name = "references", type="tiles", location = "galleryReferences"),
+                @Result(name = "menuentry", type="tiles", location = "galleryMenuEntryError"),
+                @Result(name = "subsumption", type="tiles", location = "gallerySubSumptionError")
+            }
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
         if(gallery != null) {
-            if(!galleryDaoLocal.hasReferences(gallery.getUuid())) {
-                Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
-                galleryDaoLocal.delete(dbGallery);
-                return SUCCESS;
+            Gallery dbGallery = galleryDaoLocal.findByUuid(gallery.getUuid());
+            if(!galleryDaoLocal.hasReferences(dbGallery.getUuid())) {
+                if(!galleryDaoLocal.hasMenuEntry(dbGallery.getUuid())) {
+                    if(!galleryDaoLocal.hasSubSumption(dbGallery.getUuid())) {
+                        dbGallery.setModified(new Date());
+                        dbGallery.setModifiedBy(remoteUser);
+                        dbGallery.setModifiedAddress(remoteAddress);
+                        galleryDaoLocal.merge(dbGallery);
+                        galleryDaoLocal.delete(dbGallery);
+                        return SUCCESS;
+                    }
+                    return "subsumption";
+                }
+                return "menuentry";
             }
-            else {
-            	return "references";
-            }
+          	return "references";
     	}
-        else {
-    		return ERROR;
-    	}
+   		return ERROR;
 
     }// Ende execute()
 	

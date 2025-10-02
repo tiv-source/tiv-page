@@ -6,10 +6,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/news/editForm.html?news="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/news/editForm.html?uncheckNews="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/news/deleteForm.html?news="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/news/deleteForm.html?uncheckNews="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -37,7 +37,7 @@ function formatIsoDate(celldate, options, rowObject) {
 
 <script type="text/javascript">
 function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/pictures/THUMBNAIL/" + cellvalue + "'/>";  
+	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
 }
 </script>
 
@@ -69,16 +69,16 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "picture.pictureUrls.THUMBNAIL.url", width:  140, align: "center", formatter:formatPicture },
-            { name: "descriptionMap.DE.name",            width:  140, align: "right" },
-            { name: "releaseDate",                       width:  140, align: "right", formatter:formatIsoDate },
-            { name: "pictureOnPage",                     width:  140, align: "right", formatter:formatTrueFalse },
-            { name: "visible",                           width:  140, align: "right", formatter:formatTrueFalse },
-            { name: "created",                           width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modified",                          width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",                        width:  140, align: "right" },
-            { name: "modifiedAddress",                   width:  140, align: "right" },
-            { name: "uuid",                              width:  130, align: "center", sortable: false, formatter:formatLinks }
+            { name: "uuid",                    width:  140, align: "center", sortable: false, formatter:formatPicture },
+            { name: "descriptionMap.DE.name",  width:  140, align: "right" },
+            { name: "releaseDate",             width:  140, align: "right", formatter:formatIsoDate },
+            { name: "pictureOnPage",           width:  140, align: "right", formatter:formatTrueFalse },
+            { name: "visible",                 width:  140, align: "right", formatter:formatTrueFalse },
+            { name: "created",                 width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modified",                width:  140, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",              width:  140, align: "right" },
+            { name: "modifiedAddress",         width:  140, align: "right" },
+            { name: "uuid",                    width:  130, align: "center", sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 15,

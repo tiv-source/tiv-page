@@ -7,27 +7,30 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.news.NewsDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.news.News;
-import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.entity.pictureitem.PictureItemImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
  * @author Marc Michele
  *
  */
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -45,18 +48,14 @@ public class AddAction extends EmptyAction {
     @InjectEJB(name="NewsDao")
     private NewsDaoLocal newsDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
     private News news;
-
-    private List<Picture> pictureList;
     
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public News getNews() {
         return news;
     }
@@ -68,7 +67,6 @@ public class AddAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.news.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -122,6 +120,14 @@ public class AddAction extends EmptyAction {
 
             news.setTechnical("NEWS_" + news.getUuid());
 
+            news.getImage().setUuid(UUID.randomUUID().toString());
+            news.getImage().generate();
+            news.getImage().setCreated(new Date());
+            news.getImage().setModified(new Date());
+            news.getImage().setModifiedAddress(remoteAddress);
+            news.getImage().setModifiedBy(remoteUser);
+
+            
     		newsDaoLocal.merge(news);
 
             return SUCCESS;
@@ -133,14 +139,23 @@ public class AddAction extends EmptyAction {
     	
     }// Ende execute()
 
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }
-
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
+    }
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.news = new News();
+            this.news.setImage(new PictureItemImage());
+            this.news.getImage().setPictureItem(this.news);
+            this.news.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
     }
 
 }// Ende class

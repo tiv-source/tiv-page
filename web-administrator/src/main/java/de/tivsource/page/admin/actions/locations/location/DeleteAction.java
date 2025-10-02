@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -36,6 +37,7 @@ public class DeleteAction extends EmptyAction {
 
     private Location location;
 
+    @StrutsParameter(depth=3)
     public Location getLocation() {
         return location;
     }
@@ -50,7 +52,7 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "locationDeleteForm"),
+        				@Result(name = "input", type="tiles", location = "locationDeleteError"),
         				@Result(name = "error", type="tiles", location = "locationDeleteError")
         				}
         )

@@ -1,25 +1,19 @@
 package de.tivsource.page.admin.actions.others.picture;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -31,8 +25,8 @@ import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.picture.Picture;
-import de.tivsource.page.entity.picture.PictureUrl;
-import de.tivsource.page.enumeration.UrlType;
+import de.tivsource.page.entity.picture.PictureImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -44,9 +38,13 @@ import de.tivsource.page.enumeration.UrlType;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/add_form.jsp")
+  }),
+  @TilesDefinition(name="pictureAddError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -66,18 +64,13 @@ public class AddAction extends EmptyAction {
 
     private Picture picture;
 
-    private File file;
-
+    @StrutsParameter(depth=3)
     public Picture getPicture() {
         return picture;
     }
 
     public void setPicture(Picture picture) {
         this.picture = picture;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
     }
 
     @Override
@@ -117,35 +110,12 @@ public class AddAction extends EmptyAction {
     	    picture.getDescriptionMap().get(Language.EN).setDescription(picture.getDescriptionMap().get(Language.DE).getDescription());
     	    picture.getDescriptionMap().get(Language.EN).setKeywords(picture.getDescriptionMap().get(Language.DE).getKeywords());
 
-    	    
-    	    
-    	    if(file != null) {
-
-                // Pfad in dem die Bild Datei gespeichert wird.
-    	    	String generatePath = "/var/www/html/pictures/";
-                String uploadPath = generatePath + "FULL/";
-
-                // Name der Bild Datei die erstellt werden soll. 
-                String pictureSaveName = DigestUtils.shaHex("Hier ist das Geheimniss."
-                    + file.getName() + new Date() + "Noch ein bischen.")
-                    + ".png";
-
-                File fullPictureFileToCreate = new File(uploadPath, pictureSaveName);
-                // Wenn die Datei noch nicht existiert wird Sie erstellt.
-                if (!fullPictureFileToCreate.exists()) {
-                    savePictureFile(file, fullPictureFileToCreate);
-                }
-
-            	createNormal(uploadPath + pictureSaveName, generatePath
-            		+ "NORMAL/" + pictureSaveName);
-            	createThumbnail(uploadPath + pictureSaveName, generatePath
-            		+ "THUMBNAIL/" + pictureSaveName);
-            	createLarge(uploadPath + pictureSaveName, generatePath
-            		+ "LARGE/" + pictureSaveName);
-
-            	// Setzte die Urls in das Bild.
-            	picture.setPictureUrls(generatePictureUrls(pictureSaveName, picture));
-    	    }
+    	    picture.getImage().setUuid(UUID.randomUUID().toString());
+    	    picture.getImage().generate();
+    	    picture.getImage().setCreated(new Date());
+    	    picture.getImage().setModified(new Date());
+    	    picture.getImage().setModifiedAddress(remoteAddress);
+    	    picture.getImage().setModifiedBy(remoteUser);
 
     	    // Speichere Bild in der Datenbank
     	    pictureDaoLocal.merge(picture);
@@ -162,107 +132,23 @@ public class AddAction extends EmptyAction {
 		return galleryDaoLocal.findAll(0, galleryDaoLocal.countAll());
 	}
 
-    private static void savePictureFile(File source, File destination) throws Exception {
-        byte[] buffer = new byte[(int) source.length()];
-        InputStream in = new FileInputStream(source);
-        in.read(buffer);
-        FileOutputStream fileOutStream = new FileOutputStream(destination);
-        fileOutStream.write(buffer);
-        fileOutStream.flush();
-        fileOutStream.close();
-        in.close();
-    }
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("Variable uploadedFiles ist nicht leer.");
+            Iterator<UploadedFile> ufIterator = uploadedFiles.iterator();
+            while(ufIterator.hasNext()) {
+                UploadedFile next = ufIterator.next();
+                LOGGER.info("UploadedFile für Input-Name: " + next.getInputName() + " gefunden.");
+                if(next.getInputName().equalsIgnoreCase("picture.image")) {
+                    this.picture = new Picture();
+                    this.picture.setImage(new PictureImage());
+                    this.picture.getImage().setPicture(this.picture);
+                    this.picture.getImage().setUploadFile(UploadedFileToUploadFile.convert(next));
+                }                
+            }// Ende while()
+         }
+    }// Ende withUploadedFiles(List<UploadedFile> uploadedFiles)
 
-    private static void createNormal(String source, String destination) throws IOException {
-        String s = null;
-
-        Process p = Runtime.getRuntime().exec(
-                "/usr/bin/convert " + source
-                + " -resize 600x500 -quality 85 -compress JPEG "
-                + destination);
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }
-
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }
-    }
-
-    private static void createLarge(String source, String destination) throws IOException {
-        String s = null;
-
-        Process p = Runtime.getRuntime().exec(
-                "/usr/bin/convert " + source
-                + " -resize 1000x1000 -quality 85 -compress JPEG "
-                + destination);
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }
-
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }
-    }
-
-    private static void createThumbnail(String source, String destination) throws IOException {
-        String s = null;
-
-        Process p = Runtime.getRuntime().exec(
-                "/usr/bin/convert " + source
-                + " -resize 200x143 -quality 85 -compress JPEG "
-                + destination);
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }
-
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }
-    }
-
-    private static Map<UrlType, PictureUrl> generatePictureUrls(String pictureName, Picture pictureObject) {
-
-        Map<UrlType, PictureUrl> pictureUrls = new HashMap<UrlType, PictureUrl>();
-        PictureUrl normalPictureUrl = new PictureUrl();
-        normalPictureUrl.setUuid(UUID.randomUUID().toString());
-        normalPictureUrl.setPicture(pictureObject);
-        normalPictureUrl.setUrl(pictureName);
-        normalPictureUrl.setUrlType(UrlType.NORMAL);
-
-        PictureUrl largePictureUrl = new PictureUrl();
-        largePictureUrl.setUuid(UUID.randomUUID().toString());
-        largePictureUrl.setPicture(pictureObject);
-        largePictureUrl.setUrl(pictureName);
-        largePictureUrl.setUrlType(UrlType.LARGE);
-
-        PictureUrl thumbnailPictureUrl = new PictureUrl();
-        thumbnailPictureUrl.setUuid(UUID.randomUUID().toString());
-        thumbnailPictureUrl.setPicture(pictureObject);
-        thumbnailPictureUrl.setUrl(pictureName);
-        thumbnailPictureUrl.setUrlType(UrlType.THUMBNAIL);
-
-        PictureUrl fullPictureUrl = new PictureUrl();
-        fullPictureUrl.setUuid(UUID.randomUUID().toString());
-        fullPictureUrl.setPicture(pictureObject);
-        fullPictureUrl.setUrl(pictureName);
-        fullPictureUrl.setUrlType(UrlType.FULL);
-
-        pictureUrls.put(UrlType.NORMAL, normalPictureUrl);
-        pictureUrls.put(UrlType.LARGE, largePictureUrl);
-        pictureUrls.put(UrlType.THUMBNAIL, thumbnailPictureUrl);
-        pictureUrls.put(UrlType.FULL, fullPictureUrl);
-
-        return pictureUrls;
-    }
-    
 }// Ende class

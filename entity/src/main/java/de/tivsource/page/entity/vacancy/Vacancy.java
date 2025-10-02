@@ -6,19 +6,18 @@ package de.tivsource.page.entity.vacancy;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.application.Application;
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.location.Location;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -28,7 +27,7 @@ import de.tivsource.page.entity.location.Location;
 @Entity
 public class Vacancy extends ContentItem {
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date beginning;
 
     private String workingTime;

@@ -27,7 +27,7 @@
 
               <div class="field" style="padding-left: 13px;">
                 <struts:url var="openingHourAddUrl" action="openingHourAddForm" namespace="/locations/location">
-                  <struts:param name="locationUuid" value="location.uuid" />
+                  <struts:param name="uncheckLocation" value="location.uuid" />
                 </struts:url>
                 <struts:a href="%{openingHourAddUrl}" cssStyle="color: white; font-weight: bold; padding: 0px 1.75em; background-image: url('/admin/images/buttonSmallMiddle.png'); font-size: 10pt; width: 70px; margin-left: 435px;">
                   <struts:text name="add"/>
@@ -60,7 +60,7 @@
                     <td style="border: 1px solid black; padding: 2px 7px;">
                       <struts:url var="openingHourDeleteURL" action="openingHourDeleteForm" namespace="/locations/location">
                         <struts:param name="openingHours" value="#openingHoursStatus.index" />
-                        <struts:param name="locationUuid" value="#myLocation" />
+                        <struts:param name="uncheckLocation" value="#myLocation" />
                       </struts:url>
                       <struts:a
                           id="submit_deny__Close"
@@ -80,7 +80,7 @@
 
             <div class="buttons form_bottom" style="height: 21px;">
               <struts:url var="editFormUrl" action="editForm" namespace="/locations/location">
-                <struts:param name="location" value="location.uuid" />
+                <struts:param name="uncheckLocation" value="location.uuid" />
               </struts:url>
               <struts:a 
                   id="submit_deny__Close" 

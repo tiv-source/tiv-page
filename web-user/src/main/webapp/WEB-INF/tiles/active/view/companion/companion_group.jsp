@@ -3,9 +3,12 @@
 
   <struts:if test="companionGroup.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="companionGroup.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="companionGroup.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
   <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
@@ -68,5 +71,9 @@
 
   </struts:iterator>
 
-  <hr>
-  
+
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
+

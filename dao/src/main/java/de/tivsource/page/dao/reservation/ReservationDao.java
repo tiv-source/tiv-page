@@ -5,16 +5,15 @@ package de.tivsource.page.dao.reservation;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.reservation.Reservation;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -123,6 +122,9 @@ public class ReservationDao implements ReservationDaoLocal {
         return query.getResultList();
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#confirmationQueue(java.lang.Integer, java.lang.Integer)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> confirmationQueue(Integer start, Integer max) {
@@ -133,6 +135,9 @@ public class ReservationDao implements ReservationDaoLocal {
         return query.getResultList();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#confirmationQueue(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Reservation> confirmationQueue(Integer start, Integer max, String field, String order) {
@@ -154,6 +159,9 @@ public class ReservationDao implements ReservationDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#countAll(de.tivsource.page.entity.event.Event)
+     */
     @Override
     public Integer countAll(Event event) {
         Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.event = :event");
@@ -161,6 +169,9 @@ public class ReservationDao implements ReservationDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#countConfirmationQueue()
+	 */
 	@Override
 	public Integer countConfirmationQueue() {
         Query query = entityManager.createQuery("Select Count(r) from Reservation r where r.confirmed = :confirmed");
@@ -168,6 +179,9 @@ public class ReservationDao implements ReservationDaoLocal {
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
+	/* (non-Javadoc)
+	 * @see de.tivsource.page.dao.reservation.ReservationDaoLocal#countQuantity(java.lang.String)
+	 */
 	@Override
 	public Integer countQuantity(String uuid) {
         Query query = entityManager.createQuery("select sum(r.quantity) from Reservation r where r.event.uuid = :uuid group by r.event");

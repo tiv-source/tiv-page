@@ -6,13 +6,13 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/appointment/editForm.html?appointment="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/appointment/editForm.html?uncheckAppointment="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/appointment/copyForm.html?appointment="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/appointment/copyForm.html?uncheckAppointment="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/appointment/deleteForm.html?appointment="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/appointment/deleteForm.html?uncheckAppointment="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -40,10 +40,9 @@ function formatIsoDate(celldate, options, rowObject) {
 
 <script type="text/javascript">
 function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/pictures/THUMBNAIL/" + cellvalue + "'/>";  
+	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
 }
 </script>
-
 
       <!--  Start MAIN -->
       <div class="main">
@@ -72,7 +71,7 @@ $(function () {
             ""
         ],
         colModel: [
-            { name: "picture.pictureUrls.THUMBNAIL.url", width:  140, align: "center", sortable: false, formatter:formatPicture },
+            { name: "uuid",                              width:  140, align: "center", sortable: false, formatter:formatPicture },
             { name: "descriptionMap.DE.name",            width:  210, align: "right", index: "name" },
             { name: "pictureOnPage",                     width:   70, align: "right", formatter:formatTrueFalse },
             { name: "visible",                           width:   70, align: "right", formatter:formatTrueFalse },

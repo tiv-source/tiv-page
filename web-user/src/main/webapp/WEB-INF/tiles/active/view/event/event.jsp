@@ -2,8 +2,11 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="event.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="event.picture.pictureUrls.FULL.url" />">
     </div>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <h1>Reservierung</h1>
     <h6><struts:property value="event.getName(getText('language'))" /> im <struts:property value="event.location.getName(getText('language'))" /> am <struts:date name="event.beginning" format="dd.MM.yyyy" /></h6>
@@ -84,4 +87,6 @@
       <hr>
     </struts:form>
   
-    
+    <hr>
+  </div>
+  <!-- Content Ende -->

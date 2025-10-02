@@ -5,9 +5,8 @@ package de.tivsource.page.dao.feedback;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.feedback.Feedback;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

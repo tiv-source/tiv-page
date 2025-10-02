@@ -19,13 +19,17 @@
                   tooltipDelay="500"
           >
 
+            <struts:hidden id="captcha.uuid" key="captcha.uuid"/>
             <fieldset class="fieldset">
 
               <div class="field">
                 <label for="captcha.content" class="label">Inhalt:</label>
-                <struts:hidden id="captcha.uuid" key="captcha.uuid"/>
-                <img src="/image/captcha/<struts:property value="captcha.uuid"/>/thumbnail.png" style="width:148px;"/><br />
                 <struts:property value="captcha.content"/>
+              </div>
+
+              <div class="field">
+                <label for="captcha.image" class="label">Bild:</label>
+                <img src="/image/captcha/<struts:property value="captcha.uuid"/>/thumbnail.png" style="width:148px;"/><br />
               </div>
 
             </fieldset>

@@ -55,7 +55,7 @@ public class ManualAction extends EmptyAction {
 
     private Manual manual;
 
-    private String manualUuid;
+    private String manualTechnical;
     
     private Page page;
 
@@ -79,20 +79,20 @@ public class ManualAction extends EmptyAction {
             this.getLanguageFromActionContext();
 
             // Lese UUID aus dem ServletRequest
-            manualUuid = ServletActionContext.getRequest().getServletPath();
-            LOGGER.info("ManualUuid: " + manualUuid);
-            manualUuid = manualUuid.replaceAll("/index.html", "");
-            manualUuid = manualUuid.replaceAll("/manual/", "");
-            LOGGER.info("ManualUuid: " + manualUuid);
+            manualTechnical = ServletActionContext.getRequest().getServletPath();
+            LOGGER.info("ManualTechnical: " + manualTechnical);
+            manualTechnical = manualTechnical.replaceAll("/index.html", "");
+            manualTechnical = manualTechnical.replaceAll("/manual/", "");
+            LOGGER.info("ManualTechnical: " + manualTechnical);
 
             /*
              * Wenn die Manual Uuid keine nicht erlaubten Zeichen enthält und es
              * das Manual mit der Uuid gibt dann wird der Block ausgeführt.
              */
-            if (isValid(manualUuid) && manualDaoLocal.isManualUuid(manualUuid)) {
+            if (isValidTechnical(manualTechnical) && manualDaoLocal.isManualUrl(manualTechnical)) {
                 LOGGER.info("gültige Manual Uuid.");
 
-                manual = manualDaoLocal.findByUuid(manualUuid);
+                manual = manualDaoLocal.findByTechnical(manualTechnical);
 
                 // Setze Daten in ein Page Objekt
                 setUpPage();
@@ -118,8 +118,8 @@ public class ManualAction extends EmptyAction {
         return manual;
     }
 
-    private Boolean isValid(String input) {
-        if (Pattern.matches("[abcdef0-9-]*", input)) {
+    private Boolean isValidTechnical(String input) {
+        if (Pattern.matches("[a-z0-9]*", input)) {
             return true;
         } else {
             return false;

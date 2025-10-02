@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -38,9 +39,9 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/delete_form.jsp")
   }),
-  @TilesDefinition(name="pictureForm", extend = "adminTemplate", putAttributes = {
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/picture_form.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/image_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -65,20 +66,25 @@ public class FormAction extends EmptyAction {
 
     private String uncheckPicture;
 
-    private String lang;
+    private String lang = "DE";
 
     public Picture getPicture() {
         return picture;
     }
 
-	public void setPicture(String uncheckPicture) {
+	/**
+     * @param uncheckPicture the uncheckPicture to set
+     */
+    @StrutsParameter
+    public void setUncheckPicture(String uncheckPicture) {
         this.uncheckPicture = uncheckPicture;
     }
 
-	public String getLang() {
+    public String getLang() {
 	    return lang;
 	}
 
+    @StrutsParameter
 	public void setLang(String lang) {
 	    this.lang = lang;
 	}
@@ -98,8 +104,8 @@ public class FormAction extends EmptyAction {
         		results = { @Result(name = "success", type="tiles", location = "pictureDeleteForm") }
         ),
         @Action(
-                value = "pictureForm", 
-                results = { @Result(name = "success", type="tiles", location = "pictureForm") }
+                value = "imageForm", 
+                results = { @Result(name = "success", type="tiles", location = "imageForm") }
         )
     })
     public String execute() throws Exception {

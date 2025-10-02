@@ -17,9 +17,19 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   theme="css_xhtml"
+                  enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
+
+              <div class="field">
+                <struts:fielderror fieldName="gallery.image.uploadFileContentType" />
+                <struts:file key="gallery.image" parentTheme="xhtml" labelposition="left">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
+              </div>
 
               <div class="field">
                 <struts:select
@@ -106,9 +116,29 @@
                 />
               </div>
 
+              <div class="field">
+                <struts:textarea
+                    id="editor"
+                    key="gallery.contentMap.DE.content" 
+					rows="10" 
+					cols="80" 
+					width="840"
+					height="250"
+					escape="false"
+					cssStyle="padding-left:202px;"
+				/>
+                <script type="text/javascript">
+        		CKEDITOR.replace('editor', {
+        			filebrowserImageUploadUrl: '/admin/others/page/upload.html',
+        			customConfig: '/admin/js/ckeditor.config.js'
+        		});
+                </script>
+              </div>
+
               <struts:hidden key="gallery.descriptionMap.EN.name" value="No English content available."/>
               <struts:hidden key="gallery.descriptionMap.EN.description" value="No English content available."/>
               <struts:hidden key="gallery.descriptionMap.EN.keywords" value="No English content available."/>
+              <struts:hidden key="gallery.contentMap.EN.content" value="No English content available."/>
 
             </fieldset>
 

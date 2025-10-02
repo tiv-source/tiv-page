@@ -5,12 +5,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.mail.internet.InternetAddress;
+import jakarta.mail.internet.InternetAddress;
 
 import org.apache.commons.digester.Digester;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.xml.sax.SAXException;
+
 
 /**
  * 
@@ -177,7 +177,7 @@ public class EmailTemplate {
             LOGGER.info("Error: IOException");
             e.printStackTrace();
             return null;
-        } catch (SAXException e) {
+        } catch (Exception e) {
             LOGGER.info("Error: SAXException");
             e.printStackTrace();
             return null;

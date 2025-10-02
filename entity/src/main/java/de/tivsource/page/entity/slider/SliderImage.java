@@ -5,17 +5,16 @@ package de.tivsource.page.entity.slider;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.common.image.ImageUntouched;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 /**
  * @author Marc Michele
@@ -42,12 +41,9 @@ public class SliderImage extends ImageUntouched implements Comparable<ImageUntou
     @JoinColumn(name = "slider_uuid")
     private Slider slider;
 
-    static {
-        uploadPath = "/srv/tiv-page/slider/";
-    }
-
     public SliderImage() {
         super();
+        uploadPath = "/srv/tiv-page/slider/";
     }
 
     public String getUuid() {

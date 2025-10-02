@@ -25,6 +25,7 @@
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:fielderror fieldName="captcha.image.uploadFileContentType" />
                 <struts:file key="captcha.image.uploadFile" parentTheme="xhtml" labelposition="left">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />

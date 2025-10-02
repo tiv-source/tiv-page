@@ -8,16 +8,15 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.UUID;
 
-import javax.persistence.Basic;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tools.ant.util.FileUtils;
-import org.hibernate.annotations.Type;
 
 import de.tivsource.page.common.file.FileActions;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Transient;
 
 /**
  * Die Klasse Image dient dazu Bilder zu verwalten
@@ -63,7 +62,7 @@ public class ImageSquare implements Comparable<ImageSquare>, Serializable {
      * Boolean ob das Bild ein Default Bild ist (Ja/Nein).
      */
     @Basic
-    @Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean standard;
 
     /**

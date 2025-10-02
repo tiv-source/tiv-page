@@ -5,10 +5,10 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/others/message/view.html?message="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/others/message/view.html?uncheckMessage="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/view.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/others/message/deleteForm.html?message="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/others/message/deleteForm.html?uncheckMessage="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }

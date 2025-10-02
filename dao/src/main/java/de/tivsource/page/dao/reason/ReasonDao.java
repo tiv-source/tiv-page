@@ -5,15 +5,14 @@ package de.tivsource.page.dao.reason;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.entity.request.Reason;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -55,8 +54,9 @@ public class ReasonDao implements ReasonDaoLocal {
      */
     @Override
     public Boolean isReasonUuid(String uuid) {
-        Query query = entityManager.createQuery("select r from Reason r where r.uuid = :uuid and r.visible = 'Y' order by r.uuid asc");
+        Query query = entityManager.createQuery("select r from Reason r where r.uuid = :uuid and r.visible = :visible order by r.uuid asc");
         query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
     }
 
@@ -100,10 +100,11 @@ public class ReasonDao implements ReasonDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Reason> findAllVisible(Integer start, Integer max) {
-        String queryString = "SELECT r FROM Reason r WHERE r.visible = 'Y' ORDER BY r.orderNumber, r.created desc";
+        String queryString = "SELECT r FROM Reason r WHERE r.visible = :visible ORDER BY r.orderNumber, r.created desc";
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
+        query.setParameter("visible", true);
         return query.getResultList();
     }
 
@@ -121,7 +122,8 @@ public class ReasonDao implements ReasonDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(r) from Reason r WHERE r.visible = 'Y'");
+        Query query = entityManager.createQuery("Select Count(r) from Reason r WHERE r.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

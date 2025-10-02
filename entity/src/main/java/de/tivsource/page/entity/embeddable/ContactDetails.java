@@ -3,7 +3,7 @@
  */
 package de.tivsource.page.entity.embeddable;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 /**
  * @author Marc Michele

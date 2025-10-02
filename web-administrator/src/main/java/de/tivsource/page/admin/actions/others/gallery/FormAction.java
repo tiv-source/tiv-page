@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -17,9 +18,7 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
-import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.enumeration.GalleryType;
 
 /**
@@ -41,6 +40,10 @@ import de.tivsource.page.enumeration.GalleryType;
   @TilesDefinition(name="galleryDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/delete_form.jsp")
+  }),
+  @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/gallery/image_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -61,16 +64,11 @@ public class FormAction extends EmptyAction {
     @InjectEJB(name="GalleryDao")
     private GalleryDaoLocal galleryDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     private Gallery gallery;
 
     private String uncheckGallery;
 
     private String lang = "DE";
-
-    private List<Picture> pictureList;
 
     private List<CSSGroup> cssGroupList;
 
@@ -78,14 +76,19 @@ public class FormAction extends EmptyAction {
         return gallery;
     }
 
-	public void setGallery(String uncheckGallery) {
+	/**
+     * @param uncheckGallery the uncheckGallery to set
+     */
+    @StrutsParameter
+    public void setUncheckGallery(String uncheckGallery) {
         this.uncheckGallery = uncheckGallery;
     }
 
-	public String getLang() {
+    public String getLang() {
 	    return lang;
 	}
 
+    @StrutsParameter
 	public void setLang(String lang) {
 	    this.lang = lang;
 	}
@@ -109,10 +112,15 @@ public class FormAction extends EmptyAction {
         @Action(
             value = "deleteForm",
             results = { @Result(name = "success", type="tiles", location = "galleryDeleteForm") }
+        ),
+        @Action(
+            value = "imageForm",
+            results = { @Result(name = "success", type="tiles", location = "imageForm") }
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
+    	LOGGER.info("UUID set to uncheckGallery: " + uncheckGallery);
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
@@ -120,10 +128,6 @@ public class FormAction extends EmptyAction {
 	public List<GalleryType> getGalleryTypeList() {
 	    return Arrays.asList(GalleryType.values());
 	}
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
@@ -135,7 +139,6 @@ public class FormAction extends EmptyAction {
 	    LOGGER.info("loadPageParameter() aufgerufen.");
 		if( uncheckGallery != null && uncheckGallery != "" && uncheckGallery.length() > 0) {
 		    gallery = galleryDaoLocal.findByUuid(uncheckGallery);
-		    pictureList = pictureDaoLocal.findAll(uncheckGallery);
 		} else {
 		    gallery = new Gallery();
 		}

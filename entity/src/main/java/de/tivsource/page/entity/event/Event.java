@@ -10,20 +10,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.reservation.Reservation;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
 
 /**
  * @author Marc Michele
@@ -35,20 +35,20 @@ public class Event extends PictureItem {
 
     private BigDecimal price;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date beginning;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date ending;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date deadline;
 
     /**
      * True wenn die Zeit auswählbar seien soll.
      */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean timeSelection = true;
 
     /**
@@ -62,7 +62,7 @@ public class Event extends PictureItem {
      * True wenn für diese Event Objekt noch eine Reservierung möglich ist.
      */
     @Basic
-    @org.hibernate.annotations.Type(type = "yes_no")
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean reservation;
 
     @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)

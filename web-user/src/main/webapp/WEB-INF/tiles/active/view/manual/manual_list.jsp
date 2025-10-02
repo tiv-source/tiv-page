@@ -3,16 +3,19 @@
 
   <struts:if test="page.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
     <p class=" bc_bottom">	&nbsp;</p>
 
     <struts:iterator value="manuals" status="manualStatus">
-      <struts:url var="manualLink" action="index" namespace="/manual/%{uuid}"/>
+      <struts:url var="manualLink" action="index" namespace="/manual/%{technical}"/>
     
       <struts:a href="%{manualLink}">
         <div class="informations">
@@ -73,4 +76,6 @@
       </struts:a>
     </struts:if>
 
-    
+    <hr>
+  </div>
+  <!-- Content Ende -->

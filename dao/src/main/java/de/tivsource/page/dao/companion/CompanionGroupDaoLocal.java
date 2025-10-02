@@ -5,7 +5,7 @@ package de.tivsource.page.dao.companion;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import jakarta.ejb.Local;
 
 import de.tivsource.page.entity.companion.CompanionGroup;
 
@@ -37,7 +37,7 @@ public interface CompanionGroupDaoLocal {
     public Boolean isCompanionGroup(String uuid);
 
     public Boolean isCompanionGroupTechnical(String technical);
-    
+
     public Boolean hasReferences(String uuid);
 
     public CompanionGroup findByUuid(String uuid);

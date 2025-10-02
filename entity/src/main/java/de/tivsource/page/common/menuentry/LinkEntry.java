@@ -3,9 +3,9 @@
  */
 package de.tivsource.page.common.menuentry;
 
-import javax.persistence.Entity;
-
 import org.hibernate.envers.Audited;
+
+import jakarta.persistence.Entity;
 
 /**
  * @author Marc Michele

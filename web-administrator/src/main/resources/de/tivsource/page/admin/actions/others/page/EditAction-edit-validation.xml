@@ -14,6 +14,17 @@
     </field-validator>
   </field>
 
+  <field name="page.orderNumber">
+    <field-validator type="required" short-circuit="true">
+      <message key="page.orderNumber.validation.required" />
+    </field-validator>
+    <field-validator type="int" short-circuit="true">
+      <param name="min">0</param>
+      <param name="max">1000</param>
+      <message key="page.orderNumber.validation.minmax" />
+    </field-validator>
+  </field>
+
   <field name="page.descriptionMap.DE.name">
     <field-validator type="fieldexpression" short-circuit="true">
       <param name="expression">
@@ -24,13 +35,41 @@
            ||
            (
              lang.equals("DE") &&
-             page.descriptionMap.DE.name!=null &&
-             page.descriptionMap.DE.name.trim()!="" &&
-             page.descriptionMap.DE.name.trim().length()>3
+             page.descriptionMap.DE.name!=null
            ))
         ]]>
       </param>
       <message key="page.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             page.descriptionMap.DE.name.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.DE.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             page.descriptionMap.DE.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.DE.name.validation.length" />
     </field-validator>
   </field>
 
@@ -44,13 +83,41 @@
            ||
            (
              lang.equals("DE") &&
-             page.descriptionMap.DE.description!=null &&
-             page.descriptionMap.DE.description.trim()!="" &&
-             page.descriptionMap.DE.description.trim().length()>3
+             page.descriptionMap.DE.description!=null
            ))
         ]]>
       </param>
       <message key="page.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             page.descriptionMap.DE.description.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.DE.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             page.descriptionMap.DE.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.DE.description.validation.length" />
     </field-validator>
   </field>
 
@@ -64,13 +131,41 @@
            ||
            (
              lang.equals("DE") &&
-             page.descriptionMap.DE.keywords!=null &&
-             page.descriptionMap.DE.keywords.trim()!="" &&
-             page.descriptionMap.DE.keywords.trim().length()>3
+             page.descriptionMap.DE.keywords!=null
            ))
         ]]>
       </param>
       <message key="page.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             page.descriptionMap.DE.keywords.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.DE.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("EN")
+           ) 
+           ||
+           (
+             lang.equals("DE") &&
+             page.descriptionMap.DE.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.DE.keywords.validation.length" />
     </field-validator>
   </field>
 
@@ -84,13 +179,41 @@
            ||
            (
              lang.equals("EN") &&
-             page.descriptionMap.EN.name!=null &&
-             page.descriptionMap.EN.name.trim()!="" &&
-             page.descriptionMap.EN.name.trim().length()>3
+             page.descriptionMap.EN.name!=null
            ))
         ]]>
       </param>
       <message key="page.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             page.descriptionMap.EN.name.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.EN.name.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             page.descriptionMap.EN.name.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.EN.name.validation.length" />
     </field-validator>
   </field>
 
@@ -104,13 +227,41 @@
            ||
            (
              lang.equals("EN") &&
-             page.descriptionMap.EN.description!=null &&
-             page.descriptionMap.EN.description.trim()!="" &&
-             page.descriptionMap.EN.description.trim().length()>3
+             page.descriptionMap.EN.description!=null
            ))
         ]]>
       </param>
       <message key="page.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             page.descriptionMap.EN.description.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.EN.description.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             page.descriptionMap.EN.description.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.EN.description.validation.length" />
     </field-validator>
   </field>
 
@@ -124,13 +275,41 @@
            ||
            (
              lang.equals("EN") &&
-             page.descriptionMap.EN.keywords!=null &&
-             page.descriptionMap.EN.keywords.trim()!="" &&
-             page.descriptionMap.EN.keywords.trim().length()>3
+             page.descriptionMap.EN.keywords!=null
            ))
         ]]>
       </param>
       <message key="page.descriptionMap.EN.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             page.descriptionMap.EN.keywords.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.EN.keywords.validation.required" />
+    </field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             lang.equals("DE")
+           ) 
+           ||
+           (
+             lang.equals("EN") &&
+             page.descriptionMap.EN.keywords.trim().length()>3
+           ))
+        ]]>
+      </param>
+      <message key="page.descriptionMap.EN.keywords.validation.length" />
     </field-validator>
   </field>
 

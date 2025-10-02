@@ -5,9 +5,8 @@ package de.tivsource.page.dao.manual;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.manual.Manual;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele
@@ -41,7 +40,19 @@ public interface ManualDaoLocal {
      * @return Boolean - true wenn es eine Seite (Manual) ist.
      */
     public Boolean isManualUuid(String uuid);
-    
+
+    /**
+     * Metholde um zu überprüfen ob der angegebene UrlName zu einer Anleitung (Manual) gehört.
+     * 
+     * @param urlName - Der UrlName der überprüft werden soll.
+     * @return Boolean - true wenn es eine Anleitung (Manual) ist.
+     */
+    public Boolean isManualUrl(String urlName);
+
+    public Boolean hasMenuEntry(String uuid);
+
+    public Boolean hasSubSumption(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Manual anhand der
      * Uuid.
@@ -50,6 +61,15 @@ public interface ManualDaoLocal {
      * @return Manual - Objekt das die angegebene UUID besitzt.
      */
     public Manual findByUuid(String uuid);
+
+    /**
+     * Methode zum laden eines Objektes der Klasse Manual anhand des
+     * technischen Namens.
+     * 
+     * @param technical - Technischer Name des Objektes das geladen werden soll.
+     * @return Manual - Objekt das den angegebenen technischen Namen besitzt.
+     */
+    public Manual findByTechnical(String technical);
 
     /**
      * Methode zum laden einer Liste von Manual Objekten, es muss dabei ein

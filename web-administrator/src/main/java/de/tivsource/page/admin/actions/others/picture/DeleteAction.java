@@ -1,16 +1,14 @@
 package de.tivsource.page.admin.actions.others.picture;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
+import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -19,8 +17,6 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.picture.Picture;
-import de.tivsource.page.entity.picture.PictureUrl;
-import de.tivsource.page.enumeration.UrlType;
 
 /**
  * 
@@ -30,11 +26,7 @@ import de.tivsource.page.enumeration.UrlType;
 @TilesDefinitions({
   @TilesDefinition(name="pictureDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/error.jsp")
-  }),
-  @TilesDefinition(name="pictureReferences", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/references.jsp")
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/picture/delete_error.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -54,6 +46,7 @@ public class DeleteAction extends EmptyAction {
 
     private Picture picture;
 
+    @StrutsParameter(depth=3)
     public Picture getPicture() {
         return picture;
     }
@@ -68,56 +61,28 @@ public class DeleteAction extends EmptyAction {
         		value = "delete", 
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input", type="tiles", location = "pictureDeleteForm"),
-        				@Result(name = "error", type="tiles", location = "pictureDeleteError"),
-        				@Result(name = "references", type="tiles", location = "pictureReferences")
+        				@Result(name = "input", type="tiles", location = "pictureDeleteError"),
+        				@Result(name = "error", type="tiles", location = "pictureDeleteError")
         				}
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
+        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
         if(picture != null) {
-            if(!pictureDaoLocal.hasReferences(picture.getUuid())) {
-                Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
-                if(dbPicture.getPictureUrls() != null && dbPicture.getPictureUrls().size() > 0) {
-                    deletePictures(dbPicture.getPictureUrls());
-                }
-                pictureDaoLocal.delete(dbPicture);
-                return SUCCESS;
-            } else {
-            	return "references";
-            }
+            Picture dbPicture = pictureDaoLocal.findByUuid(picture.getUuid());
+            dbPicture.setModified(new Date());
+            dbPicture.setModifiedBy(remoteUser);
+            dbPicture.setModifiedAddress(remoteAddress);
+            pictureDaoLocal.merge(dbPicture);
+            pictureDaoLocal.delete(dbPicture);
+            return SUCCESS;
     	}
-    	else {
-    		return ERROR;
-    	}
-    	
+   		return ERROR;
     	
     }// Ende execute()
-
-    private static void deletePictures(Map<UrlType, PictureUrl> pictureUrls) throws IOException {
-    	String picturePath = "/var/www/html/pictures/";
-    	String pathFULL = picturePath + "FULL/" + pictureUrls.get(UrlType.FULL).getUrl();
-    	deleteFile(pathFULL);
-    	String pathLARGE = picturePath + "LARGE/" + pictureUrls.get(UrlType.LARGE).getUrl();
-    	deleteFile(pathLARGE);
-    	String pathNORMAL = picturePath + "NORMAL/" + pictureUrls.get(UrlType.NORMAL).getUrl();
-    	deleteFile(pathNORMAL);
-    	String pathTHUMBNAIL = picturePath + "THUMBNAIL/" + pictureUrls.get(UrlType.THUMBNAIL).getUrl();
-    	deleteFile(pathTHUMBNAIL);
-    }
-
-    private static void deleteFile(String source) throws IOException {
-    	Path filePath = Paths.get(source);
-		if (Files.exists(filePath) && !Files.isDirectory(filePath)
-				&& Files.isRegularFile(filePath)) {
-			// Lösche die Datei
-        	Files.delete(filePath);
-        	LOGGER.info("Datei: "+ source +" erfolgreich gelöscht");
-        } else {
-        	LOGGER.info("Konnte die Datei: "+ source +" nicht löschen.");
-        }
-    }// Ende deleteFile(String source)
 
 }// Ende class

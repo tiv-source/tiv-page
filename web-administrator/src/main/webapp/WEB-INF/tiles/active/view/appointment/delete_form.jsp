@@ -2,7 +2,6 @@
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
 
-
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu"></div>

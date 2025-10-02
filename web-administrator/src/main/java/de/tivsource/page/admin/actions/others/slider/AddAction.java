@@ -1,14 +1,18 @@
 package de.tivsource.page.admin.actions.others.slider;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -18,6 +22,7 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.entity.slider.Slider;
 import de.tivsource.page.entity.slider.SliderImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -36,7 +41,7 @@ import de.tivsource.page.entity.slider.SliderImage;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/slider/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
     /**
      * Serial Version UID.
@@ -53,22 +58,13 @@ public class AddAction extends EmptyAction {
 
     private Slider slider;
 
-    private SliderImage sliderImage;
-
+    @StrutsParameter(depth=2)
     public Slider getSlider() {
         return slider;
     }
 
     public void setSlider(Slider slider) {
         this.slider = slider;
-    }
-
-    public SliderImage getSliderImage() {
-        return sliderImage;
-    }
-
-    public void setSliderImage(SliderImage sliderImage) {
-        this.sliderImage = sliderImage;
     }
 
     @Override
@@ -91,19 +87,18 @@ public class AddAction extends EmptyAction {
         if(slider != null) {
             slider.setUuid(UUID.randomUUID().toString());
 
-            sliderImage.setSlider(slider);
-            sliderImage.setUuid(UUID.randomUUID().toString());
-            sliderImage.generate();
-            sliderImage.setCreated(new Date());
-            sliderImage.setModified(new Date());
-            sliderImage.setModifiedAddress(remoteAddress);
-            sliderImage.setModifiedBy(remoteUser);
-            slider.setImage(sliderImage);
-
             slider.setCreated(new Date());
             slider.setModified(new Date());
             slider.setModifiedAddress(remoteAddress);
             slider.setModifiedBy(remoteUser);
+
+            slider.getImage().setUuid(UUID.randomUUID().toString());
+            slider.getImage().generate();
+            slider.getImage().setCreated(new Date());
+            slider.getImage().setModified(new Date());
+            slider.getImage().setModifiedAddress(remoteAddress);
+            slider.getImage().setModifiedBy(remoteUser);
+
             sliderDaoLocal.merge(slider);
 
             return SUCCESS;
@@ -112,5 +107,18 @@ public class AddAction extends EmptyAction {
             return ERROR;
         }
     }// Ende execute()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            this.slider = new Slider();
+            this.slider.setImage(new SliderImage());
+            this.slider.getImage().setSlider(this.slider);
+            this.slider.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
+         }
+    }
 
 }// Ende class

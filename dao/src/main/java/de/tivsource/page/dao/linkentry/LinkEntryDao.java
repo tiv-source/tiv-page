@@ -6,15 +6,14 @@ package de.tivsource.page.dao.linkentry;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.common.menuentry.LinkEntry;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -66,8 +65,9 @@ public class LinkEntryDao implements LinkEntryDaoLocal {
 	 */
 	@Override
 	public Boolean isLinkEntryUrl(String urlName) {
-        Query query = entityManager.createQuery("select le from LinkEntry le where le.technical = :urlName and le.visible = 'Y' order by le.uuid asc");
+        Query query = entityManager.createQuery("select le from LinkEntry le where le.technical = :urlName and le.visible = :visible order by le.uuid asc");
         query.setParameter("urlName", urlName);
+        query.setParameter("visible", true);
         return (query.getResultList().size() > 0 ? true : false);
 	}
 

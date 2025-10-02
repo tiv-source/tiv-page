@@ -1,15 +1,19 @@
 package de.tivsource.page.admin.actions.others.page;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -19,11 +23,11 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.page.Page;
-import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.entity.pictureitem.PictureItemImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
@@ -35,9 +39,13 @@ import de.tivsource.page.entity.picture.Picture;
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/add_form.jsp")
+  }),
+  @TilesDefinition(name="pageAddError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/others.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/page/add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -55,18 +63,14 @@ public class AddAction extends EmptyAction {
     @InjectEJB(name="PageDao")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
     
     private Page page;
-
-    private List<Picture> pictureList;
     
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Page getPage() {
         return page;
     }
@@ -78,7 +82,6 @@ public class AddAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.page.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -106,7 +109,6 @@ public class AddAction extends EmptyAction {
     	    page.setModifiedBy(remoteUser);
     	    page.setModifiedAddress(remoteAddress);
 
-
     	    page.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
     	    page.getDescriptionMap().get(Language.DE).setNamingItem(page);
     	    page.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
@@ -129,7 +131,14 @@ public class AddAction extends EmptyAction {
             page.getContentMap().get(Language.EN).setLanguage(Language.EN);
             page.getContentMap().get(Language.EN).setCreated(new Date());
             page.getContentMap().get(Language.EN).setModified(new Date());
-    	    
+
+            page.getImage().setUuid(UUID.randomUUID().toString());
+            page.getImage().generate();
+            page.getImage().setCreated(new Date());
+            page.getImage().setModified(new Date());
+            page.getImage().setModifiedAddress(remoteAddress);
+            page.getImage().setModifiedBy(remoteUser);
+
     		pageDaoLocal.merge(page);
 
             return SUCCESS;
@@ -141,14 +150,29 @@ public class AddAction extends EmptyAction {
     	
     }// Ende execute()
 
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }
-
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("Variable uploadedFiles ist nicht leer.");
+            Iterator<UploadedFile> ufIterator = uploadedFiles.iterator();
+            while(ufIterator.hasNext()) {
+                UploadedFile next = ufIterator.next();
+                LOGGER.info("UploadedFile für Input-Name: " + next.getInputName() + " gefunden.");
+                if(next.getInputName().equalsIgnoreCase("page.image")) {
+                    this.page = new Page();
+                    this.page.setImage(new PictureItemImage());
+                    this.page.getImage().setPictureItem(this.page);
+                    this.page.getImage().setUploadFile(UploadedFileToUploadFile.convert(next));
+                }                
+            }// Ende while()
+         }
+    }// Ende withUploadedFiles(List<UploadedFile> uploadedFiles)
 
 }// Ende class

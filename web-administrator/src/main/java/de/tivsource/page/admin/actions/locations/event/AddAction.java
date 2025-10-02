@@ -1,15 +1,19 @@
 package de.tivsource.page.admin.actions.locations.event;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -17,19 +21,18 @@ import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.location.Location;
-import de.tivsource.page.entity.picture.Picture;
+import de.tivsource.page.entity.pictureitem.PictureItemImage;
+import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
 /**
  * 
  * @author Marc Michele
  *
  */
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
 	/**
 	 * Serial Version UID.
@@ -50,20 +53,13 @@ public class AddAction extends EmptyAction {
     @InjectEJB(name="LocationDao")
     private LocationDaoLocal locationDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
     private Event event;
 
     private List<Location> locationList;
 
-    private List<Picture> pictureList;
-
     private List<CSSGroup> cssGroupList;
 
+    @StrutsParameter(depth=3)
     public Event getEvent() {
         return event;
     }
@@ -76,7 +72,6 @@ public class AddAction extends EmptyAction {
     public void prepare() {
         super.prepare();
         locationList = locationDaoLocal.findAll(0, locationDaoLocal.countAll());
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.event.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -122,6 +117,13 @@ public class AddAction extends EmptyAction {
     	    event.getDescriptionMap().get(Language.EN).setKeywords(event.getDescriptionMap().get(Language.DE).getKeywords());
     	    event.setTechnical("EVENT_" + event.getUuid());
 
+    	    event.getImage().setUuid(UUID.randomUUID().toString());
+    	    event.getImage().generate();
+    	    event.getImage().setCreated(new Date());
+    	    event.getImage().setModified(new Date());
+    	    event.getImage().setModifiedAddress(remoteAddress);
+    	    event.getImage().setModifiedBy(remoteUser);
+    	    
     	    eventDaoLocal.merge(event);
             return SUCCESS;
     	}
@@ -136,14 +138,29 @@ public class AddAction extends EmptyAction {
         return locationList;
     }// Ende getLocationList()
 
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }// Ende getPictureList()
-
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("Variable uploadedFiles ist nicht leer.");
+            Iterator<UploadedFile> ufIterator = uploadedFiles.iterator();
+            while(ufIterator.hasNext()) {
+                UploadedFile next = ufIterator.next();
+                LOGGER.info("UploadedFile für Input-Name: " + next.getInputName() + " gefunden.");
+                if(next.getInputName().equalsIgnoreCase("event.image")) {
+                    this.event = new Event();
+                    this.event.setImage(new PictureItemImage());
+                    this.event.getImage().setPictureItem(this.event);
+                    this.event.getImage().setUploadFile(UploadedFileToUploadFile.convert(next));
+                }                
+            }// Ende while()
+         }
+    }// Ende withUploadedFiles(List<UploadedFile> uploadedFiles)
 
 }// Ende class

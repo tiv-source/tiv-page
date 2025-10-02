@@ -3,9 +3,12 @@
 
   <struts:if test="page.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
   <struts:property escapeHtml="false" value="page.getContent(getText('language'))" />
 
@@ -45,3 +48,9 @@
     
     </struts:a>
   </struts:iterator>
+
+
+    <hr>
+  </div>
+  <!-- Content Ende -->
+

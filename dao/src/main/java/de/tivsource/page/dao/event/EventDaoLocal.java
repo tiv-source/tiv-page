@@ -5,9 +5,8 @@ package de.tivsource.page.dao.event;
 
 import java.util.List;
 
-import javax.ejb.Local;
-
 import de.tivsource.page.entity.event.Event;
+import jakarta.ejb.Local;
 
 /**
  * @author Marc Michele

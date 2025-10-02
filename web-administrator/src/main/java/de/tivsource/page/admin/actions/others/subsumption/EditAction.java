@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -18,12 +19,9 @@ import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.contentitem.ContentItemDaoLocal;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
-import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.subsumption.SubsumptionDaoLocal;
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.enumeration.Language;
-import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.subsumption.Subsumption;
 
 /**
@@ -59,22 +57,15 @@ public class EditAction extends EmptyAction {
     @InjectEJB(name="SubsumptionDao")
     private SubsumptionDaoLocal subsumptionDaoLocal;
 
-    @InjectEJB(name="PictureDao")
-    private PictureDaoLocal pictureDaoLocal;
-
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
-
     private Subsumption subsumption;
 
     private String lang = "DE";
-
-    private List<Picture> pictureList;
     
     private List<CSSGroup> cssGroupList;
 
     private List<ContentItem> contentItems;
 
+    @StrutsParameter(depth=3)
     public Subsumption getSubsumption() {
         return subsumption;
     }
@@ -87,6 +78,7 @@ public class EditAction extends EmptyAction {
         return lang;
     }
 
+    @StrutsParameter
     public void setLang(String lang) {
         this.lang = lang;
     }
@@ -94,7 +86,6 @@ public class EditAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        pictureList = pictureDaoLocal.findAll(propertyDaoLocal.findByKey("gallery.uuid.for.page.picture").getValue());
         cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
@@ -147,7 +138,6 @@ public class EditAction extends EmptyAction {
     		dbSubsumption.setVisible(subsumption.getVisible());
     		dbSubsumption.setModifiedBy(remoteUser);
     		dbSubsumption.setModifiedAddress(remoteAddress);
-    		dbSubsumption.setPicture(subsumption.getPicture());
     		dbSubsumption.setPictureOnPage(subsumption.getPictureOnPage());
     		dbSubsumption.setCssGroup(subsumption.getCssGroup());
 
@@ -158,6 +148,7 @@ public class EditAction extends EmptyAction {
     		dbSubsumption.setShowDescriptions(subsumption.getShowDescriptions());
     		dbSubsumption.setShowPictures(subsumption.getShowPictures());
     		dbSubsumption.setShowTitles(subsumption.getShowTitles());
+    		dbSubsumption.setOrderDates(subsumption.getOrderDates());
     		
 
     		subsumptionDaoLocal.merge(dbSubsumption);
@@ -168,10 +159,6 @@ public class EditAction extends EmptyAction {
     	}
 
     }// Ende execute()
-
-    public List<Picture> getPictureList() {
-        return pictureList;
-    }
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");

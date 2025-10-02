@@ -3,9 +3,12 @@
 
   <struts:if test="location.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="location.picture.pictureUrls.FULL.url" />" style="width: 100%;">
+      <img alt="" src="/pictures/FULL/<struts:property value="location.picture.pictureUrls.FULL.url" />">
     </div>
   </struts:if>
+
+  <!-- Content Anfang -->
+  <div id=content>
 
     <h1><struts:property value="location.getName(getText('language'))" /></h1>
     <struts:if test="getProperty('location.show.description') == 'true'">
@@ -22,7 +25,12 @@
             <h4><struts:property value="getName(getText('language'))" /> am <struts:date name="beginning" format="dd.MM.yyyy" /></h4>
             <p>Preis pro Person: <struts:text name="format.money"><struts:param name="value" value="price"/></struts:text></p>
             <p>von <struts:date name="beginning" format="HH:mm" /> Uhr bis <struts:date name="ending" format="HH:mm" /> Uhr</p>
-            <p>Online Reservierung möglich bis zum <struts:date name="deadline" format="dd.MM.yyyy" /> um <struts:date name="deadline" format="HH:mm" /> Uhr</p>
+            <struts:if test="reservation">
+              <p>Online Reservierung m&ouml;glich bis zum <struts:date name="deadline" format="dd.MM.yyyy" /> um <struts:date name="deadline" format="HH:mm" /> Uhr</p>
+            </struts:if>
+            <struts:else>
+              <p>Leider ist eine Online Reservierung nicht mehr m&ouml;glich, da wir an diesem Termin ausgebucht sind.</p>
+            </struts:else>
           </div>
         
           <div class="impression">
@@ -91,4 +99,6 @@
       </struts:a>
     </struts:if>
 
-    
+    <hr>
+  </div>
+  <!-- Content Ende -->

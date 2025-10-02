@@ -12,4 +12,6 @@
         <put-attribute name="content"    value="/WEB-INF/tiles/active/view/home.jsp" />
     </definition>
 
+    <definition name="imageTemplate" template="/WEB-INF/tiles/active/skeletal/image.jsp" />
+
 </tiles-definitions>
