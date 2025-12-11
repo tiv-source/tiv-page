@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.location.Location;
@@ -17,12 +19,14 @@ import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.reservation.Reservation;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Temporal;
 
 /**
@@ -31,17 +35,25 @@ import jakarta.persistence.Temporal;
  */
 @Audited
 @Entity
+@SecondaryTable(name = Event.TABLE)
+@Table(appliesTo = Event.TABLE, fetch = FetchMode.SELECT)
 public class Event extends PictureItem {
 
+    public static final String TABLE = "Event";
+
+    @Column(table = TABLE)
     private BigDecimal price;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date beginning;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date ending;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date deadline;
 
     /**
@@ -49,13 +61,14 @@ public class Event extends PictureItem {
      */
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean timeSelection = true;
 
     /**
      * Location Objekt zu dem das Event Objekt gehört.
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "location_uuid")
+    @JoinColumn(table = TABLE, name = "location_uuid")
     private Location location;
 
     /**
@@ -63,6 +76,7 @@ public class Event extends PictureItem {
      */
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean reservation;
 
     @OneToMany(mappedBy = "event", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
@@ -71,13 +85,16 @@ public class Event extends PictureItem {
     /**
      * Maximale Anzahl an Reservierungen die für diese Event Objekt möglich sind.
      */
+    @Column(table = TABLE)
     private Integer maxReservations;
 
     /**
      * Maximal Anzahl an Personen für die Reserviert werden kann.
      */
+    @Column(table = TABLE)
     private Integer maxPersons;
 
+    @Column(table = TABLE)
     private Integer piwikGoal;
 
     public BigDecimal getPrice() {

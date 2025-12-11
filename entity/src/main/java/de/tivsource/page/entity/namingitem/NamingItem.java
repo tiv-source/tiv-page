@@ -34,7 +34,7 @@ import jakarta.persistence.Version;
  */
 @Audited
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = NamingItem.DISCRIMINATOR_COLUMN, discriminatorType = DiscriminatorType.STRING, length = 255)
 public class NamingItem {
 
@@ -56,7 +56,7 @@ public class NamingItem {
     /**
      * Die Map mit dem Beschreibung des Objektes, die Angabe ist Lokalisiert.
      */
-    @OneToMany(mappedBy = "namingItem", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "namingItem", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @MapKey(name = "language")
     private Map<Language, Description> descriptionMap;
 

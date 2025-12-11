@@ -2,14 +2,18 @@ package de.tivsource.page.entity.exhibition;
 
 import java.util.Date;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.enumeration.CityType;
 import de.tivsource.page.entity.enumeration.CountryType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Temporal;
 
 /**
@@ -23,24 +27,34 @@ import jakarta.persistence.Temporal;
  */
 @Audited
 @Entity
+@SecondaryTable(name = Exhibition.TABLE)
+@Table(appliesTo = Exhibition.TABLE, fetch = FetchMode.SELECT)
 public class Exhibition extends ContentItem {
 
+    public static final String TABLE = "Exhibition";
+
 	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+	@Column(table = TABLE)
 	private Date moment;
 
 	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+	@Column(table = TABLE)
 	private Date start;
 
 	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+	@Column(table = TABLE)
 	private Date end;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date visibleFrom;
 
 	@Enumerated(EnumType.STRING)
+	@Column(table = TABLE)
 	private CityType place;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(table = TABLE)
 	private CountryType country;
 
 	public Exhibition() {

@@ -5,12 +5,16 @@ package de.tivsource.page.entity.appointment;
 
 import java.util.Date;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Temporal;
 
 /**
@@ -19,24 +23,34 @@ import jakarta.persistence.Temporal;
  */
 @Audited
 @Entity
+@SecondaryTable(name = Appointment.TABLE)
+@Table(appliesTo = Appointment.TABLE, fetch = FetchMode.SELECT)
 public class Appointment extends ContentItem {
 
+    public static final String TABLE = "Appointment";
+
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
 	private Date pointInTime;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean booking;
     
+    @Column(table = TABLE)
 	private String bookingUrl;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean hasVenue;
 
+    @Column(table = TABLE)
 	private String venue;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date visibleFrom;
 	
     public Date getPointInTime() {

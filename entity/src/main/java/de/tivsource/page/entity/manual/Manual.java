@@ -3,10 +3,13 @@
  */
 package de.tivsource.page.entity.manual;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import jakarta.persistence.Entity;
+import jakarta.persistence.SecondaryTable;
 
 /**
  * @author Marc Michele
@@ -14,7 +17,11 @@ import jakarta.persistence.Entity;
  */
 @Audited
 @Entity
+@SecondaryTable(name = Manual.TABLE)
+@Table(appliesTo = Manual.TABLE, fetch = FetchMode.SELECT)
 public class Manual extends ContentItem {
+
+    public static final String TABLE = "Manual";
 
     /* (non-Javadoc)
      * @see de.tivsource.page.entity.contentitem.ContentItem#getUrl()

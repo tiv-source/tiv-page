@@ -2,6 +2,8 @@ package de.tivsource.page.entity.contentitem;
 
 import java.util.Map;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.enumeration.Language;
@@ -9,10 +11,9 @@ import de.tivsource.page.entity.pictureitem.PictureItem;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MapKey;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SecondaryTable;
 
 /**
  * 
@@ -21,13 +22,16 @@ import jakarta.persistence.OneToMany;
  */
 @Audited
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@SecondaryTable(name = ContentItem.TABLE)
+@Table(appliesTo = ContentItem.TABLE, fetch = FetchMode.SELECT)
 public abstract class ContentItem extends PictureItem implements Comparable<ContentItem> {
+
+    public static final String TABLE = "ContentItem";
 
     /**
      * Die Map mit dem Inhalt des Objektes, die Angabe ist Lokalisiert.
      */
-    @OneToMany(mappedBy = "contentItem", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "contentItem", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @MapKey(name = "language")
     private Map<Language, Content> contentMap;
 

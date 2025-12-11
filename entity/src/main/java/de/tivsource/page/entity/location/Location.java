@@ -6,7 +6,9 @@ package de.tivsource.page.entity.location;
 import java.util.List;
 import java.util.SortedSet;
 
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SortNatural;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.embeddable.Address;
@@ -14,13 +16,17 @@ import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.vacancy.Vacancy;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SecondaryTable;
 
 /**
  * @author Marc Michele
@@ -28,15 +34,32 @@ import jakarta.persistence.OneToMany;
  */
 @Audited
 @Entity
+@SecondaryTable(name = Location.TABLE)
+@Table(appliesTo = Location.TABLE, fetch = FetchMode.SELECT)
 public class Location extends PictureItem {
 
+    public static final String TABLE = "Location";
+
     @Embedded
+    @AttributeOverrides( {
+        @AttributeOverride(name="street", column = @Column(table = TABLE, name="street") ),
+        @AttributeOverride(name="zip", column = @Column(table = TABLE, name="zip") ),
+        @AttributeOverride(name="city", column = @Column(table = TABLE, name="city") ),
+        @AttributeOverride(name="country", column = @Column(table = TABLE, name="country") )
+    } )
     private Address address;
 
     @Embedded
+    @AttributeOverrides( {
+        @AttributeOverride(name="mobile", column = @Column(table = TABLE, name="mobile") ),
+        @AttributeOverride(name="telephone", column = @Column(table = TABLE, name="telephone") ),
+        @AttributeOverride(name="fax", column = @Column(table = TABLE, name="fax") ),
+        @AttributeOverride(name="email", column = @Column(table = TABLE, name="email") ),
+        @AttributeOverride(name="homepage", column = @Column(table = TABLE, name="homepage") )
+    } )
     private ContactDetails contactDetails;
 
-    @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER, orphanRemoval=true)
+    @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     @SortNatural
     private SortedSet<OpeningHour> openingHours;
 
@@ -45,6 +68,7 @@ public class Location extends PictureItem {
      */
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean inLocationList = true;
 
     /**
@@ -54,6 +78,7 @@ public class Location extends PictureItem {
      */
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean event;
 
     @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
@@ -65,11 +90,13 @@ public class Location extends PictureItem {
     /**
      * Longitude der Location.
      */
+    @Column(table = TABLE)
     private String longitude;
 
     /**
      * Latitude der Location.
      */
+    @Column(table = TABLE)
     private String latitude;
 
     public Address getAddress() {

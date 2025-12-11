@@ -3,6 +3,8 @@
  */
 package de.tivsource.page.common.menuentry;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -10,7 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.SecondaryTable;
 
 /**
  * @author Marc Michele
@@ -18,11 +20,14 @@ import jakarta.persistence.Table;
  */
 @Audited
 @Entity
-@Table(name = "ContentEntry")
+@SecondaryTable(name = ContentEntry.TABLE)
+@Table(appliesTo = ContentEntry.TABLE, fetch = FetchMode.SELECT)
 public class ContentEntry extends MenuEntry {
 
+    public static final String TABLE = "ContentEntry";
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "contentItem_uuid")
+    @JoinColumn(table = TABLE, name = "contentItem_uuid")
 	private ContentItem contentItem;
 
     /**

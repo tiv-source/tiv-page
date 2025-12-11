@@ -5,6 +5,8 @@ package de.tivsource.page.entity.gallery;
 
 import java.util.List;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
@@ -12,9 +14,11 @@ import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.enumeration.GalleryType;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SecondaryTable;
 
 /**
  * 
@@ -24,8 +28,13 @@ import jakarta.persistence.OneToMany;
 @Audited
 @Indexed
 @Entity
+@SecondaryTable(name = Gallery.TABLE)
+@Table(appliesTo = Gallery.TABLE, fetch = FetchMode.SELECT)
 public class Gallery extends ContentItem {
 
+    public static final String TABLE = "Gallery";
+
+    @Column(table = TABLE)
 	private GalleryType type = GalleryType.LANDSCAPE;
 
 	@OneToMany(mappedBy = "gallery", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)

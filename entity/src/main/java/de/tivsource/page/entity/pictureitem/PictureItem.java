@@ -5,6 +5,8 @@ package de.tivsource.page.entity.pictureitem;
 
 import java.util.Objects;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.common.css.CSSGroup;
@@ -12,14 +14,15 @@ import de.tivsource.page.entity.namingitem.NamingItem;
 import de.tivsource.page.entity.picture.Picture;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SecondaryTable;
+
 
 /**
  * @author Marc Michele
@@ -27,25 +30,29 @@ import jakarta.persistence.OneToOne;
  */
 @Audited
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@SecondaryTable(name = PictureItem.TABLE)
+@Table(appliesTo = PictureItem.TABLE, fetch = FetchMode.SELECT)
 public class PictureItem extends NamingItem {
 
+    public static final String TABLE = "PictureItem";
+
     // TODO: muss entfernt werden sobald das andere Bild benutzt wird
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "picture_uuid")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(table = TABLE, name = "picture_uuid")
     @Deprecated
     private Picture picture;
 
-    @OneToOne(mappedBy = "pictureItem", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "image_uuid")
+    @OneToOne(mappedBy = "pictureItem", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(table = TABLE, name = "image_uuid")
     private PictureItemImage image;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean pictureOnPage = true;
 
     @ManyToOne(targetEntity = CSSGroup.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cssGroup_uuid")
+    @JoinColumn(table = TABLE, name = "cssGroup_uuid")
     private CSSGroup cssGroup;
 
     @Deprecated

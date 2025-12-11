@@ -5,10 +5,14 @@ package de.tivsource.page.entity.news;
 
 import java.util.Date;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Temporal;
 
 /**
@@ -17,9 +21,14 @@ import jakarta.persistence.Temporal;
  */
 @Audited
 @Entity
+@SecondaryTable(name = News.TABLE)
+@Table(appliesTo = News.TABLE, fetch = FetchMode.SELECT)
 public class News extends ContentItem {
 
+    public static final String TABLE = "News";
+
 	@Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+	@Column(table = TABLE)
 	private Date releaseDate;
 
 	public Date getReleaseDate() {

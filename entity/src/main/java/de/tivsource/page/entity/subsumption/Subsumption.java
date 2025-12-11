@@ -5,17 +5,21 @@ package de.tivsource.page.entity.subsumption;
 
 import java.util.SortedSet;
 
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SortNatural;
+import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.SecondaryTable;
+
 
 /**
  * @author Marc Michele
@@ -23,30 +27,38 @@ import jakarta.persistence.Table;
  */
 @Audited
 @Entity
-@Table(name = "Subsumption")
+@SecondaryTable(name = Subsumption.TABLE)
+@Table(appliesTo = Subsumption.TABLE, fetch = FetchMode.SELECT)
 public class Subsumption extends ContentItem {
+
+    public static final String TABLE = "Subsumption";
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean showTitles = true;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean showDescriptions = true;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean showDates = true;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean showPictures = true;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
     private Boolean orderDates = true;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER, targetEntity = ContentItem.class)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY, targetEntity = ContentItem.class)
     @SortNatural
     private SortedSet<ContentItem> contentItems;
 
