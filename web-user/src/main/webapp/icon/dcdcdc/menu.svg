@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg4136"
+   version="1.1"
+   inkscape:version="1.4.1 (unknown)"
+   width="500"
+   height="375"
+   viewBox="0 0 499.99999 375.00001"
+   sodipodi:docname="menu_fff.svg"
+   inkscape:export-filename="/home/kamilla/Dokumente/TIV/icons/menu-icon_basic_#000000.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata
+     id="metadata4142">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4140" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview4138"
+     showgrid="false"
+     inkscape:snap-global="true"
+     inkscape:snap-center="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:zoom="0.695543"
+     inkscape:cx="257.35289"
+     inkscape:cy="239.38132"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4136"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4154"
+       originx="1.15e-06"
+       originy="-2.4999999e-06"
+       spacingy="1"
+       spacingx="1"
+       units="px"
+       visible="false" />
+    <inkscape:page
+       x="0"
+       y="0"
+       width="500"
+       height="375"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <g
+     id="g888"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"
+     transform="scale(0.68493151,0.74999999)"
+     style="fill:#dcdcdc;fill-opacity:1;stroke-width:1.39523"
+     inkscape:export-filename="../cdcdcd/menu_cdcdcd.svg">
+    <g
+       transform="translate(-2.289073,0.08329343)"
+       id="g866"
+       style="fill:#dcdcdc;fill-opacity:1;stroke-width:1.39523">
+      <g
+         id="g4679"
+         transform="matrix(19.228683,0,0,19.230769,136.1999,-81.411035)"
+         style="fill:#dcdcdc;fill-opacity:1;stroke-width:0.0725521">
+        <rect
+           y="4.7290435"
+           x="3"
+           height="5"
+           width="28"
+           id="rect4656"
+           style="fill:#dcdcdc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.0725521px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <rect
+           style="fill:#dcdcdc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.0725521px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="rect4673"
+           width="28"
+           height="5"
+           x="3"
+           y="14.729042" />
+        <rect
+           y="24.729042"
+           x="3"
+           height="5"
+           width="28"
+           id="rect4675"
+           style="fill:#dcdcdc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.0725521px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      </g>
+    </g>
+    <rect
+       y="0"
+       x="0"
+       height="500"
+       width="19.230768"
+       id="rect829"
+       style="fill:#dcdcdc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.39523px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+</svg>
