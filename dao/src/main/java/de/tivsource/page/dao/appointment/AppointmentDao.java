@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.appointment.Appointment;
 import jakarta.ejb.Stateless;
@@ -94,7 +95,13 @@ public class AppointmentDao implements AppointmentDaoLocal {
      */
     @Override
     public Appointment findByUuid(String uuid) {
-        return entityManager.find(Appointment.class, uuid);
+        Appointment appointment = entityManager.find(Appointment.class, uuid); 
+        Hibernate.initialize(appointment.getDescriptionMap());
+        Hibernate.initialize(appointment.getImage());
+        Hibernate.initialize(appointment.getContentMap());
+        Hibernate.initialize(appointment.getCssGroup());
+        Hibernate.initialize(appointment.getCssGroup().getFiles());
+        return appointment;
     }
 
     /* (non-Javadoc)
@@ -106,7 +113,12 @@ public class AppointmentDao implements AppointmentDaoLocal {
         Query query = entityManager.createQuery("from Appointment ap ORDER by ap.uuid");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Appointment> appointmentList = query.getResultList();
+        for (Appointment appointment : appointmentList) {
+            Hibernate.initialize(appointment.getImage());
+            Hibernate.initialize(appointment.getDescriptionMap());
+        }
+        return appointmentList;
     }
 
     /* (non-Javadoc)
@@ -120,7 +132,12 @@ public class AppointmentDao implements AppointmentDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Appointment> appointmentaList = query.getResultList();
+        for (Appointment appointment : appointmentaList) {
+            Hibernate.initialize(appointment.getImage());
+            Hibernate.initialize(appointment.getDescriptionMap());
+        }
+        return appointmentaList;
     }
 
     /* (non-Javadoc)
@@ -135,7 +152,12 @@ public class AppointmentDao implements AppointmentDaoLocal {
         query.setMaxResults(max);
         query.setParameter("visible", true);
         query.setParameter("date", new Date());
-        return query.getResultList();
+        List<Appointment> appointmentaList = query.getResultList();
+        for (Appointment appointment : appointmentaList) {
+            Hibernate.initialize(appointment.getImage());
+            Hibernate.initialize(appointment.getDescriptionMap());
+        }
+        return appointmentaList;
     }
 
     /* (non-Javadoc)
@@ -150,7 +172,12 @@ public class AppointmentDao implements AppointmentDaoLocal {
         query.setMaxResults(max);
         query.setParameter("visible", true);
         query.setParameter("date", new Date());
-        return query.getResultList();
+        List<Appointment> appointmentaList = query.getResultList();
+        for (Appointment appointment : appointmentaList) {
+            Hibernate.initialize(appointment.getImage());
+            Hibernate.initialize(appointment.getDescriptionMap());
+        }
+        return appointmentaList;
     }
 
     /* (non-Javadoc)

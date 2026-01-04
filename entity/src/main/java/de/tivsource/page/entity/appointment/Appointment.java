@@ -5,8 +5,6 @@ package de.tivsource.page.entity.appointment;
 
 import java.util.Date;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -24,7 +22,6 @@ import jakarta.persistence.Temporal;
 @Audited
 @Entity
 @SecondaryTable(name = Appointment.TABLE)
-@Table(appliesTo = Appointment.TABLE, fetch = FetchMode.SELECT)
 public class Appointment extends ContentItem {
 
     public static final String TABLE = "Appointment";

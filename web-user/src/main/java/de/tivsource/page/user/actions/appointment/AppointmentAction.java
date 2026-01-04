@@ -126,7 +126,7 @@ public class AppointmentAction extends EmptyAction {
     private void setUpPage() {
         page = new Page();
         page.setDescriptionMap(appointment.getDescriptionMap());
-        page.setPicture(appointment.getPicture());
+        page.setImage(appointment.getImage());
         page.setPictureOnPage(appointment.getPictureOnPage());
         page.setCssGroup(appointment.getCssGroup());
     }
