@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.jpa.AvailableHints;
 
 import de.tivsource.page.entity.exhibition.Exhibition;
 import de.tivsource.page.entity.property.Property;
@@ -99,14 +101,31 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         );
         query.setParameter("visible", true);
         query.setParameter("technical", technical);
-        Exhibition dbExhibition = (Exhibition) query.getSingleResult();
-        // LOGGER.info("PictureMap Size: " + dbExhibition.getPictureMap().size());
-        return dbExhibition;
+        Exhibition exhibition = query.getResultList().isEmpty() ? null : (Exhibition)query.setHint(AvailableHints.HINT_READ_ONLY, true).getSingleResult(); 
+        if(exhibition != null) {
+            Hibernate.initialize(exhibition.getImage());
+            Hibernate.initialize(exhibition.getDescriptionMap());
+            Hibernate.initialize(exhibition.getContentMap());
+            Hibernate.initialize(exhibition.getCssGroup());
+            Hibernate.initialize(exhibition.getCssGroup().getFiles());
+            
+            Hibernate.unproxy(exhibition.getDescriptionMap());
+            Hibernate.unproxy(exhibition.getContentMap());
+            Hibernate.unproxy(exhibition.getCssGroup());
+            Hibernate.unproxy(exhibition.getCssGroup().getFiles());
+        }
+        return exhibition;
     }
 
     @Override
     public Exhibition findByUuid(String uuid) {
-        return entityManager.find(Exhibition.class, uuid);
+        Exhibition exhibition = entityManager.find(Exhibition.class, uuid);
+        Hibernate.initialize(exhibition.getImage());
+        Hibernate.initialize(exhibition.getDescriptionMap());
+        Hibernate.initialize(exhibition.getContentMap());
+        Hibernate.initialize(exhibition.getCssGroup());
+        Hibernate.initialize(exhibition.getCssGroup().getFiles());
+        return exhibition;
     }
 
     @SuppressWarnings("unchecked")
@@ -115,7 +134,12 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         Query query = entityManager.createQuery("from Exhibition e order by e.uuid asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Exhibition> exhibitionList = query.getResultList();
+        for (Exhibition exhibition : exhibitionList) {
+            Hibernate.initialize(exhibition.getImage());
+            Hibernate.initialize(exhibition.getDescriptionMap());
+        }
+        return exhibitionList;
     }
 
     @SuppressWarnings("unchecked")
@@ -123,7 +147,12 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         Query query = entityManager.createQuery("from Exhibition e order by e.moment desc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Exhibition> exhibitionList = query.getResultList();
+        for (Exhibition exhibition : exhibitionList) {
+            Hibernate.initialize(exhibition.getImage());
+            Hibernate.initialize(exhibition.getDescriptionMap());
+        }
+        return exhibitionList;
     }
 
     @SuppressWarnings("unchecked")
@@ -134,7 +163,12 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Exhibition> exhibitionList = query.getResultList();
+        for (Exhibition exhibition : exhibitionList) {
+            Hibernate.initialize(exhibition.getImage());
+            Hibernate.initialize(exhibition.getDescriptionMap());
+        }
+        return exhibitionList;
     }
 
     @SuppressWarnings("unchecked")
@@ -146,7 +180,12 @@ public class ExhibitionDao implements ExhibitionDaoLocal {
         query.setMaxResults(max);
         query.setParameter("visible", true);
         query.setParameter("date", Date.from(Instant.now().minusSeconds(86400)));
-        return query.getResultList();
+        List<Exhibition> exhibitionList = query.getResultList();
+        for (Exhibition exhibition : exhibitionList) {
+            Hibernate.initialize(exhibition.getImage());
+            Hibernate.initialize(exhibition.getDescriptionMap());
+        }
+        return exhibitionList;
     }
 
     @Override
