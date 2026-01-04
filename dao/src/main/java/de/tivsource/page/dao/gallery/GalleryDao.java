@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.jpa.AvailableHints;
 
 import de.tivsource.page.entity.gallery.Gallery;
 import jakarta.ejb.Stateless;
@@ -114,7 +116,14 @@ public class GalleryDao implements GalleryDaoLocal {
 	 */
 	@Override
 	public Gallery findByUuid(String uuid) {
-		return entityManager.find(Gallery.class, uuid);
+	    Gallery gallery = entityManager.find(Gallery.class, uuid); 
+        Hibernate.initialize(gallery.getDescriptionMap());
+        Hibernate.initialize(gallery.getImage());
+        Hibernate.initialize(gallery.getContentMap());
+        Hibernate.initialize(gallery.getCssGroup());
+        Hibernate.initialize(gallery.getCssGroup().getFiles());
+        Hibernate.initialize(gallery.getPictures());
+        return gallery;
 	}
 
 	/* (non-Javadoc)
@@ -125,7 +134,20 @@ public class GalleryDao implements GalleryDaoLocal {
         Query query = entityManager.createQuery("select g from Gallery g where g.technical = :technical and g.visible = :visible order by g.uuid asc");
         query.setParameter("visible", true);
         query.setParameter("technical", technical);
-		return (Gallery) query.getSingleResult();
+        Gallery gallery = query.getResultList().isEmpty() ? null : (Gallery)query.setHint(AvailableHints.HINT_READ_ONLY, true).getSingleResult(); 
+        if(gallery != null) {
+            Hibernate.initialize(gallery.getDescriptionMap());
+            Hibernate.initialize(gallery.getImage());
+            Hibernate.initialize(gallery.getContentMap());
+            Hibernate.initialize(gallery.getCssGroup());
+            Hibernate.initialize(gallery.getCssGroup().getFiles());
+            
+            Hibernate.unproxy(gallery.getDescriptionMap());
+            Hibernate.unproxy(gallery.getContentMap());
+            Hibernate.unproxy(gallery.getCssGroup());
+            Hibernate.unproxy(gallery.getCssGroup().getFiles());
+        }
+        return gallery;
 	}
 
 	/* (non-Javadoc)
@@ -137,7 +159,12 @@ public class GalleryDao implements GalleryDaoLocal {
         Query query = entityManager.createQuery("from Gallery g order by g.orderNumber asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Gallery> galleryList = query.getResultList();
+        for (Gallery gallery : galleryList) {
+            Hibernate.initialize(gallery.getDescriptionMap());
+            Hibernate.initialize(gallery.getImage());
+        }
+        return galleryList;
 	}
 
 	/* (non-Javadoc)
@@ -151,7 +178,12 @@ public class GalleryDao implements GalleryDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Gallery> galleryList = query.getResultList();
+        for (Gallery gallery : galleryList) {
+            Hibernate.initialize(gallery.getDescriptionMap());
+            Hibernate.initialize(gallery.getImage());
+        }
+        return galleryList;
 	}
 
 	/* (non-Javadoc)
@@ -164,7 +196,12 @@ public class GalleryDao implements GalleryDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<Gallery> galleryList = query.getResultList();
+        for (Gallery gallery : galleryList) {
+            Hibernate.initialize(gallery.getDescriptionMap());
+            Hibernate.initialize(gallery.getImage());
+        }
+        return galleryList;
 	}
 
 	/* (non-Javadoc)

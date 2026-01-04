@@ -20,7 +20,7 @@
 
     <div id="touchbox" class="bigpic">
       <div class="bigpic_box">
-        <img alt="" src="/pictures/FULL/<struts:property value="picture.pictureUrls.FULL.url" />">
+        <img src="/image/picture/<struts:property value="picture.uuid" />/normal.png" alt="<struts:property value="picture.getName(getText('language'))" />" title="<struts:property value="picture.getName(getText('language'))" />">
 
     <struts:if test="previousPicture != null">
       <struts:url var="previousUrl" action="index" namespace="/gallery/%{gallery.uuid}/%{previous}/%{previousPicture}"/>

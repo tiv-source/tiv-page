@@ -23,7 +23,7 @@
           <div class="clickable">
             <div class="holder">
               <div class="frame">
-                <img src="/pictures/THUMBNAIL/<struts:property value="picture.pictureUrls.THUMBNAIL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+                <img src="/image/pictureitem/<struts:property value="uuid" />/<struts:property value="getProperty('image.size.gallery.list')" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
               </div>
             </div>
             <div class="propertie">

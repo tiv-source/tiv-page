@@ -142,6 +142,8 @@ public class GalleryAction extends EmptyAction implements Pagination {
             // Lade das Galerie Objekt aus der Datenbank
             gallery = galleryDaoLocal.findByUuid(pathUuid);
 
+            LOGGER.info("Anzahl der Bilder der Gallery:" + gallery.getPictures().size());
+            
             // Ermittle die Anzahl der Bilder in der Galerie
             pictureCount = pictureDaoLocal.countAllInGallery(gallery.getUuid());
             LOGGER.info("Inhalt Attribute pictureCount:" + pictureCount);
@@ -157,7 +159,7 @@ public class GalleryAction extends EmptyAction implements Pagination {
             page = new Page();
             page.setTechnical(gallery.getTechnical());
             page.setDescriptionMap(gallery.getDescriptionMap());
-            page.setPicture(gallery.getPicture());
+            page.setImage(gallery.getImage());
             page.setPictureOnPage(gallery.getPictureOnPage());
             page.setCssGroup(gallery.getCssGroup());
 
