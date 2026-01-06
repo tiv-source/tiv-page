@@ -24,6 +24,7 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 
 import de.tivsource.ejb3plugin.InjectEJB;
+import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.common.menuentry.MenuEntry;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
@@ -163,6 +164,9 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
     }
 
     public Page getPage() {
+        for(CSSFile cssFile : page.getCssGroup().getFiles()) {
+            LOGGER.info("CSS-File: " + cssFile.getName());
+        }
         return this.page;
     }
 
