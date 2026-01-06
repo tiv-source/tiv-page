@@ -12,9 +12,9 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -186,7 +186,7 @@ public class RequestAction extends EmptyAction {
     private void sendMail() {
 		LOGGER.info("sendMail() aufgerufen.");
 		
-		javax.mail.Authenticator auth = new javax.mail.Authenticator() {
+		jakarta.mail.Authenticator auth = new jakarta.mail.Authenticator() {
 			@Override
 			public PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(
