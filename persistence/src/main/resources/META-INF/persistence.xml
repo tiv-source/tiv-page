@@ -19,7 +19,6 @@
         <class>de.tivsource.page.common.menuentry.ContentEntry</class>
         <class>de.tivsource.page.common.menuentry.LinkEntry</class>
 
-
 		<class>de.tivsource.page.entity.administration.Role</class>
 		<class>de.tivsource.page.entity.administration.User</class>
 		<class>de.tivsource.page.entity.application.Application</class>
@@ -29,12 +28,15 @@
         <class>de.tivsource.page.entity.companion.CompanionGroup</class>
 		<class>de.tivsource.page.entity.contentitem.Content</class>
 		<class>de.tivsource.page.entity.contentitem.ContentItem</class>
+		<class>de.tivsource.page.entity.course.Course</class>
+		<class>de.tivsource.page.entity.course.unit.CourseUnit</class>
 		<class>de.tivsource.page.entity.event.Event</class>
 		<class>de.tivsource.page.entity.exhibition.Exhibition</class>
 		<class>de.tivsource.page.entity.feedback.Feedback</class>
 		<class>de.tivsource.page.entity.feedback.FeedbackOption</class>
 		<class>de.tivsource.page.entity.feedback.FeedbackOptionDescription</class>
 		<class>de.tivsource.page.entity.gallery.Gallery</class>
+		<class>de.tivsource.page.entity.lecturer.Lecturer</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
 		<class>de.tivsource.page.entity.mail.MailAddress</class>
