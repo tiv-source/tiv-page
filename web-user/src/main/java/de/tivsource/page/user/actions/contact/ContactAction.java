@@ -81,6 +81,7 @@ public class ContactAction extends EmptyAction {
     	Boolean contactPageEnabled = propertyDaoLocal.findByKey("contact.page.enabled").getValue().equals("true") ? true : false;
 
     	if(contactPageEnabled) {
+    	    // TODO: Variable aufräumen und nicht benötigten Code entfernen
     	    URL templatePath = new URL(propertyDaoLocal.findByKey("mail.template.path").getValue());
             LOGGER.info("Pfad zur temp.xml Klasse: " + templatePath);
             return SUCCESS;

@@ -51,7 +51,7 @@
         </div>
 
         <div class="field">
-          <struts:checkbox key="message.privacy" theme="tivpage" />
+          <struts:checkbox key="message.privacy" theme="tivpage"/>
         </div>
 
         <div class="field">
