@@ -3,7 +3,7 @@
 
   <struts:if test="subsumption.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="subsumption.picture.pictureUrls.FULL.url" />">
+      <img alt="" src="/image/pictureitem/<struts:property value="subsumption.uuid" />/large.png">
     </div>
   </struts:if>
 
@@ -33,7 +33,7 @@
 
             <struts:if test="subsumption.showPictures">
               <div class="impression">
-                <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+                <img src="/image/pictureitem/<struts:property value="uuid" />/normal.png" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
               </div>
             </struts:if>
             <hr>

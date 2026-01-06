@@ -3,7 +3,7 @@
 
   <struts:if test="location.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="location.picture.pictureUrls.FULL.url" />">
+      <img alt="" src="/image/pictureitem/<struts:property value="location.uuid" />/large.png">
     </div>
   </struts:if>
 

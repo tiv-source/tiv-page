@@ -3,7 +3,7 @@
 
   <struts:if test="gallery.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/pictures/FULL/<struts:property value="gallery.picture.pictureUrls.FULL.url" />">
+      <img alt="" src="/image/pictureitem/<struts:property value="gallery.uuid" />/large.png">
     </div>
   </struts:if>
 

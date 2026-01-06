@@ -2,7 +2,7 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
   <div id="sitePicture">
-    <img alt="" src="/pictures/FULL/<struts:property value="page.picture.pictureUrls.FULL.url" />">
+    <img alt="" src="/image/pictureitem/<struts:property value="page.uuid" />/large.png">
   </div>
 
   <!-- Content Anfang -->
