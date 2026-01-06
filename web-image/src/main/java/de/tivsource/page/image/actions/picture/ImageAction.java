@@ -19,7 +19,6 @@ import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.picture.PictureImage;
-import de.tivsource.page.entity.pictureitem.PictureItemImage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
