@@ -2,20 +2,21 @@ package de.tivsource.page.reservation.actions;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionContext;
+import org.apache.struts2.ActionSupport;
+import org.apache.struts2.action.ServletRequestAware;
+import org.apache.struts2.action.ServletResponseAware;
+import org.apache.struts2.action.SessionAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
 
 /**
  * 
@@ -60,24 +61,12 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 		return servletRequest;
 	}
 
-	public void setServletRequest(HttpServletRequest httpServletRequest) {
-		this.servletRequest = httpServletRequest;
-	}
-
 	public HttpServletResponse getServletResponse() {
 		return servletResponse;
 	}
 
-	public void setServletResponse(HttpServletResponse servletResponse) {
-		this.servletResponse = servletResponse;
-	}
-
 	public Map<String, Object> getSession() {
 		return session;
-	}
-
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
 	@Override
@@ -94,7 +83,7 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 	}
 
 	public String getActionName() {
-		return ActionContext.getContext().getName();
+		return ActionContext.getContext().getActionName();
 	}
 
 	/**
@@ -106,5 +95,20 @@ public class EmptyAction extends ActionSupport implements ServletRequestAware,
 		language = actionContext.getLocale().getLanguage();
 		LOGGER.info("Action Locale: " + language);
 	}
+
+    @Override
+    public void withSession(Map<String, Object> session) {
+        this.session = session;
+    }
+
+    @Override
+    public void withServletResponse(HttpServletResponse servletResponse) {
+        this.servletResponse = servletResponse;
+    }
+
+    @Override
+    public void withServletRequest(HttpServletRequest httpServletRequest) {
+        this.servletRequest = httpServletRequest;
+    }
 
 }// Ende class
