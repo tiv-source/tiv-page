@@ -103,6 +103,7 @@ public class SentAction extends EmptyAction {
 
             // Speichere Message Objekt
             String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+            message.setCaptchaUuid(captcha.getUuid());
             message.setCreated(new Date());
             message.setCreatedAddress(remoteAddress);
             message.setUuid(UUID.randomUUID().toString());
@@ -167,7 +168,7 @@ public class SentAction extends EmptyAction {
                 message.getLastname(), 
                 message.getMail(), 
                 message.getTelephone(),
-                message.getFax(),
+                message.getCaptchaUuid(),
                 message.getContent(),
                 message.getContent().replace("\n", "<br/>")
                 };

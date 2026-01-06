@@ -55,14 +55,14 @@ public class Message {
 
 	private String telephone;
 
-	private String fax;
-
 	@Column(columnDefinition="LONGTEXT")
 	private String content;
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean privacy;
+
+    private String captchaUuid;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
@@ -117,14 +117,6 @@ public class Message {
 		this.telephone = telephone;
 	}
 
-	public String getFax() {
-		return fax;
-	}
-
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
-
     public String getContent() {
         return content;
     }
@@ -139,6 +131,14 @@ public class Message {
 
     public void setPrivacy(Boolean privacy) {
         this.privacy = privacy;
+    }
+
+    public String getCaptchaUuid() {
+        return captchaUuid;
+    }
+
+    public void setCaptchaUuid(String captchaUuid) {
+        this.captchaUuid = captchaUuid;
     }
 
     public Date getCreated() {
