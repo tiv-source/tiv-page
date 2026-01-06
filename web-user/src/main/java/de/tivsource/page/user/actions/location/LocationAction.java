@@ -156,7 +156,7 @@ public class LocationAction extends EmptyAction {
         page = new Page();
         page.setTechnical(location.getTechnical());
         page.setDescriptionMap(location.getDescriptionMap());
-        page.setPicture(location.getPicture());
+        page.setImage(location.getImage());
         page.setPictureOnPage(location.getPictureOnPage());
         page.setCssGroup(location.getCssGroup());
     }

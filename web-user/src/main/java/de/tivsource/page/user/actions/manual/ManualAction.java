@@ -130,7 +130,7 @@ public class ManualAction extends EmptyAction {
         page = new Page();
         page.setTechnical(manual.getTechnical());
         page.setDescriptionMap(manual.getDescriptionMap());
-        page.setPicture(manual.getPicture());
+        page.setImage(manual.getImage());
         page.setPictureOnPage(manual.getPictureOnPage());
         page.setCssGroup(manual.getCssGroup());
     }

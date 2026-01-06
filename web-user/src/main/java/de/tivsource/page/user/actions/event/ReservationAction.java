@@ -1,20 +1,16 @@
 package de.tivsource.page.user.actions.event;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
-
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +18,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -36,9 +33,11 @@ import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.reservation.Reservation;
 import de.tivsource.page.enumeration.Origin;
-import de.tivsource.page.helper.EmailSender;
-import de.tivsource.page.helper.EmailTemplate;
+import de.tivsource.page.exceptions.NoMailSessionCreatedException;
+import de.tivsource.page.helper.MailSender;
+import de.tivsource.page.helper.MailTemplate;
 import de.tivsource.page.user.actions.EmptyAction;
+import jakarta.mail.MessagingException;
 
 /**
  * 
@@ -93,6 +92,7 @@ public class ReservationAction extends EmptyAction {
 
 	private Event event;
 	
+	@StrutsParameter(depth=1)
     public Reservation getReservation() {
         return reservation;
     }
@@ -145,7 +145,18 @@ public class ReservationAction extends EmptyAction {
 
         return times;
     }
-    
+
+    public Map<Integer, String> getQuantityList() {
+        Map<Integer, String> quantityList = new HashMap<Integer, String>();
+        // 1:01;2:02;3:03;4:04;5:05;6:06
+        String stringList[] = propertyDaoLocal.findByKey("event.quantity.list").getValue().split(";");
+        for(String entry : stringList) {
+            String entryList[] = entry.split(":");
+            quantityList.put(Integer.parseInt(entryList[0]), entryList[1]);
+        }
+        return quantityList;
+    }
+
     @Actions({
         @Action(
         		value = "reserve", 
@@ -190,7 +201,15 @@ public class ReservationAction extends EmptyAction {
                 reservation.setOrigin(Origin.WEBSITE);
                 reservationDaoLocal.merge(reservation);
 
-                sendMail();
+                // Versuche die Mail zu versenden, wenn das nicht funktioniert
+                // leite den Benutzer auf eine Fehlerseite
+                try {
+                    sendMail();
+                } catch (MessagingException | IOException e) {
+                    page = pageDaoLocal.findByTechnical("couldnotsendmail");
+                    LOGGER.debug(e.getMessage());
+                    return "couldNotSendMail";
+                }
 
                 return SUCCESS;
             } else if (event.getBeginning().before(now)) {
@@ -215,7 +234,7 @@ public class ReservationAction extends EmptyAction {
             page = new Page();
             page.setTechnical(event.getName(Language.DE));
             page.setDescriptionMap(event.getDescriptionMap());
-            page.setPicture(event.getPicture());
+            page.setImage(event.getImage());
             page.setPictureOnPage(event.getPictureOnPage());
             page.setCssGroup(event.getCssGroup());
         } else {
@@ -225,7 +244,7 @@ public class ReservationAction extends EmptyAction {
             page.getDescriptionMap().get(Language.DE).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.DE) + " - " + page.getDescriptionMap().get(Language.DE).getName());
             // TODO: Hier müsste das noch lokalisiert werden
             page.getDescriptionMap().get(Language.EN).setName("Reservierung erfolgreich - " + event.getLocation().getName(Language.EN) + " - " + page.getDescriptionMap().get(Language.EN).getName());
-            page.setPicture(event.getPicture());
+            page.setImage(event.getImage());
             page.setPictureOnPage(event.getPictureOnPage());
             page.setCssGroup(event.getCssGroup());
         }
@@ -238,13 +257,42 @@ public class ReservationAction extends EmptyAction {
     }
 
 
-    private void sendMail() {
+    private void sendMail() throws UnsupportedEncodingException, IOException, MessagingException {
         LOGGER.info("sendMail() aufgerufen.");
-        
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy ");
+        MailSender sendIt = new MailSender(getProperties(), createMailTemplate());
+        Boolean debugMailSession = getProperty("mail.reservationrequest.debug.session").equals("true") ? true : false;
+        sendIt.createSession(debugMailSession);
+        String[] argu = {
+                reservation.getGender() ? "Frau" : "Herr",
+                reservation.getFirstname(), 
+                reservation.getLastname(), 
+                reservation.getEmail(), 
+                reservation.getTelephone(),
+                reservation.getEvent().getName("de") + " im " + reservation.getEvent().getLocation().getName("de"),
+                simpleDateFormat.format(reservation.getTime()),
+                reservation.getQuantity().toString(),
+                reservation.getWishes(),
+                reservation.getWishes().replace("\n", "<br/>")
+                };
+
+        new Thread(new Runnable() {
+            public void run(){
+                try {
+                    sendIt.send(argu);
+                } catch (NoMailSessionCreatedException | MessagingException | UnsupportedEncodingException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return; // to stop the thread
+            }
+        }).start();
+
+        /*
         // Datums Formatierung
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy ");
         
-        javax.mail.Authenticator auth = new javax.mail.Authenticator() {
+        jakarta.mail.Authenticator auth = new jakarta.mail.Authenticator() {
             @Override
             public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
@@ -299,7 +347,7 @@ public class ReservationAction extends EmptyAction {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-         
+        */
         
     }// Ende sendMail()
 
@@ -314,12 +362,14 @@ public class ReservationAction extends EmptyAction {
                 propertyDaoLocal.findByKey("mail.transport.protocol").getValue());
         props.put("mail.host", 
                 propertyDaoLocal.findByKey("mail.host").getValue());
+        props.put("mail.port", 
+                propertyDaoLocal.findByKey("mail.port").getValue());
         props.put("mail.smtp.auth", 
                 propertyDaoLocal.findByKey("mail.smtp.auth").getValue());
         props.put("mail.smtp.tls", 
                 propertyDaoLocal.findByKey("mail.smtp.tls").getValue());
-        props.put("mail.smtp.starttls.enable", 
-                "true");
+        props.put("mail.smtp.starttls.enable",
+                propertyDaoLocal.findByKey("mail.smtp.starttls.enable").getValue());
         props.put("mail.smtp.localhost", 
                 propertyDaoLocal.findByKey("mail.smtp.localhost").getValue());
         props.put("mail.user", 
@@ -330,8 +380,54 @@ public class ReservationAction extends EmptyAction {
                 propertyDaoLocal.findByKey("mail.mime.charset").getValue());
         props.put("mail.use8bit", 
                 propertyDaoLocal.findByKey("mail.use8bit").getValue());
-        
+        //TODO: Reihenfolge aufräumen
+        props.put("mail.smtp.ssl.protocols", 
+                propertyDaoLocal.findByKey("mail.smtp.ssl.protocols").getValue());
+        props.put("mail.smtp.ssl.trust", 
+                propertyDaoLocal.findByKey("mail.smtp.ssl.trust").getValue());
+
         return props;
     } // Ende getProperties()
+
+    /**
+     * Methode zum erstellen des Mail-Templates
+     *
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws IOException
+     * @throws MessagingException
+     */
+    private MailTemplate createMailTemplate()
+            throws UnsupportedEncodingException, IOException, MessagingException {
+        MailTemplate mailTemplate = new MailTemplate();
+        mailTemplate.setFrom(
+                reservation.getFirstname() + " " + reservation.getLastname(),
+                getProperty("mail.reservationrequest.from.address")
+                );
+        mailTemplate.addTo(
+                getProperty("mail.reservationrequest.to.personal"),
+                getProperty("mail.reservationrequest.to.address")
+                );
+        mailTemplate.addBcc(
+                getProperty("mail.reservationrequest.bcc.personal"),
+                getProperty("mail.reservationrequest.bcc.address")
+                );
+        mailTemplate.addReplyTo(
+                reservation.getFirstname() + " " + reservation.getLastname(),
+                reservation.getEmail()
+                );
+        if(getProperty("mail.reservationrequest.language").equals("en")) {
+            mailTemplate.setSubject("Reservationrequest for " + reservation.getEvent().getLocation().getName("en"));
+            mailTemplate.setBody(getProperty("mail.reservationrequest.body.en"));
+            mailTemplate.setHtml(getProperty("mail.reservationrequest.html.en"));
+            mailTemplate.addImages(getProperty("mail.reservationrequest.images.en"));
+        } else {
+            mailTemplate.setSubject("Reservierungsanfrage für " + reservation.getEvent().getLocation().getName("de"));
+            mailTemplate.setBody(getProperty("mail.reservationrequest.body.de"));
+            mailTemplate.setHtml(getProperty("mail.reservationrequest.html.de"));
+            mailTemplate.addImages(getProperty("mail.reservationrequest.images.de"));
+        }
+        return mailTemplate;
+    }
 
 }// Ende class
