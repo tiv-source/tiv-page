@@ -6,9 +6,7 @@ package de.tivsource.page.entity.location;
 import java.util.List;
 import java.util.SortedSet;
 
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SortNatural;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.embeddable.Address;
@@ -35,7 +33,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = Location.TABLE)
-@Table(appliesTo = Location.TABLE, fetch = FetchMode.SELECT)
 public class Location extends PictureItem {
 
     public static final String TABLE = "Location";

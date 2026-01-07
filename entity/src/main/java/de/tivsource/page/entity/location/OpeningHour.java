@@ -4,10 +4,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
 import de.tivsource.page.enumeration.Weekday;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,19 +35,17 @@ public class OpeningHour implements Comparable<OpeningHour> {
 	@Enumerated(EnumType.STRING)
 	private Weekday weekday;
 
-	@Embedded
-	@AttributeOverrides({
-	  @AttributeOverride(name="hour", column=@Column(name="open_hour")),
-	  @AttributeOverride(name="minute", column=@Column(name="open_minute"))
-	})
-	private HourMinute open;
+	@Column(length=2)
+	private Integer openHour;
 
-	@Embedded
-    @AttributeOverrides({
-        @AttributeOverride(name="hour", column=@Column(name="close_hour")),
-        @AttributeOverride(name="minute", column=@Column(name="close_minute"))
-      })
-	private HourMinute close;
+	@Column(length=2)
+	private Integer openMinute;
+
+	@Column(length=2)
+	private Integer closeHour;
+
+	@Column(length=2)
+	private Integer closeMinute;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_uuid")
@@ -72,23 +67,39 @@ public class OpeningHour implements Comparable<OpeningHour> {
 		this.weekday = weekday;
 	}
 
-	public HourMinute getOpen() {
-		return open;
-	}
+	public Integer getOpenHour() {
+        return openHour;
+    }
 
-	public void setOpen(HourMinute open) {
-		this.open = open;
-	}
+    public void setOpenHour(Integer openHour) {
+        this.openHour = openHour;
+    }
 
-	public HourMinute getClose() {
-		return close;
-	}
+    public Integer getOpenMinute() {
+        return openMinute;
+    }
 
-	public void setClose(HourMinute close) {
-		this.close = close;
-	}
+    public void setOpenMinute(Integer openMinute) {
+        this.openMinute = openMinute;
+    }
 
-	public Location getLocation() {
+    public Integer getCloseHour() {
+        return closeHour;
+    }
+
+    public void setCloseHour(Integer closeHour) {
+        this.closeHour = closeHour;
+    }
+
+    public Integer getCloseMinute() {
+        return closeMinute;
+    }
+
+    public void setCloseMinute(Integer closeMinute) {
+        this.closeMinute = closeMinute;
+    }
+
+    public Location getLocation() {
 		return location;
 	}
 
@@ -111,19 +122,19 @@ public class OpeningHour implements Comparable<OpeningHour> {
 			return -1;
 		}
 		// Wenn die Öffnungzeiten vor den des Objektes liegen.
-		if(open.compareTo(o.getOpen()) < 0) {
+		if(openHour.compareTo(o.getOpenHour()) < 0) {
 			return -1;
 		}
 		// Wenn die Öffnungzeiten nach den des Objektes liegen.
-		if(open.compareTo(o.getOpen()) > 0) {
+		if(openHour.compareTo(o.getOpenHour()) > 0) {
 			return 1;
 		}
 		// Wenn die Schließzeiten vor den des Objektes liegen.
-		if(close.compareTo(o.getClose()) < 0) {
+		if(closeHour.compareTo(o.getCloseHour()) < 0) {
 			return -1;
 		}
 		// Wenn die Schließzeiten nach den des Objektes liegen.
-		if(close.compareTo(o.getClose()) > 0) {
+		if(closeHour.compareTo(o.getCloseHour()) > 0) {
 			return 1;
 		}
 		return 0;
@@ -156,9 +167,21 @@ public class OpeningHour implements Comparable<OpeningHour> {
 	public int hashCode() {
 		int hash = 1;
 		hash = hash * 7 * (weekday == null ? 0 : weekday.hashCode());
-		hash = hash * 7 * (open == null ? 0 : open.hashCode());
-		hash = hash * 7 * (close == null ? 0 : close.hashCode());
+		hash = hash * 7 * (openHour == null ? 0 : openHour.hashCode());
+		hash = hash * 7 * (closeHour == null ? 0 : closeHour.hashCode());
 		return hash;
+	}
+
+	public String openHourToString() {
+        String hourString = openHour < 10 ? "0" + openHour : openHour.toString();
+        String minuteString = openMinute < 10 ? "0" + openMinute : openMinute.toString();
+        return hourString + ":" + minuteString;
+	}
+
+    public String closeHourToString() {
+        String hourString = closeHour < 10 ? "0" + closeHour : closeHour.toString();
+        String minuteString = closeMinute < 10 ? "0" + closeMinute : closeMinute.toString();
+        return hourString + ":" + minuteString;
 	}
 
 }// End class

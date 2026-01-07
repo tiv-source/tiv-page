@@ -87,7 +87,7 @@
             <struts:iterator value="location.openingHours" status="openingHoursStatus">
             <tr>
               <td><struts:property value="getText(weekday)" />:</td>
-              <td><struts:property value="open" />-<struts:property value="close" /></td>
+              <td><struts:property value="openHourToString()" />-<struts:property value="closeHourToString()" /></td>
             </tr>
             </struts:iterator>
             </tbody>

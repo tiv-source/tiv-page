@@ -44,7 +44,7 @@
 
               <div class="field">
                 <struts:textfield 
-                    key="openingHour.open.hour"
+                    key="openingHour.openHour"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -53,7 +53,7 @@
 
               <div class="field">
                 <struts:textfield 
-                    key="openingHour.open.minute"
+                    key="openingHour.openMinute"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -62,7 +62,7 @@
 
               <div class="field">
                 <struts:textfield 
-                    key="openingHour.close.hour"
+                    key="openingHour.closeHour"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
@@ -71,7 +71,7 @@
 
               <div class="field">
                 <struts:textfield 
-                    key="openingHour.close.minute"
+                    key="openingHour.closeMinute"
                     parentTheme="xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"

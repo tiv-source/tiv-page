@@ -50,11 +50,11 @@
                       <struts:property value="getText(weekday)" />
                     </td>
                     <td style="border: 1px solid black; padding: 2px 7px;">
-                      <struts:property value="open" /> 
+                      <struts:property value="openHourToString()" />
                       <struts:text name="clock" />
                     </td>
                     <td style="border: 1px solid black; padding: 2px 7px;">
-                      <struts:property value="close" /> 
+                      <struts:property value="closeHourToString()" />
                       <struts:text name="clock" />
                     </td>
                     <td style="border: 1px solid black; padding: 2px 7px;">

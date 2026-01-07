@@ -46,7 +46,7 @@ public class OpeningHourAddAction extends EmptyAction {
         return location;
     }
 
-    @StrutsParameter(depth=2)
+    @StrutsParameter(depth=3)
     public OpeningHour getOpeningHour() {
         return openingHour;
     }
@@ -73,6 +73,10 @@ public class OpeningHourAddAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
         if(openingHour != null) {
+            LOGGER.info("Open Hour:    " + openingHour.getOpenHour());
+            LOGGER.info("Open Minute:  " + openingHour.getOpenMinute());
+            LOGGER.info("Close Hour:   " + openingHour.getCloseHour());
+            LOGGER.info("Close Minute: " + openingHour.getCloseMinute());
 
             Location dbLocation = locationDaoLocal.findByUuid(openingHour.getLocation().getUuid());
             location = dbLocation;
