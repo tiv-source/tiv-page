@@ -21,7 +21,7 @@
 
     <constant name="struts.action.extension" value="html"/>
 
-    <constant name="struts.allowlist.classes" value=""/>
+    <constant name="struts.allowlist.classes" value="org.hibernate.envers.DefaultRevisionEntity,"/>
     <constant name="struts.allowlist.packageNames" value="de.tivsource.page.admin.actions,de.tivsource.page.entity,de.tivsource.page.common"/>
     
 	
