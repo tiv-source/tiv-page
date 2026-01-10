@@ -1,0 +1,9 @@
+<h1>Reservation</h1>
+<p>If you want to be sure that you and your friends will still find space here, 
+then use the online reservation option.</p>
+<p>Online reservations are possible for groups of up to 6 people
+(maximum two households). Larger groups (6 people or more)
+can be reserved by phone.</p>
+<p>You can make reservations in the following branches:</p>
+<p>&nbsp;</p>
+<p class="bc_bottom">&nbsp;</p> 

@@ -1,0 +1,3 @@
+<h1>Contact</h1>
+<h6>Thank you for your message.</h6>
+<p>We will respond to your message as quickly as possible and contact you at the email address provided.</p>

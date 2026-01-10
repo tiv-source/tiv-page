@@ -1,0 +1,9 @@
+<h1>Reservierung</h1>
+<p>M&ouml;chtest du sicher sein, dass Du mit Deinen Freunden bei uns noch Platz findest,
+dann nutze die M&ouml;glichkeit der Online-Resevierung.</p>
+<p>Eine Online-Reservierung ist f&uuml;r Gesellschaften bis maximal 6 Personen 
+(maximal zwei Haushalte) m&ouml;glich. Gr&ouml;&szlig;ere Gruppen (ab 6 Personen) 
+k&ouml;nnen telefonisch reserviert werden.</p>
+<p>Du kannst in folgenden Filialen reservieren:</p>
+<p>&nbsp;</p>
+<p class="bc_bottom">&nbsp;</p> 

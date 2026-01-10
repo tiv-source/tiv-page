@@ -1,0 +1,11 @@
+<div id="home">
+<h1>Startseite</h1>
+
+<p>Was ist das f&uuml;r ein Projekt ?</p>
+
+<p>Worum geht es ?</p>
+
+<p>Was beiten wir !</p>
+
+<p>Mindemap ?</p>
+</div>

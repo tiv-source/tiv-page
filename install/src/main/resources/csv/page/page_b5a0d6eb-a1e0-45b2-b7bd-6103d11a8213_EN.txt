@@ -1,0 +1,3 @@
+<h1>Job offers</h1>
+<p>Design your future with us. We offer you interesting tasks, apply!</p>
+<p class="bc_bottom">&nbsp;</p> 

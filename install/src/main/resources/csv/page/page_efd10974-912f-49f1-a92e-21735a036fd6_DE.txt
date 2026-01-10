@@ -1,0 +1,2 @@
+<h1>Feedback</h1>
+<h6>Vielen Dank f&uuml;r Ihre Bewertung.</h6>

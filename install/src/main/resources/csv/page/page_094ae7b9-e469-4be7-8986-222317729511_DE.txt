@@ -1,0 +1,3 @@
+<h1>Kontakt</h1>
+<h6>Vielen Dank f&uuml;r Ihre Anfrage.</h6>
+<p>Wir werden uns so rasch als m&ouml;glich um Ihre Anfrage k&uuml;mmern und uns unter der angegebenen E-Mail-Adresse an Sie wenden.</p>

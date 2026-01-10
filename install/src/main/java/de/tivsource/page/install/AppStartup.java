@@ -135,7 +135,7 @@ public class AppStartup implements ServletContextListener {
         if(dbProperty != null) {
             return true;
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy.MM.dd HH:mm:ss", Locale.GERMAN);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.GERMAN);
         Property property = new Property();
         property.setKey(inputKey);
         property.setModified(simpleDateFormat.parse(inputModified));
@@ -157,6 +157,11 @@ public class AppStartup implements ServletContextListener {
     // - gallery.uuid.for.vacancy.picture
     // - gallery.uuid.for.event.picture
     // - gallery.uuid.for.event.picture
+    // - og.image.exhibition
+    // - og.image.size.content
+    // - server.picture.url
+    // - og.image.size.feedback.form
+    // - og.image.size.reservation.location
 
     private void checkAllPagesExisting() {
         InputStream inputStream = AppStartup.class.getClassLoader().getResourceAsStream("csv/page/page.csv");

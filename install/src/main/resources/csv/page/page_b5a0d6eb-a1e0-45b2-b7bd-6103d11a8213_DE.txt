@@ -1,0 +1,3 @@
+<h1>Stellenangebote</h1>
+<p>Gestalten Sie Ihre Zukunft mit uns. Wir bieten Ihnen interessante Aufgaben, bewerben Sie sich!</p>
+<p class="bc_bottom">&nbsp;</p> 
