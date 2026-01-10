@@ -43,7 +43,7 @@
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
-		<Logger name="org.apache.struts2" level="warn" additivity="false">
+		<Logger name="org.apache.struts2" level="info" additivity="false">
 			<AppenderRef ref="NormalAppender" />
 		</Logger>
 
