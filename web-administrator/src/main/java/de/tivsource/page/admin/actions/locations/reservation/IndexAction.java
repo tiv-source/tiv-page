@@ -63,12 +63,13 @@ public class IndexAction extends EmptyAction {
         )
     })
     public String execute() throws Exception {
-    	LOGGER.info("execute() aufgerufen.");
+    	LOGGER.trace("execute() aufgerufen.");
     	this.loadPageParameter();
     	return SUCCESS;
     }// Ende execute()
 
     private void loadPageParameter() {
+        LOGGER.trace("loadPageParameter() aufgerufen.");
         if( uncheckEvent != null && uncheckEvent != "" && uncheckEvent.length() > 0) {
             event = eventDaoLocal.findByUuid(uncheckEvent);
         }

@@ -65,7 +65,7 @@ public class DeleteAction extends EmptyAction {
 
     	if(reservation != null) {
     	    Reservation dbReservation = reservationDaoLocal.findByUuid(reservation.getUuid());
-    	    redirect = "index.html?event=" + dbReservation.getEvent().getUuid();
+    	    redirect = "index.html?uncheckEvent=" + dbReservation.getEvent().getUuid();
     	    reservationDaoLocal.delete(dbReservation);
             return SUCCESS;
     	}

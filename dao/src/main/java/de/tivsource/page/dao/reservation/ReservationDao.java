@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.reservation.Reservation;
@@ -64,7 +65,9 @@ public class ReservationDao implements ReservationDaoLocal {
      */
     @Override
     public Reservation findByUuid(String uuid) {
-        return entityManager.find(Reservation.class, uuid);
+        Reservation reservation = entityManager.find(Reservation.class, uuid);
+        Hibernate.initialize(reservation.getEvent());
+        return reservation;
     }
 
     /* (non-Javadoc)
@@ -104,7 +107,17 @@ public class ReservationDao implements ReservationDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("event", event);
-        return query.getResultList();
+        List<Reservation> reservationList = query.getResultList();
+        for (Reservation reservation : reservationList) {
+            Hibernate.initialize(reservation.getEvent().getImage());
+            Hibernate.initialize(reservation.getEvent().getDescriptionMap());
+            Hibernate.initialize(reservation.getEvent().getLocation());
+            Hibernate.initialize(reservation.getEvent().getLocation().getImage());
+            Hibernate.initialize(reservation.getEvent().getLocation().getAddress());
+            Hibernate.initialize(reservation.getEvent().getLocation().getContactDetails());
+            Hibernate.initialize(reservation.getEvent().getLocation().getDescriptionMap());
+        }
+        return reservationList;
     }
 
     /* (non-Javadoc)
@@ -119,7 +132,17 @@ public class ReservationDao implements ReservationDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("event", event);
-        return query.getResultList();
+        List<Reservation> reservationList = query.getResultList();
+        for (Reservation reservation : reservationList) {
+            Hibernate.initialize(reservation.getEvent().getImage());
+            Hibernate.initialize(reservation.getEvent().getDescriptionMap());
+            Hibernate.initialize(reservation.getEvent().getLocation());
+            Hibernate.initialize(reservation.getEvent().getLocation().getImage());
+            Hibernate.initialize(reservation.getEvent().getLocation().getAddress());
+            Hibernate.initialize(reservation.getEvent().getLocation().getContactDetails());
+            Hibernate.initialize(reservation.getEvent().getLocation().getDescriptionMap());
+        }
+        return reservationList;
     }
 
 	/* (non-Javadoc)
@@ -132,7 +155,16 @@ public class ReservationDao implements ReservationDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("confirmed", false);
-        return query.getResultList();
+        List<Reservation> reservationList = query.getResultList();
+        for (Reservation reservation : reservationList) {
+            Hibernate.initialize(reservation.getEvent());
+            Hibernate.initialize(reservation.getEvent().getImage());
+            Hibernate.initialize(reservation.getEvent().getDescriptionMap());
+            Hibernate.initialize(reservation.getEvent().getLocation());
+            Hibernate.initialize(reservation.getEvent().getLocation().getImage());
+            Hibernate.initialize(reservation.getEvent().getLocation().getDescriptionMap());
+        }
+        return reservationList;
 	}
 
 	/* (non-Javadoc)
@@ -147,7 +179,16 @@ public class ReservationDao implements ReservationDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("confirmed", false);
-        return query.getResultList();
+        List<Reservation> reservationList = query.getResultList();
+        for (Reservation reservation : reservationList) {
+            Hibernate.initialize(reservation.getEvent());
+            Hibernate.initialize(reservation.getEvent().getImage());
+            Hibernate.initialize(reservation.getEvent().getDescriptionMap());
+            Hibernate.initialize(reservation.getEvent().getLocation());
+            Hibernate.initialize(reservation.getEvent().getLocation().getImage());
+            Hibernate.initialize(reservation.getEvent().getLocation().getDescriptionMap());
+        }
+        return reservationList;
 	}
 
     /* (non-Javadoc)

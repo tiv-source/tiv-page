@@ -79,7 +79,7 @@ public class AddAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(reservation != null) {
-    	    redirect = "index.html?event=" + reservation.getEvent().getUuid();
+    	    redirect = "index.html?uncheckEvent=" + reservation.getEvent().getUuid();
     	    reservation.setUuid(UUID.randomUUID().toString());
     	    reservation.setCreated(new Date());
     	    reservation.setCreatedAddress(remoteAddress);
