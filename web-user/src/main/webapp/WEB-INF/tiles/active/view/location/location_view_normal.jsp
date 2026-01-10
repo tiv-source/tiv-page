@@ -40,7 +40,7 @@
 		<h5 class="distance_top3">Kontakt:</h5>
         
 		<p>
-		  <img src="<struts:property value="getProperty('project.icon.path')"/>telephone.png"
+		  <img src="<struts:property value="getProperty('project.icon.path')"/>telephone.svg"
                alt="Telefon"
                align="absmiddle" 
                style="width: 20px; height: 20px; float: left; margin-bottom: 2px;">
@@ -50,7 +50,7 @@
 		</p>
 
 		<p>
-		  <img src="<struts:property value="getProperty('project.icon.path')"/>fax.png" 
+		  <img src="<struts:property value="getProperty('project.icon.path')"/>fax.svg" 
                alt="Fax" 
                align="absmiddle"
                style="width: 20px; height: 20px; float: left;">
@@ -58,7 +58,7 @@
 		</p>
     		
 		<p>
-          <img src="<struts:property value="getProperty('project.icon.path')"/>email.png" 
+          <img src="<struts:property value="getProperty('project.icon.path')"/>mail.svg" 
                alt="E-Mail" 
                align="absmiddle"
                style="width: 20px; height: 20px; float: left;">
@@ -66,7 +66,7 @@
 		</p>
     		
 		<p>
-          <img src="<struts:property value="getProperty('project.icon.path')"/>world.png" 
+          <img src="<struts:property value="getProperty('project.icon.path')"/>world.svg" 
                alt="Website" 
                align="absmiddle"
                style="width: 20px; height: 20px; float: left;">

@@ -1,9 +1,9 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
-  <struts:if test="page.pictureOnPage">
+  <struts:if test="location.pictureOnPage">
     <div id="sitePicture">
-      <img alt="" src="/image/pictureitem/<struts:property value="page.uuid" />/large.png">
+      <img alt="" src="/image/pictureitem/<struts:property value="location.uuid" />/large.png">
     </div>
   </struts:if>
 
