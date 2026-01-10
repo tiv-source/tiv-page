@@ -47,13 +47,48 @@ public class JsonAction extends ActionSupport {
 	private String sord;
 	private String sidx;
 
-	@Override
+    @Override
     @Actions({
         @Action(
-        		value = "table", 
-        		results = { @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.companions, gridModel.*.gallery, gridModel.*.pictureItems"}) }
-        )
-    })
+            value = "table",
+            results = {
+                @Result(name = "success", type="json",
+                    params={"excludeProperties", ""
+                            + "gridModel.*.contentMap.DE.contentItem, "
+                            + "gridModel.*.contentMap.EN.contentItem, "
+                            + "gridModel.*.contentMap, "
+                            + "gridModel.*.cssGroup.files.*.uploadFile, "
+                            + "gridModel.*.cssGroup.files.*.uploadFileContentType, "
+                            + "gridModel.*.cssGroup.files.*.uploadFileFileName, "
+                            + "gridModel.*.cssGroup, "
+                            + "gridModel.*.descriptionMap.DE.namingItem, "
+                            + "gridModel.*.descriptionMap.EN.namingItem, "
+                            + "gridModel.*.groups, "
+                            + "gridModel.*.image.largeFileInputStream, "
+                            + "gridModel.*.image.microFileInputStream, "
+                            + "gridModel.*.image.normalFileInputStream, "
+                            + "gridModel.*.image.originalFileInputStream, "
+                            + "gridModel.*.image.pictureItem, "
+                            + "gridModel.*.image.smallFileInputStream, "
+                            + "gridModel.*.image.thumbnailFileInputStream, "
+                            + "gridModel.*.image.uploadFile, "
+                            + "gridModel.*.image.uploadFileContentType, "
+                            + "gridModel.*.image.uploadFileFileName, "
+                            + "gridModel.*.image.large, "                            
+                            + "gridModel.*.image.micro, "
+                            + "gridModel.*.image.normal, "
+                            + "gridModel.*.image.original, "
+                            + "gridModel.*.image.small, "
+                            + "gridModel.*.image.thumbnail, "
+                            + "gridModel.*.picture, "
+                            + "gridModel.*.pictureItems, "
+                            + "gridModel.*.companions, "
+                            + "gridModel.*.group"
+                    }// Ende params
+                )// Ende result
+            }// Ende results
+        )// Ende Action
+    })// Ende Actions
 	public String execute() {
 		return SUCCESS;
 	}
