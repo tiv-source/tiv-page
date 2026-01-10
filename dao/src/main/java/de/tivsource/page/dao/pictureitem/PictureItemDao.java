@@ -5,6 +5,7 @@ package de.tivsource.page.dao.pictureitem;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import jakarta.ejb.Stateless;
@@ -35,7 +36,9 @@ public class PictureItemDao implements PictureItemDaoLocal {
     @Override
     public PictureItem findByUuid(String uuid) {
         LOGGER.info("findByUuid(String uuid) aufgerufen.");
-        return entityManager.find(PictureItem.class, uuid);
+        PictureItem pictureItem = entityManager.find(PictureItem.class, uuid); 
+        Hibernate.initialize(pictureItem.getImage());
+        return pictureItem;
     }
 
 }// Ende class
