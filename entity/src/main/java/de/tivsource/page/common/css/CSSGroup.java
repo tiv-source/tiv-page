@@ -62,7 +62,7 @@ public class CSSGroup implements Comparable<CSSGroup> {
     /**
      * Set mit den CSS-Dateien die zu der Gruppe gehören.
      */
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER, mappedBy = "groups", targetEntity = CSSFile.class)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY, mappedBy = "groups", targetEntity = CSSFile.class)
     @SortNatural
     private SortedSet<CSSFile> files;
 
@@ -257,7 +257,7 @@ public class CSSGroup implements Comparable<CSSGroup> {
     @Override
     public int compareTo(CSSGroup o) {
         logger.trace("compareTo(CSSGroup o) aufgerufen.");
-        return o.name.compareTo(this.name);
+        return o.getName().compareTo(this.name);
     }
 
     @Override

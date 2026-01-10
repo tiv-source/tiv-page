@@ -3,11 +3,13 @@
  */
 package de.tivsource.page.dao.cssgroup;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.common.css.CSSGroup;
@@ -109,7 +111,13 @@ public class CSSGroupDao implements CSSGroupDaoLocal {
      */
     @Override
     public CSSGroup findByUuid(String uuid) {
-        return entityManager.find(CSSGroup.class, uuid);
+        CSSGroup cssGroup = entityManager.find(CSSGroup.class, uuid);
+        Hibernate.initialize(cssGroup.getFiles());
+        List<CSSFile> cssFileList = new ArrayList<>(cssGroup.getFiles());
+        for (CSSFile cssFile : cssFileList) {
+            Hibernate.initialize(cssFile.getGroups());
+        }
+        return cssGroup;
     }
 
     /* (non-Javadoc)
