@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.dispatcher.multipart.UploadedFile;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -33,7 +37,7 @@ import de.tivsource.page.dao.property.PropertyDaoLocal;
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/files/css_add_error.jsp")
   })
 })
-public class AddAction extends EmptyAction {
+public class AddAction extends EmptyAction implements UploadedFilesAware {
 
     /**
 	 * Serial Version UID.
@@ -50,20 +54,44 @@ public class AddAction extends EmptyAction {
 
     private File file;
 
-    private String contentType;
+    private String fileContentType;
 
-    private String filename;
-    
+    private String fileFileName;
+
+    /**
+     * @return the file
+     */
+    public File getFile() {
+        return file;
+    }
+
+    @StrutsParameter
     public void setFile(File file) {
         this.file = file;
     }
 
-    public void setFileContentType(String contentType) {
-        this.contentType = contentType;
+    /**
+     * @return the fileContentType
+     */
+    public String getFileContentType() {
+        return fileContentType;
     }
 
-    public void setFileFileName(String filename) {
-        this.filename = filename;
+    @StrutsParameter
+    public void setFileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
+    }
+
+    /**
+     * @return the fileFileName
+     */
+    public String getFileFileName() {
+        return fileFileName;
+    }
+
+    @StrutsParameter
+    public void setFileFileName(String fileFileName) {
+        this.fileFileName = fileFileName;
     }
     
     @Override
@@ -81,7 +109,7 @@ public class AddAction extends EmptyAction {
     	LOGGER.info("execute() aufgerufen.");
     	String pathToFiles = propertyDaoLocal.findByKey("upload-path").getValue();
 
-    	File fileToCreate = new File(pathToFiles, filename);
+    	File fileToCreate = new File(pathToFiles, fileFileName);
         // Wenn die Datei noch nicht existiert wird Sie erstellt.
         if (!fileToCreate.exists()) {
         	saveCssFile(file, fileToCreate);
@@ -94,6 +122,18 @@ public class AddAction extends EmptyAction {
 
     	
     }// Ende execute()
+
+    @Override
+    public void withUploadedFiles(List<UploadedFile> uploadedFiles) {
+        LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
+        if (!uploadedFiles.isEmpty()) {
+            LOGGER.info("uploadedFiles ist nicht leer.");
+            UploadedFile uploadedFile = uploadedFiles.get(0);
+            file = new File(uploadedFile.getAbsolutePath());
+            fileContentType = uploadedFile.getContentType();
+            fileFileName = uploadedFile.getOriginalName();
+         }
+    }
 
     private static void saveCssFile(File source, File destination) throws Exception {
         byte[] buffer = new byte[(int) source.length()];

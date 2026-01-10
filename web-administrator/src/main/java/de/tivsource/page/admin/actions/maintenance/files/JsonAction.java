@@ -7,16 +7,16 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 /**
  * @author Marc Michele
- * 
+ * TODO: Sortierung nach Namen und Suche
  */
 @ParentPackage(value = "administratorJson")
 public class JsonAction extends ActionSupport {
@@ -98,6 +98,7 @@ public class JsonAction extends ActionSupport {
         return rows;
     }
 
+    @StrutsParameter
     public void setRows(Integer rows) {
         this.rows = rows;
     }
@@ -106,6 +107,7 @@ public class JsonAction extends ActionSupport {
         return page;
     }
 
+    @StrutsParameter
     public void setPage(Integer page) {
         this.page = page;
     }
@@ -138,6 +140,7 @@ public class JsonAction extends ActionSupport {
         return sord;
     }
 
+    @StrutsParameter
     public void setSord(String sord) {
         this.sord = sord;
     }
@@ -146,6 +149,7 @@ public class JsonAction extends ActionSupport {
         return sidx;
     }
 
+    @StrutsParameter
     public void setSidx(String sidx) {
         this.sidx = sidx;
     }

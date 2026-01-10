@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
 import de.tivsource.page.admin.actions.EmptyAction;
 
@@ -33,6 +34,7 @@ public class DeleteAction extends EmptyAction {
         return file;
     }
 
+    @StrutsParameter
     public void setFile(String file) {
         this.file = file;
     }
@@ -51,6 +53,8 @@ public class DeleteAction extends EmptyAction {
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
+    	// TODO: Upload-Pfad aus Datenbank laden
+    	// TODO: Überprüfen ob die Variable file mit .. oder / anfängt
     	if(file != null && file.length() > 0) {
     	    String strPath = "/var/www/html/uploads/";
     	    String deleteFile = strPath + file;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="file">
+    <field-validator type="required" short-circuit="true">
+      <message key="file.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="fileContentType">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="fileContentType.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="fileFileName">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="fileFileName.validation.required" />
+    </field-validator>
+    <field-validator type="stringlength" short-circuit="true">
+      <param name="minLength">5</param>
+      <param name="maxLength">35</param>
+      <param name="trim">true</param>
+      <message key="fileFileName.validation.length" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-Z0-9_\-.]*$</param>
+      <message key="fileFileName.validation.character" />
+    </field-validator>
+  </field>
+
+</validators>

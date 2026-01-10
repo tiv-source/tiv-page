@@ -20,11 +20,14 @@
                   tooltipDelay="500"
                   theme="css_xhtml"
                   enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
+                <struts:fielderror fieldName="fileContentType" />
+                <struts:fielderror fieldName="fileFileName" />
                 <struts:file key="file" theme="css_xhtml">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
