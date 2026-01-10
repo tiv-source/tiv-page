@@ -24,7 +24,7 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:file key="sliderImage.uploadFile" parentTheme="xhtml" labelposition="left">
+                <struts:file key="sliderImage.uploadFile" parentTheme="xhtml" labelposition="left" accept=".png">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>
