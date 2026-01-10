@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import jakarta.ejb.Stateless;
@@ -38,7 +39,10 @@ public class ContentItemDao implements ContentItemDaoLocal {
 	@Override
 	public ContentItem findByUuid(String uuid) {
 		LOGGER.info("findByUuid(String uuid) aufgerufen");
-		return entityManager.find(ContentItem.class, uuid);
+		ContentItem contentItem = entityManager.find(ContentItem.class, uuid); 
+        Hibernate.initialize(contentItem.getDescriptionMap());
+        Hibernate.initialize(contentItem.getContentMap());
+        return contentItem;
 	}
 
     /* (non-Javadoc)
@@ -53,7 +57,11 @@ public class ContentItemDao implements ContentItemDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<ContentItem> contentItemList = query.getResultList();
+        for (ContentItem contentItem : contentItemList) {
+            Hibernate.initialize(contentItem.getDescriptionMap());
+        }
+        return contentItemList;
     }
 
 	/* (non-Javadoc)
@@ -66,7 +74,11 @@ public class ContentItemDao implements ContentItemDaoLocal {
         Query query = entityManager.createQuery("from ContentItem ci where ci.uuid not in (select ce.contentItem.uuid from ContentEntry ce)");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<ContentItem> contentItemList = query.getResultList();
+        for (ContentItem contentItem : contentItemList) {
+            Hibernate.initialize(contentItem.getDescriptionMap());
+        }
+        return contentItemList;
 	}
 
     /* (non-Javadoc)
