@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.news.News;
 import jakarta.ejb.Stateless;
@@ -106,7 +107,13 @@ public class NewsDao implements NewsDaoLocal {
 	 */
 	@Override
 	public News findByUuid(String uuid) {
-		return entityManager.find(News.class, uuid);
+	    News news = entityManager.find(News.class, uuid);
+	    Hibernate.initialize(news.getImage());
+        Hibernate.initialize(news.getDescriptionMap());
+        Hibernate.initialize(news.getContentMap());
+        Hibernate.initialize(news.getCssGroup());
+        Hibernate.initialize(news.getCssGroup().getFiles());
+        return news;
 	}
 
 	/* (non-Javadoc)
@@ -118,7 +125,12 @@ public class NewsDao implements NewsDaoLocal {
         Query query = entityManager.createQuery("from News n");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<News> newsList = query.getResultList();
+        for (News news : newsList) {
+            Hibernate.initialize(news.getImage());
+            Hibernate.initialize(news.getDescriptionMap());
+        }
+        return newsList;
 	}
 
 	/* (non-Javadoc)
@@ -132,7 +144,12 @@ public class NewsDao implements NewsDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<News> newsList = query.getResultList();
+        for (News news : newsList) {
+            Hibernate.initialize(news.getImage());
+            Hibernate.initialize(news.getDescriptionMap());
+        }
+        return newsList;
 	}
 
     /* (non-Javadoc)
@@ -147,7 +164,12 @@ public class NewsDao implements NewsDaoLocal {
         query.setMaxResults(max);
         query.setParameter("visible", true);
         query.setParameter("date", new Date());
-        return query.getResultList();
+        List<News> newsList = query.getResultList();
+        for (News news : newsList) {
+            Hibernate.initialize(news.getImage());
+            Hibernate.initialize(news.getDescriptionMap());
+        }
+        return newsList;
     }
 
 	/* (non-Javadoc)
