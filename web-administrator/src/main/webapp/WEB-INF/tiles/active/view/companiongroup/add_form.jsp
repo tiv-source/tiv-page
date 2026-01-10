@@ -25,7 +25,7 @@
 
               <div class="field">
                 <struts:fielderror fieldName="companionGroup.image.uploadFileContentType" />
-                <struts:file key="companionGroup.image" parentTheme="xhtml" labelposition="left">
+                <struts:file key="companionGroup.image" parentTheme="xhtml" labelposition="left" accept=".png">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>

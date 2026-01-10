@@ -56,7 +56,7 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
         @Action(
         		value = "image", 
         		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "editForm.html", params = {"uncheckPage", "%{companionGroup.uuid}"}),
+        				@Result(name = "success", type = "redirectAction", location = "editForm.html", params = {"uncheckCompanionGroup", "%{companionGroup.uuid}"}),
         				@Result(name = "input",   type = "tiles", location = "imageForm"),
         				@Result(name = "error",   type = "tiles", location = "imageEditError")
         				}

@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.jpa.AvailableHints;
 
 import de.tivsource.page.entity.companion.CompanionGroup;
 import jakarta.ejb.Stateless;
@@ -95,7 +97,12 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
      */
     @Override
     public CompanionGroup findByUuid(String uuid) {
-        return entityManager.find(CompanionGroup.class, uuid);
+        CompanionGroup companionGroup = entityManager.find(CompanionGroup.class, uuid);
+        Hibernate.initialize(companionGroup.getImage());
+        Hibernate.initialize(companionGroup.getDescriptionMap());
+        Hibernate.initialize(companionGroup.getCssGroup());
+        Hibernate.initialize(companionGroup.getCssGroup().getFiles());
+        return companionGroup;
     }
 
     /* (non-Javadoc)
@@ -106,7 +113,18 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
         Query query = entityManager.createQuery("select cg from CompanionGroup cg where cg.technical = :technical and cg.visible = :visible order by cg.uuid asc");
         query.setParameter("technical", technical);
         query.setParameter("visible", true);
-        return (CompanionGroup) query.getSingleResult();
+        CompanionGroup companionGroup = query.getResultList().isEmpty() ? null : (CompanionGroup)query.setHint(AvailableHints.HINT_READ_ONLY, true).getSingleResult(); 
+        if(companionGroup != null) {
+            Hibernate.initialize(companionGroup.getImage());
+            Hibernate.initialize(companionGroup.getDescriptionMap());
+            Hibernate.initialize(companionGroup.getCssGroup());
+            Hibernate.initialize(companionGroup.getCssGroup().getFiles());
+            
+            Hibernate.unproxy(companionGroup.getDescriptionMap());
+            Hibernate.unproxy(companionGroup.getCssGroup());
+            Hibernate.unproxy(companionGroup.getCssGroup().getFiles());
+        }
+        return companionGroup;
     }
 
     /* (non-Javadoc)
@@ -118,7 +136,12 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
         Query query = entityManager.createQuery("from CompanionGroup cg order by cg.orderNumber asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<CompanionGroup> companionGroupList = query.getResultList();
+        for (CompanionGroup companionGroup : companionGroupList) {
+            Hibernate.initialize(companionGroup.getImage());
+            Hibernate.initialize(companionGroup.getDescriptionMap());
+        }
+        return companionGroupList;
     }
 
     /* (non-Javadoc)
@@ -132,7 +155,12 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<CompanionGroup> companionGroupList = query.getResultList();
+        for (CompanionGroup companionGroup : companionGroupList) {
+            Hibernate.initialize(companionGroup.getImage());
+            Hibernate.initialize(companionGroup.getDescriptionMap());
+        }
+        return companionGroupList;
     }
 
     /* (non-Javadoc)
@@ -145,7 +173,12 @@ public class CompanionGroupDao implements CompanionGroupDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<CompanionGroup> companionGroupList = query.getResultList();
+        for (CompanionGroup companionGroup : companionGroupList) {
+            Hibernate.initialize(companionGroup.getImage());
+            Hibernate.initialize(companionGroup.getDescriptionMap());
+        }
+        return companionGroupList;
     }
 
     /* (non-Javadoc)
