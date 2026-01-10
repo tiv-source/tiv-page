@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.common.menuentry.MenuEntry;
 import jakarta.ejb.Stateless;
@@ -45,7 +46,11 @@ public class MenuEntryDao implements MenuEntryDaoLocal {
                 );
         query.setParameter("topNavigation", true);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<MenuEntry> menuEntryList = query.getResultList();
+        for (MenuEntry menuEntry : menuEntryList) {
+            Hibernate.initialize(menuEntry.getDescriptionMap());
+        }
+        return menuEntryList;
 	}
 
 	/* (non-Javadoc)
@@ -62,7 +67,11 @@ public class MenuEntryDao implements MenuEntryDaoLocal {
                 );
         query.setParameter("navigation", true);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<MenuEntry> menuEntryList = query.getResultList();
+        for (MenuEntry menuEntry : menuEntryList) {
+            Hibernate.initialize(menuEntry.getDescriptionMap());
+        }
+        return menuEntryList;
 	}
 
 	/* (non-Javadoc)
@@ -79,7 +88,11 @@ public class MenuEntryDao implements MenuEntryDaoLocal {
                 );
         query.setParameter("bottomNavigation", true);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<MenuEntry> menuEntryList = query.getResultList();
+        for (MenuEntry menuEntry : menuEntryList) {
+            Hibernate.initialize(menuEntry.getDescriptionMap());
+        }
+        return menuEntryList;
 	}
 
 	/* (non-Javadoc)
@@ -96,7 +109,11 @@ public class MenuEntryDao implements MenuEntryDaoLocal {
                 );
         query.setParameter("responsiveNavigation", true);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<MenuEntry> menuEntryList = query.getResultList();
+        for (MenuEntry menuEntry : menuEntryList) {
+            Hibernate.initialize(menuEntry.getDescriptionMap());
+        }
+        return menuEntryList;
 	}
 
 }// Ende class
