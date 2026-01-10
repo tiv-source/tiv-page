@@ -39,7 +39,7 @@ import jakarta.persistence.Version;
 public class NamingItem {
 
     public static final String DISCRIMINATOR_COLUMN = "classname";
-    
+
     /**
      * UUID des Objektes der Klasse NamingItem, diese ID ist einmalig über alle
      * Objekte hinweg und sollte der bevorzugte weg sein auf bestimmte Objekte
