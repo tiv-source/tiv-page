@@ -36,7 +36,11 @@ public interface CSSFileDaoLocal {
     public Boolean hasReferences(String uuid);
     
     public CSSFile findByUuid(String uuid);
-    
+
+    public CSSFile findRevisionByUuid(String uuid, String rev);
+
+    public List<Object[]> getRevisionsByUuid(String uuid);
+
     /**
      * Methode zum laden einer Liste von CSSFile Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzahl der zu ladenen CSSFile Objekte.

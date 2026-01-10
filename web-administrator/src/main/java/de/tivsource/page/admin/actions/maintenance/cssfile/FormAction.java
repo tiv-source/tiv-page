@@ -1,5 +1,7 @@
 package de.tivsource.page.admin.actions.maintenance.cssfile;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
@@ -55,6 +57,8 @@ public class FormAction extends EmptyAction {
 
     private String uncheckCssFile;
 
+    private List<Object[]> revisions = null;
+
     public CSSFile getCssFile() {
         return cssFile;
     }
@@ -88,9 +92,15 @@ public class FormAction extends EmptyAction {
     	return SUCCESS;
     }// Ende execute()
 
+    public List<Object[]> getRevisions() {
+        return revisions;
+    }
+
 	private void loadPageParameter() {
 		if( uncheckCssFile != null && uncheckCssFile != "" && uncheckCssFile.length() > 0) {
+		    // TODO: Check ob UUID auch zu einer Seite gehört !!!
 		    cssFile = cssFileDaoLocal.findByUuid(uncheckCssFile);
+            revisions = cssFileDaoLocal.getRevisionsByUuid(uncheckCssFile);
 		} else {
 		    cssFile = new CSSFile();
 		}

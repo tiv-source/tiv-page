@@ -7,6 +7,10 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
+import org.hibernate.envers.query.AuditQuery;
 
 import de.tivsource.page.common.css.CSSFile;
 import jakarta.ejb.Stateless;
@@ -75,6 +79,27 @@ public class CSSFileDao implements CSSFileDaoLocal {
     @Override
     public CSSFile findByUuid(String uuid) {
         return entityManager.find(CSSFile.class, uuid);
+    }
+
+    @Override
+    public CSSFile findRevisionByUuid(String uuid, String rev) {
+        LOGGER.info("Page Uuid: " + uuid);
+        LOGGER.info("Page Rev: " + rev);
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+        CSSFile cssFile = auditReader.find(CSSFile.class, uuid, Integer.parseInt(rev));
+        LOGGER.info("Page (DB): " + cssFile.getUuid());
+        LOGGER.info("Page Name (DB): " + cssFile.getName());
+        return cssFile;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Object[]> getRevisionsByUuid(String uuid) {
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+        AuditQuery query = auditReader.createQuery().forRevisionsOfEntity(CSSFile.class, false, true);
+        query.add(AuditEntity.id().eq(uuid));
+        query.addOrder(AuditEntity.revisionNumber().desc());
+        return query.getResultList();
     }
 
     /* (non-Javadoc)
