@@ -6,15 +6,15 @@ package de.tivsource.page.dao.contententry;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+
+import de.tivsource.page.common.menuentry.ContentEntry;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import de.tivsource.page.common.menuentry.ContentEntry;
 
 /**
  * @author Marc Michele
@@ -90,7 +90,11 @@ public class ContentEntryDao implements ContentEntryDaoLocal {
 	 */
 	@Override
 	public ContentEntry findByUuid(String uuid) {
-		return entityManager.find(ContentEntry.class, uuid);
+	    ContentEntry contentEntry = entityManager.find(ContentEntry.class, uuid);
+	    Hibernate.initialize(contentEntry.getDescriptionMap());
+	    Hibernate.initialize(contentEntry.getContentItem());
+	    Hibernate.initialize(contentEntry.getContentItem().getDescriptionMap());
+		return contentEntry;
 	}
 
 	/* (non-Javadoc)
@@ -102,7 +106,11 @@ public class ContentEntryDao implements ContentEntryDaoLocal {
         Query query = entityManager.createQuery("from ContentEntry ce");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<ContentEntry> contentEntryList = query.getResultList();
+        for (ContentEntry contentEntry : contentEntryList) {
+            Hibernate.initialize(contentEntry.getDescriptionMap());
+        }
+        return contentEntryList;
 	}
 
 	/* (non-Javadoc)
@@ -116,7 +124,11 @@ public class ContentEntryDao implements ContentEntryDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<ContentEntry> contentEntryList = query.getResultList();
+        for (ContentEntry contentEntry : contentEntryList) {
+            Hibernate.initialize(contentEntry.getDescriptionMap());
+        }
+        return contentEntryList;
 	}
 
 	/* (non-Javadoc)
