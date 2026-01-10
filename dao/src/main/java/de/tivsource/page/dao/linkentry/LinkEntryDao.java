@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.common.menuentry.LinkEntry;
 import jakarta.ejb.Stateless;
@@ -87,7 +88,9 @@ public class LinkEntryDao implements LinkEntryDaoLocal {
 	 */
 	@Override
 	public LinkEntry findByUuid(String uuid) {
-		return entityManager.find(LinkEntry.class, uuid);
+	    LinkEntry linkEntry = entityManager.find(LinkEntry.class, uuid);
+        Hibernate.initialize(linkEntry.getDescriptionMap());
+        return linkEntry;
 	}
 
 	/* (non-Javadoc)
@@ -99,8 +102,11 @@ public class LinkEntryDao implements LinkEntryDaoLocal {
         Query query = entityManager.createQuery("from LinkEntry le");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
-
+        List<LinkEntry> linkEntryList = query.getResultList();
+        for (LinkEntry linkEntry : linkEntryList) {
+            Hibernate.initialize(linkEntry.getDescriptionMap());
+        }
+        return linkEntryList;
 	}
 
 	/* (non-Javadoc)
@@ -114,7 +120,11 @@ public class LinkEntryDao implements LinkEntryDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<LinkEntry> linkEntryList = query.getResultList();
+        for (LinkEntry linkEntry : linkEntryList) {
+            Hibernate.initialize(linkEntry.getDescriptionMap());
+        }
+        return linkEntryList;
 	}
 
 	/* (non-Javadoc)
