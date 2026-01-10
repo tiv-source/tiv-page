@@ -3,8 +3,6 @@
  */
 package de.tivsource.page.entity.manual;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -18,7 +16,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = Manual.TABLE)
-@Table(appliesTo = Manual.TABLE, fetch = FetchMode.SELECT)
 public class Manual extends ContentItem {
 
     public static final String TABLE = "Manual";
@@ -31,7 +28,7 @@ public class Manual extends ContentItem {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("/");
         stringBuffer.append("manual/");
-        stringBuffer.append(this.getUuid());
+        stringBuffer.append(this.getTechnical());
         stringBuffer.append("/");
         stringBuffer.append("index.html");
         return stringBuffer.toString();

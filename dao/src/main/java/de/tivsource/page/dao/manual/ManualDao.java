@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.jpa.AvailableHints;
 
 import de.tivsource.page.entity.manual.Manual;
 import jakarta.ejb.Stateless;
@@ -105,7 +107,13 @@ public class ManualDao implements ManualDaoLocal {
 	 */
 	@Override
 	public Manual findByUuid(String uuid) {
-		return entityManager.find(Manual.class, uuid);
+	    Manual manual = entityManager.find(Manual.class, uuid);
+	    Hibernate.initialize(manual.getImage());
+        Hibernate.initialize(manual.getDescriptionMap());
+        Hibernate.initialize(manual.getContentMap());
+        Hibernate.initialize(manual.getCssGroup());
+        Hibernate.initialize(manual.getCssGroup().getFiles());
+        return manual;
 	}
 
     /* (non-Javadoc)
@@ -117,7 +125,20 @@ public class ManualDao implements ManualDaoLocal {
         Query query = entityManager.createQuery("select m from Manual m where m.technical = :technical and m.visible = :visible");
         query.setParameter("technical", technical);
         query.setParameter("visible", true);
-        return (Manual)query.getSingleResult();
+        Manual manual = query.getResultList().isEmpty() ? null : (Manual)query.setHint(AvailableHints.HINT_READ_ONLY, true).getSingleResult(); 
+        if(manual != null) {
+            Hibernate.initialize(manual.getImage());
+            Hibernate.initialize(manual.getDescriptionMap());
+            Hibernate.initialize(manual.getContentMap());
+            Hibernate.initialize(manual.getCssGroup());
+            Hibernate.initialize(manual.getCssGroup().getFiles());
+            
+            Hibernate.unproxy(manual.getDescriptionMap());
+            Hibernate.unproxy(manual.getContentMap());
+            Hibernate.unproxy(manual.getCssGroup());
+            Hibernate.unproxy(manual.getCssGroup().getFiles());
+        }
+        return manual;
     }
 
 	/* (non-Javadoc)
@@ -129,7 +150,12 @@ public class ManualDao implements ManualDaoLocal {
         Query query = entityManager.createQuery("from Manual m");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Manual> manualList = query.getResultList();
+        for (Manual manual : manualList) {
+            Hibernate.initialize(manual.getImage());
+            Hibernate.initialize(manual.getDescriptionMap());
+        }
+        return manualList;
 	}
 
 	/* (non-Javadoc)
@@ -143,7 +169,12 @@ public class ManualDao implements ManualDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Manual> manualList = query.getResultList();
+        for (Manual manual : manualList) {
+            Hibernate.initialize(manual.getImage());
+            Hibernate.initialize(manual.getDescriptionMap());
+        }
+        return manualList;
 	}
 
     /* (non-Javadoc)
@@ -157,7 +188,12 @@ public class ManualDao implements ManualDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<Manual> manualList = query.getResultList();
+        for (Manual manual : manualList) {
+            Hibernate.initialize(manual.getImage());
+            Hibernate.initialize(manual.getDescriptionMap());
+        }
+        return manualList;
     }
 
 	/* (non-Javadoc)
