@@ -120,6 +120,11 @@ public class AddAction extends EmptyAction implements UploadedFilesAware {
             
             location.setTechnical("LOCATION_" + location.getUuid());
 
+            location.getContactDetails().setUuid(UUID.randomUUID().toString());
+            location.getContactDetails().setLocation(location);;
+            location.getAddress().setUuid(UUID.randomUUID().toString());
+            location.getAddress().setLocation(location);
+
             location.getImage().setUuid(UUID.randomUUID().toString());
             location.getImage().generate();
             location.getImage().setCreated(new Date());

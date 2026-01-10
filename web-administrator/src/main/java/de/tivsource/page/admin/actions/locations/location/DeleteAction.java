@@ -9,6 +9,9 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -20,6 +23,20 @@ import de.tivsource.page.entity.location.Location;
  * @author Marc Michele
  *
  */
+@TilesDefinitions({
+  @TilesDefinition(name="locationDeleteError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/delete_error.jsp")
+  }),
+  @TilesDefinition(name="locationEventsError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/events_error.jsp")
+  }),
+  @TilesDefinition(name="locationVacanciesError", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/vacancies_error.jsp")
+  })
+})
 public class DeleteAction extends EmptyAction {
 
     /**
@@ -53,7 +70,9 @@ public class DeleteAction extends EmptyAction {
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
         				@Result(name = "input", type="tiles", location = "locationDeleteError"),
-        				@Result(name = "error", type="tiles", location = "locationDeleteError")
+        				@Result(name = "error", type="tiles", location = "locationDeleteError"),
+                        @Result(name = "events", type="tiles", location = "locationEventsError"),
+                        @Result(name = "vacancies", type="tiles", location = "locationVacanciesError")
         				}
         )
     })
@@ -64,18 +83,21 @@ public class DeleteAction extends EmptyAction {
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
     	if(location != null) {
-    	    Location dbLocation = locationDaoLocal.findByUuid(location.getUuid());
-    		dbLocation.setModified(new Date());
-    		dbLocation.setModifiedBy(remoteUser);
-    		dbLocation.setModifiedAddress(remoteAddress);
-    		locationDaoLocal.merge(dbLocation);
-    		locationDaoLocal.delete(dbLocation);
-            return SUCCESS;
-    	}
-    	else {
-    		return ERROR;
-    	}
-    	
+    	    if(!locationDaoLocal.hasEvents(location.getUuid())) {
+                if(!locationDaoLocal.hasVacancies(location.getUuid())) {
+            	    Location dbLocation = locationDaoLocal.findByUuid(location.getUuid());
+            		dbLocation.setModified(new Date());
+            		dbLocation.setModifiedBy(remoteUser);
+            		dbLocation.setModifiedAddress(remoteAddress);
+            		locationDaoLocal.merge(dbLocation);
+            		locationDaoLocal.delete(dbLocation);
+                    return SUCCESS;
+                }
+                return "vacancies";
+            }
+    	    return "events";
+        }
+        return ERROR;
     	
     }// Ende execute()
 	

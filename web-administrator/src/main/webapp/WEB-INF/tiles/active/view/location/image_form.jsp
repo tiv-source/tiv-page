@@ -4,7 +4,7 @@
       <!--  Start MAIN -->
       <div class="main">
         <div id="title">
-          <h5><struts:text name="page.image.edit"/></h5>
+          <h5><struts:text name="location.image.edit"/></h5>
         </div>
 
         <div id="backend_update_form" class="update">
@@ -23,7 +23,7 @@
 
               <div class="field">
                 <label for="location.descriptionMap.DE.name" class="label">Name:</label>
-                <struts:hidden id="location.descriptionMap.DE.name" key="page.descriptionMap.DE.name"/>
+                <struts:hidden id="location.descriptionMap.DE.name" key="location.descriptionMap.DE.name"/>
                 <struts:property value="location.descriptionMap.DE.name"/>
               </div>
 
@@ -33,7 +33,7 @@
               </div>
 
               <div class="field">
-                <struts:file key="file" parentTheme="xhtml" labelposition="left">
+                <struts:file key="file" parentTheme="xhtml" labelposition="left" accept=".png">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>

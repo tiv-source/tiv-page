@@ -17,13 +17,14 @@
                   javascriptTooltip="true" 
                   tooltipDelay="500"
                   enctype="multipart/form-data"
+                  method="post"
           >
 
             <fieldset class="fieldset">
 
               <div class="field">
                 <struts:fielderror fieldName="location.image.uploadFileContentType" />
-                <struts:file key="location.image" parentTheme="xhtml" labelposition="left">
+                <struts:file key="location.image" parentTheme="xhtml" labelposition="left" accept=".png">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>

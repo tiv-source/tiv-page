@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
@@ -83,12 +84,34 @@ public class LocationDao implements LocationDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean hasEvents(String uuid) {
+        Location location = entityManager.find(Location.class, uuid);
+        Query query = entityManager.createQuery("SELECT e FROM Event e WHERE e.location = :location order by e.uuid asc");
+        query.setParameter("location", location);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
+    public Boolean hasVacancies(String uuid) {
+        Location location = entityManager.find(Location.class, uuid);
+        Query query = entityManager.createQuery("SELECT v FROM Vacancy v WHERE v.location = :location order by v.uuid asc");
+        query.setParameter("location", location);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.location.LocationDaoLocal#findByUuid(java.lang.String)
      */
     @Override
     public Location findByUuid(String uuid) {
-        return entityManager.find(Location.class, uuid);
+        Location location = entityManager.find(Location.class, uuid);
+        Hibernate.initialize(location.getImage());
+        Hibernate.initialize(location.getDescriptionMap());
+        Hibernate.initialize(location.getCssGroup());
+        Hibernate.initialize(location.getCssGroup().getFiles());
+        Hibernate.initialize(location.getOpeningHours());
+        return location;
     }
 
     /* (non-Javadoc)
@@ -97,6 +120,12 @@ public class LocationDao implements LocationDaoLocal {
     @Override
     public Location findByUuidWidthEvents(String uuid) {
         Location location = entityManager.find(Location.class, uuid);
+        Hibernate.initialize(location.getImage());
+        Hibernate.initialize(location.getDescriptionMap());
+        Hibernate.initialize(location.getEvents());
+        Hibernate.initialize(location.getCssGroup());
+        Hibernate.initialize(location.getCssGroup().getFiles());
+        Hibernate.initialize(location.getOpeningHours());
         LOGGER.debug("Größe der Eventliste: " + location.getEvents().size());
         return location;
     }
@@ -110,7 +139,14 @@ public class LocationDao implements LocationDaoLocal {
         Query query = entityManager.createQuery("SELECT l FROM Location l");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Location> locationList = query.getResultList();
+        for (Location location : locationList) {
+            Hibernate.initialize(location.getImage());
+            Hibernate.initialize(location.getDescriptionMap());
+            Hibernate.initialize(location.getAddress());
+            Hibernate.initialize(location.getContactDetails());
+        }
+        return locationList;
     }
 
     /* (non-Javadoc)
@@ -124,7 +160,12 @@ public class LocationDao implements LocationDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Location> locationList = query.getResultList();
+        for (Location location : locationList) {
+            Hibernate.initialize(location.getImage());
+            Hibernate.initialize(location.getDescriptionMap());
+        }
+        return locationList;
     }
 
     /* (non-Javadoc)
@@ -136,7 +177,12 @@ public class LocationDao implements LocationDaoLocal {
         String queryString = "select l from Location l where l.event = :visible order by l.orderNumber";
         Query query = entityManager.createQuery(queryString);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<Location> locationList = query.getResultList();
+        for (Location location : locationList) {
+            Hibernate.initialize(location.getImage());
+            Hibernate.initialize(location.getDescriptionMap());
+        }
+        return locationList;
     }
 
     /* (non-Javadoc)
@@ -150,7 +196,15 @@ public class LocationDao implements LocationDaoLocal {
         query.setMaxResults(max);
         query.setParameter("visible", true);
         query.setParameter("inLocationList", true);
-        return query.getResultList();
+        List<Location> locationList = query.getResultList();
+        for (Location location : locationList) {
+            Hibernate.initialize(location.getImage());
+            Hibernate.initialize(location.getDescriptionMap());
+            Hibernate.initialize(location.getOpeningHours());
+            Hibernate.initialize(location.getAddress());
+            Hibernate.initialize(location.getContactDetails());
+        }
+        return locationList;
     }
 
     /* (non-Javadoc)

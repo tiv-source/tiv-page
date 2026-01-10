@@ -49,6 +49,10 @@ public interface LocationDaoLocal {
      */
     public Boolean isEventLocation(String uuid);
 
+    public Boolean hasEvents(String uuid);
+
+    public Boolean hasVacancies(String uuid);
+
     public Location findByUuid(String uuid);
 
     public Location findByUuidWidthEvents(String uuid);

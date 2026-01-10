@@ -4,26 +4,23 @@
 package de.tivsource.page.entity.location;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.SortedSet;
 
 import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
 
-import de.tivsource.page.entity.embeddable.Address;
-import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.event.Event;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.vacancy.Vacancy;
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SecondaryTable;
 
 /**
@@ -37,23 +34,10 @@ public class Location extends PictureItem {
 
     public static final String TABLE = "Location";
 
-    @Embedded
-    @AttributeOverrides( {
-        @AttributeOverride(name="street", column = @Column(table = TABLE, name="street") ),
-        @AttributeOverride(name="zip", column = @Column(table = TABLE, name="zip") ),
-        @AttributeOverride(name="city", column = @Column(table = TABLE, name="city") ),
-        @AttributeOverride(name="country", column = @Column(table = TABLE, name="country") )
-    } )
+    @OneToOne(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private Address address;
 
-    @Embedded
-    @AttributeOverrides( {
-        @AttributeOverride(name="mobile", column = @Column(table = TABLE, name="mobile") ),
-        @AttributeOverride(name="telephone", column = @Column(table = TABLE, name="telephone") ),
-        @AttributeOverride(name="fax", column = @Column(table = TABLE, name="fax") ),
-        @AttributeOverride(name="email", column = @Column(table = TABLE, name="email") ),
-        @AttributeOverride(name="homepage", column = @Column(table = TABLE, name="homepage") )
-    } )
+    @OneToOne(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private ContactDetails contactDetails;
 
     @OneToMany(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
@@ -166,6 +150,31 @@ public class Location extends PictureItem {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 21 *  hash * TABLE.hashCode() * inLocationList.hashCode();
+        // Die Bildung des Hashcodes ging nicht Aufgrund eines Fehlers in der
+        // Hibernate Version 6.1.7 den gabs es schon mal => HHH-3441 und HHH-4450
+        // https://hibernate.atlassian.net/browse/HHH-4450
+        //hash = 21 *  hash + (getName("de") == null ? 0 : getName("de").hashCode());
+        //hash = 21 *  hash + (getDescription("de") == null ? 0 : getDescription("de").hashCode());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        // Selbst Test
+        if (this == o) return true;
+        // NULL Test
+        if (o == null) return false;
+        // type check and cast
+        if (getClass() != o.getClass()) return false;
+        PictureItem pictureItem = (PictureItem) o;
+        // field comparison
+        return Objects.equals(getUuid(), pictureItem.getUuid());
     }
 
 }// Ende class
