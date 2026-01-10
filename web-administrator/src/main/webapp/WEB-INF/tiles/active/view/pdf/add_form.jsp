@@ -24,14 +24,14 @@
             <fieldset class="fieldset">
 
               <div class="field">
-                <struts:file key="pdf.uploadFile" parentTheme="xhtml" labelposition="left">
+                <struts:file key="pdf.uploadFile" parentTheme="xhtml" labelposition="left" accept=".pdf">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>
               </div>
 
               <div class="field">
-                <struts:file key="pdf.image.uploadFile" parentTheme="xhtml" labelposition="left">
+                <struts:file key="pdf.image.uploadFile" parentTheme="xhtml" labelposition="left" accept=".png">
                   <struts:param name="required" value="true" />
                   <struts:param name="disabled" value="false" />
                 </struts:file>

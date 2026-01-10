@@ -6,7 +6,6 @@ package de.tivsource.page.dao.pdf;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import de.tivsource.page.dao.slider.SliderImageDao;
 import de.tivsource.page.entity.pdf.PDFImage;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -22,7 +21,7 @@ public class PDFImageDao implements PDFImageDaoLocal {
     /*
      * Statischer Logger der Klasse.
      */
-    private static final Logger LOGGER = LogManager.getLogger(SliderImageDao.class);
+    private static final Logger LOGGER = LogManager.getLogger(PDFImageDao.class);
 
     /*
      * EntityManager der Dao Klasse.
