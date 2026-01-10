@@ -4,6 +4,18 @@
 
 <validators>
 
+  <field name="vacancy.image">
+    <field-validator type="required" short-circuit="true">
+      <message key="vacancy.image.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="vacancy.location">
+    <field-validator type="required" short-circuit="true">
+      <message key="vacancy.location.validation.required" />
+    </field-validator>
+  </field>
+
   <field name="vacancy.beginning">
     <field-validator type="required" short-circuit="true">
       <message key="vacancy.beginning.validation.required" />

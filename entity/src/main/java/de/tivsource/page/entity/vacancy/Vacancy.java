@@ -42,7 +42,7 @@ public class Vacancy extends ContentItem {
     @Column(table = TABLE)
     private String workingTime;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(table = TABLE, name = "location_uuid")
     private Location location;
 

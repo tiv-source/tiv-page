@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.vacancy.Vacancy;
 import jakarta.ejb.Stateless;
@@ -74,7 +75,15 @@ public class VacancyDao implements VacancyDaoLocal {
      */
     @Override
     public Vacancy findByUuid(String uuid) {
-        return entityManager.find(Vacancy.class, uuid);
+        Vacancy vacancy = entityManager.find(Vacancy.class, uuid); 
+        Hibernate.initialize(vacancy.getImage());
+        Hibernate.initialize(vacancy.getContentMap());
+        Hibernate.initialize(vacancy.getCssGroup());
+        Hibernate.initialize(vacancy.getCssGroup().getFiles());
+        Hibernate.initialize(vacancy.getLocation().getAddress());
+        Hibernate.initialize(vacancy.getLocation().getContactDetails());
+        Hibernate.initialize(vacancy.getLocation().getDescriptionMap());
+        return vacancy;
     }
 
     /* (non-Javadoc)
@@ -86,7 +95,17 @@ public class VacancyDao implements VacancyDaoLocal {
         Query query = entityManager.createQuery("from Vacancy v");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Vacancy> vacancyList = query.getResultList();
+        for (Vacancy vacancy : vacancyList) {
+            Hibernate.initialize(vacancy.getImage());
+            Hibernate.initialize(vacancy.getDescriptionMap());
+            Hibernate.initialize(vacancy.getImage());
+            Hibernate.initialize(vacancy.getLocation());
+            Hibernate.initialize(vacancy.getLocation().getAddress());
+            Hibernate.initialize(vacancy.getLocation().getContactDetails());
+            Hibernate.initialize(vacancy.getLocation().getDescriptionMap());
+        }
+        return vacancyList;
     }
 
     /* (non-Javadoc)
@@ -100,7 +119,16 @@ public class VacancyDao implements VacancyDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("visible", true);
-        return query.getResultList();
+        List<Vacancy> vacancyList = query.getResultList();
+        for (Vacancy vacancy : vacancyList) {
+            Hibernate.initialize(vacancy.getDescriptionMap());
+            Hibernate.initialize(vacancy.getImage());
+            Hibernate.initialize(vacancy.getLocation());
+            Hibernate.initialize(vacancy.getLocation().getAddress());
+            Hibernate.initialize(vacancy.getLocation().getContactDetails());
+            Hibernate.initialize(vacancy.getLocation().getDescriptionMap());
+        }
+        return vacancyList;
     }
 
     /* (non-Javadoc)
@@ -109,12 +137,23 @@ public class VacancyDao implements VacancyDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Vacancy> findAll(Integer start, Integer max, String field, String order) {
+        LOGGER.info("findAll(Integer start, Integer max, String field, String order) aufgerufen");
         String queryString = "SELECT DISTINCT v FROM Vacancy v JOIN v.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Vacancy> vacancyList = query.getResultList();
+        for (Vacancy vacancy : vacancyList) {
+            Hibernate.initialize(vacancy.getDescriptionMap());
+            Hibernate.initialize(vacancy.getImage());
+            Hibernate.initialize(vacancy.getLocation());
+            Hibernate.initialize(vacancy.getLocation().getAddress());
+            Hibernate.initialize(vacancy.getLocation().getContactDetails());
+            Hibernate.initialize(vacancy.getLocation().getDescriptionMap());
+            LOGGER.info("Filiale des Stellenangebotes: " + vacancy.getLocation().getDescription("de"));
+        }
+        return vacancyList;
     }
 
     /* (non-Javadoc)
