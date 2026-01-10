@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+#wwctrl_restore_page_contentMap_DE_content {
+	width: 100%;
+	height: 350px;
+	background: #d3d3d329;
+	overflow: scroll;
+	font-family: courier;
+}
+
+#wwctrl_restore_page_contentMap_DE_content h1 {
+	margin-bottom: 15px;
+	font-size: 1.6em;
+	font-weight: normal;
+	color: #ff2a2a;
+	float: unset;
+}
+
+#wwctrl_restore_page_contentMap_DE_content h2 {
+	font-family: Consolas, monaco, monospace;
+	font-size: 1.4em;
+	font-weight: normal;
+	margin: 5px 0;
+	margin-bottom: 5px;
+	color: #f50;
+	margin-bottom: 10px;
+}
+
+#wwctrl_restore_page_contentMap_DE_content h3 {
+	font-family: Droid Sans Mono, monospace, sans serif;
+	font-size: 1.1em;
+	font-weight: normal;
+	margin-bottom: 8px;
+	color: #020;
+}
+
+#wwctrl_restore_page_contentMap_DE_content h4 {
+	font-family: Fetamont, sans serif;
+	font-size: 1.17em;
+	font-weight: normal;
+	margin-bottom: 7px;
+	color: #08f;
+}
+
+#wwctrl_restore_page_contentMap_DE_content p {
+	font-size: 1em;
+	font-weight: normal;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+	color: #1a1a1a;
+	border: unset;
+	padding: unset;
+}
+
+#wwctrl_restore_page_contentMap_EN_content {
+	width: 100%;
+	height: 350px;
+	background: #d3d3d329;
+	overflow: scroll;
+	font-family: courier;
+}
+
+#wwctrl_restore_page_contentMap_EN_content h1 {
+	margin-bottom: 15px;
+	font-size: 1.6em;
+	font-weight: normal;
+	color: #ff2a2a;
+	float: unset;
+}
+
+#wwctrl_restore_page_contentMap_EN_content h3 {
+	font-family: Droid Sans Mono, monospace, sans serif;
+	font-size: 1.1em;
+	font-weight: normal;
+	margin-bottom: 8px;
+	color: #020;
+}
+
+#wwctrl_restore_page_contentMap_EN_content h4 {
+	font-family: Fetamont, sans serif;
+	font-size: 1.17em;
+	font-weight: normal;
+	margin-bottom: 7px;
+	color: #08f;
+}
+
+#wwctrl_restore_page_contentMap_EN_content h2 {
+	font-family: Consolas, monaco, monospace;
+	font-size: 1.4em;
+	font-weight: normal;
+	margin: 5px 0;
+	margin-bottom: 5px;
+	color: #f50;
+	margin-bottom: 10px;
+}
+
+#wwctrl_restore_page_contentMap_EN_content p {
+	font-size: 1em;
+	font-weight: normal;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+	color: #1a1a1a;
+	border: unset;
+	padding: unset;
+}

@@ -176,7 +176,7 @@ ul#orientation {
 ul#orientation li {
 	float:left;
 	cursor: pointer;
-	width:25%;
+	width:20%;
 	height:17px;
 	font-size:13px;;
 	color: #000000;
@@ -196,7 +196,7 @@ ul#orientation li a:hover {
 }
 
 ul#orientation li.activlink1 {
-	width:25%;
+	width:20%;
 	padding:5px 0px;
 	color:#ffffff;
 	background-color:rgba(160,137,44,0.8);

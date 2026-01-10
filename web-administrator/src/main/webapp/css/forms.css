@@ -102,6 +102,11 @@ form.form input[type=checkbox]
     min-width:0 !important;
 }
 
+input[type="checkbox"] {
+  float: left;
+  margin-right: 10px;
+}
+
 form.form label,
 form.form button,
 form.form input.submit,
@@ -148,10 +153,13 @@ form.form .field {
     padding-left: 13px;
 }
 form.form .field label {
-    display: inline;
     float: left;
-    width: 200px;
     margin-left: 0px;
+    width: 100%;
+}
+
+.field .wwgrp .wwlbl .checkboxLabel {
+  width: unset;
 }
 
 /* Legends
@@ -278,6 +286,3 @@ label.label img {
 	float: right;
 }
 
-#wwctrl_editor {
-	padding-left:202px;
-}
