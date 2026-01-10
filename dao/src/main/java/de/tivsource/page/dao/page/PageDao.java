@@ -7,12 +7,19 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
+import org.hibernate.envers.query.AuditQuery;
+import org.hibernate.jpa.AvailableHints;
 
 import de.tivsource.page.entity.page.Page;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+
 
 /**
  * @author Marc Michele
@@ -96,7 +103,20 @@ public class PageDao implements PageDaoLocal {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
         Query query = entityManager.createQuery("select p from Page p where p.technical = :technical");
         query.setParameter("technical", technical);
-        return query.getResultList().isEmpty() ? null : (Page)query.getSingleResult();
+        Page page = query.getResultList().isEmpty() ? null : (Page)query.setHint(AvailableHints.HINT_READ_ONLY, true).getSingleResult(); 
+        if(page != null) {
+            Hibernate.initialize(page.getDescriptionMap());
+            Hibernate.initialize(page.getImage());
+            Hibernate.initialize(page.getContentMap());
+            Hibernate.initialize(page.getCssGroup());
+            Hibernate.initialize(page.getCssGroup().getFiles());
+            
+            Hibernate.unproxy(page.getDescriptionMap());
+            Hibernate.unproxy(page.getContentMap());
+            Hibernate.unproxy(page.getCssGroup());
+            Hibernate.unproxy(page.getCssGroup().getFiles());
+        }
+        return page;
     }
 
     /* (non-Javadoc)
@@ -104,7 +124,41 @@ public class PageDao implements PageDaoLocal {
      */
     @Override
     public Page findByUuid(String uuid) {
-        return entityManager.find(Page.class, uuid);
+        Page page = entityManager.find(Page.class, uuid); 
+        Hibernate.initialize(page.getDescriptionMap());
+        Hibernate.initialize(page.getImage());
+        Hibernate.initialize(page.getContentMap());
+        Hibernate.initialize(page.getCssGroup());
+        Hibernate.initialize(page.getCssGroup().getFiles());
+        return page;
+    }
+
+    @Override
+    public Page findRevisionByUuid(String uuid, String rev) {
+        LOGGER.info("Page Uuid: " + uuid);
+        LOGGER.info("Page Rev: " + rev);
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+        Page page = auditReader.find(Page.class, uuid, Integer.parseInt(rev));
+        Hibernate.initialize(page.getContentMap());
+        Hibernate.initialize(page.getCssGroup());
+        //LOGGER.info("CssGroup: " + page.getCssGroup().getName());
+        //Hibernate.initialize(page.getCssGroup().getFiles());
+        //Hibernate.initialize(page.getCssGroup().getPictureItems());
+        Hibernate.initialize(page.getDescriptionMap());
+        Hibernate.initialize(page.getImage());
+        LOGGER.info("Page (DB): " + page.getUuid());
+        LOGGER.info("Page Name (DB): " + page.getName("de"));
+        return page;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Object[]> findRevisionsByUuid(String uuid) {
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+        AuditQuery query = auditReader.createQuery().forRevisionsOfEntity(Page.class, false, true);
+        query.add(AuditEntity.id().eq(uuid));
+        query.addOrder(AuditEntity.revisionNumber().desc());
+        return query.getResultList();
     }
 
     /* (non-Javadoc)
@@ -116,7 +170,12 @@ public class PageDao implements PageDaoLocal {
         Query query = entityManager.createQuery("from Page p");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Page> pageList = query.getResultList();
+        for (Page page : pageList) {
+            Hibernate.initialize(page.getDescriptionMap());
+            Hibernate.initialize(page.getImage());
+        }
+        return pageList;
     }
 
     /* (non-Javadoc)
@@ -130,7 +189,12 @@ public class PageDao implements PageDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Page> pageList = query.getResultList();
+        for (Page page : pageList) {
+            Hibernate.initialize(page.getDescriptionMap());
+            Hibernate.initialize(page.getImage());
+        }
+        return pageList;
     }
 
     /* (non-Javadoc)

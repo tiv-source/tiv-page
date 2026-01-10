@@ -16,7 +16,7 @@
       <!--  Start MAIN -->
       <div class="main">
         <struts:if test="actionName!='edit'">
-          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
+          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 164px; z-index: 900;">
             <div style="padding:0px; margin:5px; height:24px;">
               <struts:a href="%{englishUrl}">
                 <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/>
@@ -37,6 +37,29 @@
                 <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
               </struts:a>
             </div>
+          </div>
+
+          <div class="revision_menu" style="border: 1px solid black; float: right; margin-top: 196px; position: absolute; right: 164px; z-index: 900; width: 350px; overflow: scroll; height: 410px;">
+                <div style="padding:0px; margin:5px; height:24px;">
+                  <p style="width: 70px; padding-left: 7px; padding-top: 1px; float:left; text-align:left;">Benutzer</p>
+                  <p style="width: 49px; padding-left: 7px; padding-top: 1px; float:left; text-align:right;">Revision</p>
+                  <p style="width: 42px; padding-left: 14px; padding-top: 1px; float:left; text-align:left;">Type</p>
+                  <p style="padding-left: 7px; padding-top: 1px; text-align:left;">Uhrzeit/Datum</p>
+                </div>
+            <struts:iterator value="revisions" status="revisionsStatus" var="rev">
+              <struts:url var="revUrl" action="restoreForm" namespace="/others/page">
+                 <struts:param name="uncheckedPage" value="page.uuid" />
+                 <struts:param name="revision" value="#rev[1].getId()" />
+              </struts:url>
+              <struts:a href="%{revUrl}">
+                <div style="padding:0px; margin:5px; height:24px;">
+                  <p style="width: 70px; padding-left: 7px; padding-top: 1px; float:left; text-align:left;"><struts:property value="%{#rev[0].getModifiedBy()}"/></p>
+                  <p style="width: 49px; padding-left: 7px; padding-top: 1px; float:left; text-align:right;"><struts:property value="%{#rev[1].getId()}"/></p>
+                  <p style="width: 42px; padding-left: 14px; padding-top: 1px; float:left; text-align:left;"><struts:property value="%{#rev[2]}"/></p>
+                  <p style="padding-left: 7px; padding-top: 1px; text-align:left;"><struts:date name="%{#rev[1].getRevisionDate()}" format="HH:mm:ss dd.MM.yyyy"/></p>
+                </div>
+              </struts:a>
+            </struts:iterator>
           </div>
         </struts:if>
 

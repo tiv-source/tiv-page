@@ -74,6 +74,8 @@ public class FormAction extends EmptyAction {
 
     private List<CSSGroup> cssGroupList;
 
+    private List<Object[]> revisions = null;
+
 	public Page getPage() {
         return page;
     }
@@ -126,17 +128,22 @@ public class FormAction extends EmptyAction {
 
 	private void loadPageParameter() {
 		if( uncheckPage != null && uncheckPage != "" && uncheckPage.length() > 0) {
-			page = pageDaoLocal.findByUuid(uncheckPage);
+		    // TODO: Check ob UUID auch zu einer Seite gehört !!!
+		    page = pageDaoLocal.findByUuid(uncheckPage);
+			revisions = pageDaoLocal.findRevisionsByUuid(uncheckPage);
 		} else {
 			page = new Page();
 		}
-
 	}// Ende loadPageParameter()
 
     public List<CSSGroup> getCssGroupList() {
         LOGGER.info("getCssGroupList() aufgerufen.");
         LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
+    }
+
+    public List<Object[]> getRevisions() {
+        return revisions;
     }
 
 }// Ende class

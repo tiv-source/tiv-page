@@ -56,6 +56,10 @@ public interface PageDaoLocal {
 
     public Page findByUuid(String uuid);
 
+    public Page findRevisionByUuid(String uuid, String rev);
+
+    public List<Object[]> findRevisionsByUuid(String uuid);
+
     /**
      * Methode zum laden einer Liste von Page Objekten, es muss dabei ein
      * Startwert angegeben werden und die Anzahl der zu ladenen Page Objekte.
