@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
@@ -46,13 +47,48 @@ public class JsonAction extends ActionSupport {
 	private String sord;
 	private String sidx;
 
-	@Override
-    @Action(
+    @Override
+    @Actions({
+        @Action(
             value = "table",
             results = {
-                @Result(name = "success", type="json", params={"excludeProperties", "gridModel.*.applications, gridModel.*.pictures, gridModel.*.pictureItems, gridModel.*.groups"})
-            }
-        )
+                @Result(name = "success", type="json",
+                    params={"excludeProperties", ""
+                            + "gridModel.*.contentMap.DE.contentItem, "
+                            + "gridModel.*.contentMap.EN.contentItem, "
+                            + "gridModel.*.contentMap, "
+                            + "gridModel.*.cssGroup.files.*.uploadFile, "
+                            + "gridModel.*.cssGroup.files.*.uploadFileContentType, "
+                            + "gridModel.*.cssGroup.files.*.uploadFileFileName, "
+                            + "gridModel.*.cssGroup, "
+                            + "gridModel.*.descriptionMap.DE.namingItem, "
+                            + "gridModel.*.descriptionMap.EN.namingItem, "
+                            + "gridModel.*.groups, "
+                            + "gridModel.*.image.largeFileInputStream, "
+                            + "gridModel.*.image.microFileInputStream, "
+                            + "gridModel.*.image.normalFileInputStream, "
+                            + "gridModel.*.image.originalFileInputStream, "
+                            + "gridModel.*.image.pictureItem, "
+                            + "gridModel.*.image.smallFileInputStream, "
+                            + "gridModel.*.image.thumbnailFileInputStream, "
+                            + "gridModel.*.image.uploadFile, "
+                            + "gridModel.*.image.uploadFileContentType, "
+                            + "gridModel.*.image.uploadFileFileName, "
+                            + "gridModel.*.image.large, "                            
+                            + "gridModel.*.image.micro, "
+                            + "gridModel.*.image.normal, "
+                            + "gridModel.*.image.original, "
+                            + "gridModel.*.image.small, "
+                            + "gridModel.*.image.thumbnail, "
+                            + "gridModel.*.pictures, "
+                            + "gridModel.*.picture, "
+                            + "gridModel.*.pictureUrls, "
+                            + "gridModel.*.pictureItems"
+                    }// Ende params
+                )// Ende result
+            }// Ende results
+        )// Ende Action
+    })// Ende Actions
 	public String execute() {
 		return SUCCESS;
 	}

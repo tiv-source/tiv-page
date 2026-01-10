@@ -3,7 +3,6 @@
  */
 package de.tivsource.page.dao.picture;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -100,7 +99,7 @@ public class PictureDao implements PictureDaoLocal {
 	public Picture findByUuid(String uuid) {
 	    Picture picture = entityManager.find(Picture.class, uuid);
 	    Hibernate.initialize(picture.getDescriptionMap());
-	    Hibernate.initialize(picture.getPictureUrls());
+	    Hibernate.initialize(picture.getGallery().getImage());
 		return picture;
 	}
 
@@ -112,25 +111,14 @@ public class PictureDao implements PictureDaoLocal {
 	    LOGGER.info("UUID set in findAll(String uuid): " + uuid);
         Query query = entityManager.createQuery("from Gallery g where g.uuid = :uuid");
         query.setParameter("uuid", uuid);
-        
-        /*
-        List<Picture> pictureList = query.getResultList();
-        Iterator<Picture> pictureListIterator = pictureList.iterator();
-        while(pictureListIterator.hasNext()) {
-            Picture next = pictureListIterator.next();
-            next.getDescriptionMap().size();
-            next.getPictureUrls().size();
-        }
-        LOGGER.info("Größe der Liste: " + pictureList.size());
-        */
         Gallery gallery = (Gallery)query.getResultList().get(0);
         LOGGER.info("Größe der Picture Liste: " + gallery.getPictures().size());
         List<Picture> pictureList = gallery.getPictures();
-        Iterator<Picture> pictureListIterator = pictureList.iterator();
-        while(pictureListIterator.hasNext()) {
-            Picture next = pictureListIterator.next();
-            LOGGER.info("Größe der DescriptionMap: " + next.getDescriptionMap().size());
-            LOGGER.info("Größe der PictureUrls: " + next.getPictureUrls().size());
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+            LOGGER.info("Größe der DescriptionMap: " + picture.getDescriptionMap().size());
         }
         return gallery.getPictures();
 	}
@@ -146,13 +134,12 @@ public class PictureDao implements PictureDaoLocal {
         query.setMaxResults(max);
         LOGGER.info("Startwert: " + start);
         LOGGER.info("Maxwert: " + max);
-        
         List<Picture> pictureList = query.getResultList();
-        Iterator<Picture> pictureListIterator = pictureList.iterator();
-        while(pictureListIterator.hasNext()) {
-            Picture next = pictureListIterator.next();
-            LOGGER.info("Größe der DescriptionMap: " + next.getDescriptionMap().size());
-            LOGGER.info("Größe der PictureUrls: " + next.getPictureUrls().size());
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+            LOGGER.info("Größe der DescriptionMap: " + picture.getDescriptionMap().size());
         }
         return pictureList;
 	}
@@ -168,7 +155,13 @@ public class PictureDao implements PictureDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Picture> pictureList = query.getResultList();
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+        }
+        return pictureList;
 	}
 
     /* (non-Javadoc)
@@ -183,24 +176,37 @@ public class PictureDao implements PictureDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("galleryUuid", galleryUuid);
-        return query.getResultList();
+        List<Picture> pictureList = query.getResultList();
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+        }
+        return pictureList;
     }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.picture.PictureDaoLocal#findPreviousPicture(java.lang.Integer, java.lang.String)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Picture findPreviousPicture(Integer start, String galleryUuid) {
         Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = :galleryUuid ORDER BY p.orderNumber desc");
         query.setFirstResult(start);
         query.setMaxResults(1);
         query.setParameter("galleryUuid", galleryUuid);
-        return (Picture)query.getSingleResult();
+        List<Picture> pictureList = query.getResultList();
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+        }
+        return pictureList.get(0);
     }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.picture.PictureDaoLocal#findCurrentPicture(java.lang.Integer, java.lang.String)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Picture findCurrentPicture(Integer start, String galleryUuid) {
         LOGGER.info("findCurrentPicture(Integer start, String galleryUuid) aufgerufen");
@@ -208,19 +214,30 @@ public class PictureDao implements PictureDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(1);
         query.setParameter("galleryUuid", galleryUuid);
-        return (Picture)query.getResultList().get(0);
+        List<Picture> pictureList = query.getResultList();
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+        }
+        return pictureList.get(0);
     }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.picture.PictureDaoLocal#findNextPicture(java.lang.Integer, java.lang.String)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Picture findNextPicture(Integer start, String galleryUuid) {
         Query query = entityManager.createQuery("SELECT p FROM Picture p WHERE p.gallery.uuid = :galleryUuid ORDER BY p.orderNumber desc");
         query.setFirstResult(start);
         query.setMaxResults(1);
         query.setParameter("galleryUuid", galleryUuid);
-        return (Picture)query.getSingleResult();
+        List<Picture> pictureList = query.getResultList();
+        for (Picture picture : pictureList) {
+            Hibernate.initialize(picture.getDescriptionMap());
+            Hibernate.initialize(picture.getGallery().getImage());
+        }
+        return pictureList.get(0);
     }
     
 	/* (non-Javadoc)

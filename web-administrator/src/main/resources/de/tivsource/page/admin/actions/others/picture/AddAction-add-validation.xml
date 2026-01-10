@@ -4,6 +4,18 @@
 
 <validators>
 
+  <field name="picture.image">
+    <field-validator type="required" short-circuit="true">
+      <message key="picture.image.validation.required" />
+    </field-validator>
+  </field>
+
+  <field name="picture.gallery">
+    <field-validator type="required" short-circuit="true">
+      <message key="picture.gallery.validation.required" />
+    </field-validator>
+  </field>
+
   <field name="picture.orderNumber">
     <field-validator type="required" short-circuit="true">
       <message key="picture.orderNumber.validation.required" />
