@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.event.Event;
 import jakarta.ejb.Stateless;
@@ -75,7 +76,15 @@ public class EventDao implements EventDaoLocal {
      */
     @Override
     public Event findByUuid(String uuid) {
-        return entityManager.find(Event.class, uuid);
+        Event event = entityManager.find(Event.class, uuid);
+        Hibernate.initialize(event.getImage());
+        Hibernate.initialize(event.getDescriptionMap());
+        Hibernate.initialize(event.getCssGroup());
+        Hibernate.initialize(event.getCssGroup().getFiles());
+        Hibernate.initialize(event.getLocation().getAddress());
+        Hibernate.initialize(event.getLocation().getContactDetails());
+        Hibernate.initialize(event.getLocation().getDescriptionMap());
+        return event;
     }
 
     /* (non-Javadoc)
@@ -87,7 +96,17 @@ public class EventDao implements EventDaoLocal {
         Query query = entityManager.createQuery("from Event e order by e.beginning asc");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Event> eventList = query.getResultList();
+        for (Event event : eventList) {
+            Hibernate.initialize(event.getImage());
+            Hibernate.initialize(event.getDescriptionMap());
+            Hibernate.initialize(event.getLocation());
+            Hibernate.initialize(event.getLocation().getImage());
+            Hibernate.initialize(event.getLocation().getAddress());
+            Hibernate.initialize(event.getLocation().getContactDetails());
+            Hibernate.initialize(event.getLocation().getDescriptionMap());
+        }
+        return eventList;
     }
 
     /* (non-Javadoc)
@@ -106,7 +125,17 @@ public class EventDao implements EventDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Event> eventList = query.getResultList();
+        for (Event event : eventList) {
+            Hibernate.initialize(event.getImage());
+            Hibernate.initialize(event.getDescriptionMap());
+            Hibernate.initialize(event.getLocation());
+            Hibernate.initialize(event.getLocation().getImage());
+            Hibernate.initialize(event.getLocation().getAddress());
+            Hibernate.initialize(event.getLocation().getContactDetails());
+            Hibernate.initialize(event.getLocation().getDescriptionMap());
+        }
+        return eventList;
     }
 
 	/* (non-Javadoc)
@@ -119,7 +148,17 @@ public class EventDao implements EventDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("date", new Date());
-        return query.getResultList();
+        List<Event> eventList = query.getResultList();
+        for (Event event : eventList) {
+            Hibernate.initialize(event.getImage());
+            Hibernate.initialize(event.getDescriptionMap());
+            Hibernate.initialize(event.getLocation());
+            Hibernate.initialize(event.getLocation().getImage());
+            Hibernate.initialize(event.getLocation().getAddress());
+            Hibernate.initialize(event.getLocation().getContactDetails());
+            Hibernate.initialize(event.getLocation().getDescriptionMap());
+        }
+        return eventList;
 	}
 
 	/* (non-Javadoc)
@@ -134,7 +173,17 @@ public class EventDao implements EventDaoLocal {
         query.setFirstResult(start);
         query.setMaxResults(max);
         query.setParameter("date", new Date());
-        return query.getResultList();
+        List<Event> eventList = query.getResultList();
+        for (Event event : eventList) {
+            Hibernate.initialize(event.getImage());
+            Hibernate.initialize(event.getDescriptionMap());
+            Hibernate.initialize(event.getLocation());
+            Hibernate.initialize(event.getLocation().getImage());
+            Hibernate.initialize(event.getLocation().getAddress());
+            Hibernate.initialize(event.getLocation().getContactDetails());
+            Hibernate.initialize(event.getLocation().getDescriptionMap());
+        }
+        return eventList;
 	}
 
     /* (non-Javadoc)
@@ -149,7 +198,17 @@ public class EventDao implements EventDaoLocal {
         query.setParameter("uuid", uuid);
         query.setParameter("visible", true);
         query.setParameter("date", new Date());
-        return query.getResultList();
+        List<Event> eventList = query.getResultList();
+        for (Event event : eventList) {
+            Hibernate.initialize(event.getImage());
+            Hibernate.initialize(event.getDescriptionMap());
+            Hibernate.initialize(event.getLocation());
+            Hibernate.initialize(event.getLocation().getImage());
+            Hibernate.initialize(event.getLocation().getAddress());
+            Hibernate.initialize(event.getLocation().getContactDetails());
+            Hibernate.initialize(event.getLocation().getDescriptionMap());
+        }
+        return eventList;
     }
 
     /* (non-Javadoc)
