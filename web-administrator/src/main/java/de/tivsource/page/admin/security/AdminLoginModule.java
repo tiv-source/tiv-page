@@ -5,13 +5,13 @@ package de.tivsource.page.admin.security;
 
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import jakarta.persistence.NoResultException;
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -28,6 +28,7 @@ import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.entity.administration.Role;
 import de.tivsource.page.entity.administration.User;
 import de.tivsource.page.valve.security.RemoteAddressThreadLocal;
+import jakarta.persistence.NoResultException;
 
 /**
  * @author Marc Michele
@@ -148,7 +149,10 @@ public class AdminLoginModule implements LoginModule {
 	@Override
 	public boolean logout() throws LoginException {
 		subject.getPrincipals().remove(userPrincipal);
-	    subject.getPrincipals().remove(rolePrincipals);
+		Iterator<Role> roleIterator = rolePrincipals.iterator();
+		while(roleIterator.hasNext()) {
+		    subject.getPrincipals().remove(roleIterator.next());
+		}
 	    return true;
 	}
 
