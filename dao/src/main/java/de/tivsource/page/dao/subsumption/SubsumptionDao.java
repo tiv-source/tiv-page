@@ -3,11 +3,15 @@
  */
 package de.tivsource.page.dao.subsumption;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
+import org.hibernate.jpa.AvailableHints;
 
+import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.subsumption.Subsumption;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -90,7 +94,27 @@ public class SubsumptionDao implements SubsumptionDaoLocal {
         LOGGER.info("findByTechnical(String technical) aufgerufen.");
         Query query = entityManager.createQuery("select s from Subsumption s where s.technical = :technical");
         query.setParameter("technical", technical);
-        return (Subsumption)query.getSingleResult();
+        Subsumption subsumption = query.getResultList().isEmpty() ? null : (Subsumption)query.setHint(AvailableHints.HINT_READ_ONLY, true).getSingleResult(); 
+        if(subsumption != null) {
+            Hibernate.initialize(subsumption.getDescriptionMap());
+            Hibernate.initialize(subsumption.getImage());
+            Hibernate.initialize(subsumption.getContentMap());
+            Hibernate.initialize(subsumption.getCssGroup());
+            Hibernate.initialize(subsumption.getCssGroup().getFiles());
+            Hibernate.initialize(subsumption.getContentItems());
+            List<ContentItem> contentItemList = new ArrayList<>(subsumption.getContentItems());
+            for (ContentItem contentItem : contentItemList) {
+                Hibernate.initialize(contentItem.getDescriptionMap());
+                Hibernate.unproxy(contentItem.getDescriptionMap());
+            }
+            
+            Hibernate.unproxy(subsumption.getDescriptionMap());
+            Hibernate.unproxy(subsumption.getContentMap());
+            Hibernate.unproxy(subsumption.getCssGroup());
+            Hibernate.unproxy(subsumption.getCssGroup().getFiles());
+            Hibernate.unproxy(subsumption.getContentItems());
+        }
+        return subsumption;
     }
 
     /* (non-Javadoc)
@@ -98,7 +122,19 @@ public class SubsumptionDao implements SubsumptionDaoLocal {
      */
     @Override
     public Subsumption findByUuid(String uuid) {
-        return entityManager.find(Subsumption.class, uuid);
+        Subsumption subsumption = entityManager.find(Subsumption.class, uuid); 
+        Hibernate.initialize(subsumption.getDescriptionMap());
+        Hibernate.initialize(subsumption.getImage());
+        Hibernate.initialize(subsumption.getContentMap());
+        Hibernate.initialize(subsumption.getCssGroup());
+        Hibernate.initialize(subsumption.getCssGroup().getFiles());
+        Hibernate.initialize(subsumption.getContentItems());
+        List<ContentItem> contentItemList = new ArrayList<>(subsumption.getContentItems());
+        for (ContentItem contentItem : contentItemList) {
+            Hibernate.initialize(contentItem.getDescriptionMap());
+            Hibernate.unproxy(contentItem.getDescriptionMap());
+        }
+        return subsumption;
     }
 
     /* (non-Javadoc)
@@ -110,7 +146,12 @@ public class SubsumptionDao implements SubsumptionDaoLocal {
         Query query = entityManager.createQuery("from Subsumption s");
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Subsumption> subsumptionList = query.getResultList();
+        for (Subsumption subsumption : subsumptionList) {
+            Hibernate.initialize(subsumption.getDescriptionMap());
+            Hibernate.initialize(subsumption.getImage());
+        }
+        return subsumptionList;
     }
 
     /* (non-Javadoc)
@@ -124,7 +165,12 @@ public class SubsumptionDao implements SubsumptionDaoLocal {
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
         query.setMaxResults(max);
-        return query.getResultList();
+        List<Subsumption> subsumptionList = query.getResultList();
+        for (Subsumption subsumption : subsumptionList) {
+            Hibernate.initialize(subsumption.getDescriptionMap());
+            Hibernate.initialize(subsumption.getImage());
+        }
+        return subsumptionList;
     }
 
     /* (non-Javadoc)
