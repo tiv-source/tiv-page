@@ -221,8 +221,9 @@ public class LocationDao implements LocationDaoLocal {
      */
     @Override
     public Integer countAllVisible() {
-        Query query = entityManager.createQuery("Select Count(l) from Location l where l.visible = :visible");
+        Query query = entityManager.createQuery("Select Count(l) from Location l where l.visible = :visible AND l.inLocationList = :inLocationList");
         query.setParameter("visible", true);
+        query.setParameter("inLocationList", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
