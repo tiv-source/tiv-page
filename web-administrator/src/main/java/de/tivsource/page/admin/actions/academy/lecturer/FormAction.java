@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.locations.lecturer;
+package de.tivsource.page.admin.actions.academy.lecturer;
 
 import java.util.List;
 
@@ -27,20 +27,20 @@ import de.tivsource.page.entity.lecturer.Lecturer;
 @TilesDefinitions({
   @TilesDefinition(name="lecturerAddForm",  extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/lecturer/add_form.jsp")
   }),
   @TilesDefinition(name="lecturerEditForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/chosen.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/lecturer/edit_form.jsp")
   }),
   @TilesDefinition(name="lecturerDeleteForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/lecturer/delete_form.jsp")
   }),
   @TilesDefinition(name="imageForm", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/lecturer/image_form.jsp")
   })
 })

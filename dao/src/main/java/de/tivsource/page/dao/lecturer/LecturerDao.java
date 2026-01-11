@@ -136,6 +136,7 @@ public class LecturerDao implements LecturerDaoLocal {
         query.setMaxResults(max);
         List<Lecturer> lecturerList = query.getResultList();
         for (Lecturer lecturer : lecturerList) {
+            Hibernate.initialize(lecturer.getImage());
             Hibernate.initialize(lecturer.getDescriptionMap());
         }
         return lecturerList;
@@ -154,6 +155,7 @@ public class LecturerDao implements LecturerDaoLocal {
         query.setMaxResults(max);
         List<Lecturer> lecturerList = query.getResultList();
         for (Lecturer lecturer : lecturerList) {
+            Hibernate.initialize(lecturer.getImage());
             Hibernate.initialize(lecturer.getDescriptionMap());
         }
         return lecturerList;

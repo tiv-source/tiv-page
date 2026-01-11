@@ -9,7 +9,7 @@
   <struts:param name="uncheckLecturer" value="lecturer.uuid" />
   <struts:param name="lang">DE</struts:param>
 </struts:url>
-<struts:url var="imageUrl" namespace="/locations/lecturer" action="imageForm">
+<struts:url var="imageUrl" namespace="/academy/lecturer" action="imageForm">
   <struts:param name="uncheckLecturer" value="lecturer.uuid" />
 </struts:url>
 
@@ -48,7 +48,7 @@
           <struts:form 
                   cssClass="form" 
                   action="edit" 
-                  namespace="/locations/lecturer" 
+                  namespace="/academy/lecturer" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -257,7 +257,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="index" 
-                  namespace="/locations/lecturer">
+                  namespace="/academy/lecturer">
                     <struts:text name="form.abort"/>
               </struts:a>
             </div>

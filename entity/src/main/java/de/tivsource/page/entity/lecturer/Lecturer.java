@@ -6,9 +6,7 @@ package de.tivsource.page.entity.lecturer;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SortNatural;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
@@ -27,7 +25,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = Lecturer.TABLE)
-@Table(appliesTo = Lecturer.TABLE, fetch = FetchMode.SELECT)
 public class Lecturer extends ContentItem {
 
     public static final String TABLE = "Lecturer";

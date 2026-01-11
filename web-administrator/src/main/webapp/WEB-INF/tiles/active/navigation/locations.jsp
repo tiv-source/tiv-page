@@ -3,6 +3,7 @@
 
 <struts:url var="othersUrl"            action="index" namespace="/others" />
 <struts:url var="locationsUrl"         action="index" namespace="/locations" />
+<struts:url var="academyUrl"           action="index" namespace="/academy" />
 <struts:url var="newsletterUrl"        action="index" namespace="/newsletter" />
 <struts:url var="maintenanceUrl"       action="index" namespace="/maintenance" />
 <struts:url var="systemtUrl"           action="index" namespace="/system" />
@@ -14,7 +15,6 @@
 <struts:url var="feedbackOptionUrl"    action="index" namespace="/locations/feedbackoption" />
 <struts:url var="reasonUrl"            action="index" namespace="/locations/reason" />
 <struts:url var="requestUrl"           action="index" namespace="/locations/request" />
-<struts:url var="lecturerUrl"          action="index" namespace="/locations/lecturer" />
 
 
 
@@ -23,6 +23,7 @@
    	      <ul id="orientation">
    	        <li><struts:a href="%{othersUrl}"><struts:text name="navigation.category.others"/></struts:a></li>
    	        <li class="activlink1"><struts:text name="navigation.category.locations"/></li>
+   	        <li><struts:a href="%{academyUrl}"><struts:text name="navigation.category.academy"/></struts:a></li>
    	        <li><struts:a href="%{newsletterUrl}"><struts:text name="navigation.category.newsletter"/></struts:a></li>
    	        <li><struts:a href="%{maintenanceUrl}"><struts:text name="navigation.category.maintenance"/></struts:a></li>
    	        <li><struts:a href="%{systemtUrl}"><struts:text name="navigation.category.system"/></struts:a></li>
@@ -96,16 +97,6 @@
                   <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.request"/>">
                   <br />
                   <p class="ellipsis"><struts:text name="navigation.request"/></p>
-                </div>
-              </struts:a>
-            </struts:if>
-
-            <struts:if test="getProperty('module.lecturer')">
-              <struts:a href="%{lecturerUrl}" title="%{getText('navigation.lecturer')}">
-                <div class="button">
-                  <img src="/admin/buttons/tiv_page_button_reservation.png" alt="<struts:text name="navigation.lecturer"/>">
-                  <br />
-                  <p class="ellipsis"><struts:text name="navigation.lecturer"/></p>
                 </div>
               </struts:a>
             </struts:if>

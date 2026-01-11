@@ -11,7 +11,7 @@
           <struts:form 
                   cssClass="form" 
                   action="image" 
-                  namespace="/locations/lecturer" 
+                  namespace="/academy/lecturer" 
                   tooltipIconPath="/images/info.png" 
                   javascriptTooltip="true" 
                   tooltipDelay="500"
@@ -56,7 +56,7 @@
                   name="submitClose" 
                   cssClass="cancel small_red_button button" 
                   action="editForm" 
-                  namespace="/locations/lecturer">
+                  namespace="/academy/lecturer">
                     <struts:param name="uncheckLecturer" value="%{lecturer.uuid}" />
                     <struts:text name="form.abort"/>
               </struts:a>

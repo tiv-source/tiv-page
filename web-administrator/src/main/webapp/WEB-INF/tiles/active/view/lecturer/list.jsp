@@ -1,18 +1,18 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
-<struts:url var="lecturerAddUrl" action="addForm" namespace="/locations/lecturer" />
-<struts:url var="remoteurl" action="table" namespace="/locations/lecturer"/>
+<struts:url var="lecturerAddUrl" action="addForm" namespace="/academy/lecturer" />
+<struts:url var="remoteurl" action="table" namespace="/academy/lecturer"/>
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/locations/lecturer/editForm.html?uncheckLecturer="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+  return "<a href='/admin/academy/lecturer/editForm.html?uncheckLecturer="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/lecturer/copyForm.html?uncheckLecturer="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/academy/lecturer/copyForm.html?uncheckLecturer="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/copy.png' style='width:14px;'/>" + 
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/locations/lecturer/deleteForm.html?uncheckLecturer="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<a href='/admin/academy/lecturer/deleteForm.html?uncheckLecturer="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
          "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
          "</a>";
 }
@@ -56,7 +56,7 @@ function formatPicture(cellvalue, options, rowObject) {
 <script type="text/javascript">
 $(function () {
     $("#entityList").jqGrid({
-        url: "/admin/locations/lecturer/table.html",
+        url: "/admin/academy/lecturer/table.html",
         datatype: "json",
         mtype: "GET",
         colNames: [

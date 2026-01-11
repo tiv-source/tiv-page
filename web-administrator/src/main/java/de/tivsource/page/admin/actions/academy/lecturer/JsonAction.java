@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.tivsource.page.admin.actions.locations.lecturer;
+package de.tivsource.page.admin.actions.academy.lecturer;
 
 import java.util.List;
 

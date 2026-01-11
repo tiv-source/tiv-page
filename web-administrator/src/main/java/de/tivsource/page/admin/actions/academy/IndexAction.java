@@ -1,4 +1,4 @@
-package de.tivsource.page.admin.actions.locations.lecturer;
+package de.tivsource.page.admin.actions.academy;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,34 +17,34 @@ import de.tivsource.page.admin.actions.EmptyAction;
  *
  */
 @TilesDefinitions({
-  @TilesDefinition(name="lecturerGrid", extend = "adminTemplate", putAttributes = {
-    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/default_jquery.jsp"),
-    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
-    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/lecturer/list.jsp")
-  })
+    @TilesDefinition(name="academy", extend = "adminTemplate", putAttributes = {
+        @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
+        @TilesPutAttribute(name = "content", value = "/WEB-INF/tiles/active/view/academy.jsp")
+        
+    })
 })
 public class IndexAction extends EmptyAction {
 
-	/**
-	 * Serial Version UID.
-	 */
-    private static final long serialVersionUID = 1572307465489588460L;
-
     /**
+     * Serial Version UID.
+     */
+	private static final long serialVersionUID = -2579424665659644228L;
+
+	/**
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = LogManager.getLogger(IndexAction.class);
 
-	@Override
-    @Actions({
+    @Override
+    @Actions({ 
         @Action(
-        		value = "index", 
-        		results = { @Result(name = "success", type="tiles", location = "lecturerGrid") }
-        )
+            value = "index", 
+            results = { @Result(name = "success", type = "tiles", location = "academy") }
+        ) 
     })
     public String execute() throws Exception {
-    	LOGGER.info("execute() aufgerufen.");
-    	return SUCCESS;
+        LOGGER.info("execute() aufgerufen.");
+        return SUCCESS;
     }// Ende execute()
 
 }// Ende class

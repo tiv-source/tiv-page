@@ -8,7 +8,7 @@
 <struts:url var="feedbackOptionUrl"    action="index" namespace="/locations/feedbackoption" />
 <struts:url var="reasonUrl"            action="index" namespace="/locations/reason" />
 <struts:url var="requestUrl"           action="index" namespace="/locations/request" />
-<struts:url var="lecturerUrl"          action="index" namespace="/locations/lecturer" />
+
 
       <div id="title">
         <h5><struts:text name="navigation.category.locations"/></h5>
@@ -80,16 +80,6 @@
             <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.request.description"/>">
             <h5><struts:text name="navigation.request"/></h5>
             <p><struts:text name="navigation.request.description"/></p>
-          </div>
-        </struts:a>
-      </struts:if>
-
-      <struts:if test="getProperty('module.lecturer')">
-        <struts:a href="%{lecturerUrl}" title="%{getText('navigation.lecturer')}">
-          <div class="buttoninfo typ2">
-            <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.lecturer.description"/>">
-            <h5><struts:text name="navigation.lecturer"/></h5>
-            <p><struts:text name="navigation.lecturer.description"/></p>
           </div>
         </struts:a>
       </struts:if>

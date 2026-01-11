@@ -176,9 +176,9 @@ ul#orientation {
 ul#orientation li {
 	float:left;
 	cursor: pointer;
-	width:20%;
-	height:17px;
-	font-size:13px;;
+	width: 16%;
+	height: 17px;
+	font-size: 13px;;
 	color: #000000;
 }
 
