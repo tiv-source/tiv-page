@@ -162,11 +162,36 @@ public class LecturerDao implements LecturerDaoLocal {
     }
 
     /* (non-Javadoc)
+     * @see de.tivsource.page.dao.lecturer.LecturerDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Lecturer> findAllVisible(Integer start, Integer max) {
+        Query query = entityManager.createQuery("FROM Lecturer l WHERE l.visible = :visible ORDER BY l.orderNumber ASC");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        query.setParameter("visible", true);
+        List<Lecturer> lecturerList = query.getResultList();
+        for (Lecturer lecturer : lecturerList) {
+            Hibernate.initialize(lecturer.getImage());
+            Hibernate.initialize(lecturer.getDescriptionMap());
+        }
+        return lecturerList;
+    }
+
+    /* (non-Javadoc)
      * @see de.tivsource.page.dao.lecturer.LecturerDaoLocal#countAll()
      */
     @Override
     public Integer countAll() {
         Query query = entityManager.createQuery("Select Count(l) from Lecturer l");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public Integer countAllVisible() {
+        Query query = entityManager.createQuery("Select Count(l) from Lecturer l where l.visible = :visible");
+        query.setParameter("visible", true);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 

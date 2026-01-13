@@ -80,11 +80,25 @@ public interface LecturerDaoLocal {
     public List<Lecturer> findAll(Integer start, Integer max, String field, String order);
 
     /**
+     * Methode zum Laden einer Listen von Lecturer Objekten, es muss dabei ein
+     * Startwert angegeben werden und die Anzahl der zu ladenden Objekte. Diese
+     * Methode liefert nur die Objekte bei denen das Attribut visible=true 
+     * gesetzt ist.
+     * 
+     * @param start
+     * @param max
+     * @return
+     */
+    public List<Lecturer> findAllVisible(Integer start, Integer max);
+
+    /**
      * Methode die die Anzahl aller Lecturer Objekte die sich in der Datenbank
      * befinden zurück liefert.
      *
      * @return Integer - Anzahl der Lecturer Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAllVisible();
 
 }// Ende interface

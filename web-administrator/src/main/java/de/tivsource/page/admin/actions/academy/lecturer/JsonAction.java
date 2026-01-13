@@ -75,6 +75,12 @@ public class JsonAction extends ActionSupport {
                             + "gridModel.*.image.uploadFile, "
                             + "gridModel.*.image.uploadFileContentType, "
                             + "gridModel.*.image.uploadFileFileName, "
+                            + "gridModel.*.image.large, "                            
+                            + "gridModel.*.image.micro, "
+                            + "gridModel.*.image.normal, "
+                            + "gridModel.*.image.original, "
+                            + "gridModel.*.image.small, "
+                            + "gridModel.*.image.thumbnail, "
                             + "gridModel.*.picture, "
                             + "gridModel.*.pictureItems"
                     }// Ende params

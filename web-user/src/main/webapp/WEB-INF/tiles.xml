@@ -18,6 +18,7 @@
 	    <put-attribute name="opengraph" value="/WEB-INF/tiles/active/opengraph/content.jsp" />
 	    <put-attribute name="geo"       value="/WEB-INF/tiles/active/geo/content.jsp" />
 	    <put-attribute name="twitter"   value="/WEB-INF/tiles/active/twitter/content.jsp" />
+	    <put-attribute name="css"       value="/WEB-INF/tiles/active/css/content.jsp" />
 		<put-attribute name="content"   value="/WEB-INF/tiles/active/view/home/content.jsp" />
 		<put-attribute name="tracking"  value="/WEB-INF/tiles/active/tracking/content.jsp" />
 	</definition>

@@ -14,13 +14,7 @@
   <tiles:insertAttribute name="opengraph" />
   <tiles:insertAttribute name="geo" />
   <tiles:insertAttribute name="twitter" />
-
-  <!-- Anfang der CSS-Dateien -->
-  <struts:iterator value="page.cssGroup.files" status="cssFilesStatus">
-    <!-- <struts:property value="name" /> -->
-    <link rel="stylesheet" type="text/css" href="/cssfile/<struts:property value="uuid" />.css">
-  </struts:iterator>
-  <!-- Ende der CSS-Dateien -->
+  <tiles:insertAttribute name="css" />
 
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.ico.path')"/>" type="image/vnd.microsoft.icon" />
   <link rel="shortcut icon" href="<struts:property value="getProperty('favicon.png.path')"/>" type="image/png" />
