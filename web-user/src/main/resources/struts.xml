@@ -18,7 +18,7 @@
 
 	<constant name="struts.action.extension" value="html"/>
 
-    <constant name="struts.allowlist.classes" value="java.util.Locale"/>
+    <constant name="struts.allowlist.classes" value="java.util.Locale,java.util.ArrayList"/>
     <constant name="struts.allowlist.packageNames" value="de.tivsource.page.user.actions,de.tivsource.page.entity,de.tivsource.page.common"/>
 	
 	<constant name="struts.convention.package.locators" value="actions,action" />

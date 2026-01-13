@@ -24,7 +24,9 @@ import de.tivsource.page.user.actions.EmptyAction;
 @TilesDefinitions({
   @TilesDefinition(name="appointment", extend = "userTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/appointment.jsp"),
+    @TilesPutAttribute(name = "css",        value = "/WEB-INF/tiles/active/css/appointment.jsp"),
     @TilesPutAttribute(name = "twitter",    value = "/WEB-INF/tiles/active/twitter/content.jsp"),
+    @TilesPutAttribute(name = "opengraph",  value = "/WEB-INF/tiles/active/opengraph/appointment.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/appointment/appointment.jsp")
   })
 })
@@ -52,8 +54,6 @@ public class AppointmentAction extends EmptyAction {
     private Appointment appointment;
 
     private String appointmentUuid;
-    
-    private Page page;
 
     @Override
     @Actions({
@@ -94,7 +94,6 @@ public class AppointmentAction extends EmptyAction {
              */
             if(appointment.getVisible() && new Date().after(appointment.getVisibleFrom())) {
                 // Setze Daten in ein Page Objekt
-                setUpPage();
 
                 return SUCCESS;
             }
@@ -109,7 +108,7 @@ public class AppointmentAction extends EmptyAction {
 
     @Override
     public Page getPage() {
-        return page;
+        return null;
     }
 
     public Appointment getAppointment() {
@@ -122,13 +121,5 @@ public class AppointmentAction extends EmptyAction {
         }
         return false;
     }// Ende isValid(String input)
-
-    private void setUpPage() {
-        page = new Page();
-        page.setDescriptionMap(appointment.getDescriptionMap());
-        page.setImage(appointment.getImage());
-        page.setPictureOnPage(appointment.getPictureOnPage());
-        page.setCssGroup(appointment.getCssGroup());
-    }
 
 }// Ende class
