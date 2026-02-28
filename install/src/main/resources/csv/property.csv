@@ -154,6 +154,7 @@ module.reservation|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|loca
 module.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 module.vacancy|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 module.lecturer|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
+module.course|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 news.on.home|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 news.on.home.quantity|2||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 og.image.size.appointment|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
@@ -168,6 +169,7 @@ og.image.size.picture|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Install
 og.image.size.reservation.location|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 og.image.size.subsumption|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 og.image.size.vacancy|large.png||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst
+og.image.size.course|large.png||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst
 pdf.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 pdf.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 pdf.list.image.size|thumbnail.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
@@ -212,3 +214,35 @@ upload-path|/var/www/html/uploads/||2010-01-01 00:00:01|2010-01-01 00:00:01|Inst
 og.type|website||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 upload-path|/var/www/html/uploads|Pfad zu den hochgeladenen Dateien|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
 project.icon.path|/public/icon/000000/|Pfad zu den Icon-Dateien|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.startDate.nice|true|Formatierung Start-Datum des Kurses in der Übersichtsliste (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.startDate.normal|true|Formatierung Start-Datum des Kurses in der Übersichtsliste (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.description|true|Beschreibung der Kurse in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.startDate.time|true|Uhrzeit an dem der Kurs beginnt in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.startDate.date|true|Datum an dem der Kurs beginnt in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.price|true|Preis des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.number|true|Nummer des Kurses in der Übersichtliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.number.lable|true|Label für die Nummer des Kurses in der Übersichtliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.maxStudents|true|Maximale Teilnehmer Zahl des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.startDate.date.preposition|true|Preposition für das Satrt Datum des Kurses anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.price.lable|true|Label des Preis des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.lecturer|true|Dozenten des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.lecturer.lable|true|Label für Dozenten des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.maxStudents.lable|true|Label für die maximale Teilnehmerzahl des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.location|true|Veranstaltungsort des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.list.location.lable|true|Label für den Veranstaltungsort des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+pagination.icon.left|/public/icons/pagination_left_orange.png|Pfad zum Bild für die Pagination (Links).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+pagination.icon.right|/public/icons/pagination_right_orange.png|Pfad zum Bild für die Pagination (Rechts).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.number|true|Nummer des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.number.lable|true|Label der Kursnummer in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.startDate.nice|true|Formatierung Start-Datum des Kurses auf der Kursseite (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.startDate.normal|true|Formatierung Start-Datum des Kurses auf der Kursseite (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.lecturer|true|Dozenten des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.lecturer.lable|true|Label für Dozenten des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.price|true|Preis des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.price.lable|true|Label des Preis des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.location|true|Veranstaltungsort des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+course.overview.location.lable|true|Label für den Veranstaltungsort des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+admin.object.list.province.default.numberoflines|20|Standard Anzahl der Einträge in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+admin.object.list.province.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+admin.object.list.country.default.numberoflines|20|Standard Anzahl der Einträge in der Länder  Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+admin.object.list.country.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Länder Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
