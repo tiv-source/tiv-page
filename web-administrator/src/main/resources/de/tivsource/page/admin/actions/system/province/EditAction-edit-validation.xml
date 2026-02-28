@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="province.country">
+    <field-validator type="conversion">
+      <param name="repopulateField">false</param>
+      <message key="province.validation.valid.country" />
+    </field-validator>
+  </field>
+
+  <field name="province.descriptionMap.de.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="province.validation.required.de.name" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z,Ä,Ö,Ü,a-z,ä,ö,ü,ß,\-]{4,35} ]]></param>
+      <message key="province.validation.character.de.name" />
+    </field-validator>
+  </field>
+
+  <field name="province.descriptionMap.en.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="province.validation.required.en.name" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z,a-z,\-]{4,35} ]]></param>
+      <message key="province.validation.character.en.name" />
+    </field-validator>
+  </field>
+
+  <field name="province.code">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="province.validation.required.code" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z]{2}-[A-Z,0-9]{1,3} ]]></param>
+      <message key="province.validation.character.code" />
+    </field-validator>
+  </field>
+
+</validators>

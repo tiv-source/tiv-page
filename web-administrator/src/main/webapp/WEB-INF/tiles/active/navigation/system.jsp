@@ -11,6 +11,9 @@
 <struts:url var="userUrl"              action="index" namespace="/system/user" />
 <struts:url var="roleUrl"              action="index" namespace="/system/role" />
 <struts:url var="propertyUrl"          action="index" namespace="/system/property" />
+<struts:url var="salutationUrl"        action="index" namespace="/system/salutation" />
+<struts:url var="countryUrl"           action="index" namespace="/system/country" />
+<struts:url var="provinceUrl"          action="index" namespace="/system/province" />
 <struts:url var="captchaUrl"           action="index" namespace="/system/captcha" />
 
    	  <div class="nav">
@@ -47,6 +50,30 @@
                 <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.properties"/>">
                 <br />
                 <p class="ellipsis"><struts:text name="navigation.properties"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{salutationUrl}" title="%{getText('navigation.salutations')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.salutations"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.salutations"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{countryUrl}" title="%{getText('navigation.countries')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_button_country.png" alt="<struts:text name="navigation.countries"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.countries"/></p>
+              </div>
+            </struts:a>
+
+            <struts:a href="%{provinceUrl}" title="%{getText('navigation.provinces')}">
+              <div class="button">
+                <img src="/admin/buttons/tiv_button_province.png" alt="<struts:text name="navigation.provinces"/>">
+                <br />
+                <p class="ellipsis"><struts:text name="navigation.provinces"/></p>
               </div>
             </struts:a>
 

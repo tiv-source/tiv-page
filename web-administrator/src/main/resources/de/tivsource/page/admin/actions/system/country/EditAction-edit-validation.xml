@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+ "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+
+<validators>
+
+  <field name="country.descriptionMap.de.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.de.name" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z,Ä,Ö,Ü,a-z,ä,ö,ü,ß]{4,21} ]]></param>
+      <message key="country.validation.character.de.name" />
+    </field-validator>
+  </field>
+
+  <field name="country.descriptionMap.en.name">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.en.name" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z,Ä,Ö,Ü,a-z,ä,ö,ü,ß]{4,21} ]]></param>
+      <message key="country.validation.character.en.name" />
+    </field-validator>
+  </field>
+
+  <field name="country.language">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.language" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [a-z]{2} ]]></param>
+      <message key="country.validation.character.language" />
+    </field-validator>
+  </field>
+
+  <field name="country.alpha2">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.alpha2" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z]{2} ]]></param>
+      <message key="country.validation.character.alpha2" />
+    </field-validator>
+  </field>
+
+  <field name="country.alpha3">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.alpha3" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [A-Z]{3} ]]></param>
+      <message key="country.validation.character.alpha3" />
+    </field-validator>
+  </field>
+
+  <field name="country.numeric">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.numeric" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ [0-9]{3} ]]></param>
+      <message key="country.validation.character.numeric" />
+    </field-validator>
+  </field>
+
+  <field name="country.areaCode">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="country.validation.areaCode" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[ \+[0-9]{2} ]]></param>
+      <message key="country.validation.character.areaCode" />
+    </field-validator>
+  </field>
+
+</validators>

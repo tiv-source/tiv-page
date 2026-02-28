@@ -4,6 +4,9 @@
 <struts:url var="userUrl"              action="index" namespace="/system/user" />
 <struts:url var="roleUrl"              action="index" namespace="/system/role" />
 <struts:url var="propertyUrl"          action="index" namespace="/system/property" />
+<struts:url var="salutationUrl"        action="index" namespace="/system/salutation" />
+<struts:url var="countryUrl"           action="index" namespace="/system/country" />
+<struts:url var="provinceUrl"          action="index" namespace="/system/province" />
 <struts:url var="captchaUrl"           action="index" namespace="/system/captcha" />
 
       <div id="title">
@@ -34,8 +37,32 @@
         </div>
       </struts:a>
 
-      <struts:a href="%{captchaUrl}">
+      <struts:a href="%{salutationUrl}">
         <div class="buttoninfo typ2">
+          <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.salutations.description"/>">
+          <h5><struts:text name="navigation.salutations"/></h5>
+          <p><struts:text name="navigation.salutations.description"/></p>
+        </div>
+      </struts:a>
+
+      <struts:a href="%{countryUrl}">
+        <div class="buttoninfo typ1">
+          <img src="/admin/buttons/tiv_button_country.png" alt="<struts:text name="navigation.countries"/>">
+          <h5><struts:text name="navigation.countries"/></h5>
+          <p><struts:text name="navigation.countries.description"/></p>
+        </div>
+      </struts:a>
+
+      <struts:a href="%{provinceUrl}">
+        <div class="buttoninfo typ2">
+          <img src="/admin/buttons/tiv_button_province.png" alt="<struts:text name="navigation.provinces"/>">
+          <h5><struts:text name="navigation.provinces"/></h5>
+          <p><struts:text name="navigation.provinces.description"/></p>
+        </div>
+      </struts:a>
+
+      <struts:a href="%{captchaUrl}">
+        <div class="buttoninfo typ1">
           <img src="/admin/buttons/tiv_page_button_properties.png" alt="<struts:text name="navigation.captchas.description"/>">
           <h5><struts:text name="navigation.captchas"/></h5>
           <p><struts:text name="navigation.captchas.description"/></p>
