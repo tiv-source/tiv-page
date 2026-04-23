@@ -1,0 +1,2 @@
+<h1>Error occurred</h1>
+<p>An error has occurred. Please contact us by phone.</p>

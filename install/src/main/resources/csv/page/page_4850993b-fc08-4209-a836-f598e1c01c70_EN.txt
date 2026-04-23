@@ -1,0 +1,2 @@
+<h1>Form successfully submitted</h1>
+<p>The form has been successfully submitted. We will contact you as soon as possible.</p> 

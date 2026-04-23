@@ -1,248 +1,378 @@
-[Format Definition] => key|value|comment|created|modified|modifiedBy|modifiedAddress
-appointment.archive.list.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.list.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.list.pointInTime.date.preposition|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.list.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.list.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.archive.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.booking.text.de|Ticket kaufen||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.booking.text.en|Buy a ticket||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.list.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.list.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.list.pointInTime.date.preposition|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.list.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.list.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-appointment.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-captcha.image.lastModified|Sun, 24 Nov 2019 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-companion.page.enabled|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-contact.page.enabled|true|Mit dieser Einstellung lässt sich das Kontakt-Fomrular auf der Seite Aktvieren oder deaktivieren.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.button.background|#f1d600||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.content.dismiss|Akzeptieren||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.content.href|/public/privacy/index.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.content.link|Mehr erfahren||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.content.message|Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website so angenehm wie möglich zu gestalten. Durch die Nutzung unserer Website erklären Sie sich mit unserer Verwendung von Cookies einverstanden.||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.content.target|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.popup.background|#000||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cookieconsent.position|top||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-css-path|/var/www/html/css/|Wir das noch benötigt ??|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-cssFile.lastModified|Sun, 24 Nov 2019 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-event.quantity.list|1:01;2:02;3:03;4:04;5:05;6:06;7:07;8:08;9:09;10:10;11:11;12:12||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-event.show.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-exhibition.list.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-exhibition.list.end|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-exhibition.list.image|normal.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-exhibition.list.moment.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-exhibition.list.start|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-exhibition.view.image|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-favicon.ico.path|????||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-favicon.png.path|????||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-gallery.list.quantity|9||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-gallery.overview.list.quantity|9||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-gallery.page.enabled|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-geo.placename|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-geo.position|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-geo.region|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-home.appointment.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-home.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-i18n|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-icbm|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-image.size.content|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-image.size.gallery.list|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-logo.alt|TIV-Page-Logo||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-logo.path|/uploads/tiv-page-logo.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.ads.path|/srv/tiv-page/templates/confirmreservation/ads.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.bcc.personal|TIV-Page Reservierung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.body.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.body.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.font.path|/srv/tiv-page/fonts/bankgothicltbt.ttf||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.from.personal|TIV-Page Reservierung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.html.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.html.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.images.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.images.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.logo.path|/srv/tiv-page/templates/confirmreservation/logo1.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.pdf.name|Reservierungsbestaetigung.pdf||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.confirmreservation.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.bcc.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.bcc.personal|BCC Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.body.de|/srv/tiv-page/templates/contactform/template_contactform_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.body.en|/srv/tiv-page/templates/contactform/template_contactform_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.from.personal|TIV-Page Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.html.de|/srv/tiv-page/templates/contactform/template_contactform_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.html.en|/srv/tiv-page/templates/contactform/template_contactform_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.images.de|/srv/tiv-page/templates/contactform/template_contactform_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.images.en|/srv/tiv-page/templates/contactform/template_contactform_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.subject.de|Anfrage über das Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.subject.en|Request via the contact form||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.to.address|web-kontakt-form@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.contactform.to.personal|To Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.host|mail.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.body.de|/srv/tiv-page/templates/newsletter/template_lockrequest_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.body.en|/srv/tiv-page/templates/newsletter/template_lockrequest_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.from.personal|TIV-Page Lockrequest||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.html.de|/srv/tiv-page/templates/newsletter/template_lockrequest_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.html.en|/srv/tiv-page/templates/newsletter/template_lockrequest_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.images.de|/srv/tiv-page/templates/newsletter/template_lockrequest_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.images.en|/srv/tiv-page/templates/newsletter/template_lockrequest_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.replyto.address|info@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.replyto.personal|TIV-Page||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.subject.de|Mailadressen Sperrantrag||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.lockrequest.subject.en|Mail Lock Request||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.mime.charset|UTF-8||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.password|HIERmussDASpasswordHIN||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.port|25||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.bcc.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.bcc.personal|BCC Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.body.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.body.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.from.personal|TIV-Page Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.html.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.html.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.images.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.images.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.to.address|reservierungsanfrage@tiv-source.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.reservationrequest.to.personal|To Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.smtp.auth|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.smtp.localhost|page.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.smtp.ssl.protocols|TLSv1.2||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.smtp.ssl.trust|mail.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.smtp.starttls.enable|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.smtp.tls|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.template.path|Hier muss der Pfad hin.|Pfad zur Template-Datei des Kontaktformulars.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.transport.protocol|smtp||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.use8bit|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-mail.user|HIERmussDERusernameHIN||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-menu.icon.path|/icons/menu/icon_000000.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.author|Marc Michele||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.category|Software||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.classification|Webservice||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.copyright|Marc Michele||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.generator|TIV-Page||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.owner|Marc Michele||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.page.topic|Content Management System (CMS)||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.publisher|T.I.V. Consulting GmbH||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-meta.revisit-after|7 days||2010-01-01 00:00:02|2010-01-01 00:00:02|Installer|localhorst
-meta.robots|INDEX,FOLLOW||2010-01-01 00:00:03|2010-01-01 00:00:03|Installer|localhorst
-module.appointment|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.companion|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.event|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.exhibition|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.feedback|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.location|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.manual|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.news|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.newsletter|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.pdf|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.press|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.request|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.reservation|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.vacancy|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.lecturer|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-module.course|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-news.on.home|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-news.on.home.quantity|2||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.appointment|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.event|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.exhibition|normal.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.feedback|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.home|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.location|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.manual|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.page|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.picture|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.reservation.location|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.subsumption|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.image.size.vacancy|large.png||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst
-og.image.size.course|large.png||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst
-pdf.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.image.size|thumbnail.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.created|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.created.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.created.description.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.created.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.dateOfPublication|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.dateOfPublication.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.dateOfPublication.description.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.dateOfPublication.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.description.title|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.downloadCounter|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.downloadCounter.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.edition|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pdf.list.show.edition.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-picture.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pictureItem.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-pictureItem.image.path|/image/pictureitem||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-request.template.path|file:/srv/tiv-page/templates/template_request.xml||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-server.base.url|https://www.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-slider.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.facebook.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.facebook.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.facebook.url.icon.alt|Facebook||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.icons|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.instagram.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.instagram.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.instagram.url.icon.alt|Instagram||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.mastodon.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.mastodon.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.mastodon.url.icon.alt|Mastodon||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.twitter.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.twitter.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.twitter.url.icon.alt|Twitter||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.whatsapp.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.whatsapp.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-socialmedia.whatsapp.url.icon.alt|WhatsApp||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-title|TIV-Page||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-upload-path|/var/www/html/uploads/||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-og.type|website||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-upload-path|/var/www/html/uploads|Pfad zu den hochgeladenen Dateien|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst
-project.icon.path|/public/icon/000000/|Pfad zu den Icon-Dateien|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.startDate.nice|true|Formatierung Start-Datum des Kurses in der Übersichtsliste (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.startDate.normal|true|Formatierung Start-Datum des Kurses in der Übersichtsliste (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.description|true|Beschreibung der Kurse in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.startDate.time|true|Uhrzeit an dem der Kurs beginnt in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.startDate.date|true|Datum an dem der Kurs beginnt in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.price|true|Preis des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.number|true|Nummer des Kurses in der Übersichtliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.number.lable|true|Label für die Nummer des Kurses in der Übersichtliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.maxStudents|true|Maximale Teilnehmer Zahl des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.startDate.date.preposition|true|Preposition für das Satrt Datum des Kurses anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.price.lable|true|Label des Preis des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.lecturer|true|Dozenten des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.lecturer.lable|true|Label für Dozenten des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.maxStudents.lable|true|Label für die maximale Teilnehmerzahl des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.location|true|Veranstaltungsort des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.list.location.lable|true|Label für den Veranstaltungsort des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-pagination.icon.left|/public/icons/pagination_left_orange.png|Pfad zum Bild für die Pagination (Links).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-pagination.icon.right|/public/icons/pagination_right_orange.png|Pfad zum Bild für die Pagination (Rechts).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.number|true|Nummer des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.number.lable|true|Label der Kursnummer in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.startDate.nice|true|Formatierung Start-Datum des Kurses auf der Kursseite (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.startDate.normal|true|Formatierung Start-Datum des Kurses auf der Kursseite (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.lecturer|true|Dozenten des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.lecturer.lable|true|Label für Dozenten des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.price|true|Preis des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.price.lable|true|Label des Preis des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.location|true|Veranstaltungsort des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-course.overview.location.lable|true|Label für den Veranstaltungsort des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-admin.object.list.province.default.numberoflines|20|Standard Anzahl der Einträge in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-admin.object.list.province.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-admin.object.list.country.default.numberoflines|20|Standard Anzahl der Einträge in der Länder  Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
-admin.object.list.country.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Länder Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst
+[Format Definition] => key|value|comment|created|modified|modifiedBy|modifiedAddress|unchangeable
+appointment.archive.list.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.list.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.list.pointInTime.date.preposition|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.list.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.list.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.archive.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.booking.text.de|Ticket kaufen||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.booking.text.en|Buy a ticket||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.list.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.list.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.list.pointInTime.date.preposition|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.list.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.list.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.pointInTime.date|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.pointInTime.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+appointment.pointInTime.time|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+captcha.image.lastModified|Sun, 24 Nov 2019 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+companion.page.enabled|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+contact.page.enabled|true|Mit dieser Einstellung lässt sich das Kontakt-Fomrular auf der Seite Aktvieren oder deaktivieren.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.button.background|#f1d600||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.content.dismiss|Akzeptieren||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.content.href|/public/privacy/index.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.content.link|Mehr erfahren||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.content.message|Wir verwenden Cookies, um Ihr Erlebnis auf unserer Website so angenehm wie möglich zu gestalten. Durch die Nutzung unserer Website erklären Sie sich mit unserer Verwendung von Cookies einverstanden.||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.content.target|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.popup.background|#000||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cookieconsent.position|top||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+css-path|/var/www/html/css/|Wir das noch benötigt ??|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+cssFile.lastModified|Sun, 24 Nov 2019 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+event.quantity.list|1:01;2:02;3:03;4:04;5:05;6:06;7:07;8:08;9:09;10:10;11:11;12:12||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+event.show.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+exhibition.list.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+exhibition.list.end|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+exhibition.list.image|normal.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+exhibition.list.moment.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+exhibition.list.start|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+exhibition.view.image|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+favicon.ico.path|????||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+favicon.png.path|????||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+gallery.list.quantity|9||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+gallery.overview.list.quantity|9||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+gallery.page.enabled|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+geo.placename|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+geo.position|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+geo.region|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+home.appointment.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+home.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+i18n|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+icbm|???||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+image.size.content|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+image.size.gallery.list|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+logo.alt|TIV-Page-Logo||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+logo.path|/uploads/tiv-page-logo.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.ads.path|/srv/tiv-page/templates/confirmreservation/ads.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.bcc.personal|TIV-Page Reservierung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.body.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.body.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.font.path|/srv/tiv-page/fonts/bankgothicltbt.ttf||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.from.personal|TIV-Page Reservierung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.html.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.html.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.images.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.images.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.logo.path|/srv/tiv-page/templates/confirmreservation/logo1.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.pdf.name|Reservierungsbestaetigung.pdf||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.bcc.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.bcc.personal|BCC Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.body.de|/srv/tiv-page/templates/contactform/template_contactform_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.body.en|/srv/tiv-page/templates/contactform/template_contactform_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.from.personal|TIV-Page Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.html.de|/srv/tiv-page/templates/contactform/template_contactform_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.html.en|/srv/tiv-page/templates/contactform/template_contactform_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.images.de|/srv/tiv-page/templates/contactform/template_contactform_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.images.en|/srv/tiv-page/templates/contactform/template_contactform_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.subject.de|Anfrage über das Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.subject.en|Request via the contact form||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.to.address|web-kontakt-form@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.to.personal|To Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.host|mail.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.body.de|/srv/tiv-page/templates/newsletter/template_lockrequest_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.body.en|/srv/tiv-page/templates/newsletter/template_lockrequest_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.from.personal|TIV-Page Lockrequest||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.html.de|/srv/tiv-page/templates/newsletter/template_lockrequest_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.html.en|/srv/tiv-page/templates/newsletter/template_lockrequest_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.images.de|/srv/tiv-page/templates/newsletter/template_lockrequest_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.images.en|/srv/tiv-page/templates/newsletter/template_lockrequest_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.replyto.address|info@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.replyto.personal|TIV-Page||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.subject.de|Mailadressen Sperrantrag||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.lockrequest.subject.en|Mail Lock Request||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.mime.charset|UTF-8||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.password|HIERmussDASpasswordHIN||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.port|25||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.bcc.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.bcc.personal|BCC Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.body.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.body.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.from.personal|TIV-Page Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.html.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.html.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.images.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.images.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.to.address|reservierungsanfrage@tiv-source.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.to.personal|To Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.smtp.auth|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.smtp.localhost|page.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.smtp.ssl.protocols|TLSv1.2||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.smtp.ssl.trust|mail.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.smtp.starttls.enable|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.smtp.tls|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.template.path|Hier muss der Pfad hin.|Pfad zur Template-Datei des Kontaktformulars.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.transport.protocol|smtp||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.use8bit|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.user|HIERmussDERusernameHIN||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+menu.icon.path|/icons/menu/icon_000000.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.author|Marc Michele||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.category|Software||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.classification|Webservice||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.copyright|Marc Michele||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.generator|TIV-Page||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.owner|Marc Michele||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.page.topic|Content Management System (CMS)||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.publisher|T.I.V. Consulting GmbH||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+meta.revisit-after|7 days||2010-01-01 00:00:02|2010-01-01 00:00:02|Installer|localhorst|false
+meta.robots|INDEX,FOLLOW||2010-01-01 00:00:03|2010-01-01 00:00:03|Installer|localhorst|false
+module.appointment|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.companion|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.event|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.exhibition|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.feedback|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.location|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.manual|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.news|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.newsletter|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.pdf|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.press|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.request|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.reservation|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.slider|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.vacancy|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.lecturer|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+module.course|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+news.on.home|false||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+news.on.home.quantity|2||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.appointment|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.event|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.exhibition|normal.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.feedback|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.home|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.location|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.manual|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.page|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.picture|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.reservation.location|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.subsumption|large.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.image.size.vacancy|large.png||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst|false
+og.image.size.course|large.png||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst|false
+pdf.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.image.size|thumbnail.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.created|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.created.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.created.description.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.created.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.dateOfPublication|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.dateOfPublication.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.dateOfPublication.description.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.dateOfPublication.nice|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.description.title|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.downloadCounter|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.downloadCounter.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.edition|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.list.show.edition.description|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+picture.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pictureItem.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pictureItem.image.path|/image/pictureitem||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+request.template.path|file:/srv/tiv-page/templates/template_request.xml||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+server.base.url|https://www.tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+slider.image.lastModified|Sun, 24 Nov 2015 14:26:08 GMT||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.facebook.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.facebook.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.facebook.url.icon.alt|Facebook||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.icons|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.instagram.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.instagram.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.instagram.url.icon.alt|Instagram||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.mastodon.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.mastodon.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.mastodon.url.icon.alt|Mastodon||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.twitter.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.twitter.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.twitter.url.icon.alt|Twitter||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.whatsapp.url|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.whatsapp.url.icon|||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+socialmedia.whatsapp.url.icon.alt|WhatsApp||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+title|TIV-Page||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+upload-path|/var/www/html/uploads/||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+og.type|website||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+upload-path|/var/www/html/uploads|Pfad zu den hochgeladenen Dateien|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+project.icon.path|/public/icon/000000/|Pfad zu den Icon-Dateien|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.startDate.nice|true|Formatierung Start-Datum des Kurses in der Übersichtsliste (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.startDate.normal|true|Formatierung Start-Datum des Kurses in der Übersichtsliste (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.description|true|Beschreibung der Kurse in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.startDate.time|true|Uhrzeit an dem der Kurs beginnt in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.startDate.date|true|Datum an dem der Kurs beginnt in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.startDate.date.preposition|true|Preposition für das Start Datum des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.price|true|Preis des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.number|true|Nummer des Kurses in der Übersichtliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.number.lable|true|Label für die Nummer des Kurses in der Übersichtliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.maxStudents|true|Maximale Teilnehmer Zahl des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.price.lable|true|Label des Preis des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.lecturer|true|Dozenten des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.lecturer.lable|true|Label für Dozenten des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.maxStudents.lable|true|Label für die maximale Teilnehmerzahl des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.location|true|Veranstaltungsort des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.location.lable|true|Label für den Veranstaltungsort des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+pagination.icon.left|/public/icons/pagination_left_orange.png|Pfad zum Bild für die Pagination (Links).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+pagination.icon.right|/public/icons/pagination_right_orange.png|Pfad zum Bild für die Pagination (Rechts).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.number|true|Nummer des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.number.lable|true|Label der Kursnummer in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.startDate.nice|true|Formatierung Start-Datum des Kurses auf der Kursseite (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.startDate.normal|true|Formatierung Start-Datum des Kurses auf der Kursseite (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.lecturer|true|Dozenten des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.lecturer.lable|true|Label für Dozenten des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.price|true|Preis des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.price.lable|true|Label des Preis des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.location|true|Veranstaltungsort des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.location.lable|true|Label für den Veranstaltungsort des Kurses in der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.maxStudents|true|Maximale Teilnehmer Zahl des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.maxStudents.lable|true|Label für die maximale Teilnehmerzahl des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.startDate.time|true|Uhrzeit an dem der Kurs beginnt auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.startDate.date|true|Datum an dem der Kurs beginnt auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.startDate.date.preposition|true|Preposition für das Start Datum des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+admin.object.list.province.default.numberoflines|20|Standard Anzahl der Einträge in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+admin.object.list.province.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+admin.object.list.country.default.numberoflines|20|Standard Anzahl der Einträge in der Länder  Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+admin.object.list.country.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Länder Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+mail.course.predeclare.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.body.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.body.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.html.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.html.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.images.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.images.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.confirmation.document.data.addressfield.header|T.I.V. Consulting GmbH - Auf dem Schnee 29 - 58454 Witten||2010-01-01 00:00:02|2010-01-01 00:00:02|Installer|localhorst|false
+pdf.confirmation.document.data.date.title|Datum||2010-01-01 00:00:03|2010-01-01 00:00:03|Installer|localhorst|false
+pdf.confirmation.document.data.number.title|Auftrags-Nr.||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst|false
+pdf.confirmation.document.data.page.title|Seiten-Nr.||2010-01-01 00:00:05|2010-01-01 00:00:05|Installer|localhorst|false
+pdf.confirmation.document.data.page|1 von 1||2010-01-01 00:00:06|2010-01-01 00:00:06|Installer|localhorst|false
+pdf.confirmation.document.information.author|Marc Michele||2010-01-01 00:00:07|2010-01-01 00:00:07|Installer|localhorst|false
+pdf.confirmation.document.information.creator|czastka.academy (T.I.V. Consulting GmbH)||2010-01-01 00:00:08|2010-01-01 00:00:08|Installer|localhorst|false
+pdf.confirmation.document.information.keywords|Anmeldung, Auftragsbestätigung, Kurs, Czastka, Academy||2010-01-01 00:00:09|2010-01-01 00:00:09|Installer|localhorst|false
+pdf.confirmation.document.information.producer|TIV-Page||2010-01-01 00:00:10|2010-01-01 00:00:10|Installer|localhorst|false
+pdf.confirmation.document.information.subject|Auftragsbestätigung||2010-01-01 00:00:11|2010-01-01 00:00:11|Installer|localhorst|false
+pdf.confirmation.document.information.title|Auftragsbestätigung||2010-01-01 00:00:12|2010-01-01 00:00:12|Installer|localhorst|false
+pdf.confirmation.document.footer.block1.field1|Anschrift||2010-01-01 00:00:13|2010-01-01 00:00:13|Installer|localhorst|false
+pdf.confirmation.document.footer.block1.field2|T.I.V. Consulting GmbH||2010-01-01 00:00:14|2010-01-01 00:00:14|Installer|localhorst|false
+pdf.confirmation.document.footer.block1.field3|Auf dem Schnee 29||2010-01-01 00:00:15|2010-01-01 00:00:15|Installer|localhorst|false
+pdf.confirmation.document.footer.block1.field4|58454 Witten||2010-01-01 00:00:16|2010-01-01 00:00:16|Installer|localhorst|false
+pdf.confirmation.document.footer.block2.field1|Kontakt||2010-01-01 00:00:17|2010-01-01 00:00:17|Installer|localhorst|false
+pdf.confirmation.document.footer.block2.field2|Tel.: 02302 / 8798783||2010-01-01 00:00:18|2010-01-01 00:00:18|Installer|localhorst|false
+pdf.confirmation.document.footer.block2.field3|info@czastka.academy||2010-01-01 00:00:19|2010-01-01 00:00:19|Installer|localhorst|false
+pdf.confirmation.document.footer.block2.field4|www.czastka.academy||2010-01-01 00:00:20|2010-01-01 00:00:20|Installer|localhorst|false
+pdf.confirmation.document.footer.block3.field1|Bankverbindung||2010-01-01 00:00:21|2010-01-01 00:00:21|Installer|localhorst|false
+pdf.confirmation.document.footer.block3.field2|Sparkasse Dortmund||2010-01-01 00:00:22|2010-01-01 00:00:22|Installer|localhorst|false
+pdf.confirmation.document.footer.block3.field3|IBAN||2010-01-01 00:00:23|2010-01-01 00:00:23|Installer|localhorst|false
+pdf.confirmation.document.footer.block3.field4|DExx xxxx xxxx xxxx xxxx xx||2010-01-01 00:00:24|2010-01-01 00:00:24|Installer|localhorst|false
+pdf.confirmation.document.footer.block4.field1|Registergericht Dortmund||2010-01-01 00:00:25|2010-01-01 00:00:25|Installer|localhorst|false
+pdf.confirmation.document.footer.block4.field2|HRB 16951||2010-01-01 00:00:26|2010-01-01 00:00:26|Installer|localhorst|false
+pdf.confirmation.document.footer.block4.field3|Steuernummer||2010-01-01 00:00:27|2010-01-01 00:00:27|Installer|localhorst|false
+pdf.confirmation.document.footer.block4.field4|xxx/xxxx/xxxx||2010-01-01 00:00:28|2010-01-01 00:00:28|Installer|localhorst|false
+pdf.confirmation.document.footer.block5.field1|Geschäftsführung||2010-01-01 00:00:29|2010-01-01 00:00:29|Installer|localhorst|false
+pdf.confirmation.document.footer.block5.field2|Marc Michele||2010-01-01 00:00:30|2010-01-01 00:00:30|Installer|localhorst|false
+pdf.confirmation.document.footer.block5.field3|Ust-IdNr.||2010-01-01 00:00:31|2010-01-01 00:00:31|Installer|localhorst|false
+pdf.confirmation.document.footer.block5.field4|DE216171986||2010-01-01 00:00:32|2010-01-01 00:00:32|Installer|localhorst|false
+pdf.confirmation.document.bankdata.iban.title|IBAN:||2010-01-01 00:00:33|2010-01-01 00:00:33|Installer|localhorst|false
+pdf.confirmation.document.bankdata.iban|DExx xxxx xxxx xxxx xxxx xx||2010-01-01 00:00:34|2010-01-01 00:00:34|Installer|localhorst|false
+pdf.confirmation.document.bankdata.bic.title|BIC:||2010-01-01 00:00:35|2010-01-01 00:00:35|Installer|localhorst|false
+pdf.confirmation.document.bankdata.bic|DORTDE33XXX||2010-01-01 00:00:36|2010-01-01 00:00:36|Installer|localhorst|false
+pdf.confirmation.document.bankdata.bank.title|Bank:||2010-01-01 00:00:37|2010-01-01 00:00:37|Installer|localhorst|false
+pdf.confirmation.document.bankdata.bank|Sparkasse Dortmund||2010-01-01 00:00:38|2010-01-01 00:00:38|Installer|localhorst|false
+pdf.confirmation.document.bankdata.recipient.title|Empfänger:||2010-01-01 00:00:39|2010-01-01 00:00:39|Installer|localhorst|false
+pdf.confirmation.document.bankdata.recipient|T.I.V. Consulting GmbH||2010-01-01 00:00:40|2010-01-01 00:00:40|Installer|localhorst|false
+pdf.confirmation.document.bankdata.purpose|Verwendungszweck:||2010-01-01 00:00:41|2010-01-01 00:00:41|Installer|localhorst|false
+pdf.confirmation.document.bankdata.title|Bitte verwenden Sie folgende Bankdaten für die Bezahlung Ihrer Anmeldung:||2010-01-01 00:00:42|2010-01-01 00:00:42|Installer|localhorst|false
+pdf.confirmation.document.number.prefix|auf-||2010-01-01 00:00:43|2010-01-01 00:00:43|Installer|localhorst|false
+pdf.confirmation.document.number|20001||2010-01-01 00:00:44|2010-01-01 00:00:44|Installer|localhorst|false
+mail.course.confirmation.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.body.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.body.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.html.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.html.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.images.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.images.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+pdf.pay.document.data.addressfield.header|T.I.V. Consulting GmbH - Auf dem Schnee 29 - 58454 Witten||2010-01-01 00:00:02|2010-01-01 00:00:02|Installer|localhorst|false
+pdf.pay.document.data.date.title|Datum||2010-01-01 00:00:03|2010-01-01 00:00:03|Installer|localhorst|false
+pdf.pay.document.data.number.title|Rechnungs-Nr.||2010-01-01 00:00:04|2010-01-01 00:00:04|Installer|localhorst|false
+pdf.pay.document.data.page.title|Seiten-Nr.||2010-01-01 00:00:05|2010-01-01 00:00:05|Installer|localhorst|false
+pdf.pay.document.data.page|1 von 1||2010-01-01 00:00:06|2010-01-01 00:00:06|Installer|localhorst|false
+pdf.pay.document.information.author|Marc Michele||2010-01-01 00:00:07|2010-01-01 00:00:07|Installer|localhorst|false
+pdf.pay.document.information.creator|czastka.academy (T.I.V. Consulting GmbH)||2010-01-01 00:00:08|2010-01-01 00:00:08|Installer|localhorst|false
+pdf.pay.document.information.keywords|Anmeldung, Rechnung, Kurs, Czastka, Academy||2010-01-01 00:00:09|2010-01-01 00:00:09|Installer|localhorst|false
+pdf.pay.document.information.producer|TIV-Page||2010-01-01 00:00:10|2010-01-01 00:00:10|Installer|localhorst|false
+pdf.pay.document.information.subject|Rechnung||2010-01-01 00:00:11|2010-01-01 00:00:11|Installer|localhorst|false
+pdf.pay.document.information.title|Rechnung||2010-01-01 00:00:12|2010-01-01 00:00:12|Installer|localhorst|false
+pdf.pay.document.footer.block1.field1|Anschrift||2010-01-01 00:00:13|2010-01-01 00:00:13|Installer|localhorst|false
+pdf.pay.document.footer.block1.field2|T.I.V. Consulting GmbH||2010-01-01 00:00:14|2010-01-01 00:00:14|Installer|localhorst|false
+pdf.pay.document.footer.block1.field3|Auf dem Schnee 29||2010-01-01 00:00:15|2010-01-01 00:00:15|Installer|localhorst|false
+pdf.pay.document.footer.block1.field4|58454 Witten||2010-01-01 00:00:16|2010-01-01 00:00:16|Installer|localhorst|false
+pdf.pay.document.footer.block2.field1|Kontakt||2010-01-01 00:00:17|2010-01-01 00:00:17|Installer|localhorst|false
+pdf.pay.document.footer.block2.field2|Tel.: 02302 / 8798783||2010-01-01 00:00:18|2010-01-01 00:00:18|Installer|localhorst|false
+pdf.pay.document.footer.block2.field3|info@czastka.academy||2010-01-01 00:00:19|2010-01-01 00:00:19|Installer|localhorst|false
+pdf.pay.document.footer.block2.field4|www.czastka.academy||2010-01-01 00:00:20|2010-01-01 00:00:20|Installer|localhorst|false
+pdf.pay.document.footer.block3.field1|Bankverbindung||2010-01-01 00:00:21|2010-01-01 00:00:21|Installer|localhorst|false
+pdf.pay.document.footer.block3.field2|Sparkasse Dortmund||2010-01-01 00:00:22|2010-01-01 00:00:22|Installer|localhorst|false
+pdf.pay.document.footer.block3.field3|IBAN||2010-01-01 00:00:23|2010-01-01 00:00:23|Installer|localhorst|false
+pdf.pay.document.footer.block3.field4|DExx xxxx xxxx xxxx xxxx xx||2010-01-01 00:00:24|2010-01-01 00:00:24|Installer|localhorst|false
+pdf.pay.document.footer.block4.field1|Registergericht Dortmund||2010-01-01 00:00:25|2010-01-01 00:00:25|Installer|localhorst|false
+pdf.pay.document.footer.block4.field2|HRB 16951||2010-01-01 00:00:26|2010-01-01 00:00:26|Installer|localhorst|false
+pdf.pay.document.footer.block4.field3|Steuernummer||2010-01-01 00:00:27|2010-01-01 00:00:27|Installer|localhorst|false
+pdf.pay.document.footer.block4.field4|xxx/xxxx/xxxx||2010-01-01 00:00:28|2010-01-01 00:00:28|Installer|localhorst|false
+pdf.pay.document.footer.block5.field1|Geschäftsführung||2010-01-01 00:00:29|2010-01-01 00:00:29|Installer|localhorst|false
+pdf.pay.document.footer.block5.field2|Marc Michele||2010-01-01 00:00:30|2010-01-01 00:00:30|Installer|localhorst|false
+pdf.pay.document.footer.block5.field3|Ust-IdNr.||2010-01-01 00:00:31|2010-01-01 00:00:31|Installer|localhorst|false
+pdf.pay.document.footer.block5.field4|DE216171986||2010-01-01 00:00:32|2010-01-01 00:00:32|Installer|localhorst|false
+pdf.pay.document.bankdata.iban.title|IBAN:||2010-01-01 00:00:33|2010-01-01 00:00:33|Installer|localhorst|false
+pdf.pay.document.bankdata.iban|DExx xxxx xxxx xxxx xxxx xx||2010-01-01 00:00:34|2010-01-01 00:00:34|Installer|localhorst|false
+pdf.pay.document.bankdata.bic.title|BIC:||2010-01-01 00:00:35|2010-01-01 00:00:35|Installer|localhorst|false
+pdf.pay.document.bankdata.bic|DORTDE33XXX||2010-01-01 00:00:36|2010-01-01 00:00:36|Installer|localhorst|false
+pdf.pay.document.bankdata.bank.title|Bank:||2010-01-01 00:00:37|2010-01-01 00:00:37|Installer|localhorst|false
+pdf.pay.document.bankdata.bank|Sparkasse Dortmund||2010-01-01 00:00:38|2010-01-01 00:00:38|Installer|localhorst|false
+pdf.pay.document.bankdata.recipient.title|Empfänger:||2010-01-01 00:00:39|2010-01-01 00:00:39|Installer|localhorst|false
+pdf.pay.document.bankdata.recipient|T.I.V. Consulting GmbH||2010-01-01 00:00:40|2010-01-01 00:00:40|Installer|localhorst|false
+pdf.pay.document.bankdata.purpose|Verwendungszweck:||2010-01-01 00:00:41|2010-01-01 00:00:41|Installer|localhorst|false
+pdf.pay.document.bankdata.title|Bitte verwenden Sie folgende Bankdaten für die Bezahlung Ihrer Anmeldung:||2010-01-01 00:00:42|2010-01-01 00:00:42|Installer|localhorst|false
+pdf.pay.document.number.prefix|re-||2010-01-01 00:00:43|2010-01-01 00:00:43|Installer|localhorst|false
+pdf.pay.document.number|10001||2010-01-01 00:00:44|2010-01-01 00:00:44|Installer|localhorst|false
+mail.course.pay.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.body.de|/srv/tiv-page/templates/course/pay/template_course_pay_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.body.en|/srv/tiv-page/templates/course/pay/template_course_pay_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.html.de|/srv/tiv-page/templates/course/pay/template_course_pay_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.html.en|/srv/tiv-page/templates/course/pay/template_course_pay_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.images.de|/srv/tiv-page/templates/course/pay/template_course_pay_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.images.en|/srv/tiv-page/templates/course/pay/template_course_pay_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false

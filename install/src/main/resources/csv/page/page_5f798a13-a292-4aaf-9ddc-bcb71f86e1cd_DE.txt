@@ -1,0 +1,2 @@
+<h1>Fehler aufgetreten</h1>
+<p>Es ist ein Fehler aufgetreten. Bitte treten Sie mit uns telefonisch in Kontakt.</p>

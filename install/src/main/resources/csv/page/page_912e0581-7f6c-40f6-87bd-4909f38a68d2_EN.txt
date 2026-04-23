@@ -1,0 +1,2 @@
+<h1>Error sending</h1>
+<p>An error occurred while submitting the form. Please try submitting the form again later or contact us by phone.</p> 

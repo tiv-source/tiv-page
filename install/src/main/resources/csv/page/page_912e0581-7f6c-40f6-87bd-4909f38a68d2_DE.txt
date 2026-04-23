@@ -1,0 +1,2 @@
+<h1>Fehler beim versenden</h1>
+<p>Es ist ein Fehler beim versenden des Formulars aufgetreten. Bitte versuchen Sie entweder später das Formular noch einmal abzusenden oder wenden Sie ich per Telefon an uns.</p> 

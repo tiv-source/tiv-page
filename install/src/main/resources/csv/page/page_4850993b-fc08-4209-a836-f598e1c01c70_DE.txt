@@ -1,0 +1,2 @@
+<h1>Formular erfolgreich abgesendet</h1>
+<p>Das Formular wurde erfolgreich übermittelt. Wir werden sobald es uns möglich ist mit Ihnen Kontakt aufnehmen.</p> 
