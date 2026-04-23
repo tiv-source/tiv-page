@@ -111,6 +111,8 @@ public class CSSGroupDao implements CSSGroupDaoLocal {
      */
     @Override
     public CSSGroup findByUuid(String uuid) {
+        LOGGER.info("findByUuid(String uuid) aufgerufen");
+        LOGGER.info("CSSGroup UUID: " + uuid);
         CSSGroup cssGroup = entityManager.find(CSSGroup.class, uuid);
         Hibernate.initialize(cssGroup.getFiles());
         List<CSSFile> cssFileList = new ArrayList<>(cssGroup.getFiles());
