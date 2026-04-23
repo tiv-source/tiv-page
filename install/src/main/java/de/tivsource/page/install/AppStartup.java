@@ -21,6 +21,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
@@ -94,7 +95,17 @@ public class AppStartup implements ServletContextListener {
             property.setModifiedAddress("localhost");
             property.setModifiedBy("Installer");
             property.setValue("true");
+            property.setCreated(new Date());
+            property.setUnchangeable(true);
+            property.setComment("Eigenschaft die gesetzt wird wenn die Initialisierung durchgeführt wurde.");
             propertyDaoLocal.merge(property);
+        }
+
+        CSSGroup cssGroup = cssGroupDaoLocal.findByUuid("579465e5-64ba-4f56-95b1-293d497139ea");
+        if(cssGroup == null) {
+            CreateCSSGroup createCSSGroup = new CreateCSSGroup();
+            createCSSGroup.setCssGroupDaoLocal(cssGroupDaoLocal);
+            createCSSGroup.generate();
         }
 
         checkAllAttributesExisting();
@@ -115,7 +126,7 @@ public class AppStartup implements ServletContextListener {
                 if (!line.startsWith("[Format Definition]")) {
                     // Format: key|value|comment|created|modified|modifiedBy|modifiedAddress|
                     String[] properties = line.split("\\|");
-                    if(!checkAttribute(properties[0], properties[1], properties[2], properties[3], properties[4], properties[5], properties[6])) {
+                    if(!checkAttribute(properties[0], properties[1], properties[2], properties[7], properties[3], properties[4], properties[5], properties[6])) {
                         LOGGER.info("Eigenschaft: " + properties[0] + " hinzugefügt.");
                     }
                 }
@@ -128,7 +139,7 @@ public class AppStartup implements ServletContextListener {
     }// Ende checkAllAttributesExisting()
 
     private Boolean checkAttribute(String inputKey, String inputValue,
-            String inputComment, String inputCreated, String inputModified, 
+            String inputComment, String inputUnchangeable, String inputCreated, String inputModified, 
             String inputModifiedBy, String inputModifiedAddress) throws ParseException {
         Property dbProperty = propertyDaoLocal.findByKey(inputKey);
         // Prüfe ob der Wert in der Datenbank vorhanden ist
@@ -144,6 +155,7 @@ public class AppStartup implements ServletContextListener {
         property.setValue(inputValue);
         property.setCreated(simpleDateFormat.parse(inputCreated));
         property.setComment(inputComment);
+        property.setUnchangeable(inputUnchangeable.equals("true") ? true : false);
         propertyDaoLocal.merge(property);
         return false;
     }// Ende checkAttribute(String inputKey, String inputValue, String inputComment, String inputCreated, String inputModified, String inputModifiedBy, String inputModifiedAddress)
