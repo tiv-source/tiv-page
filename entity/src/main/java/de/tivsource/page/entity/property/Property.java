@@ -9,7 +9,9 @@ import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Temporal;
@@ -33,6 +35,10 @@ public class Property {
 
     @Column(name="property_comment", columnDefinition="LONGTEXT")
     private String comment;
+
+    @Basic
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    private Boolean unchangeable;
 
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
     private Date created;
@@ -72,6 +78,20 @@ public class Property {
      */
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    /**
+     * @return the unchangeable
+     */
+    public Boolean getUnchangeable() {
+        return unchangeable;
+    }
+
+    /**
+     * @param unchangeable the unchangeable to set
+     */
+    public void setUnchangeable(Boolean unchangeable) {
+        this.unchangeable = unchangeable;
     }
 
     /**

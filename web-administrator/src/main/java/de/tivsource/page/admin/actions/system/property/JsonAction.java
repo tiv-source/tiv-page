@@ -3,6 +3,7 @@
  */
 package de.tivsource.page.admin.actions.system.property;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -14,9 +15,15 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
+
 /**
  * @author Marc Michele
  * 
@@ -45,6 +52,7 @@ public class JsonAction extends ActionSupport {
 	private Integer record = 0;
 	private String sord;
 	private String sidx;
+	private String filters;
 
 	@Override
     @Actions({
@@ -59,59 +67,45 @@ public class JsonAction extends ActionSupport {
 
 	public String getJSON() {
 
-	    LOGGER.info("Page " + getPage() + " Rows " + getRows()
-				+ " Sorting Order " + getSord() + " Index Row :" + getSidx());
-	    LOGGER.info("Build new List");
-
-		/*
-		 * Setze die Anzahl aller Objekte in der Datenbank.
-		 */
-		setRecord(this.propertyDaoLocal.countAll());
+        LOGGER.info("Page " + page);
+        LOGGER.info("Rows " + rows);
+        LOGGER.info("Sorting Order " + sord);
+        LOGGER.info("Index Row :" + sidx);
+        LOGGER.info("Filters :" + filters);
+        LOGGER.info("Build new List");
 
 		int to = (getRows() * getPage());
 		int from = to - getRows();
-
-		/*
-		 * Setze die Maximalgrenze auf die Maximale Anzahl
-		 */
-		if (to > getRecord()) {
-			to = getRecord();
-		}
 
 		/*
 		 * Sortieren aufsteigen
 		 */
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("key")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.key", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("value")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.value", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modified", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedBy", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedAddress")) {
-                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedAddress", "asc");
-            } else {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows());
-			}
+		    if (getSidx() != null) {
+		        propertyList = this.propertyDaoLocal.findAll(from, getRows(), createSql("asc"));
+		        setRecord(this.propertyDaoLocal.countAll(createSql("asc")));
+		    } else {
+	            propertyList = this.propertyDaoLocal.findAll(from, getRows());
+	            setRecord(this.propertyDaoLocal.countAll());
+		    }
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("key")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.key", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("value")) {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.value", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modified", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedBy", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedAddress")) {
-                propertyList = this.propertyDaoLocal.findAll(from, getRows(), "p.modifiedAddress", "desc");
+            if (getSidx() != null) {
+                propertyList = this.propertyDaoLocal.findAll(from, getRows(), createSql("desc"));
+                setRecord(this.propertyDaoLocal.countAll(createSql("desc")));
             } else {
-				propertyList = this.propertyDaoLocal.findAll(from, getRows());
-			}
+                propertyList = this.propertyDaoLocal.findAll(from, getRows());
+                setRecord(this.propertyDaoLocal.countAll());
+            }
 		}
+
+        /*
+         * Setze die Maximalgrenze auf die Maximale Anzahl
+         */
+        if (to > getRecord()) {
+            to = getRecord();
+        }
 
 		setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));
 		setGridModel(propertyList);
@@ -250,5 +244,84 @@ public class JsonAction extends ActionSupport {
 	public void setSidx(String sidx) {
 		this.sidx = sidx;
 	}
+
+	@StrutsParameter
+    public void setFilters(String filters) {
+        this.filters = filters;
+    }
+
+    private String createSql(String order) {
+        String sql = "";
+        if(filters != null && createSelect() != null) {
+            sql  = sql + createSelect();
+            LOGGER.info("Inhalt sql: " +sql);
+        }
+        if(createOrderBy(order) != null) {
+            sql  = sql + createOrderBy(order);
+            LOGGER.info("Inhalt sql: " +sql);
+        }
+        return sql;
+    }
+
+    private String createSelect(){
+        // Select String
+        String selectString = " where";
+        // Erzeuge das JsonObject
+        JsonObject jsonObject = new JsonParser().parse(filters).getAsJsonObject();
+        // Erzeuge JsonArray
+        JsonArray jsonArray = jsonObject.getAsJsonArray("rules");
+
+        if(!jsonArray.iterator().hasNext()) {
+            return null;
+        }
+
+        // Hole die Verknüpfungsart aus dem JsonObjekt
+        String groupOp = jsonObject.get("groupOp").getAsString();
+        // Durchlaufe die Regeln
+        Iterator<JsonElement> jsonIterator = jsonArray.iterator();
+        while(jsonIterator.hasNext()) {
+            String jsonElement = jsonIterator.next().toString();
+            LOGGER.info("JsonElement: " + jsonElement);
+            JsonObject jsonFieldObject = new JsonParser().parse(jsonElement).getAsJsonObject();
+            String field = jsonFieldObject.get("field").getAsString();
+            String op = jsonFieldObject.get("op").getAsString();
+            String data = jsonFieldObject.get("data").getAsString();
+            selectString = selectString + createField(field, op, data);
+            LOGGER.info("SelectString: " + selectString);
+            if(jsonIterator.hasNext()) {
+                selectString = selectString + " AND";
+            }
+        }
+        return selectString;
+    }
+
+    private String createField(String field, String op, String data) {
+        if (field != null && field.equalsIgnoreCase("key")){
+            return " p.key like '%" + data + "%'";
+        } else if (field != null && field.equalsIgnoreCase("unchangeable")) {
+            Boolean checkData = data.equalsIgnoreCase("true") ? true : false;
+            return " p.unchangeable = " + checkData;
+        } else {
+            return null;
+        }
+    }
+    
+    private String createOrderBy(String order){
+        if (sidx != null && sidx.equalsIgnoreCase("key")){
+            return " order by p.key " + order;
+        } else if (sidx != null && sidx.equalsIgnoreCase("value")) {
+            return " order by p.value " + order;
+        } else if (sidx != null && sidx.equalsIgnoreCase("unchangeable")) {
+            return " order by p.unchangeable " + order;
+        } else if (sidx != null && sidx.equalsIgnoreCase("modified")) {
+            return " order by p.modified " + order;
+        } else if (sidx != null && sidx.equalsIgnoreCase("modifiedBy")) {
+            return " order by p.modifiedBy " + order;
+        } else if (sidx != null && sidx.equalsIgnoreCase("modifiedAddress")) {
+            return " order by p.modifiedAddress " + order;
+        } else {
+            return null;
+        }
+    }
 
 }// Ende class

@@ -47,6 +47,8 @@ public interface PropertyDaoLocal {
 
     public List<Property> findAll(Integer start, Integer max, String field, String order);
 
+    public List<Property> findAll(Integer start, Integer max, String sql);
+
     /**
      * Methode die die Anzahl aller Property Objekte die sich in der Datenbank
      * befinden zurück liefert.
@@ -54,5 +56,7 @@ public interface PropertyDaoLocal {
      * @return Integer - Anzahl der Property Objekte die sich in der Datenbank befinden.
      */
     public Integer countAll();
+
+    public Integer countAll(String sql);
 
 }// Ende interface

@@ -32,6 +32,10 @@ import de.tivsource.page.entity.property.Property;
   @TilesDefinition(name="propertyEditError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/edit_error.jsp")
+  }),
+  @TilesDefinition(name="propertyEditUnchangeable", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/edit_unchangeable.jsp")
   })
 })
 public class EditAction extends EmptyAction {
@@ -63,12 +67,13 @@ public class EditAction extends EmptyAction {
     @Override
     @Actions({
         @Action(
-        		value = "edit", 
-        		results = { 
-        				@Result(name = "success", type = "redirectAction", location = "index.html"),
-        				@Result(name = "input",   type = "tiles", location = "propertyEditForm"),
-        				@Result(name = "error",   type = "tiles", location = "propertyEditError")
-        				}
+            value = "edit",
+            results = {
+                @Result(name = "success",      type = "redirectAction", location = "index.html"),
+                @Result(name = "input",        type = "tiles", location = "propertyEditForm"),
+                @Result(name = "error",        type = "tiles", location = "propertyEditError"),
+                @Result(name = "unchangeable", type = "tiles", location = "propertyEditUnchangeable"),
+            }
         )
     })
     public String execute() throws Exception {
@@ -80,12 +85,15 @@ public class EditAction extends EmptyAction {
     	if(property != null) {
     		LOGGER.info(property.getKey());
     		Property dbProperty = propertyDaoLocal.findByKey(property.getKey());
-    		dbProperty.setValue(property.getValue());
-    		dbProperty.setModified(new Date());
-    		dbProperty.setModifiedBy(remoteUser);
-    		dbProperty.setModifiedAddress(remoteAddress);
-    		propertyDaoLocal.merge(dbProperty);
-            return SUCCESS;
+    		if(!dbProperty.getUnchangeable()) {
+                dbProperty.setValue(property.getValue());
+                dbProperty.setModified(new Date());
+                dbProperty.setModifiedBy(remoteUser);
+                dbProperty.setModifiedAddress(remoteAddress);
+                propertyDaoLocal.merge(dbProperty);
+                return SUCCESS;
+    		}
+    		return "unchangeable";
     	}
     	else {
     		return ERROR;

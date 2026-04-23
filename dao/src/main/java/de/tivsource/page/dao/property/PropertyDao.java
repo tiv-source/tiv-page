@@ -92,12 +92,29 @@ public class PropertyDao implements PropertyDaoLocal {
         return query.getResultList();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Property> findAll(Integer start, Integer max, String sql) {
+        String queryString = "select p from Property p";
+        queryString = queryString + sql;
+        Query query = entityManager.createQuery(queryString);
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        return query.getResultList();
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.property.PropertyDaoLocal#countAll()
      */
     @Override
     public Integer countAll() {
         Query query = entityManager.createQuery("Select Count(p) from Property p");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public Integer countAll(String sql) {
+        Query query = entityManager.createQuery("select Count(p) from Property p" + sql);
         return Integer.parseInt(query.getSingleResult().toString());
     }
 
