@@ -139,7 +139,6 @@ public class VacancyAction extends EmptyAction {
         page = new Page();
         page.setTechnical(vacancy.getTechnical());
         page.setDescriptionMap(vacancy.getDescriptionMap());
-        page.setPicture(vacancy.getPicture());
         page.setPictureOnPage(vacancy.getPictureOnPage());
         page.setCssGroup(vacancy.getCssGroup());
         page.setCreated(vacancy.getCreated());
