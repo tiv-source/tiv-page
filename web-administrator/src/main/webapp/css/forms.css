@@ -240,7 +240,8 @@ input.input.submit.small_green_button
 
 button.small_red_button,
 a.small_red_button,
-input.input.submit.small_red_button{
+input.input.submit.small_red_button,
+.sub_menu a.small_red_button {
 	width: 66px;
 	line-height: 1.4;
 	height: 21px;
@@ -286,3 +287,51 @@ label.label img {
 	float: right;
 }
 
+#submit_confirm__Save {
+  height: 21px;
+  padding-top: 2px;
+}
+
+#submit_deny__Close {
+  line-height: 1.6;
+  padding-bottom: 0px;
+  height: 21px;
+}
+
+
+
+#overvew {
+  width: 560px;
+}
+
+#overviewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#course {
+  width: 50%;
+  float: left;
+}
+
+#settings {
+  width: 50%;
+  float: left;
+}
+
+#articledata {
+  width: 50%;
+  float: left;
+}
+
+#articledata_left {
+  width: 50%;
+  float: left;
+  padding-top: 23px;
+}
+
+#articledata_right {
+  width: 50%;
+  float: left;
+}

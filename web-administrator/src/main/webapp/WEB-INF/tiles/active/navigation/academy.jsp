@@ -9,7 +9,8 @@
 <struts:url var="systemtUrl"           action="index" namespace="/system" />
 
 <struts:url var="lecturerUrl"          action="index" namespace="/academy/lecturer" />
-<struts:url var="mailaddresslockUrl"      action="index" namespace="/newsletter/mailaddresslock" />
+<struts:url var="courseUrl"            action="index" namespace="/academy/course" />
+<struts:url var="registrationUrl"      action="index" namespace="/academy/registration" />
 
 
    	  <div class="nav">
@@ -34,12 +35,22 @@
               </struts:a>
             </struts:if>
 
-            <struts:if test="getProperty('module.newsletter')">
-              <struts:a href="%{mailaddresslockUrl}" title="%{getText('navigation.mailAddressLocks')}">
+            <struts:if test="getProperty('module.course')">
+              <struts:a href="%{courseUrl}" title="%{getText('navigation.courses')}">
                 <div class="button">
-                  <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.mailAddressLocks"/>">
+                  <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.courses"/>">
                   <br />
-                  <p class="ellipsis"><struts:text name="navigation.mailAddressLocks"/></p>
+                  <p class="ellipsis"><struts:text name="navigation.courses"/></p>
+                </div>
+              </struts:a>
+            </struts:if>
+
+            <struts:if test="getProperty('module.course')">
+              <struts:a href="%{registrationUrl}" title="%{getText('navigation.registrations')}">
+                <div class="button">
+                  <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.registrations"/>">
+                  <br />
+                  <p class="ellipsis"><struts:text name="navigation.registrations"/></p>
                 </div>
               </struts:a>
             </struts:if>

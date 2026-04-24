@@ -12,3 +12,96 @@
 .ui-jqgrid tr.ui-row-ltr td {
     padding-right: 14px;
 }
+
+
+
+.ui-jqgrid div.confirmed {
+  float: left;
+  padding-right: 7px;
+}
+
+.ui-jqgrid a.confirmed {
+  width: 119px;
+  height: 28px;
+  background: #8F8;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.ui-jqgrid a.confirmed:hover {
+	border: none;
+	color: #fff !important;
+}
+
+
+.ui-jqgrid div.paid {
+  float: left;
+  padding-right: 7px;
+}
+
+.ui-jqgrid a.paid {
+  width: 119px;
+  height: 28px;
+  background: #8F8;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.ui-jqgrid a.paid:hover {
+	border: none;
+	color: #fff !important;
+}
+
+.ui-jqgrid div.declared {
+  float: left;
+  padding-right: 7px;
+}
+
+.ui-jqgrid a.declared {
+  width: 119px;
+  height: 28px;
+  background: #8F8;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.ui-jqgrid a.declared:hover {
+	border: none;
+	color: #fff !important;
+}
+
+
+.ui-jqgrid div.predeclared {
+  float: left;
+}
+
+.ui-jqgrid a.predeclared {
+  width: 119px;
+  height: 28px;
+  background: #8F8;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.ui-jqgrid a.predeclared:hover {
+	border: none;
+	color: #fff !important;
+}
+
+
+.ui-jqgrid a.cancelled {
+  width: 119px;
+  height: 28px;
+  background: rgb(224, 27, 36);
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.ui-jqgrid a.cancelled:hover {
+	border: none;
+	color: #fff !important;
+}
+
+.ui-jqgrid div.cancelled {
+  height: 28px;
+}

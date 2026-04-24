@@ -2,7 +2,8 @@
 <%@ taglib prefix="struts" uri="/struts-tags"%>
 
 <struts:url var="lecturerUrl"             action="index" namespace="/academy/lecturer" />
-<struts:url var="mailaddresslockUrl"      action="index" namespace="/newsletter/mailaddresslock" />
+<struts:url var="courseUrl"               action="index" namespace="/academy/course" />
+<struts:url var="registrationUrl"         action="index" namespace="/academy/registration" />
 
       <div id="title">
         <h5><struts:text name="navigation.category.academy"/></h5>
@@ -18,12 +19,22 @@
         </struts:a>
       </struts:if>
 
-      <struts:if test="getProperty('module.newsletter')">
-        <struts:a href="%{mailaddresslockUrl}" title="%{getText('navigation.mailAddressLocks')}">
+      <struts:if test="getProperty('module.course')">
+        <struts:a href="%{courseUrl}" title="%{getText('navigation.courses')}">
           <div class="buttoninfo typ2">
-            <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.mailAddressLocks.description"/>">
-            <h5><struts:text name="navigation.mailAddressLocks"/></h5>
-            <p><struts:text name="navigation.mailAddressLocks.description"/></p>
+            <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.courses.description"/>">
+            <h5><struts:text name="navigation.courses"/></h5>
+            <p><struts:text name="navigation.courses.description"/></p>
+          </div>
+        </struts:a>
+      </struts:if>
+
+      <struts:if test="getProperty('module.course')">
+        <struts:a href="%{registrationUrl}" title="%{getText('navigation.registrations')}">
+          <div class="buttoninfo typ2">
+            <img src="/admin/buttons/tiv_page_button_event.png" alt="<struts:text name="navigation.registrations.description"/>">
+            <h5><struts:text name="navigation.registrations"/></h5>
+            <p><struts:text name="navigation.registrations.description"/></p>
           </div>
         </struts:a>
       </struts:if>

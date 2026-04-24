@@ -176,7 +176,7 @@ ul#orientation {
 ul#orientation li {
 	float:left;
 	cursor: pointer;
-	width: 16%;
+	width: 16.66%;
 	height: 17px;
 	font-size: 13px;;
 	color: #000000;
@@ -196,7 +196,7 @@ ul#orientation li a:hover {
 }
 
 ul#orientation li.activlink1 {
-	width:20%;
+	width: 16.65%;
 	padding:5px 0px;
 	color:#ffffff;
 	background-color:rgba(160,137,44,0.8);
@@ -360,4 +360,5 @@ p.ellipsis {
     -ms-text-overflow: ellipsis;
     -moz-binding: url('ellipsis.xml#ellipsis');
 }
+
 
