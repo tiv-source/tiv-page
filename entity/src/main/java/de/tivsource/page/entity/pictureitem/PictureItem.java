@@ -5,8 +5,6 @@ package de.tivsource.page.entity.pictureitem;
 
 import java.util.Objects;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.common.css.CSSGroup;
@@ -31,7 +29,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = PictureItem.TABLE)
-@Table(appliesTo = PictureItem.TABLE, fetch = FetchMode.SELECT)
 public class PictureItem extends NamingItem {
 
     public static final String TABLE = "PictureItem";
