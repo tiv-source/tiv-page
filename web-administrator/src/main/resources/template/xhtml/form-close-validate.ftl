@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: form-close-validate.ftl 759162 2009-03-27 14:49:39Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -33,42 +31,71 @@ Only the following validators are supported:
 * double validator
 END SNIPPET: supported-validators
 -->
-<#if ((parameters.validate?default(false) == true) && (parameters.performValidation?default(false) == true))>
-<script type="text/javascript">
-    function validateForm_${parameters.id?replace('[^a-zA-Z0-9_]', '_', 'r')}() {
-        form = document.getElementById("${parameters.id}");
+<#if ((attributes.validate!false == true) && (attributes.performValidation!false == true))>
+<@s.script>
+    function validateForm_${attributes.escapedId}() {
+        <#--
+            In case of multiselect fields return only the first value.
+        -->
+        var getFieldValue = function(field) {
+            var type = field.type ? field.type : field[0].type;
+            if (type === 'select-one' || type === 'select-multiple') {
+                return (field.selectedIndex === -1 ? "" : field.options[field.selectedIndex].value);
+            } else if (type === 'checkbox' || type === 'radio') {
+                if (!field.length) {
+                    field = [field];
+                }
+                for (var i = 0; i < field.length; i++) {
+                    if (field[i].checked) {
+                        return field[i].value;
+                    }
+                }
+                return "";
+            }
+            return field.value;
+        }
+        form = document.getElementById("${attributes.id?js_string}");
         clearErrorMessages(form);
         clearErrorLabels(form);
 
         var errors = false;
         var continueValidation = true;
-    <#list parameters.tagNames as tagName>
-        <#list tag.getValidators("${tagName}") as validator>
-        // field name: ${validator.fieldName}
-        // validator name: ${validator.validatorType}
-        if (form.elements['${validator.fieldName}']) {
-            field = form.elements['${validator.fieldName}'];
+    <#list attributes.tagNames as tagName>
+        <#list tag.getValidators("${tagName}") as aValidator>
+        // field name: ${aValidator.fieldName?js_string}
+        // validator name: ${aValidator.validatorType}
+        if (form.elements['${aValidator.fieldName?js_string}']) {
+            field = form.elements['${aValidator.fieldName?js_string}'];
+            <#if aValidator.validatorType = "field-visitor">
+                <#assign validator = aValidator.fieldValidator >
+                //visitor validator switched to: ${validator.validatorType}
+            <#else>
+                <#assign validator = aValidator >
+            </#if>
+
             var error = "${validator.getMessage(action)?js_string}";
+            var fieldValue = getFieldValue(field);
+
             <#if validator.validatorType = "required">
-            if (field.value == "") {
+            if (fieldValue === "") {
                 addError(field, error);
                 errors = true;
                 <#if validator.shortCircuit>continueValidation = false;</#if>
             }
             <#elseif validator.validatorType = "requiredstring">
-            if (continueValidation && field.value != null && (field.value == "" || field.value.replace(/^\s+|\s+$/g,"").length == 0)) {
+            if (continueValidation && fieldValue !== null && (fieldValue === "" || fieldValue.replace(/^\s+|\s+$/g,"").length === 0)) {
                 addError(field, error);
                 errors = true;
                 <#if validator.shortCircuit>continueValidation = false;</#if>
             }
             <#elseif validator.validatorType = "stringlength">
-            if (continueValidation && field.value != null) {
-                var value = field.value;
+            if (continueValidation && fieldValue !== null) {
+                var value = fieldValue;
                 <#if validator.trim>
                     //trim field value
-                    while (value.substring(0,1) == ' ')
+                    while (value.substring(0,1) === ' ')
                         value = value.substring(1, value.length);
-                    while (value.substring(value.length-1, value.length) == ' ')
+                    while (value.substring(value.length-1, value.length) === ' ')
                         value = value.substring(0, value.length-1);
                 </#if>
                 if ((${validator.minLength?c} > -1 && value.length < ${validator.minLength?c}) ||
@@ -79,28 +106,28 @@ END SNIPPET: supported-validators
                 }
             }
             <#elseif validator.validatorType = "regex">
-            if (continueValidation && field.value != null && !field.value.match("${validator.expression?js_string}")) {
+            if (continueValidation && fieldValue !== null && !fieldValue.match("${validator.regex?js_string}")) {
                 addError(field, error);
                 errors = true;
                 <#if validator.shortCircuit>continueValidation = false;</#if>
             }
-            <#elseif validator.validatorType = "email">
-            if (continueValidation && field.value != null && field.value.length > 0 && field.value.match(/\b(^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\.[A-Za-z0-9-]+)*((\.[A-Za-z0-9]{2,})|(\.[A-Za-z0-9]{2,}\.[A-Za-z0-9]{2,}))$)\b/gi)==null) {
+            <#elseif validator.validatorType = "email" || validator.validatorType = "creditcard">
+            if (continueValidation && fieldValue !== null && fieldValue.length > 0 && fieldValue.match(/${validator.regex}/i) === null) {
                 addError(field, error);
                 errors = true;
                 <#if validator.shortCircuit>continueValidation = false;</#if>
             }
             <#elseif validator.validatorType = "url">
-            if (continueValidation && field.value != null && field.value.length > 0 && field.value.match(/(^(ftp|http|https):\/\/(\.[_A-Za-z0-9-]+)*(@?([A-Za-z0-9-])+)?(\.[A-Za-z0-9-]+)*((\.[A-Za-z0-9]{2,})|(\.[A-Za-z0-9]{2,}\.[A-Za-z0-9]{2,}))(:[0-9]+)?([/A-Za-z0-9?#_-]*)?$)/gi)==null) {
+            if (continueValidation && fieldValue !== null && fieldValue.length > 0 && fieldValue.match(/${validator.urlRegex}/i) === null) {
                 addError(field, error);
                 errors = true;
                 <#if validator.shortCircuit>continueValidation = false;</#if>
             }
-            <#elseif validator.validatorType = "int">
-            if (continueValidation && field.value != null) {
-                if (<#if validator.min??>parseInt(field.value) <
+            <#elseif validator.validatorType = "int" || validator.validatorType = "short" || validator.validatorType = "long">
+            if (continueValidation && fieldValue !== null) {
+                if (<#if validator.min??>parseInt(fieldValue) <
                      ${validator.min?c}<#else>false</#if> ||
-                        <#if validator.max??>parseInt(field.value) >
+                        <#if validator.max??>parseInt(fieldValue) >
                            ${validator.max?c}<#else>false</#if>) {
                     addError(field, error);
                     errors = true;
@@ -108,15 +135,14 @@ END SNIPPET: supported-validators
                 }
             }
             <#elseif validator.validatorType = "double">
-            if (continueValidation && field.value != null) {
-                var value = parseFloat(field.value);
-                if (<#if validator.minInclusive??>value < ${validator.minInclusive}<#else>false</#if> ||
-                        <#if validator.maxInclusive??>value > ${validator.maxInclusive}<#else>false</#if> ||
-                        <#if validator.minExclusive??>value <= ${validator.minExclusive}<#else>false</#if> ||
-                        <#if validator.maxExclusive??>value >= ${validator.maxExclusive}<#else>false</#if>) {
+            if (continueValidation && fieldValue !== null) {
+                var value = parseFloat(fieldValue);
+                if (<#if validator.minInclusive??>value < ${validator.minInclusive?c}<#else>false</#if> ||
+                        <#if validator.maxInclusive??>value > ${validator.maxInclusive?c}<#else>false</#if> ||
+                        <#if validator.minExclusive??>value <= ${validator.minExclusive?c}<#else>false</#if> ||
+                        <#if validator.maxExclusive??>value >= ${validator.maxExclusive?c}<#else>false</#if>) {
                     addError(field, error);
                     errors = true;
-                    <#if validator.shortCircuit>continueValidation = false;</#if>
                 }
             }
             </#if>
@@ -126,5 +152,5 @@ END SNIPPET: supported-validators
 
         return !errors;
     }
-</script>
+</@s.script>
 </#if>

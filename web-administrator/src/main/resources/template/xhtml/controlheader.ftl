@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: controlheader.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,9 +18,11 @@
  * under the License.
  */
 -->
-<#include "/${parameters.templateDir}/xhtml/controlheader-core.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/controlheader-core.ftl" />
     <td
-<#if parameters.align??>
-    align="${parameters.align?html}"<#t/>
-</#if>
- style="vertical-align:top;"><#t/>
+        <#if attributes.align?? >
+            class="align-${attributes.align}"
+         <#else >
+            class="tdInput"
+        </#if>
+><#t/>

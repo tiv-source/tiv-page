@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: controlfooter.ftl 590812 2007-10-31 20:32:54Z apetrelli $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,7 +18,19 @@
  * under the License.
  */
 -->
-${parameters.after?if_exists}<#t/>
+${attributes.after!}<#t/>
     </td><#lt/>
-	<td><#include "/${parameters.templateDir}/xhtml/tooltip.ftl" /></td>    
 </tr>
+<#if (attributes.errorposition!"top") == 'bottom'>
+<#assign hasFieldErrors = attributes.name?? && fieldErrors?? && fieldErrors.get(attributes.name)??/>
+<#if hasFieldErrors>
+<#list fieldErrors.get(attributes.name) as error>
+<tr errorFor="${attributes.id}">
+    <td class="tdErrorMessage" colspan="2"><#rt/>
+        <span class="errorMessage">${error}</span><#t/>
+    </td><#lt/>
+</tr>
+</#list>
+</#if>
+</#if>
+

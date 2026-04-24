@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: label.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,25 +19,20 @@
  */
 -->
 <label<#rt/>
-<#if parameters.id??>
- id="${parameters.id?html}"<#rt/>
+<#if attributes.id?has_content>
+ id="${attributes.id}"<#rt/>
 </#if>
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/css.ftl" />
+<#if attributes.title?has_content>
+ title="${attributes.title}"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if attributes.for?has_content>
+ for="${attributes.for}"<#rt/>
 </#if>
-<#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
-</#if>
-<#if parameters.for??>
- for="${parameters.for?html}"<#rt/>
-</#if>
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/common-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/dynamic-attributes.ftl" />
 ><#rt/>
-<#if parameters.nameValue??>
-<@s.property value="parameters.nameValue"/><#t/>
+<#if attributes.nameValue??>
+<@s.property value="attributes.nameValue"/><#t/>
 </#if>
 </label>

@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: tooltip.ftl 738624 2009-01-28 21:12:12Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,22 +18,22 @@
  * under the License.
  */
 -->
-<#if parameters.tooltip??><#t/>
+<#if attributes.tooltip??><#t/>
       <img
-      <#if parameters.tooltipIconPath??><#t/>
-      	src='<@s.url value="${parameters.tooltipIconPath}" includeParams="none" encode="false" />'
+      <#if attributes.tooltipIconPath??><#t/>
+      	src='<@s.url value="${attributes.tooltipIconPath}" includeParams="none" encode="false" />'
       <#else><#t/>
-      	src='<@s.url value="/struts/tooltip.gif" includeParams="none" encode="false" />'
+      	src='<@s.url value="${attributes.staticContentPath}/tooltip.gif" includeParams="none" encode="false" />'
       </#if><#t/>
-      <#if parameters.jsTooltipEnabled?default('false') == 'true'>
-          onmouseover="domTT_activate(this, event, 'content', '${parameters.tooltip}'<#t/>
-          <#if parameters.tooltipDelay??><#t/>
-          	<#t/>,'delay', '${parameters.tooltipDelay}'<#t/>
+      <#if (attributes.jsTooltipEnabled!'false') == 'true'>
+          onmouseover="domTT_activate(this, event, 'content', '<#outputformat 'JavaScript'>${attributes.tooltip}</#outputformat>'<#t/>
+          <#if attributes.tooltipDelay??><#t/>
+          	<#t/>,'delay', '${attributes.tooltipDelay}'<#t/>
           </#if><#t/>
-          <#t/>,'styleClass', '${parameters.tooltipCssClass?default("StrutsTTClassic")}'<#t/>
+          <#t/>,'styleClass', '${attributes.tooltipCssClass!"StrutsTTClassic"}'<#t/>
           <#t/>)" />
       <#else>
-      	title="${parameters.tooltip?html}"
-      	alt="${parameters.tooltip?html}" />
+      	title="${attributes.tooltip}"
+      	alt="${attributes.tooltip}" />
      </#if>
 </#if><#t/>

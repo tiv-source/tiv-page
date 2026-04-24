@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: controlheader-core.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -24,33 +22,40 @@
 	Only show message if errors are available.
 	This will be done if ActionSupport is used.
 -->
-<#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
-<div <#rt/><#if parameters.id??>id="wwgrp_${parameters.id}"<#rt/></#if> class="wwgrp">
-	
+<#assign hasFieldErrors = attributes.name?? && fieldErrors?? && fieldErrors.get(attributes.name)??/>
+<div <#rt/><#if attributes.id??>id="wwgrp_${attributes.id}"<#rt/></#if> class="wwgrp">
+
+<#if (attributes.errorposition!"top") == 'top'>
 <#if hasFieldErrors>
-<div <#rt/><#if parameters.id??>id="wwerr_${parameters.id}"<#rt/></#if> class="wwerr">
-<#list fieldErrors[parameters.name] as error>
+<div <#rt/><#if attributes.id??>id="wwerr_${attributes.id}"<#rt/></#if> class="wwerr">
+<#list fieldErrors.get(attributes.name) as error>
     <div<#rt/>
-    <#if parameters.id??>
-     errorFor="${parameters.id}"<#rt/>
+    <#if attributes.id??>
+     errorFor="${attributes.id}"<#rt/>
     </#if>
     class="errorMessage">
-             ${error?html}
+             ${error}
     </div><#t/>
 </#list>
 </div><#t/>
 </#if>
+</#if>
 
-<#if parameters.label??>
-<#if parameters.labelposition?default("top") == 'top'>
+<#if !attributes.labelPosition?? && (attributes.form.labelPosition)??>
+<#assign labelPos = attributes.form.labelPosition/>
+<#elseif attributes.labelPosition??>
+<#assign labelPos = attributes.labelPosition/>
+</#if>
+<#if attributes.label??>
+<#if (labelPos!"top") == 'top'>
 <div <#rt/>
 <#else>
 <span <#rt/>
 </#if>
-<#if parameters.id??>id="wwlbl_${parameters.id}"<#rt/></#if> class="wwlbl">
+<#if attributes.id??>id="wwlbl_${attributes.id}"<#rt/></#if> class="wwlbl">
     <label <#t/>
-<#if parameters.id??>
-        for="${parameters.id?html}" <#t/>
+<#if attributes.id??>
+        for="${attributes.id}" <#t/>
 </#if>
 <#if hasFieldErrors>
         class="errorLabel"<#t/>
@@ -58,14 +63,14 @@
         class="label"<#t/>
 </#if>
     ><#t/>
-<#if parameters.required?default(false)>
+<#if attributes.required!false>
         <span class="required">*</span><#t/>
 </#if>
-        ${parameters.label?html}${parameters.labelseparator!":"?html}
-<#include "/${parameters.templateDir}/xhtml/tooltip.ftl" />
+        ${attributes.label}${attributes.labelseparator!":"}
+<#include "/${attributes.templateDir}/xhtml/tooltip.ftl" />
 	</label><#t/>
-<#if parameters.labelposition?default("top") == 'top'>
-</div> <#rt/>
+<#if (labelPos!"top") == 'top'>
+</div> <br /><#rt/>
 <#else>
 </span> <#rt/>
 </#if>

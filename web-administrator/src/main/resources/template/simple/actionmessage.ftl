@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: actionmessage.ftl 805635 2009-08-19 00:18:54Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,23 +18,23 @@
  * under the License.
  */
 -->
-<#if (actionMessages?? && actionMessages?size > 0 && !parameters.isEmptyList)>
+<#if (actionMessages?? && actionMessages?size > 0 && !attributes.isEmptyList)>
 	<ul<#rt/>
-<#if parameters.id?if_exists != "">
- id="${parameters.id?html}"<#rt/>
+<#if attributes.id??>
+ id="${attributes.id}"<#rt/>
 </#if>
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#if attributes.cssClass??>
+ class="${attributes.cssClass}"<#rt/>
 <#else>
  class="actionMessage"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if attributes.cssStyle??>
+ style="${attributes.cssStyle}"<#rt/>
 </#if>
 >
 		<#list actionMessages as message>
-            <#if message?if_exists != "">
-                <li><span><#if parameters.escape>${message!?html}<#else>${message!}</#if></span></li>
+            <#if message??>
+                <li><span><#if attributes.escape>${message!}<#else>${message!?no_esc}</#if></span></li>
             </#if>
 		</#list>
 	</ul>

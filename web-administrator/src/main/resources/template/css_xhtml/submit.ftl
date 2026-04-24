@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: submit.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,16 +18,19 @@
  * under the License.
  */
 -->
-<#if parameters.labelposition?default("top") == 'top'>
+<#if !attributes.labelPosition?? && (attributes.form.labelPosition)??>
+<#assign labelPos = attributes.form.labelPosition/>
+<#elseif attributes.labelPosition??>
+<#assign labelPos = attributes.labelPosition/>
+</#if>
+<#if (labelPos!"top") == 'top'>
 <div <#rt/>
 <#else>
 <span <#rt/>
 </#if>
-<#if parameters.align??>
-    align="${parameters.align?html}"<#t/>
-</#if>
-<#if parameters.id??>
-    id="wwctrl_${parameters.id}"<#rt/>
+    class="formButton"<#t/>
+<#if attributes.id??>
+    id="wwctrl_${attributes.id}"<#rt/>
 </#if>
 ><#t/>
-<#include "/${parameters.templateDir}/simple/submit.ftl" />
+<#include "/${attributes.templateDir}/simple/submit.ftl" />

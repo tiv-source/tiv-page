@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: controlheader-core.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -24,39 +22,37 @@
 	Only show message if errors are available.
 	This will be done if ActionSupport is used.
 -->
-<#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
+<#assign hasFieldErrors = attributes.name?? && fieldErrors?? && fieldErrors.get(attributes.name)??/>
+<#if (attributes.errorposition!"top") == 'top'>
 <#if hasFieldErrors>
-<#list fieldErrors[parameters.name] as error>
-<tr errorFor="${parameters.id}">
-<#if parameters.labelposition?default("") == 'top'>
-    <td></td><td align="left" valign="top" colspan="2"><#rt/>
-<#else>
-    <td></td><td align="center" valign="top" colspan="2"><#rt/>
-</#if>
-        <span class="errorMessage">${error?html}</span><#t/>
+<#list fieldErrors.get(attributes.name) as error>
+<tr errorFor="${attributes.id}">
+    <td class="tdErrorMessage" colspan="2"><#rt/>
+        <span class="errorMessage">${error}</span><#t/>
     </td><#lt/>
 </tr>
 </#list>
+</#if>
+</#if>
+<#if !attributes.labelPosition?? && (attributes.form.labelPosition)??>
+<#assign labelPos = attributes.form.labelPosition/>
+<#elseif attributes.labelPosition??>
+<#assign labelPos = attributes.labelPosition/>
 </#if>
 <#--
 	if the label position is top,
 	then give the label it's own row in the table
 -->
-<#if parameters.trid??>
-	<tr id="${parameters.trid}"><#rt/>
+<tr>
+<#if (labelPos!"") == 'top'>
+    <td class="tdLabelTop" colspan="2"><#rt/>
 <#else>
-	<tr><#rt/>
+    <td class="tdLabel"><#rt/>
 </#if>
-
-<#if parameters.labelposition?default("") == 'top'>
-    <td align="left" valign="top" colspan="2"><#rt/>
-<#else>
-    <td class="tdLabel" valign="top"><#rt/>
-</#if>
-<#if parameters.label??>
+<#if attributes.label??>
     <label <#t/>
-<#if parameters.id??>
-        for="${parameters.id?html}" <#t/>
+<#if attributes.id??>
+        for="${attributes.id}" <#t/>
 </#if>
 <#if hasFieldErrors>
         class="errorLabel"<#t/>
@@ -64,20 +60,20 @@
         class="label"<#t/>
 </#if>
     ><#t/>
-
-<#if parameters.required?default(false) && parameters.requiredposition?default("right") != 'right'>
+<#if (attributes.required!false) && ((attributes.requiredPosition!"right") != 'right')>
         <span class="required">*</span><#t/>
 </#if>
-${parameters.label?html}<#t/>
-<#if parameters.required?default(false) && parameters.requiredposition?default("right") == 'right'>
+${attributes.label}<#t/>
+<#if (attributes.required!false) && ((attributes.requiredPosition!"right") == 'right')>
  <span class="required">*</span><#t/>
 </#if>
-${parameters.labelseparator?default(":")?html}<#t/>
+${attributes.labelseparator!":"}<#t/>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/tooltip.ftl" />
 </label><#t/>
 </#if>
     </td><#lt/>
 <#-- add the extra row -->
-<#if parameters.labelposition?default("") == 'top'>
+<#if (labelPos!"") == 'top'>
 </tr>
 <tr>
 </#if>

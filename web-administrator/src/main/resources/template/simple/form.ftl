@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: form.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,8 +18,8 @@
  * under the License.
  */
 -->
-<#include "/${parameters.templateDir}/simple/form-common.ftl" />
-<#if parameters.onreset??>
- onreset="${parameters.onreset?html}"<#rt/>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/form-common.ftl" />
+<#if attributes.onreset?has_content>
+ onreset="${attributes.onreset}"<#rt/>
 </#if>
 >

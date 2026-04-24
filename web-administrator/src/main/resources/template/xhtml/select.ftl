@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: select.ftl 590812 2007-10-31 20:32:54Z apetrelli $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,6 +18,6 @@
  * under the License.
  */
 -->
-<#include "/${parameters.templateDir}/${parameters.theme}/controlheader.ftl" />
-<#include "/${parameters.templateDir}/simple/select.ftl" />
-<#include "/${parameters.templateDir}/xhtml/controlfooter.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/controlheader.ftl" />
+<#include "/${attributes.templateDir}/simple/select.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/controlfooter.ftl" />

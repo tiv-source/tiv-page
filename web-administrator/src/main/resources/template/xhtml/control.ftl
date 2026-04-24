@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: control.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,7 +18,7 @@
  * under the License.
  */
 -->
-<table class="${parameters.cssClass?default('wwFormTable')?html}"<#rt/>
-<#if parameters.cssStyle??> style="${parameters.cssStyle?html}"<#rt/>
+<table class="${attributes.cssClass!'wwFormTable'}"<#rt/>
+<#if attributes.cssStyle??> style="${attributes.cssStyle}"<#rt/>
 </#if>
 >

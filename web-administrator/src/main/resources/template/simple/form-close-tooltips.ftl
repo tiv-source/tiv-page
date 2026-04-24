@@ -1,6 +1,5 @@
-#*
- * $Id: form.vm 590812 2007-10-31 20:32:54Z apetrelli $
- *
+<#--
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,12 +16,14 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- *#
-#if ($parameters.validate && $parameters.validate == true)
-<script src="${base}/struts/validationClient.js"></script>
-<script src="${base}/dwr/interface/validator.js"></script>
-<script src="${base}/dwr/engine.js"></script>
-<script src="${base}/struts/template/xhtml/validation.js"></script>
-#end
-#parse("/$parameters.templateDir/simple/form.vm")
-<table class="wwFormTable">
+ */
+-->
+
+<#--
+ Code that will add javascript needed for tooltips
+--><#t/>
+<#if (attributes.hasTooltip!false)><#t/>
+    <#lt/><!-- javascript that is needed for tooltips -->
+    <#lt/><@s.script src="${base}${attributes.staticContentPath}/domTT.js" />
+    <#lt/><@s.link rel="stylesheet" type="text/css" href="${base}${attributes.staticContentPath}/domTT.css" />
+</#if><#t/>

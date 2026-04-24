@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: scripting-events.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,45 +18,45 @@
  * under the License.
  */
 -->
-<#if parameters.onclick??>
- onclick="${parameters.onclick?html}"<#rt/>
+<#if attributes.onclick??>
+ onclick="<#outputformat 'JavaScript'>${attributes.onclick}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.ondblclick??>
- ondblclick="${parameters.ondblclick?html}"<#rt/>
+<#if attributes.ondblclick??>
+ ondblclick="<#outputformat 'JavaScript'>${attributes.ondblclick}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onmousedown??>
- onmousedown="${parameters.onmousedown?html}"<#rt/>
+<#if attributes.onmousedown??>
+ onmousedown="<#outputformat 'JavaScript'>${attributes.onmousedown}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onmouseup??>
- onmouseup="${parameters.onmouseup?html}"<#rt/>
+<#if attributes.onmouseup??>
+ onmouseup="<#outputformat 'JavaScript'>${attributes.onmouseup}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onmouseover??>
- onmouseover="${parameters.onmouseover?html}"<#rt/>
+<#if attributes.onmouseover??>
+ onmouseover="<#outputformat 'JavaScript'>${attributes.onmouseover}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onmousemove??>
- onmousemove="${parameters.onmousemove?html}"<#rt/>
+<#if attributes.onmousemove??>
+ onmousemove="<#outputformat 'JavaScript'>${attributes.onmousemove}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onmouseout??>
- onmouseout="${parameters.onmouseout?html}"<#rt/>
+<#if attributes.onmouseout??>
+ onmouseout="<#outputformat 'JavaScript'>${attributes.onmouseout}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onfocus??>
- onfocus="${parameters.onfocus?html}"<#rt/>
+<#if attributes.onfocus??>
+ onfocus="<#outputformat 'JavaScript'>${attributes.onfocus}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onblur??>
- onblur="${parameters.onblur?html}"<#rt/>
+<#if attributes.onblur??>
+ onblur="<#outputformat 'JavaScript'>${attributes.onblur}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onkeypress??>
- onkeypress="${parameters.onkeypress?html}"<#rt/>
+<#if attributes.onkeypress??>
+ onkeypress="<#outputformat 'JavaScript'>${attributes.onkeypress}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onkeydown??>
- onkeydown="${parameters.onkeydown?html}"<#rt/>
+<#if attributes.onkeydown??>
+ onkeydown="<#outputformat 'JavaScript'>${attributes.onkeydown}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onkeyup??>
- onkeyup="${parameters.onkeyup?html}"<#rt/>
+<#if attributes.onkeyup??>
+ onkeyup="<#outputformat 'JavaScript'>${attributes.onkeyup}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onselect??>
- onselect="${parameters.onselect?html}"<#rt/>
+<#if attributes.onselect??>
+ onselect="<#outputformat 'JavaScript'>${attributes.onselect}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onchange??>
- onchange="${parameters.onchange?html}"<#rt/>
+<#if attributes.onchange??>
+ onchange="<#outputformat 'JavaScript'>${attributes.onchange}</#outputformat>"<#rt/>
 </#if>

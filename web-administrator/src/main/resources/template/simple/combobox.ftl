@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: combobox.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,52 +18,83 @@
  * under the License.
  */
 -->
-<script type="text/javascript">
-	function autoPopulate_${parameters.escapedId?html}(targetElement) {
-		<#if parameters.headerKey?? && parameters.headerValue??>
-		if (targetElement.options[targetElement.selectedIndex].value == '${parameters.headerKey?html}') {
+<@s.script>
+	function autoPopulate_${attributes.escapedId}(targetElement) {
+	<#if attributes.headerKey?? && attributes.headerValue??>
+		if (targetElement.options[targetElement.selectedIndex].value == '${attributes.headerKey?js_string}') {
 			return;
 		}
-		</#if>
-		<#if parameters.emptyOption?default(false)>
+	</#if>
+	<#if attributes.emptyOption!false>
 		if (targetElement.options[targetElement.selectedIndex].value == '') {
-		    return;
+			return;
 		}
-		</#if>
-		targetElement.form.elements['${parameters.name?html}'].value=targetElement.options[targetElement.selectedIndex].value;
+	</#if>
+		targetElement.form.elements['${attributes.name?js_string}'].value=targetElement.options[targetElement.selectedIndex].value;
 	}
-</script>
-<#include "/${parameters.templateDir}/simple/text.ftl" />
+</@s.script>
+<#include "/${attributes.templateDir}/simple/text.ftl" />
 <br />
-<#if parameters.list??>
-<select onChange="autoPopulate_${parameters.escapedId?html}(this);"<#rt/>
-    <#if parameters.disabled?default(false)>
+<#if attributes.list??>
+<select onChange="autoPopulate_${attributes.escapedId}(this);"<#rt/>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/css.ftl" />
+    <#if attributes.disabled!false>
  disabled="disabled"<#rt/>
     </#if>
 >
-	<#if (parameters.headerKey?? && parameters.headerValue??)>
-		<option value="${parameters.headerKey?html}">${parameters.headerValue?html}</option>
+	<#if (attributes.headerKey?? && attributes.headerValue??)>
+		<option value="${attributes.headerKey}">${attributes.headerValue}</option>
 	</#if>
-	<#if parameters.emptyOption?default(false)>
+	<#if attributes.emptyOption!false>
 	    <option value=""></option>
 	</#if>
-    <@s.iterator value="parameters.list">
-    <#if parameters.listKey??>
-    	<#assign tmpListKey = stack.findString(parameters.listKey) />
+    <@s.iterator value="attributes.list">
+    <#if attributes.listKey??>
+    	<#assign tmpListKey = stack.findString(attributes.listKey) />
     <#else>
     	<#assign tmpListKey = stack.findString('top') />
     </#if>
-    <#if parameters.listValue??>
-    	<#assign tmpListValue = stack.findString(parameters.listValue) />
+    <#if attributes.listValue??>
+    	<#assign tmpListValue = stack.findString(attributes.listValue) />
     <#else>
     	<#assign tmpListValue = stack.findString('top') />
     </#if>
-    <option value="${tmpListKey?html}"<#rt/>
-        <#if (parameters.nameValue == tmpListKey)>
+    <#if attributes.listCssClass??>
+        <#if stack.findString(attributes.listCssClass)??>
+          <#assign itemCssClass= stack.findString(attributes.listCssClass)/>
+        <#else>
+          <#assign itemCssClass = ''/>
+        </#if>
+    </#if>
+    <#if attributes.listCssStyle??>
+        <#if stack.findString(attributes.listCssStyle)??>
+          <#assign itemCssStyle= stack.findString(attributes.listCssStyle)/>
+        <#else>
+          <#assign itemCssStyle = ''/>
+        </#if>
+    </#if>
+    <#if attributes.listTitle??>
+        <#if stack.findString(attributes.listTitle)??>
+          <#assign itemTitle= stack.findString(attributes.listTitle)/>
+        <#else>
+          <#assign itemTitle = ''/>
+        </#if>
+    </#if>
+    <option value="${tmpListKey}"<#rt/>
+        <#if (attributes.nameValue == tmpListKey)>
  selected="selected"<#rt/>
         </#if>
+        <#if itemCssClass??>
+ class="${itemCssClass}"<#rt/>
+        </#if>
+        <#if itemCssStyle??>
+ style="${itemCssStyle}"<#rt/>
+        </#if>
+        <#if itemTitle??>
+ title="${itemTitle}"<#rt/>
+        </#if>
     ><#t/>
-            ${tmpListValue?html}<#t/>
+            ${tmpListValue}<#t/>
     </option><#lt/>
     </@s.iterator>
 </select>

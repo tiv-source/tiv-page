@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: actionerror.ftl 805635 2009-08-19 00:18:54Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -22,21 +20,21 @@
 -->
 <#if (actionErrors?? && actionErrors?size > 0)>
 	<ul<#rt/>
-<#if parameters.id?if_exists != "">
- id="${parameters.id?html}"<#rt/>
-</#if>            
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#if attributes.id??>
+ id="${attributes.id}"<#rt/>
+</#if>
+<#if attributes.cssClass??>
+ class="${attributes.cssClass}"<#rt/>
 <#else>
  class="errorMessage"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if attributes.cssStyle??>
+ style="${attributes.cssStyle}"<#rt/>
 </#if>
 >
 	<#list actionErrors as error>
-		<#if error?if_exists != "">
-            <li><span><#if parameters.escape>${error!?html}<#else>${error!}</#if></span><#rt/></li><#rt/>
+		<#if error??>
+            <li><span><#if attributes.escape>${error!}<#else>${error!?no_esc}</#if></span><#rt/></li><#rt/>
         </#if>
 	</#list>
 	</ul>

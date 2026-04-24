@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: submit.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,9 +19,5 @@
  */
 -->
 <tr>
-    <td colspan="2"><div <#rt/>
-<#if parameters.align??>
-    align="${parameters.align?html}"<#t/>
-</#if>
-><#t/>
-<#include "/${parameters.templateDir}/simple/submit.ftl" />
+    <td colspan="2"><div class="formButton"><#t/>
+<#include "/${attributes.templateDir}/simple/submit.ftl" />

@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: radiomap.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,48 +18,86 @@
  * under the License.
  */
 -->
-<@s.iterator value="parameters.list">
-    <#if parameters.listKey??>
-        <#assign itemKey = stack.findValue(parameters.listKey)/>
+<@s.iterator value="attributes.list">
+    <#if attributes.listKey??>
+        <#assign itemKey = stack.findValue(attributes.listKey)/>
+        <#assign itemKeyStr = stack.findString(attributes.listKey)/>
     <#else>
         <#assign itemKey = stack.findValue('top')/>
+        <#assign itemKeyStr = stack.findString('top')>
     </#if>
-    <#assign itemKeyStr = itemKey.toString() />
-    <#if parameters.listValue??>
-        <#assign itemValue = stack.findString(parameters.listValue)/>
+    <#if attributes.listValueKey??>
+        <#-- checks the valueStack for the 'valueKey.' The valueKey is then looked-up in the locale
+             file for it's localized value.  This is then used as a label -->
+        <#assign valueKey = stack.findString(attributes.listValueKey)!''/>
+        <#if valueKey?has_content>
+            <#assign itemValue = struts.getText(valueKey) />
+        <#else>
+            <#assign itemValue = attributes.listValueKey />
+        </#if>
+    <#elseif attributes.listValue??>
+        <#assign itemValue = stack.findString(attributes.listValue)/>
     <#else>
         <#assign itemValue = stack.findString('top')/>
     </#if>
+    <#if attributes.listCssClass??>
+        <#if stack.findString(attributes.listCssClass)??>
+          <#assign itemCssClass= stack.findString(attributes.listCssClass)/>
+        <#else>
+          <#assign itemCssClass = ''/>
+        </#if>
+    </#if>
+    <#if attributes.listCssStyle??>
+        <#if stack.findString(attributes.listCssStyle)??>
+          <#assign itemCssStyle= stack.findString(attributes.listCssStyle)/>
+        <#else>
+          <#assign itemCssStyle = ''/>
+        </#if>
+    </#if>
+    <#if attributes.listTitle??>
+        <#if stack.findString(attributes.listTitle)??>
+          <#assign itemTitle= stack.findString(attributes.listTitle)/>
+        <#else>
+          <#assign itemTitle = ''/>
+        </#if>
+    </#if>
 <input type="radio"<#rt/>
-<#if parameters.name??>
- name="${parameters.name?html}"<#rt/>
+<#if attributes.name?has_content>
+ name="${attributes.name?no_esc}"<#rt/>
 </#if>
- id="${parameters.id?html}${itemKeyStr?html}"<#rt/>
-<#if tag.contains(parameters.nameValue?default(''), itemKeyStr)>
+ id="${attributes.id}${itemKeyStr?replace(".", "_")}"<#rt/>
+<#if tag.contains(attributes.nameValue!'', itemKey)>
  checked="checked"<#rt/>
 </#if>
 <#if itemKey??>
- value="${itemKeyStr?html}"<#rt/>
+ value="${itemKeyStr}"<#rt/>
 </#if>
-<#if parameters.disabled?default(false)>
+<#if attributes.disabled!false>
  disabled="disabled"<#rt/>
 </#if>
-<#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+<#if attributes.tabindex?has_content>
+ tabindex="${attributes.tabindex}"<#rt/>
 </#if>
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#if itemCssClass?has_content>
+ class="${itemCssClass}"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if itemCssStyle?has_content>
+ style="${itemCssStyle}"<#rt/>
 </#if>
-<#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+<#if itemTitle?has_content>
+ title="${itemTitle}"<#rt/>
+<#else>
+    <#if attributes.title?has_content>
+ title="${attributes.title}"<#rt/>
+    </#if>
 </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/css.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/scripting-events.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/common-attributes.ftl" />
+<#global evaluate_dynamic_attributes = true/>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/dynamic-attributes.ftl" />
 /><#rt/>
-<label for="${parameters.id?html}${itemKeyStr?html}"><#rt/>
+<label for="${attributes.id}${itemKeyStr?replace(".", "_")}"<#include "/${attributes.templateDir}/${attributes.expandTheme}/css.ftl"/>><#rt/>
     ${itemValue}<#t/>
 </label>
 </@s.iterator>

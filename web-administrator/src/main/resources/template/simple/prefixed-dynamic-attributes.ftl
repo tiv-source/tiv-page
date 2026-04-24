@@ -1,6 +1,5 @@
-#*
- * $Id: select.vm 590812 2007-10-31 20:32:54Z apetrelli $
- *
+<#--
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,5 +16,21 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- *#
-#parse("/$parameters.templateDir/xhtml/controlheader.vm")#parse("/$parameters.templateDir/simple/select.vm")#parse("/$parameters.templateDir/xhtml/controlfooter.vm")
+ */
+-->
+<#macro prefixedDynamicAttributes prefix>
+<#if (attributes.dynamicAttributes?? && attributes.dynamicAttributes?size > 0)><#rt/>
+<#assign aKeys = attributes.dynamicAttributes.keySet()><#rt/>
+<#list aKeys as aKey><#rt/>
+<#if aKey?starts_with(prefix)>
+<#assign keyValue = attributes.dynamicAttributes.get(aKey)/>
+<#if keyValue?is_string>
+    <#assign value = struts.translateVariables(keyValue)!keyValue/>
+<#else>
+    <#assign value = keyValue?string/>
+</#if>
+ ${aKey?keep_after(prefix)}="${value}"<#rt/>
+</#if>
+</#list><#rt/>
+</#if><#rt/>
+</#macro>

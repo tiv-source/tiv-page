@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: form-validate.ftl 754994 2009-03-16 20:09:51Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,12 +18,11 @@
  * under the License.
  */
 -->
-<#if parameters.validate?default(false) == true>
-	<script type="text/javascript" src="${base}/struts/xhtml/validation.js"></script>
-	<script type="text/javascript" src="${base}/struts/utils.js"></script>
-	<#if parameters.onsubmit??>
-		${tag.addParameter('onsubmit', "${parameters.onsubmit}; return validateForm_${parameters.id?replace('[^a-zA-Z0-9_]', '_', 'r')}();")}
+<#if attributes.validate!false == true>
+	<@s.script src="${base}${attributes.staticContentPath}/xhtml/validation.js" />
+	<#if attributes.onsubmit??>
+		${tag.addParameter('onsubmit', "${attributes.onsubmit}; return validateForm_${attributes.escapedId}();")}
 	<#else>
-		${tag.addParameter('onsubmit', "return validateForm_${parameters.id?replace('[^a-zA-Z0-9_]', '_', 'r')}();")}
+		${tag.addParameter('onsubmit', "return validateForm_${attributes.escapedId}();")}
 	</#if>
 </#if>

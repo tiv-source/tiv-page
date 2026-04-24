@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: optgroup.ftl 817282 2009-09-21 15:07:03Z wesw $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,30 +18,50 @@
  * under the License.
  */
 -->
-<#if parameters.optGroupInternalListUiBeanList??>
-<#assign optGroupInternalListUiBeans=parameters.optGroupInternalListUiBeanList />
+<#if attributes.optGroupInternalListUiBeanList??>
+<#assign optGroupInternalListUiBeans=attributes.optGroupInternalListUiBeanList />
 <#list optGroupInternalListUiBeans as optGroupInternalListUiBean>
-<optgroup 
-	<#if optGroupInternalListUiBean.parameters.label??>
-	label="${optGroupInternalListUiBean.parameters.label}"
+<optgroup<#rt>
+	<#if optGroupInternalListUiBean.attributes.label?has_content>
+ label="${optGroupInternalListUiBean.attributes.label}"<#rt>
 	</#if>
-	<#if optGroupInternalListUiBean.parameters.disabled?default(false)>
-	disabled="disabled"
+	<#if optGroupInternalListUiBean.attributes.disabled!false>
+ disabled="disabled"<#rt>
 	</#if>
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/dynamic-attributes.ftl" />
 >
-
-<#list optGroupInternalListUiBean.parameters.list as optGroupBean>
+<#list optGroupInternalListUiBean.attributes.list as optGroupBean>
 <#assign trash=stack.push(optGroupBean) />
-	<#assign tmpKey=stack.findValue(optGroupInternalListUiBean.parameters.listKey) />
-	<#assign tmpValue=stack.findValue(optGroupInternalListUiBean.parameters.listValue) />
+	<#assign tmpKey=stack.findValue(optGroupInternalListUiBean.attributes.listKey) />
+	<#assign tmpValue=stack.findValue(optGroupInternalListUiBean.attributes.listValue) />
 	<#assign tmpKeyStr = tmpKey.toString() />
-	<option value="${tmpKeyStr?html}"
-	<#if tag.contains(parameters.nameValue, tmpKeyStr) == true>
-	selected="selected"
+	<#assign optGroupItemCssClass = ''/>
+	<#if optGroupInternalListUiBean.attributes.listCssClass??>
+		<#assign optGroupItemCssClass= stack.findString(optGroupInternalListUiBean.attributes.listCssClass)!''/>
 	</#if>
-	>${tmpValue?html}
-	</option>
+	<#assign optGroupItemCssStyle = ''/>
+	<#if optGroupInternalListUiBean.attributes.listCssStyle??>
+		<#assign optGroupItemCssStyle= stack.findString(optGroupInternalListUiBean.attributes.listCssStyle)!''/>
+	</#if>
+	<#assign optGroupItemTitle = ''/>
+	<#if optGroupInternalListUiBean.attributes.listTitle??>
+		<#assign optGroupItemTitle= stack.findString(optGroupInternalListUiBean.attributes.listTitle)!''/>
+	</#if>
+	<option value="${tmpKeyStr}"<#rt>
+	<#if tag.contains(attributes.nameValue, tmpKey) == true>
+	selected="selected"<#rt>
+	</#if>
+	<#if optGroupItemCssClass?has_content>
+	class="${optGroupItemCssClass}"<#rt/>
+	</#if>
+	<#if optGroupItemCssStyle?has_content>
+	style="${optGroupItemCssStyle}"<#rt/>
+	</#if>
+	<#if optGroupItemTitle?has_content>
+	title="${optGroupItemTitle}"<#rt/>
+	</#if>
+	>${tmpValue}<#t>
+	</option><#lt>
 <#assign trash=stack.pop() />
 </#list>
 </optgroup>

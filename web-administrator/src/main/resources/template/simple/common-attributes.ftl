@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: common-attributes.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,6 +18,6 @@
  * under the License.
  */
 -->
-<#if parameters.accesskey??>
- accesskey="${parameters.accesskey?html}" 
-</#if>
+<#if attributes.accesskey?has_content>
+ accesskey="${attributes.accesskey}"<#rt/>
+</#if><#rt/>

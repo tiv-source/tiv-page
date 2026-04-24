@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: css.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,16 +18,16 @@
  * under the License.
  */
 -->
-<#assign hasFieldErrors = parameters.name?? && fieldErrors?? && fieldErrors[parameters.name]??/>
-<#if parameters.cssClass?? && !(hasFieldErrors && parameters.cssErrorClass??)>
- class="${parameters.cssClass?html}"<#rt/>
-<#elseif parameters.cssClass?? && (hasFieldErrors && parameters.cssErrorClass??)>
- class="${parameters.cssClass?html} ${parameters.cssErrorClass?html}"<#rt/>
-<#elseif !(parameters.cssClass??) && (hasFieldErrors && parameters.cssErrorClass??)>
- class="${parameters.cssErrorClass?html}"<#rt/>
+<#assign hasFieldErrors = attributes.name?? && fieldErrors?? && fieldErrors.get(attributes.name)??/>
+<#if attributes.cssClass?has_content && !(hasFieldErrors && attributes.cssErrorClass??)>
+ class="${attributes.cssClass}"<#rt/>
+<#elseif attributes.cssClass?has_content && (hasFieldErrors && attributes.cssErrorClass??)>
+ class="${attributes.cssClass} ${attributes.cssErrorClass}"<#rt/>
+<#elseif !(attributes.cssClass?has_content) && (hasFieldErrors && attributes.cssErrorClass??)>
+ class="${attributes.cssErrorClass}"<#rt/>
 </#if>
-<#if parameters.cssStyle?? && !(hasFieldErrors && (parameters.cssErrorStyle?? || parameters.cssErrorClass??))>
- style="${parameters.cssStyle?html}"<#rt/>
-<#elseif hasFieldErrors && parameters.cssErrorStyle??>
- style="${parameters.cssErrorStyle?html}"<#rt/>
+<#if attributes.cssStyle?has_content && !(hasFieldErrors && (attributes.cssErrorStyle?? || attributes.cssErrorClass??))>
+ style="${attributes.cssStyle}"<#rt/>
+<#elseif hasFieldErrors && attributes.cssErrorStyle??>
+ style="${attributes.cssErrorStyle}"<#rt/>
 </#if>

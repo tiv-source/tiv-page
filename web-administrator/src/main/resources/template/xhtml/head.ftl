@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: head.ftl 590812 2007-10-31 20:32:54Z apetrelli $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,5 +18,5 @@
  * under the License.
  */
 -->
-<link rel="stylesheet" href="<@s.url value='/struts/xhtml/styles.css' includeParams='none' encode='false' />" type="text/css"/>
-<#include "/${parameters.templateDir}/simple/head.ftl" />
+<@s.link rel="stylesheet" href="${base}${attributes.staticContentPath}/xhtml/styles.css" type="text/css" />
+<#include "/${attributes.templateDir}/simple/head.ftl" />

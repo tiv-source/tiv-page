@@ -1,6 +1,5 @@
-#*
- * $Id: label.vm 590812 2007-10-31 20:32:54Z apetrelli $
- *
+<#--
+/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,10 +16,8 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- *#
-<label
-#if ($parameters.id)               id="$!struts.htmlEncode($parameters.id)"                #end
-#if ($parameters.cssClass)         class="$!struts.htmlEncode($parameters.cssClass)"       #end
-#if ($parameters.cssStyle)         style="$!struts.htmlEncode($parameters.cssStyle)"       #end
-#if ($parameters.for)              for="$!struts.htmlEncode($parameters.for)"              #end
->#if ($parameters.nameValue)$!struts.htmlEncode($parameters.nameValue)#end</label>
+ */
+-->
+<#if attributes.nonce?has_content><#rt/>
+ nonce="${attributes.nonce}"<#rt/>
+</#if><#rt/>

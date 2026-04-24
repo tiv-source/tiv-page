@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: inputtransferselect.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,101 +19,103 @@
  */
 -->
 <#if !stack.findValue("#inputtransferselect_js_included")??><#t/>
-	<script type="text/javascript" src="<@s.url value="/struts/inputtransferselect.js" encode='false' includeParams='none'/>"></script>
+	<@s.script src="${base}${attributes.staticContentPath}/inputtransferselect.js"/>
 	<#assign temporaryVariable = stack.setValue("#inputtransferselect_js_included", "true") /><#t/>
 </#if><#t/>
-<table border="0">
+<table>
 <tr>
 <td>
-<#if parameters.leftTitle??><#t/>
-	<label for="leftTitle">${parameters.leftTitle}</label><br />
+<#if attributes.leftTitle??><#t/>
+	<label for="leftTitle">${attributes.leftTitle}</label><br />
 </#if><#t/>
-
 
 <input type="text"<#rt/>
- name="${parameters.name?default("")?html}_input"<#rt/>
-<#if parameters.disabled?default(false)>
+ name="${attributes.name!""}_input"<#rt/>
+<#if attributes.disabled!false>
  disabled="disabled"<#rt/>
 </#if>
-<#if parameters.readonly?default(false)>
+<#if attributes.readonly!false>
  readonly="readonly"<#rt/>
 </#if>
-<#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+<#if attributes.tabindex?has_content>
+ tabindex="${attributes.tabindex}"<#rt/>
 </#if>
-<#if parameters.id??>
- id="${parameters.id?html}_input"<#rt/>
+<#if attributes.id?has_content>
+ id="${attributes.id}_input"<#rt/>
 </#if>
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#if attributes.cssClass?has_content>
+ class="${attributes.cssClass}"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if attributes.cssStyle?has_content>
+ style="${attributes.cssStyle}"<#rt/>
 </#if>
-<#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+<#if attributes.title?has_content>
+ title="${attributes.title}"<#rt/>
 </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/scripting-events.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/common-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/prefixed-dynamic-attributes.ftl" />
+<@prefixedDynamicAttributes prefix="input-"/>
 />
 
 
 </td>
-<td valign="middle" align="center">
-	<#assign addLabel=parameters.addLabel?default("->")?html /><#t/>
+<td class="tdTransferSelect">
+	<#assign addLabel=(attributes.addLabel!"->") /><#t/>
 	<input type="button"
-		<#if parameters.buttonCssClass??><#t/>
-		 class="${parameters.buttonCssClass?html}"
+		<#if attributes.buttonCssClass?has_content><#t/>
+		 class="${attributes.buttonCssClass}"
 		</#if><#t/>
-		<#if parameters.buttonCssStyle??>
-		 style="${parameters.buttonCssStyle?html}"
+		<#if attributes.buttonCssStyle?has_content>
+		 style="${attributes.buttonCssStyle}"
 		</#if><#t/>
-		 value="${addLabel}" onclick="addOption(document.getElementById('${parameters.id?html}_input'), document.getElementById('${parameters.id?html}'))" /><br /><br />
+		 value="${addLabel}" onclick="addOption(document.getElementById('${attributes.id}_input'), document.getElementById('${attributes.id}'))" /><br /><br />
 	<#t/>
-	<#assign removeLabel=parameters.removeLabel?default("<-")?html /><#t/>
+	<#assign removeLabel=(attributes.removeLabel!"<-") /><#t/>
 	<input type="button"
-  		<#if parameters.buttonCssClass??><#t/>
-		 class="${parameters.buttonCssClass?html}"
+  		<#if attributes.buttonCssClass?has_content><#t/>
+		 class="${attributes.buttonCssClass}"
 		</#if><#t/>
-		<#if parameters.buttonCssStyle??>
-		 style="${parameters.buttonCssStyle?html}"
+		<#if attributes.buttonCssStyle?has_content>
+		 style="${attributes.buttonCssStyle}"
 		</#if><#t/>
-		 value="${removeLabel}" onclick="removeOptions(document.getElementById('${parameters.id?html}'))" /><br /><br />
+		 value="${removeLabel}" onclick="removeOptions(document.getElementById('${attributes.id}'))" /><br /><br />
 	<#t/>
-	<#assign removeAllLabel=parameters.removeAllLabel?default("<<--")?html /><#t/>
+	<#assign removeAllLabel=(attributes.removeAllLabel!"<<--") /><#t/>
 	<input type="button"
-	    		<#if parameters.buttonCssClass??><#t/>
-		 class="${parameters.buttonCssClass?html}"
+	    		<#if attributes.buttonCssClass?has_content><#t/>
+		 class="${attributes.buttonCssClass}"
 		</#if><#t/>
-		<#if parameters.buttonCssStyle??>
-		 style="${parameters.buttonCssStyle?html}"
+		<#if attributes.buttonCssStyle?has_content>
+		 style="${attributes.buttonCssStyle}"
 		</#if><#t/>
-		 value="${removeAllLabel}" onclick="removeAllOptions(document.getElementById('${parameters.id?html}'))" /><br /><br />
+		 value="${removeAllLabel}" onclick="removeAllOptions(document.getElementById('${attributes.id}'))" /><br /><br />
 </td>
 <td>
-<#if parameters.rightTitle??><#t/>
-	<label for="rightTitle">${parameters.rightTitle}</label><br />
+<#if attributes.rightTitle?has_content><#t/>
+	<label for="rightTitle">${attributes.rightTitle}</label><br />
 </#if><#t/>
-<#include "/${parameters.templateDir}/simple/select.ftl" />
-<#if parameters.allowUpDown?default(true)>
-<input type="button" 
-<#if parameters.headerKey??>
-	onclick="moveOptionDown(document.getElementById('${parameters.id}'), 'key', '${parameters.headerKey}');"
+<#global dynamic_attributes_ignore = "input-"/>
+<#include "/${attributes.templateDir}/simple/select.ftl" />
+<#if attributes.allowUpDown!true>
+<input type="button"
+<#if attributes.headerKey?has_content>
+	onclick="moveOptionDown(document.getElementById('${attributes.id}'), 'key', '${attributes.headerKey}');"
 <#else>
-	onclick="moveOptionDown(document.getElementById('${parameters.id}'), 'key', '');"
+	onclick="moveOptionDown(document.getElementById('${attributes.id}'), 'key', '');"
 </#if>
-<#if parameters.downLabel??>
-	value="${parameters.downLabel?html}"
+<#if attributes.downLabel?has_content>
+	value="${attributes.downLabel}"
 </#if>
 />
-<input type="button" 
-<#if parameters.headerKey??>
-	onclick="moveOptionUp(document.getElementById('${parameters.id}'), 'key', '${parameters.headerKey}');"
+<input type="button"
+<#if attributes.headerKey?has_content>
+	onclick="moveOptionUp(document.getElementById('${attributes.id}'), 'key', '${attributes.headerKey}');"
 <#else>
-	onclick="moveOptionUp(document.getElementById('${parameters.id}'), 'key', '');"
+	onclick="moveOptionUp(document.getElementById('${attributes.id}'), 'key', '');"
 </#if>
-<#if parameters.upLabel??>
-	value="${parameters.upLabel?html}"
+<#if attributes.upLabel?has_content>
+	value="${attributes.upLabel}"
 </#if>
 />
 </#if>

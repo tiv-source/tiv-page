@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: controlfooter.ftl 590812 2007-10-31 20:32:54Z apetrelli $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,11 +18,32 @@
  * under the License.
  */
 -->
-${parameters.after?if_exists}<#t/>
+${attributes.after!}<#t/>
     <#lt/>
-<#if parameters.labelposition?default("top") == 'top'>
+<#if !attributes.labelPosition?? && (attributes.form.labelPosition)??>
+<#assign labelPos = attributes.form.labelPosition/>
+<#elseif attributes.labelPosition??>
+<#assign labelPos = attributes.labelPosition/>
+</#if>
+<#if (labelPos!"top") == 'top'>
 </div> <#rt/>
 <#else>
 </span> <#rt/>
+</#if>
+<#if (attributes.errorposition!"top") == 'bottom'>
+<#assign hasFieldErrors = attributes.name?? && fieldErrors?? && fieldErrors.get(attributes.name)??/>
+<#if hasFieldErrors>
+<div <#rt/><#if attributes.id??>id="wwerr_${attributes.id}"<#rt/></#if> class="wwerr">
+<#list fieldErrors.get(attributes.name) as error>
+    <div<#rt/>
+    <#if attributes.id??>
+     errorFor="${attributes.id}"<#rt/>
+    </#if>
+    class="errorMessage">
+             ${error}
+    </div><#t/>
+</#list>
+</div><#t/>
+</#if>
 </#if>
 </div>

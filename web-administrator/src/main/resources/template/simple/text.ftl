@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: text.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,34 +18,35 @@
  * under the License.
  */
 -->
-<input type="text"<#rt/>
- name="${parameters.name?default("")?html}"<#rt/>
-<#if parameters.get("size")??>
- size="${parameters.get("size")?html}"<#rt/>
+<input<#rt/>
+ type="${(attributes.type!"text")}"<#rt/>
+ name="${(attributes.name!"")}"<#rt/>
+<#if attributes.get("size")?has_content>
+ size="${attributes.get("size")}"<#rt/>
 </#if>
-<#if parameters.maxlength??>
- maxlength="${parameters.maxlength?html}"<#rt/>
+<#if attributes.maxlength?has_content>
+ maxlength="${attributes.maxlength}"<#rt/>
 </#if>
-<#if parameters.nameValue??>
- value="<@s.property value="parameters.nameValue"/>"<#rt/>
+<#if attributes.nameValue??>
+ value="${attributes.nameValue}"<#rt/>
 </#if>
-<#if parameters.disabled?default(false)>
+<#if attributes.disabled!false>
  disabled="disabled"<#rt/>
 </#if>
-<#if parameters.readonly?default(false)>
+<#if attributes.readonly!false>
  readonly="readonly"<#rt/>
 </#if>
-<#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+<#if attributes.tabindex?has_content>
+ tabindex="${attributes.tabindex}"<#rt/>
 </#if>
-<#if parameters.id??>
- id="${parameters.id?html}"<#rt/>
+<#if attributes.id?has_content>
+ id="${attributes.id}"<#rt/>
 </#if>
-<#include "/${parameters.templateDir}/simple/css.ftl" />
-<#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/css.ftl" />
+<#if attributes.title?has_content>
+ title="${attributes.title}"<#rt/>
 </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/scripting-events.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/common-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/dynamic-attributes.ftl" />
 />

@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: a-close.ftl 753015 2009-03-12 21:00:23Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,25 +19,28 @@
  */
 -->
 <a<#rt/>
-<#if parameters.id?if_exists != "">
- id="${parameters.id?html}"<#rt/>
+<#if attributes.id??>
+ id="${attributes.id}"<#rt/>
 </#if>
-<#if parameters.href?if_exists != "">
- href="${parameters.href}"<#rt/>
+<#if attributes.href??>
+ href="${attributes.href?no_esc}"<#rt/>
 </#if>
-<#if parameters.tabindex??>
- tabindex="${parameters.tabindex?html}"<#rt/>
+<#if attributes.disabled!false>
+ disabled="disabled"<#rt/>
 </#if>
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#if attributes.tabindex??>
+ tabindex="${attributes.tabindex}"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if attributes.cssClass??>
+ class="${attributes.cssClass}"<#rt/>
 </#if>
-<#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+<#if attributes.cssStyle??>
+ style="${attributes.cssStyle}"<#rt/>
 </#if>
-<#include "/${parameters.templateDir}/simple/scripting-events.ftl" />
-<#include "/${parameters.templateDir}/simple/common-attributes.ftl" />
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
->${parameters.body}</a>
+<#if attributes.title??>
+ title="${attributes.title}"<#rt/>
+</#if>
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/scripting-events.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/common-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/dynamic-attributes.ftl" />
+>${tag.escapeHtmlBody()?then(attributes.body, attributes.body?no_esc)}</a>

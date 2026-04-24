@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: a.ftl 753015 2009-03-12 21:00:23Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information

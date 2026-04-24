@@ -20,48 +20,48 @@
  * under the License.
  */
 -->
-<#if (parameters.validate?default(false) == false)><#rt/>
-    <#if parameters.onsubmit??><#rt/>
-        ${tag.addParameter('onsubmit', "${parameters.onsubmit}") }
+<#if (attributes.validate!false == false)><#rt/>
+    <#if attributes.onsubmit?has_content><#rt/>
+        ${tag.addParameter('onsubmit', "${attributes.onsubmit}") }
     </#if>
 </#if>
 <form<#rt/>
-<#if parameters.id??>
- id="${parameters.id?html}"<#rt/>
+<#if attributes.id?has_content>
+ id="${attributes.id}"<#rt/>
 </#if>
-<#if parameters.name??>
- name="${parameters.name?html}"<#rt/>
+<#if attributes.name?has_content>
+ name="${attributes.name}"<#rt/>
 </#if>
-<#if parameters.onsubmit??>
- onsubmit="${parameters.onsubmit?html}"<#rt/>
+<#if attributes.onsubmit?has_content>
+ onsubmit="<#outputformat 'JavaScript'>${attributes.onsubmit}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.onreset??>
- onreset="${parameters.onreset?html}"<#rt/>
+<#if attributes.onreset?has_content>
+ onreset="<#outputformat 'JavaScript'>${attributes.onreset}</#outputformat>"<#rt/>
 </#if>
-<#if parameters.action??>
- action="${parameters.action?html}"<#rt/>
+<#if attributes.action?has_content>
+ action="${attributes.action}"<#rt/>
 </#if>
-<#if parameters.target??>
- target="${parameters.target?html}"<#rt/>
+<#if attributes.target?has_content>
+ target="${attributes.target}"<#rt/>
 </#if>
-<#if parameters.method??>
- method="${parameters.method?html}"<#rt/>
+<#if attributes.method?has_content>
+ method="${attributes.method}"<#rt/>
 <#else>
  method="post"<#rt/>
 </#if>
-<#if parameters.enctype??>
- enctype="${parameters.enctype?html}"<#rt/>
+<#if attributes.enctype?has_content>
+ enctype="${attributes.enctype}"<#rt/>
 </#if>
-<#if parameters.cssClass??>
- class="${parameters.cssClass?html}"<#rt/>
+<#if attributes.cssClass?has_content>
+ class="${attributes.cssClass}"<#rt/>
 </#if>
-<#if parameters.cssStyle??>
- style="${parameters.cssStyle?html}"<#rt/>
+<#if attributes.cssStyle?has_content>
+ style="${attributes.cssStyle}"<#rt/>
 </#if>
-<#if parameters.title??>
- title="${parameters.title?html}"<#rt/>
+<#if attributes.title?has_content>
+ title="${attributes.title}"<#rt/>
 </#if>
-<#if parameters.acceptcharset??>
- accept-charset="${parameters.acceptcharset?html}"<#rt/>
+<#if attributes.acceptcharset?has_content>
+ accept-charset="${attributes.acceptcharset}"<#rt/>
 </#if>
-<#include "/${parameters.templateDir}/simple/dynamic-attributes.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/dynamic-attributes.ftl" />

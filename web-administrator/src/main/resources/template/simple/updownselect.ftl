@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: updownselect.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,7 +19,7 @@
  */
 -->
 <#if !stack.findValue("#optiontransferselect_js_included")??><#t/>
-	<script type="text/javascript" src="<@s.url value="/struts/optiontransferselect.js" encode='false' includeParams='none'/>"></script>
+	<@s.script src="${base}${attributes.staticContentPath}/optiontransferselect.js" /><#t/>
 	<#assign temporaryVariable = stack.setValue("#optiontransferselect_js_included", "true") /><#t/>
 </#if><#t/>
 <table>
@@ -29,28 +27,28 @@
 <#include "/${templateDir}/simple/select.ftl" /><#t/>
 </td></tr>
 <tr><td>
-<#if parameters.allowMoveUp?default(true)><#t/>
-	<#assign defMoveUpLabel="${parameters.moveUpLabel?default('^')}" /><#t/>
-	<#if parameters.headerKey??><#t/>
-		&nbsp;<input type="button" value="${defMoveUpLabel}" onclick="moveOptionUp(document.getElementById('${parameters.id}'), 'key', '${parameters.headerKey}');" />&nbsp;
+<#if attributes.allowMoveUp!true><#t/>
+	<#assign defMoveUpLabel="${attributes.moveUpLabel!'^'}" /><#t/>
+	<#if attributes.headerKey??><#t/>
+		&nbsp;<input type="button" value="${defMoveUpLabel}" onclick="moveOptionUp(document.getElementById('${attributes.id}'), 'key', '${attributes.headerKey}');" />&nbsp;
 	<#else><#t/>
-		&nbsp;<input type="button" value="${defMoveUpLabel}" onclick="moveOptionUp(document.getElementById('${parameters.id}'), 'key', '');" />&nbsp;
+		&nbsp;<input type="button" value="${defMoveUpLabel}" onclick="moveOptionUp(document.getElementById('${attributes.id}'), 'key', '');" />&nbsp;
 	</#if><#t/>
 </#if><#t/>
-<#if parameters.allowMoveDown?default(true)><#t/>
-	<#assign defMoveDownLabel="${parameters.moveDownLabel?default('v')}" /><#t/>
-	<#if parameters.headerKey??><#t/>
-		&nbsp;<input type="button" value="${defMoveDownLabel}" onclick="moveOptionDown(document.getElementById('${parameters.id}'), 'key', '${parameters.headerKey}');" />&nbsp;
+<#if attributes.allowMoveDown!true><#t/>
+	<#assign defMoveDownLabel="${attributes.moveDownLabel!'v'}" /><#t/>
+	<#if attributes.headerKey??><#t/>
+		&nbsp;<input type="button" value="${defMoveDownLabel}" onclick="moveOptionDown(document.getElementById('${attributes.id}'), 'key', '${attributes.headerKey}');" />&nbsp;
 	<#else><#t/>
-		&nbsp;<input type="button" value="${defMoveDownLabel}" onclick="moveOptionDown(document.getElementById('${parameters.id}'), 'key', '');" />&nbsp;
+		&nbsp;<input type="button" value="${defMoveDownLabel}" onclick="moveOptionDown(document.getElementById('${attributes.id}'), 'key', '');" />&nbsp;
 	</#if><#t/>
 </#if><#t/>
-<#if parameters.allowSelectAll?default(true)><#t/>
-	<#assign defSelectAllLabel="${parameters.selectAllLabel?default('*')}" /><#t/>
-	<#if parameters.headerKey??><#t/>
-		&nbsp;<input type="button" value="${defSelectAllLabel}" onclick="selectAllOptionsExceptSome(document.getElementById('${parameters.id}'), 'key', '${parameters.headerKey}');" />&nbsp;
+<#if attributes.allowSelectAll!true><#t/>
+	<#assign defSelectAllLabel="${attributes.selectAllLabel!'*'}" /><#t/>
+	<#if attributes.headerKey??><#t/>
+		&nbsp;<input type="button" value="${defSelectAllLabel}" onclick="selectAllOptionsExceptSome(document.getElementById('${attributes.id}'), 'key', '${attributes.headerKey}');" />&nbsp;
 	<#else><#t/>
-		&nbsp;<input type="button" value="${defSelectAllLabel}" onclick="selectAllOptions(document.getElementById('${parameters.id}'), 'key', '');" />&nbsp;
+		&nbsp;<input type="button" value="${defSelectAllLabel}" onclick="selectAllOptions(document.getElementById('${attributes.id}'), 'key', '');" />&nbsp;
 	</#if><#t/>
 </#if><#t/>
 </td></tr>

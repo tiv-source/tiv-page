@@ -1,7 +1,5 @@
 <#--
 /*
- * $Id: form.ftl 720258 2008-11-24 19:05:16Z musachy $
- *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -20,14 +18,14 @@
  * under the License.
  */
 -->
-<#include "/${parameters.templateDir}/xhtml/form-validate.ftl" />
-<#include "/${parameters.templateDir}/simple/form-common.ftl" />
-<#if (parameters.validate?default(false))>
-  onreset="${parameters.onreset?default('clearErrorMessages(this);clearErrorLabels(this);')}"
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/form-validate.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/form-common.ftl" />
+<#if (attributes.validate!false)>
+  onreset="<#outputformat 'JavaScript'>${attributes.onreset!'clearErrorMessages(this);clearErrorLabels(this);'}</#outputformat>"
 <#else>
-  <#if parameters.onreset??>
-  onreset="${parameters.onreset?html}"
+  <#if attributes.onreset??>
+  onreset="<#outputformat 'JavaScript'>${attributes.onreset}</#outputformat>"
   </#if>
 </#if>
 >
-<#include "/${parameters.templateDir}/xhtml/control.ftl" />
+<#include "/${attributes.templateDir}/${attributes.expandTheme}/control.ftl" />
