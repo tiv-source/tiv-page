@@ -1,0 +1,60 @@
+<%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="struts" uri="/struts-tags" %>
+
+
+      <!--  Start MAIN -->
+      <div class="main">
+        <div class="sub_menu"></div>
+        <div id="title">
+          <h5><struts:text name="courseUnit.delete"/> (<struts:property value="course.descriptionMap.DE.name"/>)</h5>
+        </div>
+
+        <div id="backend_update_form" class="update">
+          <struts:form 
+                  cssClass="form" 
+                  action="unitDelete" 
+                  namespace="/academy/course" 
+                  tooltipIconPath="/images/info.png" 
+                  javascriptTooltip="true" 
+                  tooltipDelay="500"
+          >
+            <struts:hidden key="course.uuid"/>
+            <struts:hidden key="courseUnit.uuid"/>
+
+            <fieldset class="fieldset">
+
+              <div class="field">
+                <label for="courseUnit.descriptionMap.DE.name" class="label">Name:</label>
+                <struts:hidden id="courseUnit.descriptionMap.DE.name" key="courseUnit.descriptionMap.DE.name"/>
+                <struts:property value="courseUnit.descriptionMap.DE.name"/>
+              </div>
+
+            </fieldset>
+
+            <div class="buttons form_bottom">
+              <button 
+                  id="submit_confirm__Save" 
+                  name="submit" 
+                  value="save" 
+                  class="save small_green_button button">
+                    <struts:text name="form.delete"/>
+              </button>
+
+              <struts:a 
+                  id="submit_deny__Close" 
+                  name="submitClose" 
+                  cssClass="cancel small_red_button button" 
+                  action="courseOverview" 
+                  namespace="/academy/course">
+                      <struts:param name="uncheckCourse" value="%{course.uuid}" />
+                      <struts:text name="form.abort"/>
+              </struts:a>
+            </div>
+          </struts:form>
+
+          
+        </div>
+
+
+      </div>
+      <!--  Ende MAIN -->
