@@ -41,6 +41,14 @@
               </div>
 
               <div class="field">
+                <struts:textfield 
+                    key="salutation.descriptionMap.DE.longSalutation"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width:827px;"
+                />
+              </div>
+
+              <div class="field">
                 <struts:textarea 
                     key="salutation.descriptionMap.DE.description" 
                     cols="115" 
@@ -58,6 +66,7 @@
               </div>
 
               <struts:hidden key="salutation.descriptionMap.EN.name" value="NoEnglishcontentavailable"/>
+              <struts:hidden key="salutation.descriptionMap.EN.longSalutation" value="NoEnglishcontentavailable"/>
               <struts:hidden key="salutation.descriptionMap.EN.description" value="No English content available."/>
               <struts:hidden key="salutation.descriptionMap.EN.keywords" value="Salutation"/>
 

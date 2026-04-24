@@ -23,7 +23,14 @@
     >
       <fieldset class="fieldset">
         <div class="field">
-          <struts:radio     key="message.gender" list="#{true:'Frau',false:'Herr'}" />
+          <struts:radio
+              key="message.salutation"
+              list="salutations"
+              listValue="%{getName(getText('language'))}"
+              listKey="uuid"
+              value="message.salutation.{uuid}"
+          />
+          <struts:hidden key="message.gender" value="false" />
         </div>
 
         <div class="field">        
@@ -39,15 +46,31 @@
         </div>
 
         <div class="field">
-          <struts:textfield key="message.telephone" />
+          <struts:textfield
+              key="message.telephone" 
+              placeholder="+49-172-5555555"
+              inputmode="tel"
+          />
         </div>
 
-        <div class="field">
-          <struts:textfield key="message.fax" />
+        <div class="field" style="display: none;">
+          <struts:textfield
+              key="fax" 
+              placeholder="+49-172-5555555"
+              inputmode="tel"
+          />
         </div>
 
+        <struts:hidden key="notEmpty" />
+        <struts:hidden key="protectionTimeString" />
+
         <div class="field">
-          <struts:textarea key="message.content" />
+          <struts:textarea key="message.content" onchange="formatString()"/>
+          <script type="text/javascript">
+          function formatString() {
+        	  document.getElementById("sent_notEmpty").value = "48ac-8a00-9737505b7c82";
+          }
+          </script>
         </div>
 
         <div class="field">
@@ -68,7 +91,7 @@
         </div>
 
       </fieldset>
-      <struts:submit type="button" value="Absenden" />
+      <struts:submit type="button" value="Absenden" onclick="this.disabled=true; this.form.submit();" />
       <struts:reset type="button" value="Löschen" />
       <hr>
     </struts:form>

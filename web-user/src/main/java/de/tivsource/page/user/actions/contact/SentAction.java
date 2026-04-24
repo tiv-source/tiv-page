@@ -3,6 +3,7 @@ package de.tivsource.page.user.actions.contact;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -19,10 +20,12 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.captcha.Captcha;
+import de.tivsource.page.common.salutation.Salutation;
 import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
 import de.tivsource.page.dao.message.MessageDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.dao.salutation.SalutationDaoLocal;
 import de.tivsource.page.entity.message.Message;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.exceptions.NoMailSessionCreatedException;
@@ -64,7 +67,10 @@ public class SentAction extends EmptyAction {
 
     @InjectEJB(name="MessageDao")
     private MessageDaoLocal messageDaoLocal;
-    
+
+    @InjectEJB(name="SalutationDao")
+    private SalutationDaoLocal salutationDaoLocal;
+
 	private Message message;
 
 	private Page page;
@@ -73,14 +79,32 @@ public class SentAction extends EmptyAction {
 
     private String answer;
 
+    private List<Salutation> salutations;
+
+    /**
+     * Anti-Bot Checks
+     */
+    private String fax;
+    private String notEmpty;
+    private String protectionTimeString;
+
+    @Override
+    public void prepare() {
+        // Lade die Kontaktseite aus der Datenbank
+        page = pageDaoLocal.findByTechnical("contact");
+        // Anreden aus der Datenbank geholt
+        salutations = salutationDaoLocal.findAll(0, salutationDaoLocal.countAll());
+    }
+
     @Actions({
-        @Action(
-        		value = "sent", 
-        		results = { 
-        				@Result(name = "success", type="tiles", location = "page"), 
-        				@Result(name = "input", type="tiles", location = "contactForm"),
-                        @Result(name = "couldNotSendMail",    type="tiles", location = "page")
-        				}
+       @Action(
+           value = "sent",
+           results = {
+               @Result(name = "success",          type = "redirectAction", location = "contactsendsuccess/index.html", params={"namespace", "/"}),
+               @Result(name = "input",            type = "tiles", location = "contactForm"),
+               @Result(name = "couldNotSendMail", type = "redirectAction", location = "contactsenderror/index.html", params={"namespace", "/"}),
+               @Result(name = "error",            type = "redirectAction", location = "contacterror/index.html", params={"namespace", "/"}),
+           }
         )
     })
 	public String execute() {
@@ -89,11 +113,46 @@ public class SentAction extends EmptyAction {
         // Hole Action Locale
     	this.getLanguageFromActionContext();
 
+    	LOGGER.debug("Inhalt der Variable \"fax\": " + fax);
+    	// Wenn der String gesetzt wurde, dann ist dass mit Absicht 
+    	// geschehen (Manipulation) und/oder es war ein Spambot 
+    	if(fax == null || !fax.trim().equals("") || fax.length() != 0) {
+    	    LOGGER.debug("Die Variable \"fax\" wurde gesetzt (Bot detected/Spam)");
+    	    return ERROR;
+    	}
 
+    	LOGGER.debug("Inhalt der Variable \"notEmpty\": " + notEmpty);
+    	// Wenn der String gesetzt wurde, dann ist dass mit Absicht 
+        // geschehen (Manipulation) und/oder es war ein Spambot 
+        if(notEmpty == null || notEmpty.trim().equals("") || notEmpty.length() == 0 || !notEmpty.equals("48ac-8a00-9737505b7c82") ) {
+            LOGGER.debug("Die Variable \"notEmpty\" wurde gesetzt (Bot detected/Spam)");
+            return ERROR;
+        }
+
+        LOGGER.debug("Inhalt der Variable \"protectionTimeString\": " + protectionTimeString);
+        // Wenn der String gesetzt wurde, dann ist dass mit Absicht 
+        // geschehen (Manipulation) und/oder es war ein Spambot 
+        if(protectionTimeString == null || !protectionTimeString.trim().equals("") || protectionTimeString.length() != 0) {
+            LOGGER.debug("Die Variable \"protectionTimeString\" wurde gesetzt (Bot detected/Spam)");
+            return ERROR;
+        }
+
+        LOGGER.debug("Inhalt der Variable \"message.gender\": " + message.getGender());
+        // Wenn der String gesetzt wurde, dann ist dass mit Absicht 
+        // geschehen (Manipulation) und/oder es war ein Spambot 
+        if(message.getGender() == null || message.getGender()) {
+            LOGGER.debug("Die Variable \"message.gender\" wurde gesetzt und ist nicht false (Bot detected/Spam)");
+            return ERROR;
+        }
+
+        // Wenn eine Anwort gegeben wurde und diese 
+        // nicht leer ist und dem geforderten String entspricht
         if(answer != null && captcha != null && !answer.trim().equals("") && captcha.getContent().equals(answer)) {
             // Versuche die Mail zu versenden, wenn das nicht funktioniert
             // leite den Benutzer auf eine Fehlerseite
             try {
+                // Setze die UUID des Benutzern Captchas
+                message.setCaptchaUuid(captcha.getUuid());
                 sendMail();
             } catch (MessagingException | IOException e) {
                 page = pageDaoLocal.findByTechnical("couldnotsendmail");
@@ -103,25 +162,22 @@ public class SentAction extends EmptyAction {
 
             // Speichere Message Objekt
             String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-            message.setCaptchaUuid(captcha.getUuid());
             message.setCreated(new Date());
             message.setCreatedAddress(remoteAddress);
             message.setUuid(UUID.randomUUID().toString());
             messageDaoLocal.merge(message);
 
             return SUCCESS;            
-        } else {
-            captcha = captchaDaoLocal.random();
-            addFieldError("answer", "Bitte geben Sie die Hausnummer ein.");
-            return INPUT;
         }
-	}
+
+        // Lade Zufälligen Captcha aus der Datenbank
+        captcha = captchaDaoLocal.random();
+        addFieldError("answer", "Bitte geben Sie die Hausnummer ein.");
+        return INPUT;
+	}// Ende execute()
 
     @Override
     public Page getPage() {
-        if(page == null) {
-            setUpPage();
-        }
         return page;
     }// Ende getPage()
 
@@ -134,27 +190,37 @@ public class SentAction extends EmptyAction {
         this.message = message;
     }
 
-	/**
-     * @return the captcha
-     */
     public Captcha getCaptcha() {
         return captcha;
     }
 
-    /**
-     * @param captcha the captcha to set
-     */
     @StrutsParameter
     public void setCaptcha(Captcha captcha) {
         this.captcha = captcha;
     }
 
-    /**
-     * @param answer the answer to set
-     */
     @StrutsParameter
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public List<Salutation> getSalutations() {
+        return salutations;
+    }
+
+    @StrutsParameter
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    @StrutsParameter
+    public void setNotEmpty(String notEmpty) {
+        this.notEmpty = notEmpty;
+    }
+
+    @StrutsParameter
+    public void setProtectionTimeString(String protectionTimeString) {
+        this.protectionTimeString = protectionTimeString;
     }
 
     private void sendMail() throws UnsupportedEncodingException, IOException, MessagingException {
@@ -163,7 +229,7 @@ public class SentAction extends EmptyAction {
         Boolean debugMailSession = getProperty("mail.contactform.debug.session").equals("true") ? true : false;
         sendIt.createSession(debugMailSession);
         String[] argu = {
-                message.getGender() ? "Frau" : "Herr",
+                message.getSalutation().getName(getProperty("mail.contactform.language")),
                 message.getFirstname(), 
                 message.getLastname(), 
                 message.getMail(), 
@@ -185,71 +251,7 @@ public class SentAction extends EmptyAction {
             }
         }).start();
 
-		/*
-		jakarta.mail.Authenticator auth = new jakarta.mail.Authenticator() {
-			@Override
-			public PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(
-				        propertyDaoLocal.findByKey("mail.user").getValue(),
-				        propertyDaoLocal.findByKey("mail.password").getValue());
-			}
-		};
-		
-		InputStream template;
-		try {
-		    URL templatePath = new URL(propertyDaoLocal.findByKey("mail.template.path").getValue());
-			LOGGER.info("Pfad zur template Datei: " + templatePath);
-            template = templatePath.openStream();
-            LOGGER.info("Template eingelesen");
-            Object notification = EmailTemplate.getEmailTemplate(template);
-            LOGGER.info("Template eingelesen");
-
-            // Get session
-            Session session = Session.getInstance(getProperties(), auth);
-            session.setDebug(false);
-            
-            EmailSender sendIt = new EmailSender();
-            String[] argu = {
-                    message.getGender() ? "Frau" : "Herr",
-            		message.getFirstname(), 
-            		message.getLastname(), 
-            		message.getMail(), 
-            		message.getTelephone(),
-            		message.getFax(),
-            		message.getContent(),
-            		message.getContent().replace("\n", "<br/>")
-            		};
-
-            new Thread(new Runnable() {
-                public void run(){
-                    try {
-                        sendIt.send("Kontaktformular", (EmailTemplate)notification, argu, session);
-                    } catch (UnsupportedEncodingException | MessagingException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    return; // to stop the thread
-                }
-            }).start();
-
-		} catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 */
-		
 	}// Ende sendMail()
-
-    private void setUpPage() {
-        LOGGER.info("Action Errors: " + this.getFieldErrors().size());
-        if(this.getFieldErrors().size() > 0) {
-            page = pageDaoLocal.findByTechnical("contact");
-        } else {
-            page = pageDaoLocal.findByTechnical("sent");
-        }
-    }
 
     private Properties getProperties() {
         LOGGER.info("getProperties() aufgerufen.");

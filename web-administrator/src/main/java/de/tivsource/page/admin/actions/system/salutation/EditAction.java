@@ -99,11 +99,13 @@ public class EditAction extends EmptyAction {
                 dbSalutation.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
                 dbSalutation.getDescriptionMap().get(Language.EN).setKeywords(salutation.getKeywords(Language.EN));
                 dbSalutation.getDescriptionMap().get(Language.EN).setName(salutation.getName(Language.EN));
+                dbSalutation.getDescriptionMap().get(Language.EN).setLongSalutation(salutation.getLongSalutation(Language.EN));
             } else {
                 String noLineBreaks = salutation.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
                 dbSalutation.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
                 dbSalutation.getDescriptionMap().get(Language.DE).setKeywords(salutation.getKeywords(Language.DE));;
                 dbSalutation.getDescriptionMap().get(Language.DE).setName(salutation.getName(Language.DE));
+                dbSalutation.getDescriptionMap().get(Language.DE).setLongSalutation(salutation.getLongSalutation(Language.DE));
             }
 
             dbSalutation.setVisible(salutation.getVisible());

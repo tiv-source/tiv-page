@@ -43,6 +43,8 @@ public class SalutationDescription {
 
     private String keywords;
 
+    private String longSalutation;
+
     @Enumerated(EnumType.STRING)
     private Language locale;
 
@@ -80,6 +82,14 @@ public class SalutationDescription {
 
     public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+    public String getLongSalutation() {
+        return longSalutation;
+    }
+
+    public void setLongSalutation(String longSalutation) {
+        this.longSalutation = longSalutation;
     }
 
     public Language getLocale() {

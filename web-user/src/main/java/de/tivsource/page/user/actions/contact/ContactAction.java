@@ -1,6 +1,7 @@
 package de.tivsource.page.user.actions.contact;
 
 import java.net.URL;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,9 +14,11 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.captcha.Captcha;
+import de.tivsource.page.common.salutation.Salutation;
 import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.dao.salutation.SalutationDaoLocal;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
 
@@ -50,16 +53,23 @@ public class ContactAction extends EmptyAction {
     @InjectEJB(name="PropertyDao")
     private PropertyDaoLocal propertyDaoLocal;
 
+    @InjectEJB(name="SalutationDao")
+    private SalutationDaoLocal salutationDaoLocal;
+
     private Page page;
 
     private Captcha captcha;
 
+    private List<Salutation> salutations;
+
     @Override
     public void prepare() {
         // Lade die Kontaktseite aus der Datenbank
-        this.page = pageDaoLocal.findByTechnical("contact");
+        page = pageDaoLocal.findByTechnical("contact");
         // Lade Zufälligen Captcha aus der Datenbank
         captcha = captchaDaoLocal.random();
+        // Anreden aus der Datenbank geholt
+        salutations = salutationDaoLocal.findAll(0, salutationDaoLocal.countAll());
     }
 
     @Override
@@ -96,11 +106,12 @@ public class ContactAction extends EmptyAction {
     	return this.page;
     }// Ende getPage()
 
-    /**
-     * @return the captcha
-     */
     public Captcha getCaptcha() {
         return captcha;
+    }
+
+    public List<Salutation> getSalutations() {
+        return salutations;
     }
 
 }// Ende class

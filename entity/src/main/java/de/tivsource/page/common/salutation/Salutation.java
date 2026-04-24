@@ -242,4 +242,32 @@ public class Salutation {
         return tmpResult;
     }
 
+    public String getLongSalutation(String language) {
+        String result = descriptionMap.get(Language.DE).getLongSalutation();
+        String tmpResult = descriptionMap.get(Language.DE).getLongSalutation();
+        try {
+            tmpResult = descriptionMap.get(
+                    Language.valueOf(language.toUpperCase())).getLongSalutation();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+
+    public String getLongSalutation(Language language) {
+        String result = descriptionMap.get(Language.DE).getLongSalutation();
+        String tmpResult = descriptionMap.get(Language.DE).getLongSalutation();
+
+        try {
+            tmpResult = descriptionMap.get(language).getLongSalutation();
+        } catch (IllegalArgumentException e) {
+            return result;
+        } catch (NullPointerException e) {
+            return result;
+        }
+        return tmpResult;
+    }
+
 }// Ende class
