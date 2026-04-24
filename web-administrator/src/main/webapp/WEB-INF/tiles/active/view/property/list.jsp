@@ -28,6 +28,16 @@ function formatIsoDate(celldate, options, rowObject) {
 }
 </script>
 
+<script type="text/javascript">
+function formatTrueFalse(cellvalue, options, rowObject) {
+  if (cellvalue) {
+    return "<img src='/admin/icons/16x16/accept.png' style='width:14px;'/>";  
+  } else {
+    return "<img src='/admin/icons/16x16/oneway.png' style='width:14px;'/>";
+  }
+}
+</script>
+
       <!--  Start MAIN -->
       <div class="main">
         <div class="sub_menu">
@@ -43,20 +53,22 @@ $(function () {
         datatype: "json",
         mtype: "GET",
         colNames: [
-            "Schlüssel", 
-            "Wert", 
-            "Bearbeitet am", 
+            "Schlüssel",
+            "Wert",
+            "Geschützt",
+            "Bearbeitet am",
             "Bearbeitet von",
             "Bearbeitungsadresse",
             ""
         ],
         colModel: [
-            { name: "key",        width:  140 },
-            { name: "value",       width:  140, align: "center" },
-            { name: "modified",        width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",      width:  140, align: "right" },
-            { name: "modifiedAddress", width:  210, align: "right" },
-            { name: "key",             width:  130, align: "center", sortable: false, formatter:formatLinks }
+            { name: "key",             width:  280, search: true },
+            { name: "value",           width:  210, align: "center", search: false },
+            { name: "unchangeable",    width:   70, align: "center", formatter:formatTrueFalse, stype: 'select', searchoptions: { sopt:['eq','ne'], value:':Alle;true:Ja;false:Nein'} },
+            { name: "modified",        width:  105, align: "center", search: false, formatter:formatIsoDate },
+            { name: "modifiedBy",      width:  105, align: "right",  search: false },
+            { name: "modifiedAddress", width:  105, align: "right",  search: false },
+            { name: "key",             width:  130, align: "center", search: false, sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 10,
@@ -69,10 +81,12 @@ $(function () {
         jsonReader : {root:"gridModel", records: "record"},
         width : 1600,
         cellLayout : 5,
-        height:'auto',
+        height: 'auto',
+        hidegrid: false,
         caption: "Eigenschaften"
-    }); 
-}); 
+    });
+    $("#entityList").jqGrid('filterToolbar', {stringResult: true, searchOnEnter: false, defaultSearch : "cn"});
+});
 </script>
 
 
