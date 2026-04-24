@@ -71,6 +71,7 @@ $(function () {
         width : 1600,
         cellLayout : 5,
         height:'auto',
+        hidegrid: false,
         caption: "Länder"
     }); 
 }); 
@@ -78,10 +79,16 @@ $(function () {
 
 
 
-<struts:url var="countryAddUrl" action="addForm" namespace="/system/country" />
+<struts:url var="countryAddUrl"     action="addForm" namespace="/system/country" />
+<struts:url var="countryBackupUrl"  action="backup"  namespace="/system/country" />
 
       <!--  Start MAIN -->
       <div class="content">
+        <div class="sub_menu">
+          <struts:a href="%{countryBackupUrl}">
+            <struts:text name="country.backup"/>
+          </struts:a>
+        </div>
         <div class="sub_menu">
           <struts:a href="%{countryAddUrl}">
             <struts:text name="country.add"/>
@@ -91,3 +98,4 @@ $(function () {
         <div id="entityPager"></div>
       </div>
       <!--  Ende MAIN -->
+
