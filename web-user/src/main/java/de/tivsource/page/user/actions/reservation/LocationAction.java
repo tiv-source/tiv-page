@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
@@ -200,7 +201,8 @@ public class LocationAction extends EmptyAction implements Pagination {
     }
 
     @Override
-    public void setPage(Integer extpage) {
+    @StrutsParameter
+    public void setPagination(Integer extpage) {
         pagination = extpage;
     }
 

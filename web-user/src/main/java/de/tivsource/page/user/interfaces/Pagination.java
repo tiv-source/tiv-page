@@ -31,6 +31,6 @@ public interface Pagination {
      * Methode zum setzen der gewünschten Seite.
      * @param page - gewünschte Seite
      */
-    public void setPage(Integer page);
+    public void setPagination(Integer page);
 
 }// Ende interface

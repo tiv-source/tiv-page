@@ -57,7 +57,7 @@
 
     <struts:if test="previous != null">
       <struts:url var="previousUrl" escapeAmp="false">
-        <struts:param name="page" value="%{previous}"/>
+        <struts:param name="pagination" value="%{previous}"/>
       </struts:url>
       <struts:a href="%{previousUrl}">
         <div class="pagination_left">
@@ -69,7 +69,7 @@
 
     <struts:if test="next != null">
       <struts:url var="nextUrl" escapeAmp="false">
-        <struts:param name="page" value="%{next}"/>
+        <struts:param name="pagination" value="%{next}"/>
       </struts:url>
       <struts:a href="%{nextUrl}">
         <div class="pagination_right">
