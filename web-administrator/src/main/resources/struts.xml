@@ -66,7 +66,7 @@
 	</package>
 
 	<!-- JSON Actions -->
-	<package name="administratorJson" namespace="/json" extends="struts-default, json-default, velocity-default">
+	<package name="administratorJson" namespace="/json" extends="struts-default, json-default">
 
 	  <result-types>
 	    <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
