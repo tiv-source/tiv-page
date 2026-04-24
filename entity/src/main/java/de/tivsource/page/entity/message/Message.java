@@ -5,11 +5,14 @@ import java.util.Date;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
+import de.tivsource.page.common.salutation.Salutation;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 
 /**
@@ -37,6 +40,13 @@ public class Message {
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean gender;
+
+    /**
+     * Anrede
+     */
+    @ManyToOne
+    @JoinColumn(name = "salutation_uuid")
+    private Salutation salutation;
 
 	/**
 	 * Vorname des Kontakes.
@@ -83,6 +93,14 @@ public class Message {
 
     public void setGender(Boolean gender) {
         this.gender = gender;
+    }
+
+    public Salutation getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(Salutation salutation) {
+        this.salutation = salutation;
     }
 
     public String getFirstname() {
