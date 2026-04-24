@@ -84,7 +84,7 @@ public class BackupMessage {
         nextString.append(next.getTelephone());
         nextString.append("|");
 
-        nextString.append(next.getFax());
+        nextString.append("Unused");
         nextString.append("|");
         
 		nextString.append("message_" + next.getUuid() + ".txt");

@@ -31,6 +31,14 @@
               </div>
 
               <div class="field">
+                <struts:fielderror fieldName="location.osmImage.uploadFileContentType" />
+                <struts:file key="location.osmImage" parentTheme="xhtml" labelposition="left" accept=".png">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
+              </div>
+
+              <div class="field">
                 <struts:checkbox
                     key="location.pictureOnPage"
                     parentTheme="xhtml"
@@ -64,6 +72,15 @@
               <div class="field">
                 <struts:checkbox
                     key="location.inLocationList"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="location.showCourses"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
 					labelposition="left"
@@ -167,14 +184,6 @@
               <div class="field">
                 <struts:textfield 
                     key="location.contactDetails.telephone"  
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield 
-                    key="location.contactDetails.fax"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />

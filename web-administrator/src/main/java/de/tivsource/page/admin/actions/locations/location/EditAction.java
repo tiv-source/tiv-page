@@ -131,7 +131,6 @@ public class EditAction extends EmptyAction {
     		dbLocation.getAddress().setZip(location.getAddress().getZip());
 
     		dbLocation.getContactDetails().setEmail(location.getContactDetails().getEmail());
-    		dbLocation.getContactDetails().setFax(location.getContactDetails().getFax());
     		dbLocation.getContactDetails().setHomepage(location.getContactDetails().getHomepage());
     		dbLocation.getContactDetails().setMobile(location.getContactDetails().getMobile());
     		dbLocation.getContactDetails().setTelephone(location.getContactDetails().getTelephone());
@@ -142,6 +141,7 @@ public class EditAction extends EmptyAction {
     		dbLocation.setOrderNumber(location.getOrderNumber());
     		dbLocation.setPictureOnPage(location.getPictureOnPage());
     		dbLocation.setInLocationList(location.getInLocationList());
+    		dbLocation.setShowCourses(location.getShowCourses());
     		dbLocation.setCssGroup(location.getCssGroup());
 
 

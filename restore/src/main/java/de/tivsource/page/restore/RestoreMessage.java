@@ -77,7 +77,6 @@ public class RestoreMessage {
         message.setLastname(items[3]);
         message.setMail(items[4]);
         message.setTelephone(items[5]);
-        message.setFax(items[6]);
         message.setContent(createContent(items[7]));
         message.setPrivacy(items[8].equals("true") ? true : false);
         message.setCreated(convertDateString(items[9]));

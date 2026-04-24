@@ -12,6 +12,9 @@
 <struts:url var="imageUrl" namespace="/locations/location" action="imageForm">
   <struts:param name="uncheckLocation" value="location.uuid" />
 </struts:url>
+<struts:url var="osmImageUrl" namespace="/locations/location" action="osmImageForm">
+  <struts:param name="uncheckLocation" value="location.uuid" />
+</struts:url>
 <struts:url var="locationOverviewUrl" namespace="/locations/location" action="overview">
   <struts:param name="uncheckLocation" value="location.uuid" />
 </struts:url>
@@ -39,6 +42,13 @@
               <struts:a href="%{imageUrl}">
                 <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
                 <p style="padding-left: 35px; padding-top: 1px;">Bild bearbeiten</p>
+              </struts:a>
+            </div>
+
+            <div style="padding:0px; margin:5px; height:24px;">
+              <struts:a href="%{osmImageUrl}">
+                <img src="/admin/icons/80x60_picture.png" style="float: left; width: 28px;"/> 
+                <p style="padding-left: 35px; padding-top: 1px;">OSM Bild bearbeiten</p>
               </struts:a>
             </div>
 
@@ -103,6 +113,15 @@
               <div class="field">
                 <struts:checkbox
                     key="location.inLocationList"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="location.showCourses"
                     parentTheme="xhtml"
 					cssStyle="padding: 0.3em;"
 					labelposition="left"
@@ -238,14 +257,6 @@
               <div class="field">
                 <struts:textfield 
                     key="location.contactDetails.telephone"  
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield 
-                    key="location.contactDetails.fax"  
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em; width:827px;"
                 />
