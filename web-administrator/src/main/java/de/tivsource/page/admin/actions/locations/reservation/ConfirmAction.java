@@ -22,7 +22,6 @@ import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.administration.User;
 import de.tivsource.page.entity.reservation.Reservation;
@@ -51,9 +50,6 @@ public class ConfirmAction extends EmptyAction {
 
     @InjectEJB(name="UserDao")
     private UserDaoLocal userDaoLocal;
-    
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
 
     @InjectEJB(name="EventDao")
     private EventDaoLocal eventDaoLocal;
@@ -258,32 +254,32 @@ public class ConfirmAction extends EmptyAction {
 
         // Setup mail server
         props.put("mail.transport.protocol", 
-                propertyDaoLocal.findByKey("mail.transport.protocol").getValue());
+                getProperty("mail.transport.protocol"));
         props.put("mail.host", 
-                propertyDaoLocal.findByKey("mail.host").getValue());
+                getProperty("mail.host"));
         props.put("mail.port", 
-                propertyDaoLocal.findByKey("mail.port").getValue());
+                getProperty("mail.port"));
         props.put("mail.smtp.auth", 
-                propertyDaoLocal.findByKey("mail.smtp.auth").getValue());
+                getProperty("mail.smtp.auth"));
         props.put("mail.smtp.tls", 
-                propertyDaoLocal.findByKey("mail.smtp.tls").getValue());
+                getProperty("mail.smtp.tls"));
         props.put("mail.smtp.starttls.enable",
-                propertyDaoLocal.findByKey("mail.smtp.starttls.enable").getValue());
+                getProperty("mail.smtp.starttls.enable"));
         props.put("mail.smtp.localhost", 
-                propertyDaoLocal.findByKey("mail.smtp.localhost").getValue());
+                getProperty("mail.smtp.localhost"));
         props.put("mail.user", 
-                propertyDaoLocal.findByKey("mail.user").getValue());
+                getProperty("mail.user"));
         props.put("mail.password", 
-                propertyDaoLocal.findByKey("mail.password").getValue());
+                getProperty("mail.password"));
         props.put("mail.mime.charset", 
-                propertyDaoLocal.findByKey("mail.mime.charset").getValue());
+                getProperty("mail.mime.charset"));
         props.put("mail.use8bit", 
-                propertyDaoLocal.findByKey("mail.use8bit").getValue());
+                getProperty("mail.use8bit"));
         //TODO: Reihenfolge aufräumen
         props.put("mail.smtp.ssl.protocols", 
-                propertyDaoLocal.findByKey("mail.smtp.ssl.protocols").getValue());
+                getProperty("mail.smtp.ssl.protocols"));
         props.put("mail.smtp.ssl.trust", 
-                propertyDaoLocal.findByKey("mail.smtp.ssl.trust").getValue());
+                getProperty("mail.smtp.ssl.trust"));
         return props;
     } // Ende getProperties()
 
