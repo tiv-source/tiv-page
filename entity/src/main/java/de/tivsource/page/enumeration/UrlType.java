@@ -1,5 +1,6 @@
 package de.tivsource.page.enumeration;
 
+@Deprecated
 public enum UrlType {
 	THUMBNAIL,
 	NORMAL,
