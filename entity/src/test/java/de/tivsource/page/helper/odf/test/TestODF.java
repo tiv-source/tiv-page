@@ -79,7 +79,6 @@ public class TestODF {
     	event.setModified(new Date());
     	event.setModifiedAddress("192.168.1." + input);
     	event.setModifiedBy("TestUser" + input);
-    	event.setPicture(null);
     	event.setPiwikGoal(10);
     	event.setPrice(new BigDecimal(input));
     	event.setReservation(true);
@@ -103,7 +102,6 @@ public class TestODF {
     	location.setModifiedAddress("192.168.2." + input);
     	location.setModifiedBy("LocationTestUser" + input);
     	location.setOpeningHours(null);
-    	location.setPicture(null);
     	location.setUuid(UUID.randomUUID().toString());
     	location.setVacancies(null);
     	location.setVisible(true);
