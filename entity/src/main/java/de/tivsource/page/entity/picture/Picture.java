@@ -12,7 +12,6 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.gallery.Gallery;
-import de.tivsource.page.enumeration.UrlType;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -57,11 +56,6 @@ public class Picture {
     @MapKey(name = "language")
     private Map<Language, PictureDescription> descriptionMap;
 
-    @OneToMany(mappedBy = "picture", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    @MapKey(name = "urlType")
-    @Deprecated
-    private Map<UrlType, PictureUrl> pictureUrls;
-
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
     private Boolean visible;
@@ -100,16 +94,6 @@ public class Picture {
 
 	public void setDescriptionMap(Map<Language, PictureDescription> descriptionMap) {
 		this.descriptionMap = descriptionMap;
-	}
-
-	@Deprecated
-	public Map<UrlType, PictureUrl> getPictureUrls() {
-		return pictureUrls;
-	}
-
-	@Deprecated
-	public void setPictureUrls(Map<UrlType, PictureUrl> pictureUrls) {
-		this.pictureUrls = pictureUrls;
 	}
 
 	public Boolean getVisible() {
@@ -202,30 +186,6 @@ public class Picture {
             return result;
         }
         return tmpResult;
-    }
-
-	public String getPictureUrl(String urlType) {
-        StringBuilder sb = new StringBuilder("/");
-        sb.append("pictures");
-        sb.append("/");
-        
-        if (urlType.equals("THUMBNAIL")) {
-            sb.append("THUMBNAIL/");
-            sb.append(pictureUrls.get(UrlType.THUMBNAIL).getUrl());
-            return sb.toString();
-        } else if (urlType.equals("NORMAL")) {
-            sb.append("NORMAL/");
-            sb.append(pictureUrls.get(UrlType.NORMAL).getUrl());
-            return sb.toString();
-        } else if (urlType.equals("LARGE")) {
-            sb.append("LARGE/");
-            sb.append(pictureUrls.get(UrlType.LARGE).getUrl());
-            return sb.toString();
-        } else {
-            sb.append("FULL/");
-            sb.append(pictureUrls.get(UrlType.FULL).getUrl());
-            return sb.toString();
-        }
     }
 
     public String getDescription(String language) {

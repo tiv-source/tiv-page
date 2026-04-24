@@ -33,8 +33,6 @@ public interface PictureDaoLocal {
      */
     public void delete(Picture picture);
 
-    public void delete(String pictureUrlUuid);
-
     public Boolean isPicture(String uuid);
 
     public Boolean hasReferences(String uuid);

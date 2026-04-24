@@ -13,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.picture.Picture;
-import de.tivsource.page.enumeration.UrlType;
 
 public class BackupPicture {
 
@@ -91,30 +90,30 @@ public class BackupPicture {
         nextString.append("|");
 
         
-        nextString.append(next.getPictureUrls().get(UrlType.THUMBNAIL).getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
-        nextString.append(next.getPictureUrls().get(UrlType.THUMBNAIL).getUrl());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
         nextString.append("THUMBNAIL");
         nextString.append(";");
 
-        nextString.append(next.getPictureUrls().get(UrlType.NORMAL).getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
-        nextString.append(next.getPictureUrls().get(UrlType.NORMAL).getUrl());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
         nextString.append("NORMAL");
         nextString.append(";");
 
-        nextString.append(next.getPictureUrls().get(UrlType.LARGE).getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
-        nextString.append(next.getPictureUrls().get(UrlType.LARGE).getUrl());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
         nextString.append("LARGE");
         nextString.append(";");
 
-        nextString.append(next.getPictureUrls().get(UrlType.FULL).getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
-        nextString.append(next.getPictureUrls().get(UrlType.FULL).getUrl());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append(",");
         nextString.append("FULL");
         nextString.append(";");

@@ -24,8 +24,6 @@ import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.picture.Picture;
 import de.tivsource.page.entity.picture.PictureDescription;
-import de.tivsource.page.entity.picture.PictureUrl;
-import de.tivsource.page.enumeration.UrlType;
 
 /**
  * @author Marc Michele
@@ -90,16 +88,6 @@ public class RestorePicture {
                 items[5], items[6], items[7], 
                 items[8], Language.EN, picture));
         picture.setDescriptionMap(descriptionMap);
-
-        
-        Map<UrlType, PictureUrl> pictureUrls = new HashMap<UrlType, PictureUrl>();
-		String[] urlItems = items[9].split(";");
-		for (String element : urlItems) {
-			PictureUrl pictureUrl = createPictureUrl(element, picture);
-			pictureUrls.put(pictureUrl.getUrlType(), pictureUrl);
-		}
-		picture.setPictureUrls(pictureUrls);
-        
 		
         picture.setOrderNumber(Integer.parseInt(items[10]));
         picture.setVisible(items[11].equals("true") ? true : false);
@@ -135,27 +123,6 @@ public class RestorePicture {
         pageDescription.setLanguage(language);
         pageDescription.setPicture(picture);
         return pageDescription;
-    }
-
-    private PictureUrl createPictureUrl(String input, Picture picture) {
-    	String[] items = input.split(",");
-
-    	PictureUrl pictureUrl = new PictureUrl();
-    	pictureUrl.setPicture(picture);
-    	pictureUrl.setUrl(items[1]);
-
-		if (items[2].equals("THUMBNAIL")) {
-			pictureUrl.setUrlType(UrlType.THUMBNAIL);
-		} else if (items[2].equals("NORMAL")) {
-			pictureUrl.setUrlType(UrlType.NORMAL);
-		} else if (items[2].equals("LARGE")) {
-			pictureUrl.setUrlType(UrlType.LARGE);
-		} else {
-			pictureUrl.setUrlType(UrlType.FULL);
-		}
-
-    	pictureUrl.setUuid(items[0]);
-    	return pictureUrl;
     }
     
     private void cleanup() {

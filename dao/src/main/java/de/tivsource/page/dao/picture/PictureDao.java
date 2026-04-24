@@ -11,7 +11,6 @@ import org.hibernate.Hibernate;
 
 import de.tivsource.page.entity.gallery.Gallery;
 import de.tivsource.page.entity.picture.Picture;
-import de.tivsource.page.entity.picture.PictureUrl;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -61,15 +60,6 @@ public class PictureDao implements PictureDaoLocal {
 		// Lösche das Bild aus der Datenbank
 		entityManager.remove(entityManager.find(Picture.class, picture.getUuid()));
 	}
-
-    /* (non-Javadoc)
-     * @see de.tivsource.page.dao.picture.PictureDaoLocal#delete(java.lang.String)
-     */
-    @Override
-    public void delete(String pictureUrlUuid) {
-        // // Lösche die Bild Url aus der Datenbank
-        entityManager.remove(entityManager.find(PictureUrl.class, pictureUrlUuid));
-    }
 
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.picture.PictureDaoLocal#isPicture(java.lang.String)
