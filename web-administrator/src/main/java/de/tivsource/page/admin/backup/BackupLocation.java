@@ -89,7 +89,7 @@ public class BackupLocation {
         nextString.append(next.getContactDetails().getTelephone());
         nextString.append("|");
 
-        nextString.append(next.getContactDetails().getFax());
+        nextString.append("GELÖSCHT ATTRIBUTE NICHT MEHR VORHANDEN");
         nextString.append("|");
 
         nextString.append(next.getContactDetails().getEmail());
@@ -154,7 +154,7 @@ public class BackupLocation {
         nextString.append(next.getEvent().toString());
         nextString.append("|");
 
-        nextString.append(next.getPicture().getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append("|");
 
         nextString.append(next.getOrderNumber().toString());
@@ -183,10 +183,10 @@ public class BackupLocation {
 	        hourString.append(next.getWeekday().toString());
 	        hourString.append(";");
 
-            hourString.append(next.getOpen().toString());
+            hourString.append(next.getOpenHour().toString());
             hourString.append(";");
 
-            hourString.append(next.getClose().toString());
+            hourString.append(next.getCloseHour().toString());
             hourString.append("!");
 	    }
 

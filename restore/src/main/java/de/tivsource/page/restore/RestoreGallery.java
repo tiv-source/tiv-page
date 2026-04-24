@@ -39,14 +39,12 @@ public class RestoreGallery {
 
     private GalleryDaoLocal galleryDaoLocal;
 
-    private PictureDaoLocal pictureDaoLocal;
-
     private Map<String, String> pictures = new HashMap<String, String>(); 
     
     public RestoreGallery(GalleryDaoLocal galleryDaoLocal, PictureDaoLocal pictureDaoLocal) {
         super();
         this.galleryDaoLocal = galleryDaoLocal;
-        this.pictureDaoLocal = pictureDaoLocal;
+        // TODO: Der Konstruktor muss noch angepasst werden pictureDaoLocal nicht mehr benötigt.
     }
 
     public void generate(InputStream inputStream) {
@@ -119,11 +117,10 @@ public class RestoreGallery {
         return gallery;
     }// Ende convert(String line)
 
+    @Deprecated
     private void convertPictures(String galleryUuid, String pictureUuid) {
     	LOGGER.debug("convertPictures(String gallery, String picture) aufgerufen");
-        Gallery gallery = galleryDaoLocal.findByUuid(galleryUuid);
-        gallery.setPicture(pictureDaoLocal.findByUuid(pictureUuid));
-        galleryDaoLocal.merge(gallery);
+    	// Tu Nix mehr kann entfernt werden
     }
 
     /**

@@ -24,10 +24,9 @@ import org.apache.logging.log4j.Logger;
 
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
-import de.tivsource.page.entity.embeddable.Address;
-import de.tivsource.page.entity.embeddable.ContactDetails;
 import de.tivsource.page.entity.enumeration.Language;
-import de.tivsource.page.entity.location.HourMinute;
+import de.tivsource.page.entity.location.Address;
+import de.tivsource.page.entity.location.ContactDetails;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
 import de.tivsource.page.entity.namingitem.Description;
@@ -114,7 +113,6 @@ public class RestoreLocation {
         location.setModifiedBy(items[24]);
         location.setModifiedAddress(items[25]);
         location.setEvent(items[26].equals("true") ? true : false);
-        location.setPicture(pictureDaoLocal.findByUuid(items[27]));
 
         location.setOrderNumber(Integer.parseInt(items[28]));
         location.setPictureOnPage(items[29].equals("true") ? true : false);
@@ -151,7 +149,6 @@ public class RestoreLocation {
         ContactDetails contactDetails = new ContactDetails();
         contactDetails.setMobile(mobile);
         contactDetails.setTelephone(telephone);
-        contactDetails.setFax(fax);
         contactDetails.setEmail(email);
         contactDetails.setHomepage(homepage);
         return contactDetails;
@@ -189,21 +186,14 @@ public class RestoreLocation {
                 openingHour.setUuid(UUID.randomUUID().toString());
                 openingHour.setLocation(location);
                 openingHour.setWeekday(Weekday.valueOf(csvOpeningHour[0]));
-                openingHour.setOpen(createHourMinute(csvOpeningHour[1]));
-                openingHour.setClose(createHourMinute(csvOpeningHour[2]));
+                // TODO: Umbau auf keine Embedded
+                //openingHour.setOpenHour(createHourMinute(csvOpeningHour[1]));
+                //openingHour.setCloseHour(createHourMinute(csvOpeningHour[2]));
                 sortedSet.add(openingHour);
             }// Ende for
         }
 
         return sortedSet;
-    }
-
-    private HourMinute createHourMinute(String input) {
-        String[] csvHourMinute = input.split(":");
-        HourMinute hourMinute = new HourMinute();
-        hourMinute.setHour(Integer.parseInt(csvHourMinute[0]));
-        hourMinute.setMinute(Integer.parseInt(csvHourMinute[1]));
-        return hourMinute;
     }
 
     private void cleanup() {

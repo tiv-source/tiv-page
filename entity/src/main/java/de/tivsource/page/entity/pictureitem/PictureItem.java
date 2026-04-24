@@ -9,7 +9,6 @@ import org.hibernate.envers.Audited;
 
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.entity.namingitem.NamingItem;
-import de.tivsource.page.entity.picture.Picture;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -33,12 +32,6 @@ public class PictureItem extends NamingItem {
 
     public static final String TABLE = "PictureItem";
 
-    // TODO: muss entfernt werden sobald das andere Bild benutzt wird
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(table = TABLE, name = "picture_uuid")
-    @Deprecated
-    private Picture picture;
-
     @OneToOne(mappedBy = "pictureItem", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(table = TABLE, name = "image_uuid")
     private PictureItemImage image;
@@ -51,16 +44,6 @@ public class PictureItem extends NamingItem {
     @ManyToOne(targetEntity = CSSGroup.class, fetch = FetchType.EAGER)
     @JoinColumn(table = TABLE, name = "cssGroup_uuid")
     private CSSGroup cssGroup;
-
-    @Deprecated
-    public Picture getPicture() {
-        return picture;
-    }
-
-    @Deprecated
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
 
     /**
      * @return the image

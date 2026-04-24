@@ -113,7 +113,6 @@ public class RestoreEvent {
         event.setLocation(location);
         
         event.setReservation(items[19].equals("true") ? true : false);
-        event.setPicture(pictureDaoLocal.findByUuid(items[20]));
         
         event.setPiwikGoal(Integer.parseInt(items[21]));
         event.setMaxReservations(Integer.parseInt(items[22]));

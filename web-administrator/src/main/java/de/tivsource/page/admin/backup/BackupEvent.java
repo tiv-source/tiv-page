@@ -128,7 +128,7 @@ public class BackupEvent {
         nextString.append(next.getReservation().toString());
         nextString.append("|");
 
-        nextString.append(next.getPicture().getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append("|");
 
         nextString.append(next.getPiwikGoal().toString());

@@ -137,7 +137,7 @@ public class BackupNews {
 		nextString.append(next.getModifiedAddress());
 		nextString.append("|");
 
-        nextString.append(next.getPicture().getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append("|");
 
 		nextString.append(simpleDateFormat.format(next.getReleaseDate()));

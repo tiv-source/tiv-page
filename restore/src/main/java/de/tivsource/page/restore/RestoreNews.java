@@ -110,7 +110,7 @@ public class RestoreNews {
         news.setModified(convertDateString(items[19]));
         news.setModifiedBy(items[20]);
         news.setModifiedAddress(items[21]);
-        news.setPicture(pictureDaoLocal.findByUuid(items[22]));
+
         news.setReleaseDate(convertDateString(items[23]));
         news.setPictureOnPage(items[24].equals("true") ? true : false);
 

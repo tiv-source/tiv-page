@@ -110,7 +110,7 @@ public class RestoreManual {
         manual.setModified(convertDateString(items[19]));
         manual.setModifiedBy(items[20]);
         manual.setModifiedAddress(items[21]);
-        manual.setPicture(pictureDaoLocal.findByUuid(items[22]));
+
         manual.setPictureOnPage(items[23].equals("true") ? true : false);
         // TODO: Wiederherstellung der OrderNumber
         manual.setOrderNumber(0);

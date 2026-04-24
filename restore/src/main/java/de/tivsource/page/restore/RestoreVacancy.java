@@ -117,7 +117,7 @@ public class RestoreVacancy {
         vacancy.setBeginning(convertDateString(items[23]));
         vacancy.setWorkingTime(items[24]);
         vacancy.setLocation(locationDaoLocal.findByUuid(items[25]));
-        vacancy.setPicture(pictureDaoLocal.findByUuid(items[26]));
+
         vacancy.setPictureOnPage(items[27].equals("true") ? true : false);
 
         return vacancy;

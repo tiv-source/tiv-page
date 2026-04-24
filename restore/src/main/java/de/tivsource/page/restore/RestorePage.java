@@ -113,7 +113,7 @@ public class RestorePage {
         page.setModifiedAddress(items[21]);
         page.setTechnical(items[22]);
         page.setSpecial(items[23].equals("true") ? true : false);
-        page.setPicture(pictureDaoLocal.findByUuid(items[24]));
+
         page.setPictureOnPage(items[25].equals("true") ? true : false);
         
         return page;

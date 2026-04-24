@@ -151,7 +151,7 @@ public class BackupVacancy {
         nextString.append(next.getLocation().getUuid());
         nextString.append("|");
 
-        nextString.append(next.getPicture().getUuid());
+        nextString.append("Nicht mehr vorhanden / Attribut wurde entfernt.");
         nextString.append("|");
 
         nextString.append(next.getPictureOnPage().toString());
