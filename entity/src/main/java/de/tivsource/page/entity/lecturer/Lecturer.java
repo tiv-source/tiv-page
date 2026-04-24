@@ -11,11 +11,12 @@ import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.course.Course;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SecondaryTable;
 
 /**
@@ -41,7 +42,12 @@ public class Lecturer extends ContentItem {
     @Column(table = TABLE)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "lecturer", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "Lecturer_Course",
+        joinColumns = @JoinColumn(name = "lecturer_uuid"),
+        inverseJoinColumns = @JoinColumn(name = "course_uuid")
+    )
     @SortNatural
     private SortedSet<Course> courses = new TreeSet<Course>();
 
@@ -127,6 +133,22 @@ public class Lecturer extends ContentItem {
         stringBuffer.append("/");
         stringBuffer.append("index.html");
         return stringBuffer.toString();
+    }
+
+    @Override
+    public int compareTo(ContentItem o) {
+        if(o instanceof Lecturer) {
+            Lecturer lecturer = (Lecturer)o;
+            if (lecturer.getLastname().compareTo(this.lastname) != 0) {
+                return lecturer.getLastname().compareTo(this.lastname);
+            } else if (lecturer.getFirstname().compareTo(this.firstname) != 0) {
+                return lecturer.getFirstname().compareTo(this.firstname);
+            } else {
+                return o.getUuid().compareTo(this.getUuid());
+            }
+        } else {
+            return o.compareTo(this);
+        }
     }
 
 }// Ende class

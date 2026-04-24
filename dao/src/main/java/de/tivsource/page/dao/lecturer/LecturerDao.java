@@ -4,12 +4,14 @@
 package de.tivsource.page.dao.lecturer;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.jpa.AvailableHints;
 
+import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.lecturer.Lecturer;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -90,6 +92,14 @@ public class LecturerDao implements LecturerDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean hasCourse(String uuid) {
+        Lecturer lecturer = entityManager.find(Lecturer.class, uuid);
+        Query query = entityManager.createQuery("SELECT c FROM Course c WHERE :lecturer MEMBER OF c.lecturers order by c.uuid asc");
+        query.setParameter("lecturer", lecturer);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.lecturer.LecturerDaoLocal#findByTechnical(java.lang.String)
      */
@@ -104,6 +114,16 @@ public class LecturerDao implements LecturerDaoLocal {
             Hibernate.initialize(lecturer.getContentMap());
             Hibernate.initialize(lecturer.getCssGroup());
             Hibernate.initialize(lecturer.getCssGroup().getFiles());
+            Hibernate.initialize(lecturer.getCourses());
+            Set<Course> courseList = lecturer.getCourses();
+            for (Course course : courseList) {
+              Hibernate.initialize(course.getDescriptionMap());
+              Set<Lecturer> lecturerList = course.getLecturers();
+              for (Lecturer lecturerFromList : lecturerList) {
+                  Hibernate.initialize(lecturerFromList.getImage());
+                  Hibernate.initialize(lecturerFromList.getDescriptionMap());
+              }
+            }
             Hibernate.unproxy(lecturer.getDescriptionMap());
             Hibernate.unproxy(lecturer.getContentMap());
             Hibernate.unproxy(lecturer.getCssGroup());
@@ -119,6 +139,11 @@ public class LecturerDao implements LecturerDaoLocal {
     public Lecturer findByUuid(String uuid) {
         Lecturer lecturer = entityManager.find(Lecturer.class, uuid); 
         Hibernate.initialize(lecturer.getDescriptionMap());
+        Hibernate.initialize(lecturer.getCourses());
+        Set<Course> courseList = lecturer.getCourses();
+        for (Course course : courseList) {
+          Hibernate.initialize(course.getDescriptionMap());
+        }
         Hibernate.initialize(lecturer.getContentMap());
         Hibernate.initialize(lecturer.getCssGroup());
         Hibernate.initialize(lecturer.getCssGroup().getFiles());

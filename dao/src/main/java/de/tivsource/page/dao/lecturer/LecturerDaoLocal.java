@@ -45,6 +45,8 @@ public interface LecturerDaoLocal {
 
     public Boolean hasSubSumption(String uuid);
 
+    public Boolean hasCourse(String uuid);
+
     /**
      * Methode zum laden eines Objektes der Klasse Lecturer anhand der
      * Benutzernames.
