@@ -44,10 +44,12 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
 
     @StrutsParameter(depth=3)
     public Page getPage() {
+        LOGGER.info("getPage() aufgerufen.");
         return page;
     }
 
     public void setPage(Page page) {
+        LOGGER.info("setPage(Page page) aufgerufen.");
         this.page = page;
     }
 
