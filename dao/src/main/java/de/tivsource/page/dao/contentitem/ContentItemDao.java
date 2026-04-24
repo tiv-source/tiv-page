@@ -71,7 +71,7 @@ public class ContentItemDao implements ContentItemDaoLocal {
 	@Override
 	public List<ContentItem> findAllUnassigned(Integer start, Integer max) {
 		LOGGER.info("findAllUnassigned(Integer start, Integer max) aufgerufen");
-        Query query = entityManager.createQuery("from ContentItem ci where ci.uuid not in (select ce.contentItem.uuid from ContentEntry ce)");
+        Query query = entityManager.createQuery("FROM ContentItem ci WHERE ci.uuid not in (select ce.contentItem.uuid from ContentEntry ce) AND ci.uuid not in (select cu.uuid from CourseUnit cu)");
         query.setFirstResult(start);
         query.setMaxResults(max);
         List<ContentItem> contentItemList = query.getResultList();
@@ -97,7 +97,7 @@ public class ContentItemDao implements ContentItemDaoLocal {
 	 */
 	@Override
 	public Integer countAllUnassigned() {
-        Query query = entityManager.createQuery("Select Count(ci) from ContentItem ci where ci.uuid not in (select uuid from ContentEntry ce)");
+        Query query = entityManager.createQuery("SELECT Count(ci) FROM ContentItem ci WHERE ci.uuid NOT IN (select ce.uuid from ContentEntry ce) AND ci.uuid NOT IN (select cu.uuid from CourseUnit cu)");
         return Integer.parseInt(query.getSingleResult().toString());
 	}
 
