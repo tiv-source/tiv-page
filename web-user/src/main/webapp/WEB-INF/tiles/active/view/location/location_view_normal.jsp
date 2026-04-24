@@ -10,32 +10,13 @@
         <p><struts:property value="location.address.street" /></p>
         <p><struts:property value="location.address.zip" /> <struts:property value="location.address.city" /></p>
       </div>
-
-
-      <a href="http://www.openstreetmap.org/?mlat=<struts:property value="location.latitude" />&mlon=<struts:property value="location.longitude" />#map=19/<struts:property value="location.latitude" />/<struts:property value="location.longitude" />">
-        <div class="location_map">
-          <picture>
-				<source media="(min-width:1701px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1701.png">
-				<source media="(min-width:1501px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1501.png">
-				<source media="(min-width:1401px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1401.png">
-				<source media="(min-width:1321px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1321.png">
-				<source media="(min-width:1291px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1291.png">
-				<source media="(min-width:1101px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1101.png">
-				<source media="(min-width:1001px)" srcset="/osmcache/<struts:property value="location.uuid" />_w1001.png">
-				<source media="(min-width: 951px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0951.png">
-				<source media="(min-width: 901px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0901.png">
-				<source media="(min-width: 701px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0701.png">
-				<source media="(min-width: 641px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0641.png">
-				<source media="(min-width: 619px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0619.png">	
-				<source media="(min-width: 581px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0581.png">
-				<source media="(min-width: 201px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0201.png">
-
-				<!-- Fallback -->
-				<img src="/osmcache/<struts:property value="location.uuid" />_w0201.png" 
-					srcset="/osmcache/<struts:property value="location.uuid" />_w0201.png">
-            </picture>
-		  </div>
-		</a>
+      
+      <div class="location_map">
+        <a href="http://www.openstreetmap.org/?mlat=<struts:property value="location.latitude" />&mlon=<struts:property value="location.longitude" />#map=19/<struts:property value="location.latitude" />/<struts:property value="location.longitude" />">
+          <img alt="Auf Openstreetmap ansehen" src="/image/osm/<struts:property value="location.uuid" />/normal.png">
+        </a>
+      </div>
+		
         
 		<h5 class="distance_top3">Kontakt:</h5>
         
@@ -49,14 +30,6 @@
 		    </struts:a>
 		</p>
 
-		<p>
-		  <img src="<struts:property value="getProperty('project.icon.path')"/>fax.svg" 
-               alt="Fax" 
-               align="absmiddle"
-               style="width: 20px; height: 20px; float: left;">
-		  &nbsp;&nbsp; <struts:property value="location.contactDetails.fax" />
-		</p>
-    		
 		<p>
           <img src="<struts:property value="getProperty('project.icon.path')"/>mail.svg" 
                alt="E-Mail" 

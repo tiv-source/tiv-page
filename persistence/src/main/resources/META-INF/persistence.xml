@@ -58,6 +58,7 @@
 		<class>de.tivsource.page.entity.location.ContactDetails</class>
 		<class>de.tivsource.page.entity.location.Location</class>
 		<class>de.tivsource.page.entity.location.OpeningHour</class>
+		<class>de.tivsource.page.entity.location.image.OSMImage</class>
 
 		<class>de.tivsource.page.entity.mail.MailAddress</class>
 		<class>de.tivsource.page.entity.mail.MailAddressLock</class>

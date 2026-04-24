@@ -40,20 +40,11 @@
           
       </div>
 
-      <a href="http://www.openstreetmap.org/?mlat=<struts:property value="location.latitude" />&mlon=<struts:property value="location.longitude" />#map=19/<struts:property value="location.latitude" />/<struts:property value="location.longitude" />">
-		<div class="location_map">  
-			<picture>
-				<source media="(min-width:1401px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0641.png">
-				<source media="(min-width:1101px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0641.png">
-				<source media="(min-width:1001px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0581.png">	
-				<source media="(min-width: 201px)" srcset="/osmcache/<struts:property value="location.uuid" />_w0201.png">
-
-				<!-- Fallback -->
-				<img src="/osmcache/<struts:property value="location.uuid" />_w0201.png" 
-					srcset="/osmcache/<struts:property value="location.uuid" />_w0201.png">
-			</picture>
-        </div>
-      </a>
+      <div class="location_map">
+        <a href="http://www.openstreetmap.org/?mlat=<struts:property value="location.latitude" />&mlon=<struts:property value="location.longitude" />#map=19/<struts:property value="location.latitude" />/<struts:property value="location.longitude" />">
+          <img alt="Auf Openstreetmap ansehen" src="/image/osm/<struts:property value="location.uuid" />/normal.png">
+        </a>
+      </div>
         
 		<h5 class="distance_top3">Kontakt:</h5>
         
@@ -67,14 +58,6 @@
 		    </struts:a>
 		</p>
 
-		<p>
-		  <img src="<struts:property value="getProperty('project.icon.path')"/>fax.svg" 
-               alt="Fax" 
-               align="absmiddle"
-               style="width: 20px; height: 20px; float: left;">
-		  &nbsp;&nbsp; <struts:property value="location.contactDetails.fax" />
-		</p>
-    		
 		<p>
           <img src="<struts:property value="getProperty('project.icon.path')"/>mail.svg" 
                alt="E-Mail" 

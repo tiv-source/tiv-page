@@ -11,6 +11,7 @@ import org.hibernate.annotations.SortNatural;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.event.Event;
+import de.tivsource.page.entity.location.image.OSMImage;
 import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.vacancy.Vacancy;
 import jakarta.persistence.Basic;
@@ -19,6 +20,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SecondaryTable;
@@ -33,6 +35,10 @@ import jakarta.persistence.SecondaryTable;
 public class Location extends PictureItem {
 
     public static final String TABLE = "Location";
+
+    @OneToOne(mappedBy = "location", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "location_uuid")
+    private OSMImage osmImage;
 
     @OneToOne(mappedBy = "location", cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval=true)
     private Address address;
@@ -51,6 +57,11 @@ public class Location extends PictureItem {
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
     @Column(table = TABLE)
     private Boolean inLocationList = true;
+
+    @Basic
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
+    private Boolean showCourses = false;
 
     /**
      * Wenn in der Filiale Veranstaltungen stattfinden können, dann true wenn
@@ -79,6 +90,14 @@ public class Location extends PictureItem {
      */
     @Column(table = TABLE)
     private String latitude;
+
+    public OSMImage getOsmImage() {
+        return osmImage;
+    }
+
+    public void setOsmImage(OSMImage osmImage) {
+        this.osmImage = osmImage;
+    }
 
     public Address getAddress() {
         return address;
@@ -110,6 +129,14 @@ public class Location extends PictureItem {
 
     public void setInLocationList(Boolean inLocationList) {
         this.inLocationList = inLocationList;
+    }
+
+    public Boolean getShowCourses() {
+        return showCourses;
+    }
+
+    public void setShowCourses(Boolean showCourses) {
+        this.showCourses = showCourses;
     }
 
     public Boolean getEvent() {

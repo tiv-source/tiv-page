@@ -25,6 +25,7 @@ import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.location.Location;
+import de.tivsource.page.entity.location.image.OSMImage;
 import de.tivsource.page.entity.pictureitem.PictureItemImage;
 import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
@@ -152,16 +153,25 @@ public class AddAction extends EmptyAction implements UploadedFilesAware {
         LOGGER.info("withUploadedFiles(List<UploadedFile> uploadedFiles) aufgerufen.");
         if (!uploadedFiles.isEmpty()) {
             LOGGER.info("Variable uploadedFiles ist nicht leer.");
+            // Wenn das Location Objekt noch nicht vorhande ist
+            // dann wird es erzeugt
+            if(this.location == null) {
+                this.location = new Location();
+            }
             Iterator<UploadedFile> ufIterator = uploadedFiles.iterator();
             while(ufIterator.hasNext()) {
                 UploadedFile next = ufIterator.next();
                 LOGGER.info("UploadedFile für Input-Name: " + next.getInputName() + " gefunden.");
                 if(next.getInputName().equalsIgnoreCase("location.image")) {
-                    this.location = new Location();
                     this.location.setImage(new PictureItemImage());
                     this.location.getImage().setPictureItem(this.location);
                     this.location.getImage().setUploadFile(UploadedFileToUploadFile.convert(next));
-                }                
+                }
+                if(next.getInputName().equalsIgnoreCase("location.osmImage")) {
+                    this.location.setOsmImage(new OSMImage());
+                    this.location.getOsmImage().setLocation(this.location);
+                    this.location.getOsmImage().setUploadFile(UploadedFileToUploadFile.convert(next));
+                }
             }// Ende while()
          }
     }// Ende withUploadedFiles(List<UploadedFile> uploadedFiles)

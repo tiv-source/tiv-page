@@ -15,38 +15,32 @@
   <struts:iterator value="list" status="locationStatus">
     <struts:url var="locationLink" action="index" namespace="/location/%{uuid}"/>
     <div class="locations <struts:if test="#locationStatus.odd == true ">color1</struts:if><struts:else>color2</struts:else>">
-      <struts:a href="%{locationLink}">
-        <div class="location">
-          <h4><struts:property value="getName(getText('language'))" /></h4>
+      <div class="location">
+        <struts:a href="%{locationLink}">
+          <h2><struts:property value="getName(getText('language'))" /></h2>
           <p><struts:property value="address.street" /></p>
           <p><struts:property value="address.zip" /> <struts:property value="address.city" /></p>
-        </div>
-      </struts:a>						
+        </struts:a>
+      </div>
 
-      <a href="http://www.openstreetmap.org/?mlat=<struts:property value="latitude" />&mlon=<struts:property value="longitude" />#map=19/<struts:property value="latitude" />/<struts:property value="longitude" />">
-        <div id="map">
-          <img src="/osmcache/<struts:property value="uuid" />_wdefault.png" />
-        </div>
-      </a>
-      
-      <struts:a href="%{locationLink}">  
-        <div class="open">
-          <h5>Öffnungszeiten:</h5>
+      <div class="map">
+        <a href="http://www.openstreetmap.org/?mlat=<struts:property value="latitude" />&mlon=<struts:property value="longitude" />#map=19/<struts:property value="latitude" />/<struts:property value="longitude" />">
+          <img alt="Auf Openstreetmap ansehen" src="/image/osm/<struts:property value="uuid" />/normal.png">
+        </a>
+      </div>
 
-          <table>
-            <colgroup>
-              <col width="110">
-              <col width="">
-            </colgroup>
-            <struts:iterator value="openingHours" status="openingHoursStatus">
-            <tr>
-              <td><struts:property value="getText(weekday)" />:</td>
-              <td><struts:property value="open" />-<struts:property value="close" /></td>
-            </tr>
-            </struts:iterator>
-          </table>
-        </div>
-      </struts:a>
+      <div class="open">
+        <struts:a href="%{locationLink}">
+          <h3>Öffnungszeiten:</h3>
+          <struts:iterator value="openingHours" status="openingHoursStatus">
+            <section class="openingHours">
+              <p class="weekday"><struts:property value="getText(weekday)" />:</p>
+              <p class="time"><struts:property value="openHourToString()" />-<struts:property value="closeHourToString()" /></p>
+            </section>
+          </struts:iterator>
+        </struts:a>
+      </div>
+
       
       <struts:a href="%{locationLink}">
         <div class="contacts">
@@ -60,7 +54,7 @@
 
             <tr>
               <td>
-                <img src="<struts:property value="getProperty('project.icon.path')"/>telephone.png"
+                <img src="<struts:property value="getProperty('project.icon.path')"/>telephone.svg"
                      alt="Telefon"
                      align="absmiddle">
               </td>
@@ -70,7 +64,7 @@
           <struts:if test="getProperty('location.page.mobile') == 'true'">
             <tr>
               <td>
-                <img src="<struts:property value="getProperty('project.icon.path')"/>mobile.png" 
+                <img src="<struts:property value="getProperty('project.icon.path')"/>mobile.svg" 
                      alt="Mobil" 
                      align="absmiddle">
               </td>
@@ -80,15 +74,7 @@
 
             <tr>
               <td>
-                <img src="<struts:property value="getProperty('project.icon.path')"/>fax.png" 
-                     alt="Fax" 
-                     align="absmiddle">
-              </td>
-              <td><struts:property value="contactDetails.fax" /></td>
-            </tr>
-            <tr>
-              <td>
-                <img src="<struts:property value="getProperty('project.icon.path')"/>email.png" 
+                <img src="<struts:property value="getProperty('project.icon.path')"/>mail.svg" 
                      alt="E-Mail" 
                      align="absmiddle">
               </td>
@@ -96,7 +82,7 @@
             </tr>
             <tr>
               <td>
-                <img src="<struts:property value="getProperty('project.icon.path')"/>world.png" 
+                <img src="<struts:property value="getProperty('project.icon.path')"/>world.svg" 
                      alt="Website" 
                      align="absmiddle">
               </td>

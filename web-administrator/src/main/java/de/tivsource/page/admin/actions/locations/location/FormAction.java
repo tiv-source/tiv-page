@@ -46,6 +46,10 @@ import de.tivsource.page.enumeration.Weekday;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/image_form.jsp")
   }),
+  @TilesDefinition(name="osmImageForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/location/osm_image_form.jsp")
+  }),
   @TilesDefinition(name="locationOverview", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/default.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/locations.jsp"),
@@ -124,6 +128,10 @@ public class FormAction extends EmptyAction {
         @Action(
             value = "imageForm", 
             results = { @Result(name = "success", type="tiles", location = "imageForm") }
+        ),
+        @Action(
+            value = "osmImageForm", 
+            results = { @Result(name = "success", type="tiles", location = "osmImageForm") }
         ),
         @Action(
             value = "overview", 
