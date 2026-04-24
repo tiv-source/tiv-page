@@ -2,8 +2,6 @@ package de.tivsource.page.entity.contentitem;
 
 import java.util.Map;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.enumeration.Language;
@@ -23,7 +21,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = ContentItem.TABLE)
-@Table(appliesTo = ContentItem.TABLE, fetch = FetchMode.SELECT)
 public abstract class ContentItem extends PictureItem implements Comparable<ContentItem> {
 
     public static final String TABLE = "ContentItem";
