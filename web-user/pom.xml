@@ -131,6 +131,7 @@
 			</exclusions>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-config-browser-plugin</artifactId>
@@ -208,6 +209,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mnode.ical4j</groupId>
+			<artifactId>ical4j</artifactId>
+			<version>4.2.3</version>
+		</dependency>
 
 	</dependencies>
 
