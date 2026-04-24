@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import de.tivsource.page.exceptions.NoMailSessionCreatedException;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.PasswordAuthentication;
@@ -19,11 +23,6 @@ import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 import jakarta.mail.internet.MimeUtility;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import de.tivsource.page.exceptions.NoMailSessionCreatedException;
 
 /**
  * @author Marc Michele
@@ -154,18 +153,32 @@ public class MailSender {
         text.setText(MessageFormat.format(mailTemplate.getBody(), arguments));
         text.setHeader("Content-Transfer-Encoding", "8bit");
 
+        
+        // Erzeuge Nachrichtenteil der den Umschlag und die Attachments enthält
+        MimeMultipart mixed = new MimeMultipart("mixed");
+        
+        /*
+         * Umschlag um alles außer den Attachments
+         */
+        MimeBodyPart envelope = new MimeBodyPart();
+
+        // Setze den Umschlag in den Mixed
+        mixed.addBodyPart(envelope);
+        
         // Erzeugen Nachrichten Inhalts-Element der Teil der die Bilder und den
         // Mantel enthält.
         MimeMultipart content = new MimeMultipart("related");
+        
+        envelope.setContent(content);
 
         // Setze den Inhalt in die Nachricht.
-        message.setContent(content);
+        message.setContent(mixed);
 
         // Setze den Setze den Mantel in das Inhalts-Element.
         content.addBodyPart(mantle);
 
         // Setze die Anhänge in die Nachricht
-        generateAttachments(content, mailTemplate.getAttachments());
+        generateAttachments(mixed, mailTemplate.getAttachments());
 
         // Setze die Bilder in die Nachricht
         generateInlineImages(content, mailTemplate.getImages());

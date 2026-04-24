@@ -247,6 +247,7 @@ public class MailTemplate {
         DataSource fileDataSource = new FileDataSource(filePath);
         mimeBodyPart.setDataHandler(new DataHandler(fileDataSource));
         mimeBodyPart.setDisposition(MimeBodyPart.ATTACHMENT);
+        mimeBodyPart.setHeader("Content-Transfer-Encoding", "base64");
         mimeBodyPart.setHeader("Content-Type", contentType);
         mimeBodyPart.setFileName(fileName);
         attachments.add(mimeBodyPart);
