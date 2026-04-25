@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.course;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -16,6 +17,7 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.country.Country;
 import de.tivsource.page.common.salutation.Salutation;
+import de.tivsource.page.common.simple.SimpleBooleanType;
 import de.tivsource.page.dao.country.CountryDaoLocal;
 import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -73,11 +75,16 @@ public class FormAction extends EmptyAction {
 
     private List<Country> countryList;
 
+    private List<SimpleBooleanType> sbtList;
+
     @Override
     public void prepare() {
         page = pageDaoLocal.findByTechnical("waitingform");
         salutations = salutationDaoLocal.findAll(0, salutationDaoLocal.countAll());
         countryList = countryDaoLocal.findAll(0, countryDaoLocal.countAll());
+        sbtList = new ArrayList<SimpleBooleanType>();
+        sbtList.add(createSimpleBooleanType("Privat", true));
+        sbtList.add(createSimpleBooleanType("Geschäftlich", false));
     }
 
     @Override
@@ -147,12 +154,23 @@ public class FormAction extends EmptyAction {
     public List<Country> getCountryList() {
         return countryList;
     }
-    
+
+    public List<SimpleBooleanType> getSbtList() {
+        return sbtList;
+    }
+
     private Boolean isValid(String input) {
         if (Pattern.matches("[abcdef0-9-]*", input)) {
             return true;
         }
         return false;
     }// Ende isValid(String input)
+
+    private SimpleBooleanType createSimpleBooleanType(String name, Boolean value) {
+        SimpleBooleanType simpleBooleanType = new SimpleBooleanType();
+        simpleBooleanType.setName(name);
+        simpleBooleanType.setValue(value);
+        return simpleBooleanType;
+    }// Ende createSimpleBooleanType()
 
 }// Ende class

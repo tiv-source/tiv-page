@@ -1,5 +1,6 @@
 package de.tivsource.page.user.actions.registration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -16,6 +17,7 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.country.Country;
 import de.tivsource.page.common.salutation.Salutation;
+import de.tivsource.page.common.simple.SimpleBooleanType;
 import de.tivsource.page.dao.country.CountryDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.registration.RegistrationDaoLocal;
@@ -76,6 +78,8 @@ public class FormAction extends EmptyAction {
 
     private List<Country> countryList;
 
+    private List<SimpleBooleanType> sbtList;
+
     public Registration getRegistration() {
         return registration;
     }
@@ -91,6 +95,9 @@ public class FormAction extends EmptyAction {
         uncheckedRegistration = uncheckedRegistration.replaceAll("/cancelForm.html", "");
         uncheckedRegistration = uncheckedRegistration.replaceAll("/registration/", "");
         LOGGER.info("Registration Uuid: " + uncheckedRegistration);
+        sbtList = new ArrayList<SimpleBooleanType>();
+        sbtList.add(createSimpleBooleanType("Privat", true));
+        sbtList.add(createSimpleBooleanType("Geschäftlich", false));
     }
 
     @Override
@@ -159,6 +166,10 @@ public class FormAction extends EmptyAction {
         return countryList;
     }
 
+    public List<SimpleBooleanType> getSbtList() {
+        return sbtList;
+    }
+
     private Boolean isValid(String input) {
         Pattern UUID_REGEX = Pattern.compile("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$");
         if (UUID_REGEX.matcher(input).matches()) {
@@ -166,5 +177,12 @@ public class FormAction extends EmptyAction {
         }
         return false;
     }// Ende isValid(String input)
+
+    private SimpleBooleanType createSimpleBooleanType(String name, Boolean value) {
+        SimpleBooleanType simpleBooleanType = new SimpleBooleanType();
+        simpleBooleanType.setName(name);
+        simpleBooleanType.setValue(value);
+        return simpleBooleanType;
+    }// Ende createSimpleBooleanType()
 
 }// Ende class

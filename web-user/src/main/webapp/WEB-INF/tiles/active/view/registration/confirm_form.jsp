@@ -81,8 +81,9 @@
           <div class="field">
             <struts:radio 
                 key="registration.consumer" 
-                list="#{true:'Privat',false:'Geschäftlich'}" 
-                value="registration.consumer" 
+                list="sbtList"
+                listValue="name"
+                listKey="value"
             />
           </div>
 <script type="text/javascript">
