@@ -1,7 +1,6 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<%@ taglib prefix="sjm" uri="/struts-jquery-mobile-tags"%>
 
       <s:form 
         id="checkboxlist_form1" 
