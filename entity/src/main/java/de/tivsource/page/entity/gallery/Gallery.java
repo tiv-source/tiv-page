@@ -5,8 +5,6 @@ package de.tivsource.page.entity.gallery;
 
 import java.util.List;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
@@ -29,7 +27,6 @@ import jakarta.persistence.SecondaryTable;
 @Indexed
 @Entity
 @SecondaryTable(name = Gallery.TABLE)
-@Table(appliesTo = Gallery.TABLE, fetch = FetchMode.SELECT)
 public class Gallery extends ContentItem {
 
     public static final String TABLE = "Gallery";

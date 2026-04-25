@@ -3,8 +3,6 @@
  */
 package de.tivsource.page.entity.page;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
@@ -23,7 +21,6 @@ import jakarta.persistence.SecondaryTable;
 @Indexed
 @Entity
 @SecondaryTable(name = Page.TABLE)
-@Table(appliesTo = Page.TABLE, fetch = FetchMode.SELECT)
 public class Page extends ContentItem {
 
     public static final String TABLE = "Page";

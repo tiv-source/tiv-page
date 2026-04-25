@@ -3,8 +3,6 @@
  */
 package de.tivsource.page.common.menuentry;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.namingitem.NamingItem;
@@ -21,7 +19,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = MenuEntry.TABLE)
-@Table(appliesTo = MenuEntry.TABLE, fetch = FetchMode.SELECT)
 public abstract class MenuEntry extends NamingItem {
 
     public static final String TABLE = "MenuEntry";

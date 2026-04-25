@@ -3,8 +3,6 @@
  */
 package de.tivsource.page.common.menuentry;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import jakarta.persistence.Column;
@@ -18,7 +16,6 @@ import jakarta.persistence.SecondaryTable;
 @Audited
 @Entity
 @SecondaryTable(name = LinkEntry.TABLE)
-@Table(appliesTo = LinkEntry.TABLE, fetch = FetchMode.SELECT)
 public class LinkEntry extends MenuEntry {
 
     public static final String TABLE = "LinkEntry";

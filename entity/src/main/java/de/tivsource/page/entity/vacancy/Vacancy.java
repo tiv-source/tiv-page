@@ -6,8 +6,6 @@ package de.tivsource.page.entity.vacancy;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.application.Application;
@@ -30,7 +28,6 @@ import jakarta.persistence.Temporal;
 @Audited
 @Entity
 @SecondaryTable(name = Vacancy.TABLE)
-@Table(appliesTo = Vacancy.TABLE, fetch = FetchMode.SELECT)
 public class Vacancy extends ContentItem {
 
     public static final String TABLE = "Vacancy";

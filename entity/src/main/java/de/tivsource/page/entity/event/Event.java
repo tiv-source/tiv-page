@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Table;
 import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.location.Location;
@@ -36,7 +34,6 @@ import jakarta.persistence.Temporal;
 @Audited
 @Entity
 @SecondaryTable(name = Event.TABLE)
-@Table(appliesTo = Event.TABLE, fetch = FetchMode.SELECT)
 public class Event extends PictureItem {
 
     public static final String TABLE = "Event";
