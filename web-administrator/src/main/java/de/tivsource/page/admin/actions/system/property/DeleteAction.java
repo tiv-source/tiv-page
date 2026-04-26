@@ -1,7 +1,10 @@
 package de.tivsource.page.admin.actions.system.property;
 
+import java.util.Date;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -24,6 +27,10 @@ import de.tivsource.page.entity.property.Property;
   @TilesDefinition(name="propertyDeleteError", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/delete_error.jsp")
+  }),
+  @TilesDefinition(name="propertyDeleteUnchangeable", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/delete_unchangeable.jsp")
   })
 })
 public class DeleteAction extends EmptyAction {
@@ -59,22 +66,31 @@ public class DeleteAction extends EmptyAction {
         		results = { 
         				@Result(name = "success", type = "redirectAction", location = "index.html"),
         				@Result(name = "input", type="tiles", location = "propertyDeleteError"),
-        				@Result(name = "error", type="tiles", location = "propertyDeleteError")
+        				@Result(name = "error", type="tiles", location = "propertyDeleteError"),
+                        @Result(name = "unchangeable", type = "tiles", location = "propertyDeleteUnchangeable")
         				}
         )
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
 
+    	String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
+        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
+
     	if(property != null) {
+            LOGGER.info(property.getKey());
     	    Property dbProperty = propertyDaoLocal.findByKey(property.getKey());
-    	    propertyDaoLocal.delete(dbProperty);
-            return SUCCESS;
+            if(!dbProperty.getUnchangeable()) {
+                dbProperty.setModified(new Date());
+                dbProperty.setModifiedBy(remoteUser);
+                dbProperty.setModifiedAddress(remoteAddress);
+                propertyDaoLocal.merge(dbProperty);
+                propertyDaoLocal.delete(dbProperty);
+                return SUCCESS;
+            }
+            return "unchangeable";
     	}
-    	else {
-    		return ERROR;
-    	}
-    	
+   		return ERROR;
     	
     }// Ende execute()
 	

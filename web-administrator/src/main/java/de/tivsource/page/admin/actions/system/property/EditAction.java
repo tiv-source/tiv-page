@@ -72,7 +72,7 @@ public class EditAction extends EmptyAction {
                 @Result(name = "success",      type = "redirectAction", location = "index.html"),
                 @Result(name = "input",        type = "tiles", location = "propertyEditForm"),
                 @Result(name = "error",        type = "tiles", location = "propertyEditError"),
-                @Result(name = "unchangeable", type = "tiles", location = "propertyEditUnchangeable"),
+                @Result(name = "unchangeable", type = "tiles", location = "propertyEditUnchangeable")
             }
         )
     })

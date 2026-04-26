@@ -71,7 +71,7 @@ $(function () {
             { name: "key",             width:  130, align: "center", search: false, sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
-        rowNum: 10,
+        rowNum: 20,
         rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
         sortname: "key",
         sortorder: "asc",
