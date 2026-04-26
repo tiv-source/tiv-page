@@ -177,6 +177,11 @@ public class SentAction extends EmptyAction {
 	}// Ende execute()
 
     @Override
+    public void validate() {
+        LOGGER.info("validate() aufgerufen.");
+    }
+
+    @Override
     public Page getPage() {
         return page;
     }// Ende getPage()
