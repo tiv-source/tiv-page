@@ -34,6 +34,10 @@ import de.tivsource.page.entity.property.Property;
   @TilesDefinition(name="propertyDeleteForm", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/delete_form.jsp")
+  }),
+  @TilesDefinition(name="propertyProtectForm", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/system.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/property/protect_form.jsp")
   })
 })
 public class FormAction extends EmptyAction {
@@ -78,6 +82,10 @@ public class FormAction extends EmptyAction {
         @Action(
         		value = "deleteForm", 
         		results = { @Result(name = "success", type="tiles", location = "propertyDeleteForm") }
+        ),
+        @Action(
+                value = "protectForm", 
+                results = { @Result(name = "success", type="tiles", location = "propertyProtectForm") }
         )
     })
     public String execute() throws Exception {

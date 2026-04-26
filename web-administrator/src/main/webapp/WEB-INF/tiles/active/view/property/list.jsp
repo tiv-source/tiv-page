@@ -6,15 +6,20 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/system/property/editForm.html?uncheckProperty="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png' style='width:16px;'/>" + 
-         "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/system/property/copyForm.html?uncheckProperty="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/copy.png' style='width:16px;'/>" + 
-         "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/system/property/deleteForm.html?uncheckProperty="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/delete.png' style='width:16px;'/>" + 
-         "</a>";
+	var result = rowObject.unchangeable;
+	if (result) {
+		return "<img src='/admin/icons/ionicons/lock-closed-outline.svg' style='width:16px;'/>";
+	} else {
+		return "<a href='/admin/system/property/editForm.html?uncheckProperty="+ cellvalue + "' style='border-style: none; display: inline;'>" +
+		    "<img src='/admin/icons/ionicons/pencil-outline.svg' style='width:16px;'/>" + 
+            "</a>&nbsp;&nbsp;&nbsp;" +
+            "<a href='/admin/system/property/protectForm.html?uncheckProperty="+ cellvalue +"' style='border-style: none; display: inline;'>" +
+            "<img src='/admin/icons/ionicons/lock-open-outline.svg' style='width:16px;'/>" +
+            "</a>&nbsp;&nbsp;&nbsp;" +
+            "<a href='/admin/system/property/deleteForm.html?uncheckProperty="+ cellvalue +"' style='border-style: none; display: inline;'>" +
+            "<img src='/admin/icons/ionicons/trash-outline.svg' style='width:16px;'/>" +
+            "</a>";
+	}
 }
 </script>
 
@@ -63,12 +68,12 @@ $(function () {
         ],
         colModel: [
             { name: "key",             width:  280, search: true },
-            { name: "value",           width:  210, align: "center", search: false },
+            { name: "value",           width:  280, align: "center", search: false },
             { name: "unchangeable",    width:   70, align: "center", formatter:formatTrueFalse, stype: 'select', searchoptions: { sopt:['eq','ne'], value:':Alle;true:Ja;false:Nein'} },
             { name: "modified",        width:  105, align: "center", search: false, formatter:formatIsoDate },
             { name: "modifiedBy",      width:  105, align: "right",  search: false },
             { name: "modifiedAddress", width:  105, align: "right",  search: false },
-            { name: "key",             width:  130, align: "center", search: false, sortable: false, formatter:formatLinks }
+            { name: "key",             width:  105, align: "center", search: false, sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 20,
