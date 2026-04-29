@@ -158,14 +158,17 @@
     <struts:if test="!course.isInPast()">
       <div id="courseRegistration">
         <struts:url var="registrationLink" action="form" namespace="/course/%{course.uuid}"/>
-        <struts:a href="%{registrationLink}">
-          <struts:if test="!waiting">
+        <struts:if test="!waiting">
+          <struts:a id="registrationLink" href="%{registrationLink}">
             Anmelden
-          </struts:if>
-          <struts:else>
+          </struts:a>
+        </struts:if>
+        <struts:else>
+          <struts:a id="waitingLink" href="%{registrationLink}">
             In Warteliste eintragen
-          </struts:else>
-        </struts:a>
+          </struts:a>
+        </struts:else>
+        
       </div>
     </struts:if>
 

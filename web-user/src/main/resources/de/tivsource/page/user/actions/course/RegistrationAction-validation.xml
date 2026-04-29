@@ -30,6 +30,12 @@
     </field-validator>
   </field>
 
+  <field name="registration.birthday">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.birthday"/>
+    </field-validator>
+  </field>
+
   <field name="registration.email">
     <field-validator type="requiredstring" short-circuit="true">
       <message key="registration.validation.email" />
@@ -56,6 +62,65 @@
     </field-validator>
   </field>
 
+  <field name="registration.firm">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             registration.consumer &&
+             registration.firm.trim()==""
+           ) 
+           ||
+           (
+             !registration.consumer &&
+             registration.firm.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="registration.validation.firm" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[^[a-zA-Z0-9äöüÄÖÜß\s\-\.\,\&\/]+$]]></param>
+      <message key="registration.validation.firm.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.street">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.street" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[0-9a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="registration.validation.street.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.zip">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.zip" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[0-9]*$</param>
+      <message key="registration.validation.zip.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.city">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.city" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="registration.validation.city.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.country">
+    <field-validator type="required">
+      <message key="registration.validation.country" />
+    </field-validator>
+  </field>
+
   <field name="registration.listOfMaterials">
     <field-validator type="required" short-circuit="true">
       <message key="registration.validation.listOfMaterials"/>
@@ -71,7 +136,7 @@
       <message key="registration.validation.privacy"/>
     </field-validator>
     <field-validator type="regex">
-      <param name="regex"><![CDATA[([t][r][u][e])]]></param>
+      <param name="regex">^(true)$</param>
       <message key="registration.validation.privacy.input" />
     </field-validator>
   </field>
@@ -81,7 +146,7 @@
       <message key="registration.validation.terms"/>
     </field-validator>
     <field-validator type="regex">
-      <param name="regex"><![CDATA[([t][r][u][e])]]></param>
+      <param name="regex">^(true)$</param>
       <message key="registration.validation.terms.input" />
     </field-validator>
   </field>

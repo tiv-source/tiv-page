@@ -50,8 +50,8 @@
             <struts:textfield 
                 key="registration.birthday"
                 placeholder="01.01.2001"
-                format="dd-MM-yyyy"
                 type="date"
+                value="%{getText('format.birthday',{registration.birthday})}"
             />
           </div>
 
@@ -261,10 +261,10 @@ $(document).ready(function() {
 
       <div class="fieldgrp" id="group6">
         <struts:if test="!waiting">
-          <struts:submit type="button" value="Zahlungspflichtig anmelden" onclick="this.disabled=true; this.form.submit();" />
+          <struts:submit id="registration_submit" type="button" value="Zahlungspflichtig anmelden" onclick="this.disabled=true; this.form.submit();" />
         </struts:if>
         <struts:else>
-          <struts:submit type="button" value="In Warteliste eintragen" onclick="this.disabled=true; this.form.submit();" />
+          <struts:submit id="waiting_submit" type="button" value="In Warteliste eintragen" onclick="this.disabled=true; this.form.submit();" />
         </struts:else>
         <struts:reset type="button" value="Löschen" />
       </div>
