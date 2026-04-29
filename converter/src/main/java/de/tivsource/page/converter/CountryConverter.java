@@ -4,6 +4,7 @@
 package de.tivsource.page.converter;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -41,10 +42,18 @@ public class CountryConverter extends StrutsTypeConverter {
 
         try {
             LOGGER.info("Versuche Country Objekt anhand der UUID zu finden.");
+            // Überprüfen ob es eine UUID ist.
+            if(!isValid(values[0])) {
+                throw new TypeConversionException("Keine gültige Country UUID angegeben.");
+            }
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
             CountryDaoLocal countryDaoLocal = (CountryDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/CountryDao");
-            return countryDaoLocal.findByUuid(values[0]);
+            Country country = countryDaoLocal.findByUuid(values[0]);
+            if(country == null) {
+                throw new TypeConversionException("Kein Country Objekt zu dieser UUID gefunden.");
+            }
+            return country;
         } catch (Exception e) {
             LOGGER.info("Keine gültige Country UUID angegeben.");
             throw new TypeConversionException("Keine gültige Country UUID angegeben.");
@@ -60,5 +69,12 @@ public class CountryConverter extends StrutsTypeConverter {
         Country country = (Country)o;
         return country.getUuid();
     }
+
+    private Boolean isValid(String input) {
+        if (Pattern.matches("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", input)) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class

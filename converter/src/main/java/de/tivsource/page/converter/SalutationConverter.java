@@ -4,6 +4,7 @@
 package de.tivsource.page.converter;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -41,10 +42,18 @@ public class SalutationConverter extends StrutsTypeConverter {
 
         try {
             LOGGER.info("Versuche Salutation Objekt anhand der UUID zu finden.");
+            // Überprüfen ob es eine UUID ist.
+            if(!isValid(values[0])) {
+                throw new TypeConversionException("Keine gültige Salutation UUID angegeben.");
+            }
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
             SalutationDaoLocal salutationDaoLocal = (SalutationDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/SalutationDao");
-            return salutationDaoLocal.findByUuid(values[0]);
+            Salutation salutation = salutationDaoLocal.findByUuid(values[0]);
+            if(salutation == null) {
+                throw new TypeConversionException("Kein Salutation Objekt zu dieser UUID gefunden.");
+            }
+            return salutation;
         } catch (Exception e) {
             LOGGER.info("Keine gültige Salutation UUID angegeben.");
             throw new TypeConversionException("Keine gültige Salutation UUID angegeben.");
@@ -60,5 +69,12 @@ public class SalutationConverter extends StrutsTypeConverter {
         Salutation salutation = (Salutation)o;
         return salutation.getUuid();
     }
+
+    private Boolean isValid(String input) {
+        if (Pattern.matches("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", input)) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class
