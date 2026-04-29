@@ -247,6 +247,10 @@ course.overview.maxStudents.lable|true|Label für die maximale Teilnehmerzahl de
 course.overview.startDate.time|true|Uhrzeit an dem der Kurs beginnt auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
 course.overview.startDate.date|true|Datum an dem der Kurs beginnt auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
 course.overview.startDate.date.preposition|true|Preposition für das Start Datum des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.minimumAge|true|Mindestalter des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.list.minimumAge.lable|true|Label für das Mindestalter des Kurses in der Übersichtsliste anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.minimumAge|true|Mindestalter des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
+course.overview.minimumAge.lable|true|Label für das Mindestalter des Kurses auf der Kursseite anzeigen (true/false).|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
 admin.object.list.province.default.numberoflines|20|Standard Anzahl der Einträge in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
 admin.object.list.province.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Bundesländer Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
 admin.object.list.country.default.numberoflines|20|Standard Anzahl der Einträge in der Länder  Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false

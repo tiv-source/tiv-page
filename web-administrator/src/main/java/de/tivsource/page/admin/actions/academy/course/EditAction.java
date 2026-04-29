@@ -139,8 +139,8 @@ public class EditAction extends EmptyAction {
                 dbCourse.getDescriptionMap().get(Language.DE).setName(course.getName(Language.DE));
             }
 
-            dbCourse.setMaxStudents(course.getMaxStudents());
-            dbCourse.setNumber(course.getNumber());
+            
+            
             dbCourse.setCourseDocumentDescription(course.getCourseDocumentDescription());
             dbCourse.setPrice(course.getPrice());
             dbCourse.setPriceTax(course.getPriceTax());
@@ -149,6 +149,10 @@ public class EditAction extends EmptyAction {
             dbCourse.setMaterialDocumentDescription(course.getMaterialDocumentDescription());
             dbCourse.setMaterialPrice(course.getMaterialPrice());
             dbCourse.setMaterialTax(course.getMaterialTax());
+            dbCourse.setMaxStudents(course.getMaxStudents());
+            dbCourse.setMinimumAge(course.getMinimumAge());
+            dbCourse.setNumber(course.getNumber());
+            
 
             dbCourse.setOrderNumber(course.getOrderNumber());
     		dbCourse.setModifiedAddress(remoteAddress);

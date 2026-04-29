@@ -15,6 +15,33 @@ function formatLinks(cellvalue, options, rowObject) {
 </script>
 
 <script type="text/javascript">
+function formatbirthday(cellvalue, options, rowObject) {
+
+	const birthday = new Date(cellvalue);
+    const today = new Date();
+
+    // Hier werden die ganzen Jahre berechnet
+    let years = today.getFullYear() - birthday.getFullYear();
+    
+    // Hilfsdatum für den Geburtstag in diesem Jahr
+    const birthdayThisYear = new Date(birthday);
+    birthdayThisYear.setFullYear(today.getFullYear());
+    
+    // Falls der Geburtstag dieses Jahr noch nicht war, ein Jahr abziehen
+    if (today < birthdayThisYear) {
+    	years--;
+    	birthdayThisYear.setFullYear(today.getFullYear() - 1);
+    }
+    
+    // 2. Differenz in Tagen seit dem letzten Jahrestag
+    const diffInMs = today - birthdayThisYear;
+    const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    
+    return "" + years + " Jahre und " + days + " Tage alt";
+}
+</script>
+
+<script type="text/javascript">
 function formatFirm(cellvalue, options, rowObject) {
 	var result = rowObject.consumer;
 	if (result) {
@@ -101,6 +128,7 @@ $(function () {
         	'<struts:text name="firstname"/>',
         	'<struts:text name="lastname"/>',
             '<struts:text name="course"/>',
+            '<struts:text name="birthday"/>',
             '<struts:text name="status"/>',
             '<struts:text name="listOfMaterials"/>',
             '<struts:text name="created"/>',
@@ -111,16 +139,17 @@ $(function () {
         colModel: [
         	{ name: "consumer",                          width:   70, align: "center", formatter:formatTrueFalse, hidden: true },
         	{ name: "firm",                              width:  140, align: "left", formatter:formatFirm },
-            { name: "salutation.descriptionMap.DE.name", width:   70, align: "left" },
-            { name: "firstname",                         width:  210, align: "left" },
-            { name: "lastname",                          width:  210, align: "left" },
+            { name: "salutation.descriptionMap.DE.name", width:   56, align: "left" },
+            { name: "firstname",                         width:  175, align: "left" },
+            { name: "lastname",                          width:  175, align: "left" },
             { name: "course.descriptionMap.DE.name",     width:  350, align: "left" },
+            { name: "birthday",                          width:  105, align: "left", formatter:formatbirthday },
             { name: "status",                            width:  140, align: "left", hidden: true },
             { name: "listOfMaterials",                   width:   70, align: "center", formatter:formatTrueFalse },
             { name: "created",                           width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modified",                          width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",                        width:  140, align: "left" },
-            { name: "uuid",                              width:  280, align: "center", sortable: false, formatter:formatLinks }
+            { name: "modified",                          width:  133, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",                        width:  133, align: "left" },
+            { name: "uuid",                              width:  273, align: "center", sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 15,

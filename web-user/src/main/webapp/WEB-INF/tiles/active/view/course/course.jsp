@@ -95,6 +95,15 @@
       </p>
     </struts:if>
 
+    <struts:if test="getProperty('course.overview.minimumAge') == 'true'">
+      <p class="courseOverviewMinimumAge">
+        <struts:if test="getProperty('course.overview.minimumAge.lable') == 'true'">
+          Mindestalter:
+        </struts:if>
+        <struts:property value="course.minimumAge" /> Jahre
+      </p>
+    </struts:if>
+
     <struts:if test="getProperty('course.overview.location') == 'true'">
       <p class="courseOverviewLocation">
         <struts:if test="getProperty('course.overview.location.lable') == 'true'">

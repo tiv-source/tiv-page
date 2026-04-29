@@ -125,6 +125,15 @@
                 </p>
               </struts:if>
 
+              <struts:if test="getProperty('course.list.minimumAge') == 'true'">
+                <p class="courseOverviewMinimumAge">
+                  <struts:if test="getProperty('course.list.minimumAge.lable') == 'true'">
+                    Mindestalter:
+                  </struts:if>
+                  <struts:property value="minimumAge" /> Jahre
+                </p>
+              </struts:if>
+
               <!-- Ende section courseFacts -->
             </section>
           </struts:a>
