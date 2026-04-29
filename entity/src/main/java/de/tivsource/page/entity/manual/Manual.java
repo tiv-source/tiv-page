@@ -34,6 +34,9 @@ public class Manual extends ContentItem {
         return stringBuffer.toString();
     }
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.entity.contentitem.ContentItem#compareTo(de.tivsource.page.entity.contentitem.ContentItem)
+     */
     @Override
     public int compareTo(ContentItem o) {
         if (o.getCreated().after(this.getCreated())) {
