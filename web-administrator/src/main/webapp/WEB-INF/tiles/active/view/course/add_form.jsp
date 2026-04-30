@@ -27,6 +27,14 @@
               <p class="headline">Kursdaten:</p>
 
               <div class="field">
+                <struts:fielderror fieldName="course.image.uploadFileContentType" />
+                <struts:file key="course.image" parentTheme="xhtml" labelposition="left" accept=".png">
+                  <struts:param name="required" value="true" />
+                  <struts:param name="disabled" value="false" />
+                </struts:file>
+              </div>
+
+              <div class="field">
                 <struts:select
                     key="course.location"
                     listValue="%{getName(getText('language'))}"
