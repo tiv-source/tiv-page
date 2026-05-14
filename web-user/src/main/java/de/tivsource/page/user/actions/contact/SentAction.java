@@ -125,7 +125,7 @@ public class SentAction extends EmptyAction {
     	// Wenn der String gesetzt wurde, dann ist dass mit Absicht 
         // geschehen (Manipulation) und/oder es war ein Spambot 
         if(notEmpty == null || notEmpty.trim().equals("") || notEmpty.length() == 0 || !notEmpty.equals("48ac-8a00-9737505b7c82") ) {
-            LOGGER.debug("Die Variable \"notEmpty\" wurde gesetzt (Bot detected/Spam)");
+            LOGGER.debug("Die Variable \"notEmpty\" wurde nicht gesetzt (Bot detected/Spam)");
             return ERROR;
         }
 
