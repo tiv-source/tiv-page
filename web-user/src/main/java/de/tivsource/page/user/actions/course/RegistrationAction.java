@@ -142,40 +142,41 @@ public class RegistrationAction extends EmptyAction {
              * Vergangenheit liegt.
              */
             if(course.getVisible() && !course.isInPast()) {
+                // Daten die bei beiden Varianten gleich gesetzt werden müssen
+                registration.setCourse(course);
+                registration.setCreated(new Date());
+                registration.setModified(new Date());
+                registration.setModifiedAddress(remoteAddress);
+                registration.setModifiedBy("Kunden");
+                registration.setUuid(UUID.randomUUID().toString());
+                registration.setChannel(OrderChannel.WEBSITE);
+                registration.setUserToken(UUID.randomUUID().toString());
+                // Wenn der Kurs weniger als die MAximal Anzahl an Anmeldungen hat
                 if(courseDaoLocal.registrations(course) < course.getMaxStudents()) {
                     // Wird ausgeführt wenn es eine kostenpflichtige Anmeldung handelt
                     LOGGER.info("Es wird eine kostenpflichtige Anmeldung verarbeitet.");
                     page = pageDaoLocal.findByTechnical("registrationForm");
                     waiting = false;
-                    registration.setCourse(course);
-                    registration.setCreated(new Date());
-                    registration.setModified(new Date());
-                    registration.setModifiedAddress(remoteAddress);
-                    registration.setModifiedBy("Kunden");
                     registration.setStatus(RegistrationStatus.DECLARED);
-                    registration.setChannel(OrderChannel.WEBSITE);
-                    registration.setUuid(UUID.randomUUID().toString());
-                    registration.setUserToken(UUID.randomUUID().toString());
+                    // Wenn für den Kurs kein Material mitbestellt werden kann 
+                    if(!course.getMaterial()) {
+                        registration.setListOfMaterials(false);
+                    }
                     registrationDaoLocal.merge(registration);
                     return "registration";
                 } else {
                     // Wird ausgeführt wenn es sich um eine Eintragung in die Warteliste handelt
                     LOGGER.info("Es wird eine Anmeldung zum Eintrag in die Warteliste verarbeitet.");
-                    registration.setCourse(course);
-                    registration.setCreated(new Date());
-                    registration.setModified(new Date());
-                    registration.setModifiedAddress(remoteAddress);
-                    registration.setModifiedBy("Kunden");
                     registration.setStatus(RegistrationStatus.WAITING);
-                    registration.setUuid(UUID.randomUUID().toString());
-                    registration.setChannel(OrderChannel.WEBSITE);
-                    registration.setUserToken(UUID.randomUUID().toString());
+                    // Wenn für den Kurs kein Material mitbestellt werden kann 
+                    if(!course.getMaterial()) {
+                        registration.setListOfMaterials(false);
+                    }
                     registrationDaoLocal.merge(registration);
                     return "waiting";
-                }
-                
-            }
-        }
+                }// Ende else
+            }// Ende if() check nach Sichtbar und Vergangenheit 
+        }// Ende if() check der UUID
 
         /*
          * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch

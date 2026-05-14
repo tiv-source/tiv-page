@@ -113,7 +113,7 @@ public class Registration implements Comparable<Registration> {
 
     @Basic
     @Convert(converter = org.hibernate.type.YesNoConverter.class)
-    private Boolean listOfMaterials;
+    private Boolean listOfMaterials = true;
 
     /**
      * Status der Anmeldung

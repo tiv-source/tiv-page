@@ -190,7 +190,7 @@ $(document).ready(function() {
         <fieldset class="fieldset" id="material">
 
           <div class="field">
-            <struts:checkbox key="registration.listOfMaterials" theme="tivpage" onchange="calculateSum(this)" value="true"/>
+            <struts:checkbox key="registration.listOfMaterials" theme="tivpage" onchange="calculateSum(this)" />
             <script type="text/javascript">
             function calculateSum(element) {
           	  if(element.checked) {
@@ -224,6 +224,9 @@ $(document).ready(function() {
 
         </fieldset>
         </struts:if>
+        <struts:else>
+          <struts:hidden key="registration.listOfMaterials" value="false"/>
+        </struts:else>
 
         <!-- Ende Gruppe 3 -->
       </div>

@@ -25,6 +25,7 @@ import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.salutation.SalutationDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.page.Page;
+import de.tivsource.page.entity.registration.Registration;
 import de.tivsource.page.user.actions.EmptyAction;
 
 @TilesDefinitions({
@@ -67,6 +68,8 @@ public class FormAction extends EmptyAction {
 
     private String courseUuid;
 
+    private Registration registration;
+
     private Page page;
 
     private Boolean waiting = true;
@@ -85,6 +88,7 @@ public class FormAction extends EmptyAction {
         sbtList = new ArrayList<SimpleBooleanType>();
         sbtList.add(createSimpleBooleanType("Privat", true));
         sbtList.add(createSimpleBooleanType("Geschäftlich", false));
+        registration = new Registration();
     }
 
     @Override
@@ -136,6 +140,10 @@ public class FormAction extends EmptyAction {
 
     public Course getCourse() {
         return course;
+    }
+
+    public Registration getRegistration() {
+        return registration;
     }
 
     @Override
