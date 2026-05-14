@@ -3,6 +3,7 @@ package de.tivsource.page.image.actions.picture;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -192,27 +193,41 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         pictureUuid = pictureUuid.replaceAll("/original.png", "");
         LOGGER.info("Picture UUID: " + pictureUuid);
         
-        try {
-            // TODO: Check UUID Eingabe auf nicht erlaubte Zeichen  
-            this.picture = this.pictureDaoLocal.findByUuid(pictureUuid);
-            LOGGER.info("Pictur UUID aus Objekt: " + picture.getUuid());
-            pictureImage = picture.getImage();
-            LOGGER.info("PictureImage UUID aus Objekt: " + picture.getImage().getUuid());
-            return SUCCESS;
-        } catch (NumberFormatException exception) {
-            addActionError(getText("page.actionError.get.numberFormatException"));
-            exception.printStackTrace();
-            return ERROR;
-        } catch (NullPointerException exception) {
-            addActionError(getText("page.actionError.get.nullPointerException"));
-            exception.printStackTrace();
-            return ERROR;
+        if (isValid(pictureUuid) && pictureDaoLocal.isPicture(pictureUuid)) {
+            try {
+                picture = pictureDaoLocal.findByUuid(pictureUuid);
+                LOGGER.info("Pictur UUID aus Objekt: " + picture.getUuid());
+                pictureImage = picture.getImage();
+                LOGGER.info("PictureImage UUID aus Objekt: " + picture.getImage().getUuid());
+                return SUCCESS;
+            } catch (NumberFormatException exception) {
+                addActionError(getText("page.actionError.get.numberFormatException"));
+                exception.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            } catch (NullPointerException exception) {
+                addActionError(getText("page.actionError.get.nullPointerException"));
+                exception.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            }
         }
+        LOGGER.info("Manipulationsversuch Inhalt von pictureUuid: " + pictureUuid);
+        response.setStatus(404);
+        return ERROR;
     }
 
     @Override
     public void withServletRequest(HttpServletRequest httpServletRequest) {
         this.servletRequest = httpServletRequest;
     }
+
+    private Boolean isValid(String input) {
+        Pattern UUID_REGEX = Pattern.compile("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$");
+        if (UUID_REGEX.matcher(input).matches()) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class
