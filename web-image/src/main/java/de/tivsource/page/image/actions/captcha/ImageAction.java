@@ -3,6 +3,7 @@ package de.tivsource.page.image.actions.captcha;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +44,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
     private PropertyDaoLocal propertyDaoLocal;
 
     @InjectEJB(name = "CaptchaDao")
-    private CaptchaDaoLocal captchaImageDaoLocal;
+    private CaptchaDaoLocal captchaDaoLocal;
 
     /**
      * Bild des aktuellen Captcha.
@@ -192,23 +193,38 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         captchaUuid = captchaUuid.replaceAll("/original.png", "");
         logger.info("Slider Image UUID: " + captchaUuid);
 
-        try {
-            this.captchaImage = this.captchaImageDaoLocal.findByUuid(captchaUuid).getImage();
-            return SUCCESS;
-        } catch (NumberFormatException exception) {
-            addActionError(getText("slider.actionError.get.numberFormatException"));
-            exception.printStackTrace();
-            return ERROR;
-        } catch (NullPointerException exception) {
-            addActionError(getText("slider.actionError.get.nullPointerException"));
-            exception.printStackTrace();
-            return ERROR;
+        if (isValid(captchaUuid) && captchaDaoLocal.isCaptchaUuid(captchaUuid)) {
+            try {
+                this.captchaImage = this.captchaDaoLocal.findByUuid(captchaUuid).getImage();
+                return SUCCESS;
+            } catch (NumberFormatException exception) {
+                addActionError(getText("slider.actionError.get.numberFormatException"));
+                exception.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            } catch (NullPointerException exception) {
+                addActionError(getText("slider.actionError.get.nullPointerException"));
+                exception.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            }          
         }
+        logger.info("Manipulationsversuch Inhalt von captchaUuid: " + captchaUuid);
+        response.setStatus(404);
+        return ERROR;
     }
 
     @Override
     public void withServletRequest(HttpServletRequest httpServletRequest) {
         this.servletRequest = httpServletRequest;
     }
+
+    private Boolean isValid(String input) {
+        Pattern UUID_REGEX = Pattern.compile("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$");
+        if (UUID_REGEX.matcher(input).matches()) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class

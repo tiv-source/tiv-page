@@ -28,6 +28,8 @@ public interface CaptchaDaoLocal {
      */
     public void delete(Captcha captcha);
 
+    public Boolean isCaptchaUuid(String uuid);
+
     /**
      * Methode um ein Objekt der Klasse Captcha anhand seiner UUID zu laden.
      *

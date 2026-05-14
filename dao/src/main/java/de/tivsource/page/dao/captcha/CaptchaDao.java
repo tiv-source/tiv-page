@@ -45,6 +45,12 @@ public class CaptchaDao implements CaptchaDaoLocal {
         entityManager.remove(entityManager.find(Captcha.class, captcha.getUuid()));
     }
 
+    public Boolean isCaptchaUuid(String uuid) {
+        Query query = entityManager.createQuery("select c from Captcha c where c.uuid = :uuid order by c.uuid asc");
+        query.setParameter("uuid", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.czastka.dao.captcha.CaptchaDaoLocal#findByUuid(java.lang.String)
      */
