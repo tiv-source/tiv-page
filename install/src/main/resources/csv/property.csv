@@ -57,31 +57,31 @@ logo.path|/uploads/tiv-page-logo.png||2010-01-01 00:00:01|2010-01-01 00:00:01|In
 mail.confirmreservation.ads.path|/srv/tiv-page/templates/confirmreservation/ads.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.bcc.personal|TIV-Page Reservierung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.confirmreservation.body.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.confirmreservation.body.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.body.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.body.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.font.path|/srv/tiv-page/fonts/bankgothicltbt.ttf||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.from.personal|TIV-Page Reservierung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.confirmreservation.html.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.confirmreservation.html.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.confirmreservation.images.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.confirmreservation.images.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.html.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.html.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.images.de|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.confirmreservation.images.en|/srv/tiv-page/templates/confirmreservation/template_confirmreservation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.logo.path|/srv/tiv-page/templates/confirmreservation/logo1.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.pdf.name|Reservierungsbestaetigung.pdf||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.confirmreservation.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.bcc.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.bcc.personal|BCC Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.contactform.body.de|/srv/tiv-page/templates/contactform/template_contactform_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.contactform.body.en|/srv/tiv-page/templates/contactform/template_contactform_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.body.de|/srv/tiv-page/templates/contactform/template_contactform_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.body.en|/srv/tiv-page/templates/contactform/template_contactform_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.from.personal|TIV-Page Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.contactform.html.de|/srv/tiv-page/templates/contactform/template_contactform_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.contactform.html.en|/srv/tiv-page/templates/contactform/template_contactform_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.contactform.images.de|/srv/tiv-page/templates/contactform/template_contactform_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.contactform.images.en|/srv/tiv-page/templates/contactform/template_contactform_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.html.de|/srv/tiv-page/templates/contactform/template_contactform_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.html.en|/srv/tiv-page/templates/contactform/template_contactform_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.images.de|/srv/tiv-page/templates/contactform/template_contactform_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.contactform.images.en|/srv/tiv-page/templates/contactform/template_contactform_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.subject.de|Anfrage über das Kontaktformular||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.contactform.subject.en|Request via the contact form||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
@@ -105,15 +105,15 @@ mail.password|HIERmussDASpasswordHIN||2010-01-01 00:00:01|2010-01-01 00:00:01|In
 mail.port|25||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.bcc.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.bcc.personal|BCC Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.reservationrequest.body.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.reservationrequest.body.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.body.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.body.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.from.personal|TIV-Page Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.reservationrequest.html.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.reservationrequest.html.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.reservationrequest.images.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.reservationrequest.images.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.html.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.html.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.images.de|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.reservationrequest.images.en|/srv/tiv-page/templates/reservationrequest/template_reservationrequest_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.to.address|reservierungsanfrage@tiv-source.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.reservationrequest.to.personal|To Reservierungsanfrage||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
@@ -257,15 +257,15 @@ admin.object.list.country.default.numberoflines|20|Standard Anzahl der Einträge
 admin.object.list.country.numberoflines|[5, 10, 15, 20, 25, 50, 100, 150, 200]|Schritte in der Auswahl in der Länder Tabelle.|2026-01-07 05:04:01|2026-01-07 05:04:01|Installer|localhorst|false
 mail.course.predeclare.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.predeclare.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.predeclare.body.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.predeclare.body.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.body.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.body.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.predeclare.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.predeclare.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.predeclare.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.predeclare.html.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.predeclare.html.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.predeclare.images.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.predeclare.images.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.html.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.html.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.images.de|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.predeclare.images.en|/srv/tiv-page/templates/course/predeclare/template_course_predeclare_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.predeclare.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.predeclare.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 pdf.confirmation.document.data.addressfield.header|T.I.V. Consulting GmbH - Auf dem Schnee 29 - 58454 Witten||2010-01-01 00:00:02|2010-01-01 00:00:02|Installer|localhorst|false
@@ -313,15 +313,15 @@ pdf.confirmation.document.number.prefix|auf-||2010-01-01 00:00:43|2010-01-01 00:
 pdf.confirmation.document.number|20001||2010-01-01 00:00:44|2010-01-01 00:00:44|Installer|localhorst|false
 mail.course.confirmation.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.confirmation.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.confirmation.body.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.confirmation.body.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.body.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.body.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.confirmation.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.confirmation.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.confirmation.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.confirmation.html.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.confirmation.html.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.confirmation.images.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.confirmation.images.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.html.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.html.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.images.de|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.confirmation.images.en|/srv/tiv-page/templates/course/confirmation/template_course_confirmation_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.confirmation.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.confirmation.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 pdf.pay.document.data.addressfield.header|T.I.V. Consulting GmbH - Auf dem Schnee 29 - 58454 Witten||2010-01-01 00:00:02|2010-01-01 00:00:02|Installer|localhorst|false
@@ -369,14 +369,28 @@ pdf.pay.document.number.prefix|re-||2010-01-01 00:00:43|2010-01-01 00:00:43|Inst
 pdf.pay.document.number|10001||2010-01-01 00:00:44|2010-01-01 00:00:44|Installer|localhorst|false
 mail.course.pay.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.pay.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.pay.body.de|/srv/tiv-page/templates/course/pay/template_course_pay_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.pay.body.en|/srv/tiv-page/templates/course/pay/template_course_pay_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.body.de|/srv/tiv-page/templates/course/pay/template_course_pay_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.body.en|/srv/tiv-page/templates/course/pay/template_course_pay_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.pay.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.pay.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.pay.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.pay.html.de|/srv/tiv-page/templates/course/pay/template_course_pay_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.pay.html.en|/srv/tiv-page/templates/course/pay/template_course_pay_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.pay.images.de|/srv/tiv-page/templates/course/pay/template_course_pay_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
-mail.course.pay.images.en|/srv/tiv-page/templates/course/pay/template_course_pay_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.html.de|/srv/tiv-page/templates/course/pay/template_course_pay_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.html.en|/srv/tiv-page/templates/course/pay/template_course_pay_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.images.de|/srv/tiv-page/templates/course/pay/template_course_pay_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.pay.images.en|/srv/tiv-page/templates/course/pay/template_course_pay_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.pay.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.pay.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.bcc.address|bcc@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.bcc.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.body.de|/srv/tiv-page/templates/course/revoke/template_course_revoke_de.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.body.en|/srv/tiv-page/templates/course/revoke/template_course_revoke_en.txt||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.debug.session|true||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.from.address|noreply@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.from.personal|TIV-Page Anmeldung||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.html.de|/srv/tiv-page/templates/course/revoke/template_course_revoke_de.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.html.en|/srv/tiv-page/templates/course/revoke/template_course_revoke_en.html||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.images.de|/srv/tiv-page/templates/course/revoke/template_course_revoke_de.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.images.en|/srv/tiv-page/templates/course/revoke/template_course_revoke_en.list||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+mail.course.revoke.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+return.to.summary.icon|/public/icons/gallery_summary_orange.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
