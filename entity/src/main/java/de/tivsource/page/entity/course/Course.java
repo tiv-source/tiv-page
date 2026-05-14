@@ -57,7 +57,7 @@ public class Course extends ContentItem {
     /**
      * Nummer des Kurses
      */
-    @Column(table = TABLE)
+    @Column(table = TABLE, unique = true)
     private String number;
 
     /**
@@ -387,7 +387,10 @@ public class Course extends ContentItem {
     }// Ende status()
 
     public BigDecimal sum() {
-        return price.add(materialPrice);
+        if(material) {
+            return price.add(materialPrice);
+        }
+        return price;
     }// Ende sum()
 
     public Boolean getConvertToDeclard() {
