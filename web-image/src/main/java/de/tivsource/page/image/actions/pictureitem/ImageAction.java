@@ -3,6 +3,7 @@ package de.tivsource.page.image.actions.pictureitem;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -191,28 +192,40 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         pictureItemUuid = pictureItemUuid.replaceAll("/large.png", "");
         pictureItemUuid = pictureItemUuid.replaceAll("/original.png", "");
         LOGGER.info("PictureItem UUID: " + pictureItemUuid);
-        
-        try {
-            // TODO: Check UUID Eingabe auf nicht erlaubte Zeichen  
-            this.pictureItem = this.pictureItemDaoLocal.findByUuid(pictureItemUuid);
-            LOGGER.info("PictureItem UUID aus Objekt: " + pictureItem.getUuid());
-            pictureItemImage = pictureItem.getImage();
-            LOGGER.info("PictureItemImage UUID aus Objekt: " + pictureItem.getImage().getUuid());
-            return SUCCESS;
-        } catch (NumberFormatException exception) {
-            addActionError(getText("page.actionError.get.numberFormatException"));
-            exception.printStackTrace();
-            return ERROR;
-        } catch (NullPointerException exception) {
-            addActionError(getText("page.actionError.get.nullPointerException"));
-            exception.printStackTrace();
-            return ERROR;
+
+        if (isValid(pictureItemUuid) && pictureItemDaoLocal.isPictureItemUuid(pictureItemUuid)) {
+            try {
+                pictureItem = pictureItemDaoLocal.findByUuid(pictureItemUuid);
+                LOGGER.info("PictureItem UUID aus Objekt: " + pictureItem.getUuid());
+                pictureItemImage = pictureItem.getImage();
+                LOGGER.info("PictureItemImage UUID aus Objekt: " + pictureItem.getImage().getUuid());
+                return SUCCESS;
+            } catch (NumberFormatException exception) {
+                addActionError(getText("page.actionError.get.numberFormatException"));
+                exception.printStackTrace();
+                return ERROR;
+            } catch (NullPointerException exception) {
+                addActionError(getText("page.actionError.get.nullPointerException"));
+                exception.printStackTrace();
+                return ERROR;
+            }
         }
+        LOGGER.info("Manipulationsversuch Inhalt von captchaUuid: " + pictureItemUuid);
+        response.setStatus(404);
+        return ERROR;
     }
 
     @Override
     public void withServletRequest(HttpServletRequest httpServletRequest) {
         this.servletRequest = httpServletRequest;
     }
+
+    private Boolean isValid(String input) {
+        Pattern UUID_REGEX = Pattern.compile("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$");
+        if (UUID_REGEX.matcher(input).matches()) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class

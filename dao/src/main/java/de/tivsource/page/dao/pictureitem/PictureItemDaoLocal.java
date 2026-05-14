@@ -13,6 +13,8 @@ import jakarta.ejb.Local;
 @Local
 public interface PictureItemDaoLocal {
 
+    public Boolean isPictureItemUuid(String uuid);
+
     public PictureItem findByUuid(String uuid);
 
 }// Ende interface
