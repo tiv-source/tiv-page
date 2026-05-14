@@ -34,7 +34,9 @@ public interface CSSFileDaoLocal {
     public void delete(CSSFile cssFile);
 
     public Boolean hasReferences(String uuid);
-    
+
+    public Boolean isCSSFileUuid(String uuid);
+
     public CSSFile findByUuid(String uuid);
 
     public CSSFile findRevisionByUuid(String uuid, String rev);

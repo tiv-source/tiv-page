@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -114,14 +115,20 @@ public class CssAction extends ActionSupport implements ServletRequestAware {
         cssFileUuid = cssFileUuid.replaceAll(".css", "");
         logger.info("CSS-Datei UUID: " + cssFileUuid);
 
-        CSSFile cssFile = this.cssFileDaoLocal.findByUuid(cssFileUuid);
-        try {
-            this.cssFileInputStream = new FileInputStream(new File(cssFile.getPath()));
-            return SUCCESS;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return ERROR;
+        if (isValid(cssFileUuid) && cssFileDaoLocal.isCSSFileUuid(cssFileUuid)) {
+            CSSFile cssFile = cssFileDaoLocal.findByUuid(cssFileUuid);
+            try {
+                cssFileInputStream = new FileInputStream(new File(cssFile.getPath()));
+                return SUCCESS;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            }
         }
+        logger.info("Manipulationsversuch Inhalt von cssFileUuid: " + cssFileUuid);
+        response.setStatus(404);
+        return ERROR;
 
     }// Ende execute()
 
@@ -129,5 +136,13 @@ public class CssAction extends ActionSupport implements ServletRequestAware {
     public void withServletRequest(HttpServletRequest servletRequest) {
         this.servletRequest = servletRequest;
     }
+
+    private Boolean isValid(String input) {
+        Pattern UUID_REGEX = Pattern.compile("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$");
+        if (UUID_REGEX.matcher(input).matches()) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class

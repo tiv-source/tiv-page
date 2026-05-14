@@ -73,6 +73,14 @@ public class CSSFileDao implements CSSFileDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean isCSSFileUuid(String uuid) {
+        Query query = entityManager.createQuery("select c from CSSFile c where c.uuid = :uuid and c.visible = :visible order by c.uuid asc");
+        query.setParameter("uuid", uuid);
+        query.setParameter("visible", true);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.shop.dao.cssfile.CSSFileDaoLocal#findByUuid(java.lang.String)
      */
