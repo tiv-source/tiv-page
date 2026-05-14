@@ -13,6 +13,8 @@ import jakarta.ejb.Local;
 @Local
 public interface PDFImageDaoLocal {
 
+    public Boolean isPDFImageUuid(String uuid);
+
     public PDFImage findByUuid(String uuid);
 
 }// Ende interface

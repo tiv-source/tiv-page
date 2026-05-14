@@ -10,6 +10,7 @@ import de.tivsource.page.entity.pdf.PDFImage;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -28,6 +29,16 @@ public class PDFImageDao implements PDFImageDaoLocal {
      */
     @PersistenceContext
     private EntityManager entityManager;
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.pdf.PDFImageDaoLocal#isPDFImageUuid(java.lang.String)
+     */
+    @Override
+    public Boolean isPDFImageUuid(String uuid) {
+        Query query = entityManager.createQuery("select pdfi from PDFImage pdfi where pdfi.uuid = :uuid order by pdfi.uuid asc");
+        query.setParameter("uuid", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.pdf.PDFImageDaoLocal#findByUuid(java.lang.String)
