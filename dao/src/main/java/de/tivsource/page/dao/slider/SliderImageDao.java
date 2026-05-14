@@ -10,6 +10,7 @@ import de.tivsource.page.entity.slider.SliderImage;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 
 /**
  * @author Marc Michele
@@ -28,6 +29,12 @@ public class SliderImageDao implements SliderImageDaoLocal {
      */
     @PersistenceContext
     private EntityManager entityManager;
+
+    public Boolean isSliderImageUuid(String uuid) {
+        Query query = entityManager.createQuery("select si from SliderImage si where pi.uuid = :uuid order by si.uuid asc");
+        query.setParameter("uuid", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.slider.SliderImageDaoLocal#findByUuid(java.lang.String)

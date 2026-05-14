@@ -3,6 +3,7 @@ package de.tivsource.page.image.actions.slider;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -192,23 +193,38 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         sliderImageUuid = sliderImageUuid.replaceAll("/original.png", "");
         logger.info("Slider Image UUID: " + sliderImageUuid);
 
-        try {
-            this.sliderImage = this.sliderImageDaoLocal.findByUuid(sliderImageUuid);
-            return SUCCESS;
-        } catch (NumberFormatException exception) {
-            addActionError(getText("slider.actionError.get.numberFormatException"));
-            exception.printStackTrace();
-            return ERROR;
-        } catch (NullPointerException exception) {
-            addActionError(getText("slider.actionError.get.nullPointerException"));
-            exception.printStackTrace();
-            return ERROR;
-        }
-    }
+        if (isValid(sliderImageUuid) && sliderImageDaoLocal.isSliderImageUuid(sliderImageUuid)) {
+            try {
+                this.sliderImage = this.sliderImageDaoLocal.findByUuid(sliderImageUuid);
+                return SUCCESS;
+            } catch (NumberFormatException exception) {
+                addActionError(getText("slider.actionError.get.numberFormatException"));
+                exception.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            } catch (NullPointerException exception) {
+                addActionError(getText("slider.actionError.get.nullPointerException"));
+                exception.printStackTrace();
+                response.setStatus(404);
+                return ERROR;
+            }
+        }// Ende if()
+        logger.info("Manipulationsversuch Inhalt von captchaUuid: " + sliderImageUuid);
+        response.setStatus(404);
+        return ERROR;
+    }// Ende execute()
 
     @Override
     public void withServletRequest(HttpServletRequest httpServletRequest) {
         this.servletRequest = httpServletRequest;
     }
+
+    private Boolean isValid(String input) {
+        Pattern UUID_REGEX = Pattern.compile("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$");
+        if (UUID_REGEX.matcher(input).matches()) {
+            return true;
+        }
+        return false;
+    }// Ende isValid(String input)
 
 }// Ende class
