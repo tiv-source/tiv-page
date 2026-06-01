@@ -138,7 +138,12 @@ public class RegistrationDao implements RegistrationDaoLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Registration> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT r FROM Registration r ORDER BY ";
+        String queryString = "SELECT r FROM Registration r "
+                + "JOIN r.course rc "
+                + "JOIN rc.descriptionMap rcdm "
+                + "JOIN r.salutation rs "
+                + "JOIN rs.descriptionMap rsdm "
+                + "WHERE rcdm.language = 'DE' AND rsdm.locale = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
@@ -159,7 +164,14 @@ public class RegistrationDao implements RegistrationDaoLocal {
     @Override
     public List<Registration> findAll(RegistrationStatus status, Integer start,
             Integer max, String field, String order) {
-        String queryString = "SELECT r FROM Registration r WHERE r.status = :status ORDER BY ";
+        String queryString = "SELECT r FROM Registration r "
+                + "JOIN r.course rc "
+                + "JOIN rc.descriptionMap rcdm "
+                + "JOIN r.salutation rs "
+                + "JOIN rs.descriptionMap rsdm "
+                + "WHERE r.status = :status AND "
+                + "rcdm.language = 'DE' AND "
+                + "rsdm.locale = 'DE' ORDER BY ";
         queryString = queryString + field + " " + order;
         Query query = entityManager.createQuery(queryString);
         query.setFirstResult(start);
