@@ -10,7 +10,7 @@
       </struts:url>
       <struts:a href="%{summaryUrl}">
         <div class="galleryNavigationAbove">
-          <img src="/public/icons/gallery_summary_orange.png" alt="">
+          <img src="<struts:property value="getProperty('return.to.summary.icon')" />" alt="">
           <p><struts:text name="gallery.summary" /></p>
         </div>
       </struts:a>
@@ -26,7 +26,7 @@
       <struts:url var="previousUrl" action="index" namespace="/gallery/%{gallery.uuid}/%{previous}/%{previousPicture}"/>
       <struts:a href="%{previousUrl}">
         <div class="pagination_left">
-          <img src="/public/icons/pagination_left_orange.png" alt="">
+          <img src="<struts:property value="getProperty('pagination.icon.left')" />" alt="">
           <p><struts:text name="pagination.previous" /></p>
         </div>
       </struts:a>
@@ -36,7 +36,7 @@
       <struts:url var="nextUrl" action="index" namespace="/gallery/%{gallery.uuid}/%{next}/%{nextPicture}"/>
       <struts:a href="%{nextUrl}">
         <div class="pagination_right">
-          <img src="/public/icons/pagination_right_orange.png" alt="">
+          <img src="<struts:property value="getProperty('pagination.icon.right')" />" alt="">
           <p><struts:text name="pagination.next" /></p>
         </div>
       </struts:a>
