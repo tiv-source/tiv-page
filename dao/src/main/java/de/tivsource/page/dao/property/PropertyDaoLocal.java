@@ -33,6 +33,8 @@ public interface PropertyDaoLocal {
      */
     public void delete(Property property);
 
+    public Boolean isKey(String key);
+
     public Property findByKey(String key);
 
     /**

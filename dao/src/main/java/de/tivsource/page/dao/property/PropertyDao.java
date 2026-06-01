@@ -18,6 +18,10 @@ import jakarta.persistence.Query;
  * @author Marc Michele
  *
  */
+/**
+ * @author Marc Michele
+ *
+ */
 @Stateless
 public class PropertyDao implements PropertyDaoLocal {
 
@@ -56,6 +60,16 @@ public class PropertyDao implements PropertyDaoLocal {
     @Override
     public void delete(Property property) {
         entityManager.remove(entityManager.find(Property.class, property.getKey()));
+    }
+
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.property.PropertyDaoLocal#isKey(java.lang.String)
+     */
+    @Override
+    public Boolean isKey(String key) {
+        Query query = entityManager.createQuery("select p from Property p where p.key = :key");
+        query.setParameter("key", key);
+        return (query.getResultList().size() > 0 ? true : false);
     }
 
     /* (non-Javadoc)
