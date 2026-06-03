@@ -335,3 +335,63 @@ label.label img {
   width: 50%;
   float: left;
 }
+
+#participant {
+  width: 50%;
+  float: left;
+}
+
+#contactDetails {
+  width: 50%;
+  float: left;
+}
+
+#billingData {
+  width: 50%;
+  float: right;
+}
+
+#wwctrl_add_registration_consumer input {
+  float: left;
+  margin-right: 5px;
+}
+
+#wwctrl_add_registration_consumer label {
+  width: unset;
+  margin-right: 14px;
+}
+
+#wwctrl_edit_registration_consumer input {
+  float: left;
+  margin-right: 5px;
+}
+
+#wwctrl_edit_registration_consumer label {
+  width: unset;
+  margin-right: 14px;
+}
+
+#wwctrl_add_registration_salutation input {
+  float: left;
+  margin-right: 5px;
+}
+
+#wwctrl_add_registration_salutation label {
+  width: unset;
+  margin-right: 5px;
+}
+
+#wwctrl_edit_registration_salutation input {
+  float: left;
+  margin-right: 5px;
+}
+
+#wwctrl_edit_registration_salutation label {
+  width: unset;
+  margin-right: 5px;
+}
+
+#objectOfAgreement {
+  width: 100%;
+}
+

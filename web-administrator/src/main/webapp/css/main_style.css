@@ -316,7 +316,8 @@ li.activlink3 {
     font-weight: bold;
     margin: 0 5px;
     min-width: 100px;
-    padding: 0 1.75em;
+    padding: 0 0.6em;
+    padding-top: 3px;
     text-decoration: none;
     line-height: 1.4em;
     float: left;
