@@ -14,7 +14,7 @@ import org.apache.struts2.conversion.TypeConversionException;
 import org.apache.struts2.util.StrutsTypeConverter;
 
 /**
- * @author marc
+ * @author Marc Michele
  *
  */
 public class DateConverter extends StrutsTypeConverter {
