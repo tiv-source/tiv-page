@@ -26,7 +26,6 @@
     };
     document.addEventListener('click', trackMouse);
     document.addEventListener('mousemove', trackMouse);
-    
 
     </script>
 
