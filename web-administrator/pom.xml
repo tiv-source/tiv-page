@@ -241,6 +241,18 @@
     <version>2.3</version>
 </dependency>
 
+<dependency>
+    <groupId>org.mustangproject</groupId>
+    <artifactId>library</artifactId>
+    <version>2.23.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>xmpbox</artifactId>
+    <version>3.0.3</version> <!-- Frei von den alten 2.x-Schwachstellen -->
+</dependency>
+
+
 	</dependencies>
 
 	<build>
