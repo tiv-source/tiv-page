@@ -145,8 +145,13 @@ public class UnitEditAction extends EmptyAction {
     	            dbCourseUnit.setModified(new Date());
     	            dbCourseUnit.setModifiedBy(remoteUser);
     	            dbCourseUnit.setCssGroup(courseUnit.getCssGroup());
-    	            // TODO: Datem des Kurs-Beginn überprüfen und wenn das Datum dieser Unit davor liegt auf dieses setzen
-    	            
+
+                    // Hole das Datum der ersten Einheit aus dem SortedSet 
+                    Date firstUnit = dbCourse.getUnits().first().getPointInTime();
+                    LOGGER.info("Datum der ersten Einheit: " + firstUnit);
+                    // Setze das Startdatum auf das Datum der ersten Einheit
+                    dbCourse.setStartDate(firstUnit);
+
     	            courseDaoLocal.merge(dbCourse);
     	            return SUCCESS;
     		    }// Ende if()

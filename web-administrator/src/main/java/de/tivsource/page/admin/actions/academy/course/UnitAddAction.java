@@ -108,6 +108,7 @@ public class UnitAddAction extends EmptyAction implements UploadedFilesAware {
     	if(course != null) {
     	    LOGGER.info("UUID des Events: " + course.getUuid());
             Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
+
     	    if(courseUnit != null) {
     	        courseUnit.setUuid(UUID.randomUUID().toString());
     	        courseUnit.setModified(new Date());
@@ -153,9 +154,15 @@ public class UnitAddAction extends EmptyAction implements UploadedFilesAware {
                 courseUnit.setVisible(true);
                 courseUnit.setTechnical("CourseUnit_" + courseUnit.getUuid());
                 courseUnit.setCourse(dbCourse);
-                // TODO: Datem des Kurs-Beginn überprüfen und wenn das Datum dieser Unit davor liegt auf dieses setzen
 
+                // Setze die Einheit in das SortedSet
                 dbCourse.getUnits().add(courseUnit);
+                // Hole das Datum der ersten Einheit aus dem SortedSet 
+                Date firstUnit = dbCourse.getUnits().first().getPointInTime();
+                LOGGER.info("Datum der ersten Einheit: " + firstUnit);
+                // Setze das Startdatum auf das Datum der ersten Einheit
+                dbCourse.setStartDate(firstUnit);
+                
                 courseDaoLocal.merge(dbCourse);
 
                 return SUCCESS;
