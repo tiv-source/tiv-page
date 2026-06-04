@@ -1,6 +1,7 @@
 package de.tivsource.page.admin.actions;
 
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -102,7 +103,10 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	}
 
     public String getProperty(String key) {
-        return propertyDaoLocal.findByKey(key).getValue();
+        if(isValidKey(key) && propertyDaoLocal.isKey(key)) {
+            return propertyDaoLocal.findByKey(key).getValue();
+        }
+        return "Invalid Key: " + key;
     }
 
 	/**
@@ -114,6 +118,13 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 		language = actionContext.getLocale().getLanguage();
 		LOGGER.info("Action Locale: " + language);
 	}
+
+    protected Boolean isValidKey(String input) {
+        if (Pattern.matches("[a-zA-Z0-9.]*", input)) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void withSession(Map<String, Object> session) {
