@@ -148,6 +148,7 @@ public class CourseDao implements CourseDaoLocal {
         Hibernate.initialize(course.getCssGroup());
         Hibernate.initialize(course.getCssGroup().getFiles());
         Hibernate.initialize(course.getLocation());
+        Hibernate.initialize(course.getLocation().getAddress());
         Hibernate.initialize(course.getLocation().getDescriptionMap());
         Hibernate.initialize(course.getRegistrations());
         return course;
