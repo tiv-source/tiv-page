@@ -71,6 +71,13 @@ public class AppointmentDao implements AppointmentDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
     }
 
+    @Override
+    public Boolean isAppointmentUuidVisibleCheck(String uuid) {
+        Query query = entityManager.createQuery("select ap from Appointment ap where ap.uuid = :uuid order by ap.uuid asc");
+        query.setParameter("uuid", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.appointment.AppointmentDaoLocal#hasMenuEntry(java.lang.String)
      */

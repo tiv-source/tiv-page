@@ -42,6 +42,8 @@ public interface AppointmentDaoLocal {
      */
     public Boolean isAppointmentUuid(String uuid);
 
+    public Boolean isAppointmentUuidVisibleCheck(String uuid);
+
     public Boolean hasMenuEntry(String uuid);
 
     public Boolean hasSubSumption(String uuid);
