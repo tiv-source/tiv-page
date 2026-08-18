@@ -105,7 +105,7 @@ public class ConfirmAction extends EmptyAction {
     @Actions({
         @Action(value = "*/confirm", results = {
             @Result(name = "input", type = "tiles", location = "registrationConfirmForm"),
-            @Result(name = "success", type = "redirectAction", location = "%{course.uuid}/registrationsuccess.html"),
+            @Result(name = "success", type = "redirectAction", location = "%{course.uuid}/registrationsuccess.html", params={"namespace", "/"}),
             @Result(name = "waiting", type = "redirectAction", location = "%{course.uuid}/waitingsuccess.html"),
             @Result(name = "error", type = "redirectAction", location = "index.html", params={"namespace", "/"})
         })

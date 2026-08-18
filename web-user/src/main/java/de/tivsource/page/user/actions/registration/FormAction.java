@@ -141,11 +141,20 @@ public class FormAction extends EmptyAction {
                 // Wenn es das Fomular für die Stronierung ist
                 // wird dieser Block ausgeführt
                 if(actionName.equals("cancelForm")) {
-                    if( registration != null && registration.getStatus() == RegistrationStatus.PREDECLARED ) {
+                    if( (registration != null && registration.getStatus() == RegistrationStatus.CONFIRMED) ||
+                        (registration != null && registration.getStatus() == RegistrationStatus.DECLARED) ||
+                        (registration != null && registration.getStatus() == RegistrationStatus.PAID) ||
+                        (registration != null && registration.getStatus() == RegistrationStatus.PREDECLARED) ||
+                        (registration != null && registration.getStatus() == RegistrationStatus.WAITING)
+                      ) {
+                        // Anmeldung innerhalb der ersten 14 Tage => kostenlos
+                        // Anmeldung nach 14 Tage aber bis zum Kurs sind noch 30 Tage => kostenlos
+                        // Anmeldung nach 14 Tage aber bis zum Kurs sind noch 15 Tage und unter 30 Tage => kostenpflichtig 50%
+                        // Anmeldung nach 14 Tage aber bis zum Kurs sind noch unter 15 Tagen => kostenpflichtig 100%
                         page = pageDaoLocal.findByTechnical("cancelform");
                         return SUCCESS;
                     }
-                    LOGGER.info("Registrierung kann nicht konvertiert werden (Nicht PreDeclared oder NULL).");
+                    LOGGER.info("Registrierung kann nicht konvertiert werden (Nicht Confirmed, Nicht Declared, Nicht Paid, Nicht PreDeclared, Nicht Waiting oder NULL).");
                 }
             }// Ende if()
         }// Ende if()
