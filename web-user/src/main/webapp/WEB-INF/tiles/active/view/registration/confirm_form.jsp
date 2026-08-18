@@ -47,7 +47,12 @@
           </div>
 
           <div class="field">
-            <struts:textfield key="registration.birthday"  />
+            <struts:textfield 
+                key="registration.birthday"
+                placeholder="01.01.2001"
+                type="date"
+                value="%{getText('format.birthday',{registration.birthday})}"
+            />
           </div>
 
         </fieldset>
@@ -62,7 +67,11 @@
           </div>
 
           <div class="field">
-            <struts:textfield key="registration.telephone" />
+            <struts:textfield 
+                key="registration.telephone"
+                placeholder="+49-172-5555555"
+                inputmode="tel"
+            />
           </div>
 
         </fieldset>
@@ -175,7 +184,7 @@ $(document).ready(function() {
 
         </fieldset>
 
-        <struts:if test="registration.course.listOfMaterials">
+        <struts:if test="registration.course.material">
         <fieldset class="fieldset" id="material">
 
           <div class="field">
@@ -183,7 +192,7 @@ $(document).ready(function() {
             <script type="text/javascript">
             function calculateSum(element) {
           	  if(element.checked) {
-          		  var material = parseFloat(($('#registration_course_listOfMaterialsPrice').val()).replace(",","."));
+          		  var material = parseFloat(($('#registration_course_materialPrice').val()).replace(",","."));
           		  var course = parseFloat(($('#registration_course_price').val()).replace(",","."));
           		  var result = material + course;
           		  var sum = result.toFixed(2);

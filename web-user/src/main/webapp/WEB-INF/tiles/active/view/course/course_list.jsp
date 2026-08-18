@@ -68,7 +68,7 @@
           <section class="courseLecturer">
             <!-- Anfang section courseLecturer -->
             <struts:if test="getProperty('course.list.lecturer') == 'true'">
-              <h4 class="courseLecturer">
+              <h3 class="courseLecturer">
                 <struts:set var="lecturerListSize" value="lecturers.size()" />
                 <struts:if test="getProperty('course.list.lecturer.lable') == 'true'">
                   <struts:if test="#lecturerListSize < 2">
@@ -87,10 +87,24 @@
                   <struts:if test="#lecturerStatus.first == false && #lecturerStatus.last == false && #lecturerStatus.index == #lecturerListSize - 2"><struts:a href="%{lecturerLink}"><struts:property value="descriptionMap.DE.name" /></struts:a></struts:if>
                   <struts:if test="#lecturerStatus.first == false && #lecturerStatus.last == true"> und <struts:a href="%{lecturerLink}"><struts:property value="descriptionMap.DE.name" /></struts:a></struts:if>
                 </struts:iterator>
-              </h4>
+              </h3>
             </struts:if>
             <!-- Ende section courseLecturer -->
           </section>
+
+          <struts:if test="getProperty('course.list.location') == 'true'">
+            <section class="courseLocation">
+              <!-- Anfang section courseLocation -->
+              <h3 class="courseLocation">
+                <struts:if test="getProperty('course.list.location.lable') == 'true'">
+                  Veranstaltungsort:
+                </struts:if>
+                <struts:url var="locationLink" action="index" namespace="/location/%{location.uuid}"/>
+                <struts:a href="%{locationLink}"><struts:property value="location.getName(getText('language'))" /></struts:a>
+              </h3>
+              <!-- Ende section courseLocation -->
+            </section>
+          </struts:if>
 
           <struts:a href="%{courseLink}">
             <section class="courseFacts">
@@ -126,7 +140,7 @@
               </struts:if>
 
               <struts:if test="getProperty('course.list.minimumAge') == 'true'">
-                <p class="courseOverviewMinimumAge">
+                <p class="courseMinimumAge">
                   <struts:if test="getProperty('course.list.minimumAge.lable') == 'true'">
                     Mindestalter:
                   </struts:if>
@@ -138,43 +152,37 @@
             </section>
           </struts:a>
 
-          <struts:if test="getProperty('course.list.location') == 'true'">
-            <p class="courseLocation">
-              <struts:if test="getProperty('course.list.location.lable') == 'true'">
-                Veranstaltungsort:
-              </struts:if>
-              <struts:url var="locationLink" action="index" namespace="/location/%{location.uuid}"/>
-              <struts:a href="%{locationLink}"><struts:property value="location.getName(getText('language'))" /></struts:a>
-            </p>
-          </struts:if>
-
           <struts:a href="%{courseLink}">
-            <p class="courseStatus">
-              <struts:if test="status() == 'GREEN'">
-                <img 
-                  id="courseStatusImage" 
-                  src="/public/icon/traffic_light_green.svg" 
-                  alt="<struts:property value="status()" />" 
-                  title="<struts:property value="status()" />"
-                /> 
-              </struts:if>
-              <struts:elseif test="status() == 'ORANGE'">
-                <img
-                  id="courseStatusImage" 
-                  src="/public/icon/traffic_light_yellow.svg" 
-                  alt="<struts:property value="status()" />" 
-                  title="<struts:property value="status()" />"
-                />
-              </struts:elseif>
-              <struts:else>
-                <img
-                  id="courseStatusImage" 
-                  src="/public/icon/traffic_light_red.svg" 
-                  alt="<struts:property value="status()" />" 
-                  title="<struts:property value="status()" />"
-                />
-              </struts:else>
-            </p>
+            <section class="courseStatus">
+              <!-- Anfang section courseStatus -->
+              <p class="courseStatus">
+                <struts:if test="status() == 'GREEN'">
+                  <img 
+                    id="courseStatusImage" 
+                    src="/public/icon/traffic_light_green.svg" 
+                    alt="<struts:property value="status()" />" 
+                    title="<struts:property value="status()" />"
+                  /> 
+                </struts:if>
+                <struts:elseif test="status() == 'ORANGE'">
+                  <img
+                    id="courseStatusImage" 
+                    src="/public/icon/traffic_light_yellow.svg" 
+                    alt="<struts:property value="status()" />" 
+                    title="<struts:property value="status()" />"
+                  />
+                </struts:elseif>
+                <struts:else>
+                  <img
+                    id="courseStatusImage" 
+                    src="/public/icon/traffic_light_red.svg" 
+                    alt="<struts:property value="status()" />" 
+                    title="<struts:property value="status()" />"
+                  />
+                </struts:else>
+              </p>
+              <!-- Ende section courseStatus -->
+            </section>
           </struts:a>
 
           <!-- Ende information -->

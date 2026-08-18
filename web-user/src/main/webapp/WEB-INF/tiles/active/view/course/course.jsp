@@ -162,6 +162,10 @@
           <p class="courseOverviewAppointmentDate"><struts:date name="pointInTime" format="EEE dd.MM.yyyy"/> <struts:date name="pointInTime" format="HH:mm" /> Uhr - <struts:date name="endDate" format="HH:mm" /> Uhr</p>
         </div>
       </struts:iterator>
+      <struts:url var="appointmentLink" action="ics" namespace="/course/%{course.uuid}"/>
+      <struts:a href="%{appointmentLink}">
+        Termine herunterladen
+      </struts:a>
     </div>
 
     <struts:if test="!course.isInPast()">

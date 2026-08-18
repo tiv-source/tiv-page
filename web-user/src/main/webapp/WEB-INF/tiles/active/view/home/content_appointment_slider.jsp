@@ -21,7 +21,7 @@
             <li>
               <struts:a href="%{appointmentLink}">
                 <figure>
-                  <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="" width="600" height="400">
+                  <img alt="" src="/image/pictureitem/<struts:property value="uuid" />/large.png" alt="" width="600" height="400">
                   <figcaption>
                     <struts:property value="getName(getText('language'))" /><br>
                     <struts:date name="pointInTime" format="dd.MM.yyyy" /> 

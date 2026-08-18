@@ -15,7 +15,7 @@
               <p><struts:property value="getDescription(getText('language'))" /></p>
             </div>
             <div class="newsImpression">
-              <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.NORMAL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+              <img alt="" src="/image/pictureitem/<struts:property value="uuid" />/normal.png" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
             </div>
             <hr>
           </div>
