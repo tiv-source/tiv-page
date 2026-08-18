@@ -46,7 +46,7 @@
 
         <struts:a href="%{appointmentLink}">
           <div class="impression">
-            <img src="/pictures/NORMAL/<struts:property value="picture.pictureUrls.FULL.url" />" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
+            <img src="/image/pictureitem/<struts:property value="uuid" />/large.png" alt="<struts:property value="getName(getText('language'))" />" title="<struts:property value="getName(getText('language'))" />">
           </div>
         </struts:a>
 

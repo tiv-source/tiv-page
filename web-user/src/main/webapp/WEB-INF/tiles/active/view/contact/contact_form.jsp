@@ -91,7 +91,7 @@
         </div>
 
       </fieldset>
-      <struts:submit type="button" value="Absenden" onclick="this.disabled=true; this.form.submit();" />
+      <struts:submit type="button" value="Absenden" onclick="formatString(); this.disabled=true; this.form.submit();" />
       <struts:reset type="button" value="Löschen" />
       <hr>
     </struts:form>
