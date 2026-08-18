@@ -179,11 +179,10 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 
     @StrutsParameter
     public String getProperty(String key) {
-        if(isValidKey(key)) {
-            // TODO: Überprüfen ob es den Key gibt wenn nicht Objekt mit Aussagekräftigem Inhalt wiedergeben.
+        if(isValidKey(key) && propertyDaoLocal.isKey(key)) {
             return propertyDaoLocal.findByKey(key).getValue();
         }
-        return "Invalid Key";
+        return "Invalid Key: " + key;
     }
 
     public Event getLeftLocation() {
@@ -240,9 +239,8 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	protected Boolean isValidKey(String input) {
         if (Pattern.matches("[a-zA-Z0-9.]*", input)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 	
     @Override
