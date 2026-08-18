@@ -2,6 +2,7 @@ package de.tivsource.page.admin.actions.others.appointment;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,6 +77,15 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
     		dbAppointment.setModifiedBy(remoteUser);
     		dbAppointment.setModifiedAddress(remoteAddress);
 
+            // Wenn es kein Bild gibt dann wird eins erzeugt
+            // Code ist wichtig für den Umbau wenn die Installation zu alt ist
+            // kann es dazu kommen das es kein Bild gibt
+            if(dbAppointment.getImage() == null) {
+                dbAppointment.setImage(new PictureItemImage());
+                dbAppointment.getImage().setUuid(UUID.randomUUID().toString());
+                dbAppointment.getImage().setPictureItem(dbAppointment);
+                dbAppointment.getImage().setCreated(new Date());
+            }
     		dbAppointment.getImage().setUploadFile(appointment.getImage().getUploadFile());
     		dbAppointment.getImage().generate();
     		dbAppointment.getImage().setModified(new Date());

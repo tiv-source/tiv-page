@@ -2,6 +2,7 @@ package de.tivsource.page.admin.actions.others.page;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,6 +79,15 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
     		dbPage.setModifiedBy(remoteUser);
     		dbPage.setModifiedAddress(remoteAddress);
 
+    		// Wenn es kein Bild gibt dann wird eins erzeugt
+    		// Code ist wichtig für den Umbau wenn die Installation zu alt ist
+    		// kann es dazu kommen das es kein Bild gibt
+    		if(dbPage.getImage() == null) {
+    		    dbPage.setImage(new PictureItemImage());
+    		    dbPage.getImage().setUuid(UUID.randomUUID().toString());
+    		    dbPage.getImage().setPictureItem(dbPage);
+    		    dbPage.getImage().setCreated(new Date());
+    		}
     		dbPage.getImage().setUploadFile(page.getImage().getUploadFile());
     		dbPage.getImage().generate();
     		dbPage.getImage().setModified(new Date());
