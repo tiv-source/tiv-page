@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -50,13 +51,16 @@ public class SuccessAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(SuccessAction.class);
 
-    @InjectEJB(name = "PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="CourseDao")
+    @Autowired
+    @Qualifier("courseDaoLocal")
     private CourseDaoLocal courseDaoLocal;
 
     private Course course;

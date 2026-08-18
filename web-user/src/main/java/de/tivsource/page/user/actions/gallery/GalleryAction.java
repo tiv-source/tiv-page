@@ -13,8 +13,9 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.gallery.GalleryDaoLocal;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.gallery.Gallery;
@@ -45,10 +46,12 @@ public class GalleryAction extends EmptyAction implements Pagination {
      */
     private static final Logger LOGGER = LogManager.getLogger(GalleryAction.class);
 
-    @InjectEJB(name="GalleryDao")
+    @Autowired
+    @Qualifier("galleryDaoLocal")
     private GalleryDaoLocal galleryDaoLocal;
 
-    @InjectEJB(name="PictureDao")
+    @Autowired
+    @Qualifier("pictureDaoLocal")
     private PictureDaoLocal pictureDaoLocal;
 
     private Page page;

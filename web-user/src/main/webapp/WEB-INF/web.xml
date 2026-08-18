@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-      version="3.0"> 
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
-	<display-name>TIV-Page User Application</display-name>
-	<context-param>
-		<param-name>definitions-config</param-name>
-		<param-value>/WEB-INF/tiles.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
-	</listener>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-<filter>
-  <filter-name>CharacterEncodingFilter</filter-name>
-  <filter-class>
-    org.apache.catalina.filters.SetCharacterEncodingFilter
-  </filter-class>
-  <init-param>
-    <param-name>encoding</param-name>
-    <param-value>UTF-8</param-value>
-  </init-param>
-  <init-param>
-    <param-name>forceEncoding</param-name>
-    <param-value>true</param-value>
-  </init-param>
-</filter>
+    <display-name>TIV-Page User Application</display-name>
 
-<filter-mapping>
-  <filter-name>CharacterEncodingFilter</filter-name>
-  <url-pattern>/*</url-pattern>
-</filter-mapping>
+    <!-- Spring ContextLoaderListener: startet Spring mit AppConfig -->
+    <context-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+
+    <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>de.tivsource.page.user.config.AppConfig</param-value>
+    </context-param>
+
+    <!-- Den Spring-Listener registrieren, damit Spring startet -->
+    <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+      <param-name>definitions-config</param-name>
+      <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>
+
+    <listener>
+      <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+
+    <!-- 1. UTF-8 Zeichenkodierungs-Filter (Wichtig für korrekte Umlaute bei JSON) -->
+    <filter>
+      <filter-name>CharacterEncodingFilter</filter-name>
+      <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+      <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+      </init-param>
+      <init-param>
+        <param-name>ignore</param-name>
+        <param-value>false</param-value>
+      </init-param>
+      <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+      </init-param>
+    </filter>
+
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -48,6 +68,10 @@
 	<login-config>
 		<auth-method>FORM</auth-method>
 	</login-config>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 
 	<error-page>
 		<error-code>400</error-code>

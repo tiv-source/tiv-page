@@ -22,8 +22,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.common.menuentry.MenuEntry;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
@@ -70,25 +71,32 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 
 	private Map<String, Object> session;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 	
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
 	private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="MenuEntryDao")
+    @Autowired
+    @Qualifier("menuEntryDaoLocal")
     private MenuEntryDaoLocal menuEntryDaoLocal;
 
-    @InjectEJB(name="EventDao")
+    @Autowired
+    @Qualifier("eventDaoLocal")
     private EventDaoLocal eventDaoLocal;
 
-    @InjectEJB(name="AppointmentDao")
+    @Autowired
+    @Qualifier("appointmentDaoLocal")
     private AppointmentDaoLocal appointmentDaoLocal;
 
-    @InjectEJB(name="SliderDao")
+    @Autowired
+    @Qualifier("sliderDaoLocal")
     private SliderDaoLocal sliderDaoLocal;
 
-    @InjectEJB(name="NewsDao")
+    @Autowired
+    @Qualifier("newsDaoLocal")
     private NewsDaoLocal newsDaoLocal;
 
     private Event left;

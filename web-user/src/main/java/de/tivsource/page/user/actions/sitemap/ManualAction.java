@@ -7,8 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.manual.ManualDaoLocal;
 import de.tivsource.page.entity.manual.Manual;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -30,7 +31,8 @@ public class ManualAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(ManualAction.class);
 
-    @InjectEJB(name="ManualDao")
+    @Autowired
+    @Qualifier("manualDaoLocal")
     private ManualDaoLocal manualDaoLocal;
 
     @Override

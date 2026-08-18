@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.country.Country;
 import de.tivsource.page.common.salutation.Salutation;
 import de.tivsource.page.common.simple.SimpleBooleanType;
@@ -56,16 +57,20 @@ public class FormAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
-    @InjectEJB(name = "PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-	@InjectEJB(name="RegistrationDao")
-    private RegistrationDaoLocal registrationDaoLocal;
-
-    @InjectEJB(name="SalutationDao")
+    @Autowired
+    @Qualifier("salutationDaoLocal")
     private SalutationDaoLocal salutationDaoLocal;
 
-    @InjectEJB(name="CountryDao")
+    @Autowired
+    @Qualifier("registrationDaoLocal")
+    private RegistrationDaoLocal registrationDaoLocal;
+
+    @Autowired
+    @Qualifier("countryDaoLocal")
     private CountryDaoLocal countryDaoLocal;
 
 	private Registration registration;

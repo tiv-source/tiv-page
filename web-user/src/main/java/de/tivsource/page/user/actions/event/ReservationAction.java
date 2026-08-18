@@ -22,8 +22,9 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -74,17 +75,21 @@ public class ReservationAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(ReservationAction.class);
 
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="ReservationDao")
-    private ReservationDaoLocal reservationDaoLocal;
-
-    @InjectEJB(name="EventDao")
+    @Autowired
+    @Qualifier("eventDaoLocal")
     private EventDaoLocal eventDaoLocal;
+
+    @Autowired
+    @Qualifier("reservationDaoLocal")
+    private ReservationDaoLocal reservationDaoLocal;
 
 	private Reservation reservation;
 

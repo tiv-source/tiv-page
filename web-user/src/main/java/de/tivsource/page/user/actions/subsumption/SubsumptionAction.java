@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.subsumption.SubsumptionDaoLocal;
@@ -48,13 +49,16 @@ public class SubsumptionAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(SubsumptionAction.class);
 
-    @InjectEJB(name = "PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="SubsumptionDao")
+    @Autowired
+    @Qualifier("subsumptionDaoLocal")
     private SubsumptionDaoLocal subsumptionDaoLocal;
 
     private Subsumption subsumption;

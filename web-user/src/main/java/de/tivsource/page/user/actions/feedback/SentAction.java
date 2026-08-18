@@ -14,8 +14,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.feedback.FeedbackDaoLocal;
 import de.tivsource.page.dao.feedback.FeedbackOptionDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -54,16 +55,20 @@ public class SentAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(SentAction.class);
 
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="FeedbackDao")
+    @Autowired
+    @Qualifier("feedbackDaoLocal")
     private FeedbackDaoLocal feedbackDaoLocal;
 
-    @InjectEJB(name = "FeedbackOptionDao")
+    @Autowired
+    @Qualifier("feedbackOptionDaoLocal")
     private FeedbackOptionDaoLocal feedbackOptionDaoLocal;
 
 	private Feedback feedback;

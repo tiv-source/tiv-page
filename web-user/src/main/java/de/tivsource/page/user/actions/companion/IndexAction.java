@@ -10,8 +10,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.companion.CompanionDaoLocal;
 import de.tivsource.page.dao.companion.CompanionGroupDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -43,16 +44,20 @@ public class IndexAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(IndexAction.class);
 
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="CompanionDao")
+    @Autowired
+    @Qualifier("companionDaoLocal")
     private CompanionDaoLocal companionDaoLocal;
 
-    @InjectEJB(name="CompanionGroupDao")
+    @Autowired
+    @Qualifier("companionGroupDaoLocal")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
     
     private Page page;

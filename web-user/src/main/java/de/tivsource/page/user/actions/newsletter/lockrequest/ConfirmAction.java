@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.mail.MailAddressLockDaoLocal;
 import de.tivsource.page.dao.mail.MailAddressLockRequestDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
@@ -43,16 +44,20 @@ public class ConfirmAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(ConfirmAction.class);
 
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="MailAddressLockDao")
+    @Autowired
+    @Qualifier("mailAddressLockDaoLocal")
     private MailAddressLockDaoLocal mailAddressLockDaoLocal;
 
-    @InjectEJB(name="MailAddressLockRequestDao")
+    @Autowired
+    @Qualifier("mailAddressLockRequestDaoLocal")
     private MailAddressLockRequestDaoLocal mailAddressLockRequestDaoLocal;
 
 	private String lockRequestUuid;

@@ -7,8 +7,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
 import de.tivsource.page.entity.appointment.Appointment;
 import de.tivsource.page.user.actions.EmptyAction;
@@ -30,7 +31,8 @@ public class AppointmentAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(AppointmentAction.class);
 
-    @InjectEJB(name="AppointmentDao")
+    @Autowired
+    @Qualifier("appointmentDaoLocal")
     private AppointmentDaoLocal appointmentDaoLocal;
 
     @Override

@@ -11,8 +11,9 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.manual.ManualDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -48,13 +49,16 @@ public class IndexAction extends EmptyAction implements Pagination {
      */
     private static final Integer TO = 7;
 
-    @InjectEJB(name = "PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="ManualDao")
+    @Autowired
+    @Qualifier("manualDaoLocal")
     private ManualDaoLocal manualDaoLocal;
 
     private List<Manual> manuals;

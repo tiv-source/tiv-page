@@ -11,8 +11,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.entity.page.Page;
 
@@ -42,7 +43,8 @@ public class PageAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(PageAction.class);
 
-    @InjectEJB(name = "PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
     /**
