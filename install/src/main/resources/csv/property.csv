@@ -394,3 +394,29 @@ mail.course.revoke.images.en|/srv/tiv-page/templates/course/revoke/template_cour
 mail.course.revoke.language|de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 mail.course.revoke.replyTo.address|replyTo@tivsource.de||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
 return.to.summary.icon|/public/icons/gallery_summary_orange.png||2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.user.name.from.userobject|true|Name des Verkäufers aus dem Benutzerobjekt nehmen (Ja/Nein).|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.user.name|Buchhaltung|Generischer Name für die Rechnung zum Beispiel Buchhaltung.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.user.phone|+49-2302-8798783|Telefonnummer des Verkäufers.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.user.mailaddress.from.userobject|true|Mailadresse des Verkäufers aus dem Benutzerobjekt nehmen (Ja/Nein).|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.user.mailaddress.generic|info@tivsource.de|Mailadresse des Verkäufers.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.name|T.I.V. Consulting GmbH|Firmenname des Verkäufers.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.street|Auf dem Schnee 29|Strasse des Verkäufers.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.zip|58454|Postleitzahl des Verkäufers.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.city|Witten|Stadt des Verkäufers.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.country|DE|Zwei Buchstaben Code für das Land (ISO Code).|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.taxid|xxx/xxxx/xxxx|Steuernummer des Verkäufers|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.vatid|DExxxxxxxxx|Umsatzsteuer-ID des Verkäufers|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.mailaddress|invoice@tivsource.de|Mailadresse des Verkäufers|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.globalid.enabled|true|D-U-N-S Nummer oder ähnlich Nummer aktivieren.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.globalid|313799180|D-U-N-S Nummer oder ähnlich Nummer.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.globalid.scheme|0060|Schema der globalen ID (0060 = D-U-N-S Nummer (Dun & Bradstreet) / 0088 – GLN (Global Location Number / ehemals ILN) / 0177 – Odette ID (Odette International Limited) / 0204 – Die Leitweg-ID (Nur für den Peppol-Netzwerk-Versand)|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.legal.organisation.enabled|true|Handelsregisternummer aktivieren (Ja/Nein)|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.legal.organisation.id|HRB 12345|Handelsregisternummer|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.legal.organisation.scheme|0021|ISO-Schema für das deutsche Handelsregister "0021"|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.bank.iban|DExxxxxxxxxxxxxxxxxxxx|IBAN der Bank|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.bank.bic|DORTDE33XXX|BIC der Bank|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.seller.bank.name|T.I.V. Consulting GmbH|Konto-Inhaber|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.invoice.currency|EUR|Währung der Rechnung.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.invoice.term|Zahlbar sofort nach Erhalt der Rechnung ohne Abzug.|Zahlungsbedingungen|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.producer|TIV-Page v0.0.1|Software-Name mit der die Rechnung erstellt wurde.|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false
+zugferd.profile|EN16931|ZUGFeRD-Profil der Rechnung|2010-01-01 00:00:01|2010-01-01 00:00:01|Installer|localhorst|false

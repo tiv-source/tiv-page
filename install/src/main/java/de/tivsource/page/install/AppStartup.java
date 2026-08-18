@@ -21,12 +21,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.dao.salutation.SalutationDaoLocal;
 import de.tivsource.page.entity.contentitem.Content;
 import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.namingitem.Description;
@@ -60,7 +60,10 @@ public class AppStartup implements ServletContextListener {
 
     @EJB
     private CSSGroupDaoLocal cssGroupDaoLocal;
-    
+
+    @EJB
+    private SalutationDaoLocal salutationDaoLocal;
+
     @Override
     public void contextDestroyed(ServletContextEvent arg0) {
         // TODO Auto-generated method stub
@@ -101,13 +104,15 @@ public class AppStartup implements ServletContextListener {
             propertyDaoLocal.merge(property);
         }
 
-        CSSGroup cssGroup = cssGroupDaoLocal.findByUuid("579465e5-64ba-4f56-95b1-293d497139ea");
-        if(cssGroup == null) {
+        if(!cssGroupDaoLocal.isCSSGroup("579465e5-64ba-4f56-95b1-293d497139ea")) {
             CreateCSSGroup createCSSGroup = new CreateCSSGroup();
             createCSSGroup.setCssGroupDaoLocal(cssGroupDaoLocal);
             createCSSGroup.generate();
         }
 
+        CreateSalutation createSalutation = new CreateSalutation(salutationDaoLocal);
+        createSalutation.generate();
+        
         checkAllAttributesExisting();
         checkAllPagesExisting();
 
