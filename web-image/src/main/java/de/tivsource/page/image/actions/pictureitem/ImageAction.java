@@ -193,7 +193,10 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
         pictureItemUuid = pictureItemUuid.replaceAll("/original.png", "");
         LOGGER.info("PictureItem UUID: " + pictureItemUuid);
 
-        if (isValid(pictureItemUuid) && pictureItemDaoLocal.isPictureItemUuid(pictureItemUuid)) {
+        Boolean isPictureItemUuid = pictureItemDaoLocal.isPictureItemUuid(pictureItemUuid);
+        LOGGER.info("PictureItem UUID ist: " + isPictureItemUuid);
+
+        if (isValid(pictureItemUuid) && isPictureItemUuid) {
             try {
                 pictureItem = pictureItemDaoLocal.findByUuid(pictureItemUuid);
                 LOGGER.info("PictureItem UUID aus Objekt: " + pictureItem.getUuid());
@@ -210,7 +213,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
                 return ERROR;
             }
         }
-        LOGGER.info("Manipulationsversuch Inhalt von captchaUuid: " + pictureItemUuid);
+        LOGGER.info("Manipulationsversuch Inhalt von pictureItemUuid: " + pictureItemUuid);
         response.setStatus(404);
         return ERROR;
     }
