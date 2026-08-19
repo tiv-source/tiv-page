@@ -172,25 +172,45 @@ public class Registration implements Comparable<Registration> {
     private String userToken;
 
     /**
+     * True wenn die Registrierung vollständig bezahlt wurden, 
+     * ansonsten False. 
+     */
+    @Basic
+    @Convert(converter = org.hibernate.type.YesNoConverter.class)
+    @Column(table = TABLE)
+    private Boolean fullyPaid = false;
+
+    /**
+     * Wenn nur ein Teilbetrag bezahlt wurde, dann wird 
+     * der hier eingetragen, sonst ist der Wert 0.00.
+     */
+    @Column(table = TABLE)
+    private BigDecimal partialPayment = new BigDecimal("0.00");
+
+    /**
      * Datum an dem die Anmeldung erstellt wurde.
      */
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date created;
 
     /**
      * Datum an dem die Anmeldung bearbeitet wurde.
      */
     @Temporal(jakarta.persistence.TemporalType.TIMESTAMP)
+    @Column(table = TABLE)
     private Date modified;
 
     /**
      * Angabe von wem die Anmeldung bearbeitet wurde.
      */
+    @Column(table = TABLE)
     private String modifiedBy;
 
     /**
      * Angabe von wo die Anmeldung bearbeitet wurde.
      */
+    @Column(table = TABLE)
     private String modifiedAddress;
 
     /**
@@ -513,6 +533,34 @@ public class Registration implements Comparable<Registration> {
      */
     public void setUserToken(String userToken) {
         this.userToken = userToken;
+    }
+
+    /**
+     * @return the fullyPaid
+     */
+    public Boolean getFullyPaid() {
+        return fullyPaid;
+    }
+
+    /**
+     * @param fullyPaid the fullyPaid to set
+     */
+    public void setFullyPaid(Boolean fullyPaid) {
+        this.fullyPaid = fullyPaid;
+    }
+
+    /**
+     * @return the partialPayment
+     */
+    public BigDecimal getPartialPayment() {
+        return partialPayment;
+    }
+
+    /**
+     * @param partialPayment the partialPayment to set
+     */
+    public void setPartialPayment(BigDecimal partialPayment) {
+        this.partialPayment = partialPayment;
     }
 
     /**

@@ -33,7 +33,6 @@ public class PictureItem extends NamingItem {
     public static final String TABLE = "PictureItem";
 
     @OneToOne(mappedBy = "pictureItem", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    @JoinColumn(table = TABLE, name = "image_uuid")
     private PictureItemImage image;
 
     @Basic
