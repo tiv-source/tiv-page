@@ -8,3 +8,4 @@ tiv-page-auth.log
 /checkUpdate.sh
 /cleanupServer.sh
 /updateServer.sh
+/checkServerVersion.sh

@@ -1,23 +1,9 @@
 #!/bin/sh
 
-HOMEDIR=/home/marc
-TOMEE=apache-tomee-plus-7.0.3
-
 echo "Setze Maven PATH"
-export PATH=$HOMEDIR/Maven/apache-maven-3.3.3/bin:$PATH
+export PATH=$HOMEDIR/Maven/apache-maven-3.9.9/bin:$PATH
 
 echo $PATH
-
-echo "Fahren Tomee runter"
-## ~/Server/$TOMEE/bin/shutdown.sh
-
-ssh -T tomee@tomee << EOF
-./bin/shutdown.sh
-rm -rf apps/*
-exit
-EOF
-## Ende Tomme herunter fahren
-
 
 echo "Starte Maven Clean"
 mvn clean
@@ -26,22 +12,4 @@ echo "Ende Maven Clean"
 echo "Starte Maven Install"
 mvn -e install
 echo "Ende Maven Install"
-
-# echo "Start Lösche Applikation"
-# rm -rf ~/Server/$TOMEE/apps/*
-# echo "Ende Lösche Applikation"
-
-echo "Start Kopiere Ear"
-scp ./ear/target/tiv-page.ear tomee@tomee:/srv/tomee/apps/
-echo "Ende Kopiere Ear"
-
-echo "Starte Tomee"
-ssh -T tomee@tomee << EOF
-./bin/startup.sh
-exit
-EOF
-
-echo "Starte Logausgabe"
-ssh tomee@tomee "tail -f logs/catalina.out"
-
 
