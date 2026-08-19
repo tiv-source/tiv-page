@@ -48,7 +48,7 @@ public class SalutationConverter extends StrutsTypeConverter {
             }
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            SalutationDaoLocal salutationDaoLocal = (SalutationDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/SalutationDao");
+            SalutationDaoLocal salutationDaoLocal = (SalutationDaoLocal) initialContext.lookup("java:global/tiv-page/dao/SalutationDao");
             Salutation salutation = salutationDaoLocal.findByUuid(values[0]);
             if(salutation == null) {
                 throw new TypeConversionException("Kein Salutation Objekt zu dieser UUID gefunden.");

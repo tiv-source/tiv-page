@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>tivpage</artifactId>
 		<groupId>de.tivsource.page</groupId>
-		<version>0.0.1</version>
+		<version>${revision}</version>
 	</parent>
 	<artifactId>utilities</artifactId>
 	<packaging>jar</packaging>
@@ -46,14 +46,14 @@
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>dao</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

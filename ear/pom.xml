@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>tivpage</artifactId>
 		<groupId>de.tivsource.page</groupId>
-		<version>0.0.1</version>
+		<version>${revision}</version>
 	</parent>
 	<artifactId>ear</artifactId>
 	<packaging>ear</packaging>
@@ -24,18 +24,18 @@
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>persistence</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>dao</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-log4j12</artifactId>
@@ -46,63 +46,63 @@
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>exceptions</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>backup</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>restore</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>utilities</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>install</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-user</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-image</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-pdf</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-css</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-administrator</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>web-reservation</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<type>war</type>
 			<scope>provided</scope>
 		</dependency>
@@ -265,6 +265,12 @@
 							<artifactId>web-pdf</artifactId>
 							<contextRoot>/pdf</contextRoot>
 						</webModule>
+                        <ejbModule>
+                            <groupId>de.tivsource.page</groupId>
+                            <artifactId>dao</artifactId>
+                            <!-- 1. Der feste Dateiname auf Root-Ebene im EAR (ohne Version!) -->
+                            <bundleFileName>dao.jar</bundleFileName>
+                        </ejbModule>
 						<jarModule>
 							<groupId>de.tivsource.page</groupId>
 							<artifactId>entity</artifactId>

@@ -1,17 +1,51 @@
 #!/bin/sh
 
 HOMEDIR=/home/marc
+COUNTER_FILE=".build_counter"
 
 echo "Setze Maven PATH"
 export PATH=$HOMEDIR/Maven/apache-maven-3.9.9/bin:$PATH
 
 echo $PATH
 
+# 1. Prüfen, ob die versteckte Datei existiert. Wenn nicht, mit 0 starten.
+if [ -f "$COUNTER_FILE" ]; then
+    CURRENT_VERSION=$(cat "$COUNTER_FILE")
+else
+    CURRENT_VERSION=0
+fi
+
+# 2. Die Zahl mathematisch um 1 erhöhen
+NEXT_VERSION=$((CURRENT_VERSION + 1))
+
+# 3. Die neue Zahl sofort wieder in die versteckte Datei schreiben
+echo "$NEXT_VERSION" > "$COUNTER_FILE"
+
+# 4. Versions-String für Maven zusammenbauen (z. B. 1.0.42)
+BUILD_VERSION="0.0.$NEXT_VERSION"
+echo "Generierte Build-Version für diesen Durchlauf: $BUILD_VERSION"
+
 echo "Starte Maven Clean"
-mvn clean
+mvn clean -Drevision=$BUILD_VERSION
 echo "Ende Maven Clean"
 
 echo "Starte Maven Install"
-mvn -e install
+mvn -e install -Drevision=$BUILD_VERSION
 echo "Ende Maven Install"
+
+
+# 6. AUFRÄUM-SCHRITT: Alte Versionen in allen Modul-Ordnern löschen
+M2_PROJECT_DIR="$HOMEDIR/.m2/repository/de/tivsource/page"
+
+if [ -d "$M2_PROJECT_DIR" ]; then
+    echo "Räume alte Versionen in allen Modul-Ordnern unter .m2 auf..."
+    
+    # -mindepth 3 und -maxdepth 3 sorgt dafür, dass wir genau die Versions-Ebene treffen
+    # (z. B. de/tivsource/page/modulname/0.0.1)
+    # Alles, was nicht der aktuellen Version entspricht, fliegt raus.
+    find "$M2_PROJECT_DIR" -mindepth 3 -maxdepth 3 -type d ! -name "$BUILD_VERSION" -exec rm -rf {} +
+    
+    echo "Aufräumen beendet."
+fi
+
 

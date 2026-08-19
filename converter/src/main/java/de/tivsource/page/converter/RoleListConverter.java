@@ -36,7 +36,7 @@ public class RoleListConverter extends StrutsTypeConverter {
             try {
                 RoleDaoLocal roleDaoLocal;
                 Context earContext = new InitialContext();
-                roleDaoLocal = (RoleDaoLocal) earContext.lookup("java:global/tiv-page/dao-0.0.1/RoleDao");
+                roleDaoLocal = (RoleDaoLocal) earContext.lookup("java:global/tiv-page/dao/RoleDao");
                 Role role = roleDaoLocal.findByUuid(roleId);
                 roleList.add(role);
             }

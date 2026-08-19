@@ -48,7 +48,7 @@ public class CountryConverter extends StrutsTypeConverter {
             }
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            CountryDaoLocal countryDaoLocal = (CountryDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/CountryDao");
+            CountryDaoLocal countryDaoLocal = (CountryDaoLocal) initialContext.lookup("java:global/tiv-page/dao/CountryDao");
             Country country = countryDaoLocal.findByUuid(values[0]);
             if(country == null) {
                 throw new TypeConversionException("Kein Country Objekt zu dieser UUID gefunden.");

@@ -49,7 +49,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean appointmentDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/AppointmentDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/AppointmentDao");
         jndiObjectFactoryBean.setProxyInterface(AppointmentDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -58,7 +58,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean captchaDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/CaptchaDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/CaptchaDao");
         jndiObjectFactoryBean.setProxyInterface(CaptchaDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -67,7 +67,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean companionDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/CompanionDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/CompanionDao");
         jndiObjectFactoryBean.setProxyInterface(CompanionDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -76,7 +76,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean companionGroupDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/CompanionGroupDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/CompanionGroupDao");
         jndiObjectFactoryBean.setProxyInterface(CompanionGroupDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -85,7 +85,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean countryDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/CountryDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/CountryDao");
         jndiObjectFactoryBean.setProxyInterface(CountryDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -94,7 +94,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean courseDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/CourseDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/CourseDao");
         jndiObjectFactoryBean.setProxyInterface(CourseDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -103,7 +103,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean eventDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/EventDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/EventDao");
         jndiObjectFactoryBean.setProxyInterface(EventDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -112,7 +112,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean exhibitionDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/ExhibitionDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/ExhibitionDao");
         jndiObjectFactoryBean.setProxyInterface(ExhibitionDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -121,7 +121,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean feedbackDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/FeedbackDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/FeedbackDao");
         jndiObjectFactoryBean.setProxyInterface(FeedbackDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -130,7 +130,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean feedbackOptionDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/FeedbackOptionDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/FeedbackOptionDao");
         jndiObjectFactoryBean.setProxyInterface(FeedbackOptionDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -139,7 +139,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean galleryDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/GalleryDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/GalleryDao");
         jndiObjectFactoryBean.setProxyInterface(GalleryDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -148,7 +148,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean lecturerDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/LecturerDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/LecturerDao");
         jndiObjectFactoryBean.setProxyInterface(LecturerDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -157,7 +157,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean locationDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/LocationDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/LocationDao");
         jndiObjectFactoryBean.setProxyInterface(LocationDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -166,7 +166,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean mailAddressLockDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/MailAddressLockDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/MailAddressLockDao");
         jndiObjectFactoryBean.setProxyInterface(MailAddressLockDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -175,7 +175,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean mailAddressLockRequestDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/MailAddressLockRequestDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/MailAddressLockRequestDao");
         jndiObjectFactoryBean.setProxyInterface(MailAddressLockRequestDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -184,7 +184,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean manualDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/ManualDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/ManualDao");
         jndiObjectFactoryBean.setProxyInterface(ManualDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -193,7 +193,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean menuEntryDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/MenuEntryDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/MenuEntryDao");
         jndiObjectFactoryBean.setProxyInterface(MenuEntryDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -202,7 +202,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean messageDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/MessageDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/MessageDao");
         jndiObjectFactoryBean.setProxyInterface(MessageDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -211,7 +211,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean newsDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/NewsDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/NewsDao");
         jndiObjectFactoryBean.setProxyInterface(NewsDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -220,7 +220,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean pageDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/PageDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/PageDao");
         jndiObjectFactoryBean.setProxyInterface(PageDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -229,7 +229,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean pdfDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/PDFDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/PDFDao");
         jndiObjectFactoryBean.setProxyInterface(PDFDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -238,7 +238,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean pictureDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/PictureDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/PictureDao");
         jndiObjectFactoryBean.setProxyInterface(PictureDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -247,7 +247,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean propertyDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/PropertyDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/PropertyDao");
         jndiObjectFactoryBean.setProxyInterface(PropertyDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -256,7 +256,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean reasonDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/ReasonDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/ReasonDao");
         jndiObjectFactoryBean.setProxyInterface(ReasonDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -265,7 +265,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean registrationDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/RegistrationDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/RegistrationDao");
         jndiObjectFactoryBean.setProxyInterface(RegistrationDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -274,7 +274,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean requestDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/RequestDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/RequestDao");
         jndiObjectFactoryBean.setProxyInterface(RequestDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -283,7 +283,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean reservationDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/ReservationDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/ReservationDao");
         jndiObjectFactoryBean.setProxyInterface(ReservationDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -292,7 +292,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean salutationDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/SalutationDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/SalutationDao");
         jndiObjectFactoryBean.setProxyInterface(SalutationDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -301,7 +301,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean sliderDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/SliderDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/SliderDao");
         jndiObjectFactoryBean.setProxyInterface(SliderDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -310,7 +310,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean subsumptionDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/SubsumptionDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/SubsumptionDao");
         jndiObjectFactoryBean.setProxyInterface(SubsumptionDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;
@@ -319,7 +319,7 @@ public class AppConfig {
     @Bean
     public JndiObjectFactoryBean vacancyDaoLocal() {
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao-0.0.1/VacancyDao");
+        jndiObjectFactoryBean.setJndiName("java:global/tiv-page/dao/VacancyDao");
         jndiObjectFactoryBean.setProxyInterface(VacancyDaoLocal.class);
         jndiObjectFactoryBean.setLookupOnStartup(true); 
         return jndiObjectFactoryBean;

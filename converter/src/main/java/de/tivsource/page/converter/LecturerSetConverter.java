@@ -46,7 +46,7 @@ public class LecturerSetConverter extends StrutsTypeConverter {
         try {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            LecturerDaoLocal lecturerDaoLocal = (LecturerDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/LecturerDao");
+            LecturerDaoLocal lecturerDaoLocal = (LecturerDaoLocal) initialContext.lookup("java:global/tiv-page/dao/LecturerDao");
 
             for(int i=0; i < values.length; i++) {
                 lecturerSet.add(lecturerDaoLocal.findByUuid(values[i]));

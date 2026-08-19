@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>tivpage</artifactId>
 		<groupId>de.tivsource.page</groupId>
-		<version>0.0.1</version>
+		<version>${revision}</version>
 	</parent>
 	<artifactId>entity</artifactId>
 	<packaging>jar</packaging>
@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>exceptions</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 			<scope>provided</scope>
 		</dependency>
 

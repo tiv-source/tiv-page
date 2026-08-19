@@ -42,7 +42,7 @@ public class CompanionGroupConverter extends StrutsTypeConverter {
         try {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            CompanionGroupDaoLocal companionGroupDaoLocal = (CompanionGroupDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/CompanionGroupDao");
+            CompanionGroupDaoLocal companionGroupDaoLocal = (CompanionGroupDaoLocal) initialContext.lookup("java:global/tiv-page/dao/CompanionGroupDao");
             return companionGroupDaoLocal.findByUuid(values[0]);
         } catch (Exception e) {
         	LOGGER.info("Keine gültige CompanionGroup UUID angegeben.");

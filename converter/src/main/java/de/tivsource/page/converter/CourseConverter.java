@@ -48,7 +48,7 @@ public class CourseConverter extends StrutsTypeConverter {
             }
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            CourseDaoLocal courseDaoLocal = (CourseDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/CourseDao");
+            CourseDaoLocal courseDaoLocal = (CourseDaoLocal) initialContext.lookup("java:global/tiv-page/dao/CourseDao");
             Course course = courseDaoLocal.findByUuid(values[0]);
             if(course == null) {
                 throw new TypeConversionException("Kein Course Objekt zu dieser UUID gefunden.");

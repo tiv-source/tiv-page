@@ -9,3 +9,4 @@ tiv-page-auth.log
 /cleanupServer.sh
 /updateServer.sh
 /checkServerVersion.sh
+/.build_counter

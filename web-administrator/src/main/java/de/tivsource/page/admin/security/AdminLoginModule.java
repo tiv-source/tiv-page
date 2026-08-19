@@ -68,7 +68,7 @@ public class AdminLoginModule implements LoginModule {
 	          password != null) {
 
 	    	  Context initialContext = new InitialContext();
-	    	  UserDaoLocal userDaoLocal = (UserDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/UserDao");
+	    	  UserDaoLocal userDaoLocal = (UserDaoLocal) initialContext.lookup("java:global/tiv-page/dao/UserDao");
 	    	  
 	    	  // Versuche benutzer mit dem Namen aus der Datenbank zu holen.
 	    	  User dbUser = userDaoLocal.findByUsername(name);

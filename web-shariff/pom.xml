@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>tivpage</artifactId>
 		<groupId>de.tivsource.page</groupId>
-		<version>0.0.1</version>
+		<version>${revision}</version>
 	</parent>
 	<artifactId>web-shariff</artifactId>
 	<packaging>war</packaging>

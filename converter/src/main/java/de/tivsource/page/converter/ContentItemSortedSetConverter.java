@@ -41,7 +41,7 @@ public class ContentItemSortedSetConverter extends StrutsTypeConverter {
     		String contentItemUuid = values[i];
             try {
                 Context initialContext = new InitialContext();
-                ContentItemDaoLocal contentItemDaoLocal = (ContentItemDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/ContentItemDao");
+                ContentItemDaoLocal contentItemDaoLocal = (ContentItemDaoLocal) initialContext.lookup("java:global/tiv-page/dao/ContentItemDao");
                 ContentItem contentItem = contentItemDaoLocal.findByUuid(contentItemUuid);
                 if(contentItem.getVisible()) {
                     contentItemSortedSet.add(contentItem);

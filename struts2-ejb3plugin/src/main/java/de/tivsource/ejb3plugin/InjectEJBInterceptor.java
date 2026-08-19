@@ -123,7 +123,7 @@ public class InjectEJBInterceptor extends AbstractInterceptor implements
 		if (annotation.appname() != null && !annotation.appname().isEmpty()) {
 			serviceName.insert(0, annotation.appname() + "/");
 		} else {
-			serviceName.insert(0, "dao-0.0.1/");
+			serviceName.insert(0, "dao/");
 		}
 
 		LOGGER.info("Test Inject");

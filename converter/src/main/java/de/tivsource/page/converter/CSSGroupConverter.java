@@ -37,7 +37,7 @@ public class CSSGroupConverter extends StrutsTypeConverter {
         try {
         	CSSGroupDaoLocal cssGroupDaoLocal;
         	Context earContext = new InitialContext();
-        	cssGroupDaoLocal = (CSSGroupDaoLocal) earContext.lookup("java:global/tiv-page/dao-0.0.1/CSSGroupDao");
+        	cssGroupDaoLocal = (CSSGroupDaoLocal) earContext.lookup("java:global/tiv-page/dao/CSSGroupDao");
         	CSSGroup cssGroup = cssGroupDaoLocal.findByUuid(cssFileUuid);
         	return cssGroup;
         } catch (Exception e) {

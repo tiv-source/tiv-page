@@ -43,7 +43,7 @@ public class ContentItemConverter extends StrutsTypeConverter {
             LOGGER.trace("Versuche ContentItem anhand der UUID aus der Datenbank zu holen.");
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            ContentItemDaoLocal contentItemDaoLocal = (ContentItemDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/ContentItemDao");
+            ContentItemDaoLocal contentItemDaoLocal = (ContentItemDaoLocal) initialContext.lookup("java:global/tiv-page/dao/ContentItemDao");
             LOGGER.trace("Konnte ContentItem anhand der UUID aus der Datenbank holen.");
             return contentItemDaoLocal.findByUuid(values[0]);
         } catch (Exception e) {

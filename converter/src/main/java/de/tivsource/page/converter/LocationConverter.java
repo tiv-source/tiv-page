@@ -43,7 +43,7 @@ public class LocationConverter extends StrutsTypeConverter {
         try {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            LocationDaoLocal locationDaoLocal = (LocationDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/LocationDao");
+            LocationDaoLocal locationDaoLocal = (LocationDaoLocal) initialContext.lookup("java:global/tiv-page/dao/LocationDao");
             return locationDaoLocal.findByUuidWidthEvents(values[0]);
         } catch (Exception e) {
         	LOGGER.info("Keine gültige Location UUID angegeben.");

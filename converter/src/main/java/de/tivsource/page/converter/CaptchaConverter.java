@@ -39,7 +39,7 @@ public class CaptchaConverter extends StrutsTypeConverter {
             String uuid = values[0];
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            CaptchaDaoLocal captchaDaoLocal = (CaptchaDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/CaptchaDao");
+            CaptchaDaoLocal captchaDaoLocal = (CaptchaDaoLocal) initialContext.lookup("java:global/tiv-page/dao/CaptchaDao");
             return captchaDaoLocal.findByUuid(uuid);
         } catch (Exception e) {
             LOGGER.info("Keinen gültigen Captcha angegeben.");

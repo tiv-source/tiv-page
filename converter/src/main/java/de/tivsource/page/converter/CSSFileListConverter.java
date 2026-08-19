@@ -43,7 +43,7 @@ public class CSSFileListConverter extends StrutsTypeConverter {
             try {
             	CSSFileDaoLocal cssFileDaoLocal;
                 Context earContext = new InitialContext();
-                cssFileDaoLocal = (CSSFileDaoLocal) earContext.lookup("java:global/tiv-page/dao-0.0.1/CSSFileDao");
+                cssFileDaoLocal = (CSSFileDaoLocal) earContext.lookup("java:global/tiv-page/dao/CSSFileDao");
                 CSSFile cssFile = cssFileDaoLocal.findByUuid(cssFileUuid);
                 files.add(cssFile);
             }

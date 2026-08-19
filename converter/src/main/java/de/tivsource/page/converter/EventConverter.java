@@ -42,7 +42,7 @@ public class EventConverter extends StrutsTypeConverter {
         try {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            EventDaoLocal eventDaoLocal = (EventDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/EventDao");
+            EventDaoLocal eventDaoLocal = (EventDaoLocal) initialContext.lookup("java:global/tiv-page/dao/EventDao");
             return eventDaoLocal.findByUuid(values[0]);
         } catch (Exception e) {
         	LOGGER.info("Keine gültige Event UUID angegeben.");

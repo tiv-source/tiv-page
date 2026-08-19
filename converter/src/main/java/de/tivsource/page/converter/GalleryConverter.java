@@ -42,7 +42,7 @@ public class GalleryConverter extends StrutsTypeConverter {
         try {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
-            GalleryDaoLocal galleryDaoLocal = (GalleryDaoLocal) initialContext.lookup("java:global/tiv-page/dao-0.0.1/GalleryDao");
+            GalleryDaoLocal galleryDaoLocal = (GalleryDaoLocal) initialContext.lookup("java:global/tiv-page/dao/GalleryDao");
             return galleryDaoLocal.findByUuid(values[0]);
         } catch (Exception e) {
         	LOGGER.info("Keine gültige Gallery UUID angegeben.");
