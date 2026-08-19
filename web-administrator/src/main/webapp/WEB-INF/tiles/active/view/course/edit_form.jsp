@@ -151,15 +151,8 @@
                     parentTheme="css_xhtml"
                     cssStyle="padding: 0.3em;"
                     labelposition="left"
+                    readonly="true"
                 />
-                <script type="text/javascript">
-                $('#edit_course_startDate').datetimepicker({ 
-                	datepicker: true,
-                    format: 'd.m.Y H:i',
-                	lang: 'de',
-                	defaultDate: ''
-                });
-                </script>
               </div>
 
               <div class="field">

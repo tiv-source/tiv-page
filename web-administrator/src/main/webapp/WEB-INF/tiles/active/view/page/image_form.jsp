@@ -29,7 +29,7 @@
 
               <div class="field">
                 <label for="picture" class="label">Aktuelles Bild:</label>
-                <img alt="" src="/image/pictureitem/<struts:property value="page.uuid" />/normal.png?cache=false">
+                <img alt="" src="/admin/pictureitem/<struts:property value="page.uuid" />/normal.html?cache=false">
               </div>
 
               <div class="field">

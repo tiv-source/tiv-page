@@ -1,6 +1,7 @@
 <%@page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="struts" uri="/struts-tags" %>
 
+<struts:url var="salutationBackupUrl" action="backup"  namespace="/system/salutation" />
 <struts:url var="salutationAddUrl" action="addForm" namespace="/system/salutation" />
 <struts:url var="remoteurl" action="table" namespace="/system/salutation"/>
 
@@ -38,6 +39,11 @@ function formatIsoDate(celldate, options, rowObject) {
 
       <!--  Start MAIN -->
       <div class="content">
+        <div class="sub_menu">
+          <struts:a href="%{salutationBackupUrl}">
+            <struts:text name="salutation.backup"/>
+          </struts:a>
+        </div>
         <div class="sub_menu">
           <struts:a href="%{salutationAddUrl}">
             <struts:text name="salutation.add"/>

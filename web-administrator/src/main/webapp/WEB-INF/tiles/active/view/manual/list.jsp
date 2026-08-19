@@ -37,7 +37,7 @@ function formatIsoDate(celldate, options, rowObject) {
 
 <script type="text/javascript">
 function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
+	return "<img src='/admin/pictureitem/" + cellvalue + "/thumbnail.html?cache=false'/>";
 }
 </script>
 

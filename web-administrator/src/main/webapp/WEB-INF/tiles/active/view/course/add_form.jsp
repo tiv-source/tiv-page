@@ -40,7 +40,7 @@
                     listValue="%{getName(getText('language'))}"
                     listKey="uuid"
                     multiple="false"
-                    value="event.location.{uuid}"
+                    value="course.location.{uuid}"
                     list="locationList"
                 />
               </div>

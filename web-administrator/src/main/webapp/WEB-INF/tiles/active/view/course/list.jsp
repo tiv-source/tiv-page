@@ -62,6 +62,7 @@ $(function () {
         colNames: [
         	'<struts:text name="picture"/>',
             '<struts:text name="course.descriptionMap.DE.name"/>',
+            '<struts:text name="course.number"/>',
             '<struts:text name="location.descriptionMap.DE.name"/>',
             '<struts:text name="course.pictureOnPage.table"/>',
             '<struts:text name="visible"/>',
@@ -72,6 +73,7 @@ $(function () {
         colModel: [
             { name: "uuid",                            width:  140, align: "center", sortable: false, formatter:formatPicture },
             { name: "descriptionMap.DE.name",          width:  140, align: "left" },
+            { name: "number",                          width:  140, align: "left" },
             { name: "location.descriptionMap.DE.name", width:  140, align: "left" },
             { name: "pictureOnPage",                   width:  140, align: "center", formatter:formatTrueFalse },
             { name: "visible",                         width:  140, align: "center", formatter:formatTrueFalse },
