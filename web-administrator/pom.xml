@@ -49,7 +49,7 @@
 		</dependency>
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
-			<artifactId>mail-reservation</artifactId>
+			<artifactId>utilities</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

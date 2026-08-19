@@ -8,9 +8,9 @@
 		<groupId>de.tivsource.page</groupId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>mail-reservation</artifactId>
+	<artifactId>utilities</artifactId>
 	<packaging>jar</packaging>
-	<name>Mail Reservation Package</name>
+	<name>Utility Package</name>
 	<url>http://page.tivsource.de/</url>
 	<build>
 		<plugins>

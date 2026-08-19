@@ -215,7 +215,7 @@
 	    <module>entity</module>
 	    <module>exceptions</module>
 	    <module>install</module>
-	    <module>mail-reservation</module>
+	    <module>utilities</module>
 	    <module>persistence</module>
 	    <module>restore</module>
 		<module>struts2-ejb3plugin</module>
