@@ -37,6 +37,8 @@ public interface CSSGroupDaoLocal {
     
     public Boolean hasReferences(String uuid);
 
+    public Boolean isCSSGroup(String uuid);
+
     public CSSGroup findByUuid(String uuid);
     
     /**

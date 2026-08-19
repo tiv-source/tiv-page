@@ -36,9 +36,18 @@ public class PictureItemDao implements PictureItemDaoLocal {
      */
     @Override
     public Boolean isPictureItemUuid(String uuid) {
+        LOGGER.info("isPictureItemUuid(String uuid) aufgerufen.");
         Query query = entityManager.createQuery("select pi from PictureItem pi where pi.uuid = :uuid and pi.visible = :visible order by pi.uuid asc");
         query.setParameter("uuid", uuid);
         query.setParameter("visible", true);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    @Override
+    public Boolean isPictureItemUuidUncheckedVisibility(String uuid) {
+        LOGGER.info("isPictureItemUuid(String uuid) aufgerufen.");
+        Query query = entityManager.createQuery("select pi from PictureItem pi where pi.uuid = :uuid order by pi.uuid asc");
+        query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
 

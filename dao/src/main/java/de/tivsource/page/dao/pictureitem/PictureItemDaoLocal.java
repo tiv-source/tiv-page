@@ -15,6 +15,8 @@ public interface PictureItemDaoLocal {
 
     public Boolean isPictureItemUuid(String uuid);
 
+    public Boolean isPictureItemUuidUncheckedVisibility(String uuid);
+
     public PictureItem findByUuid(String uuid);
 
 }// Ende interface

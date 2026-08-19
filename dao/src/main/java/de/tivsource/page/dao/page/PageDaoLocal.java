@@ -41,6 +41,8 @@ public interface PageDaoLocal {
      */
     public Boolean isPageUrl(String urlName);
 
+    public Boolean isPageUuidWithoutVisibleCheck(String uuid);
+
     public Boolean hasMenuEntry(String uuid);
 
     public Boolean hasSubSumption(String uuid);

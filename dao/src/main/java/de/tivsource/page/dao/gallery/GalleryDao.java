@@ -71,6 +71,16 @@ public class GalleryDao implements GalleryDaoLocal {
         return (query.getResultList().size() > 0 ? true : false);
 	}
 
+    /* (non-Javadoc)
+     * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#isGalleryWithoutVisibleCheck(java.lang.String)
+     */
+    @Override
+    public Boolean isGalleryWithoutVisibleCheck(String uuid) {
+        Query query = entityManager.createQuery("select g from Gallery g where g.uuid = :uuid order by g.uuid asc");
+        query.setParameter("uuid", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
 	/* (non-Javadoc)
 	 * @see de.tivsource.page.dao.gallery.GalleryDaoLocal#isGalleryTechnical(java.lang.String)
 	 */

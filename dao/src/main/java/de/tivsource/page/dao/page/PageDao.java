@@ -77,6 +77,16 @@ public class PageDao implements PageDaoLocal {
     }
 
     /* (non-Javadoc)
+     * @see de.tivsource.page.dao.page.PageDaoLocal#isPageUuidWithoutVisibleCheck(java.lang.String)
+     */
+    @Override
+    public Boolean isPageUuidWithoutVisibleCheck(String uuid) {
+        Query query = entityManager.createQuery("select p from Page p where p.uuid = :uuid order by p.uuid asc");
+        query.setParameter("uuid", uuid);
+        return (query.getResultList().size() > 0 ? true : false);
+    }
+
+    /* (non-Javadoc)
      * @see de.tivsource.page.dao.page.PageDaoLocal#hasMenuEntry(java.lang.String)
      */
     @Override

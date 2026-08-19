@@ -107,6 +107,17 @@ public class CSSGroupDao implements CSSGroupDaoLocal {
     }
 
     /* (non-Javadoc)
+     * @see de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal#isCSSGroup(java.lang.String)
+     */
+    @Override
+    public Boolean isCSSGroup(String uuid) {
+        LOGGER.info("isCSSGroup(String uuid) aufgerufen");
+        LOGGER.info("CSSGroup UUID: " + uuid);
+        CSSGroup cssGroup = entityManager.find(CSSGroup.class, uuid);
+        return (cssGroup != null ? true : false);
+    }
+
+    /* (non-Javadoc)
      * @see de.tivsource.shop.dao.cssgroup.CSSGroupDaoLocal#findByUuid(java.lang.String)
      */
     @Override

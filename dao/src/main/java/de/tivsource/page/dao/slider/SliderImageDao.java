@@ -31,7 +31,7 @@ public class SliderImageDao implements SliderImageDaoLocal {
     private EntityManager entityManager;
 
     public Boolean isSliderImageUuid(String uuid) {
-        Query query = entityManager.createQuery("select si from SliderImage si where pi.uuid = :uuid order by si.uuid asc");
+        Query query = entityManager.createQuery("select si from SliderImage si where si.uuid = :uuid order by si.uuid asc");
         query.setParameter("uuid", uuid);
         return (query.getResultList().size() > 0 ? true : false);
     }
