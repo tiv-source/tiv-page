@@ -12,9 +12,11 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.pdf.PDFDaoLocal;
 import de.tivsource.page.entity.pdf.PDF;
 import de.tivsource.page.entity.pdf.PDFImage;
@@ -41,6 +43,11 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
     private PDFDaoLocal pdfDaoLocal;
 
     private PDF pdf;
+
+    @Autowired
+    public ImageEditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=3)
     public PDF getPdf() {

@@ -9,9 +9,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.menuentry.LinkEntry;
 import de.tivsource.page.dao.linkentry.LinkEntryDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -59,7 +61,12 @@ public class FormAction extends EmptyAction {
 	private LinkEntry linkEntry;
 
 	private String uncheckLinkEntry;
-	
+
+    @Autowired
+    public FormAction(PropertyService propertyService) {
+        super(propertyService);
+    }
+
 	public LinkEntry getLinkEntry() {
         return linkEntry;
     }

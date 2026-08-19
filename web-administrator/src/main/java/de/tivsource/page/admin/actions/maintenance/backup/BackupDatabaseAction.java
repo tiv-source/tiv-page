@@ -9,10 +9,12 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.backup.BackupZipFile;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.appointment.AppointmentDaoLocal;
@@ -100,6 +102,11 @@ public class BackupDatabaseAction extends EmptyAction {
     private SliderDaoLocal sliderDaoLocal;
 
 	private InputStream fileStream;
+
+    @Autowired
+    public BackupDatabaseAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
 	@Override
     @Actions({

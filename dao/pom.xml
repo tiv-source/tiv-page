@@ -21,11 +21,10 @@
 			<version>9.1.3</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
-			<version>0.0.1</version>
+			<version>${revision}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -84,7 +83,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>tiv-page-dao</finalName>
+		<finalName>dao</finalName>
 	</build>
 
 	<organization>

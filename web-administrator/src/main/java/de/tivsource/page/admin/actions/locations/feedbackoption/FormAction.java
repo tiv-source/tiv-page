@@ -9,9 +9,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.feedback.FeedbackOptionDaoLocal;
 import de.tivsource.page.entity.feedback.FeedbackOption;
 
@@ -56,6 +58,11 @@ public class FormAction extends EmptyAction {
 	private String uncheckFeedbackOption;
 
 	private String lang = "DE";
+
+    @Autowired
+    public FormAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
 	public FeedbackOption getFeedbackOption() {
         return feedbackOption;

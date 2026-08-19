@@ -12,9 +12,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.picture.Picture;
 
@@ -45,6 +47,11 @@ public class DeleteAction extends EmptyAction {
     private PictureDaoLocal pictureDaoLocal;
 
     private Picture picture;
+
+    @Autowired
+    public DeleteAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=3)
     public Picture getPicture() {

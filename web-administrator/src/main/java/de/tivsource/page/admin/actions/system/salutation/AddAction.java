@@ -13,9 +13,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.salutation.Salutation;
 import de.tivsource.page.dao.salutation.SalutationDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -52,6 +54,11 @@ public class AddAction extends EmptyAction {
     private SalutationDaoLocal salutationDaoLocal;
     
     private Salutation salutation;
+
+    @Autowired
+    public AddAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=3)
 	public Salutation getSalutation() {

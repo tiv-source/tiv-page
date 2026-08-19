@@ -12,9 +12,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.property.Property;
 
@@ -54,6 +56,11 @@ public class EditAction extends EmptyAction {
     private PropertyDaoLocal propertyDaoLocal;
 
     private Property property;
+
+    @Autowired
+    public EditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=1)
     public Property getProperty() {

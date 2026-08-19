@@ -13,9 +13,11 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.backup.BackupCountry;
 import de.tivsource.page.dao.country.CountryDaoLocal;
 
@@ -42,6 +44,11 @@ public class BackupAction extends EmptyAction {
     private InputStream fileStream;
 
     private static byte[] buffer = new byte[1024];
+
+    @Autowired
+    public BackupAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @Override
     @Actions({

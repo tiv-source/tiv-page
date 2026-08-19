@@ -8,8 +8,10 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 
 /**
  * 
@@ -34,6 +36,11 @@ public class QueueAction extends EmptyAction {
 	 * Statischer Logger der Klasse.
 	 */
     private static final Logger LOGGER = LogManager.getLogger(QueueAction.class);
+
+    @Autowired
+    public QueueAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
 	@Override
     @Actions({

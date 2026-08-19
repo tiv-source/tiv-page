@@ -10,10 +10,12 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.restore.RestoreZipFile;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.administration.RoleDaoLocal;
 import de.tivsource.page.dao.administration.UserDaoLocal;
 import de.tivsource.page.dao.event.EventDaoLocal;
@@ -95,6 +97,11 @@ public class RestoreAction extends EmptyAction {
     private SliderDaoLocal sliderDaoLocal;
 
     private File restoreFile;
+
+    @Autowired
+    public RestoreAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     public void setRestoreFile(File restoreFile) {
         this.restoreFile = restoreFile;

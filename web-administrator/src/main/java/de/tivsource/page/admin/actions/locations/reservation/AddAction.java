@@ -13,9 +13,11 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.reservation.Reservation;
@@ -47,6 +49,11 @@ public class AddAction extends EmptyAction {
     private String redirect;
     
     private Reservation reservation;
+
+    @Autowired
+    public AddAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=1)
     public Reservation getReservation() {

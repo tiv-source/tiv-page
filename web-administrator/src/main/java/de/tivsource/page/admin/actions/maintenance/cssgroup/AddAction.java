@@ -16,9 +16,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssfile.CSSFileDaoLocal;
@@ -60,6 +62,11 @@ public class AddAction extends EmptyAction {
     private CSSGroupDaoLocal cssGroupDaoLocal;
 
     private CSSGroup cssGroup;
+
+    @Autowired
+    public AddAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=1)
     public CSSGroup getCssGroup() {

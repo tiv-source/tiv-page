@@ -12,9 +12,11 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.vacancy.VacancyDaoLocal;
 import de.tivsource.page.entity.pictureitem.PictureItemImage;
 import de.tivsource.page.entity.vacancy.Vacancy;
@@ -41,6 +43,11 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
     private VacancyDaoLocal vacancyDaoLocal;
 
     private Vacancy vacancy;
+
+    @Autowired
+    public ImageEditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=3)
     public Vacancy getVacancy() {

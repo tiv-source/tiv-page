@@ -10,6 +10,7 @@
 	</parent>
 	<artifactId>web-user</artifactId>
 	<packaging>war</packaging>
+	<name>Internetseitenmodul</name>
 	<url>http://page.tivsource.de/</url>
 
 
@@ -65,7 +66,6 @@
 			<version>${revision}</version>
 			<scope>provided</scope>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -217,5 +217,5 @@
 		<name>T.I.V. Consulting GmbH</name>
 		<url>http://www.tiv-consulting.de/</url>
 	</organization>
-	<name>Internetseitenmodul</name>
+
 </project>

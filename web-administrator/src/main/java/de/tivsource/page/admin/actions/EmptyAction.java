@@ -16,9 +16,9 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
+import de.tivsource.page.admin.services.PropertyService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -43,8 +43,7 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	 */
     private static final Logger LOGGER = LogManager.getLogger(EmptyAction.class);
 
-    @InjectEJB(name="PropertyDao")
-    private PropertyDaoLocal propertyDaoLocal;
+    private final PropertyService propertyService;
 
 	/**
 	 * Servlet-Request der die Post und Get Daten der Session enthält.
@@ -60,9 +59,11 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	 */
 	private String language = null;
 
-	public EmptyAction() {
-		super();
-	}
+    @Autowired
+    public EmptyAction(PropertyService propertyService) {
+        super();
+        this.propertyService = propertyService;
+    }
 
 	public static Logger getLogger() {
 		return LOGGER;
@@ -103,8 +104,8 @@ public class EmptyAction extends ActionSupport implements Preparable, ServletReq
 	}
 
     public String getProperty(String key) {
-        if(isValidKey(key) && propertyDaoLocal.isKey(key)) {
-            return propertyDaoLocal.findByKey(key).getValue();
+        if(isValidKey(key)) {
+            return propertyService.getProperty(key);
         }
         return "Invalid Key: " + key;
     }

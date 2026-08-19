@@ -9,9 +9,11 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.feedback.FeedbackOptionDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.enumeration.Language;
@@ -43,6 +45,11 @@ public class EditAction extends EmptyAction {
     private FeedbackOption feedbackOption;
 
     private String lang = "DE";
+
+    @Autowired
+    public EditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     /**
      * @return the feedbackOption

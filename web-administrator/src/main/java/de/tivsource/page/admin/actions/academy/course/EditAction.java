@@ -13,9 +13,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
@@ -71,6 +73,11 @@ public class EditAction extends EmptyAction {
     private List<Lecturer> lecturerList;
 
     private List<Location> locationList;
+
+    @Autowired
+    public EditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=3)
     public Course getCourse() {

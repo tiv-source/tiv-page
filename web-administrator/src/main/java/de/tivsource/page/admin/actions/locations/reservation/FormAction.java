@@ -14,9 +14,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.reservation.Reservation;
@@ -73,6 +75,11 @@ public class FormAction extends EmptyAction {
     private Reservation reservation;
 
     private String uncheckedReservation;
+
+    @Autowired
+    public FormAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter
     public void setUncheckedEvent(String uncheckedEvent) {

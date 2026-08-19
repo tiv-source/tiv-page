@@ -8,9 +8,11 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.picture.PictureDaoLocal;
 import de.tivsource.page.entity.picture.Picture;
 
@@ -51,6 +53,11 @@ public class IndexAction extends EmptyAction {
 
     public void setPicture(String uncheckPicture) {
         this.uncheckPicture = uncheckPicture;
+    }
+
+    @Autowired
+    public IndexAction(PropertyService propertyService) {
+        super(propertyService);
     }
 
 	@Override

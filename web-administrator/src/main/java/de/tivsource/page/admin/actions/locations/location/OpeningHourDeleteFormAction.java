@@ -14,9 +14,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.location.OpeningHour;
@@ -54,7 +56,12 @@ public class OpeningHourDeleteFormAction extends EmptyAction {
 	private String uncheckLocation;
 
 	private Integer openingHoursIndex;
-	
+
+    @Autowired
+    public OpeningHourDeleteFormAction(PropertyService propertyService) {
+        super(propertyService);
+    }
+
     public Location getLocation() {
         return location;
     }

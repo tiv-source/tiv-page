@@ -40,10 +40,10 @@ M2_PROJECT_DIR="$HOMEDIR/.m2/repository/de/tivsource/page"
 if [ -d "$M2_PROJECT_DIR" ]; then
     echo "Räume alte Versionen in allen Modul-Ordnern unter .m2 auf..."
     
-    # -mindepth 3 und -maxdepth 3 sorgt dafür, dass wir genau die Versions-Ebene treffen
+    # -mindepth 2 und -maxdepth 2 sorgt dafür, dass wir genau die Versions-Ebene treffen
     # (z. B. de/tivsource/page/modulname/0.0.1)
     # Alles, was nicht der aktuellen Version entspricht, fliegt raus.
-    find "$M2_PROJECT_DIR" -mindepth 3 -maxdepth 3 -type d ! -name "$BUILD_VERSION" -exec rm -rf {} +
+#    find "$M2_PROJECT_DIR" -mindepth 2 -maxdepth 2 -type d ! -name "$BUILD_VERSION" -exec rm -rf {} +
     
     echo "Aufräumen beendet."
 fi

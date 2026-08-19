@@ -9,9 +9,11 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.backup.BackupFiles;
+import de.tivsource.page.admin.services.PropertyService;
 
 /**
  * 
@@ -31,6 +33,11 @@ public class BackupFilesAction extends EmptyAction {
     private static final Logger LOGGER = LogManager.getLogger(BackupFilesAction.class);
 
 	private InputStream fileStream;
+
+    @Autowired
+    public BackupFilesAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
 	@Override
     @Actions({

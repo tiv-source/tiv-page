@@ -1,16 +1,38 @@
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	version="3.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee 
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
 	<display-name>TIV Page Administrator Application</display-name>
-	<context-param>
-		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
-		<param-value>/WEB-INF/tiles.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
-	</listener>
+
+
+    <!-- Spring ContextLoaderListener: startet Spring mit AppConfig -->
+    <context-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+
+    <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>de.tivsource.page.admin.config.AppConfig</param-value>
+    </context-param>
+
+    <!-- Den Spring-Listener registrieren, damit Spring startet -->
+    <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+      <param-name>definitions-config</param-name>
+      <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>
+
+    <listener>
+      <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>

@@ -12,9 +12,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.common.css.CSSGroup;
 import de.tivsource.page.dao.cssfile.CSSFileDaoLocal;
@@ -63,6 +65,11 @@ public class FormAction extends EmptyAction {
     private CSSGroup cssGroup;
 
     private String uncheckCssGroup;
+
+    @Autowired
+    public FormAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     public CSSGroup getCssGroup() {
         return cssGroup;

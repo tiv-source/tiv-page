@@ -19,9 +19,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.captcha.Captcha;
 import de.tivsource.page.common.captcha.image.CaptchaImage;
 import de.tivsource.page.dao.captcha.CaptchaDaoLocal;
@@ -64,6 +66,11 @@ public class AddAction extends EmptyAction implements UploadedFilesAware {
     private PropertyDaoLocal propertyDaoLocal;
 
     private Captcha captcha;
+
+    @Autowired
+    public AddAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     @StrutsParameter(depth=2)
     public Captcha getCaptcha() {

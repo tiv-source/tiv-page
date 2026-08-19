@@ -12,9 +12,11 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
@@ -45,7 +47,12 @@ public class UnitImageEditAction extends EmptyAction implements UploadedFilesAwa
     private CourseUnit courseUnit;
 
     private UploadedFile uploadedFile;
-    
+
+    @Autowired
+    public UnitImageEditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
+
     @StrutsParameter(depth=3)
     public Course getCourse() {
         return course;

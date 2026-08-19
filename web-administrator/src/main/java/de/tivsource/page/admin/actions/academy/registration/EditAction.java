@@ -14,9 +14,11 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.country.Country;
 import de.tivsource.page.common.salutation.Salutation;
 import de.tivsource.page.common.simple.SimpleBooleanType;
@@ -73,6 +75,11 @@ public class EditAction extends EmptyAction {
     private List<SimpleBooleanType> sbtList;
 
     private Registration registration;
+
+    @Autowired
+    public EditAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     public List<Salutation> getSalutations() {
         return salutations;

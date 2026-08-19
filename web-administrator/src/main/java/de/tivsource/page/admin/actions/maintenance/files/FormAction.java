@@ -9,8 +9,10 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.PropertyService;
 
 /**
  * 
@@ -40,6 +42,11 @@ public class FormAction extends EmptyAction {
     private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
     private String file;
+
+    @Autowired
+    public FormAction(PropertyService propertyService) {
+        super(propertyService);
+    }
 
     public String getFile() {
         return file;
