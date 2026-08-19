@@ -9,26 +9,23 @@ import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
-
-import org.apache.pdfbox.exceptions.COSVisitorException;
-
 import de.tivsource.page.entity.reservation.Reservation;
 import de.tivsource.page.helper.EmailTemplate;
 import de.tivsource.page.helper.pdf.CreateReservationPDF;
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
+import jakarta.activation.FileDataSource;
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.internet.MimeUtility;
 
 public class ReservationMail {
 
@@ -111,7 +108,7 @@ public class ReservationMail {
         this.emailTemplate = (EmailTemplate)EmailTemplate.getEmailTemplate(template);
 	}
 
-	public void send() throws MessagingException, COSVisitorException, IOException {
+	public void send() throws MessagingException, IOException {
 
         // Datums Formatierung
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm dd-MM-yyyy ");
@@ -143,7 +140,7 @@ public class ReservationMail {
         ));
 
         message.addRecipients(Message.RecipientType.TO,
-        		new javax.mail.Address[]{
+        		new jakarta.mail.Address[]{
         			new InternetAddress(
         					reservation.getEmail(), 
         					MimeUtility.encodeText(reservation.getFirstname() +" "+ reservation.getLastname(),"UTF-8", "Q")
@@ -154,7 +151,7 @@ public class ReservationMail {
         message.addRecipients(Message.RecipientType.CC,
         		emailTemplate.getCcAddresses());
         message.addRecipients(Message.RecipientType.BCC,
-        	new javax.mail.Address[]{
+        	new jakarta.mail.Address[]{
     			new InternetAddress(
     					bccAddress, 
     					MimeUtility.encodeText("BCC Empfänger","UTF-8", "Q")
@@ -163,7 +160,7 @@ public class ReservationMail {
         );
 
         // Setze die ReplyTo Adresse
-        message.setReplyTo(new javax.mail.Address[]{
+        message.setReplyTo(new jakarta.mail.Address[]{
         		new InternetAddress(
         				replyToAddress, 
         				MimeUtility.encodeText(replyToName, "UTF-8", "Q")

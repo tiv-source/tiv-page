@@ -4,21 +4,19 @@
 package de.tivsource.page.helper.pdf;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-import javax.imageio.ImageIO;
-
-import org.apache.pdfbox.exceptions.COSVisitorException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
-import org.apache.pdfbox.pdmodel.graphics.xobject.PDPixelMap;
-import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import de.tivsource.page.entity.reservation.Reservation;
 import de.tivsource.page.helper.barcode.CreateBarcode;
@@ -29,7 +27,10 @@ import de.tivsource.page.helper.barcode.CreateBarcode;
  */
 public class CreateReservationPDF {
 
-	private static final String HTDOCS = "/var/www/html";
+    /**
+     * Statischer Logger der Klasse.
+     */
+    private static final Logger LOGGER = LogManager.getLogger(CreateReservationPDF.class);
 
 	private File file;
 	
@@ -61,39 +62,40 @@ public class CreateReservationPDF {
     /**
      * Variablen für den PDF Barcode
      */
+    private String pdfBarcodeFilePath;
     private File pdfBarcodeFile;
-    private PDXObjectImage pdfBarcodeImage;
+    private PDImageXObject pdfBarcodeImage;
     private float pdfBarcodeScale = 0.538f;
 
     /**
      * Variablen für das Title Bild
      */
-    private PDXObjectImage titleImage;
+    private PDImageXObject titleImage;
     private float titleScale = 0.858f;
 
     /**
      * Variablen für das Logo Bild
      */
     private File logoFile;
-    private PDXObjectImage logoImage;
+    private PDImageXObject logoImage;
     private float logoScale = 0.738f;
 
     /**
      * Variablen für das Location Bild
      */
-    private PDXObjectImage locationImage;
+    private PDImageXObject locationImage;
     private float locationScale = 0.35f;
 
     /**
      * Variablen für das Werbe Bild
      */
     private File adFile;
-    private PDXObjectImage adImage;
+    private PDImageXObject adImage;
     private float adScale = 0.443f;
 
     private File fontFile;
     
-    public CreateReservationPDF(File file, Reservation reservation, File logoFile, File adFile, File fontFile) throws IOException, COSVisitorException {
+    public CreateReservationPDF(File file, Reservation reservation, File logoFile, File adFile, File fontFile) throws IOException {
 		super();
 		this.file = file;
 		this.reservation = reservation;
@@ -109,43 +111,54 @@ public class CreateReservationPDF {
     	// Erstelle das Dokument
         pdDocument = new PDDocument();
         // Erstelle die Seite
-        pdPage = new PDPage(PDPage.PAGE_SIZE_A4);
+        pdPage = new PDPage(PDRectangle.A4);
         // Füge die Seite zum Dokument hinzu
         pdDocument.addPage(pdPage);
         // Erstelle Font Objekt
-        pdFont = PDTrueTypeFont.loadTTF(pdDocument, fontFile);
+        //pdFont = PDTrueTypeFont.loadTTF(pdDocument, fontFile);
+        pdFont = PDType0Font.load(pdDocument, fontFile);
 
+        // Erstelle Pfad fuer Barcode Bild
+        pdfBarcodeFilePath = "/tmp/" + reservation.getUuid() + ".png";
         // Erstelle Barcode Bild
-        pdfBarcodeFile = new File("/tmp/" + reservation.getUuid() + ".png");
+        pdfBarcodeFile = new File(pdfBarcodeFilePath);
         new CreateBarcode(pdfBarcodeFile, reservation.getUuid());
-        BufferedImage pdfBarcodeAwtImage = ImageIO.read(pdfBarcodeFile);
-        pdfBarcodeImage = new PDPixelMap(pdDocument, pdfBarcodeAwtImage);
+        // Lade das bild in das Document
+        pdfBarcodeImage = PDImageXObject.createFromFile(pdfBarcodeFilePath, pdDocument);
 
-        // Erstelle Event Bild
-		BufferedImage titleAwtImage = ImageIO.read(new File(HTDOCS
-				+ reservation.getEvent().getPicture().getPictureUrl("NORMAL")));
-        titleImage = new PDPixelMap(pdDocument, titleAwtImage);
+        LOGGER.info("UUID des Events: " + reservation.getEvent().getUuid());
+        LOGGER.info("UUID der Location: " + reservation.getEvent().getLocation().getUuid());
+        
+        // Füge Event Bild ein
+        titleImage = PDImageXObject.createFromFile(
+                reservation.getEvent().getImage().getNormal(),
+                pdDocument
+                );
 
-        // Erstelle Location Bild
-		BufferedImage locationAwtImage = ImageIO.read(new File(HTDOCS
-				+ reservation.getEvent().getLocation().getPicture()
-						.getPictureUrl("NORMAL")));
-        locationImage = new PDPixelMap(pdDocument, locationAwtImage);
+        // Füge Location Bild ein
+        locationImage = PDImageXObject.createFromFile(
+                reservation.getEvent().getLocation().getImage().getNormal(),
+                pdDocument
+                );
 
-        // Erstelle Bild
-        BufferedImage logoAwtImage = ImageIO.read(logoFile);
-        logoImage = new PDPixelMap(pdDocument, logoAwtImage);
+        // Füge Logo ein
+        logoImage = PDImageXObject.createFromFile(
+                logoFile.getAbsolutePath(),
+                pdDocument
+                );
 
-        // Erstelle Bild
-        BufferedImage adAwtImage = ImageIO.read(adFile);
-        adImage = new PDPixelMap(pdDocument, adAwtImage);
+        // Füge Werbung ein
+        adImage = PDImageXObject.createFromFile(
+                adFile.getAbsolutePath(),
+                pdDocument
+                );
 
         // Erstelle das ContentStream Objekt
         pdPageContentStream = new PDPageContentStream(pdDocument, pdPage);
 
     }
 
-    private void close() throws IOException, COSVisitorException {
+    private void close() throws IOException {
     	// Speicher das Dokument unter dem angegebenen Pfad und Namen
     	pdDocument.save(file);
     	// Schließe das Dokument
@@ -155,11 +168,11 @@ public class CreateReservationPDF {
 
     private void generate() throws IOException {
 
-    	pdPageContentStream.drawXObject(logoImage, 40, 713, logoImage.getWidth() * logoScale, logoImage.getHeight() * logoScale);
+    	pdPageContentStream.drawImage(logoImage, 40, 713, logoImage.getWidth() * logoScale, logoImage.getHeight() * logoScale);
     	
     	generateHeader();
 
-    	pdPageContentStream.drawXObject(titleImage, 40, 452, titleImage.getWidth() * titleScale, titleImage.getHeight() * titleScale);
+    	pdPageContentStream.drawImage(titleImage, 40, 452, titleImage.getWidth() * titleScale, titleImage.getHeight() * titleScale);
 
     	generatePerson();
     	
@@ -169,11 +182,11 @@ public class CreateReservationPDF {
 
     	generateRectangle();
 
-    	pdPageContentStream.drawXObject(adImage, 39, 140, adImage.getWidth() * adScale, adImage.getHeight() * adScale);
+    	pdPageContentStream.drawImage(adImage, 39, 140, adImage.getWidth() * adScale, adImage.getHeight() * adScale);
 
-    	pdPageContentStream.drawXObject(locationImage, 345, 140, locationImage.getWidth() * locationScale, locationImage.getHeight() * locationScale);
+    	pdPageContentStream.drawImage(locationImage, 345, 140, locationImage.getWidth() * locationScale, locationImage.getHeight() * locationScale);
 
-        pdPageContentStream.drawXObject(pdfBarcodeImage, 20, 20, pdfBarcodeImage.getWidth() * pdfBarcodeScale, pdfBarcodeImage.getHeight() * pdfBarcodeScale);
+        pdPageContentStream.drawImage(pdfBarcodeImage, 20, 20, pdfBarcodeImage.getWidth() * pdfBarcodeScale, pdfBarcodeImage.getHeight() * pdfBarcodeScale);
 
         generateUuid();
         
@@ -184,10 +197,26 @@ public class CreateReservationPDF {
 	private void generateRectangle() throws IOException {
 		pdPageContentStream.setLineWidth(2f);
     	pdPageContentStream.setStrokingColor(new Color(239,128,21));
-    	pdPageContentStream.drawLine(20, 822, 576, 822);
-    	pdPageContentStream.drawLine(20, 120, 20, 822);
-    	pdPageContentStream.drawLine(20, 120, 576, 120);
-    	pdPageContentStream.drawLine(576, 822, 576, 120);
+    	//pdPageContentStream.drawLine(20, 822, 576, 822);
+    	pdPageContentStream.moveTo(20, 822);
+    	pdPageContentStream.lineTo(576, 822);
+    	pdPageContentStream.stroke();
+
+    	//pdPageContentStream.drawLine(20, 120, 20, 822);
+        pdPageContentStream.moveTo(20, 120);
+        pdPageContentStream.lineTo(20, 822);
+        pdPageContentStream.stroke();
+
+    	//pdPageContentStream.drawLine(20, 120, 576, 120);
+        pdPageContentStream.moveTo(20, 120);
+        pdPageContentStream.lineTo(576, 120);
+        pdPageContentStream.stroke();
+
+    	//pdPageContentStream.drawLine(576, 822, 576, 120);
+        pdPageContentStream.moveTo(576, 822);
+        pdPageContentStream.lineTo(576, 120);
+        pdPageContentStream.stroke();
+
     	pdPageContentStream.setLineWidth(1f);
 	}
 
@@ -197,59 +226,63 @@ public class CreateReservationPDF {
 		
 		pdPageContentStream.setLineWidth(2f);
     	pdPageContentStream.setStrokingColor(new Color(239,128,21));
-    	pdPageContentStream.drawLine(325, 130, 325, 440);
+    	//pdPageContentStream.drawLine(325, 130, 325, 440);
+        pdPageContentStream.moveTo(325, 130);
+        pdPageContentStream.lineTo(325, 440);
+        pdPageContentStream.stroke();
+
 
 		pdPageContentStream.setNonStrokingColor(Color.BLACK);
 
 		pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth(reservation.getEvent().getLocation().getName("de")) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 315 );
-    	pdPageContentStream.drawString(reservation.getEvent().getLocation().getName("de"));
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 315 );
+    	pdPageContentStream.showText(reservation.getEvent().getLocation().getName("de"));
     	pdPageContentStream.endText();
     	
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth(reservation.getEvent().getLocation().getAddress().getStreet()) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 300 );
-    	pdPageContentStream.drawString(reservation.getEvent().getLocation().getAddress().getStreet());
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 300 );
+    	pdPageContentStream.showText(reservation.getEvent().getLocation().getAddress().getStreet());
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth(reservation.getEvent().getLocation().getAddress().getZip() + " " + reservation.getEvent().getLocation().getAddress().getCity()) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 285 );
-    	pdPageContentStream.drawString(reservation.getEvent().getLocation().getAddress().getZip() + " " + reservation.getEvent().getLocation().getAddress().getCity());
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 285 );
+    	pdPageContentStream.showText(reservation.getEvent().getLocation().getAddress().getZip() + " " + reservation.getEvent().getLocation().getAddress().getCity());
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth("Tel.: " + reservation.getEvent().getLocation().getContactDetails().getTelephone()) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 265 );
-    	pdPageContentStream.drawString("Tel.: " + reservation.getEvent().getLocation().getContactDetails().getTelephone());
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 265 );
+    	pdPageContentStream.showText("Tel.: " + reservation.getEvent().getLocation().getContactDetails().getTelephone());
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
-    	text_width = (pdFont.getStringWidth("Fax: " + reservation.getEvent().getLocation().getContactDetails().getFax()) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 250 );
-    	pdPageContentStream.drawString("Fax: " + reservation.getEvent().getLocation().getContactDetails().getFax());
+    	text_width = (pdFont.getStringWidth("Fax: -"));
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 250 );
+    	pdPageContentStream.showText("Fax: -");
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth("E-Mail: " + reservation.getEvent().getLocation().getContactDetails().getEmail()) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 235 );
-    	pdPageContentStream.drawString("E-Mail: " + reservation.getEvent().getLocation().getContactDetails().getEmail());
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 235 );
+    	pdPageContentStream.showText("E-Mail: " + reservation.getEvent().getLocation().getContactDetails().getEmail());
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth(reservation.getEvent().getLocation().getContactDetails().getHomepage()) / 1000.0f) * fontSize;
-    	pdPageContentStream.moveTextPositionByAmount( 556 - text_width, 220 );
-    	pdPageContentStream.drawString(reservation.getEvent().getLocation().getContactDetails().getHomepage());
+    	pdPageContentStream.newLineAtOffset( 556 - text_width, 220 );
+    	pdPageContentStream.showText(reservation.getEvent().getLocation().getContactDetails().getHomepage());
     	pdPageContentStream.endText();
-    	
+
 	}
 
 	private void generatePerson() throws IOException {
@@ -257,26 +290,26 @@ public class CreateReservationPDF {
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 10 );
-    	pdPageContentStream.moveTextPositionByAmount( 50, 415 );
-    	pdPageContentStream.drawString( "Reservierung für:" );
+    	pdPageContentStream.newLineAtOffset( 50, 415 );
+    	pdPageContentStream.showText( "Reservierung für:" );
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 20 );
-    	pdPageContentStream.moveTextPositionByAmount( 50, 395 );
-    	pdPageContentStream.drawString( reservation.getGender() ? "Frau" : "Herrn" );
+    	pdPageContentStream.newLineAtOffset( 50, 395 );
+    	pdPageContentStream.showText( reservation.getGender() ? "Frau" : "Herrn" );
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 20 );
-    	pdPageContentStream.moveTextPositionByAmount( 50, 370 );
-    	pdPageContentStream.drawString( reservation.getFirstname() );
+    	pdPageContentStream.newLineAtOffset( 50, 370 );
+    	pdPageContentStream.showText( reservation.getFirstname() );
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 20 );
-    	pdPageContentStream.moveTextPositionByAmount( 50, 345 );
-    	pdPageContentStream.drawString( reservation.getLastname() );
+    	pdPageContentStream.newLineAtOffset( 50, 345 );
+    	pdPageContentStream.showText( reservation.getLastname() );
     	pdPageContentStream.endText();
 	}
 	
@@ -291,16 +324,16 @@ public class CreateReservationPDF {
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth("- " + reservation.getQuantity() + " -") / 1000.0f) * fontSize;
     	text_position = (100 - text_width) / 2;
-    	pdPageContentStream.moveTextPositionByAmount( 345 + text_position , 395 );
-    	pdPageContentStream.drawString( "- " + reservation.getQuantity() + " -" );
+    	pdPageContentStream.newLineAtOffset( 345 + text_position , 395 );
+    	pdPageContentStream.showText( "- " + reservation.getQuantity() + " -" );
     	pdPageContentStream.endText();
 
 		pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth("Pers.") / 1000.0f) * fontSize;
     	text_position = (100 - text_width) / 2;
-    	pdPageContentStream.moveTextPositionByAmount( 345 + text_position , 365 );
-    	pdPageContentStream.drawString( "Pers." );
+    	pdPageContentStream.newLineAtOffset( 345 + text_position , 365 );
+    	pdPageContentStream.showText( "Pers." );
     	pdPageContentStream.endText();
 
     	pdPageContentStream.addRect(465, 340, 90, 90);
@@ -312,16 +345,16 @@ public class CreateReservationPDF {
     	String time = simpleDateFormat.format(reservation.getTime());
     	text_width = (pdFont.getStringWidth(time) / 1000.0f) * fontSize;
     	text_position = (90 - text_width) / 2;
-    	pdPageContentStream.moveTextPositionByAmount( 465 + text_position , 395 );
-    	pdPageContentStream.drawString(time);
+    	pdPageContentStream.newLineAtOffset( 465 + text_position , 395 );
+    	pdPageContentStream.showText(time);
     	pdPageContentStream.endText();
 
 		pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
     	text_width = (pdFont.getStringWidth("Uhr") / 1000.0f) * fontSize;
     	text_position = (90 - text_width) / 2;
-    	pdPageContentStream.moveTextPositionByAmount( 465 + text_position , 365 );
-    	pdPageContentStream.drawString( "Uhr" );
+    	pdPageContentStream.newLineAtOffset( 465 + text_position , 365 );
+    	pdPageContentStream.showText( "Uhr" );
     	pdPageContentStream.endText();
 	}
 
@@ -332,22 +365,22 @@ public class CreateReservationPDF {
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 25 );
-    	pdPageContentStream.moveTextPositionByAmount( 40, 680 );
-    	pdPageContentStream.drawString( "Reservierungsbestätigung" );
+    	pdPageContentStream.newLineAtOffset( 40, 680 );
+    	pdPageContentStream.showText( "Reservierungsbestätigung" );
     	pdPageContentStream.endText();
 
     	
     	pdPageContentStream.setNonStrokingColor(new Color(239,128,21));
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 25 );
-    	pdPageContentStream.moveTextPositionByAmount( 40, 650 );
-    	pdPageContentStream.drawString( reservation.getEvent().getName("de") + " am " + date );
+    	pdPageContentStream.newLineAtOffset( 40, 650 );
+    	pdPageContentStream.showText( reservation.getEvent().getName("de") + " am " + date );
     	pdPageContentStream.endText();
 
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, 25 );
-    	pdPageContentStream.moveTextPositionByAmount( 40, 620 );
-    	pdPageContentStream.drawString( "im " + reservation.getEvent().getLocation().getName("de") );
+    	pdPageContentStream.newLineAtOffset( 40, 620 );
+    	pdPageContentStream.showText( "im " + reservation.getEvent().getLocation().getName("de") );
     	pdPageContentStream.endText();
 	}
 
@@ -359,8 +392,9 @@ public class CreateReservationPDF {
 		text_position = (556 - text_width) / 2;
     	pdPageContentStream.beginText();
     	pdPageContentStream.setFont( pdFont, fontSize );
-    	pdPageContentStream.moveTextPositionByAmount( 20 + text_position , 14 );
-    	pdPageContentStream.drawString(reservation.getUuid());
+    	pdPageContentStream.newLineAtOffset( 20 + text_position , 14 );
+    	pdPageContentStream.showText(reservation.getUuid());
     	pdPageContentStream.endText();
 	}
+
 }// Ende class
