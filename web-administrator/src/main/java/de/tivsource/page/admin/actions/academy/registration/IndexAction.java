@@ -22,6 +22,11 @@ import de.tivsource.page.admin.actions.EmptyAction;
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
     @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/registration/list_declared.jsp")
   }),
+  @TilesDefinition(name="predeclaredGrid", extend = "adminTemplate", putAttributes = {
+    @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/default_jquery.jsp"),
+    @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
+    @TilesPutAttribute(name = "content",    value = "/WEB-INF/tiles/active/view/registration/list_predeclared.jsp")
+  }),
   @TilesDefinition(name="confirmedGrid", extend = "adminTemplate", putAttributes = {
     @TilesPutAttribute(name = "meta",       value = "/WEB-INF/tiles/active/meta/default_jquery.jsp"),
     @TilesPutAttribute(name = "navigation", value = "/WEB-INF/tiles/active/navigation/academy.jsp"),
@@ -60,6 +65,10 @@ public class IndexAction extends EmptyAction {
         @Action(
             value = "index",
             results = { @Result(name = "success", type="tiles", location = "declaredGrid") }
+        ),
+        @Action(
+            value = "predeclared",
+            results = { @Result(name = "success", type="tiles", location = "predeclaredGrid") }
         ),
         @Action(
             value = "confirmed",

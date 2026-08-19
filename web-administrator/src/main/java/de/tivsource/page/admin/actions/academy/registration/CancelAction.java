@@ -83,7 +83,7 @@ public class CancelAction extends EmptyAction {
         String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
         String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
 
-    	if(registration != null) {
+        if(registration != null) {
     	    Registration dbRegistration = registrationDaoLocal.findByUuid(registration.getUuid());
 
     	    dbRegistration.setModified(new Date());
@@ -121,6 +121,11 @@ public class CancelAction extends EmptyAction {
 
                 // TODO: Hier mus eine Bestätigungsmail für die Stornierung erstellt werden
                 // Es wird noch keine Gutschrift benötigt
+                // Evt. muss eine Rechung erstellt werden wenn die Anmeldung älter als  14 Tage ist.
+                // Wenn Anmeldung noch keine 14 Tage alt ist => keine Rechnung
+                // Wenn Anmeldung älter als 14 Tage und es 30 Tage oder mehr bis zum Kursstart sind => keine Rechnung
+                // Wenn Anmeldung älter als 14 Tage und es weniger als 30 Tage und mehr als 15 Tage bis zum Kursstart sind => Rechnung 50%
+                // Wenn Anmeldung älter als 14 Tage und es weniger als 15 Tage bis zum Kursstart sind => Rechnung 100%
 
             }// Ende if()
 
@@ -133,6 +138,11 @@ public class CancelAction extends EmptyAction {
 
                 // TODO: Hier mus eine Bestätigungsmail für die Stornierung erstellt werden
                 // Es wird eine Gutschrift benötigt.
+                // Wenn Anmeldung noch keine 14 Tage alt ist => volle Gutschrift (Kursgebühr und Material)
+                // Wenn Anmeldung älter als 14 Tage und es 30 Tage oder mehr bis zum Kursstart sind => volle Gutschrift (Kursgebühr und Material)
+                // Wenn Anmeldung älter als 14 Tage und es weniger als 30 Tage und mehr als 15 Tage bis zum Kursstart sind => Gutschrift (50% Kursgebühr und 100% Material)
+                // Wenn Anmeldung älter als 14 Tage und es weniger als 15 Tage bis zum Kursstart sind => Gutschrift (0% Kursgebühr und 100%Material)
+                
             }
 
             if(dbRegistration.getStatus() == RegistrationStatus.WAITING) {

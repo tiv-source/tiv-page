@@ -130,37 +130,57 @@ public class JsonCompleteAction extends ActionSupport {
 		    LOGGER.info("Sortieren nach asc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
 				registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "dm.name", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.visible", "asc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("firm")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.firm", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("salutation")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "rsdm.name", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("firstname")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.firstname", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("lastname")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.lastname", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("course")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "rcdm.name", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("number")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "rc.number", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("status")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.status", "asc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("listOfMaterials")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.listOfMaterials", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
 				registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.created", "asc");
 			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
                 registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.modified", "asc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
 				registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.modifiedBy", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.technical", "asc");
-            } else {
+			} else {
 				registrationList = this.registrationDaoLocal.findAll(from, getRows());
 			}
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
 			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
 				registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "dm.name", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.visible", "desc");
+			} else if (getSidx() != null && getSidx().equalsIgnoreCase("firm")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.firm", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("salutation")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "rsdm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("firstname")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.firstname", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("lastname")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.lastname", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("course")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "rcdm.name", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("number")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "rc.number", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("status")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.status", "desc");
+            } else if (getSidx() != null && getSidx().equalsIgnoreCase("listOfMaterials")) {
+                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.listOfMaterials", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
                 registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.created", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
                 registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.modified", "desc");
             } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
                 registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.modifiedBy", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-                registrationList = this.registrationDaoLocal.findAll(from, getRows(), "r.technical", "desc");
             } else {
 				registrationList = this.registrationDaoLocal.findAll(from, getRows());
 			}

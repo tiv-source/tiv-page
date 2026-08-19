@@ -4,11 +4,11 @@
 
 <script type="text/javascript">
 function formatLinks(cellvalue, options, rowObject) {
-  return "<a href='/admin/academy/registration/editForm.html?uncheckCourse="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" + 
+  return "<a href='/admin/academy/registration/editForm.html?uncheckedRegistration="+ cellvalue + "' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/pencil.png' style='width:14px;'/>" +
          "</a>&nbsp;&nbsp;&nbsp;" + 
-         "<a href='/admin/academy/registration/deleteForm.html?uncheckCourse="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
-         "<img src='/admin/icons/16x16/delete.png' style='width:14px;'/>" + 
+         "<a href='/admin/academy/registration/info.html?uncheckedRegistration="+ cellvalue +"' style='border-style: none; display: inline;'>" + 
+         "<img src='/admin/icons/16x16/view.png' style='width:14px;'/>" + 
          "</a>";
 }
 </script>
@@ -53,12 +53,13 @@ function formatPicture(cellvalue, options, rowObject) {
 }
 </script>
 
-<struts:url var="registrationDeclaredUrl"     action="index"     namespace="/academy/registration" />
-<struts:url var="registrationConfirmedUrl"    action="confirmed" namespace="/academy/registration" />
-<struts:url var="registrationPaidUrl"         action="paid"     namespace="/academy/registration" />
-<struts:url var="registrationWaitingUrl"      action="waiting"  namespace="/academy/registration" />
-<struts:url var="registrationCompleteUrl"     action="complete" namespace="/academy/registration" />
-<struts:url var="registrationAddUrl"          action="addForm"  namespace="/academy/registration" />
+<struts:url var="registrationDeclaredUrl"     action="index"       namespace="/academy/registration" />
+<struts:url var="registrationConfirmedUrl"    action="confirmed"   namespace="/academy/registration" />
+<struts:url var="registrationPaidUrl"         action="paid"        namespace="/academy/registration" />
+<struts:url var="registrationWaitingUrl"      action="waiting"     namespace="/academy/registration" />
+<struts:url var="registrationPreDeclaredUrl"  action="predeclared" namespace="/academy/registration" />
+<struts:url var="registrationCompleteUrl"     action="complete"    namespace="/academy/registration" />
+<struts:url var="registrationAddUrl"          action="addForm"     namespace="/academy/registration" />
 
       <!--  Start MAIN -->
       <div class="main">
@@ -77,6 +78,10 @@ function formatPicture(cellvalue, options, rowObject) {
 
           <struts:a href="%{registrationWaitingUrl}">
             <struts:text name="registration.waiting"/>
+          </struts:a>
+
+          <struts:a href="%{registrationPreDeclaredUrl}">
+            <struts:text name="registration.predeclared"/>
           </struts:a>
 
           <struts:a href="%{registrationCompleteUrl}">
@@ -102,7 +107,8 @@ $(function () {
         	'<struts:text name="salutation"/>',
         	'<struts:text name="firstname"/>',
         	'<struts:text name="lastname"/>',
-            '<struts:text name="course"/>',
+            '<struts:text name="course.name"/>',
+            '<struts:text name="course.number"/>',
             '<struts:text name="status"/>',
             '<struts:text name="listOfMaterials"/>',
             '<struts:text name="created"/>',
@@ -114,23 +120,24 @@ $(function () {
         colModel: [
         	{ name: "consumer",                          width:  140, align: "center", hidden: true, formatter:formatTrueFalse },
         	{ name: "firm",                              width:  140, align: "left" },
-            { name: "salutation.descriptionMap.DE.name", width:  140, align: "left" },
-            { name: "firstname",                         width:  140, align: "left" },
-            { name: "lastname",                          width:  140, align: "left" },
-            { name: "course.descriptionMap.DE.name",     width:  140, align: "left" },
-            { name: "status",                            width:  140, align: "left" },
-            { name: "listOfMaterials",                   width:  140, align: "center", formatter:formatTrueFalse },
-            { name: "created",                           width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modified",                          width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",                        width:  140, align: "left" },
-            { name: "uuid",                              width:  140, align: "center", sortable: false, formatter:formatLinks },
+            { name: "salutation.descriptionMap.DE.name", width:  126, align: "left", index: "salutation" },
+            { name: "firstname",                         width:  126, align: "left" },
+            { name: "lastname",                          width:  126, align: "left" },
+            { name: "course.descriptionMap.DE.name",     width:  322, align: "left", index: "course" },
+            { name: "course.number",                     width:  112, align: "left", index: "number" },
+            { name: "status",                            width:  112, align: "left" },
+            { name: "listOfMaterials",                   width:  126, align: "center", formatter:formatTrueFalse },
+            { name: "created",                           width:  126, align: "center", formatter:formatIsoDate },
+            { name: "modified",                          width:  126, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",                        width:  126, align: "left" },
+            { name: "uuid",                              width:   70, align: "center", sortable: false, formatter:formatLinks },
             { name: "uuid",                              width:  140, align: "center", sortable: false, formatter:formatCancelLink }
         ],
         pager: "#entityPager",
         rowNum: 15,
         rowList: [5, 10, 15, 20, 25, 50, 100, 150, 200],
-        sortname: "created",
-        sortorder: "asc",
+        sortname: "modified",
+        sortorder: "desc",
         viewrecords: true,
         gridview: true,
         autoencode: true,

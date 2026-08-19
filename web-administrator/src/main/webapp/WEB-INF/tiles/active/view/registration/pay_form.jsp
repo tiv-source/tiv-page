@@ -24,6 +24,50 @@
             <fieldset id="overvew" class="fieldset">
 
               <div class="field">
+                <label for="registration.sum" class="label">Summe die zu bezahlen ist:</label>
+                <struts:property value="getText('{0,number,#,##0.00}',{registration.sum()})"/> &euro;
+                <struts:hidden key="registration.sum" value="%{getText('{0,number,#,##0.00}',{registration.sum()})}"/>
+              </div>
+
+              <div class="field">
+                <struts:checkbox
+                    key="registration.fullyPaid"
+                    parentTheme="xhtml"
+					cssStyle="padding: 0.3em;"
+					labelposition="left"
+                />
+              </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#pay_registration_fullyPaid').on('change', function() {
+        if ($(this).is(':checked')) {
+            $('#wwgrp_pay_registration_partialPayment').hide();
+            $('#pay_registration_partialPayment').val("");
+        } else {
+        	$('#wwgrp_pay_registration_partialPayment').show();
+        	$('#pay_registration_partialPayment').val($('#pay_registration_sum').val());
+        }
+    });
+    if(!$('#pay_registration_fullyPaid').is(":checked")) {
+ 	   $('#wwgrp_pay_registration_partialPayment').hide();
+ 	   $('#pay_registration_fullyPaid').prop('checked', true);
+    }
+});
+</script>
+
+              <div class="field">
+                <struts:textfield 
+                    key="registration.partialPayment"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    min="0"
+                    inputmode="decimal"
+                    placeholder="100,00"
+                    value="%{getText('{0,number,#,##0.00}',{registration.sum()})}"
+                />
+              </div>
+
+              <div class="field">
                 <label for="registration.orderConfirmationNumber" class="label">Austragsnummer:</label>
                 <struts:property value="registration.orderConfirmationNumber"/>
               </div>

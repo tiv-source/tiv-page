@@ -3,9 +3,11 @@ package de.tivsource.page.admin.actions.academy.registration;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -157,21 +159,35 @@ public class ConfirmAction extends EmptyAction {
                         generateBankData()
                 );
 
-                SimpleDateFormat simpleDateFormatDate = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat simpleDateFormatDate = new SimpleDateFormat("dd.MM.yyyy");
                 SimpleDateFormat simpleDateFormatTime = new SimpleDateFormat("HH:mm");
+                NumberFormat deFormat = NumberFormat.getCurrencyInstance(Locale.GERMANY);
                 String[] arguments = {
-                        dbRegistration.getSalutation().getLongSalutation("de"),
-                        dbRegistration.getFirstname(),
-                        dbRegistration.getLastname(),
-                        user.getFirstname() + " " + user.getLastname(),
-                        dbRegistration.getEmail(),
-                        dbRegistration.getTelephone(),
-                        "https://academy.app.internal/public/registration/" + dbRegistration.getUserToken() + "/confirmForm.html",
-                        "https://academy.app.internal/public/registration/" + dbRegistration.getUserToken() + "/cancelForm.html",
-                        dbRegistration.getCourse().getName("de"),
-                        dbRegistration.getCourse().getNumber(),
-                        simpleDateFormatDate.format(dbRegistration.getCourse().getStartDate()),
-                        simpleDateFormatTime.format(dbRegistration.getCourse().getStartDate())
+                        dbRegistration.getSalutation().getLongSalutation("de"),                // {0}  Lange Anrede
+                        dbRegistration.getFirstname(),                                         // {1}  Vorname
+                        dbRegistration.getLastname(),                                          // {2}  Nachname
+                        user.getFirstname() + " " + user.getLastname(),                        // {3}  Benutzer
+                        dbRegistration.getEmail(),                                             // {4}  Mail-Adresse
+                        dbRegistration.getTelephone(),                                         // {5}  Telefonnummer
+                        getProperty("pdf.confirmation.document.bankdata.title"),               // {6}  Title
+                        getProperty("pdf.confirmation.document.bankdata.iban.title"),          // {7}  Überschrift IBAN
+                        getProperty("pdf.confirmation.document.bankdata.iban"),                // {8}  IBAN
+                        getProperty("pdf.confirmation.document.bankdata.bic.title"),           // {9}  Überschift BIC
+                        getProperty("pdf.confirmation.document.bankdata.bic"),                 // {10} BIC
+                        getProperty("pdf.confirmation.document.bankdata.bank.title"),          // {11} Überschrift Bank
+                        getProperty("pdf.confirmation.document.bankdata.bank"),                // {12} Bank
+                        getProperty("pdf.confirmation.document.bankdata.recipient.title"),     // {13} Empfänger überschrift
+                        getProperty("pdf.confirmation.document.bankdata.recipient"),           // {14} Empfänger
+                        getProperty("pdf.confirmation.document.bankdata.purpose"),             // {15} Überschrift Verwendungszweck
+                        dbRegistration.getOrderConfirmationNumber() + " - " +                                                           
+                        dbRegistration.getFirstname() + " " + dbRegistration.getLastname(),    // {16} Verwendungszweck
+                        dbRegistration.getUserToken(),                                         // {17}
+                        dbRegistration.getCourse().getName("de"),                              // {18}
+                        dbRegistration.getCourse().getNumber(),                                // {19}
+                        "Zu zahlender Betrag",                                                 // {20}
+                        deFormat.format(dbRegistration.getCourse().sum()),                     // {21}
+                        simpleDateFormatDate.format(dbRegistration.getCourse().getStartDate()),// {22}
+                        simpleDateFormatTime.format(dbRegistration.getCourse().getStartDate()) // {23}
                 };
 
                 MailSender mailSender = new MailSender(getProperties(), createMailTemplate());
@@ -264,22 +280,24 @@ public class ConfirmAction extends EmptyAction {
                 );
         if(getProperty("mail.course.confirmation.language").equals("en")) {
             mailTemplate.setSubject(
-                    "Anmeldebestätigung für den Kurs " + 
+                    // TODO: Hier muss das noch in Eigenschaften ausgelagert werden
+                    "Anmeldebestätigung für den Kurs \"" + 
                     dbRegistration.getCourse().getName("en") + 
                     " (" + 
                     dbRegistration.getCourse().getNumber() + 
-                    ")"
+                    ")\""
             );
             mailTemplate.setBody(getProperty("mail.course.confirmation.body.en"));
             mailTemplate.setHtml(getProperty("mail.course.confirmation.html.en"));
             mailTemplate.addImages(getProperty("mail.course.confirmation.images.en"));
         } else {
             mailTemplate.setSubject(
-                    "Anmeldebestätigung für den Kurs " + 
-                    dbRegistration.getCourse().getName("de") + 
+                    // TODO: Hier muss das noch in Eigenschaften ausgelagert werden
+                    "Anmeldebestätigung für den Kurs \"" + 
+                    dbRegistration.getCourse().getName("en") + 
                     " (" + 
                     dbRegistration.getCourse().getNumber() + 
-                    ")"
+                    ")\""
             );
             mailTemplate.setBody(getProperty("mail.course.confirmation.body.de"));
             mailTemplate.setHtml(getProperty("mail.course.confirmation.html.de"));

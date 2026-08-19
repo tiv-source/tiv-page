@@ -115,10 +115,10 @@ public class PredeclareAction extends EmptyAction {
     	    if(dbRegistration.getStatus() == RegistrationStatus.WAITING) {
     	        dbRegistration.setStatus(RegistrationStatus.PREDECLARED);
     	        registrationDaoLocal.merge(dbRegistration);
-    	        // Zurück zu den zu bestätigenden Anmeldungen
+    	        // Zurück zu den zu wartenden Anmeldungen
     	        redirection = "waiting.html";
 
-                SimpleDateFormat simpleDateFormatDate = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat simpleDateFormatDate = new SimpleDateFormat("dd.MM.yyyy");
                 SimpleDateFormat simpleDateFormatTime = new SimpleDateFormat("HH:mm");
                 String[] arguments = {
                         dbRegistration.getSalutation().getLongSalutation("de"),
@@ -150,9 +150,6 @@ public class PredeclareAction extends EmptyAction {
                         return; // to stop the thread
                     }
                 }).start();
-
-    	        // TODO: Hier Anfragemail ob Kunde die Anmeldung annehmen möchte
-    	        // Es wird kein Dokument (PDF) benötigt
     	        return SUCCESS;
     	    }// Ende if()
     	    return ERROR;
@@ -227,22 +224,22 @@ public class PredeclareAction extends EmptyAction {
                 );
         if(getProperty("mail.course.predeclare.language").equals("en")) {
             mailTemplate.setSubject(
-                    "Es ist ein Platz im Kurs " + 
+                    "Es ist ein Platz im Kurs \"" + 
                     dbRegistration.getCourse().getName("en") + 
                     " (" + 
                     dbRegistration.getCourse().getNumber() + 
-                    ") freigeworden."
+                    ")\" freigeworden."
             );
             mailTemplate.setBody(getProperty("mail.course.predeclare.body.en"));
             mailTemplate.setHtml(getProperty("mail.course.predeclare.html.en"));
             mailTemplate.addImages(getProperty("mail.course.predeclare.images.en"));
         } else {
             mailTemplate.setSubject(
-                    "Es ist ein Platz im Kurs " + 
-                    dbRegistration.getCourse().getName("de") + 
+                    "Es ist ein Platz im Kurs \"" + 
+                    dbRegistration.getCourse().getName("en") + 
                     " (" + 
                     dbRegistration.getCourse().getNumber() + 
-                    ") freigeworden."
+                    ")\" freigeworden."
             );
             mailTemplate.setBody(getProperty("mail.course.predeclare.body.de"));
             mailTemplate.setHtml(getProperty("mail.course.predeclare.html.de"));

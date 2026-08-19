@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+  <field name="registration.salutation">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.salutation"/>
+    </field-validator>
+  </field>
+
+  <field name="registration.firstname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.firstname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="registration.validation.firstname.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.lastname">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.lastname" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="registration.validation.lastname.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.birthday">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.birthday"/>
+    </field-validator>
+  </field>
+
+  <field name="registration.email">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.email" />
+    </field-validator>
+    <field-validator type="email">
+      <message key="registration.validation.email.valid" />
+    </field-validator>
+  </field>
+
+  <field name="registration.telephone">
+    <field-validator type="regex" short-circuit="true">
+      <param name="regex">^(\+|0{1,2})[1-9\-][0-9\-]*[0-9]$</param>
+      <message key="registration.validation.telephone.valid" />
+    </field-validator>
+  </field>
+
+  <field name="registration.consumer">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.consumer"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^(true|false)$</param>
+      <message key="registration.validation.consumer.input" />
+    </field-validator>
+  </field>
+
+  <field name="registration.firm">
+    <field-validator type="fieldexpression" short-circuit="true">
+      <param name="expression">
+        <![CDATA[
+           ((
+             registration.consumer &&
+             registration.firm.trim()==""
+           ) 
+           ||
+           (
+             !registration.consumer &&
+             registration.firm.trim()!=""
+           ))
+        ]]>
+      </param>
+      <message key="registration.validation.firm" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex"><![CDATA[^[a-zA-Z0-9äöüÄÖÜß\s\-\.\,\&\/]+$]]></param>
+      <message key="registration.validation.firm.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.street">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.street" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[0-9a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="registration.validation.street.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.zip">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.zip" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[0-9]*$</param>
+      <message key="registration.validation.zip.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.city">
+    <field-validator type="requiredstring" short-circuit="true">
+      <message key="registration.validation.city" />
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^[a-zA-ZÄÖÜäöüß\- ]*$</param>
+      <message key="registration.validation.city.letter" />
+    </field-validator>
+  </field>
+
+  <field name="registration.country">
+    <field-validator type="required">
+      <message key="registration.validation.country" />
+    </field-validator>
+  </field>
+
+  <field name="registration.listOfMaterials">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.listOfMaterials"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^(true|false)$</param>
+      <message key="registration.validation.listOfMaterials.input" />
+    </field-validator>
+  </field>
+
+  <field name="registration.privacy">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.privacy"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^(true)$</param>
+      <message key="registration.validation.privacy.input" />
+    </field-validator>
+  </field>
+
+  <field name="registration.terms">
+    <field-validator type="required" short-circuit="true">
+      <message key="registration.validation.terms"/>
+    </field-validator>
+    <field-validator type="regex">
+      <param name="regex">^(true)$</param>
+      <message key="registration.validation.terms.input" />
+    </field-validator>
+  </field>
+
+</validators>

@@ -3,6 +3,8 @@ package de.tivsource.page.admin.actions.academy.registration;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +20,15 @@ import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
+import org.mustangproject.BankDetails;
+import org.mustangproject.Contact;
+import org.mustangproject.Invoice;
+import org.mustangproject.Item;
+import org.mustangproject.LegalOrganisation;
+import org.mustangproject.Product;
+import org.mustangproject.TradeParty;
+import org.mustangproject.ZUGFeRD.Profiles;
+import org.mustangproject.ZUGFeRD.ZUGFeRDExporterFromA1;
 
 import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
@@ -85,6 +96,8 @@ public class PayAction extends EmptyAction {
 
     private File file;
 
+    private File epdf;
+
     @StrutsParameter(depth=3)
     public Registration getRegistration() {
         return registration;
@@ -132,11 +145,21 @@ public class PayAction extends EmptyAction {
                 number = prefix + getNumber().toString();
                 dbRegistration.setInvoiceNumber(number);
     	        dbRegistration.setStatus(RegistrationStatus.PAID);
+    	        dbRegistration.setFullyPaid(registration.getFullyPaid());
+    	        if(registration.getFullyPaid()) {
+    	            // Wenn vollständig bezahlt wurde dann wird der Wert auf 0.00 gesetzt 
+    	            dbRegistration.setPartialPayment(new BigDecimal("0.00"));
+    	        } else {
+    	            // Wenn nicht vollständig bezahlt wurde dann wird der angegbene Wert übernommen
+    	            dbRegistration.setPartialPayment(registration.getPartialPayment());
+    	        }
+    	        
     	        registrationDaoLocal.merge(dbRegistration);
     	        // Zurück zu den zu bestätigenden Anmeldungen
     	        redirection = "confirmed.html";
 
                 file = new File("/srv/tiv-page/documents/" + number + ".pdf");
+                epdf = new File("/srv/tiv-page/documents/" + number + "_e.pdf");
 
                 Calendar pdfCreationDate = Calendar.getInstance();
                 Calendar pdfModificationDate = Calendar.getInstance();
@@ -156,6 +179,8 @@ public class PayAction extends EmptyAction {
                         generateDocumentFooter(),
                         generateBankData()
                 );
+                
+                generateFacturaX(dbRegistration);
 
                 SimpleDateFormat simpleDateFormatDate = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat simpleDateFormatTime = new SimpleDateFormat("HH:mm");
@@ -190,14 +215,12 @@ public class PayAction extends EmptyAction {
                     }
                 }).start();
 
-    	        // TODO: Hier mus eine Bestätigungsmail mit der Info Geld erhalten erstellt werden
-    	        // Es wird auch eine Rechnung (PDF) erstellt und verschickt werden 
     	        return SUCCESS;
     	    }// Ende if()
     	    return ERROR;
     	}
    		return ERROR;
-    	
+
     }// Ende execute()
 
     private Properties getProperties() {
@@ -266,28 +289,28 @@ public class PayAction extends EmptyAction {
                 );
         if(getProperty("mail.course.pay.language").equals("en")) {
             mailTemplate.setSubject(
-                    "Anmeldebestätigung für den Kurs " + 
-                    dbRegistration.getCourse().getName("en") + 
+                    "Zahlungsbestätigung für den Kurs \"" + 
+                    dbRegistration.getCourse().getName("de") + 
                     " (" + 
                     dbRegistration.getCourse().getNumber() + 
-                    ")"
+                    ")\""
             );
             mailTemplate.setBody(getProperty("mail.course.pay.body.en"));
             mailTemplate.setHtml(getProperty("mail.course.pay.html.en"));
             mailTemplate.addImages(getProperty("mail.course.pay.images.en"));
         } else {
             mailTemplate.setSubject(
-                    "Zahlungsbestätigung für den Kurs " + 
+                    "Zahlungsbestätigung für den Kurs \"" + 
                     dbRegistration.getCourse().getName("de") + 
                     " (" + 
                     dbRegistration.getCourse().getNumber() + 
-                    ")"
+                    ")\""
             );
             mailTemplate.setBody(getProperty("mail.course.pay.body.de"));
             mailTemplate.setHtml(getProperty("mail.course.pay.html.de"));
             mailTemplate.addImages(getProperty("mail.course.pay.images.de"));
         }
-        mailTemplate.addAttachment(file.getAbsolutePath(), number + ".pdf", "application/pdf");
+        mailTemplate.addAttachment(epdf.getAbsolutePath(), number + ".pdf", "application/pdf");
         return mailTemplate;
     }
 
@@ -365,6 +388,210 @@ public class PayAction extends EmptyAction {
         bankData[8] = getProperty("pdf.confirmation.document.bankdata.recipient");      // Empfänger
         bankData[9] = getProperty("pdf.confirmation.document.bankdata.purpose");        // Überschrift Verwendungszweck
         return bankData;
+    }
+
+    private void generateFacturaX(Registration registration) {
+
+        Contact sellerContact = new Contact();
+        if(getProperty("zugferd.seller.user.name.from.userobject").equals("true")) {
+            // Name des Benutzers der die Rechnung erstellt hat
+            // wird aus dem User Objekt genommen
+            sellerContact.setName(user.getFirstname() + " " + user.getLastname());
+        } else {
+            // Generische Name des Benutzer 
+            // wird aus den Einstellungen genommen
+            sellerContact.setEMail(getProperty("zugferd.seller.user.name"));
+        }
+
+        // Telefonnummer des Benutzers der die Rechnung erstellt hat
+        // wird aus den Einstellungen genommen
+        sellerContact.setPhone(getProperty("zugferd.seller.user.phone"));
+
+        if(getProperty("zugferd.seller.user.mailaddress.from.userobject").equals("true")) {
+            // Mail-Adresse des Benutzer der die Rechnung erstellt hat
+            // wird aus dem User-Objekt genommen
+            sellerContact.setEMail(user.getEmail());
+        } else {
+            // Mail-Adresse des Benutzer generische Adresse
+            // wird aus den Einstellungen genommen
+            sellerContact.setEMail(getProperty("zugferd.seller.user.mailaddress.generic"));
+        }
+
+        // Daten des Verkäufers
+        TradeParty seller = new TradeParty(
+                getProperty("zugferd.seller.name"), 
+                getProperty("zugferd.seller.street"), 
+                getProperty("zugferd.seller.zip"), 
+                getProperty("zugferd.seller.city"), 
+                getProperty("zugferd.seller.country")
+                );
+
+        // Kontakt des Verkäufers hinzufügen
+        seller.setContact(sellerContact);
+        // Steuerdaten des Verkäufers
+        seller.setTaxID(getProperty("zugferd.seller.taxid"));
+        seller.setVATID(getProperty("zugferd.seller.vatid"));
+        // Adresse unter der die Buchhaltung zu erreichen ist
+        seller.setEmail(getProperty("zugferd.seller.mailaddress"));
+
+        if(getProperty("zugferd.seller.globalid.enabled").equals("true")) {
+            // Globale ID des Verkäufers
+            seller.setGlobalID(getProperty("zugferd.seller.globalid"));
+            // Schema der globalen ID
+            // 0060 = D-U-N-S Nummer (Dun & Bradstreet)
+            // 0088 – GLN (Global Location Number / ehemals ILN)
+            // 0177 – Odette ID (Odette International Limited)
+            // 0204 – Die Leitweg-ID (Nur für den Peppol-Netzwerk-Versand)
+            seller.setGlobalIDScheme(getProperty("zugferd.seller.globalid.scheme"));
+        }
+
+        if(getProperty("zugferd.seller.legal.organisation.enabled").equals("true")) {
+            // LegalOrganisation-Objekt
+            // mit der Handelsregisternummer (z. B. HRB 12345)
+            // und dem ISO-Schema für das deutsche Handelsregister "0021"
+            LegalOrganisation legalOrganisation = 
+                    new LegalOrganisation(
+                            getProperty("zugferd.seller.legal.organisation.id"),
+                            getProperty("zugferd.seller.legal.organisation.scheme")
+                            );
+            seller.setLegalOrganisation(legalOrganisation);
+        }
+
+        // Bankverbindung erstellen
+        BankDetails bank = new BankDetails(
+                getProperty("zugferd.seller.bank.iban"),
+                getProperty("zugferd.seller.bank.bic")
+                );
+        bank.setAccountName(getProperty("zugferd.seller.bank.name"));
+        bank.setPaymentMeansCode("58");
+        // Bankverbindung hinzufügen
+        seller.addBankDetails(bank);
+
+        Contact recipientContact = new Contact();
+        // Name des Kunden der die Rechnung erhält
+        recipientContact.setName(registration.getFirstname() + " " + registration.getLastname());
+        if(registration.getTelephone() != null && registration.getTelephone().length() > 0) {
+            // Telefonnummer des Kunden der die Rechnung erhält
+            recipientContact.setPhone(registration.getTelephone());
+        }
+        // Mail-Adresse unter des Kunden der die Rechnung erhält
+        recipientContact.setEMail(registration.getEmail());
+
+        // Daten des Käufers
+        TradeParty recipient = new TradeParty(
+                registration.getConsumer() ? 
+                        registration.getFirstname() + " " + registration.getLastname() : registration.getFirm(),
+                registration.getStreet(), 
+                registration.getZip(), 
+                registration.getCity(), 
+                registration.getCountry().getAlpha2()
+                ).setEmail(registration.getEmail());
+
+        recipient.setContact(recipientContact);
+
+        // Rechnungsdaten
+        Invoice invoice = new Invoice()
+                .setNumber(registration.getInvoiceNumber())
+                .setIssueDate(new Date())
+                .setDueDate(new Date())
+                .setSender(seller)
+                .setRecipient(recipient)
+                .setCurrency(getProperty("zugferd.invoice.currency"));
+
+        // Lieferdatum
+        invoice.setDeliveryDate(registration.getCourse().getStartDate());
+        // Auftragsnummer
+        invoice.setSellerOrderReferencedDocumentID(registration.getOrderConfirmationNumber());
+        // Bestellnummer
+        //invoice.setBuyerOrderReferencedDocumentID(registration.getOrderConfirmationNumber());
+
+        invoice.setPaymentTermDescription(
+                getProperty("zugferd.invoice.term")
+                );
+
+        if(registration.getFullyPaid()) {
+            // Da die Rechnung schon vollständig bezahlt wurde, setzen wir
+            // hier als Betrag die Gesamtsummer ein.
+            invoice.setTotalPrepaidAmount(registration.sum());
+        } else {
+            // Da die Rechnung nicht vollständig bezahlt wurde, setzen wir
+            // hier den Teilbetrag ein.
+            invoice.setTotalPrepaidAmount(registration.getPartialPayment());
+        }
+
+        // Faktor berechnen (z.B. 1.19)
+        BigDecimal faktor1 = BigDecimal.ONE.add(
+                registration.getCourse().getPriceTax().divide(new BigDecimal("100"))
+                );
+        // Nettopreis berechnen und auf 2 Nachkommastellen runden
+        BigDecimal netto1 = registration.getCourse().getPrice().divide(faktor1, 2, RoundingMode.HALF_UP);
+        
+        Product product1 = new Product()
+                .setName(registration.getCourse().getCourseDocumentDescription())
+                .setSellerAssignedID(registration.getCourse().getNumber())
+                // .setUnit("C62") // "C62" ist der offizielle UN-Code für "Stück"
+                .setUnit("E48") // "E48" steht für Pauschale / Serviceeinheit
+                .setVATPercent(registration.getCourse().getPriceTax()); // Mehrwertsteuersatz
+        
+        // Item(Produkt, Einzelpreis brutto/netto, Menge)
+        Item item1 = new Item(product1, netto1, new BigDecimal("1"));
+        item1.setBasisQuantity(BigDecimal.ONE);
+        item1.setLineTotalAmount(registration.getCourse().getPrice()); 
+        invoice.addItem(item1);
+
+        // Total Netto
+        BigDecimal totalNet = netto1;
+        
+        if(registration.getListOfMaterials()) {
+            Product product2 = new Product()
+                    .setName(registration.getCourse().getMaterialDocumentDescription())
+                    .setUnit("C62") // "C62" ist der offizielle UN-Code für "Stück"
+                    //.setUnit("E48") // Steht für Pauschale / Serviceeinheit
+                    .setVATPercent(registration.getCourse().getMaterialTax()); // Mehrwertsteuersatz
+
+            // Faktor berechnen (z.B. 1.19)
+            BigDecimal faktor2 = BigDecimal.ONE.add(
+                    registration.getCourse().getMaterialTax().divide(new BigDecimal("100"))
+                    );
+            // Nettopreis berechnen und auf 2 Nachkommastellen runden
+            BigDecimal netto2 = registration.getCourse().getMaterialPrice()
+                    .divide(faktor2, 2, RoundingMode.HALF_UP);
+            
+            // Item(Produkt, Einzelpreis brutto/netto, Menge)
+            Item item2 = new Item(product2, netto2, new BigDecimal("1")); 
+            item2.setBasisQuantity(BigDecimal.ONE);
+            item2.setLineTotalAmount(registration.getCourse().getMaterialPrice()); 
+            invoice.addItem(item2);
+            totalNet = netto1.add(netto2);
+        }
+
+        BigDecimal expectedVatTotal = registration.tax();
+        BigDecimal mustangVatTotal = totalNet.multiply(new BigDecimal("0.19")).setScale(2, RoundingMode.HALF_UP);
+
+        BigDecimal roundingDifference = expectedVatTotal.subtract(mustangVatTotal);
+        // Nur anwenden, wenn es eine Rundungsdifferenz gibt (ungleich Null)
+        if (roundingDifference.compareTo(BigDecimal.ZERO) != 0) {
+            invoice.setRoundingAmount(roundingDifference);
+        }
+        
+        try (ZUGFeRDExporterFromA1 exporter = new ZUGFeRDExporterFromA1()) {
+            exporter.setProducer(getProperty("zugferd.producer")); 
+            // Validierung abschalten
+            exporter.ignorePDFAErrors();
+            // Konfiguration für das Standard-ZUGFeRD-Profil (EN16931 / Comfort)
+            exporter.setProfile(Profiles.getByName(getProperty("zugferd.profile"))); 
+            // Uhrsprungs PDF
+            exporter.load(file.getAbsolutePath());
+            // XML-Daten
+            exporter.setTransaction(invoice);
+            // Zeil PDF
+            exporter.export(epdf.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        LOGGER.info("ZUGFeRD-Rechnung erfolgreich erstellt!");
+
     }
 
 }// Ende class

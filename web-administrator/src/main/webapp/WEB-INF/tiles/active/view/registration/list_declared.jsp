@@ -78,12 +78,13 @@ function formatPicture(cellvalue, options, rowObject) {
 }
 </script>
 
-<struts:url var="registrationDeclaredUrl"     action="index"     namespace="/academy/registration" />
-<struts:url var="registrationConfirmedUrl"    action="confirmed" namespace="/academy/registration" />
-<struts:url var="registrationPaidUrl"         action="paid"      namespace="/academy/registration" />
-<struts:url var="registrationWaitingUrl"      action="waiting"   namespace="/academy/registration" />
-<struts:url var="registrationCompleteUrl"     action="complete"  namespace="/academy/registration" />
-<struts:url var="registrationAddUrl"          action="addForm"   namespace="/academy/registration" />
+<struts:url var="registrationDeclaredUrl"     action="index"       namespace="/academy/registration" />
+<struts:url var="registrationConfirmedUrl"    action="confirmed"   namespace="/academy/registration" />
+<struts:url var="registrationPaidUrl"         action="paid"        namespace="/academy/registration" />
+<struts:url var="registrationWaitingUrl"      action="waiting"     namespace="/academy/registration" />
+<struts:url var="registrationPreDeclaredUrl"  action="predeclared" namespace="/academy/registration" />
+<struts:url var="registrationCompleteUrl"     action="complete"    namespace="/academy/registration" />
+<struts:url var="registrationAddUrl"          action="addForm"     namespace="/academy/registration" />
 
       <!--  Start MAIN -->
       <div class="main">
@@ -102,6 +103,10 @@ function formatPicture(cellvalue, options, rowObject) {
 
           <struts:a href="%{registrationWaitingUrl}">
             <struts:text name="registration.waiting"/>
+          </struts:a>
+
+          <struts:a href="%{registrationPreDeclaredUrl}">
+            <struts:text name="registration.predeclared"/>
           </struts:a>
 
           <struts:a href="%{registrationCompleteUrl}">
@@ -127,7 +132,8 @@ $(function () {
         	'<struts:text name="salutation"/>',
         	'<struts:text name="firstname"/>',
         	'<struts:text name="lastname"/>',
-            '<struts:text name="course"/>',
+            '<struts:text name="course.name"/>',
+            '<struts:text name="course.number"/>',
             '<struts:text name="birthday"/>',
             '<struts:text name="status"/>',
             '<struts:text name="listOfMaterials"/>',
@@ -140,9 +146,10 @@ $(function () {
         	{ name: "consumer",                          width:   70, align: "center", formatter:formatTrueFalse, hidden: true },
         	{ name: "firm",                              width:  140, align: "left", formatter:formatFirm },
             { name: "salutation.descriptionMap.DE.name", width:   56, align: "left" },
-            { name: "firstname",                         width:  175, align: "left" },
-            { name: "lastname",                          width:  175, align: "left" },
+            { name: "firstname",                         width:  161, align: "left" },
+            { name: "lastname",                          width:  161, align: "left" },
             { name: "course.descriptionMap.DE.name",     width:  350, align: "left" },
+            { name: "course.number",                     width:   98, align: "left" },
             { name: "birthday",                          width:  105, align: "left", formatter:formatbirthday },
             { name: "status",                            width:  140, align: "left", hidden: true },
             { name: "listOfMaterials",                   width:   70, align: "center", formatter:formatTrueFalse },

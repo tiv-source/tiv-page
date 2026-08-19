@@ -97,8 +97,7 @@ public class DeclareAction extends EmptyAction {
     	        registrationDaoLocal.merge(dbRegistration);
     	        // Zurück zu den zu bestätigenden Anmeldungen
     	        redirection = "waiting.html";
-    	        // Es wird nur der Status gesetzt und keine Mail verschickt da ja
-    	        // durch die Statusänderung auf CONFIRMED eine Mail verschickt wird
+    	        // TODO: Es wird nur der Status gesetzt und eine Mail verschickt um den Benutzer zu informieren
     	        return SUCCESS;
     	    }// Ende if()
     	    return ERROR;
