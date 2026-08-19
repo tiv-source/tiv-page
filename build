@@ -1,5 +1,7 @@
 #!/bin/sh
 
+HOMEDIR=/home/marc
+
 echo "Setze Maven PATH"
 export PATH=$HOMEDIR/Maven/apache-maven-3.9.9/bin:$PATH
 
