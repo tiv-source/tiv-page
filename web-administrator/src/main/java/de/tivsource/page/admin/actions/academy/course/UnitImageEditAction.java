@@ -1,11 +1,9 @@
 package de.tivsource.page.admin.actions.academy.course;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -14,10 +12,9 @@ import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
-import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
 import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
@@ -39,8 +36,7 @@ public class UnitImageEditAction extends EmptyAction implements UploadedFilesAwa
 	 */
     private static final Logger LOGGER = LogManager.getLogger(UnitImageEditAction.class);
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CourseService courseService;
 
     private Course course;
 
@@ -49,8 +45,12 @@ public class UnitImageEditAction extends EmptyAction implements UploadedFilesAwa
     private UploadedFile uploadedFile;
 
     @Autowired
-    public UnitImageEditAction(PropertyService propertyService) {
+    public UnitImageEditAction(
+            PropertyService propertyService,
+            CourseService courseService
+            ) {
         super(propertyService);
+        this.courseService = courseService;
     }
 
     @StrutsParameter(depth=3)
@@ -84,32 +84,15 @@ public class UnitImageEditAction extends EmptyAction implements UploadedFilesAwa
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-
-        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-
         if(course != null && courseUnit != null) {
             LOGGER.info("UUID des Course: " + course.getUuid());
-            Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
-
-            // Durchlaufe alle Einheiten des Kurses
-            for(CourseUnit dbCourseUnit : dbCourse.getUnits()) {
-                // Wenn die Einheit der gesuchten entspricht
-                if(dbCourseUnit.getUuid().compareTo(this.courseUnit.getUuid()) == 0) {
-                    dbCourseUnit.getImage().setUploadFile(UploadedFileToUploadFile.convert(uploadedFile));
-                    dbCourseUnit.getImage().generate();
-                    dbCourseUnit.getImage().setModified(new Date());
-                    dbCourseUnit.getImage().setModifiedAddress(remoteAddress);
-                    dbCourseUnit.getImage().setModifiedBy(remoteUser);
-                    dbCourse.setModifiedAddress(remoteAddress);
-                    dbCourse.setModified(new Date());
-                    dbCourse.setModifiedBy(remoteUser);
-                    courseDaoLocal.merge(dbCourse);
-                    return SUCCESS;
-                }// Ende if()
-            }// Ende for()
-            // Wenn die Schleife durchlaufen wurde und es die Kurseinheit nicht gab.
-            return ERROR;
+            if(courseService.updateCourseUnitImage(
+                    course.getUuid(), 
+                    courseUnit.getUuid(), 
+                    UploadedFileToUploadFile.convert(uploadedFile)
+            )) {
+                return SUCCESS;
+            }// Ende if()
         }// Ende if()
         // Wenn kein Kurs-Objekt vorhanden ist
         return ERROR;

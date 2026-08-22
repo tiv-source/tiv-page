@@ -13,8 +13,8 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.location.LocationDaoLocal;
@@ -39,7 +39,8 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(ImageEditAction.class);
 
-    @InjectEJB(name="LocationDao")
+    @Autowired
+    @Qualifier("locationDaoLocal")
     private LocationDaoLocal locationDaoLocal;
 
     private Location location;

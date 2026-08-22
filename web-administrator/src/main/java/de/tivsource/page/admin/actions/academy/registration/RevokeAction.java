@@ -17,8 +17,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.administration.UserDaoLocal;
@@ -58,10 +58,12 @@ public class RevokeAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(RevokeAction.class);
 
-    @InjectEJB(name="RegistrationDao")
+    @Autowired
+    @Qualifier("registrationDaoLocal")
     private RegistrationDaoLocal registrationDaoLocal;
 
-    @InjectEJB(name="UserDao")
+    @Autowired
+    @Qualifier("userDaoLocal")
     private UserDaoLocal userDaoLocal;
 
     private Registration registration;

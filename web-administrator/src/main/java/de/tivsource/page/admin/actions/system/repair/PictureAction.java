@@ -16,12 +16,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.tiles.annotation.TilesDefinition;
-import org.apache.struts2.tiles.annotation.TilesDefinitions;
-import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.file.UploadFile;
@@ -45,13 +42,16 @@ public class PictureAction extends EmptyAction {
      */
     private static final long serialVersionUID = 6087278797726264276L;
 
-    @InjectEJB(name="AppointmentDao")
+    @Autowired
+    @Qualifier("appointmentDaoLocal")
     private AppointmentDaoLocal appointmentDaoLocal;
 
-    @InjectEJB(name="GalleryDao")
+    @Autowired
+    @Qualifier("galleryDaoLocal")
     private GalleryDaoLocal galleryDaoLocal;
 
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
     /**

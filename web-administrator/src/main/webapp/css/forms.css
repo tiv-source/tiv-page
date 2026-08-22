@@ -80,7 +80,7 @@ form.form p {
 /* inputs
 -------------------------------------------------------------- */
 form.form .fieldset .field input {
-	min-width:185px;
+	min-width:360px;
 }
 
 form.form input.input,

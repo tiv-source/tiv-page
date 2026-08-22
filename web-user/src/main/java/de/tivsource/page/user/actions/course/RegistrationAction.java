@@ -23,7 +23,6 @@ import de.tivsource.page.common.country.Country;
 import de.tivsource.page.common.salutation.Salutation;
 import de.tivsource.page.common.simple.SimpleBooleanType;
 import de.tivsource.page.dao.country.CountryDaoLocal;
-import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.registration.RegistrationDaoLocal;
@@ -34,6 +33,7 @@ import de.tivsource.page.entity.enumeration.RegistrationStatus;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.entity.registration.Registration;
 import de.tivsource.page.user.actions.EmptyAction;
+import de.tivsource.page.user.services.CourseService;
 
 @TilesDefinitions({
   @TilesDefinition(name="form", extend = "userTemplate", putAttributes = {
@@ -56,6 +56,8 @@ public class RegistrationAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(RegistrationAction.class);
 
+    private CourseService courseService;
+
     @Autowired
     @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
@@ -63,10 +65,6 @@ public class RegistrationAction extends EmptyAction {
     @Autowired
     @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
-
-    @Autowired
-    @Qualifier("courseDaoLocal")
-    private CourseDaoLocal courseDaoLocal;
 
     @Autowired
     @Qualifier("registrationDaoLocal")
@@ -100,6 +98,12 @@ public class RegistrationAction extends EmptyAction {
 
     private List<SimpleBooleanType> sbtList;
 
+    @Autowired
+    public RegistrationAction(CourseService courseService) {
+        super();
+        this.courseService = courseService;
+    }
+
     @Override
     public void prepare() {
         page = pageDaoLocal.findByTechnical("waitingform");
@@ -114,10 +118,10 @@ public class RegistrationAction extends EmptyAction {
          * Wenn die Course Uuid keine nicht erlaubten Zeichen enthält und es
          * das Course Objekt mit der Uuid gibt dann wird der Block ausgeführt.
          */
-        if (isValid(courseUuid) && courseDaoLocal.isCourseUuid(courseUuid)) {
+        if (isValid(courseUuid) && courseService.checkCourseUuid(courseUuid)) {
             LOGGER.info("gültige Course Uuid.");
-            course = courseDaoLocal.findByUuid(courseUuid);
-            if(courseDaoLocal.registrations(course) < course.getMaxStudents()) {
+            course = courseService.getCourseWithAllRelations(courseUuid);
+            if(course.getRegistrations().size() <= course.getMaxStudents()) {
                 page = pageDaoLocal.findByTechnical("registrationform");
                 waiting = false;
             }
@@ -143,7 +147,7 @@ public class RegistrationAction extends EmptyAction {
         // Hole Action Locale
         this.getLanguageFromActionContext();
 
-        if (isValid(courseUuid) && courseDaoLocal.isCourseUuid(courseUuid)) {
+        if (isValid(courseUuid) && courseService.checkCourseUuid(courseUuid)) {
             /*
              * Wenn das Course Objekt sichbar sein sollte und nicht in der
              * Vergangenheit liegt.
@@ -159,7 +163,7 @@ public class RegistrationAction extends EmptyAction {
                 registration.setChannel(OrderChannel.WEBSITE);
                 registration.setUserToken(UUID.randomUUID().toString());
                 // Wenn der Kurs weniger als die MAximal Anzahl an Anmeldungen hat
-                if(courseDaoLocal.registrations(course) < course.getMaxStudents()) {
+                if(course.getRegistrations().size() <= course.getMaxStudents()) {
                     // Wird ausgeführt wenn es eine kostenpflichtige Anmeldung handelt
                     LOGGER.info("Es wird eine kostenpflichtige Anmeldung verarbeitet.");
                     page = pageDaoLocal.findByTechnical("registrationForm");
@@ -231,7 +235,7 @@ public class RegistrationAction extends EmptyAction {
     }
 
     private Boolean isValid(String input) {
-        if (Pattern.matches("[abcdef0-9-]*", input)) {
+        if (input != null && Pattern.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", input)) {
             return true;
         }
         return false;

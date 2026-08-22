@@ -19,7 +19,7 @@
       <!--  Start MAIN -->
       <div class="main">
         <struts:if test="actionName!='edit'">
-          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 55px; position: absolute; right: 302px; z-index: 900;">
+          <div class="lang_menu" style="border: 1px solid black; float: right; margin-top: 100px; position: absolute; right: 165px; z-index: 900;">
             <div style="padding:0px; margin:5px; height:24px;">
               <struts:a href="%{englishUrl}">
                 <img src="/admin/icons/80x60_flag-united_kingdom.png" style="float: left; width: 28px;"/> 
@@ -65,7 +65,93 @@
           >
             <struts:hidden key="course.uuid"/>
 
-            <fieldset id="settings" class="fieldset">
+          <div id="course">
+            <fieldset class="fieldset">
+
+              <p class="headline">Kursdaten:</p>
+
+              <div class="field">
+                <struts:select
+                    key="course.location"
+                    listValue="%{getName(getText('language'))}"
+                    listKey="uuid"
+                    multiple="false"
+                    value="event.location.{uuid}"
+                    list="locationList"
+                    cssStyle="padding: 0.3em; width: 99.75%"
+                />
+              </div>
+
+              <div class="field">
+                <struts:select
+                    key="course.lecturers"
+                    listValue="%{getName(getText('language'))}"
+                    listKey="uuid"
+                    multiple="true"
+                    labelposition="left"
+                    parentTheme="xhtml"
+                    list="lecturerList"
+                    value="course.lecturers.{uuid}"
+                    />
+              </div>
+
+              <div class="field">
+                <struts:textfield
+                    key="course.startDate"
+                    value="%{getFormatted('format.dateTime','course.startDate')}"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    labelposition="left"
+                    readonly="%{course.registrations.(size) > 0}"
+                />
+                <script type="text/javascript">
+                $('#edit_course_startDate').datetimepicker({ 
+                	datepicker: true,
+                    format: 'd.m.Y H:i',
+                	lang: 'de',
+                	defaultDate: ''
+                });
+                </script>
+              </div>
+
+              <div class="field">
+                <struts:textfield 
+                    key="course.number"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em; width:98%;"
+                />
+              </div>
+
+              <div class="field">
+                <struts:textfield
+                    key="course.maxStudents"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    type="number"
+                    min="1"
+                    step="1"
+                    placeholder="0"
+                />
+              </div>
+
+              <div class="field">
+                <struts:textfield
+                    key="course.minimumAge"
+                    parentTheme="css_xhtml"
+                    cssStyle="padding: 0.3em;"
+                    type="number"
+                    min="1"
+                    step="1"
+                    placeholder="0"
+                />
+              </div>              
+            </fieldset>
+
+          </div>
+
+
+          <div id="settings">
+            <fieldset class="fieldset">
             
               <p class="headline">Verwaltungseinstellungen:</p>
 
@@ -79,7 +165,7 @@
                     listValue="name" 
                     parentTheme="xhtml"
                     labelposition="left"
-                    cssStyle="padding: 0.3em; width: 640px;"
+                    cssStyle="padding: 0.3em; width: 490px;"
                     multiple="false"
                     value="course.cssGroup.{uuid}"
                 />
@@ -115,155 +201,91 @@
                 />
               </div>
             </fieldset>
+          </div>
 
-            <fieldset id="course">
-
-              <p class="headline">Kursdaten:</p>
-
-              <div class="field">
-                <struts:select
-                    key="course.location"
-                    listValue="%{getName(getText('language'))}"
-                    listKey="uuid"
-                    multiple="false"
-                    value="event.location.{uuid}"
-                    list="locationList"
-                />
-              </div>
-
-              <div class="field">
-                <struts:select
-                    key="course.lecturers"
-                    listValue="%{getName(getText('language'))}"
-                    listKey="uuid"
-                    multiple="true"
-                    labelposition="left"
-                    parentTheme="xhtml"
-                    list="lecturerList"
-                    value="course.lecturers.{uuid}"
-                    />
-              </div>
-
-              <div class="field">
-                <struts:textfield
-                    key="course.startDate"
-                    value="%{getFormatted('format.dateTime','course.startDate')}"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    labelposition="left"
-                    readonly="true"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield 
-                    key="course.number"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em; width:827px;"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield
-                    key="course.maxStudents"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    type="number"
-                    min="1"
-                    step="1"
-                    placeholder="0"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield
-                    key="course.minimumAge"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    type="number"
-                    min="1"
-                    step="1"
-                    placeholder="0"
-                />
-              </div>              
-            </fieldset>
-
-            <fieldset class="articledata">
+          <div id="articledata">
+            <fieldset class="fieldset">
 
               <p class="headline">Artikeldaten:</p>
 
-              <div class="field">
-                <struts:textfield 
-                    key="course.courseDocumentDescription"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                />
-              </div>
+              <div id="articledata_left">
+	              <div class="field">
+	                <struts:textfield 
+	                    key="course.courseDocumentDescription"
+	                    parentTheme="css_xhtml"
+	                    cssStyle="padding: 0.3em;"
+	                />
+	              </div>
+	
+	              <div class="field">
+	                <struts:textfield 
+	                    key="course.price"
+	                    parentTheme="css_xhtml"
+	                    cssStyle="padding: 0.3em;"
+	                    min="0"
+	                    inputmode="decimal"
+	                    placeholder="100,00"
+	                />
+	              </div>
+	
+	              <div class="field">
+	                <struts:textfield
+	                    key="course.priceTax"
+	                    parentTheme="css_xhtml"
+	                    cssStyle="padding: 0.3em;"
+	                    min="0"
+	                    inputmode="decimal"
+	                    placeholder="19,00"
+	                />
+	              </div>
+	          </div>
 
-              <div class="field">
-                <struts:textfield 
-                    key="course.price"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    min="0"
-                    inputmode="decimal"
-                    placeholder="100,00"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield
-                    key="course.priceTax"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    min="0"
-                    inputmode="decimal"
-                    placeholder="19,00"
-                />
-              </div>
-
-              <div class="field">
-                <struts:checkbox
-                    key="course.material"
-                    parentTheme="xhtml"
-					cssStyle="padding: 0.3em;"
-					labelposition="left"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield 
-                    key="course.materialDocumentDescription"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield 
-                    key="course.materialPrice"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    min="0"
-                    inputmode="decimal"
-                    placeholder="100,00"
-                />
-              </div>
-
-              <div class="field">
-                <struts:textfield
-                    key="course.materialTax"
-                    parentTheme="css_xhtml"
-                    cssStyle="padding: 0.3em;"
-                    min="0"
-                    inputmode="decimal"
-                    placeholder="19,00"
-                />
-              </div>
+	          <div id="articledata_right">
+	              <div class="field">
+	                <struts:checkbox
+	                    key="course.material"
+	                    parentTheme="xhtml"
+						cssStyle="padding: 0.3em;"
+						labelposition="left"
+	                />
+	              </div>
+	
+	              <div class="field">
+	                <struts:textfield 
+	                    key="course.materialDocumentDescription"
+	                    parentTheme="css_xhtml"
+	                    cssStyle="padding: 0.3em;"
+	                />
+	              </div>
+	
+	              <div class="field">
+	                <struts:textfield 
+	                    key="course.materialPrice"
+	                    parentTheme="css_xhtml"
+	                    cssStyle="padding: 0.3em;"
+	                    min="0"
+	                    inputmode="decimal"
+	                    placeholder="100,00"
+	                />
+	              </div>
+	
+	              <div class="field">
+	                <struts:textfield
+	                    key="course.materialTax"
+	                    parentTheme="css_xhtml"
+	                    cssStyle="padding: 0.3em;"
+	                    min="0"
+	                    inputmode="decimal"
+	                    placeholder="19,00"
+	                />
+	              </div>
+	          </div>
 
           </fieldset>
+        </div>
 
-          <fieldset>
+        <div id="description">
+          <fieldset class="fieldset">
             <p class="headline">Beschreibung:</p>
 
             <struts:if test="lang=='EN'">
@@ -273,7 +295,7 @@
                 <struts:textfield 
                     key="course.descriptionMap.EN.name"
                     parentTheme="xhtml"
-                    cssStyle="padding: 0.3em; width:1592px;"
+                    cssStyle="padding: 0.3em; width:1558px;"
                 />
               </div>
 
@@ -284,7 +306,7 @@
                     rows="8"
                     width="840" 
                     parentTheme="xhtml"
-                    cssStyle="padding: 0.3em; width:1592px;"
+                    cssStyle="padding: 0.3em; width:1558px;"
                 ></struts:textarea>	  
               </div>
 
@@ -292,7 +314,7 @@
                 <struts:textfield 
                     key="course.descriptionMap.EN.keywords"  
                     parentTheme="xhtml"
-                    cssStyle="padding: 0.3em; width:1592px;"
+                    cssStyle="padding: 0.3em; width:1558px;"
                 />
               </div>
 
@@ -302,7 +324,7 @@
                     key="course.contentMap.EN.content" 
 					rows="10" 
 					cols="80" 
-					width="840"
+					width="804"
 					height="250"
 					escape="false"
 					cssStyle="padding-left:202px;"
@@ -324,7 +346,7 @@
                 <struts:textfield 
                     key="course.descriptionMap.DE.name"
                     parentTheme="xhtml"
-                    cssStyle="padding: 0.3em; width:1592px;"
+                    cssStyle="padding: 0.3em; width:1558px;"
                 />
               </div>
 
@@ -334,7 +356,7 @@
                     cols="115" 
                     rows="8" 
                     width="840"
-                    cssStyle="padding: 0.3em; width:1592px;"
+                    cssStyle="padding: 0.3em; width:1558px;"
                     parentTheme="xhtml"
                 ></struts:textarea>	  
               </div>
@@ -343,7 +365,7 @@
                 <struts:textfield 
                     key="course.descriptionMap.DE.keywords"  
                     parentTheme="xhtml"
-                    cssStyle="padding: 0.3em; width:1592px;"
+                    cssStyle="padding: 0.3em; width:1558px;"
                 />
               </div>
 
@@ -353,7 +375,7 @@
                     key="course.contentMap.DE.content" 
 					rows="10" 
 					cols="80" 
-					width="840"
+					width="804"
 					height="250"
 					escape="false"
 					cssStyle="padding-left:202px;"
@@ -370,7 +392,8 @@
 
 
 
-            </fieldset>
+          </fieldset>
+        </div>
 
 
             <div class="buttons form_bottom">

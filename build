@@ -15,6 +15,12 @@ else
     CURRENT_VERSION=0
 fi
 
+CURRENT_VERSION1=$((CURRENT_VERSION - 1))
+CURRENT_VERSION2=$((CURRENT_VERSION - 1))
+CURRENT_VERSION3=$((CURRENT_VERSION - 1))
+CURRENT_VERSION4=$((CURRENT_VERSION - 1))
+CURRENT_VERSION5=$((CURRENT_VERSION - 1))
+
 # 2. Die Zahl mathematisch um 1 erhöhen
 NEXT_VERSION=$((CURRENT_VERSION + 1))
 
@@ -22,6 +28,13 @@ NEXT_VERSION=$((CURRENT_VERSION + 1))
 echo "$NEXT_VERSION" > "$COUNTER_FILE"
 
 # 4. Versions-String für Maven zusammenbauen (z. B. 1.0.42)
+OLD_VERSION_1="0.0.$CURRENT_VERSION"
+OLD_VERSION_2="0.0.$CURRENT_VERSION1"
+OLD_VERSION_3="0.0.$CURRENT_VERSION2"
+OLD_VERSION_4="0.0.$CURRENT_VERSION3"
+OLD_VERSION_5="0.0.$CURRENT_VERSION4"
+OLD_VERSION_6="0.0.$CURRENT_VERSION5"
+
 BUILD_VERSION="0.0.$NEXT_VERSION"
 echo "Generierte Build-Version für diesen Durchlauf: $BUILD_VERSION"
 
@@ -43,7 +56,7 @@ if [ -d "$M2_PROJECT_DIR" ]; then
     # -mindepth 2 und -maxdepth 2 sorgt dafür, dass wir genau die Versions-Ebene treffen
     # (z. B. de/tivsource/page/modulname/0.0.1)
     # Alles, was nicht der aktuellen Version entspricht, fliegt raus.
-#    find "$M2_PROJECT_DIR" -mindepth 2 -maxdepth 2 -type d ! -name "$BUILD_VERSION" -exec rm -rf {} +
+    find "$M2_PROJECT_DIR" -mindepth 2 -maxdepth 2 -type d ! -name "$BUILD_VERSION" ! -name "$OLD_VERSION_1" ! -name "$OLD_VERSION_2" ! -name "$OLD_VERSION_3" ! -name "$OLD_VERSION_4" ! -name "$OLD_VERSION_5" ! -name "$OLD_VERSION_6" -exec rm -rf {} +
     
     echo "Aufräumen beendet."
 fi

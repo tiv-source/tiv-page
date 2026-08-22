@@ -11,6 +11,7 @@ import org.hibernate.envers.Audited;
 
 import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.course.Course;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,7 +43,7 @@ public class Lecturer extends ContentItem {
     @Column(table = TABLE)
     private String phoneNumber;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
         name = "Lecturer_Course",
         joinColumns = @JoinColumn(name = "lecturer_uuid"),
@@ -121,6 +122,42 @@ public class Lecturer extends ContentItem {
         this.courses = courses;
     }
 
+    // Helper-Methode zum Hinzufügen eines Kurses
+    public void addCourse(Course course) {
+        if (course == null) {
+            return;
+        }
+        
+        // 1. Initialisiere das SortedSet mit einem TreeSet, falls es null sein sollte
+        if (this.courses == null) {
+            this.courses = new TreeSet<>();
+        }
+        
+        // 2. Füge den Kurs hinzu. Wenn er noch nicht drin war, pflege die Rückbeziehung
+        if (this.courses.add(course)) {
+            // 3. WICHTIG: Auf der Gegenseite (Course) ebenfalls im Set registrieren
+            if (course.getLecturers() == null) {
+                course.setLecturers(new TreeSet<>());
+            }
+            course.getLecturers().add(this);
+        }
+    }
+
+    // Helper-Methode zum Entfernen eines Kurses
+    public void removeCourse(Course course) {
+        if (course == null || this.courses == null) {
+            return;
+        }
+        
+        // 1. Aus der eigenen Collection (Owner-Seite) entfernen
+        if (this.courses.remove(course)) {
+            // 2. WICHTIG: Aus der Collection der Gegenseite entfernen
+            if (course.getLecturers() != null) {
+                course.getLecturers().remove(this);
+            }
+        }
+    }
+
     /* (non-Javadoc)
      * @see de.tivsource.page.entity.contentitem.ContentItem#getUrl()
      */
@@ -137,18 +174,34 @@ public class Lecturer extends ContentItem {
 
     @Override
     public int compareTo(ContentItem o) {
-        if(o instanceof Lecturer) {
-            Lecturer lecturer = (Lecturer)o;
-            if (lecturer.getLastname().compareTo(this.lastname) != 0) {
-                return lecturer.getLastname().compareTo(this.lastname);
-            } else if (lecturer.getFirstname().compareTo(this.firstname) != 0) {
-                return lecturer.getFirstname().compareTo(this.firstname);
-            } else {
-                return o.getUuid().compareTo(this.getUuid());
+        if (this == o) return 0;
+        
+        if (o instanceof Lecturer) {
+            Lecturer lecturer = (Lecturer) o;
+            
+            // Nach Nachname vergleichen (this vs. lecturer)
+            int lastNameCompare = this.lastname.compareTo(lecturer.getLastname());
+            if (lastNameCompare != 0) {
+                return lastNameCompare;
             }
-        } else {
-            return o.compareTo(this);
+            
+            // Nach Vorname vergleichen (this vs. lecturer)
+            int firstNameCompare = this.firstname.compareTo(lecturer.getFirstname());
+            if (firstNameCompare != 0) {
+                return firstNameCompare;
+            }
+            
+            // Nach UUID vergleichen (this vs. o)
+            if (this.getUuid() != null && o.getUuid() != null) {
+                return this.getUuid().compareTo(o.getUuid());
+            }
         }
+        
+        // Fallback auf den Basis-Vergleich, falls es ein anderes ContentItem ist
+        return (this.getUuid() != null && o.getUuid() != null) 
+                ? this.getUuid().compareTo(o.getUuid()) 
+                : 0;
     }
+
 
 }// Ende class

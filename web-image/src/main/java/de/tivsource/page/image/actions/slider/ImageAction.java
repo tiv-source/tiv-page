@@ -14,8 +14,9 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.dao.slider.SliderImageDaoLocal;
 import de.tivsource.page.entity.slider.SliderImage;
@@ -40,10 +41,12 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
      */
     private HttpServletRequest servletRequest;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name = "SliderImageDao")
+    @Autowired
+    @Qualifier("sliderImageDaoLocal")
     private SliderImageDaoLocal sliderImageDaoLocal;
 
     /**

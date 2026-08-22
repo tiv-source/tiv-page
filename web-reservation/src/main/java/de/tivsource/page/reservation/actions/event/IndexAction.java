@@ -9,8 +9,9 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.event.EventDaoLocal;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.event.Event;
@@ -34,10 +35,12 @@ public class IndexAction extends EmptyAction {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(IndexAction.class);
 
-    @InjectEJB(name="ReservationDao")
+    @Autowired
+    @Qualifier("reservationDaoLocal")
     private ReservationDaoLocal reservationDaoLocal;
 
-    @InjectEJB(name="EventDao")
+    @Autowired
+    @Qualifier("eventDaoLocal")
     private EventDaoLocal eventDaoLocal;
 
     private Event event;

@@ -14,8 +14,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.companion.CompanionDaoLocal;
@@ -47,10 +47,12 @@ public class EditAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
-    @InjectEJB(name="CompanionDao")
+    @Autowired
+    @Qualifier("companionDaoLocal")
     private CompanionDaoLocal companionDaoLocal;
 
-    @InjectEJB(name="CompanionGroupDao")
+    @Autowired
+    @Qualifier("companionGroupDaoLocal")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
 
     private Companion companion;

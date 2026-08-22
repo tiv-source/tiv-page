@@ -15,9 +15,9 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
-import de.tivsource.page.dao.course.CourseDaoLocal;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
 
@@ -37,9 +37,8 @@ public class UnitJsonAction extends ActionSupport {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = LogManager.getLogger(UnitJsonAction.class);
-	
-	@InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+
+    private CourseService courseService;
 
 	private Course course;
 	private List<CourseUnit> gridModel;
@@ -50,6 +49,12 @@ public class UnitJsonAction extends ActionSupport {
 	private Integer record = 0;
 	private String sord;
 	private String sidx;
+
+    @Autowired
+    public UnitJsonAction(CourseService courseService) {
+        super();
+        this.courseService = courseService;
+    }
 
 	@Override
     @Actions({
@@ -68,7 +73,9 @@ public class UnitJsonAction extends ActionSupport {
                             + "gridModel.*.course, "
                             + "gridModel.*.courses, "
                             + "gridModel.*.descriptionMap.DE.namingItem, "
+                            + "gridModel.*.descriptionMap.DE.namingItem.*, "
                             + "gridModel.*.descriptionMap.EN.namingItem, "
+                            + "gridModel.*.descriptionMap.EN.namingItem.*, "
                             + "gridModel.*.groups, "
                             + "gridModel.*.image.largeFileInputStream, "
                             + "gridModel.*.image.microFileInputStream, "
@@ -109,7 +116,7 @@ public class UnitJsonAction extends ActionSupport {
         courseUuid = courseUuid.replaceAll("/table.html", "");
         courseUuid = courseUuid.replaceAll("/academy/course/unit/", "");
         LOGGER.info("Course Uuid: " + courseUuid);
-        course = courseDaoLocal.findByUuid(courseUuid);
+        course = courseService.getCourseWithAllRelations(courseUuid);
 	    
 		/*
 		 * Setze die Anzahl aller Objekte in der Datenbank.

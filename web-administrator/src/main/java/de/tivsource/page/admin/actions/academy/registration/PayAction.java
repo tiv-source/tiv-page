@@ -30,8 +30,8 @@ import org.mustangproject.TradeParty;
 import org.mustangproject.ZUGFeRD.Profiles;
 import org.mustangproject.ZUGFeRD.ZUGFeRDExporterFromA1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.administration.UserDaoLocal;
@@ -74,13 +74,16 @@ public class PayAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(PayAction.class);
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="UserDao")
+    @Autowired
+    @Qualifier("userDaoLocal")
     private UserDaoLocal userDaoLocal;
 
-    @InjectEJB(name="RegistrationDao")
+    @Autowired
+    @Qualifier("registrationDaoLocal")
     private RegistrationDaoLocal registrationDaoLocal;
 
     private Registration registration;

@@ -13,14 +13,13 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CSSGroupService;
+import de.tivsource.page.admin.services.CourseService;
+import de.tivsource.page.admin.services.LecturerService;
+import de.tivsource.page.admin.services.LocationService;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSGroup;
-import de.tivsource.page.dao.course.CourseDaoLocal;
-import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
-import de.tivsource.page.dao.lecturer.LecturerDaoLocal;
-import de.tivsource.page.dao.location.LocationDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.lecturer.Lecturer;
 import de.tivsource.page.entity.location.Location;
@@ -67,17 +66,13 @@ public class FormAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CourseService courseService;
 
-    @InjectEJB(name = "CSSGroupDao")
-    private CSSGroupDaoLocal cssGroupDaoLocal;
+    private CSSGroupService cssGroupService;
 
-    @InjectEJB(name="LecturerDao")
-    private LecturerDaoLocal lecturerDaoLocal;
+    private LecturerService lecturerService;
 
-    @InjectEJB(name="LocationDao")
-    private LocationDaoLocal locationDaoLocal;
+    private LocationService locationService;
 
 	private Course course;
 
@@ -85,15 +80,19 @@ public class FormAction extends EmptyAction {
 
 	private String lang = "DE";
 
-    private List<CSSGroup> cssGroupList;
-
-    private List<Lecturer> lecturerList;
-
-    private List<Location> locationList;
-
     @Autowired
-    public FormAction(PropertyService propertyService) {
+    public FormAction(
+            PropertyService propertyService, 
+            CourseService courseService, 
+            CSSGroupService cssGroupService,
+            LecturerService lecturerService,
+            LocationService locationService
+            ) {
         super(propertyService);
+        this.courseService = courseService;
+        this.cssGroupService = cssGroupService;
+        this.lecturerService = lecturerService;
+        this.locationService = locationService;
     }
 
 	public Course getCourse() {
@@ -117,9 +116,6 @@ public class FormAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
-        lecturerList = lecturerDaoLocal.findAll(0, lecturerDaoLocal.countAll());
-        locationList = locationDaoLocal.findAll(0, locationDaoLocal.countAll());
     }
 
     @Override
@@ -147,33 +143,30 @@ public class FormAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	
-    	this.loadPageParameter();
+    	this.loadCourse();
+        LOGGER.info("Anzahl der Registrierungen: " + course.getRegistrations().size());
     	return SUCCESS;
     }// Ende execute()
 
     public List<CSSGroup> getCssGroupList() {
-        LOGGER.info("getCssGroupList() aufgerufen.");
-        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        LOGGER.debug("getCssGroupList() aufgerufen.");
+        List<CSSGroup> cssGroupList = cssGroupService.getAllCSSGroups();
+        LOGGER.debug("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
 
     public List<Lecturer> getLecturerList() {
-        return lecturerList;
+        return lecturerService.getAllLecturer();
     }// Ende getLecturerList()
 
     public List<Location> getLocationList() {
-        return locationList;
+        return locationService.getAllLocations();
     }// Ende getLocationList()
 
-    private void loadPageParameter() {
-
+    private void loadCourse() {
 		if( uncheckCourse != null && uncheckCourse != "" && uncheckCourse.length() > 0) {
-			course = courseDaoLocal.findByUuid(uncheckCourse);
-		} else {
-			course = new Course();
+			course = courseService.getCourseWithAllRelations(uncheckCourse);
 		}
-
 	}// Ende loadPageParameter()
 
 }// Ende class

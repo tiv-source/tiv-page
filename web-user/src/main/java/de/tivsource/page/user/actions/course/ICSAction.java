@@ -32,6 +32,7 @@ import de.tivsource.page.entity.course.unit.CourseUnit;
 import de.tivsource.page.entity.location.Location;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
+import de.tivsource.page.user.services.CourseService;
 import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.TimeZoneRegistry;
@@ -73,6 +74,8 @@ public class ICSAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(ICSAction.class);
 
+    private CourseService courseService;
+
     @Autowired
     @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
@@ -92,6 +95,12 @@ public class ICSAction extends EmptyAction {
     private InputStream inputStream;
 
     private String contentDisposition;
+
+    @Autowired
+    public ICSAction(CourseService courseService) {
+        super();
+        this.courseService = courseService;
+    }
 
     @Override
     @Actions({
@@ -133,7 +142,7 @@ public class ICSAction extends EmptyAction {
          */
         if (isValid(courseUuid) && courseDaoLocal.isCourseUuid(courseUuid)) {
             LOGGER.info("gültige Course Uuid.");
-            course = courseDaoLocal.findByUuid(courseUuid);
+            course = courseService.getCourseWithAllRelations(courseUuid);
             /*
              * Wenn das Appointment Objekt sichbar sein soll und auch schon das
              * Anzeigedtaum erreicht hat wird dieser Block ausgefüht.
@@ -192,7 +201,7 @@ public class ICSAction extends EmptyAction {
     }
 
     private Boolean isValid(String input) {
-        if (Pattern.matches("[abcdef0-9-]*", input)) {
+        if (input != null && Pattern.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", input)) {
             return true;
         }
         return false;

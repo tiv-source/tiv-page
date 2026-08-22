@@ -10,8 +10,8 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.companion.CompanionDaoLocal;
@@ -34,7 +34,8 @@ public class DeleteAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(DeleteAction.class);
 
-    @InjectEJB(name="CompanionDao")
+    @Autowired
+    @Qualifier("companionDaoLocal")
     private CompanionDaoLocal companionDaoLocal;
 
     private Companion companion;

@@ -1,5 +1,6 @@
 package de.tivsource.page.entity.namingitem;
 
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 
@@ -86,6 +87,7 @@ public class Description {
         this.language = language;
     }
 
+    @JSON(serialize = false)
     public NamingItem getNamingItem() {
         return namingItem;
     }

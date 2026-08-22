@@ -13,9 +13,9 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
-import de.tivsource.page.dao.course.CourseDaoLocal;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.entity.course.Course;
 
 /**
@@ -34,9 +34,8 @@ public class JsonAction extends ActionSupport {
      * Statischer Logger der Klasse.
      */
     private static final Logger LOGGER = LogManager.getLogger(JsonAction.class);
-	
-	@InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+
+    private CourseService courseService;
 
 	private List<Course> gridModel;
 	private List<Course> courseList;
@@ -46,6 +45,12 @@ public class JsonAction extends ActionSupport {
 	private Integer record = 0;
 	private String sord;
 	private String sidx;
+
+    @Autowired
+    public JsonAction(CourseService courseService) {
+        super();
+        this.courseService = courseService;
+    }
 
 	@Override
     @Actions({
@@ -111,13 +116,13 @@ public class JsonAction extends ActionSupport {
 	public String getJSON() {
 
 	    LOGGER.info("Page " + getPage() + " Rows " + getRows()
-				+ " Sorting Order " + getSord() + " Index Row :" + getSidx());
+				+ " Sorting Order " + getSord() + " Index Row " + getSidx());
 	    LOGGER.info("Build new List");
 
 		/*
 		 * Setze die Anzahl aller Objekte in der Datenbank.
 		 */
-		setRecord(this.courseDaoLocal.countAll());
+		setRecord(courseService.countAllCourses());
 
 		int to = (getRows() * getPage());
 		int from = to - getRows();
@@ -134,42 +139,10 @@ public class JsonAction extends ActionSupport {
 		 */
 		if (getSord() != null && getSord().equalsIgnoreCase("asc")) {
 		    LOGGER.info("Sortieren nach asc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				courseList = this.courseDaoLocal.findAll(from, getRows(), "l.uuid", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "dm.name", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.visible", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-				courseList = this.courseDaoLocal.findAll(from, getRows(), "l.created", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.modified", "asc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-				courseList = this.courseDaoLocal.findAll(from, getRows(), "l.modifiedBy", "asc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.technical", "asc");
-            } else {
-				courseList = this.courseDaoLocal.findAll(from, getRows());
-			}
+		    courseList = courseService.getAllCourses(from, getRows(), sidx, "asc");
 		} else if (getSord() != null && getSord().equalsIgnoreCase("desc")) {
 		    LOGGER.info("Sortieren nach desc");
-			if (getSidx() != null && getSidx().equalsIgnoreCase("uuid")) {
-				courseList = this.courseDaoLocal.findAll(from, getRows(), "l.uuid", "desc");
-			} else if (getSidx() != null && getSidx().equalsIgnoreCase("name")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "dm.name", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("visible")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.visible", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("created")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.created", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modified")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.modified", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("modifiedBy")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.modifiedBy", "desc");
-            } else if (getSidx() != null && getSidx().equalsIgnoreCase("technical")) {
-                courseList = this.courseDaoLocal.findAll(from, getRows(), "l.technical", "desc");
-            } else {
-				courseList = this.courseDaoLocal.findAll(from, getRows());
-			}
+		    courseList = courseService.getAllCourses(from, getRows(), sidx, "desc");
 		}
 
 		setTotal((int) Math.ceil((double) getRecord() / (double) getRows()));

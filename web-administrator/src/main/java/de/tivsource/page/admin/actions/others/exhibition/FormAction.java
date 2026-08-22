@@ -13,8 +13,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSGroup;
@@ -62,13 +62,16 @@ public class FormAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(FormAction.class);
 
-    @InjectEJB(name = "CSSGroupDao")
+    @Autowired
+    @Qualifier("cssDaoLocal")
     private CSSGroupDaoLocal cssGroupDaoLocal;
 
-    @InjectEJB(name="ExhibitionDao")
+    @Autowired
+    @Qualifier("exhibitionDaoLocal")
     private ExhibitionDaoLocal exhibitionDaoLocal;
 
-    @InjectEJB(name="PageDao")
+    @Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
     private Exhibition exhibition;

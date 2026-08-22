@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.reservation.ReservationDaoLocal;
 import de.tivsource.page.entity.reservation.Reservation;
 
@@ -35,7 +36,8 @@ public class QueueJsonAction extends ActionSupport {
      */
     private static final Logger LOGGER = LogManager.getLogger(QueueJsonAction.class);
     
-    @InjectEJB(name="ReservationDao")
+    @Autowired
+    @Qualifier("reservationDaoLocal")
     private ReservationDaoLocal reservationDaoLocal;
 
 	private List<Reservation> gridModel;

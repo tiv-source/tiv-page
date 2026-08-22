@@ -1,12 +1,9 @@
 package de.tivsource.page.admin.actions.academy.course;
 
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -18,15 +15,13 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CSSGroupService;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSGroup;
-import de.tivsource.page.dao.course.CourseDaoLocal;
-import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
-import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.pictureitem.PictureItemImage;
 import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
 
@@ -54,21 +49,23 @@ public class UnitAddAction extends EmptyAction implements UploadedFilesAware {
      */
     private static final Logger LOGGER = LogManager.getLogger(UnitAddAction.class);
 
-    @InjectEJB(name = "CSSGroupDao")
-    private CSSGroupDaoLocal cssGroupDaoLocal;
+    private CourseService courseService;
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CSSGroupService cssGroupService;
 
     private Course course;
 
     private CourseUnit courseUnit;
 
-    private List<CSSGroup> cssGroupList;
-
     @Autowired
-    public UnitAddAction(PropertyService propertyService) {
+    public UnitAddAction(
+            PropertyService propertyService,
+            CourseService courseService,
+            CSSGroupService cssGroupService
+            ) {
         super(propertyService);
+        this.courseService = courseService;
+        this.cssGroupService = cssGroupService;
     }
 
     @StrutsParameter(depth=3)
@@ -92,7 +89,6 @@ public class UnitAddAction extends EmptyAction implements UploadedFilesAware {
     @Override
     public void prepare() {
         super.prepare();
-        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -108,82 +104,19 @@ public class UnitAddAction extends EmptyAction implements UploadedFilesAware {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-
-        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-
-    	if(course != null) {
-    	    LOGGER.info("UUID des Events: " + course.getUuid());
-            Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
-
-    	    if(courseUnit != null) {
-    	        courseUnit.setUuid(UUID.randomUUID().toString());
-    	        courseUnit.setModified(new Date());
-    	        courseUnit.setCreated(new Date());
-    	        courseUnit.setModifiedBy(remoteUser);
-    	        courseUnit.setModifiedAddress(remoteAddress);
-
-    	        courseUnit.getDescriptionMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
-    	        courseUnit.getDescriptionMap().get(Language.DE).setNamingItem(courseUnit);
-    	        courseUnit.getDescriptionMap().get(Language.DE).setLanguage(Language.DE);
-                String noLineBreaks = courseUnit.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
-                courseUnit.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
-
-                courseUnit.getContentMap().get(Language.DE).setUuid(UUID.randomUUID().toString());
-                courseUnit.getContentMap().get(Language.DE).setContentItem(courseUnit);
-                courseUnit.getContentMap().get(Language.DE).setLanguage(Language.DE);
-                courseUnit.getContentMap().get(Language.DE).setCreated(new Date());
-                courseUnit.getContentMap().get(Language.DE).setModified(new Date());
-
-                courseUnit.getDescriptionMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
-                courseUnit.getDescriptionMap().get(Language.EN).setNamingItem(courseUnit);
-                courseUnit.getDescriptionMap().get(Language.EN).setLanguage(Language.EN);
-                courseUnit.getDescriptionMap().get(Language.EN).setDescription(courseUnit.getDescriptionMap().get(Language.DE).getDescription());
-                courseUnit.getDescriptionMap().get(Language.EN).setName(courseUnit.getDescriptionMap().get(Language.DE).getName());
-                courseUnit.getDescriptionMap().get(Language.EN).setKeywords(courseUnit.getDescriptionMap().get(Language.DE).getKeywords());
-
-                courseUnit.getContentMap().get(Language.EN).setUuid(UUID.randomUUID().toString());
-                courseUnit.getContentMap().get(Language.EN).setContentItem(courseUnit);
-                courseUnit.getContentMap().get(Language.EN).setLanguage(Language.EN);
-                courseUnit.getContentMap().get(Language.EN).setCreated(new Date());
-                courseUnit.getContentMap().get(Language.EN).setModified(new Date());
-                courseUnit.getContentMap().get(Language.EN).setContent(courseUnit.getContentMap().get(Language.DE).getContent());
-
-                courseUnit.getImage().setUuid(UUID.randomUUID().toString());
-                courseUnit.getImage().generate();
-                courseUnit.getImage().setCreated(new Date());
-                courseUnit.getImage().setModified(new Date());
-                courseUnit.getImage().setModifiedAddress(remoteAddress);
-                courseUnit.getImage().setModifiedBy(remoteUser);
-
-                courseUnit.setOrderNumber(1);
-                courseUnit.setPictureOnPage(true);
-                courseUnit.setVisible(true);
-                courseUnit.setTechnical("CourseUnit_" + courseUnit.getUuid());
-                courseUnit.setCourse(dbCourse);
-
-                // Setze die Einheit in das SortedSet
-                dbCourse.getUnits().add(courseUnit);
-                // Hole das Datum der ersten Einheit aus dem SortedSet 
-                Date firstUnit = dbCourse.getUnits().first().getPointInTime();
-                LOGGER.info("Datum der ersten Einheit: " + firstUnit);
-                // Setze das Startdatum auf das Datum der ersten Einheit
-                dbCourse.setStartDate(firstUnit);
-                
-                courseDaoLocal.merge(dbCourse);
-
+    	if(course != null && courseUnit != null) {
+    	    LOGGER.info("UUID des Kures: " + course.getUuid());
+    	    if(courseService.addCourseUnit(course.getUuid(), courseUnit)) {
                 return SUCCESS;
-    	        
     	    }
-    	    return ERROR;
     	}
    		return ERROR;
-
     }// Ende execute()
 
     public List<CSSGroup> getCssGroupList() {
-        LOGGER.info("getCssGroupList() aufgerufen.");
-        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        LOGGER.debug("getCssGroupList() aufgerufen.");
+        List<CSSGroup> cssGroupList = cssGroupService.getAllCSSGroups();
+        LOGGER.debug("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
 

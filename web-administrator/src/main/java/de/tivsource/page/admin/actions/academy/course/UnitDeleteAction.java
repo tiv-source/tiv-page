@@ -2,17 +2,16 @@ package de.tivsource.page.admin.actions.academy.course;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CSSGroupService;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
-import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
 
@@ -33,16 +32,19 @@ public class UnitDeleteAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(UnitDeleteAction.class);
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CourseService courseService;
 
     private Course course;
 
     private CourseUnit courseUnit;
 
     @Autowired
-    public UnitDeleteAction(PropertyService propertyService) {
+    public UnitDeleteAction(
+            PropertyService propertyService,
+            CourseService courseService
+            ) {
         super(propertyService);
+        this.courseService = courseService;
     }
 
     @StrutsParameter(depth=3)
@@ -76,19 +78,13 @@ public class UnitDeleteAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-    	String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-
         if(course != null && courseUnit != null) {
             LOGGER.info("UUID des Course: " + course.getUuid());
-            Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
-            dbCourse.setModifiedBy(remoteUser);
-            dbCourse.setModifiedAddress(remoteAddress);
-            courseDaoLocal.removeCourseUnit(dbCourse, this.courseUnit.getUuid());
+            courseService.deleteCourseUnit(course.getUuid(), courseUnit.getUuid());
             return SUCCESS;
     	}// Ende if()
         // Wenn kein Kurs-Objekt vorhanden ist
         return ERROR;
     }// Ende execute()
-	
+
 }// Ende class

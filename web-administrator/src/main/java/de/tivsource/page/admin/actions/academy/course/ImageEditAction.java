@@ -1,11 +1,9 @@
 package de.tivsource.page.admin.actions.academy.course;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.action.UploadedFilesAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
@@ -14,10 +12,9 @@ import org.apache.struts2.dispatcher.multipart.UploadedFile;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
-import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.pictureitem.PictureItemImage;
 import de.tivsource.page.rewriteobject.UploadedFileToUploadFile;
@@ -39,14 +36,17 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
 	 */
     private static final Logger LOGGER = LogManager.getLogger(ImageEditAction.class);
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CourseService courseService;
 
     private Course course;
 
     @Autowired
-    public ImageEditAction(PropertyService propertyService) {
+    public ImageEditAction(
+            PropertyService propertyService, 
+            CourseService courseService 
+            ) {
         super(propertyService);
+        this.courseService = courseService;
     }
 
     @StrutsParameter(depth=3)
@@ -71,32 +71,13 @@ public class ImageEditAction extends EmptyAction implements UploadedFilesAware {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-
-        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-
-    	if(course != null) {
-    		LOGGER.info("UUID des Page Objektes: " + course.getUuid());
-    		Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
-
-    		dbCourse.setModified(new Date());
-    		dbCourse.setModifiedBy(remoteUser);
-    		dbCourse.setModifiedAddress(remoteAddress);
-
-    		dbCourse.getImage().setUploadFile(course.getImage().getUploadFile());
-    		dbCourse.getImage().generate();
-    		dbCourse.getImage().setModified(new Date());
-    		dbCourse.getImage().setModifiedAddress(remoteAddress);
-    		dbCourse.getImage().setModifiedBy(remoteUser);
-
-    		// TODO: Es werden keine Dateien gelöscht entwerde muss das noch hier hin oder es muss eine Aufräumfunktion geben.
-            courseDaoLocal.merge(dbCourse);
-            return SUCCESS;
-    	}
-    	else {
-    		return ERROR;
-    	}
-
+        if(course != null) {
+            LOGGER.info("UUID des Kurs Objektes: " + course.getUuid());
+            if(courseService.updateCourseImage(course)) {
+                return SUCCESS;             
+            }
+        }
+   		return ERROR;
     }// Ende execute()
 
     @Override

@@ -17,8 +17,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSFile;
@@ -53,7 +53,8 @@ public class AddAction extends EmptyAction implements UploadedFilesAware {
      */
     private static final Logger LOGGER = LogManager.getLogger(AddAction.class);
 
-    @InjectEJB(name="CSSFileDao")
+    @Autowired
+    @Qualifier("cssFileDaoLocal")
     private CSSFileDaoLocal cssFileDaoLocal;
 
     private CSSFile cssFile;

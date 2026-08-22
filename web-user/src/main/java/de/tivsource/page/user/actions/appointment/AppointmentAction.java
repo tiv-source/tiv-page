@@ -44,14 +44,6 @@ public class AppointmentAction extends EmptyAction {
     private static final Logger LOGGER = LogManager.getLogger(AppointmentAction.class);
 
     @Autowired
-    @Qualifier("pageDaoLocal")
-    private PageDaoLocal pageDaoLocal;
-
-    @Autowired
-    @Qualifier("propertyDaoLocal")
-    private PropertyDaoLocal propertyDaoLocal;
-
-    @Autowired
     @Qualifier("appointmentDaoLocal")
     private AppointmentDaoLocal appointmentDaoLocal;
 

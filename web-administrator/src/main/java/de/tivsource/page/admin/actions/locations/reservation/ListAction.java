@@ -14,8 +14,8 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.dao.event.EventDaoLocal;
@@ -41,10 +41,12 @@ public class ListAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(ListAction.class);
 
-    @InjectEJB(name="EventDao")
+    @Autowired
+    @Qualifier("eventDaoLocal")
     private EventDaoLocal eventDaoLocal;
 
-    @InjectEJB(name="ReservationDao")
+    @Autowired
+    @Qualifier("reservationDaoLocal")
     private ReservationDaoLocal reservationDaoLocal;
 
     private Event event;

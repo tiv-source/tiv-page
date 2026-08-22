@@ -23,7 +23,6 @@ import de.tivsource.page.entity.contentitem.ContentItem;
 import de.tivsource.page.entity.course.unit.CourseUnit;
 import de.tivsource.page.entity.lecturer.Lecturer;
 import de.tivsource.page.entity.location.Location;
-import de.tivsource.page.entity.pictureitem.PictureItem;
 import de.tivsource.page.entity.registration.Registration;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -93,6 +92,9 @@ public class Course extends ContentItem {
     @SortNatural
     private SortedSet<Registration> registrations = new TreeSet<Registration>();
 
+    /**
+     * Beschreibung des Kurses die in PDF-Dokumenten benutzt wird.
+     */
     @Column(table = TABLE)
     private String courseDocumentDescription;
 
@@ -336,16 +338,38 @@ public class Course extends ContentItem {
         this.location = location;
     }
 
-    public void addLecturer(Lecturer lecturer) {
-        lecturers.add(lecturer);
-        lecturer.getCourses().add(this);
-    }
+    // Helper-Methode zum Hinzufügen
+   public void addLecturer(Lecturer lecturer) {
+       if (lecturer == null) {
+           return;
+       }
+       
+       // Initialisiere das SortedSet, falls es noch null ist
+       if (this.lecturers == null) {
+           this.lecturers = new TreeSet<>(); // Wichtig: TreeSet für SortedSet verwenden!
+       }
+       
+       // Dopple-Check: Nur hinzufügen, wenn noch nicht vorhanden (verhindert Endlosschleifen)
+       if (this.lecturers.add(lecturer)) {
+           // WICHTIG: Die Rückbeziehung auf der Owner-Seite (Lecturer) setzen
+           lecturer.getCourses().add(this);
+       }
+   }
 
-    public void removeLecturer(Lecturer lecturer) {
-        lecturers.remove(lecturer);
-        lecturer.getCourses().remove(this);
-    }
-
+   // Helper-Methode zum Entfernen
+   public void removeLecturer(Lecturer lecturer) {
+       if (lecturer == null || this.lecturers == null) {
+           return;
+       }
+       
+       // 1. Aus der eigenen Collection entfernen
+       if (this.lecturers.remove(lecturer)) {
+           // 2. WICHTIG: Aus der Collection der Gegenseite entfernen
+           lecturer.getCourses().remove(this);
+       }
+   }
+   
+    
     /**
      * Methode die true liefert wenn der Kurs in der Vergangenheit liegt
      * und false wenn der Kurs in der Zukunft liegt.
@@ -430,14 +454,23 @@ public class Course extends ContentItem {
      */
     @Override
     public int compareTo(ContentItem o) {
+        if (this == o) return 0;
         Course course = (Course) o;
-        if(course.getStartDate().after(this.startDate)) {
-            return -1;
-        } else if (course.getStartDate().before(this.startDate)) {
-            return 1;
-        } else {
-            return o.getUuid().compareTo(this.getUuid());
+        
+        if (this.startDate != null && course.getStartDate() != null) {
+            if (this.startDate.before(course.getStartDate())) {
+                return -1;
+            } else if (this.startDate.after(course.getStartDate())) {
+                return 1;
+            }
         }
+        
+        // UUID-Vergleich korrigieren: Immer von "this" zu "o" vergleichen!
+        if (this.getUuid() != null && o.getUuid() != null) {
+            return this.getUuid().compareTo(o.getUuid());
+        }
+        
+        return 0;
     }// Ende compareTo(ContentItem o)
 
     /* (non-Javadoc)
@@ -451,9 +484,9 @@ public class Course extends ContentItem {
         if (o == null) return false;
         // type check and cast
         if (getClass() != o.getClass()) return false;
-        PictureItem pictureItem = (PictureItem) o;
+        Course course = (Course) o;
         // field comparison
-        return Objects.equals(getUuid(), pictureItem.getUuid());
+        return Objects.equals(getUuid(), course.getUuid());
     }// Ende equals(Object o)
 
 }// Ende class

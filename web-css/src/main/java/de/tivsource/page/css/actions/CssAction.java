@@ -16,8 +16,9 @@ import org.apache.struts2.action.ServletRequestAware;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.css.CSSFile;
 import de.tivsource.page.dao.cssfile.CSSFileDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
@@ -44,10 +45,12 @@ public class CssAction extends ActionSupport implements ServletRequestAware {
      */
     private HttpServletRequest servletRequest;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="CSSFileDao")
+    @Autowired
+    @Qualifier("cssFileDaoLocal")
     private CSSFileDaoLocal cssFileDaoLocal;
 
     private FileInputStream cssFileInputStream;

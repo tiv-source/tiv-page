@@ -13,8 +13,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.country.Country;
@@ -47,7 +47,8 @@ public class EditAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
-    @InjectEJB(name="CountryDao")
+    @Autowired
+    @Qualifier("countryDaoLocal")
     private CountryDaoLocal countryDaoLocal;
 
     private Country country;

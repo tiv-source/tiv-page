@@ -4,6 +4,7 @@
 package de.tivsource.page.dao.course;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.SortedSet;
 
 import de.tivsource.page.entity.course.Course;
@@ -22,6 +23,8 @@ public interface CourseDaoLocal {
      * @param course - Course Objekt das gespeichert werden soll
      */
     public void save(Course course);
+
+    public void saveOrUpdate(Course course);
 
     /**
      * Methode zum verändern eines Objektes der Klasse Course.
@@ -56,7 +59,9 @@ public interface CourseDaoLocal {
      */
     public Course findByTechnical(String coursename);
 
-    public Course findByUuid(String uuid);
+    public Optional<Course> findByUuid(String uuid);
+
+    public Optional<Course> findByUuidWithAllRelations(String uuid);
 
     /**
      * Methode zum laden einer Liste von Course Objekten, es muss dabei ein

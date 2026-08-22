@@ -13,8 +13,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.salutation.Salutation;
@@ -43,7 +43,8 @@ public class DeleteAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(DeleteAction.class);
 
-    @InjectEJB(name="SalutationDao")
+    @Autowired
+    @Qualifier("salutationDaoLocal")
     private SalutationDaoLocal salutationDaoLocal;
     
     private Salutation salutation;

@@ -1,11 +1,9 @@
 package de.tivsource.page.admin.actions.academy.course;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
@@ -15,15 +13,13 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CSSGroupService;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSGroup;
-import de.tivsource.page.dao.course.CourseDaoLocal;
-import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
-import de.tivsource.page.entity.enumeration.Language;
 
 /**
  * 
@@ -49,11 +45,9 @@ public class UnitEditAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(UnitEditAction.class);
 
-    @InjectEJB(name = "CSSGroupDao")
-    private CSSGroupDaoLocal cssGroupDaoLocal;
+    private CourseService courseService;
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CSSGroupService cssGroupService;
 
     private Course course;
 
@@ -61,11 +55,15 @@ public class UnitEditAction extends EmptyAction {
 
     private String lang;
 
-    private List<CSSGroup> cssGroupList;
-
     @Autowired
-    public UnitEditAction(PropertyService propertyService) {
+    public UnitEditAction(
+            PropertyService propertyService,
+            CourseService courseService,
+            CSSGroupService cssGroupService
+            ) {
         super(propertyService);
+        this.courseService = courseService;
+        this.cssGroupService = cssGroupService;
     }
 
     @StrutsParameter(depth=3)
@@ -98,7 +96,6 @@ public class UnitEditAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -114,65 +111,20 @@ public class UnitEditAction extends EmptyAction {
     })
     public String execute() throws Exception {
     	LOGGER.info("execute() aufgerufen.");
-
-        String remoteUser    = ServletActionContext.getRequest().getRemoteUser();
-        String remoteAddress = ServletActionContext.getRequest().getRemoteAddr();
-    	
     	if(course != null && courseUnit != null) {
     		LOGGER.info("UUID des Course: " + course.getUuid());
-    		Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
-
-    		// Durchlaufe alle Einheiten des Kurses
-    		for(CourseUnit dbCourseUnit : dbCourse.getUnits()) {
-    		    // Wenn die Einheit der gesuchten entspricht
-    		    if(dbCourseUnit.getUuid().compareTo(this.courseUnit.getUuid()) == 0) {
-    	            if(lang.contentEquals(new StringBuffer("EN"))) {
-    	                courseUnit.getContentMap().put(Language.DE, dbCourseUnit.getContentObject(Language.DE));
-    	                dbCourseUnit.getContentMap().get(Language.EN).setContent(courseUnit.getContent(Language.EN));
-    	                dbCourseUnit.getContentMap().get(Language.EN).setModified(new Date());
-
-    	                courseUnit.getDescriptionMap().put(Language.DE, dbCourseUnit.getDescriptionObject(Language.DE));
-    	                String noLineBreaks = courseUnit.getDescription(Language.EN).replaceAll("(\\r|\\n)", "");
-    	                dbCourseUnit.getDescriptionMap().get(Language.EN).setDescription(noLineBreaks);
-    	                dbCourseUnit.getDescriptionMap().get(Language.EN).setKeywords(courseUnit.getKeywords(Language.EN));
-    	                dbCourseUnit.getDescriptionMap().get(Language.EN).setName(courseUnit.getName(Language.EN));
-    	            } else {
-    	                dbCourseUnit.getContentMap().get(Language.DE).setContent(courseUnit.getContent(Language.DE));
-    	                dbCourseUnit.getContentMap().get(Language.DE).setModified(new Date());
-
-    	                String noLineBreaks = courseUnit.getDescription(Language.DE).replaceAll("(\\r|\\n)", "");
-    	                dbCourseUnit.getDescriptionMap().get(Language.DE).setDescription(noLineBreaks);
-    	                dbCourseUnit.getDescriptionMap().get(Language.DE).setKeywords(courseUnit.getKeywords(Language.DE));;
-    	                dbCourseUnit.getDescriptionMap().get(Language.DE).setName(courseUnit.getName(Language.DE));
-    	            }
-
-    	            dbCourseUnit.setDuration(courseUnit.getDuration());
-    	            dbCourseUnit.setPointInTime(courseUnit.getPointInTime());
-    	            dbCourseUnit.setModifiedAddress(remoteAddress);
-    	            dbCourseUnit.setModified(new Date());
-    	            dbCourseUnit.setModifiedBy(remoteUser);
-    	            dbCourseUnit.setCssGroup(courseUnit.getCssGroup());
-
-                    // Hole das Datum der ersten Einheit aus dem SortedSet 
-                    Date firstUnit = dbCourse.getUnits().first().getPointInTime();
-                    LOGGER.info("Datum der ersten Einheit: " + firstUnit);
-                    // Setze das Startdatum auf das Datum der ersten Einheit
-                    dbCourse.setStartDate(firstUnit);
-
-    	            courseDaoLocal.merge(dbCourse);
-    	            return SUCCESS;
-    		    }// Ende if()
-    		}// Ende for()
-    		// Wenn die Schleife durchlaufen wurde und es die Kurseinheit nicht gab.
-    		return ERROR;
+    		if(courseService.updateCourseUnit(course.getUuid(), courseUnit, lang)) {
+    		    return SUCCESS;
+  		    }// Ende if()
     	}// Ende if()
     	// Wenn kein Kurs-Objekt vorhanden ist
     	return ERROR;
     }// Ende execute()
 
     public List<CSSGroup> getCssGroupList() {
-        LOGGER.info("getCssGroupList() aufgerufen.");
-        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        LOGGER.debug("getCssGroupList() aufgerufen.");
+        List<CSSGroup> cssGroupList = cssGroupService.getAllCSSGroups();
+        LOGGER.debug("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
 

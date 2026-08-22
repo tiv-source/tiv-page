@@ -15,8 +15,8 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.menuentry.ContentEntry;
@@ -55,13 +55,16 @@ public class EditAction extends EmptyAction implements Preparable {
      */
     private static final Logger LOGGER = LogManager.getLogger(EditAction.class);
 
-    @InjectEJB(name="ContentEntryDao")
+    @Autowired
+    @Qualifier("contentEntryDaoLocal")
     private ContentEntryDaoLocal contentEntryDaoLocal;
 
-	@InjectEJB(name="ContentItemDao")
+	@Autowired
+    @Qualifier("contentItemDaoLocal")
     private ContentItemDaoLocal contentItemDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
     private ContentEntry contentEntry;

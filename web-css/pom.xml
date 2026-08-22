@@ -18,66 +18,57 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-			<version>${junit.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>dao</artifactId>
 			<version>${revision}</version>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
 			<artifactId>entity</artifactId>
 			<version>${revision}</version>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-digester</artifactId>
+					<groupId>commons-digester</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>de.tivsource.page</groupId>
-			<artifactId>restore</artifactId>
+			<artifactId>converter</artifactId>
+			<version>${revision}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.tivsource.page</groupId>
+			<artifactId>exceptions</artifactId>
 			<version>${revision}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.tivsource.page</groupId>
-			<artifactId>valve</artifactId>
-			<version>${revision}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.tivsource.page</groupId>
-			<artifactId>struts2-ejb3plugin</artifactId>
-			<version>${revision}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-core</artifactId>
 			<version>${struts2.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>log4j-api</artifactId>
-					<groupId>org.apache.logging.log4j</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-tiles-plugin</artifactId>
 			<version>${struts2.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -97,8 +88,15 @@
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-json-plugin</artifactId>
 			<version>${struts2.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-rest-plugin</artifactId>
+			<version>${struts2.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -107,9 +105,32 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Struts2-Spring-Plugin (damit Struts Actions aus Spring holt) -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
 
+		<!-- Spring Context (DI, @Component, @Autowired, @ComponentScan, ...) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>${jackson.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
 
 		<dependency>
@@ -118,33 +139,6 @@
 			<scope>provided</scope>
 			<version>${hibernate.annotations.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-        <dependency>
-           <groupId>jakarta.mail</groupId>
-           <artifactId>jakarta.mail-api</artifactId>
-           <scope>provided</scope>
-           <version>2.1.3</version>
-        </dependency>
-
-        <dependency>
-			<groupId>jakarta.servlet</groupId>
-			<artifactId>jakarta.servlet-api</artifactId>
-			<version>5.0.0</version>
-			<scope>provided</scope>
-	    </dependency>
-
-        <dependency>
-			<groupId>jakarta.ejb</groupId>
-			<artifactId>jakarta.ejb-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-        </dependency>
 
 		<dependency>
 			<groupId>rome</groupId>
@@ -153,21 +147,29 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
 			<version>2.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 			<version>2.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>${junit.version}</version>
 		</dependency>
 
 		<dependency>
@@ -176,23 +178,28 @@
 			<version>${log4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${log4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Für die gesamte Jakarta EE API benötigen -->
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-1.2-api</artifactId>
-			<version>${log4j.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-slf4j-impl</artifactId>
-		    <version>${log4j.version}</version>
+		    <groupId>jakarta.platform</groupId>
+		    <artifactId>jakarta.jakartaee-api</artifactId>
+		    <version>10.0.0</version>
 		    <scope>provided</scope>
+		</dependency>
+
+		<!-- Besser, falls nur die minimalen Web-Schnittstellen für Struts benötigt werden -->
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

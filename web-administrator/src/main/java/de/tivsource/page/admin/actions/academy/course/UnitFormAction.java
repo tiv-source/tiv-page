@@ -13,12 +13,11 @@ import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CSSGroupService;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.common.css.CSSGroup;
-import de.tivsource.page.dao.course.CourseDaoLocal;
-import de.tivsource.page.dao.cssgroup.CSSGroupDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
 
@@ -61,11 +60,9 @@ public class UnitFormAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(UnitFormAction.class);
 
-    @InjectEJB(name = "CSSGroupDao")
-    private CSSGroupDaoLocal cssGroupDaoLocal;
+    private CourseService courseService;
 
-	@InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CSSGroupService cssGroupService;
 
 	private Course course;
 
@@ -77,11 +74,15 @@ public class UnitFormAction extends EmptyAction {
 
 	private String lang = "DE";
 
-    private List<CSSGroup> cssGroupList;
-
     @Autowired
-    public UnitFormAction(PropertyService propertyService) {
+    public UnitFormAction(
+            PropertyService propertyService,
+            CourseService courseService,
+            CSSGroupService cssGroupService
+            ) {
         super(propertyService);
+        this.courseService = courseService;
+        this.cssGroupService = cssGroupService;
     }
 
 	public Course getCourse() {
@@ -114,7 +115,6 @@ public class UnitFormAction extends EmptyAction {
     @Override
     public void prepare() {
         super.prepare();
-        cssGroupList = cssGroupDaoLocal.findAll(0, cssGroupDaoLocal.countAll());
     }
 
     @Override
@@ -144,8 +144,9 @@ public class UnitFormAction extends EmptyAction {
     }// Ende execute()
 
     public List<CSSGroup> getCssGroupList() {
-        LOGGER.info("getCssGroupList() aufgerufen.");
-        LOGGER.info("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
+        LOGGER.debug("getCssGroupList() aufgerufen.");
+        List<CSSGroup> cssGroupList = cssGroupService.getAllCSSGroups();
+        LOGGER.debug("Anzahl der CSS-Gruppen in der Liste: " + cssGroupList.size());
         return cssGroupList;
     }// Ende getCssGroupList()
 
@@ -153,7 +154,7 @@ public class UnitFormAction extends EmptyAction {
         LOGGER.trace("loadPageParameter() aufgerufen.");
 		if( uncheckCourse != null && uncheckCourse != "" && uncheckCourse.length() > 0) {
 		    LOGGER.trace("Course Objekt geladen.");
-			course = courseDaoLocal.findByUuid(uncheckCourse);
+			course = courseService.getCourseWithAllRelations(uncheckCourse);
 			if(uncheckedCourseUnit != null) {
 	            for(CourseUnit courseUnit : course.getUnits()) {
 	                LOGGER.trace("Suche CourseUnit Objekt: " + uncheckedCourseUnit);

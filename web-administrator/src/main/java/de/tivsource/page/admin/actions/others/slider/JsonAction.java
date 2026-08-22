@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.dao.slider.SliderDaoLocal;
 import de.tivsource.page.entity.slider.Slider;
 
@@ -35,7 +36,8 @@ public class JsonAction extends ActionSupport {
      */
     private static final Logger LOGGER = LogManager.getLogger(JsonAction.class);
 	
-	@InjectEJB(name="SliderDao")
+	@Autowired
+    @Qualifier("sliderDaoLocal")
     private SliderDaoLocal newsDaoLocal;
 
 	private List<Slider> gridModel;

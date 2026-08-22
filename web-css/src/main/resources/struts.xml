@@ -31,10 +31,7 @@
 		</result-types>
 
 		<interceptors>
-			<interceptor name="ejb3" class="de.tivsource.ejb3plugin.InjectEJBInterceptor" />
-
 			<interceptor-stack name="defaultPageStack">
-				<interceptor-ref name="ejb3" />
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="validation" />
 			</interceptor-stack>

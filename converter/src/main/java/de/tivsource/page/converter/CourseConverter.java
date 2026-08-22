@@ -4,6 +4,7 @@
 package de.tivsource.page.converter;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import javax.naming.Context;
@@ -49,11 +50,11 @@ public class CourseConverter extends StrutsTypeConverter {
             Context initialContext = new InitialContext();
             // TODO: Remove version number from dao
             CourseDaoLocal courseDaoLocal = (CourseDaoLocal) initialContext.lookup("java:global/tiv-page/dao/CourseDao");
-            Course course = courseDaoLocal.findByUuid(values[0]);
-            if(course == null) {
+            Optional<Course> course = courseDaoLocal.findByUuid(values[0]);
+            if(!course.isPresent()) {
                 throw new TypeConversionException("Kein Course Objekt zu dieser UUID gefunden.");
             }
-            return course;
+            return course.get();
         } catch (Exception e) {
             LOGGER.info("Keine gültige Course UUID angegeben.");
             throw new TypeConversionException("Keine gültige Course UUID angegeben.");

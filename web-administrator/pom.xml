@@ -75,11 +75,6 @@
 			<version>${revision}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>de.tivsource.page</groupId>
-			<artifactId>struts2-ejb3plugin</artifactId>
-			<version>${revision}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.apache.struts</groupId>

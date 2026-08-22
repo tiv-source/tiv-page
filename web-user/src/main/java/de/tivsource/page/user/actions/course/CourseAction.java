@@ -12,14 +12,11 @@ import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesDefinitions;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.page.dao.course.CourseDaoLocal;
-import de.tivsource.page.dao.page.PageDaoLocal;
-import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
+import de.tivsource.page.user.services.CourseService;
 
 @TilesDefinitions({
   @TilesDefinition(name="course", extend = "userTemplate", putAttributes = {
@@ -42,23 +39,19 @@ public class CourseAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(CourseAction.class);
 
-    @Autowired
-    @Qualifier("pageDaoLocal")
-    private PageDaoLocal pageDaoLocal;
-
-    @Autowired
-    @Qualifier("propertyDaoLocal")
-    private PropertyDaoLocal propertyDaoLocal;
-
-    @Autowired
-    @Qualifier("courseDaoLocal")
-    private CourseDaoLocal courseDaoLocal;
+    private CourseService courseService;
 
     private Course course;
 
     private String courseUuid;
 
     private Boolean waiting = true;
+
+    @Autowired
+    public CourseAction(CourseService courseService) {
+        super();
+        this.courseService = courseService;
+    }
 
     @Override
     @Actions({
@@ -78,30 +71,26 @@ public class CourseAction extends EmptyAction {
         LOGGER.info("Course Uuid: " + courseUuid);
 
         // /gallery/painting/index.html?page=1&request_locale=de
-        
-        
+
         courseUuid = courseUuid.replaceAll("/index.html", "");
         courseUuid = courseUuid.replaceAll("/course/", "");
             
         LOGGER.info("Course Uuid: " + courseUuid);
 
         /*
-         * Wenn die Appointment Uuid keine nicht erlaubten Zeichen enthält und es
-         * das Appointment Objekt mit der Uuid gibt dann wird der Block ausgeführt.
+         * Wenn die Course Uuid keine nicht erlaubten Zeichen enthält und es
+         * das Course Objekt mit der Uuid gibt dann wird der Block ausgeführt.
          */
-        if (isValid(courseUuid) && courseDaoLocal.isCourseUuid(courseUuid)) {
+        if (isValid(courseUuid) && courseService.checkCourseUuid(courseUuid)) {
             LOGGER.info("gültige Course Uuid.");
-            course = courseDaoLocal.findByUuid(courseUuid);
-            
+            course = courseService.getCourseWithAllRelations(courseUuid);
             LOGGER.info("Course Material: " + course.getMaterial());
-            
             /*
              * Wenn das Course Objekt sichbar sein soll und auch schon das
              * Anzeigedtaum erreicht hat wird dieser Block ausgefüht.
              */
             if(course.getVisible()) {
-                // Setze die Flag für die Warteliste wenn der Kurs voll ist
-                if(courseDaoLocal.registrations(course) < course.getMaxStudents()) {
+                if(course.getRegistrations().size() <= course.getMaxStudents()) {
                     waiting = false;
                 }
                 return SUCCESS;
@@ -129,7 +118,7 @@ public class CourseAction extends EmptyAction {
     }
 
     private Boolean isValid(String input) {
-        if (Pattern.matches("[abcdef0-9-]*", input)) {
+        if (input != null && Pattern.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", input)) {
             return true;
         }
         return false;

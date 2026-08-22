@@ -8,10 +8,9 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
+import de.tivsource.page.admin.services.CourseService;
 import de.tivsource.page.admin.services.PropertyService;
-import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.entity.course.Course;
 
 /**
@@ -31,14 +30,17 @@ public class DeleteAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(DeleteAction.class);
 
-    @InjectEJB(name="CourseDao")
-    private CourseDaoLocal courseDaoLocal;
+    private CourseService courseService;
 
     private Course course;
 
     @Autowired
-    public DeleteAction(PropertyService propertyService) {
+    public DeleteAction(
+            PropertyService propertyService, 
+            CourseService courseService 
+            ) {
         super(propertyService);
+        this.courseService = courseService;
     }
 
     @StrutsParameter(depth=3)
@@ -61,19 +63,14 @@ public class DeleteAction extends EmptyAction {
         				}
         )
     })
-    public String execute() throws Exception {
+    public String execute() {
     	LOGGER.info("execute() aufgerufen.");
-
     	if(course != null) {
-    	    Course dbCourse = courseDaoLocal.findByUuid(course.getUuid());
-    	    courseDaoLocal.delete(dbCourse);
-            return SUCCESS;
+    	    if(courseService.deleteCourse(course)) {
+    	        return SUCCESS;
+    	    }
     	}
-    	else {
-    		return ERROR;
-    	}
-    	
-    	
+    	return ERROR;
     }// Ende execute()
 	
 }// Ende class

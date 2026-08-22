@@ -7,8 +7,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,12 +19,15 @@ import org.hibernate.jpa.AvailableHints;
 
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.course.unit.CourseUnit;
+import de.tivsource.page.entity.enumeration.Language;
 import de.tivsource.page.entity.enumeration.RegistrationStatus;
 import de.tivsource.page.entity.lecturer.Lecturer;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 /**
  * @author Marc Michele
@@ -51,6 +56,141 @@ public class CourseDao implements CourseDaoLocal {
         entityManager.persist(course);
     }
 
+    @Override
+    public void saveOrUpdate(Course course) {
+        LOGGER.info("saveComplete(Course course) aufgerufen");
+        if (course == null) {
+            return;
+        }
+
+        // Die vom Formular kommenden (detached) Dozenten sichern
+        SortedSet<Lecturer> detachedLecturers = course.getLecturers();
+
+        // UUID-Existenzprüfung: Gibt es diesen Kurs bereits in der Datenbank?
+        // find() schaut erst im First-Level-Cache der EJB und fragt
+        // sonst extrem schnell die DB ab.
+        Course existingCourse = null;
+        if (course.getUuid() != null) {
+            existingCourse = entityManager.find(Course.class, course.getUuid());
+        }
+
+        if (existingCourse == null) {
+            // FALL A: Das Objekt ist NEU (Die UUID existiert noch nicht in der Datenbank)
+            // Bei gesetzter ID erzwingt persist() hier das gezielte Einfügen (INSERT)
+            // WICHTIG: Das Set im Formular-Objekt temporär auf null setzen!
+            // Dadurch mergt Hibernate den Kurs und die Single-Selects, ignoriert
+            // aber das Multi-Select.
+            course.setLecturers(null);
+            entityManager.persist(course);
+            // Die Dozenten an das frisch persistierte Objekt hängen
+            if (detachedLecturers != null && !detachedLecturers.isEmpty()) {
+                for (Lecturer detachedLecturer : detachedLecturers) {
+                    if (detachedLecturer != null) {
+                        Lecturer attachedLecturer = entityManager.merge(detachedLecturer);
+                        course.addLecturer(attachedLecturer);
+                    }
+                }
+            }
+            if (detachedLecturers != null) {
+                for (Lecturer detachedLecturer : detachedLecturers) {
+                    Lecturer attachedLecturer = entityManager.find(Lecturer.class, detachedLecturer.getUuid());
+                    if (attachedLecturer != null) {
+                        attachedLecturer.addCourse(course); // Owner befüllen
+                    }
+                }
+            }
+        }  else {
+            // Setze den neuen Inhalt
+            existingCourse.getContentMap().get(Language.EN).setContent(course.getContent(Language.EN));
+            existingCourse.getContentMap().get(Language.EN).setModified(new Date());
+            existingCourse.getContentMap().get(Language.DE).setContent(course.getContent(Language.DE));
+            existingCourse.getContentMap().get(Language.DE).setModified(new Date());
+
+            existingCourse.setCourseDocumentDescription(course.getCourseDocumentDescription());
+            //existingCourse.setCreated(null);
+            existingCourse.setCssGroup(course.getCssGroup());
+
+            // Setze die neue Beschreibung
+            existingCourse.getDescriptionMap().get(Language.EN).setDescription(course.getDescription(Language.EN));
+            existingCourse.getDescriptionMap().get(Language.EN).setKeywords(course.getKeywords(Language.EN));
+            existingCourse.getDescriptionMap().get(Language.EN).setName(course.getName(Language.EN));
+            existingCourse.getDescriptionMap().get(Language.DE).setDescription(course.getDescription(Language.DE));
+            existingCourse.getDescriptionMap().get(Language.DE).setKeywords(course.getKeywords(Language.DE));
+            existingCourse.getDescriptionMap().get(Language.DE).setName(course.getName(Language.DE));
+
+            //existingCourse.setImage(null);
+            //existingCourse.setLecturers(null);
+            existingCourse.setLocation(course.getLocation());
+            existingCourse.setMaterial(course.getMaterial());
+            existingCourse.setMaterialDocumentDescription(course.getMaterialDocumentDescription());
+            existingCourse.setMaterialPrice(course.getMaterialPrice());
+            existingCourse.setMaterialTax(course.getMaterialTax());
+            existingCourse.setMaxStudents(course.getMaxStudents());
+            existingCourse.setMinimumAge(course.getMinimumAge());
+            existingCourse.setModified(new Date());
+            existingCourse.setModifiedAddress(course.getModifiedAddress());
+            existingCourse.setModifiedBy(course.getModifiedBy());
+            existingCourse.setNumber(course.getNumber());
+            existingCourse.setOrderNumber(course.getOrderNumber());
+            existingCourse.setPictureOnPage(course.getPictureOnPage());
+            existingCourse.setPrice(course.getPrice());
+            existingCourse.setPriceTax(course.getPriceTax());
+            //existingCourse.setRegistrations(null);
+            existingCourse.setStartDate(course.getStartDate());
+            existingCourse.setTechnical(course.getTechnical());
+            //existingCourse.setUnits(null);
+            //existingCourse.setUuid(null);
+            //existingCourse.setVersion(0);
+            existingCourse.setVisible(course.getVisible());
+
+            // 1. SCHRITT: Die alten Beziehungen sauber auf der OWNER-Seite (Lecturer) trennen.
+            // Wir nutzen KEINE Helper, die im Kurs-Set herummanipulieren!
+            if (existingCourse.getLecturers() != null) {
+                for (Lecturer oldLecturer : existingCourse.getLecturers()) {
+                    // Wir laden den Dozenten frisch in den EJB-Kontext
+                    Lecturer attachedOld = entityManager.find(Lecturer.class, oldLecturer.getUuid());
+                    if (attachedOld != null && attachedOld.getCourses() != null) {
+                        // Wir löschen den Kurs AUSSCHLIESSLICH aus dem Set des Dozenten (Owner der @JoinTable)
+                        attachedOld.getCourses().remove(existingCourse);
+                    }
+                }
+                // Erst danach leeren wir das Set des Kurses im Java-Speicher in einem Rutsch
+                existingCourse.getLecturers().clear();
+            }
+
+            // 2. SCHRITT: Zwischen-Flush erzwingen!
+            // Das zwingt Hibernate dazu, die alten Beziehungen JETZT real aus 'Lecturer_Course' zu tilgen,
+            // bevor wir neue Objekte in die Sessions-Struktur einfügen.
+            entityManager.flush();
+
+            // 3. SCHRITT: Die neuen Beziehungen aufbauen (Ausschließlich von der Owner-Seite aus gesteuert)
+            if (detachedLecturers != null && !detachedLecturers.isEmpty()) {
+                for (Lecturer detachedLecturer : detachedLecturers) {
+                    if (detachedLecturer != null) {
+                        // Dozenten frisch und attached aus der DB laden
+                        Lecturer attachedLecturer = entityManager.find(Lecturer.class, detachedLecturer.getUuid());
+                        if (attachedLecturer != null) {
+                            
+                            // Wir befüllen das Set des Dozenten (Owner) manuell
+                            if (attachedLecturer.getCourses() == null) {
+                                attachedLecturer.setCourses(new TreeSet<>());
+                            }
+                            attachedLecturer.getCourses().add(existingCourse);
+                            
+                            // Wir befüllen das Set des Kurses manuell für den konsistenten Java-Speicher
+                            existingCourse.getLecturers().add(attachedLecturer);
+                        }
+                    }
+                }
+            }
+            
+            // 4. FINALER FLUSH: Schreibt die neuen Verknüpfungen zwingend in die DB
+            entityManager.flush();
+
+        }// Ende else
+
+    }// Ende saveOrUpdate(Course course)
+    
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.course.CourseDaoLocal#merge(de.tivsource.page.entity.course.Course)
      */
@@ -126,33 +266,57 @@ public class CourseDao implements CourseDaoLocal {
      * @see de.tivsource.page.dao.course.CourseDaoLocal#findByUuid(java.lang.String)
      */
     @Override
-    public Course findByUuid(String uuid) {
+    public Optional<Course> findByUuid(String uuid) {
+        if (uuid == null || uuid.trim().isEmpty()) {
+            return Optional.empty();
+        }
+
+        // find() liefert das Objekt oder null, wenn nichts gefunden wurde
         Course course = entityManager.find(Course.class, uuid);
-        Hibernate.initialize(course.getLecturers());
-        Set<Lecturer> lecturerList = course.getLecturers();
-        for (Lecturer lecturer : lecturerList) {
-            Hibernate.initialize(lecturer.getDescriptionMap());
-            Hibernate.initialize(lecturer.getImage());
-            Hibernate.initialize(lecturer.getCourses());
-        }
-        Hibernate.initialize(course.getUnits());
-        Set<CourseUnit> courseUnitList = course.getUnits();
-        for (CourseUnit courseUnit : courseUnitList) {
-            Hibernate.initialize(courseUnit.getDescriptionMap());
-            Hibernate.initialize(courseUnit.getContentMap());
-            Hibernate.initialize(courseUnit.getImage());
-        }
-        Hibernate.initialize(course.getImage());
-        Hibernate.initialize(course.getDescriptionMap());
-        Hibernate.initialize(course.getContentMap());
-        Hibernate.initialize(course.getCssGroup());
-        Hibernate.initialize(course.getCssGroup().getFiles());
-        Hibernate.initialize(course.getLocation());
-        Hibernate.initialize(course.getLocation().getAddress());
-        Hibernate.initialize(course.getLocation().getDescriptionMap());
-        Hibernate.initialize(course.getRegistrations());
-        return course;
+        
+        // Verpackt das Ergebnis sicher in ein Optional (liefert empty(), wenn course null ist)
+        return Optional.ofNullable(course);
     }
+
+    @Override
+    public Optional<Course> findByUuidWithAllRelations(String uuid) {
+        if (uuid == null || uuid.trim().isEmpty()) {
+            return Optional.empty();
+        }
+
+        try {
+            // JPQL-Query mit FETCH JOIN für alle 4 Relationen
+            TypedQuery<Course> query = entityManager.createQuery(
+                "SELECT c FROM Course c " +
+                "LEFT JOIN FETCH c.descriptionMap dm " +
+                "LEFT JOIN FETCH c.image " +
+                "LEFT JOIN FETCH c.cssGroup cg " +
+                "LEFT JOIN FETCH cg.files " +
+                "LEFT JOIN FETCH c.contentMap " +
+                "LEFT JOIN FETCH c.units u " +
+                "LEFT JOIN FETCH u.descriptionMap udm " +
+                "LEFT JOIN FETCH u.contentMap ucm " +
+                "LEFT JOIN FETCH u.image " +
+                "LEFT JOIN FETCH c.registrations " +
+                "LEFT JOIN FETCH c.lecturers l " +
+                "LEFT JOIN FETCH l.descriptionMap ldm " +
+                "LEFT JOIN FETCH l.image " +
+                "LEFT JOIN FETCH c.location loc " +
+                "LEFT JOIN FETCH loc.descriptionMap " +
+                "WHERE c.uuid = :uuid", Course.class
+            );
+
+            query.setParameter("uuid", uuid);
+            
+            // Gibt den gefundenen Kurs verpackt in ein Optional zurück
+            return Optional.of(query.getSingleResult());
+            
+        } catch (NoResultException e) {
+            // Falls kein Kurs mit dieser UUID existiert, geben wir ein leeres Optional zurück
+            LOGGER.debug("Kein Kurs mit der UUID {} gefunden.", uuid);
+            return Optional.empty();
+        }
+    }// findByIdWithAllRelations(String uuid)
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.course.CourseDaoLocal#findAll(java.lang.Integer, java.lang.Integer)
@@ -185,26 +349,53 @@ public class CourseDao implements CourseDaoLocal {
     @SuppressWarnings("unchecked")
     @Override
     public List<Course> findAll(Integer start, Integer max, String field, String order) {
-        String queryString = "SELECT DISTINCT l FROM Course l JOIN l.descriptionMap dm WHERE dm.language = 'DE' ORDER BY ";
-        queryString = queryString + field + " " + order;
-        Query query = entityManager.createQuery(queryString);
-        query.setFirstResult(start);
-        query.setMaxResults(max);
-        List<Course> courseList = query.getResultList();
-        for (Course course : courseList) {
-            Hibernate.initialize(course.getImage());
-            Hibernate.initialize(course.getLecturers());
-            Set<Lecturer> lecturerList = course.getLecturers();
-            for (Lecturer lecturer : lecturerList) {
-                Hibernate.initialize(lecturer.getDescriptionMap());
-                Hibernate.initialize(lecturer.getImage());
-            }
-            Hibernate.initialize(course.getDescriptionMap());
-            Hibernate.initialize(course.getLocation());
-            Hibernate.initialize(course.getLocation().getDescriptionMap());
+        // =====================================================================
+        // SCHRITT 1: Nur die UUIDs der Kurse für die aktuelle Seite ermitteln
+        // =====================================================================
+        // Da wir hier KEINE Collections (lecturers) fetchen, kann MySQL das 
+        // LIMIT (FirstResult/MaxResults) direkt auf DB-Ebene ausführen!
+        String idQueryString = "SELECT DISTINCT c.uuid FROM Course c " +
+                               "JOIN c.descriptionMap dm " +
+                               "LEFT JOIN c.location loc " +
+                               "LEFT JOIN loc.descriptionMap locDm " +
+                               "WHERE dm.language = 'DE' " +
+                               "ORDER BY " + field + " " + order;
+
+        Query idQuery = entityManager.createQuery(idQueryString);
+        idQuery.setFirstResult(start);
+        idQuery.setMaxResults(max);
+        
+        List<String> courseUuids = idQuery.getResultList();
+
+        // Sicherheitscheck: Wenn keine Kurse gefunden wurden, sofort leere Liste zurückgeben
+        if (courseUuids == null || courseUuids.isEmpty()) {
+            return new ArrayList<>();
         }
+
+        // =====================================================================
+        // SCHRITT 2: Alle Relationen für NUR DIESE UUIDs hocheffizient fetchen
+        // =====================================================================
+        // Wir nutzen das "IN"-Statement. Es werden exakt nur die 'max' (z.B. 20) Datensätze geladen.
+        // Die Sortierung aus Schritt 1 müssen wir hier wiederholen, damit die Reihenfolge im RAM stimmt.
+        String fetchQueryString = "SELECT DISTINCT c FROM Course c " +
+                                  "JOIN c.descriptionMap dm " +
+                                  "LEFT JOIN FETCH c.image " +
+                                  "LEFT JOIN FETCH c.lecturers l " +
+                                  "LEFT JOIN FETCH l.descriptionMap " +
+                                  "LEFT JOIN FETCH l.image " +
+                                  "LEFT JOIN FETCH c.descriptionMap " +
+                                  "LEFT JOIN FETCH c.location loc " +
+                                  "LEFT JOIN FETCH loc.descriptionMap " +
+                                  "WHERE c.uuid IN (:uuids) " +
+                                  "ORDER BY " + field + " " + order;
+
+        Query fetchQuery = entityManager.createQuery(fetchQueryString);
+        fetchQuery.setParameter("uuids", courseUuids);
+
+        List<Course> courseList = fetchQuery.getResultList();
+
         return courseList;
-    }
+    }// findAll(Integer start, Integer max, String field, String order)
 
     /* (non-Javadoc)
      * @see de.tivsource.page.dao.course.CourseDaoLocal#findAllVisible(java.lang.Integer, java.lang.Integer)

@@ -16,12 +16,12 @@ import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.page.dao.course.CourseDaoLocal;
 import de.tivsource.page.dao.page.PageDaoLocal;
 import de.tivsource.page.dao.property.PropertyDaoLocal;
 import de.tivsource.page.entity.course.Course;
 import de.tivsource.page.entity.page.Page;
 import de.tivsource.page.user.actions.EmptyAction;
+import de.tivsource.page.user.services.CourseService;
 
 @TilesDefinitions({
   @TilesDefinition(name="registrationSuccess", extend = "userTemplate", putAttributes = {
@@ -51,6 +51,8 @@ public class SuccessAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(SuccessAction.class);
 
+    private CourseService courseService;
+
     @Autowired
     @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
@@ -59,10 +61,6 @@ public class SuccessAction extends EmptyAction {
     @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @Autowired
-    @Qualifier("courseDaoLocal")
-    private CourseDaoLocal courseDaoLocal;
-
     private Course course;
 
     private String courseUuid;
@@ -70,6 +68,12 @@ public class SuccessAction extends EmptyAction {
     private Page page;
 
     private Boolean waiting = true;
+
+    @Autowired
+    public SuccessAction(CourseService courseService) {
+        super();
+        this.courseService = courseService;
+    }
 
     @Override
     public void prepare() {
@@ -106,22 +110,21 @@ public class SuccessAction extends EmptyAction {
          * Wenn die Course Uuid keine nicht erlaubten Zeichen enthält und es
          * das Course Objekt mit der Uuid gibt dann wird der Block ausgeführt.
          */
-        if (isValid(courseUuid) && courseDaoLocal.isCourseUuid(courseUuid)) {
+        if (isValid(courseUuid) && courseService.checkCourseUuid(courseUuid)) {
             LOGGER.info("gültige Course Uuid.");
-            course = courseDaoLocal.findByUuid(courseUuid);
+            course = courseService.getCourseWithAllRelations(courseUuid);
             /*
              * Wenn das Course Objekt sichbar sein sollte und nicht in der
              * Vergangenheit liegt.
              */
             if(course.getVisible() && !isInPast()) {
-                if(courseDaoLocal.registrations(course) <= course.getMaxStudents()) {
+                if(course.getRegistrations().size() <= course.getMaxStudents()) {
                     page = pageDaoLocal.findByTechnical("registrationsuccess");
                     waiting = false;
                 }
                 return SUCCESS;
             }
         }
-
         /*
          * Wenn es die Seite nicht gibt oder es einen Manipulationsversuch
          * gab.
@@ -152,7 +155,7 @@ public class SuccessAction extends EmptyAction {
     }
 
     private Boolean isValid(String input) {
-        if (Pattern.matches("[abcdef0-9-]*", input)) {
+        if (input != null && Pattern.matches("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", input)) {
             return true;
         }
         return false;

@@ -10,8 +10,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.backup.BackupZipFile;
 import de.tivsource.page.admin.services.PropertyService;
@@ -50,55 +50,72 @@ public class BackupDatabaseAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(BackupDatabaseAction.class);
 
-	@InjectEJB(name="GalleryDao")
+	@Autowired
+    @Qualifier("galleryDaoLocal")
     private GalleryDaoLocal galleryDaoLocal;
 
-	@InjectEJB(name="PictureDao")
+	@Autowired
+    @Qualifier("pictureDaoLocal")
     private PictureDaoLocal pictureDaoLocal;
 
-	@InjectEJB(name="PageDao")
+	@Autowired
+    @Qualifier("pageDaoLocal")
     private PageDaoLocal pageDaoLocal;
 
-    @InjectEJB(name="RoleDao")
+    @Autowired
+    @Qualifier("roleDaoLocal")
     private RoleDaoLocal roleDaoLocal;
 
-    @InjectEJB(name="UserDao")
+    @Autowired
+    @Qualifier("userDaoLocal")
     private UserDaoLocal userDaoLocal;
 
-    @InjectEJB(name="PropertyDao")
+    @Autowired
+    @Qualifier("propertyDaoLocal")
     private PropertyDaoLocal propertyDaoLocal;
 
-    @InjectEJB(name="LocationDao")
+    @Autowired
+    @Qualifier("locationDaoLocal")
     private LocationDaoLocal locationDaoLocal;
 
-    @InjectEJB(name="EventDao")
+    @Autowired
+    @Qualifier("eventDaoLocal")
     private EventDaoLocal eventDaoLocal;
 
-    @InjectEJB(name="MessageDao")
+    @Autowired
+    @Qualifier("messageDaoLocal")
     private MessageDaoLocal messageDaoLocal;
 
-    @InjectEJB(name="NewsDao")
+    @Autowired
+    @Qualifier("newsDaoLocal")
     private NewsDaoLocal newsDaoLocal;
     
-    @InjectEJB(name="ReservationDao")
+    @Autowired
+    @Qualifier("reservationDaoLocal")
     private ReservationDaoLocal reservationDaoLocal;
 
-    @InjectEJB(name="VacancyDao")
+    @Autowired
+    @Qualifier("vacancyDaoLocal")
     private VacancyDaoLocal vacancyDaoLocal;
 
-    @InjectEJB(name="ManualDao")
+    @Autowired
+    @Qualifier("manualDaoLocal")
     private ManualDaoLocal manualDaoLocal;
 
-    @InjectEJB(name="AppointmentDao")
+    @Autowired
+    @Qualifier("appointmentDaoLocal")
     private AppointmentDaoLocal appointmentDaoLocal;
 
-    @InjectEJB(name="CompanionGroupDao")
+    @Autowired
+    @Qualifier("companionGroupDaoLocal")
     private CompanionGroupDaoLocal companionGroupDaoLocal;
 
-    @InjectEJB(name="CompanionDao")
+    @Autowired
+    @Qualifier("companionDaoLocal")
     private CompanionDaoLocal companionDaoLocal;
 
-    @InjectEJB(name="SliderDao")
+    @Autowired
+    @Qualifier("sliderDaoLocal")
     private SliderDaoLocal sliderDaoLocal;
 
 	private InputStream fileStream;

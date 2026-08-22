@@ -14,8 +14,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.admin.actions.EmptyAction;
 import de.tivsource.page.admin.services.PropertyService;
 import de.tivsource.page.backup.BackupCountry;
@@ -38,7 +38,8 @@ public class BackupAction extends EmptyAction {
      */
     private static final Logger LOGGER = LogManager.getLogger(BackupAction.class);
 
-    @InjectEJB(name="CountryDao")
+    @Autowired
+    @Qualifier("countryDaoLocal")
     private CountryDaoLocal countryDaoLocal;
 
     private InputStream fileStream;

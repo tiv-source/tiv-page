@@ -40,7 +40,7 @@ function formatIsoDate(celldate, options, rowObject) {
 
 <script type="text/javascript">
 function formatPicture(cellvalue, options, rowObject) {
-	return "<img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false'/>";  
+	return "<div style='height: 140px; width:100%; overflow: hidden;'><img src='/image/pictureitem/" + cellvalue + "/thumbnail.png?cache=false' style='width: 100%; height: 100%; object-fit: cover; object-position: center;'/></div>";  
 }
 </script>
 
@@ -61,9 +61,10 @@ $(function () {
         mtype: "GET",
         colNames: [
         	'<struts:text name="picture"/>',
-            '<struts:text name="course.descriptionMap.DE.name"/>',
+            '<struts:text name="name"/>',
             '<struts:text name="course.number"/>',
-            '<struts:text name="location.descriptionMap.DE.name"/>',
+            '<struts:text name="startDate"/>',
+            '<struts:text name="location"/>',
             '<struts:text name="course.pictureOnPage.table"/>',
             '<struts:text name="visible"/>',
             '<struts:text name="modified"/>',
@@ -72,14 +73,15 @@ $(function () {
         ],
         colModel: [
             { name: "uuid",                            width:  140, align: "center", sortable: false, formatter:formatPicture },
-            { name: "descriptionMap.DE.name",          width:  140, align: "left" },
+            { name: "descriptionMap.DE.name",          width:  280, align: "left", index: "name" },
             { name: "number",                          width:  140, align: "left" },
-            { name: "location.descriptionMap.DE.name", width:  140, align: "left" },
-            { name: "pictureOnPage",                   width:  140, align: "center", formatter:formatTrueFalse },
-            { name: "visible",                         width:  140, align: "center", formatter:formatTrueFalse },
-            { name: "modified",                        width:  140, align: "center", formatter:formatIsoDate },
-            { name: "modifiedBy",                      width:  140, align: "left" },
-            { name: "uuid",                            width:  130, align: "center", sortable: false, formatter:formatLinks }
+            { name: "startDate",                       width:  105, align: "left" },
+            { name: "location.descriptionMap.DE.name", width:  105, align: "left", index: "location" },
+            { name: "pictureOnPage",                   width:   70, align: "center", formatter:formatTrueFalse },
+            { name: "visible",                         width:   70, align: "center", formatter:formatTrueFalse },
+            { name: "modified",                        width:  105, align: "center", formatter:formatIsoDate },
+            { name: "modifiedBy",                      width:   70, align: "left" },
+            { name: "uuid",                            width:   70, align: "center", sortable: false, formatter:formatLinks }
         ],
         pager: "#entityPager",
         rowNum: 15,

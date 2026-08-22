@@ -13,8 +13,9 @@ import org.apache.struts2.convention.annotation.Actions;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.parameter.StrutsParameter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import de.tivsource.ejb3plugin.InjectEJB;
 import de.tivsource.page.common.menuentry.LinkEntry;
 import de.tivsource.page.dao.linkentry.LinkEntryDaoLocal;
 
@@ -35,7 +36,8 @@ public class JsonAction extends ActionSupport {
      */
     private static final Logger LOGGER = LogManager.getLogger(JsonAction.class);
 	
-	@InjectEJB(name="LinkEntryDao")
+	@Autowired
+    @Qualifier("linkEntryDaoLocal")
     private LinkEntryDaoLocal linkEntryDaoLocal;
 
 	private List<LinkEntry> gridModel;
